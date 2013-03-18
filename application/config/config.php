@@ -58,7 +58,17 @@ $config['uri_protocol']	= 'AUTO';
 | http://codeigniter.com/user_guide/general/urls.html
 */
 
-$config['url_suffix'] = '.html';
+if(!empty($_SERVER['PATH_INFO']))
+{
+    list($tmp, $first_segment)  = explode("/",$_SERVER['PATH_INFO']);
+}
+else
+{
+    $first_segment = '';
+}
+
+$config['url_suffix'] = $first_segment == 'admin' ? '' : '.html';
+//$config['url_suffix'] = '.html';
 
 /*
 |--------------------------------------------------------------------------
@@ -225,7 +235,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = '2tcvJQWt3ReKNYqr';
 
 /*
 |--------------------------------------------------------------------------
