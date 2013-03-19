@@ -67,7 +67,7 @@ else
     $first_segment = '';
 }
 
-$config['url_suffix'] = $first_segment == 'admin' ? '' : '.html';
+$config['url_suffix'] = $first_segment == 'admin' || $first_segment == 'examples' ? '' : '.html';
 //$config['url_suffix'] = '.html';
 
 /*
