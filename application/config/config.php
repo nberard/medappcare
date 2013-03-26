@@ -60,13 +60,12 @@ $config['uri_protocol']	= 'AUTO';
 
 if(!empty($_SERVER['PATH_INFO']))
 {
-    list($tmp, $first_segment)  = explode("/",$_SERVER['PATH_INFO']);
+    list($tmp, $lng, $first_segment)  = explode("/",$_SERVER['PATH_INFO']);
 }
 else
 {
     $first_segment = '';
 }
-
 $config['url_suffix'] = $first_segment == 'admin' || $first_segment == 'examples' ? '' : '.html';
 //$config['url_suffix'] = '.html';
 
