@@ -14,6 +14,11 @@ $lang['profiler_no_post']		= "Aucune donn&eacute;e POST n'existe";
 $lang['profiler_no_get']		= "Aucune donn&eacute;e GET n'existe";
 $lang['profiler_no_uri']		= "Aucune donn&eacute;e URI n'existe";
 $lang['profiler_no_memory']		= 'Utilisation de la m&eacute;moire indisponible';
+$lang['profiler_section_hide']	= 'Cacher';
+$lang['profiler_section_show']	= 'Montrer';
+$lang['profiler_headers']		= 'HTTP HEADERS';
+$lang['profiler_config']		= 'CONFIG VARIABLES';
+$lang['profiler_session_data']	= 'SESSION DATA';
 
 /* End of file profiler_lang.php */
 /* Location: ./system/language/french/profiler_lang.php */
