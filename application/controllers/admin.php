@@ -196,7 +196,6 @@ class Admin extends CI_Controller
         $this->crud->set_subject("Sélection");
         $this->crud->set_table('selection');
         $this->crud->required_fields('nom', 'date_debut', 'date_debut' ,'evennement');
-        $this->_admin_output($this->crud->render());
         $this->crud->callback_after_insert(function($post_array,$primary_key) {
             $this->_handle_default_values($post_array,$primary_key,
                 array('categorie_id' => -1, 'poids' => 0),
@@ -207,6 +206,28 @@ class Admin extends CI_Controller
                 array('categorie_id' => -1, 'poids' => 0),
                 'selection');
         });
-        $this->crud->set_relation_n_n('applications', 'selection_application', 'application', 'application_id', 'id', 'nom');
+        $this->crud->set_relation('categorie_id', 'categorie', '{nom}');
+        $this->crud->set_relation_n_n('applications', 'selection_application', 'application', 'selection_id', 'application_id', '{nom}');
+        $this->_admin_output($this->crud->render());
+    }
+
+    public function applications()
+    {
+        $this->crud->set_subject("Application");
+        $this->crud->set_table('application');
+        $this->crud->required_fields('nom', 'package', 'device_id' ,'titre', 'date_ajout', 'prix', 'devise', 'langue_store', 'editeur_id', 'lien_download');
+        $this->crud->callback_after_insert(function($post_array,$primary_key) {
+            $this->_handle_default_values($post_array,$primary_key,
+                array('categorie_id' => -1, 'poids' => 0),
+                'selection');
+        });
+        $this->crud->callback_after_update(function($post_array,$primary_key) {
+            $this->_handle_default_values($post_array,$primary_key,
+                array('categorie_id' => -1, 'poids' => 0),
+                'selection');
+        });
+        $this->crud->set_relation('categorie_id', 'categorie', '{nom}');
+        $this->crud->set_relation_n_n('applications', 'selection_application', 'application', 'selection_id', 'application_id', '{nom}');
+        $this->_admin_output($this->crud->render());
     }
 }

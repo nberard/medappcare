@@ -37,8 +37,8 @@ a:hover
 		<a href='<?php echo site_url('admin/editeurs')?>'>Editeurs</a> |
 		<a href='<?php echo site_url('admin/membres')?>'>Membres</a> |
 		<a href='<?php echo site_url('admin/publicites')?>'>Publicité</a> |
-		<a href='<?php echo site_url('admin/selections')?>'>Sélection</a> |
-		<a href='<?php echo site_url('admin/selection_applications')?>'>Sélection d'applications</a> |
+		<a href='<?php echo site_url('admin/applications')?>'>Applications</a> |
+		<a href='<?php echo site_url('admin/selections')?>'>Sélection d'applications</a> |
 	</div>
 	<div style='height:20px;'></div>  
     <div>
