@@ -596,3 +596,6 @@ $config['country_list'] = array(
     "ZM"=>"Zambia",
     "ZW"=>"Zimbabwe"
 );
+
+$config['note_min'] = 0;
+$config['note_max'] = 5;

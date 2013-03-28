@@ -177,7 +177,7 @@ class Admin extends CI_Controller
                 $_updates[$field] = $default_value;
             }
         }
-        if(!empty($updates))
+        if(!empty($_updates))
         {
             $this->db->update($_table, $_updates, array($_id => $_primary_key));
         }
@@ -229,5 +229,45 @@ class Admin extends CI_Controller
         $this->crud->set_relation('categorie_id', 'categorie', '{nom}');
         $this->crud->set_relation_n_n('applications', 'selection_application', 'application', 'selection_id', 'application_id', '{nom}');
         $this->_admin_output($this->crud->render());
+    }
+
+    public function application_commentaires()
+    {
+        $this->crud->set_subject("Commentaire d'application");
+        $this->crud->set_table('application_commentaire');
+        $this->crud->required_fields('membre_id', 'application_id', 'contenu');
+        $this->crud->callback_after_insert(function($post_array,$primary_key) {
+            $this->_handle_default_values($post_array,$primary_key,array('est_suspendu' => 0),'application_commentaire', array("date" => date('Y-m-d H:i:s')));
+        });
+        $this->crud->callback_after_update(function($post_array,$primary_key) {
+            $this->_handle_default_values($post_array,$primary_key,array('est_suspendu' => 0),'application_commentaire', array("date" => date('Y-m-d H:i:s')));
+        });
+        $this->crud->set_relation('membre_id', 'membre', '{email}');
+        $this->crud->set_relation('application_id', 'application', '{nom}');
+        $this->crud->change_field_type('contenu', 'text');
+        $this->_admin_output($this->crud->render());
+    }
+
+    public function application_notes()
+    {
+        $this->crud->set_subject("Note d'application (utilisateur)");
+        $this->crud->set_table('application_note');
+        $this->crud->required_fields('membre_id', 'application_id', 'note');
+        $this->crud->callback_after_insert(function($post_array,$primary_key) {
+            $this->_handle_default_values($post_array,$primary_key,array(),'application_note', array("date" => date('Y-m-d H:i:s')));
+        });
+        $this->crud->callback_after_update(function($post_array,$primary_key) {
+            $this->_handle_default_values($post_array,$primary_key,array(),'application_note', array("date" => date('Y-m-d H:i:s')));
+        });
+        $this->crud->set_relation('membre_id', 'membre', '{email}');
+        $this->crud->set_relation('application_id', 'application', '{nom}');
+        $this->crud->change_field_type('commentaire', 'text');
+        $this->crud->field_type('note','enum',range(config_item('note_min'), config_item('note_max')));
+        $this->_admin_output($this->crud->render());
+    }
+
+    public function application_notes_critere()
+    {
+        echo 'TODO';
     }
 }

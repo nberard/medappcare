@@ -36,9 +36,12 @@ a:hover
 		<a href='<?php echo site_url('admin/devices')?>'>Devices</a> |
 		<a href='<?php echo site_url('admin/editeurs')?>'>Editeurs</a> |
 		<a href='<?php echo site_url('admin/membres')?>'>Membres</a> |
-		<a href='<?php echo site_url('admin/publicites')?>'>Publicité</a> |
+		<a href='<?php echo site_url('admin/publicites')?>'>Publicités</a> |
 		<a href='<?php echo site_url('admin/applications')?>'>Applications</a> |
-		<a href='<?php echo site_url('admin/selections')?>'>Sélection d'applications</a> |
+		<a href='<?php echo site_url('admin/selections')?>'>Sélections d'applications</a> |
+		<a href='<?php echo site_url('admin/application_commentaires')?>'>Commentaires d'applications</a> |
+		<a href='<?php echo site_url('admin/application_notes')?>'>Notes d'applications (utilisateurs)</a> |
+		<a href='<?php echo site_url('admin/application_notes_critere')?>'>Notes d'applications (pro)</a> |
 	</div>
 	<div style='height:20px;'></div>  
     <div>
