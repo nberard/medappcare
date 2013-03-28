@@ -227,7 +227,6 @@ class Admin extends CI_Controller
                 'selection');
         });
         $this->crud->set_relation('categorie_id', 'categorie', '{nom}');
-        $this->crud->set_relation_n_n('applications', 'selection_application', 'application', 'selection_id', 'application_id', '{nom}');
         $this->_admin_output($this->crud->render());
     }
 
