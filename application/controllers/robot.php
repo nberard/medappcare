@@ -5,6 +5,7 @@
  * Date: 26/03/13
  * Time: 18:21
  * @property http_call_manager $http_call_manager
+ * @property apple_feeder $apple_feeder
  */
 class Robot extends CI_Controller
 {
@@ -12,12 +13,8 @@ class Robot extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-//        $this->load->database();
-//        $this->load->helper('url');
-//        $this->load->helper('country');
         $this->load->library('log');
         $this->load->library('http_call_manager');
-//        $this->output->enable_profiler(TRUE);
     }
 
     public function index()
@@ -32,19 +29,38 @@ class Robot extends CI_Controller
 
     public function apple()
     {
-        $result = '';
-        try
+        $langues = array('en', 'fr');
+        $types = array('topfreeapplications', 'toppaidapplications', 'topgrossingapplications');
+        foreach($langues as $langue)
         {
-            $result = $this->http_call_manager->call('GET', 'newapplications/limit=300/genre=6020', 'json', 'https://itunes.apple.com/fr/rss');
+            foreach ($types as $type)
+            {
+                try
+                {
+                    $result = $this->http_call_manager->call('GET', $type.'/limit=300/genre=6020', 'json', 'https://itunes.apple.com/'.$langue.'/rss');
+                }
+                catch(Exception $e)
+                {
+                    $this->log->write_log('ERROR', $e->getMessage());
+                    continue;
+                }
+                if(!empty($result['feed']['entry']))
+                {
+                    $this->load->model('Applications_model');
+                    $this->load->model('Editeurs_model');
+                    $this->load->library('apple_feeder', array($this->Applications_model, $this->Editeurs_model, $result['feed']['entry']));
+                    try
+                    {
+                        $this->apple_feeder->feed($langue, $langue);
+                    }
+                    catch(Exception $e)
+                    {
+                        echo 'ERREUR : '.$e->getMessage();
+                    }
+                }
+            }
         }
-        catch(Exception $e)
-        {
-            $this->log->write_log('ERROR', $e->getMessage());
-        }
-        if(!empty($result['feed']['entry']))
-        {
-            $this->load->library('')
-        }
+
     }
 }
 

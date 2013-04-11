@@ -31,6 +31,7 @@ class WsCallManager
             $entityUrl = $this->wsSettings['url'];
         $fullTarget = $entityUrl."/$target/".$params;
         $this->caller->setUrl($fullTarget);
+        echo("[WS CALL] calling $fullTarget with ".$this->wsSettings['ws_call']);
         error_log("[WS CALL] calling $fullTarget with ".$this->wsSettings['ws_call']);
         switch($method)
         {
