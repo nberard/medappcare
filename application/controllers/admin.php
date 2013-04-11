@@ -265,6 +265,15 @@ class Admin extends CI_Controller
         $this->_admin_output($this->crud->render());
     }
 
+    public function application_screenshots()
+    {
+        $this->crud->set_subject("Screenshot d'application");
+        $this->crud->set_table('application_screenshot');
+        $this->crud->required_fields('application_id', 'url');
+        $this->crud->set_relation('application_id', 'application', '{nom}');
+        $this->_admin_output($this->crud->render());
+    }
+
     public function application_notes_critere()
     {
         echo 'TODO';
