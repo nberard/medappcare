@@ -4,12 +4,16 @@ require_once APPPATH.'libraries/WsCaller/Curl.php';
 require_once APPPATH.'libraries/WsCaller/Fgc.php';
 class http_call_manager extends WsCallManager {
 
-    public function __construct($_logger = null)
+    public function __construct($_params = null)
     {
-        parent::__construct(array('contentType' => ACaller::HTTP_CALLER_CONTENT_TYPE_JSON, 'ws_call' => WsCallManager::HTTP_WS_CALL_FGC));
+        parent::__construct(array(
+                'contentType' => $_params ? ACaller::HTTP_CALLER_CONTENT_CLEAR : ACaller::HTTP_CALLER_CONTENT_TYPE_JSON,
+                'ws_call' => WsCallManager::HTTP_WS_CALL_FGC)
+        );
     }
 
 }
+
 class WsCallManager
 {
     const HTTP_WS_CALL_CURL = 'curl';

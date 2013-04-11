@@ -5,8 +5,11 @@
  * Date: 26/03/13
  * Time: 18:21
  * @property http_call_manager $http_call_manager
+ * @property http_call_manager_clear $http_call_manager
  * @property apple_feeder $apple_feeder
  * @property android_feeder $android_feeder
+ * @property Spool_crawl_applications_model $Spool_crawl_applications_model
+ * @property Devices_model $Devices_model
  */
 class Robot extends CI_Controller
 {
@@ -18,14 +21,63 @@ class Robot extends CI_Controller
         parent::__construct();
         $this->load->library('log');
         $this->load->library('http_call_manager');
+        $this->load->library('http_call_manager', array(true), 'http_call_manager_clear');
         $this->load->model('Applications_model');
         $this->load->model('Application_screenshots_model');
         $this->load->model('Editeurs_model');
+        $this->load->model('Devices_model');
     }
 
     public function index()
     {
         $this->load->view('robot.php');
+    }
+
+    public function crawlAndroid()
+    {
+        $sizePage = 24;
+        $collections = array('topselling_paid');
+        $website = 'https://play.google.com';
+        $target = 'store/apps/category/MEDICAL/collection';
+//        var_dump(file_get_contents('https://play.google.com//store/apps/category/MEDICAL/collection/topselling_paid?start=0'));
+        foreach($collections as $collection)
+        {
+            $start = 0;
+            do
+            {
+                try
+                {
+                    $result = $this->http_call_manager_clear->call('GET',
+                        $target,
+                        $collection.'?start='.$start,
+                        $website);
+                    echo 'result';
+//                    var_dump($result);
+                    $matches = array();
+                    preg_match_all('/data-docid="([A-Za-z0-9\.]+)"/', $result, $matches);
+                    if(!empty($matches))
+                    {
+                        $this->load->model('Spool_crawl_applications_model');
+                        foreach($matches as $package)
+                        {
+                            if(!$this->Spool_crawl_applications_model->exists_packages($package, Devices_model::APPLICATION_DEVICE_ANDROID))
+                            {
+                                $this->Spool_crawl_applications_model->insert_package($package, Devices_model::APPLICATION_DEVICE_ANDROID);
+                            }
+                        }
+                    }
+                }
+                catch(Exception $e)
+                {
+                    var_dump($e);
+                    $this->log->write_log('ERROR', $e->getMessage());
+                    continue;
+                }
+                $start+=$sizePage;
+            }
+            while(false);
+
+        }
     }
 
     public function android()
@@ -49,7 +101,7 @@ class Robot extends CI_Controller
                         $website);
                     $allAppsDetailed[] = $appDetailed;
                 }
-                $this->load->library('android_feeder', array($this->Applications_model, $this->Editeurs_model, $this->Application_screenshots_model, $allAppsDetailed));
+                $this->load->library('android_feeder', array($this->Applications_model, $this->Editeurs_model, $this->Application_screenshots_model, Devices_model::APPLICATION_DEVICE_ANDROID, $allAppsDetailed));
                 try
                 {
                     $this->android_feeder->feed('en', 'en');
@@ -83,7 +135,7 @@ class Robot extends CI_Controller
                                                             'https://itunes.apple.com/'.$langue.'/rss');
                     if(!empty($result['feed']['entry']))
                     {
-                        $this->load->library('apple_feeder', array($this->Applications_model, $this->Editeurs_model, $this->Application_screenshots_model, $result['feed']['entry']));
+                        $this->load->library('apple_feeder', array($this->Applications_model, $this->Editeurs_model, $this->Application_screenshots_model, Devices_model::APPLICATION_DEVICE_ANDROID, $result['feed']['entry']));
                         try
                         {
                             $this->apple_feeder->feed($langue, $langue);

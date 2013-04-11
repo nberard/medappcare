@@ -4,6 +4,7 @@ abstract class ACaller {
 
     const HTTP_CALLER_CONTENT_TYPE_JSON = 'application/json';
     const HTTP_CALLER_CONTENT_TYPE_XML = 'application/xml';
+    const HTTP_CALLER_CONTENT_CLEAR = '';
     const HTTP_CALLER_CHARSET_UTF8 = 'UTF-8';
     private $renderType;
     protected $acceptContent;
@@ -11,7 +12,11 @@ abstract class ACaller {
     
     public function __construct($wsSettings)
     {
-        if(!in_array($wsSettings['contentType'], array(self::HTTP_CALLER_CONTENT_TYPE_XML, self::HTTP_CALLER_CONTENT_TYPE_JSON)))
+        if(!in_array($wsSettings['contentType'], array(
+                                                    self::HTTP_CALLER_CONTENT_TYPE_XML,
+                                                    self::HTTP_CALLER_CONTENT_TYPE_JSON,
+                                                    self::HTTP_CALLER_CONTENT_CLEAR
+                                                )))
         {
             throw new \Exception('[WSCallManager] wrong ws config settings passed');
         }
@@ -49,6 +54,9 @@ abstract class ACaller {
                 throw new \Exception('[WSCallManager:json_decode] The input json object cannot be decoded : "'.$data.'"');
             return $decodedData;
         } 
-        else  throw new \Exception('[WSCallManager]Unimplemented renderType : "'.$this->renderType.'"');      
+        else
+        {
+            return $data;
+        }
     }
 }
