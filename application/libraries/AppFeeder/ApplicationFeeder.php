@@ -5,6 +5,7 @@
  * Date: 04/04/13
  * Time: 16:27
  * @property Applications_model $applicationModel
+ * @property Applications_screenshots_model $applicationScreenshotModel
  * @property Editeurs_model $editeurModel
  */
 abstract class ApplicationFeeder
@@ -14,13 +15,15 @@ abstract class ApplicationFeeder
     const APPLICATION_DEVICE_ANDROID = 2;
 
     protected $applicationModel;
+    protected $applicationScreenshotModel;
     protected $editeurModel;
     protected $items;
 
-    public function __construct($_applicationModel, $_editeurModel, $_items)
+    public function __construct($_applicationModel, $_editeurModel, $_applicationScreenshotModel, $_items)
     {
         $this->applicationModel = $_applicationModel;
         $this->editeurModel = $_editeurModel;
+        $this->applicationScreenshotModel = $_applicationScreenshotModel;
         $this->items = $_items;
     }
 

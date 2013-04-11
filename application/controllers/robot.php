@@ -31,6 +31,9 @@ class Robot extends CI_Controller
     {
         $langues = array('en', 'fr');
         $types = array('topfreeapplications', 'toppaidapplications', 'topgrossingapplications');
+        $this->load->model('Applications_model');
+        $this->load->model('Application_screenshots_model');
+        $this->load->model('Editeurs_model');
         foreach($langues as $langue)
         {
             foreach ($types as $type)
@@ -46,9 +49,7 @@ class Robot extends CI_Controller
                 }
                 if(!empty($result['feed']['entry']))
                 {
-                    $this->load->model('Applications_model');
-                    $this->load->model('Editeurs_model');
-                    $this->load->library('apple_feeder', array($this->Applications_model, $this->Editeurs_model, $result['feed']['entry']));
+                    $this->load->library('apple_feeder', array($this->Applications_model, $this->Editeurs_model, $this->Application_screenshots_model, $result['feed']['entry']));
                     try
                     {
                         $this->apple_feeder->feed($langue, $langue);
