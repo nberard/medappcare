@@ -40,7 +40,14 @@ class WsCallManager
         switch($method)
         {
             case "GET":
-                return $this->caller->sendGetRequest();
+                try
+                {
+                    return $this->caller->sendGetRequest();
+                }
+                catch(Exception $e)
+                {
+                    throw $e;
+                }
             break;
             case "POST":
                 return $this->caller->sendPostRequest();

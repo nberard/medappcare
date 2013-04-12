@@ -27,9 +27,16 @@ class Fgc extends ACaller
     {
         $this->options['http']['method'] = "GET";
         $context = stream_context_create($this->options);
-        $response = file_get_contents($this->url,false,$context);
-        
-        return $this->formatResponse($response);
+        $code = $this->_getHttpResponseStatusCode($this->url);
+        if(!in_array($code, $this->errorCodes))
+        {
+            $response = file_get_contents($this->url,false,$context);
+            return $this->formatResponse($response);
+        }
+        else
+        {
+            throw new Exception('Error', $code);
+        }
     }
     
     /**
@@ -64,7 +71,7 @@ class Fgc extends ACaller
         $context = stream_context_create($this->options);
         $response = file_get_contents($this->url,false,$context);
         
-        return $this->formatResponse($response);
+        return $this->formatResponse($response, $http_response_header);
     }
 
     /**

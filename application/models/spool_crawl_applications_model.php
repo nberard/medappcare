@@ -26,20 +26,20 @@ class Spool_crawl_applications_model extends CI_Model {
     public function insert_package($_package, $_device)
     {
         $this->db->set('package',  $_package);
-        $this->db->set('device',  $_device);
+        $this->db->set('device_id',  $_device);
         $this->db->set('status',  self::STATUS_TO_ADD);
         return $this->db->insert($this->table);
     }
 
     public function get_unadded_packages($_device)
     {
-        $this->db->select('package')->from($this->table)->where(array('device' => $_device, 'status' => self::STATUS_TO_ADD));
+        return $this->db->where(array('device_id' => $_device, 'status' => self::STATUS_TO_ADD))->limit(5)->get($this->table)->result();
     }
 
     public function set_package_added($_package, $_device)
     {
         return $this->db->set(array('status' => self::STATUS_ADDED))
-                        ->where(array('package' => $_package, 'device' => $_device))
+                        ->where(array('package' => $_package, 'device_id' => $_device))
                         ->update($this->table);
     }
 

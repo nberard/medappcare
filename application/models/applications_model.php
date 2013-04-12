@@ -17,7 +17,7 @@ class Applications_model extends CI_Model {
 
     public function insert_applications($_nom, $_package, $_device, $_titre, $_description, $_prix, $_devise,
                                         $_langue_store, $_langue_appli, $_editeur_id, $_categorie_id, $_lien_download,
-                                        $_version)
+                                        $_logo_url, $_version)
     {
         $this->db->set('nom',  $_nom);
         $this->db->set('package',  $_package);
@@ -32,6 +32,7 @@ class Applications_model extends CI_Model {
         $this->db->set('categorie_id', $_categorie_id);
         $this->db->set('lien_download', $_lien_download);
         $this->db->set('version', $_version);
+        $this->db->set('logo_url', $_logo_url);
         $this->db->set('mots_cles', '');
         $this->db->set('est_liste', 1);
         $this->db->set('est_partageable', 1);

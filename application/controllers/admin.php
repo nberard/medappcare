@@ -215,7 +215,7 @@ class Admin extends CI_Controller
     {
         $this->crud->set_subject("Application");
         $this->crud->set_table('application');
-        $this->crud->required_fields('nom', 'package', 'device_id' ,'titre', 'date_ajout', 'prix', 'devise', 'langue_store', 'editeur_id', 'lien_download');
+        $this->crud->required_fields('nom', 'package', 'device_id' , 'logo_url', 'titre', 'date_ajout', 'prix', 'devise', 'langue_store', 'editeur_id', 'lien_download');
         $this->crud->callback_after_insert(function($post_array,$primary_key) {
             $this->_handle_default_values($post_array,$primary_key,
                 array('categorie_id' => -1, 'poids' => 0),

@@ -13,6 +13,7 @@ class apple_feeder extends ApplicationFeeder {
     {
         foreach($this->items as $item)
         {
+            var_dump($item);
             if(!$this->applicationModel->exists_applications(array('package' => $item["id"]["attributes"]["im:bundleId"])))
             {
                 $editeur_id = $this->editeurModel->exists_editeurs(array('nom' => $item["im:artist"]["label"]));
@@ -22,6 +23,7 @@ class apple_feeder extends ApplicationFeeder {
                 }
                 $screens = array();
                 $lien = '';
+                $logo = '';
                 foreach($item["link"] as $link)
                 {
                     if(!empty($link['attributes']['im:assetType']) && $link['attributes']['im:assetType'] == "preview")
@@ -29,6 +31,14 @@ class apple_feeder extends ApplicationFeeder {
                         $screens[] = $link['attributes']['href'];
                     }
                     else $lien = $link['attributes']['href'];
+                }
+
+                foreach($item["im:image"] as $image)
+                {
+                    if($image["attributes"]["height"] == 75)
+                    {
+                        $logo = $image["label"];
+                    }
                 }
 
                 if($this->applicationModel->insert_applications(
@@ -44,6 +54,7 @@ class apple_feeder extends ApplicationFeeder {
                     $editeur_id,
                     -1,
                     $lien,
+                    $logo,
                     $item["im:releaseDate"]["attributes"]["label"]))
                 {
                     $application_id = $this->applicationModel->db->insert_id();

@@ -7,6 +7,7 @@ abstract class ACaller {
     const HTTP_CALLER_CONTENT_CLEAR = '';
     const HTTP_CALLER_CHARSET_UTF8 = 'UTF-8';
     private $renderType;
+    protected $errorCodes;
     protected $acceptContent;
     protected $charset;
     
@@ -26,6 +27,7 @@ abstract class ACaller {
             $this->acceptContent = $wsSettings['contentType'];
             $this->charset = self::HTTP_CALLER_CHARSET_UTF8;
         }
+        $this->errorCodes = array(400, 403, 404);
     }
     
     public abstract function setUrl($url);
@@ -58,5 +60,10 @@ abstract class ACaller {
         {
             return $data;
         }
+    }
+
+    protected function _getHttpResponseStatusCode($url) {
+        $headers = get_headers($url);
+        return substr($headers[0], 9, 3);
     }
 }
