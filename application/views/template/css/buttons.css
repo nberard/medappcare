@@ -6,16 +6,26 @@
 
 /* =========== HEADER =========== */
 
-#header .social a{margin: 0;}
-
-.facebook{background: #0F6EB4; width: 42px; height: 42px; text-indent: -9999px; display: inline-block;}
-.twitter{background: #39A9E0; width: 42px; height: 42px; text-indent: -9999px; display: inline-block;}
+.facebook{background: url(../img/facebook.png) no-repeat center center #0F6EB4; width: 42px; height: 42px; text-indent: -9999px; display: inline-block;}
+.twitter{background: url(../img/twitter.png) no-repeat center center #39A9E0; width: 42px; height: 42px; text-indent: -9999px; display: inline-block;}
 .pro{background: #DAA83C; width: auto; height: 42px; display: inline-block; padding: 0 10px;}
 .connexion{background: #0F6EB4; width: auto; height: 42px; display: inline-block; padding: 0 10px;}
 .language{background: #C9C9C9; width: 42px; height: 42px; display: inline-block;}
 
-.home, .search{background: #283278;}
-.masante{background: #79C1D2;}
-.monquotidien{background: #E05D5F;}
-.minformer{background: #84C790;}
-.medeplacer{background: #D769AF;}
+.home a, .search a{background: #283278;}
+.masante a{background: #79C1D2;}
+.monquotidien a{background: #E05D5F;}
+.minformer a{background: #84C790;}
+.medeplacer a{background: #D769AF;}
+.search a{border-right: 1px solid white;}
+
+.masante .picto, .monquotidien .picto, .minformer .picto, .medeplacer .picto{display: inline-block; vertical-align: middle; position: relative;}
+
+.home a, .search a{display: block; text-indent: -9999px;}
+
+.home a{background: url(../img/home.png) no-repeat #283278 center center; width: 24px; height: 54px;}
+.search a{background: url(../img/search.png) no-repeat #283278 center center; width: 24px; height: 54px;}
+.masante .picto{background: url(../img/masante.png) no-repeat; width: 35px; height: 31px;}
+.monquotidien .picto{background: url(../img/monquotidien.png) no-repeat; width: 29px; height: 31px;}
+.minformer .picto{background: url(../img/minformer.png) no-repeat; width: 36px; height: 25px;}
+.medeplacer .picto{background: url(../img/medeplacer.png) no-repeat; width: 19px; height: 25px;}

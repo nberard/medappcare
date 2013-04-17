@@ -4,5 +4,5 @@ body{font-family: 'PT Sans', arial, sans-serif; color: #111313;}
 
 
 #header{font-size: 16px; font-weight: 700;}
-#header a{color: white; line-height: 40px; text-decoration: none; text-align: center; margin: 0 12px 0 0;}
+#header a{color: white; line-height: 40px; text-decoration: none; text-align: center;}
 #header nav li{color: white; font-size: 22px; text-decoration: none; text-align: center;}
