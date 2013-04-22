@@ -7,7 +7,7 @@
 	<title>MEDAPPCARE</title>
 
 	<meta name="description" content="">
-	<meta name="author" content="">
+	<meta name="author" content="Medappcare">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
@@ -18,7 +18,7 @@
 	
 </head>
 
-<body>
+<body class="homepage particuliers">
 
     <header id="header">
     
@@ -28,27 +28,34 @@
         
     </header>
 
-    <section id="slider"><?php include ('inc/slider.php') ; ?></section> <!-- Section Slider -->
+    <section id="slider"><?php include ('inc/home_slider.php') ; ?></section> <!-- Section Slider -->
     
-    <section id="selections"></section> <!-- Section La Sélection Medappcare -->
+    <section id="selections"><?php include ('inc/widget_selection.php') ; ?></section> <!-- Section La Sélection Medappcare -->
 
-    <section id="lastEval"></section> <!-- Section Les dernières apps évaluées -->
-    
-    <section id="topFive"></section> <!-- Section Le Top 5 -->
-    
-    <section id="news"></section> <!-- Section Actualité -->
-    
-    <section id="devices"></section> <!-- Section Devices connectés -->
-    
-    <section id="pushFooter"></section> <!-- Section Push Information -->
-    
-    <section id="partners"></section> <!-- Section Partenaires -->
+    <div class="colorsLine"></div>
 
-    <footer>
+    <section id="listApps">
     
-        <?php include ('inc/footer.php') ; ?>
+        <div class="wrapper">
+        
+        <?php include ('inc/home_lasteval.php') ; ?> <!-- Section Les dernières apps évaluées -->
+        
+        <?php include ('inc/home_topfive.php') ; ?> <!-- Section Le Top 5 -->
+        
+        </div>
     
-    </footer>
+    </section>
+    
+    <section id="devices"><?php include ('inc/widget_devices.php') ; ?></section> <!-- Section Devices connectés -->
+    
+    <section id="news"><?php include ('inc/widget_news.php') ; ?></section> <!-- Section Actualité -->
+    
+    <section id="pushFooter"><?php include ('inc/home_pushpartners.php') ; ?></section> <!-- Section Push Information -->
+    
+    <section id="partners"><?php include ('inc/partners.php') ; ?></section> <!-- Section Partenaires -->
 
+    <footer><?php include ('inc/footer.php') ; ?></footer>
+
+<?php include ('inc/footer_meta.php') ; ?> <!-- Appels JS & Autres -->
 </body>
 </html>

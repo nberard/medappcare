@@ -1,0 +1,65 @@
+
+
+/* =========== NOS SELECTIONS =========== */
+
+#selections{background: #ededed; height: auto; text-align: center; position: relative; padding: 1px 0; margin: 1px 0 0 0;}
+#selections h3{margin: 25px 0; position: relative; display: block;}
+#selections ul{position: relative; min-height: 165px;}
+#selections li{padding: 0; margin: 0 18px; list-style: none; display: inline-block; height: 100px; width: 195px; border: 1px solid #474747; text-indent: -9999px;}
+#selections .underline{display: block; margin: 10px 0 0 0; width: 100%; height: 5px; background: #474747; position: relative;}
+
+#selections a{display: block; width: 100%; height: 100%; background: #999; margin: 0; padding: 0;}
+
+
+/* =========== LISTE APPS (commun) =========== */
+
+
+#listApps{min-height: 740px;}
+
+#listApps .listapps{width: 447px; height: auto; margin: 50px 0 0 0; float: left; position: relative;}
+#listApps .listapps h3{background: #0f6eb4; color: white; padding: 0 15px; line-height: 52px; border: 1px solid #0f6eb4;}
+
+#listApps ul{border-left: 1px solid #0f6eb4; border-right: 1px solid #0f6eb4;}
+#listApps li{list-style: none; display: block; border-bottom: 1px solid #0f6eb4; height: 80px; padding: 15px;}
+#listApps li:last-child{border-bottom: none;}
+#listApps .metaFooter{background: #0f6eb4; height: 28px; padding: 0 15px; }
+#listApps .metaFooter a{float: right;}
+
+#listApps .icone{float: left; position: relative; width: 80px; height: 80px; border-radius: 10px; background: #ededed; margin: 0 15px 0 0;}
+#listApps .metapp{float: left; position: relative;}
+#listApps .os{float: right; position: relative;}
+
+#listApps .note{width: 42px; height: 42px; float: left; position: relative; text-align: center; vertical-align: middle; margin: 0 0 0 30px;}
+
+#listApps .topfive{float: right;}
+
+#listApps .featured{background: #aed6f3;}
+
+
+/* =========== LISTE DEVICES (commun) =========== */
+
+#devices{min-height: 380px; background: #ededed; display: block;}
+
+#devices li{list-style: none; display: block; border-bottom: 1px solid white; height: 80px; padding: 15px; width: 415px; float: left; position: relative;}
+#devices li:nth-child(even){float: right;}
+
+#devices h3{padding: 0 15px; line-height: 52px; border-bottom: 1px solid white;}
+#devices .icone{float: left; position: relative; width: 80px; height: 80px; border-radius: 10px; background: #333; margin: 0 15px 0 0;}
+#devices .metapp{float: left; position: relative; width: 260px;}
+
+#devices .metaFooter{background: #ededed; height: 28px; padding: 0 15px; }
+#devices .metaFooter a{float: right;}
+
+/* =========== NEWS =========== */
+
+#news{background: white; min-height: 175px; border-bottom: 1px solid #a3a3a3; display: block;}
+
+#news li{list-style: none; display: block; height: 80px; padding: 15px; width: 415px; float: left; position: relative;}
+#news li:nth-child(even){float: right;}
+
+#news h3{padding: 0 15px; line-height: 52px; border-bottom: 1px solid white;}
+#news .icone{float: left; position: relative; width: 80px; height: 80px; border-radius: 10px; background: #333; margin: 0 15px 0 0;}
+#news .metapp{float: left; position: relative; width: 260px;}
+
+#news .metaFooter{height: 28px; padding: 0 15px; background: none;}
+#news .metaFooter a{float: right;}
