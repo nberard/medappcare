@@ -1,0 +1,21 @@
+
+
+
+
+
+
+/* =========== HEADER =========== */
+
+#header .social a{margin: 0;}
+
+.facebook{background: #0F6EB4; width: 42px; height: 42px; text-indent: -9999px; display: inline-block;}
+.twitter{background: #39A9E0; width: 42px; height: 42px; text-indent: -9999px; display: inline-block;}
+.pro{background: #DAA83C; width: auto; height: 42px; display: inline-block; padding: 0 10px;}
+.connexion{background: #0F6EB4; width: auto; height: 42px; display: inline-block; padding: 0 10px;}
+.language{background: #C9C9C9; width: 42px; height: 42px; display: inline-block;}
+
+.home, .search{background: #283278;}
+.masante{background: #79C1D2;}
+.monquotidien{background: #E05D5F;}
+.minformer{background: #84C790;}
+.medeplacer{background: #D769AF;}

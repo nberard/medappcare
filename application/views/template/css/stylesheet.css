@@ -1,0 +1,27 @@
+
+/*
+=============================================
+
+Medappcare Template
+version : 0.1
+Property : Medappcare Inc.
+url : 
+
+
+Author : Jeremie Berduck
+Company : One More Thing Studio
+Company url : http://www.onemorethingstudio.com
+
+=============================================
+*/
+
+
+@import url("http://reset5.googlecode.com/hg/reset.min.css");
+
+@import url("common.css");
+
+@import url("typo.css");
+
+@import url("buttons.css");
+
+@import url("animations.css");

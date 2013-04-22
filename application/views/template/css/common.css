@@ -1,0 +1,16 @@
+body{}
+
+.wrapper{width: 100%; max-width: 950px; margin: 0 auto;}
+
+a{margin: 0; padding: 0;}
+
+/* =========== HEADER =========== */
+
+#header{background: url(../img/colorline.jpg) repeat-x top; width: 100%;}
+
+#header .social,
+#header .meta{display: inline-block;}
+
+#header nav{background: #0F6EB4; width: 100%; height: 54px; display: block; border-bottom: 1px solid white;}
+#header nav ul{padding: 0; margin: 0 auto; width: 100%; max-width: 950px; background: #283278;}
+#header nav li{list-style: none; display: inline-block; border-left: 1px solid white;}
