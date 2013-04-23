@@ -1,0 +1,132 @@
+body{}
+
+.wrapper{width: 100%; max-width: 950px; margin: 0 auto;}
+.clear{clear: both; display: block;}
+
+a{margin: 0; padding: 0; text-decoration: none;}
+a:hover{text-decoration: underline;}
+
+.colorsLine{margin: 1px auto; width: 100%; height: 4px; background: url(../img/colorline.jpg) repeat-x; display: block; clear: both; position: relative;}
+
+/* =========== HEADER =========== */
+
+#header{background: url(../img/colorline.jpg) repeat-x top; width: 100%; height: 170px;}
+
+#header .social,
+#header .meta{display: inline-block; margin: 40px 0 0 0;}
+
+#header .meta{margin: 40px 0 0 80px;}
+
+#header .social .facebook{margin: 0 -3px 0 0;}
+
+#header .links{float: right; position: relative;}
+
+#header .wrapper{height: 116px;}
+
+#header h1{background: url(../img/medappcare.jpg) no-repeat; width: 304px; height: 73px; display: block; text-indent: -9999px; float: left; position: relative; margin: 20px 0 0 0;}
+#header a{margin: 0 12px 0 0;}
+#header nav{background: #0F6EB4; width: 100%; height: 54px; display: block; border-bottom: 1px solid white;}
+#header nav ul{padding: 0; margin: 0 auto; width: 100%; max-width: 950px;}
+#header nav li{list-style: none; display: inline-block; height: auto; width: auto;}
+#header nav a{border-left: 1px solid white; height: 54px; min-width: 54px; margin: 0 -4px 0 0; text-align: center; vertical-align: middle; position: relative; line-height: 50px; padding: 0 22px; display: block;}
+#header .language{margin: 0 !important;}
+#header nav .home a, #header nav .search a{padding: 0;}
+#header .picto{padding: 0 22px 0 0;}
+
+
+/* =========== SLIDER =========== */
+
+/* FlexSlider Necessary Styles
+*********************************/ 
+.flexslider {margin: 0; padding: 0; position: relative; overflow: hidden;}
+.flexslider .slides > li {display: none; -webkit-backface-visibility: hidden;} /* Hide the slides before the JS is loaded. Avoids image jumping */
+.flexslider .slides img {width: 100%; display: block; margin: -15px 0 0 0;}
+.flex-pauseplay span {text-transform: capitalize;}
+
+.slides:after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0;} 
+html[xmlns] .slides {display: block;} 
+* html .slides {height: 1%;}
+
+.no-js .slides > li:first-child {display: block;}
+
+
+/* FlexSlider Default Theme
+*********************************/
+.flexslider{background: white; position: relative; zoom: 1; padding: 0;}
+.flex-viewport {max-height: 2000px; -webkit-transition: all 1s ease; -moz-transition: all 1s ease; transition: all 1s ease;}
+.loading .flex-viewport {max-height: 300px;}
+.flexslider .slides {zoom: 1;}
+
+.carousel li {margin-right: 5px}
+
+
+/* Direction Nav */
+.flex-direction-nav {height: 0;}
+.flex-direction-nav a {width: 20px; height: 40px; margin: -35px 0 0; display: block; background: #000; position: absolute; top: 50%; z-index: 10; cursor: pointer; text-indent: -9999px; opacity: 0; -webkit-transition: all .3s ease;}
+.flex-direction-nav .flex-next {right: -36px; background: url(../img/sliderNavRight.png) no-repeat;}
+.flex-direction-nav .flex-prev {left: -36px; background: url(../img/sliderNavLeft.png) no-repeat;}
+.flexslider:hover .flex-next {opacity: 0.8; right: 15px;}
+.flexslider:hover .flex-prev {opacity: 0.8; left: 15px;}
+.flexslider:hover .flex-next:hover, .flexslider:hover .flex-prev:hover {opacity: 1;}
+.flex-direction-nav .flex-disabled {opacity: .3!important; filter:alpha(opacity=30); cursor: default;}
+
+/* Control Nav */
+.flex-control-nav {width: 100%; position: absolute; bottom: -40px; text-align: center;}
+.flex-control-nav li {margin: 0 6px; display: inline-block; zoom: 1; *display: inline;}
+.flex-control-paging li a {width: 11px; height: 11px; display: block; background: #666; background: rgba(0,0,0,0.5); cursor: pointer; text-indent: -9999px; -webkit-border-radius: 20px; -moz-border-radius: 20px; -o-border-radius: 20px; border-radius: 20px; box-shadow: inset 0 0 3px rgba(0,0,0,0.3);}
+.flex-control-paging li a:hover { background: #333; background: rgba(0,0,0,0.7); }
+.flex-control-paging li a.flex-active { background: #000; background: rgba(0,0,0,0.9); cursor: default; }
+
+.flex-control-thumbs {margin: 5px 0 0; position: static; overflow: hidden;}
+.flex-control-thumbs li {width: 25%; float: left; margin: 0;}
+.flex-control-thumbs img {width: 100%; display: block; opacity: .7; cursor: pointer;}
+.flex-control-thumbs img:hover {opacity: 1;}
+.flex-control-thumbs .flex-active {opacity: 1; cursor: default;}
+
+@media screen and (max-width: 860px) {
+  .flex-direction-nav .flex-prev {opacity: 1; left: 0;}
+  .flex-direction-nav .flex-next {opacity: 1; right: 0;}
+}
+
+
+
+
+
+/* =========== PUSH PARTENAIRES =========== */
+
+#pushFooter{min-height: 400px; background: white; text-align: center; position: relative; padding: 0; margin: 1px 0 0 0;}
+#pushFooter li{list-style: none; display: inline-block; width: 195px; min-height: 200px; position: relative; margin: 50px 18px; vertical-align: top;}
+
+#pushFooter h4{margin: 10px auto; position: relative;}
+#pushFooter p{padding: 15px; position: absolute; bottom: 0;}
+
+#pushFooter li.medappcare{background: #79c1d2;}
+#pushFooter li.professionnels{background: #e05d5f;}
+#pushFooter li.dev{background: #84c790;}
+#pushFooter li.partners{background: #d769af;}
+
+#pushFooter li.medappcare p{background: #4c8d9f;}
+#pushFooter li.professionnels p{background: #bd3437;}
+#pushFooter li.dev p{background: #558c61;}
+#pushFooter li.partners p{background: #9b467d;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

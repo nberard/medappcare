@@ -39,11 +39,10 @@
 */
 $route['^fr/(.+)$'] = "$1";
 $route['^en/(.+)$'] = "$1";
-$route['default_controller'] = "welcome";
+$route['default_controller'] = "site";
 $route['404_override'] = '';
 // '/en' and '/fr' -> use default controller
 $route['^fr$'] = $route['default_controller'];
 $route['^en$'] = $route['default_controller'];
-
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
