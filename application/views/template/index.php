@@ -27,6 +27,8 @@
         <?php include ('inc/menuParticulier.php') ; ?> <!-- Menu Particulier -->
         
     </header>
+    
+    <div id="dropdown" class="loading"></div><!-- #dropdown Menu -->
 
     <section id="slider"><?php include ('inc/home_slider.php') ; ?></section> <!-- Section Slider -->
     
@@ -54,8 +56,9 @@
     
     <section id="partners"><?php include ('inc/partners.php') ; ?></section> <!-- Section Partenaires -->
 
-    <footer><?php include ('inc/footer.php') ; ?></footer>
+    <?php include ('inc/footer.php') ; ?>
 
-<?php include ('inc/footer_meta.php') ; ?> <!-- Appels JS & Autres -->
+    <?php include ('inc/footer_meta.php') ; ?> <!-- Appels JS & Autres -->
+    
 </body>
 </html>

@@ -1,12 +1,13 @@
 body{}
 
-.wrapper{width: 100%; max-width: 950px; margin: 0 auto;}
+.wrapper{width: 100%; max-width: 950px; margin: 0 auto; position: relative;}
 .clear{clear: both; display: block;}
 
 a{margin: 0; padding: 0; text-decoration: none;}
 a:hover{text-decoration: underline;}
 
 .colorsLine{margin: 1px auto; width: 100%; height: 4px; background: url(../img/colorline.jpg) repeat-x; display: block; clear: both; position: relative;}
+.whiteLine{height: 1px; width: 100%; background: white; display: block;}
 
 /* =========== HEADER =========== */
 
@@ -33,12 +34,26 @@ a:hover{text-decoration: underline;}
 #header nav .home a, #header nav .search a{padding: 0;}
 #header .picto{padding: 0 22px 0 0;}
 
+/* =========== MEGA MENU =========== */
+
+.loading{background: transparent url(../img/loading.gif) no-repeat center center;}
+
+#dropdown.open ul{min-height: 200px; display: block; padding: 30px;}
+
+.masante{background: #79C1D2;}
+.monquotidien{background: #E05D5F;}
+.minformer{background: #84C790;}
+.medeplacer{background: #D769AF;}
+
+
+
+
 
 /* =========== SLIDER =========== */
 
 /* FlexSlider Necessary Styles
 *********************************/ 
-.flexslider {margin: 0; padding: 0; position: relative; overflow: hidden;}
+.flexslider {margin: 0; padding: 0; position: relative; overflow: hidden; z-index: 3;}
 .flexslider .slides > li {display: none; -webkit-backface-visibility: hidden;} /* Hide the slides before the JS is loaded. Avoids image jumping */
 .flexslider .slides img {width: 100%; display: block; margin: -15px 0 0 0;}
 .flex-pauseplay span {text-transform: capitalize;}
@@ -90,14 +105,12 @@ html[xmlns] .slides {display: block;}
 
 
 
-
-
 /* =========== PUSH PARTENAIRES =========== */
 
-#pushFooter{min-height: 400px; background: white; text-align: center; position: relative; padding: 0; margin: 1px 0 0 0;}
-#pushFooter li{list-style: none; display: inline-block; width: 195px; min-height: 200px; position: relative; margin: 50px 18px; vertical-align: top;}
+#pushFooter{min-height: 365px; background: white; text-align: center; position: relative; padding: 0; margin: 1px 0 0 0;}
+#pushFooter li{list-style: none; display: inline-block; width: 195px; min-height: 265px; position: relative; margin: 50px 18px; vertical-align: top;}
 
-#pushFooter h4{margin: 10px auto; position: relative;}
+#pushFooter h4{margin: 10px auto; position: relative; display: block; height: 50px;}
 #pushFooter p{padding: 15px; position: absolute; bottom: 0;}
 
 #pushFooter li.medappcare{background: #79c1d2;}
@@ -110,9 +123,42 @@ html[xmlns] .slides {display: block;}
 #pushFooter li.dev p{background: #558c61;}
 #pushFooter li.partners p{background: #9b467d;}
 
+#pushFooter .picto{display: block; margin: 20px auto;}
+
+#pushFooter li.medappcare .picto{background: url(../img/picto_medappcare.png) no-repeat; width: 54px; height: 62px;}
+#pushFooter li.professionnels .picto{background: url(../img/picto_pros.png) no-repeat; width: 61px; height: 51px;}
+#pushFooter li.dev .picto{background: url(../img/picto_dev.png) no-repeat; width: 64px; height: 55px;}
+#pushFooter li.partners .picto{background: url(../img/picto_partners.png) no-repeat; width: 55px; height: 46px;}
 
 
+/* =========== LISTE PARTENAIRES =========== */
+#partners{background: #ededed; min-height: 215px; text-align: center; padding: 1px 0 0 0;}
 
+#partners h3{margin: 30px auto; position: relative;}
+#partners ul{height: 180px; display: block; width: 100%;}
+#partners li{list-style: none; display: inline-block; padding: 0; margin: 0 15px; vertical-align: middle;}
+#partners a{display: block; width: 140px; height: 50px; background: #333;}
+
+
+/* =========== FOOTER =========== */
+
+#footer{background: #0f6eb4; padding: 1px 0 30px 0; position: relative;}
+#footer .footer_medappcare{display: block; margin: 20px auto; position: relative; background: url(../img/footer_medappcare.png) no-repeat; width: 100px; height: 67px;}
+#footer .left a{line-height: 25px;}
+#footer h5{line-height: 30px; width: 100%; display: block;}
+
+#footer .left, #footer .right{float: left; position: relative;}
+
+#footer .left{max-width: 315px; width: 30%;}
+#footer .right{max-width: 630px; width: 80%; padding: 0 0 0 20px;}
+
+#footer .grandPublic{border-bottom: 1px solid white; padding: 0 0 15px 0;}
+#footer .professionnal{margin: 15px 0 0 0;}
+
+#footer .right ul{display: inline-block; position: relative; width: 130px; padding: 10px; vertical-align: top;}
+#footer .right li{padding: 0 0 0 10px;}
+
+.copyright{text-align: center; padding: 15px 0 20px 0; margin: 0 auto;}
 
 
 
