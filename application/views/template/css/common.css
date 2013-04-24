@@ -36,17 +36,6 @@ a:hover{text-decoration: underline;}
 
 /* =========== MEGA MENU =========== */
 
-.loading{background: transparent url(../img/loading.gif) no-repeat center center;}
-
-#dropdown.open ul{min-height: 200px; display: block; padding: 30px;}
-
-.masante{background: #79C1D2;}
-.monquotidien{background: #E05D5F;}
-.minformer{background: #84C790;}
-.medeplacer{background: #D769AF;}
-
-
-
 
 
 /* =========== SLIDER =========== */
@@ -161,12 +150,110 @@ html[xmlns] .slides {display: block;}
 .copyright{text-align: center; padding: 15px 0 20px 0; margin: 0 auto;}
 
 
+/* =========== PICTO OS =========== */
+
+.os span{display: inline-block; position: relative; vertical-align: middle; text-indent: -9999px; margin: 25px 0 0 0;}
+
+.android{background: url(../img/android_blue.png) no-repeat; width: 32px; height: 29px;}
+.ios{background: url(../img/ios_blue.png) no-repeat; width: 16px; height: 29px;}
+.webapp{background: url(../img/web_blue.png) no-repeat; width: 18px; height: 27px;}
+
+.masante .android{background: url(../img/android_lightblue.png) no-repeat;}
+.masante .ios{background: url(../img/ios_lightblue.png) no-repeat;}
+.masante .webapp{background: url(../img/web_lightblue.png) no-repeat;}
+
+.monquotidien .android{background: url(../img/android_red.png) no-repeat;}
+.monquotidien .ios{background: url(../img/ios_red.png) no-repeat;}
+.monquotidien .web{background: url(../img/web_red.png) no-repeat;}
+
+.minformer .android{background: url(../img/android_green.png) no-repeat;}
+.minformer .ios{background: url(../img/ios_green.png) no-repeat;}
+.minformer .web{background: url(../img/web_green.png) no-repeat;}
+
+.medeplacer .android{background: url(../img/android_pink.png) no-repeat;}
+.medeplacer .ios{background: url(../img/ios_pink.png) no-repeat;}
+.medeplacer .web{background: url(../img/web_pink.png) no-repeat;}
+
+.lespros .android{background: url(../img/android_gold.png) no-repeat;}
+.lespros .ios{background: url(../img/ios_gold.png) no-repeat;}
+.lespros .web{background: url(../img/web_gold.png) no-repeat;}
 
 
+/* =========== PICTO NOTES =========== */
 
+.note span{display: inline-block; position: relative; margin: 20px 10px 0 10px; text-indent: -9999px;}
 
+.zero{background: url(../img/notes_blue.png) -178px -136px no-repeat; width: 33px; height: 30px;}
+.un{background: url(../img/notes_blue.png) -217px -244px no-repeat; width: 33px; height: 30px;}
+.deux{background: url(../img/notes_blue.png) -255px -244px no-repeat; width: 33px; height: 30px;}
+.trois{background: url(../img/notes_blue.png) -305px 0px no-repeat; width: 33px; height: 30px;}
+.quatre{background: url(../img/notes_blue.png) -305px -35px no-repeat; width: 33px; height: 30px;}
+.cinq{background: url(../img/notes_blue.png) -178px -89px no-repeat; width: 33px; height: 42px;}
+.six{background: url(../img/notes_blue.png) 0px -244px no-repeat; width: 33px; height: 42px;}
+.sept{background: url(../img/notes_blue.png) -38px -244px no-repeat; width: 33px; height: 42px;}
+.huit{background: url(../img/notes_blue.png) -76px -244px no-repeat; width: 42px; height: 42px;}
+.neuf{background: url(../img/notes_blue.png) -123px -244px no-repeat; width: 42px; height: 42px;}
+.dixsurdix{background: url(../img/notes_blue.png) -170px -244px no-repeat; width: 42px; height: 42px;}
 
+.masante .zero{background: url(../img/notes_lightblue.png) -178px -136px no-repeat; width: 33px; height: 30px;}
+.masante .un{background: url(../img/notes_lightblue.png) -217px -244px no-repeat; width: 33px; height: 30px;}
+.masante .deux{background: url(../img/notes_lightblue.png) -255px -244px no-repeat; width: 33px; height: 30px;}
+.masante .trois{background: url(../img/notes_lightblue.png) -305px 0px no-repeat; width: 33px; height: 30px;}
+.masante .quatre{background: url(../img/notes_lightblue.png) -305px -35px no-repeat; width: 33px; height: 30px;}
+.masante .cinq{background: url(../img/notes_lightblue.png) -178px -89px no-repeat; width: 33px; height: 42px;}
+.masante .six{background: url(../img/notes_lightblue.png) 0px -244px no-repeat; width: 33px; height: 42px;}
+.masante .sept{background: url(../img/notes_lightblue.png) -38px -244px no-repeat; width: 33px; height: 42px;}
+.masante .huit{background: url(../img/notes_lightblue.png) -76px -244px no-repeat; width: 42px; height: 42px;}
+.masante .neuf{background: url(../img/notes_lightblue.png) -123px -244px no-repeat; width: 42px; height: 42px;}
+.masante .dixsurdix{background: url(../img/notes_lightblue.png) -170px -244px no-repeat; width: 42px; height: 42px;}
 
+.monquotidien .zero{background: url(../img/notes_red.png) -178px -136px no-repeat; width: 33px; height: 30px;}
+.monquotidien .un{background: url(../img/notes_red.png) -217px -244px no-repeat; width: 33px; height: 30px;}
+.monquotidien .deux{background: url(../img/notes_red.png) -255px -244px no-repeat; width: 33px; height: 30px;}
+.monquotidien .trois{background: url(../img/notes_red.png) -305px 0px no-repeat; width: 33px; height: 30px;}
+.monquotidien .quatre{background: url(../img/notes_red.png) -305px -35px no-repeat; width: 33px; height: 30px;}
+.monquotidien .cinq{background: url(../img/notes_red.png) -178px -89px no-repeat; width: 33px; height: 42px;}
+.monquotidien .six{background: url(../img/notes_red.png) 0px -244px no-repeat; width: 33px; height: 42px;}
+.monquotidien .sept{background: url(../img/notes_red.png) -38px -244px no-repeat; width: 33px; height: 42px;}
+.monquotidien .huit{background: url(../img/notes_red.png) -76px -244px no-repeat; width: 42px; height: 42px;}
+.monquotidien .neuf{background: url(../img/notes_red.png) -123px -244px no-repeat; width: 42px; height: 42px;}
+.monquotidien .dixsurdix{background: url(../img/notes_red.png) -170px -244px no-repeat; width: 42px; height: 42px;}
+
+.minformer .zero{background: url(../img/notes_green.png) -178px -136px no-repeat; width: 33px; height: 30px;}
+.minformer .un{background: url(../img/notes_green.png) -217px -244px no-repeat; width: 33px; height: 30px;}
+.minformer .deux{background: url(../img/notes_green.png) -255px -244px no-repeat; width: 33px; height: 30px;}
+.minformer .trois{background: url(../img/notes_green.png) -305px 0px no-repeat; width: 33px; height: 30px;}
+.minformer .quatre{background: url(../img/notes_green.png) -305px -35px no-repeat; width: 33px; height: 30px;}
+.minformer .cinq{background: url(../img/notes_green.png) -178px -89px no-repeat; width: 33px; height: 42px;}
+.minformer .six{background: url(../img/notes_green.png) 0px -244px no-repeat; width: 33px; height: 42px;}
+.minformer .sept{background: url(../img/notes_green.png) -38px -244px no-repeat; width: 33px; height: 42px;}
+.minformer .huit{background: url(../img/notes_green.png) -76px -244px no-repeat; width: 42px; height: 42px;}
+.minformer .neuf{background: url(../img/notes_green.png) -123px -244px no-repeat; width: 42px; height: 42px;}
+.minformer .dixsurdix{background: url(../img/notes_green.png) -170px -244px no-repeat; width: 42px; height: 42px;}
+
+.medeplacer .zero{background: url(../img/notes_pink.png) -178px -136px no-repeat; width: 33px; height: 30px;}
+.medeplacer .un{background: url(../img/notes_pink.png) -217px -244px no-repeat; width: 33px; height: 30px;}
+.medeplacer .deux{background: url(../img/notes_pink.png) -255px -244px no-repeat; width: 33px; height: 30px;}
+.medeplacer .trois{background: url(../img/notes_pink.png) -305px 0px no-repeat; width: 33px; height: 30px;}
+.medeplacer .quatre{background: url(../img/notes_pink.png) -305px -35px no-repeat; width: 33px; height: 30px;}
+.medeplacer .cinq{background: url(../img/notes_pink.png) -178px -89px no-repeat; width: 33px; height: 42px;}
+.medeplacer .six{background: url(../img/notes_pink.png) 0px -244px no-repeat; width: 33px; height: 42px;}
+.medeplacer .sept{background: url(../img/notes_pink.png) -38px -244px no-repeat; width: 33px; height: 42px;}
+.medeplacer .huit{background: url(../img/notes_pink.png) -76px -244px no-repeat; width: 42px; height: 42px;}
+.medeplacer .neuf{background: url(../img/notes_pink.png) -123px -244px no-repeat; width: 42px; height: 42px;}
+.medeplacer .dixsurdix{background: url(../img/notes_pink.png) -170px -244px no-repeat; width: 42px; height: 42px;}
+
+.lespros .zero{background: url(../img/notes_gold.png) -178px -136px no-repeat; width: 33px; height: 30px;}
+.lespros .un{background: url(../img/notes_gold.png) -217px -244px no-repeat; width: 33px; height: 30px;}
+.lespros .deux{background: url(../img/notes_gold.png) -255px -244px no-repeat; width: 33px; height: 30px;}
+.lespros .trois{background: url(../img/notes_gold.png) -305px 0px no-repeat; width: 33px; height: 30px;}
+.lespros .quatre{background: url(../img/notes_gold.png) -305px -35px no-repeat; width: 33px; height: 30px;}
+.lespros .cinq{background: url(../img/notes_gold.png) -178px -89px no-repeat; width: 33px; height: 42px;}
+.lespros .six{background: url(../img/notes_gold.png) 0px -244px no-repeat; width: 33px; height: 42px;}
+.lespros .sept{background: url(../img/notes_gold.png) -38px -244px no-repeat; width: 33px; height: 42px;}
+.lespros .huit{background: url(../img/notes_gold.png) -76px -244px no-repeat; width: 42px; height: 42px;}
+.lespros .neuf{background: url(../img/notes_gold.png) -123px -244px no-repeat; width: 42px; height: 42px;}
+.lespros .dixsurdix{background: url(../img/notes_gold.png) -170px -244px no-repeat; width: 42px; height: 42px;}
 
 
 
