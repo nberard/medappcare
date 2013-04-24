@@ -162,21 +162,29 @@ html[xmlns] .slides {display: block;}
 .masante .ios{background: url(../img/ios_lightblue.png) no-repeat;}
 .masante .webapp{background: url(../img/web_lightblue.png) no-repeat;}
 
-.monquotidien .android{background: url(../img/android_red.png) no-repeat;}
-.monquotidien .ios{background: url(../img/ios_red.png) no-repeat;}
-.monquotidien .web{background: url(../img/web_red.png) no-repeat;}
+.monquotidien .android,
+#listApps .listapps.pourlespros .android{background: url(../img/android_red.png) no-repeat;}
+.monquotidien .ios,
+#listApps .listapps.pourlespros .ios{background: url(../img/ios_red.png) no-repeat;}
+.monquotidien .web,
+#listApps .listapps.pourlespros .web{background: url(../img/web_red.png) no-repeat;}
 
 .minformer .android{background: url(../img/android_green.png) no-repeat;}
 .minformer .ios{background: url(../img/ios_green.png) no-repeat;}
 .minformer .web{background: url(../img/web_green.png) no-repeat;}
 
-.medeplacer .android{background: url(../img/android_pink.png) no-repeat;}
-.medeplacer .ios{background: url(../img/ios_pink.png) no-repeat;}
-.medeplacer .web{background: url(../img/web_pink.png) no-repeat;}
+.medeplacer .android,
+#listApps .listapps.pourlesgens .android{background: url(../img/android_pink.png) no-repeat;}
+.medeplacer .ios,
+#listApps .listapps.pourlesgens .ios{background: url(../img/ios_pink.png) no-repeat;}
+.medeplacer .web,
+#listApps .listapps.pourlesgens .web{background: url(../img/web_pink.png) no-repeat;}
 
+/* À PRIORI ÇA NE SERT À RIEN ICI....
 .lespros .android{background: url(../img/android_gold.png) no-repeat;}
 .lespros .ios{background: url(../img/ios_gold.png) no-repeat;}
 .lespros .web{background: url(../img/web_gold.png) no-repeat;}
+*/
 
 
 /* =========== PICTO NOTES =========== */
@@ -207,17 +215,28 @@ html[xmlns] .slides {display: block;}
 .masante .neuf{background: url(../img/notes_lightblue.png) -123px -244px no-repeat; width: 42px; height: 42px;}
 .masante .dixsurdix{background: url(../img/notes_lightblue.png) -170px -244px no-repeat; width: 42px; height: 42px;}
 
-.monquotidien .zero{background: url(../img/notes_red.png) -178px -136px no-repeat; width: 33px; height: 30px;}
-.monquotidien .un{background: url(../img/notes_red.png) -217px -244px no-repeat; width: 33px; height: 30px;}
-.monquotidien .deux{background: url(../img/notes_red.png) -255px -244px no-repeat; width: 33px; height: 30px;}
-.monquotidien .trois{background: url(../img/notes_red.png) -305px 0px no-repeat; width: 33px; height: 30px;}
-.monquotidien .quatre{background: url(../img/notes_red.png) -305px -35px no-repeat; width: 33px; height: 30px;}
-.monquotidien .cinq{background: url(../img/notes_red.png) -178px -89px no-repeat; width: 33px; height: 42px;}
-.monquotidien .six{background: url(../img/notes_red.png) 0px -244px no-repeat; width: 33px; height: 42px;}
-.monquotidien .sept{background: url(../img/notes_red.png) -38px -244px no-repeat; width: 33px; height: 42px;}
-.monquotidien .huit{background: url(../img/notes_red.png) -76px -244px no-repeat; width: 42px; height: 42px;}
-.monquotidien .neuf{background: url(../img/notes_red.png) -123px -244px no-repeat; width: 42px; height: 42px;}
-.monquotidien .dixsurdix{background: url(../img/notes_red.png) -170px -244px no-repeat; width: 42px; height: 42px;}
+.monquotidien .zero,
+#listApps .listapps.pourlespros .zero{background: url(../img/notes_red.png) -178px -136px no-repeat; width: 33px; height: 30px;}
+.monquotidien .un,
+#listApps .listapps.pourlespros .un{background: url(../img/notes_red.png) -217px -244px no-repeat; width: 33px; height: 30px;}
+.monquotidien .deux,
+#listApps .listapps.pourlespros .deux{background: url(../img/notes_red.png) -255px -244px no-repeat; width: 33px; height: 30px;}
+.monquotidien .trois,
+#listApps .listapps.pourlespros .trois{background: url(../img/notes_red.png) -305px 0px no-repeat; width: 33px; height: 30px;}
+.monquotidien .quatre,
+#listApps .listapps.pourlespros .quatre{background: url(../img/notes_red.png) -305px -35px no-repeat; width: 33px; height: 30px;}
+.monquotidien .cinq,
+#listApps .listapps.pourlespros .cinq{background: url(../img/notes_red.png) -178px -89px no-repeat; width: 33px; height: 42px;}
+.monquotidien .six,
+#listApps .listapps.pourlespros .six{background: url(../img/notes_red.png) 0px -244px no-repeat; width: 33px; height: 42px;}
+.monquotidien .sept,
+#listApps .listapps.pourlespros .sept{background: url(../img/notes_red.png) -38px -244px no-repeat; width: 33px; height: 42px;}
+.monquotidien .huit,
+#listApps .listapps.pourlespros .huit{background: url(../img/notes_red.png) -76px -244px no-repeat; width: 42px; height: 42px;}
+.monquotidien .neuf,
+#listApps .listapps.pourlespros .neuf{background: url(../img/notes_red.png) -123px -244px no-repeat; width: 42px; height: 42px;}
+.monquotidien .dixsurdix,
+#listApps .listapps.pourlespros .dixsurdix{background: url(../img/notes_red.png) -170px -244px no-repeat; width: 42px; height: 42px;}
 
 .minformer .zero{background: url(../img/notes_green.png) -178px -136px no-repeat; width: 33px; height: 30px;}
 .minformer .un{background: url(../img/notes_green.png) -217px -244px no-repeat; width: 33px; height: 30px;}
@@ -231,18 +250,30 @@ html[xmlns] .slides {display: block;}
 .minformer .neuf{background: url(../img/notes_green.png) -123px -244px no-repeat; width: 42px; height: 42px;}
 .minformer .dixsurdix{background: url(../img/notes_green.png) -170px -244px no-repeat; width: 42px; height: 42px;}
 
-.medeplacer .zero{background: url(../img/notes_pink.png) -178px -136px no-repeat; width: 33px; height: 30px;}
-.medeplacer .un{background: url(../img/notes_pink.png) -217px -244px no-repeat; width: 33px; height: 30px;}
-.medeplacer .deux{background: url(../img/notes_pink.png) -255px -244px no-repeat; width: 33px; height: 30px;}
-.medeplacer .trois{background: url(../img/notes_pink.png) -305px 0px no-repeat; width: 33px; height: 30px;}
-.medeplacer .quatre{background: url(../img/notes_pink.png) -305px -35px no-repeat; width: 33px; height: 30px;}
-.medeplacer .cinq{background: url(../img/notes_pink.png) -178px -89px no-repeat; width: 33px; height: 42px;}
-.medeplacer .six{background: url(../img/notes_pink.png) 0px -244px no-repeat; width: 33px; height: 42px;}
-.medeplacer .sept{background: url(../img/notes_pink.png) -38px -244px no-repeat; width: 33px; height: 42px;}
-.medeplacer .huit{background: url(../img/notes_pink.png) -76px -244px no-repeat; width: 42px; height: 42px;}
-.medeplacer .neuf{background: url(../img/notes_pink.png) -123px -244px no-repeat; width: 42px; height: 42px;}
-.medeplacer .dixsurdix{background: url(../img/notes_pink.png) -170px -244px no-repeat; width: 42px; height: 42px;}
+.medeplacer .zero,
+#listApps .listapps.pourlesgens .zero{background: url(../img/notes_pink.png) -178px -136px no-repeat; width: 33px; height: 30px;}
+.medeplacer .un,
+#listApps .listapps.pourlesgens .un{background: url(../img/notes_pink.png) -217px -244px no-repeat; width: 33px; height: 30px;}
+.medeplacer .deux,
+#listApps .listapps.pourlesgens .deux{background: url(../img/notes_pink.png) -255px -244px no-repeat; width: 33px; height: 30px;}
+.medeplacer .trois,
+#listApps .listapps.pourlesgens .trois{background: url(../img/notes_pink.png) -305px 0px no-repeat; width: 33px; height: 30px;}
+.medeplacer .quatre,
+#listApps .listapps.pourlesgens .quatre{background: url(../img/notes_pink.png) -305px -35px no-repeat; width: 33px; height: 30px;}
+.medeplacer .cinq,
+#listApps .listapps.pourlesgens .cinq{background: url(../img/notes_pink.png) -178px -89px no-repeat; width: 33px; height: 42px;}
+.medeplacer .six,
+#listApps .listapps.pourlesgens .six{background: url(../img/notes_pink.png) 0px -244px no-repeat; width: 33px; height: 42px;}
+.medeplacer .sept,
+#listApps .listapps.pourlesgens .sept{background: url(../img/notes_pink.png) -38px -244px no-repeat; width: 33px; height: 42px;}
+.medeplacer .huit,
+#listApps .listapps.pourlesgens .huit{background: url(../img/notes_pink.png) -76px -244px no-repeat; width: 42px; height: 42px;}
+.medeplacer .neuf,
+#listApps .listapps.pourlesgens .neuf{background: url(../img/notes_pink.png) -123px -244px no-repeat; width: 42px; height: 42px;}
+.medeplacer .dixsurdix,
+#listApps .listapps.pourlesgens .dixsurdix{background: url(../img/notes_pink.png) -170px -244px no-repeat; width: 42px; height: 42px;}
 
+/* À PRIORI ÇA NE SERT À RIEN ICI....
 .lespros .zero{background: url(../img/notes_gold.png) -178px -136px no-repeat; width: 33px; height: 30px;}
 .lespros .un{background: url(../img/notes_gold.png) -217px -244px no-repeat; width: 33px; height: 30px;}
 .lespros .deux{background: url(../img/notes_gold.png) -255px -244px no-repeat; width: 33px; height: 30px;}
@@ -254,6 +285,7 @@ html[xmlns] .slides {display: block;}
 .lespros .huit{background: url(../img/notes_gold.png) -76px -244px no-repeat; width: 42px; height: 42px;}
 .lespros .neuf{background: url(../img/notes_gold.png) -123px -244px no-repeat; width: 42px; height: 42px;}
 .lespros .dixsurdix{background: url(../img/notes_gold.png) -170px -244px no-repeat; width: 42px; height: 42px;}
+*/
 
 
 
