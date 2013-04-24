@@ -93,6 +93,8 @@ class Robot extends CI_Controller
                     'show.json',
                     '?p='.$crawlPackage->package.'&client_token='.self::ANDROID_TOKEN_API,
                     self::ANDROID_APPAWARE_WEBSITE);
+                if(isset($appDetailed['status_code']) && $appDetailed['status_code']=='404')
+                    continue;
                 $allAppsDetailed[] = $appDetailed;
             }
             catch(Exception $e)
@@ -187,6 +189,21 @@ class Robot extends CI_Controller
                     continue;
                 }
             }
+        }
+    }
+
+    public function test()
+    {
+        include_once(APPPATH.'third_party/google-playstore-api/core/playStoreApi.php'); // including class file
+        $class_init = new PlayStoreApi;	// initiating class
+
+        /* WITHOUT PAGINATION PARAMERTER */
+        $item_id = 'fr.app.morph.mapilule';
+		$itemInfo = $class_init->itemInfo($item_id); // calling itemInfo
+
+		if($itemInfo !== 0)
+        {
+            print_r($itemInfo); // it will show all data inside an array
         }
     }
 }

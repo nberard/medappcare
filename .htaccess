@@ -9,6 +9,7 @@ RewriteEngine on
 #
 
 #   Toutes les URL qui ne correspondent pas à ces masques sont réécrites.
+#RewriteRule ^$ /medappcare/fr/ [R=301,L]
 RewriteCond $1 !^(index\.php|assets/|robots\.txt)
 
 #   Toutes les autres URL vont être redirigées vers le fichier index.php.
