@@ -1,0 +1,43 @@
+/* =========== MENU =========== */
+
+.home a, .search a{background: #283278;}
+.navmasante a{background: #79C1D2;}
+.navmonquotidien a{background: #E05D5F;}
+.navminformer a{background: #84C790;}
+.navmedeplacer a{background: #D769AF;}
+.search a{border-right: 1px solid white;}
+
+.navmasante .picto, .navmonquotidien .picto, .navminformer .picto, .navmedeplacer .picto{display: inline-block; vertical-align: middle; position: relative;}
+
+.home a, .search a{display: block; text-indent: -9999px;}
+
+.home a{background: url(../img/home.png) no-repeat #283278 center center; width: 24px; height: 54px;}
+.search a{background: url(../img/search.png) no-repeat #283278 center center; width: 24px; height: 54px;}
+.navmasante .picto{background: url(../img/masante.png) no-repeat; width: 35px; height: 31px;}
+.navmonquotidien .picto{background: url(../img/monquotidien.png) no-repeat; width: 29px; height: 31px;}
+.navminformer .picto{background: url(../img/minformer.png) no-repeat; width: 36px; height: 25px;}
+.navmedeplacer .picto{background: url(../img/medeplacer.png) no-repeat; width: 19px; height: 25px;}
+
+
+.loading{background: transparent url(../img/loading.gif) no-repeat center center;}
+
+#dropdown.open ul{min-height: 200px; display: block; padding: 30px;}
+
+.navmasante{background: #79C1D2;}
+.navmonquotidien{background: #E05D5F;}
+.navminformer{background: #84C790;}
+.navmedeplacer{background: #D769AF;}
+
+#dropdown{position: relative;}
+#dropdown .bigpicto{position: absolute; overflow: hidden; display: block; z-index: 1;}
+#dropdown ul{z-index: 2; position: relative; background: transparent;}
+#dropdown a{background: transparent;}
+
+#dropdown.navmasante .bigpicto{background: url(../img/picto_masantebig.png) no-repeat; bottom: -20px; left: -130px; width: 264px; height: 236px;}
+#dropdown.navmonquotidien .bigpicto{background: url(../img/picto_monquotidien_big.png) no-repeat; bottom: -20px; left: -130px; width: 263px; height: 279px;}
+#dropdown.navminformer .bigpicto{background: url(../img/picto_minformer_big.png) no-repeat; bottom: -10px; left: -120px; width: 277px; height: 192px;}
+#dropdown.navmedeplacer .bigpicto{background: url(../img/picto_medeplacer_big.png) no-repeat; bottom: -5px; left: -90px; width: 179px; height: 235px;}
+
+
+
+

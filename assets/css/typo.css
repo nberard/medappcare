@@ -33,3 +33,17 @@ body{font-family: 'PT Sans', arial, sans-serif; color: #111313;}
 
 #pushFooter h4{font-size: 20px; color: white; text-align: center;}
 #pushFooter p{font-size: 14px; color: white; text-align: justify;}
+
+#partners h3{font-size: 24px; color: #0f6eb4;}
+
+#footer{color: white; font-size: 14px;}
+#footer a{color: white;}
+#footer a:hover{text-decoration: underline;}
+
+#footer h5{font-size: 14px;}
+#footer h6{font-size: 12px;}
+#footer li{font-size: 12px; font-weight: normal;}
+
+#footer .left li{font-weight: 700; font-size: 14px;}
+
+.copyright{font-size: 14px; color: #0f6eb4;}
