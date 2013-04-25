@@ -7,13 +7,19 @@ body{font-family: 'PT Sans', arial, sans-serif; color: #111313;}
 #selections h3{font-size: 30px; color: #0f6eb4;}
 
 #listApps h2{color: #0f6eb4; font-size: 24px;}
-#listApps .listapps h3{color: white; font-size: 24px;}
+#listApps .listapps h3,
+#listApps .allapps h3{color: white; font-size: 24px;}
 #listApps .metapp a{color: #111313; font-size: 18px;}
 #listApps .metaFooter a{color: white; text-decoration: none; font-weight: 700; font-size: 14px; line-height: 26px;}
 #listApps .metaFooter a:hover{text-decoration: underline;}
 #listApps .price{font-size: 12px; color: white;}
 #listApps .category{font-size: 14px;}
 #listApps .category a{color: #0f6eb4; font-size: 14px;}
+
+#listApps .allapps.catmasante .category a{color: #79c1d2;}
+#listApps .allapps.catmonquotidien .category a{color: #e05d5f;}
+#listApps .allapps.catminformer .category a{color: #84c790;}
+#listApps .allapps.catmedeplacer .category a{color: #d769af;}
 
 #listApps .filter .gratuit,
 #listApps .filter .payant{color: white; font-size: 14px; font-weight: 700;}
@@ -52,7 +58,7 @@ body{font-family: 'PT Sans', arial, sans-serif; color: #111313;}
 
 .copyright{font-size: 14px; color: #0f6eb4;}
 
-
+.title{font-size: 30px; color: white;}
 
 
 

@@ -17,7 +17,7 @@
 #listApps{min-height: 740px;}
 
 #listApps .listapps{width: 447px; height: auto; margin: 50px 0 0 0; float: left; position: relative;}
-#listApps .listapps h3{background: #0f6eb4; color: white; padding: 0 15px; line-height: 50px; border: 1px solid #0f6eb4;}
+#listApps .listapps h3{background: #0f6eb4; padding: 0 15px; line-height: 50px; border: 1px solid #0f6eb4;}
 
 #listApps ul{border-left: 1px solid #0f6eb4; border-right: 1px solid #0f6eb4;}
 #listApps li{list-style: none; display: block; border-bottom: 1px solid #0f6eb4; height: 80px; padding: 15px;}
@@ -36,6 +36,45 @@
 #listApps .pourlesgens{float: right;}
 
 #listApps .featured{background: #aed6f3;}
+
+
+/* =========== LISTE ALL APPS (category) =========== */
+
+#listApps .allapps{width: 100%; height: auto; margin: 50px 0; display: block; position: relative; float: left; clear: both;}
+#listApps .allapps h3{background: #79c1d2; border: 1px solid #79c1d2; line-height: 50px; padding: 0 15px;}
+
+#listApps .allapps ul{border-left: 1px solid #79c1d2; border-right: 1px solid #79c1d2; padding: 0;}
+#listApps .allapps li{border-bottom: 1px solid #79c1d2; width: 443px; float: left; margin: 0;}
+#listApps .allapps li:nth-child(odd){border-right: 1px solid #79c1d2;}
+
+#listApps .allapps .metaFooter{background: #79c1d2;}
+#listApps .allapps .price{background: #79c1d2;}
+#listApps .allapps .featured{background: #d9eef3;}
+
+#listApps .allapps.catmonquotidien h3{background: #e05d5f; border: 1px solid #e05d5f;}
+#listApps .allapps.catmonquotidien ul{border-left: 1px solid #e05d5f; border-right: 1px solid #e05d5f;}
+#listApps .allapps.catmonquotidien li{border-bottom: 1px solid #e05d5f;}
+#listApps .allapps.catmonquotidien li:nth-child(odd){border-right: 1px solid #e05d5f;}
+#listApps .allapps.catmonquotidien .metaFooter{background: #e05d5f;}
+#listApps .allapps.catmonquotidien .price{background: #e05d5f;}
+#listApps .allapps.catmonquotidien .featured{background: #f1d2d2;}
+
+#listApps .allapps.catminformer h3{background: #84c790; border: 1px solid #84c790;}
+#listApps .allapps.catminformer ul{border-left: 1px solid #84c790; border-right: 1px solid #84c790;}
+#listApps .allapps.catminformer li{border-bottom: 1px solid #84c790;}
+#listApps .allapps.catminformer li:nth-child(odd){border-right: 1px solid #84c790;}
+#listApps .allapps.catminformer .metaFooter{background: #84c790;}
+#listApps .allapps.catminformer .price{background: #84c790;}
+#listApps .allapps.catminformer .featured{background: #ceecd4;}
+
+#listApps .allapps.catmedeplacer h3{background: #d769af; border: 1px solid #d769af;}
+#listApps .allapps.catmedeplacer ul{border-left: 1px solid #d769af; border-right: 1px solid #d769af;}
+#listApps .allapps.catmedeplacer li{border-bottom: 1px solid #d769af;}
+#listApps .allapps.catmedeplacer li:nth-child(odd){border-right: 1px solid #d769af;}
+#listApps .allapps.catmedeplacer .metaFooter{background: #d769af;}
+#listApps .allapps.catmedeplacer .price{background: #d769af;}
+#listApps .allapps.catmedeplacer .featured{background: #efe1ea;}
+
 
 
 /* =========== LISTE APPS (filters) =========== */
