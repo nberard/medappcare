@@ -39,11 +39,13 @@
 
 
 /* =========== LISTE APPS (filters) =========== */
-#listApps .filter{position: absolute; right: 15px; top: 1px; height: 52px; display: block;}
-#listApps .filter a{display: inline-block; text-indent: -9999px; position: relative; margin: 12px 10px 0 10px; vertical-align: middle;}
-#listApps .filter .pardate{background: url(../img/pro_parDate.png) no-repeat center center; width: 26px; height: 26px;}
-#listApps .filter .parnote{background: url(../img/pro_parNotes.png) no-repeat; width: 26px; height: 26px;}
-#listApps .filter a.actif span{display: block; height: 52px; position: absolute; top: -13px; left: 0; background: url(../img/filterON.png) no-repeat center center; width: 26px; z-index: 1;}
+#listApps .filter{position: absolute; right: 15px; top: 1px; height: 52px; display: block; z-index: 1;}
+#listApps .filter a{display: inline-block; text-indent: -9999px; position: relative; margin: 12px 5px 0 5px; vertical-align: middle; width: 45px; height: 26px; z-index: 3;}
+#listApps .filter .pardate{background: url(../img/pro_parDate.png) no-repeat center center;}
+#listApps .filter .parnote{background: url(../img/pro_parNotes.png) no-repeat center center;}
+#listApps .filter .gratuit,
+#listApps .filter .payant{text-indent: 0; text-align: center; width: 45px; line-height: 27px;}
+#listApps .filter a.actif span{display: block; height: 52px; position: absolute; top: -13px; left: 0; background: url(../img/filterON.png) no-repeat center center; width: 45px; z-index: 1;}
 
 
 /* =========== ESPACE PRO - LISTE APPS (professionnels) =========== */

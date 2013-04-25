@@ -1,5 +1,9 @@
 <div class="listapps topfive">
     <h3>Le Top Medappcare</h3>
+    <div class="filter">
+        <a href="#" class="gratuit" title="Filtrer les apps gratuites"><span></span>gratuit</a>
+        <a href="#" class="payant actif" title="Filtrer les apps payantes"><span></span>€</a>
+    </div>
     <ul>
         <li>
             <a href="app.php" class="icone"></a> <!-- INSÉRER L'ICON DE L'APP -->
