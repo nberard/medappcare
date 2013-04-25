@@ -9,6 +9,14 @@ a:hover{text-decoration: underline;}
 .colorsLine{margin: 1px auto; width: 100%; height: 4px; background: url(../img/colorline.jpg) repeat-x; display: block; clear: both; position: relative;}
 .whiteLine{height: 1px; width: 100%; background: white; display: block;}
 
+.line{height: 1px; width: 100%; background: #79c1d2; display: block; margin: 50px 0;}
+.monquotidien .line{background: #e05d5f;}
+.minformer .line{background: #84c790;}
+.medeplacer .line{background: #d769af;}
+
+.right{float: right; position: relative;}
+.left{float: left; position: relative;}
+
 /* =========== HEADER =========== */
 
 #header{background: url(../img/colorline.jpg) repeat-x top; width: 100%; height: 170px;}
@@ -123,6 +131,7 @@ html[xmlns] .slides {display: block;}
 
 
 /* =========== LISTE PARTENAIRES =========== */
+
 #partners{background: #ededed; min-height: 215px; text-align: center; padding: 1px 0 0 0;}
 
 #partners h3{margin: 30px auto; position: relative;}
@@ -310,17 +319,117 @@ html[xmlns] .slides {display: block;}
 .medeplacer .title{background: #D769AF;}
 
 
+/* =========== APPS =========== */
 
+#metapp{background: #79c1d2; width: 100%; height: 130px; position: relative; padding: 1px 0 0 0;}
 
+.monquotidien #metapp{background: #E05D5F;}
+.minformer #metapp{background: #84C790;}
+.medeplacer #metapp{background: #D769AF;}
 
+#metapp .appnote{background: #f0f0f0; display: inline-block; width: 230px; height: 75px; vertical-align: middle; position: relative; margin: 26px 20px 0 0;}
+#metapp .appnote:last-child{margin: 26px 0 0 0;}
+#metapp .icone{float: left; margin: 20px; width: 90px; height: 90px; background: red; position: relative; border-radius: 10px;}
 
+#metapp .appnote span{display: block; height: 75px; background-position: center center; margin: 14px; float: left;}
+#metapp .noteMedappcare span{background: url(../img/pictapp_medappcare_lightblue.png) no-repeat; width: 68px; height: 48px;}
+#metapp .notePro span{background: url(../img/pictapp_pro_lightblue.png) no-repeat; width: 120px; height: 50px;}
+#metapp .noteGens span{background: url(../img/pictapp_gens_lightblue.png) no-repeat; width: 88px; height: 44px;}
 
+#metapp.catmonquotidien .noteMedappcare span{background: url(../img/pictapp_medappcare_red.png) no-repeat;}
+#metapp.catminformer .noteMedappcare span{background: url(../img/pictapp_medappcare_green.png) no-repeat;}
+#metapp.catmedeplacer .noteMedappcare span{background: url(../img/pictapp_medappcare_pink.png) no-repeat;}
 
+#metapp.catmonquotidien .notePro span{background: url(../img/pictapp_pro_red.png) no-repeat;}
+#metapp.catminformer .notePro span{background: url(../img/pictapp_pro_green.png) no-repeat;}
+#metapp.catmedeplacer .notePro span{background: url(../img/pictapp_pro_pink.png) no-repeat;}
 
+#metapp.catmonquotidien .noteGens span{background: url(../img/pictapp_gens_red.png) no-repeat;}
+#metapp.catminformer .noteGens span{background: url(../img/pictapp_gens_green.png) no-repeat;}
+#metapp.catmedeplacer .noteGens span{background: url(../img/pictapp_gens_pink.png) no-repeat;}
 
+#metapp .appnote .note{display: block; position: relative; text-indent: -9999px; float: right; margin: 9px 20px 0 0;}
+#metapp .appnote .note.un{background: url(../img/notapp_masante.png) -177px -48px no-repeat; width: 46px; height: 43px;}
+#metapp .appnote .note.deux{background: url(../img/notapp_masante.png) 0px -126px no-repeat; width: 47px; height: 43px;}
+#metapp .appnote .note.trois{background: url(../img/notapp_masante.png) -177px 0px no-repeat; width: 46px; height: 43px;}
+#metapp .appnote .note.quatre{background: url(../img/notapp_masante.png) -104px -126px no-repeat; width: 46px; height: 43px;}
+#metapp .appnote .note.cinq{background: url(../img/notapp_masante.png) 0px 0px no-repeat; width: 46px; height: 58px;}
+#metapp .appnote .note.six{background: url(../img/notapp_masante.png) -114px -63px no-repeat; width: 46px; height: 58px;}
+#metapp .appnote .note.sept{background: url(../img/notapp_masante.png) -63px -63px no-repeat; width: 46px; height: 58px;}
+#metapp .appnote .note.huit{background: url(../img/notapp_masante.png) -114px 0px no-repeat; width: 58px; height: 58px;}
+#metapp .appnote .note.neuf{background: url(../img/notapp_masante.png) 0px -63px no-repeat; width: 58px; height: 58px;}
+#metapp .appnote .note.dix{background: url(../img/notapp_masante.png) -51px 0px no-repeat; width: 58px; height: 58px;}
+#metapp .appnote .note.zero{background: url(../img/notapp_masante.png) -52px -126px no-repeat; width: 47px; height: 43px;}
 
+#metapp.catmonquotidien .appnote .note{display: block; position: relative; text-indent: -9999px; float: right; margin: 9px 20px 0 0;}
+#metapp.catmonquotidien .appnote .note.un{background: url(../img/notapp_monquotidien.png) -177px -48px no-repeat; width: 46px; height: 43px;}
+#metapp.catmonquotidien .appnote .note.deux{background: url(../img/notapp_monquotidien.png) 0px -126px no-repeat; width: 47px; height: 43px;}
+#metapp.catmonquotidien .appnote .note.trois{background: url(../img/notapp_monquotidien.png) -177px 0px no-repeat; width: 46px; height: 43px;}
+#metapp.catmonquotidien .appnote .note.quatre{background: url(../img/notapp_monquotidien.png) -104px -126px no-repeat; width: 46px; height: 43px;}
+#metapp.catmonquotidien .appnote .note.cinq{background: url(../img/notapp_monquotidien.png) 0px 0px no-repeat; width: 46px; height: 58px;}
+#metapp.catmonquotidien .appnote .note.six{background: url(../img/notapp_monquotidien.png) -114px -63px no-repeat; width: 46px; height: 58px;}
+#metapp.catmonquotidien .appnote .note.sept{background: url(../img/notapp_monquotidien.png) -63px -63px no-repeat; width: 46px; height: 58px;}
+#metapp.catmonquotidien .appnote .note.huit{background: url(../img/notapp_monquotidien.png) -114px 0px no-repeat; width: 58px; height: 58px;}
+#metapp.catmonquotidien .appnote .note.neuf{background: url(../img/notapp_monquotidien.png) 0px -63px no-repeat; width: 58px; height: 58px;}
+#metapp.catmonquotidien .appnote .note.dix{background: url(../img/notapp_monquotidien.png) -51px 0px no-repeat; width: 58px; height: 58px;}
+#metapp.catmonquotidien .appnote .note.zero{background: url(../img/notapp_monquotidien.png) -52px -126px no-repeat; width: 47px; height: 43px;}
 
+#metapp.catminformer .appnote .note{display: block; position: relative; text-indent: -9999px; float: right; margin: 9px 20px 0 0;}
+#metapp.catminformer .appnote .note.un{background: url(../img/notapp_minformer.png) -177px -48px no-repeat; width: 46px; height: 43px;}
+#metapp.catminformer .appnote .note.deux{background: url(../img/notapp_minformer.png) 0px -126px no-repeat; width: 47px; height: 43px;}
+#metapp.catminformer .appnote .note.trois{background: url(../img/notapp_minformer.png) -177px 0px no-repeat; width: 46px; height: 43px;}
+#metapp.catminformer .appnote .note.quatre{background: url(../img/notapp_minformer.png) -104px -126px no-repeat; width: 46px; height: 43px;}
+#metapp.catminformer .appnote .note.cinq{background: url(../img/notapp_minformer.png) 0px 0px no-repeat; width: 46px; height: 58px;}
+#metapp.catminformer .appnote .note.six{background: url(../img/notapp_minformer.png) -114px -63px no-repeat; width: 46px; height: 58px;}
+#metapp.catminformer .appnote .note.sept{background: url(../img/notapp_minformer.png) -63px -63px no-repeat; width: 46px; height: 58px;}
+#metapp.catminformer .appnote .note.huit{background: url(../img/notapp_minformer.png) -114px 0px no-repeat; width: 58px; height: 58px;}
+#metapp.catminformer .appnote .note.neuf{background: url(../img/notapp_minformer.png) 0px -63px no-repeat; width: 58px; height: 58px;}
+#metapp.catminformer .appnote .note.dix{background: url(../img/notapp_minformer.png) -51px 0px no-repeat; width: 58px; height: 58px;}
+#metapp.catminformer .appnote .note.zero{background: url(../img/notapp_minformer.png) -52px -126px no-repeat; width: 47px; height: 43px;}
 
+#metapp.catmedeplacer .appnote .note{display: block; position: relative; text-indent: -9999px; float: right; margin: 9px 20px 0 0;}
+#metapp.catmedeplacer .appnote .note.un{background: url(../img/notapp_medeplacer.png) -177px -48px no-repeat; width: 46px; height: 43px;}
+#metapp.catmedeplacer .appnote .note.deux{background: url(../img/notapp_medeplacer.png) 0px -126px no-repeat; width: 47px; height: 43px;}
+#metapp.catmedeplacer .appnote .note.trois{background: url(../img/notapp_medeplacer.png) -177px 0px no-repeat; width: 46px; height: 43px;}
+#metapp.catmedeplacer .appnote .note.quatre{background: url(../img/notapp_medeplacer.png) -104px -126px no-repeat; width: 46px; height: 43px;}
+#metapp.catmedeplacer .appnote .note.cinq{background: url(../img/notapp_medeplacer.png) 0px 0px no-repeat; width: 46px; height: 58px;}
+#metapp.catmedeplacer .appnote .note.six{background: url(../img/notapp_medeplacer.png) -114px -63px no-repeat; width: 46px; height: 58px;}
+#metapp.catmedeplacer .appnote .note.sept{background: url(../img/notapp_medeplacer.png) -63px -63px no-repeat; width: 46px; height: 58px;}
+#metapp.catmedeplacer .appnote .note.huit{background: url(../img/notapp_medeplacer.png) -114px 0px no-repeat; width: 58px; height: 58px;}
+#metapp.catmedeplacer .appnote .note.neuf{background: url(../img/notapp_medeplacer.png) 0px -63px no-repeat; width: 58px; height: 58px;}
+#metapp.catmedeplacer .appnote .note.dix{background: url(../img/notapp_medeplacer.png) -51px 0px no-repeat; width: 58px; height: 58px;}
+#metapp.catmedeplacer .appnote .note.zero{background: url(../img/notapp_medeplacer.png) -52px -126px no-repeat; width: 47px; height: 43px;}
+
+.app .os span{margin: 10px; width: 50px; background-position: center center;}
+.app .price{background: #79c1d2; width: 40px; padding: 0 5px; line-height: 20px; text-align: center;}
+.app.monquotidien .price{background: #e05d5f;}
+.app.minformer .price{background: #84c790;}
+.app.medeplacer .price{background: #d769af;}
+
+#appSectionOne .content,
+#appSectionTwo .content{width: 70%; max-width: 710px;}
+#appSectionOne .sidebar,
+#appSectionTwo .sidebar{width: 20%; max-width: 150px;}
+
+.qrcode img{display: block; max-width: 150px; max-height: 150px; margin: 0 auto 10px auto;}
+
+.app #devices{background: #cfe3e7; border-top: 1px solid #0f6eb4; border-bottom: 1px solid #0f6eb4; margin: 0 0 50px 0;}
+.app.monquotidien #devices{background: #f1d2d2; border-top: 1px solid #e05d5f; border-bottom: 1px solid #e05d5f;}
+.app.minformer #devices{background: #ceecd4; border-top: 1px solid #84c790; border-bottom: 1px solid #84c790;}
+.app.medeplacer #devices{background: #efe1ea; border-top: 1px solid #d769af; border-bottom: 1px solid #d769af;}
+
+.app #devices .metaFooter{background: #cfe3e7;}
+.app.monquotidien #devices .metaFooter{background: #f1d2d2;}
+.app.minformer #devices .metaFooter{background: #ceecd4;}
+.app.medeplacer #devices .metaFooter{background: #efe1ea;}
+
+.app.monquotidien #devices .price{background: #e05d5f;}
+.app.minformer #devices .price{background: #84c790;}
+.app.medeplacer #devices .price{background: #d769af;}
+
+#appSectionOne{min-height: 250px;}
+
+#appSectionTwo, #appTabs{min-height: 400px;}
 
 
 

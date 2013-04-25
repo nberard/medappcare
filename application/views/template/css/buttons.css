@@ -9,9 +9,23 @@
 .language{background: #C9C9C9; width: 42px; height: 42px; display: inline-block;}
 
 
+/* =========== LES PROS HEADING =========== */
+
 .lespros .pro{display: none;}
 .lespros .connexion{background: #DAA83C;}
 
+
+
+
+/* =========== APP PAGE =========== */
+
+.buttons a{width: 140px; height: 45px; text-align: center; display: block; margin: 5px auto; line-height: 45px; padding: 0 10px;}
+
+.signaler{background: #c9c9c9;}
+.noter{background: #79c1d2;}
+.monquotidien .noter{background: #e05d5f;}
+.minformer .noter{background: #84c790;}
+.medeplacer .noter{background: #d769af;}
 
 
 
