@@ -24,7 +24,7 @@
     
         <?php include ('inc/header.php') ; ?>
         
-        <?php include ('inc/menuParticulier.php') ; ?> <!-- Menu Particulier -->
+        <?php include ('inc/menuMedecin.php') ; ?> <!-- Menu Particulier -->
         
     </header>
     

@@ -36,6 +36,9 @@ a:hover{text-decoration: underline;}
 #header nav .home a, #header nav .search a{padding: 0;}
 #header .picto{padding: 0 22px 0 0;}
 
+.lespros #header nav a{padding: 0 20px;}
+.lespros #header .picto{padding: 0 20px 0 0;}
+.lespros #header nav .home a, .lespros #header nav .search a{padding: 0;}
 
 /* =========== SLIDER =========== */
 
