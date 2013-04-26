@@ -2,7 +2,7 @@
 
 <body class="homepage particuliers">
 
-    <header id="header">
+    <header id="header" class="test">
     
         <?php include ('inc/header.php') ; ?>
         
