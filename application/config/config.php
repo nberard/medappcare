@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://http://medappcare.omts.fr/';
+$config['base_url']	= 'http://medappcare.omts.fr/';
 
 /*
 |--------------------------------------------------------------------------
