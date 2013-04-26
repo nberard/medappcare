@@ -49,9 +49,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = '';
-$db['default']['database'] = 'medappcare';
+$db['default']['username'] = 'c12medappcaresql';
+$db['default']['password'] = 'KJhj676FTRDkk0';
+$db['default']['database'] = 'c12medappcare';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
