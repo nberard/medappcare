@@ -10,7 +10,7 @@ class Spool_crawl_applications_model extends CI_Model {
     const STATUS_TO_ADD = 0;
     const STATUS_ADDED = 1;
 
-    protected $table = 'spool_crawl_application';
+    protected $table = 'spool_crawl_application_appaware';
 
     public function __construct()
     {
@@ -33,7 +33,7 @@ class Spool_crawl_applications_model extends CI_Model {
 
     public function get_unadded_packages($_device)
     {
-        return $this->db->where(array('device_id' => $_device, 'status' => self::STATUS_TO_ADD))->limit(5)->get($this->table)->result();
+        return $this->db->where(array('device_id' => $_device, 'status' => self::STATUS_TO_ADD))->limit(600)->get($this->table)->result();
     }
 
     public function set_package_added($_package, $_device)

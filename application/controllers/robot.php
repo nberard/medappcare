@@ -93,8 +93,6 @@ class Robot extends CI_Controller
                     'show.json',
                     '?p='.$crawlPackage->package.'&client_token='.self::ANDROID_TOKEN_API,
                     self::ANDROID_APPAWARE_WEBSITE);
-                if(isset($appDetailed['status_code']) && $appDetailed['status_code']=='404')
-                    continue;
                 $allAppsDetailed[] = $appDetailed;
             }
             catch(Exception $e)
@@ -119,40 +117,50 @@ class Robot extends CI_Controller
         }
     }
 
-    public function android()
+    public function searchAndroid()
     {
-        try
+        $types = array('popular', 'trending', 'paid', 'country', 'installed', 'updated');
+        $countries = array('worldwide', 'FR');
+        $calls = array('top', 'justin', 'price_reduced');
+        foreach($types as $type)
         {
-            $data = $this->http_call_manager->call('GET',
-                'top.json',
-                '?d=month&t=popular&c=12&cc=worldwide&num=200&page=1&client_token='.self::ANDROID_TOKEN_API,
-                self::ANDROID_APPAWARE_WEBSITE);
-
-            if(!empty($result["results"]))
+            foreach($countries as $country)
             {
-                $allAppsDetailed = array();
-                foreach($data["results"] as $app)
+                foreach($calls as $call)
                 {
-                    $appDetailed = $this->http_call_manager->call('GET',
-                        'show.json',
-                        '?p='.$app['package_name'].'&client_token='.self::ANDROID_TOKEN_API,
-                        self::ANDROID_APPAWARE_WEBSITE);
-                    $allAppsDetailed[] = $appDetailed;
-                }
-                $this->load->library('android_feeder', array($this->Applications_model, $this->Editeurs_model, $this->Application_screenshots_model, Devices_model::APPLICATION_DEVICE_ANDROID, $allAppsDetailed));
-                try
-                {
-                    $this->android_feeder->feed('en', 'en');
-                }
-                catch(Exception $e)
-                {
-                    echo 'ERREUR : '.$e->getMessage();
+                    $page = 1;
+                    do
+                    {
+                        try
+                        {
+                            $data = $this->http_call_manager->call('GET',
+                                $call.'.json',
+                                '?d=month&t='.$type.'&c=12&cc='.$country.'&num=100&page='.$page.'&client_token='.self::ANDROID_TOKEN_API,
+                                self::ANDROID_APPAWARE_WEBSITE);
+
+                            if(!empty($data["results"]))
+                            {
+//                                echo "nb res = ".count($data["results"]).'<br/>';
+                                $this->load->model('Spool_crawl_applications_model');
+                                foreach($data["results"] as $app)
+                                {
+                                    if(!$this->Spool_crawl_applications_model->exists_packages($app['package_name'], Devices_model::APPLICATION_DEVICE_ANDROID))
+                                    {
+                                        $this->Spool_crawl_applications_model->insert_package($app['package_name'], Devices_model::APPLICATION_DEVICE_ANDROID);
+                                    }
+//                                    echo $app['package_name'];
+                                }
+                            }
+                            $page++;
+                        }
+                        catch(Exception $e)
+                        {
+                            $this->log->write_log('ERROR', $e->getMessage());
+                        }
+                    }
+                    while($data['number_results'] > 0 && $page < 10);
                 }
             }
-        }
-        catch(Exception $e)
-        {
-            $this->log->write_log('ERROR', $e->getMessage());
         }
     }
 
