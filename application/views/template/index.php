@@ -1,6 +1,6 @@
 <?php include ('inc/header_meta.php') ; ?>
 
-<body class="homepage particuliers testdje2">
+<body class="homepage particuliers testdje">
 
     <header id="header" class="test">
     
