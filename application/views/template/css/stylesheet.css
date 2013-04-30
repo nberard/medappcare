@@ -16,7 +16,11 @@ Company url : http://www.onemorethingstudio.com
 */
 
 
-@import url("http://reset5.googlecode.com/hg/reset.min.css");
+/* @import url("http://reset5.googlecode.com/hg/reset.min.css"); */
+
+@import url("reset.css");
+
+@import url("bootstrap.css");
 
 @import url("common.css");
 
