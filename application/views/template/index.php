@@ -1,8 +1,8 @@
 <?php include ('inc/header_meta.php') ; ?>
 
-<body class="homepage particuliers testdje">
+<body class="homepage particuliers">
 
-    <header id="header" class="test">
+    <header id="header">
     
         <?php include ('inc/header.php') ; ?>
         
