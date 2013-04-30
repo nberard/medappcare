@@ -4,7 +4,7 @@ class android_feeder extends ApplicationFeeder {
 
     public function __construct($_params)
     {
-        parent::__construct($_params[0], $_params[1], $_params[2], $_params[3], $_params[4]);
+        parent::__construct($_params[0], $_params[1], $_params[2], $_params[3]);
     }
 
     public function feed($_langue_store, $_langue_appli)

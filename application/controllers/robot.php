@@ -106,9 +106,10 @@ class Robot extends CI_Controller
     public function androidFromCrawl()
     {
         $allAppsFromCrawl = $this->_feed_android_from_crawl();
-        $this->load->library('android_feeder', array($this->Applications_model, $this->Editeurs_model, $this->Application_screenshots_model, Devices_model::APPLICATION_DEVICE_ANDROID, $allAppsFromCrawl));
+        $this->load->library('android_feeder', array($this->Applications_model, $this->Editeurs_model, $this->Application_screenshots_model, Devices_model::APPLICATION_DEVICE_ANDROID));
         try
         {
+            $this->android_feeder->setItems($allAppsFromCrawl);
             $this->android_feeder->feed('fr', 'fr');
         }
         catch(Exception $e)
@@ -180,10 +181,11 @@ class Robot extends CI_Controller
                                                             'https://itunes.apple.com/'.$langue.'/rss');
                     if(!empty($data['feed']['entry']))
                     {
-                        $this->load->library('apple_feeder', array($this->Applications_model, $this->Editeurs_model, $this->Application_screenshots_model, Devices_model::APPLICATION_DEVICE_ANDROID, $data['feed']['entry']));
+                        $this->load->library('apple_feeder', array($this->Applications_model, $this->Editeurs_model, $this->Application_screenshots_model, Devices_model::APPLICATION_DEVICE_ANDROID));
                         try
                         {
-                            $this->apple_feeder->feed($langue, $langue);
+                            $this->apple_feeder->setItems($data['feed']['entry']);
+                            $this->apple_feeder->feed($langue, '');
                         }
                         catch(Exception $e)
                         {
@@ -194,7 +196,6 @@ class Robot extends CI_Controller
                 catch(Exception $e)
                 {
                     $this->log->write_log('ERROR', $e->getMessage());
-                    continue;
                 }
             }
         }
