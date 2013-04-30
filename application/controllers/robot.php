@@ -22,7 +22,7 @@ class Robot extends CI_Controller
         parent::__construct();
         $this->load->library('log');
         $this->load->library('http_call_manager');
-        $this->load->library('http_call_manager', array(true), 'http_call_manager_clear');
+//        $this->load->library('http_call_manager', array(true), 'http_call_manager_clear');
         $this->load->model('Applications_model');
         $this->load->model('Application_screenshots_model');
         $this->load->model('Editeurs_model');
@@ -204,21 +204,6 @@ class Robot extends CI_Controller
                     $this->log->write_log('ERROR', $e->getMessage());
                 }
             }
-        }
-    }
-
-    public function test()
-    {
-        include_once(APPPATH.'third_party/google-playstore-api/core/playStoreApi.php'); // including class file
-        $class_init = new PlayStoreApi;	// initiating class
-
-        /* WITHOUT PAGINATION PARAMERTER */
-        $item_id = 'fr.app.morph.mapilule';
-		$itemInfo = $class_init->itemInfo($item_id); // calling itemInfo
-
-		if($itemInfo !== 0)
-        {
-            print_r($itemInfo); // it will show all data inside an array
         }
     }
 }

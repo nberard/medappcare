@@ -8,6 +8,11 @@
 class Applications_model extends CI_Model {
 
     protected $table = 'application';
+    protected $tableSelection = 'selection_application';
+    private $correspDevises = array(
+        'USD' => '$',
+        'EUR' => '€',
+    );
 
     public function __construct()
     {
@@ -47,6 +52,18 @@ class Applications_model extends CI_Model {
     public function exists_applications($_conditionString, $_condition_Int = array())
     {
         return $this->db->where($_conditionString)->where($_condition_Int, NULL, FALSE)->count_all_results($this->table) > 0;
+    }
+
+    public function get_last_eval_applications($_limit = 5)
+    {
+        return $this->db->limit($_limit)->order_by('id', 'desc')->get($this->table)->result();
+    }
+
+    public function get_selection_applications($_idSelection)
+    {
+        return $this->db->from($this->table)
+                    ->join($this->tableSelection, $this->table.'.id = '.$this->tableSelection.'.application_id')
+                    ->where(array('selection_id' => $_idSelection))->get()->result();
     }
 
 }
