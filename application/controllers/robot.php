@@ -20,7 +20,6 @@ class Robot extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('log');
         $this->load->library('http_call_manager');
 //        $this->load->library('http_call_manager', array(true), 'http_call_manager_clear');
         $this->load->model('Applications_model');
@@ -111,7 +110,7 @@ class Robot extends CI_Controller
         {
             $this->android_feeder->setItems($allAppsFromCrawl);
             $oks = $this->android_feeder->feed('en', '');
-            error_log('oks = '.var_export($oks, true));
+            log_message('debug', 'oks = '.var_export($oks, true));
             foreach($oks as $packageOk)
             {
                 $this->Spool_crawl_applications_model->set_package_added($packageOk, Devices_model::APPLICATION_DEVICE_ANDROID);
@@ -152,7 +151,7 @@ class Robot extends CI_Controller
                                 {
                                     if(!$this->Spool_crawl_applications_model->exists_packages($app['package_name'], Devices_model::APPLICATION_DEVICE_ANDROID))
                                     {
-                                        error_log('adding '.$app['package_name']);
+                                        log_message('debug', 'adding '.$app['package_name']);
                                         $this->Spool_crawl_applications_model->insert_package($app['package_name'], Devices_model::APPLICATION_DEVICE_ANDROID);
                                     }
 //                                    echo $app['package_name'];
@@ -162,7 +161,7 @@ class Robot extends CI_Controller
                         }
                         catch(Exception $e)
                         {
-                            $this->log->write_log('ERROR', $e->getMessage());
+                            log_message('error', $e->getMessage());
                         }
                     }
                     while($data['number_results'] > 0 && $page < 10);
@@ -201,7 +200,7 @@ class Robot extends CI_Controller
                 }
                 catch(Exception $e)
                 {
-                    $this->log->write_log('ERROR', $e->getMessage());
+                    log_message('error', $e->getMessage());
                 }
             }
         }

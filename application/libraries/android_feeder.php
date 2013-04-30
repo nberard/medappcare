@@ -31,7 +31,7 @@ class android_feeder extends ApplicationFeeder {
             }
             else
             {
-                error_log('**************price wrong : '.$item['price']);
+                log_message('error','**************price wrong : '.$item['price']);
                 continue;
             }
             if(!$this->applicationModel->exists_applications(array(
@@ -80,19 +80,19 @@ class android_feeder extends ApplicationFeeder {
                     echo $item["package_name"]." done <br/>";
 
                     $return[] = $item["package_name"];
-                    error_log($item["package_name"].' done ');
+                    log_message('info',$item["package_name"].' done ');
                 }
                 else
                 {
                     echo $item["package_name"]." failed <br/>";
-                    error_log($item["package_name"].' failed ');
+                    log_message('info',$item["package_name"].' failed ');
                 }
 
             }
             else
             {
                 echo 'package '.$item["package_name"].' already exists <br/>';
-                error_log($item["package_name"].' already exists ');
+                log_message('info',$item["package_name"].' already exists ');
             }
         }
         return $return;

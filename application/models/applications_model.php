@@ -24,7 +24,7 @@ class Applications_model extends CI_Model {
                                         $_langue_store, $_langue_appli, $_editeur_id, $_categorie_id, $_lien_download,
                                         $_logo_url, $_version)
     {
-//        error_log("insert_applications($_nom, $_package, $_device, $_titre, $_description, $_prix, $_devise, $_langue_store, $_langue_appli, $_editeur_id, $_categorie_id, $_lien_download, $_logo_url, $_version)");
+//        log_message('info',"insert_applications($_nom, $_package, $_device, $_titre, $_description, $_prix, $_devise, $_langue_store, $_langue_appli, $_editeur_id, $_categorie_id, $_lien_download, $_logo_url, $_version)");
         $this->db->set('nom',  $_nom);
         $this->db->set('package',  $_package);
         $this->db->set('device_id',  $_device);

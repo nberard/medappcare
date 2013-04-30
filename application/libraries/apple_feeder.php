@@ -11,7 +11,7 @@ class apple_feeder extends ApplicationFeeder {
 
     public function feed($_langue_store, $_langue_appli)
     {
-        error_log('feed '.count($this->items).' items with langue store = '.$_langue_store);
+        log_message('debug','feed '.count($this->items).' items with langue store = '.$_langue_store);
 //        error_log('items = '.var_export($this->items, true));
         foreach($this->items as $item)
         {
@@ -76,19 +76,19 @@ class apple_feeder extends ApplicationFeeder {
                         }
                     }
                     echo $item["im:name"]["label"]." done <br/>";
-                    error_log($item["im:name"]["label"].' done ');
+                    log_message('info',$item["im:name"]["label"].' done ');
                 }
                 else
                 {
                     echo $item["im:name"]["label"]." failed <br/>";
-                    error_log($item["im:name"]["label"].' failed ');
+                    log_message('info',$item["im:name"]["label"].' failed ');
                 }
 
             }
             else
             {
                 echo 'package '.$item["im:name"]["label"].' already exists <br/>';
-                error_log($item["im:name"]["label"].' already exists ');
+                log_message('info',$item["im:name"]["label"].' already exists ');
             }
 //            var_dump($item);exit;
 //            return;
