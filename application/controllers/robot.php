@@ -80,7 +80,7 @@ class Robot extends CI_Controller
         }
     }
 
-    private function _feed_android_from_crawl()
+    private function _feed_android_from_search()
     {
         $allAppsDetailed = array();
         $this->load->model('Spool_crawl_applications_model');
@@ -103,14 +103,19 @@ class Robot extends CI_Controller
         return $allAppsDetailed;
     }
 
-    public function androidFromCrawl()
+    public function android()
     {
-        $allAppsFromCrawl = $this->_feed_android_from_crawl();
+        $allAppsFromCrawl = $this->_feed_android_from_search();
         $this->load->library('android_feeder', array($this->Applications_model, $this->Editeurs_model, $this->Application_screenshots_model, Devices_model::APPLICATION_DEVICE_ANDROID));
         try
         {
             $this->android_feeder->setItems($allAppsFromCrawl);
-            $this->android_feeder->feed('fr', 'fr');
+            $oks = $this->android_feeder->feed('en', '');
+            error_log('oks = '.var_export($oks, true));
+            foreach($oks as $packageOk)
+            {
+                $this->Spool_crawl_applications_model->set_package_added($packageOk, Devices_model::APPLICATION_DEVICE_ANDROID);
+            }
         }
         catch(Exception $e)
         {
@@ -147,6 +152,7 @@ class Robot extends CI_Controller
                                 {
                                     if(!$this->Spool_crawl_applications_model->exists_packages($app['package_name'], Devices_model::APPLICATION_DEVICE_ANDROID))
                                     {
+                                        error_log('adding '.$app['package_name']);
                                         $this->Spool_crawl_applications_model->insert_package($app['package_name'], Devices_model::APPLICATION_DEVICE_ANDROID);
                                     }
 //                                    echo $app['package_name'];
@@ -181,7 +187,7 @@ class Robot extends CI_Controller
                                                             'https://itunes.apple.com/'.$langue.'/rss');
                     if(!empty($data['feed']['entry']))
                     {
-                        $this->load->library('apple_feeder', array($this->Applications_model, $this->Editeurs_model, $this->Application_screenshots_model, Devices_model::APPLICATION_DEVICE_ANDROID));
+                        $this->load->library('apple_feeder', array($this->Applications_model, $this->Editeurs_model, $this->Application_screenshots_model, Devices_model::APPLICATION_DEVICE_APPLE));
                         try
                         {
                             $this->apple_feeder->setItems($data['feed']['entry']);

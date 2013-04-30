@@ -31,8 +31,6 @@
  *       echo $xml->saveXML();
  */
 
-
-namespace Meetic\Core\Modules\xmlConvertor;
 class Array2XML {
 
     private static $xml = null;
