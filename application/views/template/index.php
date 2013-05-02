@@ -9,8 +9,6 @@
         <?php include ('inc/menuParticulier.php') ; ?> <!-- Menu Particulier -->
         
     </header>
-    
-    <div id="dropdown" class="loading"></div><!-- #dropdown Menu -->
 
     <section id="slider"><?php include ('inc/home_slider.php') ; ?></section> <!-- Section Slider -->
     

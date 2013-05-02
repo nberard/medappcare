@@ -9,12 +9,12 @@ var dir = "inc/menu"; // this is the name of the directory that holds your ajax 
 
 $(document).ready(function(){
 
-	var navLinks = $("li.megamenu>a");
+	var navLinks = $("li.megamenu > a");
 	var navLinksActiveSpan = $("li.megamenu>a.active p");
 	var dropDown = $("#dropdown");
 	// the loop below creates the string of classes each named after a menu's ajax page
 	// these classes are used to identify which menu is currenly open
-	for (var i = 0, j = navLinks.length; i < j; i++) {
+	/*for (var i = 0, j = navLinks.length; i < j; i++) {
 		urlString = navLinks[i].href.split("/");
 		urlString = urlString[urlString.length-1].replace(ext, "");
 		pages = pages + " " + urlString;
@@ -52,81 +52,64 @@ $(document).ready(function(){
 				removeLoading();
 			});
 		});
+	}*/
+	
+	var openedDropdownMenu;
+	var selectedMenuItem;
+	
+	function closeDropDown(){
+		selectedMenuItem.removeClass('open');
+		dropDown.slideUp('fast', function() {
+			dropDown.children('nav').each(function() {
+				$(this).hide();
+			});
+			dropDown.removeClass('open');
+		});	
 	}
 	
 	// this is the click handler that decides the primary open/close actions
 	navLinks.click(function(){
-	
-		var ajaxPage = this.href.split("/");
-		ajaxPage = ajaxPage[ajaxPage.length-1];
-
-		var ajaxPageName = ajaxPage.split(".")[0];
 		
-		// drop-down is already opened
-		if (dropDown.hasClass("open")) {
+		var clickedLink = $(this);
+		
+		var destination = clickedLink.attr('dropdownDestination');
+		
+		if (!dropDown.hasClass('open')) {
+		
+		
+			selectedMenuItem = clickedLink;
+			selectedMenuItem.addClass('open');
+		
+			openedDropdownMenu = dropDown.children('nav.'+destination);
 			
-			// it's open, and the clicked menu item is the same as the open drop-down
-			// so it closes
-			if (dropDown.hasClass(ajaxPageName)){
-				dropDown.removeClass("open");
-				$(this).removeClass("active");
-				dropDown.removeClass(pages);
-				dropDown.slideUp(speed, function() {
-					// callback after slideUp is complete
-					$(navLinks).find("p").html(downArrow);
-					addLoading();
-				});
-
-			// if it's open, and the clicked item is different, keep it open
-			// then load the new content
-			} else {
-				navLinks.find("p").html(downArrow);
-				navLinks.removeClass("active");
-				dropDown.removeClass(pages);
-				dropDown.addClass(ajaxPage.split(".")[0]);
-				dropDown.html("");
-				dropDown.load(dir+"/"+ajaxPage+"?"+new Date().getTime(), function() {
-					// callback after ajax call is complete
-					addCloseLink();
-					removeLoading();										   
-				});
-				$(this).addClass("active");
-				$(this).find("p").html(upArrow);
-			}
-
-		// drop-down is not already opened; add the right classes, open it, and load the content
-		} else {
-
-			dropDown.addClass("open");
-			dropDown.removeClass(pages);
-			dropDown.addClass(ajaxPage.split(".")[0]);
-			$(this).addClass("active");
-			dropDown.html("");
-			dropDown.slideDown(speed, function() { 
-				dropDown.load(dir+"/"+ajaxPage+"?"+new Date().getTime(), function() {
-					// callback after ajax call is complete
-					$("li.menu>a.active p").html(upArrow);
-					addCloseLink();
-					removeLoading();
-				});
-			});
+			
+			dropDown.addClass('open');
+			
+			
+			openedDropdownMenu.show();
+			dropDown.slideDown('fast');
+			
 		}
 		
-		document.location.hash = ajaxPageName; // change the hash for deep linking
-		return false;
-
+		else {
+		
+			if (clickedLink.hasClass('open')) {
+				closeDropDown();
+			} else {
+				selectedMenuItem.removeClass('open');
+				selectedMenuItem = clickedLink;
+				selectedMenuItem.addClass('open');
+				openedDropdownMenu.fadeOut('fast', function() {
+					openedDropdownMenu = dropDown.children('nav.'+destination);
+					openedDropdownMenu.fadeIn('fast');
+				});		
+			}
+			
+		}
+		
 	});
 	
 });
 
 // this is a separate function that runs when the close button is clicked
 // If anyone has a more efficient way to do this, I'm all ears
-function closeDropDown(){
-	$("#dropdown").slideUp(speed, function() {
-		$("li.menu>a").find("p").html(" <span>&#9660;</span>");
-		$("li.menu>a").removeClass();
-		$("#dropdown").removeClass();
-		document.location.hash = "";
-		$("#dropdown").addClass("loading");
-	});
-}
