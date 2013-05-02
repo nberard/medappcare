@@ -17,7 +17,7 @@
  * Usage:
  *       $array = XML2Array::createArray($xml);
  */
-namespace Meetic\Core\Modules\xmlConvertor ;
+
 class XML2Array {
 
     private static $xml = null;

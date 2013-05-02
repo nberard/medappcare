@@ -1,22 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/*
+ * @property Applications_model $Applications_model
+ */
 class Site extends CI_Controller {
-
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -  
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in 
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
 
     public function __construct()
     {
@@ -26,10 +13,23 @@ class Site extends CI_Controller {
 
 	public function index()
 	{
+        $this->load->model('Applications_model');
+        $this->load->model('Devices_model');
+        $this->lang->load('common');
+        $lastEvalApplis = $this->Applications_model->get_last_eval_applications();
+        //var_dump($this->Applications_model->get_selection_applications(1));
+        foreach ($lastEvalApplis as &$lastEvalAppli)
+        {
+            $lastEvalAppli->prix_complet = $lastEvalAppli->prix == 0.00  ? $this->lang->line('free') : $lastEvalAppli->prix.$this->correspDevises[$lastEvalAppli->devise];
+        }
         $indexData = array(
             'home_slider' => $this->load->view('inc/home_slider', '', true),
             'widget_selection' => $this->load->view('inc/widget_selection', '', true),
-            'home_lasteval' => $this->load->view('inc/home_lasteval', '', true),
+            'home_lasteval' => $this->load->view('inc/home_lasteval', array(
+                'applications' => $lastEvalApplis,
+                'deviceAndroid' => Devices_model::APPLICATION_DEVICE_ANDROID,
+                'deviceApple' => Devices_model::APPLICATION_DEVICE_APPLE,
+            ), true),
             'home_topfive' => $this->load->view('inc/home_topfive', '', true),
             'widget_devices' => $this->load->view('inc/widget_devices', '', true),
             'widget_news' => $this->load->view('inc/widget_news', '', true),

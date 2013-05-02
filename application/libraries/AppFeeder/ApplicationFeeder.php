@@ -17,13 +17,17 @@ abstract class ApplicationFeeder
     protected $items;
     protected $device;
 
-    public function __construct($_applicationModel, $_editeurModel, $_applicationScreenshotModel, $_device, $_items)
+    public function __construct($_applicationModel, $_editeurModel, $_applicationScreenshotModel, $_device)
     {
         $this->applicationModel = $_applicationModel;
         $this->editeurModel = $_editeurModel;
         $this->applicationScreenshotModel = $_applicationScreenshotModel;
-        $this->items = $_items;
         $this->device = $_device;
+    }
+
+    public function setItems($_items)
+    {
+        $this->items = $_items;
     }
 
     public abstract function feed($_langue_store, $_langue_appli);

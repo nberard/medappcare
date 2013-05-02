@@ -2,22 +2,54 @@
 require_once APPPATH.'libraries/AppFeeder/ApplicationFeeder.php';
 class android_feeder extends ApplicationFeeder {
 
+    const DOWNLOAD_LINK_PREFIX = 'https://play.google.com/store/apps/details?id=';
+    const FREE_LABEL = 'Free';
+    const DEFAULT_CURRENCY = 'USD';
+
     public function __construct($_params)
     {
-        parent::__construct($_params[0], $_params[1], $_params[2], $_params[3], $_params[4]);
+        parent::__construct($_params[0], $_params[1], $_params[2], $_params[3]);
     }
 
     public function feed($_langue_store, $_langue_appli)
     {
+        $return = array();
+//        var_dump($this->items);return;
         foreach($this->items as $item)
         {
-            var_dump($item);continue;
-            if(!$this->applicationModel->exists_applications(array('package' => $item["package_name"])))
+//            var_dump($item);
+            $lien = self::DOWNLOAD_LINK_PREFIX.$item["package_name"];
+            if($item['price'] == self::FREE_LABEL)
+            {
+                $prix = 0;
+                $devise = self::DEFAULT_CURRENCY;
+            }
+            else if(preg_match('/\$([0-9]+(\.[0-9]+)?)/', $item['price'], $matches) && !empty($matches[1]))
+            {
+                $prix = $matches[1];
+                $devise = self::DEFAULT_CURRENCY;
+            }
+            else
+            {
+                log_message('error','**************price wrong : '.$item['price']);
+                continue;
+            }
+            if(!$this->applicationModel->exists_applications(array(
+                    'langue_store' => $_langue_store,
+                    'package' => $item["package_name"],
+                    'lien_download' => $lien,
+                    'device_id' => $this->device,
+                    'devise' => $devise,
+                ),
+                array(
+                    'prix' => $prix,
+                )))
             {
                 $editeur_id = $this->editeurModel->exists_editeurs(array('nom' => $item["developer"]));
                 if(!$editeur_id)
                 {
-                    $editeur_id = $this->editeurModel->insert_editeurs($item["developer"], $item["developer_url"]);
+                    $url = isset($item["developer_url"]) ? $item["developer_url"] : '';
+                    $editeur_id = $this->editeurModel->insert_editeurs($item["developer"], $url);
                 }
                 $screens = $item["screenshots"];
                 if($this->applicationModel->insert_applications(
@@ -26,34 +58,44 @@ class android_feeder extends ApplicationFeeder {
                     $this->device,
                     $item["name"],
                     $item["description"],
-                    $item["im:price"]["attributes"]["amount"],
-                    $item["im:price"]["attributes"]["currency"],
+                    $prix,
+                    $devise,
                     $_langue_store,
                     $_langue_appli,
                     $editeur_id,
                     -1,
                     $lien,
-                    $logo,
-                    $item["im:releaseDate"]["attributes"]["label"]))
+                    $item['icon_full'],
+                    $item["version"]
+                ))
                 {
                     $application_id = $this->applicationModel->db->insert_id();
                     foreach($screens as $screen)
                     {
-                        $this->applicationScreenshotModel->insert_application_screenshots($screen, $application_id);
+                        if(!$this->applicationScreenshotModel->exists_application_screenshots($screen, $application_id))
+                        {
+                            $this->applicationScreenshotModel->insert_application_screenshots($screen, $application_id);
+                        }
                     }
-                    echo $item["name"]." done <br/>";
+                    echo $item["package_name"]." done <br/>";
+
+                    $return[] = $item["package_name"];
+                    log_message('info',$item["package_name"].' done ');
                 }
                 else
                 {
-                    echo $item["name"]." failed <br/>";
+                    echo $item["package_name"]." failed <br/>";
+                    log_message('info',$item["package_name"].' failed ');
                 }
 
             }
             else
             {
-                echo 'package '.$item["im:name"]["label"].' already exists <br/>';
+                echo 'package '.$item["package_name"].' already exists <br/>';
+                log_message('info',$item["package_name"].' already exists ');
             }
         }
+        return $return;
     }
 
 }

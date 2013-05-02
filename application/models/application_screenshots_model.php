@@ -15,6 +15,11 @@ class Application_screenshots_model extends CI_Model {
         parent::__construct();
     }
 
+    public function exists_application_screenshots($_screen, $_application_id)
+    {
+        return $this->db->where(array('url' => $_screen, 'application_id' => $_application_id))->count_all_results($this->table) > 0;
+    }
+
     public function insert_application_screenshots($_screen, $_application_id)
     {
         $this->db->set('url',  $_screen);

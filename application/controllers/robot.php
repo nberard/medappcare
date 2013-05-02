@@ -20,9 +20,8 @@ class Robot extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('log');
         $this->load->library('http_call_manager');
-        $this->load->library('http_call_manager', array(true), 'http_call_manager_clear');
+//        $this->load->library('http_call_manager', array(true), 'http_call_manager_clear');
         $this->load->model('Applications_model');
         $this->load->model('Application_screenshots_model');
         $this->load->model('Editeurs_model');
@@ -80,7 +79,7 @@ class Robot extends CI_Controller
         }
     }
 
-    private function _feed_android_from_crawl()
+    private function _feed_android_from_search()
     {
         $allAppsDetailed = array();
         $this->load->model('Spool_crawl_applications_model');
@@ -103,13 +102,19 @@ class Robot extends CI_Controller
         return $allAppsDetailed;
     }
 
-    public function androidFromCrawl()
+    public function android()
     {
-        $allAppsFromCrawl = $this->_feed_android_from_crawl();
-        $this->load->library('android_feeder', array($this->Applications_model, $this->Editeurs_model, $this->Application_screenshots_model, Devices_model::APPLICATION_DEVICE_ANDROID, $allAppsFromCrawl));
+        $allAppsFromCrawl = $this->_feed_android_from_search();
+        $this->load->library('android_feeder', array($this->Applications_model, $this->Editeurs_model, $this->Application_screenshots_model, Devices_model::APPLICATION_DEVICE_ANDROID));
         try
         {
-            $this->android_feeder->feed('fr', 'fr');
+            $this->android_feeder->setItems($allAppsFromCrawl);
+            $oks = $this->android_feeder->feed('en', '');
+            log_message('debug', 'oks = '.var_export($oks, true));
+            foreach($oks as $packageOk)
+            {
+                $this->Spool_crawl_applications_model->set_package_added($packageOk, Devices_model::APPLICATION_DEVICE_ANDROID);
+            }
         }
         catch(Exception $e)
         {
@@ -146,6 +151,7 @@ class Robot extends CI_Controller
                                 {
                                     if(!$this->Spool_crawl_applications_model->exists_packages($app['package_name'], Devices_model::APPLICATION_DEVICE_ANDROID))
                                     {
+                                        log_message('debug', 'adding '.$app['package_name']);
                                         $this->Spool_crawl_applications_model->insert_package($app['package_name'], Devices_model::APPLICATION_DEVICE_ANDROID);
                                     }
 //                                    echo $app['package_name'];
@@ -155,7 +161,7 @@ class Robot extends CI_Controller
                         }
                         catch(Exception $e)
                         {
-                            $this->log->write_log('ERROR', $e->getMessage());
+                            log_message('error', $e->getMessage());
                         }
                     }
                     while($data['number_results'] > 0 && $page < 10);
@@ -180,10 +186,11 @@ class Robot extends CI_Controller
                                                             'https://itunes.apple.com/'.$langue.'/rss');
                     if(!empty($data['feed']['entry']))
                     {
-                        $this->load->library('apple_feeder', array($this->Applications_model, $this->Editeurs_model, $this->Application_screenshots_model, Devices_model::APPLICATION_DEVICE_ANDROID, $data['feed']['entry']));
+                        $this->load->library('apple_feeder', array($this->Applications_model, $this->Editeurs_model, $this->Application_screenshots_model, Devices_model::APPLICATION_DEVICE_APPLE));
                         try
                         {
-                            $this->apple_feeder->feed($langue, $langue);
+                            $this->apple_feeder->setItems($data['feed']['entry']);
+                            $this->apple_feeder->feed($langue, '');
                         }
                         catch(Exception $e)
                         {
@@ -193,25 +200,9 @@ class Robot extends CI_Controller
                 }
                 catch(Exception $e)
                 {
-                    $this->log->write_log('ERROR', $e->getMessage());
-                    continue;
+                    log_message('error', $e->getMessage());
                 }
             }
-        }
-    }
-
-    public function test()
-    {
-        include_once(APPPATH.'third_party/google-playstore-api/core/playStoreApi.php'); // including class file
-        $class_init = new PlayStoreApi;	// initiating class
-
-        /* WITHOUT PAGINATION PARAMERTER */
-        $item_id = 'fr.app.morph.mapilule';
-		$itemInfo = $class_init->itemInfo($item_id); // calling itemInfo
-
-		if($itemInfo !== 0)
-        {
-            print_r($itemInfo); // it will show all data inside an array
         }
     }
 }
