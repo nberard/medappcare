@@ -1,7 +1,6 @@
 <?php include ('inc/header_meta.php') ; ?>
 
 <style>
-
 	/* FORM */
 	.form-signin {
 		max-width: 500px;
