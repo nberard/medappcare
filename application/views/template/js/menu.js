@@ -9,6 +9,19 @@ var dir = "inc/menu"; // this is the name of the directory that holds your ajax 
 
 $(document).ready(function() {
 
+	/* Language selector */
+	
+	$('.language').click(function() {
+		$('.language.selected').removeClass('selected');
+		$(this).addClass('selected');
+	});
+	
+	
+	
+	
+	
+	/* Dropdown menu */
+	
 	var navLinks = $("li.megamenu > a");
 	var navLinksActiveSpan = $("li.megamenu>a.active p");
 	var dropDown = $("#dropdown");
@@ -67,6 +80,24 @@ $(document).ready(function() {
 		}
 		
 	});
+	
+	/* Search Form */
+	var searchForm = $('#header nav .search-form');
+	$('#header > nav li.search a').click(function(event) {
+		event.stopPropagation();
+		if (searchForm.css('display') == 'none') {
+			searchForm.toggle("slide", { direction: "right" }, 'normal', 'easeOutCubic');
+		} else {
+			searchForm.submit();
+		}
+	});
+	
+	$('body').click(function(event){
+		if (searchForm.css('display') != 'none') {
+			event.preventDefault();
+			searchForm.toggle("slide", { direction: "right" }, 'normal', 'easeOutCubic');
+		}
+	}); 
 	
 });
 

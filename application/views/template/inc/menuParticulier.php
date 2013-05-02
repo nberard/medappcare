@@ -1,5 +1,5 @@
 <nav>
-    <ul>
+	<ul>
         <li class="home">
             <a href="index.php">Home</a>
         </li>
@@ -18,7 +18,13 @@
         <li class="search">
             <a href="#">Rechercher</a>
         </li>
+        
+        <form action="search.php" method="post" class="search-form">
+			<input type="text" id="search-query">
+		</form>
     </ul>
+	
+    
 </nav>
 
 <div id = "dropdown">

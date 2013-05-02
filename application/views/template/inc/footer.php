@@ -3,6 +3,7 @@
 <footer id="footer">
 
 <div class="wrapper">
+	<span class="languages"><a href="">English</a>&nbsp;&nbsp;&nbsp;<a href="" class="selected">Français</a></span>
     <span class="footer_medappcare"></span>
     <div class="left">
         <nav class="principale">
