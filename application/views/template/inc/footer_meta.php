@@ -4,7 +4,7 @@
 <script src="js/jquery.flexslider-min.js"></script>
 <script src="js/scripts.js"></script>
 <script src="js/menu.js"></script>
-
+<script src="js/jquery-ui-1.10.2.custom.min.js"></script>
 
 <!-- Google Analytics -->
 <script>

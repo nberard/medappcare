@@ -6,7 +6,8 @@
 .twitter{background: url(../img/twitter.png) no-repeat center center #39A9E0; width: 42px; height: 42px; text-indent: -9999px; display: inline-block;}
 .pro{background: #DAA83C; width: auto; height: 42px; display: inline-block; padding: 0 10px;}
 .connexion{background: #0F6EB4; width: auto; height: 42px; display: inline-block; padding: 0 10px;}
-.language{background: #C9C9C9; width: 42px; height: 42px; display: inline-block;}
+.language{background: #b3b3b3; width: 42px; height: 42px; display: inline-block;}
+.language.selected{background: #C9C9C9; box-shadow: inset 0px 1px 1px 0px rgba(0,0,0,.2);}
 
 
 /* =========== LES PROS HEADING =========== */

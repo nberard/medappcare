@@ -20,19 +20,22 @@
 
 .loading{background: transparent url(../img/loading.gif) no-repeat center center;}
 
-#dropdown.open ul{min-height: 200px; display: block; padding: 30px;}
-
 .navmasante, #dropdown nav.masante {background: #79C1D2;}
 .navmonquotidien, #dropdown nav.monquotidien {background: #E05D5F;}
 .navminformer, #dropdown nav.minformer {background: #84C790;}
 .navmedeplacer, #dropdown nav.medeplacer {background: #D769AF;}
 
+/*header form.search-form {display: none;}*/
+header form.search-form {z-index: 300; position: absolute; width: 840px; height:52px; top:0; left:56px; display: none;}
+header form.search-form input {width:100%; height:100%; margin: 1px; padding: 0; border: none; outline: none; box-shadow: none;}
+
 #dropdown{position: relative; height:300px; overflow: hidden; display: none;}
 #dropdown > nav {position: abolute; width:100%; height:100%; display: none;}
-#dropdown .wrapper {height:100%;}
+#dropdown .wrapper {height:100%; padding: 10px 0px 10px 60px; box-sizing: border-box;}
 
 #dropdown .bigpicto{position: absolute; overflow: hidden; display: block; z-index: 1; }
-#dropdown ul{z-index: 2; position: relative; background: transparent;}
+#dropdown .wrapper > ul{z-index: 2; position: relative; background: transparent: 50%; float:left; margin-right: 50px; margin-top: 20px;}
+#dropdown li{display: block; line-height: 1.5em;}
 #dropdown a{background: transparent;}
 
 #dropdown nav.masante .bigpicto{background: url(../img/picto_masantebig.png) no-repeat; bottom: -20px; left: -130px; width: 264px; height: 236px;}
@@ -40,7 +43,18 @@
 #dropdown nav.minformer .bigpicto{background: url(../img/picto_minformer_big.png) no-repeat; bottom: -10px; left: -120px; width: 277px; height: 192px;}
 #dropdown nav.medeplacer .bigpicto{background: url(../img/picto_medeplacer_big.png) no-repeat; bottom: -5px; left: -90px; width: 179px; height: 235px;}
 
-#dropdown {}
+#dropdown .sponsored-selection {width: 250px; height: 280px; position: relative; float:right; background:rgba(0,0,0, .1);}
+#dropdown .sponsored-selection .title {display:block; height: 38px; background-color: transparent; background-image: url(../img/picto_selection.png); background-repeat: no-repeat; background-position: 20px 50%; font-size:1.3em; margin:0px; border-bottom-style: solid; border-bottom-width: 1px; padding-left : 55px; line-height: 2em;}
+#dropdown .sponsored-selection li {display: block; padding: 18px 10px 0px 10px; line-height: 55px;}
+#dropdown .sponsored-selection li:after {display: block; content:''; clear:both;}
+#dropdown .sponsored-selection li a {display: block;}
+#dropdown .sponsored-selection li img {float: left; margin-right: 10px;}
+#dropdown .sponsored-selection .sponsored-indicator {position: absolute; bottom:0; right: 0; padding: 5px;}
+
+#dropdown .masante .sponsored-selection .title {border-color: #79C1D2;}
+#dropdown .monquotidien .sponsored-selection .title {border-color: #E05D5F;}
+#dropdown .minformer .sponsored-selection .title {border-color: #84C790;}
+#dropdown .medeplacer .sponsored-selection .title {border-color: #D769AF;}
 
 /* Les Pros */
 .navadministratif a{background: #79C1D2;}

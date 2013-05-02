@@ -1,5 +1,5 @@
 <nav>
-    <ul>
+	<ul>
         <li class="home">
             <a href="index.php">Home</a>
         </li>
@@ -18,29 +18,97 @@
         <li class="search">
             <a href="#">Rechercher</a>
         </li>
+        
+        <form action="search.php" method="post" class="search-form">
+			<input type="text" id="search-query">
+		</form>
     </ul>
+	
+    
 </nav>
 
-<div id = "dropdown" class = "prout">
+<div id = "dropdown">
 	<div class="whiteLine"></div>
 	<nav class = "masante">
 		<div class="wrapper">
 		
-		    <ul>
-		        <li><a href="">Test</a></li>
-		    </ul>
-		
+		    <!-- Each <ul> has to contain 10 <li> -->
+	    	<ul>
+		    	<li><a href="">Activité physique</a></li>
+		    	<li><a href="">Alertes et rappels</a></li>
+		    	<li><a href="">Calculettes et convertisseurs</a></li>
+		    	<li><a href="">Carnets de santé</a></li>
+		    	<li><a href="">Diététique et suivi du poids</a></li>
+		    	<li><a href="">Grossesse et maternité</a></li>
+		    	<li><a href="">Menstruations et féminité</a></li>
+		    	<li><a href="">Pour les aidants</a></li>
+		    	<li><a href="">Sommeil</a></li>
+		    	<li><a href="">Urgences et secours</a></li>
+	    	</ul>
+	    	<ul>
+		    	<li><a href="">Activité physique</a></li>
+		    	<li><a href="">Alertes et rappels</a></li>
+		    	<li><a href="">Calculettes et convertisseurs</a></li>
+		    	<li><a href="">Carnets de santé</a></li>
+		    	<li><a href="">Diététique et suivi du poids</a></li>
+		    	<li><a href="">Grossesse et maternité</a></li>
+		    	<li><a href="">Menstruations et féminité</a></li>
+		    	<li><a href="">Pour les aidants</a></li>
+		    	<li><a href="">Sommeil</a></li>
+		    	<li><a href="">Urgences et secours</a></li>
+	     	</ul>
+	     	
+	     	<div class="sponsored-selection">
+	     		<span class="title">Nos sélections</span>
+	     		<ul>
+	     			<li><a href=""><img src="tmp/app-icon-57.png" alt="[app-title] icon"/>Ma super app</a></li>
+	     			<li><a href=""><img src="tmp/app-icon-57.png" alt="[app-title] icon"/>Ma super app</a></li>
+	     			<li><a href=""><img src="tmp/app-icon-57.png" alt="[app-title] icon"/>Ma super app</a></li>
+	     		</ul>
+	     		<span class="sponsored-indicator">Sponsorisées</span>
+	     	</div>
 		    <div class="bigpicto"></div>
 		</div> <!-- end wrapper -->
 	</nav> <!-- end masante -->
 	
 	<nav class = "monquotidien">
 		<div class="wrapper">
-	
+			
+			<!-- Each <ul> has to contain 10 <li> -->
 	    	<ul>
-	    	    <li><a href="">Test</a></li>
-	     	   <li><a href="">Mon quotidien</a></li>
-	     	   </ul>
+		    	<li><a href="">Activité physique</a></li>
+		    	<li><a href="">Alertes et rappels</a></li>
+		    	<li><a href="">Calculettes et convertisseurs</a></li>
+		    	<li><a href="">Carnets de santé</a></li>
+		    	<li><a href="">Diététique et suivi du poids</a></li>
+		    	<li><a href="">Grossesse et maternité</a></li>
+		    	<li><a href="">Menstruations et féminité</a></li>
+		    	<li><a href="">Pour les aidants</a></li>
+		    	<li><a href="">Sommeil</a></li>
+		    	<li><a href="">Urgences et secours</a></li>
+	    	</ul>
+	    	<ul>
+		    	<li><a href="">Activité physique</a></li>
+		    	<li><a href="">Alertes et rappels</a></li>
+		    	<li><a href="">Calculettes et convertisseurs</a></li>
+		    	<li><a href="">Carnets de santé</a></li>
+		    	<li><a href="">Diététique et suivi du poids</a></li>
+		    	<li><a href="">Grossesse et maternité</a></li>
+		    	<li><a href="">Menstruations et féminité</a></li>
+		    	<li><a href="">Pour les aidants</a></li>
+		    	<li><a href="">Sommeil</a></li>
+		    	<li><a href="">Urgences et secours</a></li>
+	     	</ul>
+	     	
+	     	<div class="sponsored-selection">
+	     		<span class="title">Nos sélections</span>
+	     		<ul>
+	     			<li><a href=""><img src="tmp/app-icon-57.png" alt="[app-title] icon"/>Ma super app</a></li>
+	     			<li><a href=""><img src="tmp/app-icon-57.png" alt="[app-title] icon"/>Ma super app</a></li>
+	     			<li><a href=""><img src="tmp/app-icon-57.png" alt="[app-title] icon"/>Ma super app</a></li>
+	     		</ul>
+	     		<span class="sponsored-indicator">Sponsorisées</span>
+	     	</div>
 	
 	    	<div class="bigpicto"></div>
 		</div> <!-- end wrapper -->
@@ -49,11 +117,41 @@
 	<nav class = "minformer">
 		<div class="wrapper">
 	
+	    	<!-- Each <ul> has to contain 10 <li> -->
 	    	<ul>
-	    	    <li><a href="">Test</a></li>
-	     	   <li><a href="">Mon quotidien</a></li>
-	     	   </ul>
-	
+		    	<li><a href="">Activité physique</a></li>
+		    	<li><a href="">Alertes et rappels</a></li>
+		    	<li><a href="">Calculettes et convertisseurs</a></li>
+		    	<li><a href="">Carnets de santé</a></li>
+		    	<li><a href="">Diététique et suivi du poids</a></li>
+		    	<li><a href="">Grossesse et maternité</a></li>
+		    	<li><a href="">Menstruations et féminité</a></li>
+		    	<li><a href="">Pour les aidants</a></li>
+		    	<li><a href="">Sommeil</a></li>
+		    	<li><a href="">Urgences et secours</a></li>
+	    	</ul>
+	    	<ul>
+		    	<li><a href="">Activité physique</a></li>
+		    	<li><a href="">Alertes et rappels</a></li>
+		    	<li><a href="">Calculettes et convertisseurs</a></li>
+		    	<li><a href="">Carnets de santé</a></li>
+		    	<li><a href="">Diététique et suivi du poids</a></li>
+		    	<li><a href="">Grossesse et maternité</a></li>
+		    	<li><a href="">Menstruations et féminité</a></li>
+		    	<li><a href="">Pour les aidants</a></li>
+		    	<li><a href="">Sommeil</a></li>
+		    	<li><a href="">Urgences et secours</a></li>
+	     	</ul>
+	     	
+	     	<div class="sponsored-selection">
+	     		<span class="title">Nos sélections</span>
+	     		<ul>
+	     			<li><a href=""><img src="tmp/app-icon-57.png" alt="[app-title] icon"/>Ma super app</a></li>
+	     			<li><a href=""><img src="tmp/app-icon-57.png" alt="[app-title] icon"/>Ma super app</a></li>
+	     			<li><a href=""><img src="tmp/app-icon-57.png" alt="[app-title] icon"/>Ma super app</a></li>
+	     		</ul>
+	     		<span class="sponsored-indicator">Sponsorisées</span>
+	     	</div>
 	    	<div class="bigpicto"></div>
 		</div> <!-- end wrapper -->
 	</nav>
@@ -61,11 +159,41 @@
 	<nav class = "medeplacer">
 		<div class="wrapper">
 	
+	    	<!-- Each <ul> has to contain 10 <li> -->
 	    	<ul>
-	    	    <li><a href="">Test</a></li>
-	     	   <li><a href="">Mon quotidien</a></li>
-	     	   </ul>
-	
+		    	<li><a href="">Activité physique</a></li>
+		    	<li><a href="">Alertes et rappels</a></li>
+		    	<li><a href="">Calculettes et convertisseurs</a></li>
+		    	<li><a href="">Carnets de santé</a></li>
+		    	<li><a href="">Diététique et suivi du poids</a></li>
+		    	<li><a href="">Grossesse et maternité</a></li>
+		    	<li><a href="">Menstruations et féminité</a></li>
+		    	<li><a href="">Pour les aidants</a></li>
+		    	<li><a href="">Sommeil</a></li>
+		    	<li><a href="">Urgences et secours</a></li>
+	    	</ul>
+	    	<ul>
+		    	<li><a href="">Activité physique</a></li>
+		    	<li><a href="">Alertes et rappels</a></li>
+		    	<li><a href="">Calculettes et convertisseurs</a></li>
+		    	<li><a href="">Carnets de santé</a></li>
+		    	<li><a href="">Diététique et suivi du poids</a></li>
+		    	<li><a href="">Grossesse et maternité</a></li>
+		    	<li><a href="">Menstruations et féminité</a></li>
+		    	<li><a href="">Pour les aidants</a></li>
+		    	<li><a href="">Sommeil</a></li>
+		    	<li><a href="">Urgences et secours</a></li>
+	     	</ul>
+	     	
+	     	<div class="sponsored-selection">
+	     		<span class="title">Nos sélections</span>
+	     		<ul>
+	     			<li><a href=""><img src="tmp/app-icon-57.png" alt="[app-title] icon"/>Ma super app</a></li>
+	     			<li><a href=""><img src="tmp/app-icon-57.png" alt="[app-title] icon"/>Ma super app</a></li>
+	     			<li><a href=""><img src="tmp/app-icon-57.png" alt="[app-title] icon"/>Ma super app</a></li>
+	     		</ul>
+	     		<span class="sponsored-indicator">Sponsorisées</span>
+	     	</div>
 	    	<div class="bigpicto"></div>
 		</div> <!-- end wrapper -->
 	</nav>

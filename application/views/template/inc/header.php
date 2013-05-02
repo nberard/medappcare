@@ -8,7 +8,6 @@
         <div class="meta">
             <a href="indexPro.php" class="pro">Espace Pro</a>
             <a href="#" class="connexion">Connexion</a>
-            <a href="#" class="language">FR</a>
         </div>
     </div>
 </div>
