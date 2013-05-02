@@ -61,75 +61,66 @@
       <form class="form-signin" method="get" >
         <h1 class="form-signin-heading">Inscription grand public</h1>
         
+        <input type="text" id="nom" class="input-block-level" placeholder="Nom" required>
+        <input type="text" id="prenom" class="input-block-level" placeholder="Prénom" required>        
         <input type="email" id="email" class="input-block-level" placeholder="Email" required>
         <input type="password" id="password" class="input-block-level" placeholder="Mot de passe" required>
                
-        <input type="text" class="input-block-level"  placeholder="Date de naissance" data-date-format="dd/mm/yyyy" data-date-viewmode="years" id="ddn" autocomplete="off" required>
-        
+        <select id="profession" required>
+	        <option value="">Profession</option>
+		    <optgroup label="Profession médicale"> 
+		        <option value="cheese">Biologiste</option>
+		        <option value="Dentiste">Dentiste</option>
+		        <option value="Médecin">Médecin</option>
+		        <option value="Pharmacien hospitalier">Pharmacien hospitalier</option>
+		        <option value="Pharmacien d'officine">Pharmacien d'officine</option>
+		        <option value="Sage-femme">Sage-femme</option>
+		        <option value="Interne">Interne</option>
+		        <option value="Etudiant">Etudiant</option>
+		    </optgroup>
+		    <optgroup label="Profession paramédicale"> 
+		        <option value="cheese">Aide-soigant</option>
+				<option value="Ambulancier">Ambulancier</option>
+				<option value="Audioprothésiste">Audioprothésiste</option>
+				<option value="Diététicien">Diététicien</option>
+				<option value="Ergothérapeute">Ergothérapeute</option>
+				<option value="Infirmier">Infirmier</option>
+				<option value="Kinésithérapeute">Kinésithérapeute</option>
+				<option value="Manipulateur d'électroradiologie médicale">Manipulateur d'électroradiologie médicale</option>
+				<option value="Opticien">Opticien</option>
+				<option value="Orthophoniste">Orthophoniste</option>
+				<option value="Orthoptiste">Orthoptiste</option>
+				<option value="Podologue">Podologue</option>
+				<option value="Préparateur en Pharmacie">Préparateur en Pharmacie</option>
+				<option value="Psychomotricien">Psychomotricien</option>
+				<option value="Technicien de laboratoire">Technicien de laboratoire</option>
+				<option value="Psychomotricien">Psychomotricien</option>
+				<option value="Technicien de laboratoire">Technicien de laboratoire</option>
+				<option value="Etudiant">Etudiant</option>
+				<option value="Autres">Autres</option>
+		    </optgroup>
+	    </select>
 
-        <div class="well"> Sexe<br><br>
-	        <div class="btn-group" data-toggle="buttons-radio" >		
-			  <button type="button" class="btn" data-toggle="button" id="homme">Homme</button>
-			  <button type="button" class="btn" data-toggle="button" id="femme">Femme</button>
-			  <button type="button" class="btn" data-toggle="button" id="autre">Autre</button>
-			  <input type="hidden" name="sexe" id="sexe" value="" required>
-			</div>
-        </div>
-		
-		<input type="text" class="input-block-level" placeholder="Pays" data-provide="typeahead" data-items="4" data-source='["Allemagne","France","Italie","Finlande","Belgique"]' autocomplete="off" required>
 
- <!--   Si on préfère les Checkbox classiques...
-        <div class="btn-group">
-	        Device 
-	        <label class="checkbox inline">
-			  <input type="checkbox" id="inlineCheckbox1" value="option1"> iPhone
-			</label>
-			<label class="checkbox inline">
-			  <input type="checkbox" id="inlineCheckbox2" value="option2"> iPad
-			</label>
-			<label class="checkbox inline">
-			  <input type="checkbox" id="inlineCheckbox3" value="option3"> Smartphone Android
-			</label>
-			<label class="checkbox inline">
-			  <input type="checkbox" id="inlineCheckbox4" value="option4"> Tablette Android
-		</label>
-        </div>
- -->  
-
-	    <select id="interets" multiple="multiple">
-	    	<optgroup label="Ma santé"> <!-- Mettre contenu du menu Ma santé -->
-		        <option value="cheese">Cheese</option>
-		        <option value="tomatoes">Tomatoes</option>
-		        <option value="mozarella">Mozzarella</option>
-		        <option value="mushrooms">Mushrooms</option>
-		        <option value="pepperoni">Pepperoni</option>
-		        <option value="onions">Onions</option>
-	    	</optgroup>
-	        <optgroup label="Mon quotidien">  <!-- Mettre contenu du menu Mon Quotidien -->
-		        <option value="cheese2">Cheese2</option>
-		        <option value="tomatoes2">Tomatoes2</option>
-		        <option value="mozarella2">Mozzarella2</option>
-		        <option value="mushroom2">Mushrooms2</option>
-		        <option value="pepperoni2">Pepperoni2</option>
-		        <option value="onions2">Onions2</option>
-	    	</optgroup>
+	    <select id="interets" multiple="multiple"><!-- Mettre contenu du menu Ma pratique -->
+	        <option value="cheese">Cheese</option>
+	        <option value="tomatoes">Tomatoes</option>
+	        <option value="mozarella">Mozzarella</option>
+	        <option value="mushrooms">Mushrooms</option>
+	        <option value="pepperoni">Pepperoni</option>
+	        <option value="onions">Onions</option>
 	    </select>
 	    
-			
-		<div class="well"> Device (plusieurs choix possibles)<br><br>
-			<div class="btn-group" data-toggle="buttons-checkbox">
-			  <button type="button" class="btn">iPhone</button> 
-			  <button type="button" class="btn">iPad</button> 
-			  <button type="button" class="btn">Tablette Android</button> 
-			  <button type="button" class="btn">Smartphone Android</button>
-			</div>
-		</div>
+        <input type="text" id="rpps" class="input-block-level" placeholder="Numéro RPPS*">	
+
+
+		<span class="help-block">* ou bien j'envoie une preuve de ma fonction de professionnel de santé ou d'étudiant en santé (carte professionnelle, carte d'étudiant(e), diplôme, ordonnance barrée,...) par email à identification@medappcare.com dans les 1 mois. Ce document peut être scanné ou pris en photo par votre smartphone.</span>
+
+
+
 		        
         <label class="checkbox">
           <input type="checkbox" value="cgu" required> J'accepte des <a href="#" title="CGU">Conditions Générales d'Utilisation</a>
-        </label>
-        <label class="checkbox">
-          <input type="checkbox" value="data" required> J'accepte le traitement de ces données par Medappcare
         </label>
         <button class="btn btn-primary" type="submit">M'inscrire</button>
         <br> <br>
@@ -156,7 +147,12 @@
 
 		// Multi Slect (FR)
 		$(document).ready(function() {
-		    $('#interets').multiselect({
+		    $('#profession').multiselect({
+		        buttonWidth: '500px', // Default
+		    });
+		
+		
+			$('#interets').multiselect({
 		        buttonWidth: '500px', // Default
 		        buttonText: function(options, select) {
 		            if (options.length == 0) {
@@ -174,8 +170,7 @@
 		            }
 		        },
 		    });
-		});
-
+	    });
 	</script>
     
 </body>
