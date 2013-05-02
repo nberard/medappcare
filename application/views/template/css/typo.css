@@ -1,8 +1,12 @@
 body{font-family: 'PT Sans', arial, sans-serif; color: #111313;}
 
 #header{font-size: 16px; font-weight: 700;}
-#header a{color: white; line-height: 40px; text-decoration: none; text-align: center;}
-#header nav li{color: white; font-size: 22px; text-decoration: none; text-align: center;}
+#header a {color: white;}
+#header > nav a, #header .links a{text-decoration: none; text-align: center;}
+#header .links a{line-height: 40px;}
+#header > nav li{color: white; font-size: 22px; text-decoration: none; text-align: center;}
+#dropdown a {font-weight: normal; font-size: 1.1em;}
+#dropdown .sponsored-selection .sponsored-indicator {font-weight: normal; color:white; font-size: .6em;}
 
 #selections h3{font-size: 30px; color: #0f6eb4;}
 
