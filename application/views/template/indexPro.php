@@ -4,7 +4,7 @@
 
     <header id="header">
     
-        <?php include ('inc/header.php') ; ?>
+        <?php include ('inc/headerPro.php') ; ?>
         
         <?php include ('inc/menuMedecin.php') ; ?> <!-- Menu Particulier -->
         

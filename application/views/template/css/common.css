@@ -1,5 +1,7 @@
 body{}
 
+
+
 .wrapper{width: 100%; max-width: 950px; margin: 0 auto; position: relative;}
 .clear{clear: both; display: block;}
 
@@ -37,11 +39,11 @@ a:hover{text-decoration: underline;}
 
 #header > nav a, #header .links a{margin: 0 0 0 10px;}
 #header > nav{background: #0F6EB4; width: 100%; height: 54px; display: block;}
-#header > nav ul{padding: 0; margin: 0 auto; width: 100%; max-width: 950px; position: relative;}
-#header > nav li{list-style: none; display: inline-block; height: auto; width: auto;}
-#header > nav a{border-left: 1px solid white; height: 54px; min-width: 54px; margin: 0 -4px 0 0; text-align: center; vertical-align: middle; position: relative; line-height: 50px; padding: 0 22px; display: block;}
+#header > nav ul{padding: 0; margin: 0 auto; width: 950px; position: relative; display: table;}
+#header > nav li{list-style: none; display: table-cell; height: auto; width: auto;}
+#header > nav a{border-left: 1px solid white; height: 54px; min-width: 56px; margin: 0 -4px 0 0; text-align: center; vertical-align: middle; position: relative; line-height: 50px; padding: 0 22px; display: block;}
 #header .language{margin: 0 !important;}
-#header > nav .home a, #header nav .search a{padding: 0;}
+#header > nav .home a, #header nav .search a{padding: 0; margin: 0;}
 #header .picto{padding: 0 22px 0 0;}
 
 .lespros #header nav a{padding: 0 20px;}
@@ -155,7 +157,7 @@ html[xmlns] .slides {display: block;}
 #footer .grandPublic{border-bottom: 1px solid white; padding: 0 0 15px 0;}
 #footer .professionnal{margin: 15px 0 0 0;}
 
-#footer .right ul{display: inline-block; position: relative; width: 130px; padding: 10px; vertical-align: top;}
+#footer .right ul{display: inline-block; position: relative; width: 130px; padding: 0 0 0 15px; vertical-align: top;}
 #footer .right li{padding: 0 0 0 10px;}
 
 #footer .languages{float: right}

@@ -18,5 +18,9 @@
         <li class="search">
             <a href="#">Rechercher</a>
         </li>
+        
+        <form action="search.php" method="post" class="search-form">
+			<input type="text" id="search-query" placeholder="Trouvez l'appli qui vous plaît...">
+		</form>
     </ul>
 </nav>

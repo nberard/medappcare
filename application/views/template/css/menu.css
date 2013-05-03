@@ -25,13 +25,14 @@
 .navminformer, #dropdown nav.minformer {background: #84C790;}
 .navmedeplacer, #dropdown nav.medeplacer {background: #D769AF;}
 
+
 /*header form.search-form {display: none;}*/
-header form.search-form {z-index: 300; position: absolute; width: 840px; height:52px; top:0; left:56px; display: none;}
-header form.search-form input {width:100%; height:100%; margin: 1px; padding: 0; border: none; outline: none; box-shadow: none;}
+header form.search-form {z-index: 300; position: absolute; width: 831px; height:52px; top:0; left:58px; display: none;}
+header form.search-form input {width:100%; height:100%; margin: 1px; padding: 5px 10px; border: none; outline: none; box-shadow: none; box-sizing: border-box; -moz-box-sizing: border-box;}
 
 #dropdown{position: relative; height:300px; overflow: hidden; display: none;}
 #dropdown > nav {position: abolute; width:100%; height:100%; display: none;}
-#dropdown .wrapper {height:100%; padding: 10px 0px 10px 60px; box-sizing: border-box;}
+#dropdown .wrapper {height:100%; padding: 10px 0px 10px 60px; box-sizing: border-box; -moz-box-sizing: border-box;}
 
 #dropdown .bigpicto{position: absolute; overflow: hidden; display: block; z-index: 1; }
 #dropdown .wrapper > ul{z-index: 2; position: relative; background: transparent: 50%; float:left; margin-right: 50px; margin-top: 20px;}
@@ -76,5 +77,16 @@ header form.search-form input {width:100%; height:100%; margin: 1px; padding: 0;
 #dropdown.navmespatients .bigpicto{background: url(../img/picto_mespatients_big.png) no-repeat; width: 261px; height: 176px; bottom: -15px; left: -110px;}
 
 
+/* Bootstrap tweaks */
+.hide {display: none;}
+.modal-header {padding: 12px 15px 9px 15px; border-bottom: 1px solid #eee;}
+.modal-body {padding: 15px 30px;}
+.modal button {font-family: 'PT Sans', arial, sans-serif; font-weight: bold;}
+.modal button.close {float: right; background: white url(../img/close-picto.png) no-repeat; width: 16px; height: 17px; border: none; margin-top: 5px;}
+.modal button.close:hover {cursor: pointer;}
+.modal .registration-call, .modal form {float: left; width: 50%; margin:20px 0;}
+.modal form {box-sizing: border-box; border-right: 1px solid #ccc;}
+.modal form button {margin: 0;}
+.modal .registration-call {text-align: center; line-height: 2em; padding:10px 0;}
 
 

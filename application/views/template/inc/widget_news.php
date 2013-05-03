@@ -1,5 +1,5 @@
 <div class="wrapper">
-    <h3>Actualité</h3>
+    <h2>Actualité</h2>
     <ul>
         <li>
             <a href="news.php" class="icone"></a> <!-- INSÉRER L'ICON DU NEWS -->
