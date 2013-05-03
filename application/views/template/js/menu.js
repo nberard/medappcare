@@ -8,17 +8,6 @@ var upArrow = ""; // ditto for up, when the menu item is selected
 var dir = "inc/menu"; // this is the name of the directory that holds your ajax files; if files are in root, just make this blank
 
 $(document).ready(function() {
-
-	/* Language selector */
-	
-	$('.language').click(function() {
-		$('.language.selected').removeClass('selected');
-		$(this).addClass('selected');
-	});
-	
-	
-	
-	
 	
 	/* Dropdown menu */
 	
@@ -96,11 +85,19 @@ $(document).ready(function() {
 	$('body').click(function(event){
 		if (event.target != $('form.search-form input')[0]) {
 			if (searchForm.css('display') != 'none') {
+				
+				console.log('prevendDefault');
 				event.preventDefault();
 				searchForm.toggle("slide", { direction: "right" }, 'normal', 'easeOutCubic');
 			}
 		}
-	}); 
+	});
+	
+	/* Modal */
+	
+	$('.modal').on('shown', function() {
+		$(this).children('.modal-body').children('form').children('p:nth-child(1)').children('input').focus();
+	});
 	
 });
 

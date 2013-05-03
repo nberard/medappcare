@@ -6,7 +6,7 @@
             <a class="twitter" href="twitter.com" target="_blank">Toutes les infos sur Twitter</a>
         </div>
         <div class="meta">
-            <a href="indexPro.php" class="pro">Espace Pro</a>
+            <a href="index.php" class="link-particuliers">Espace Particuliers</a>
             <a data-toggle="modal" href="#connexionModal" class="connexion">Connexion</a>
             
         </div>
@@ -28,7 +28,7 @@
     </form>
     <div class="registration-call">
     	Nouveau sur Medappcare ?
-    	<a href="#" class="btn btn-primary">Inscription</a>
+    	<a href="#" class="btn btn-primary">Inscription pro</a>
     </div>
   </div>
 </div>

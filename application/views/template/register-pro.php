@@ -129,7 +129,6 @@
     <?php include ('inc/footer.php') ; ?>
 
     <?php include ('inc/footer_meta.php') ; ?> <!-- Appels JS & Autres -->
-    <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap-datepicker.js"></script>
     <script src="js/bootstrap-multiselect.js"></script>
     
