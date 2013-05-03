@@ -10,6 +10,8 @@ body{font-family: 'PT Sans', arial, sans-serif; color: #111313;}
 
 #selections h3{font-size: 30px; color: #0f6eb4;}
 
+h2.form-signin-heading{font-size: 30px; color: #0f6eb4;}
+
 #listApps h2{color: #0f6eb4; font-size: 24px;}
 #listApps .listapps h3,
 #listApps .allapps h3{color: white; font-size: 24px;}

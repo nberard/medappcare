@@ -42,6 +42,16 @@
 	.multiselect-group {
 		font-weight: bold;
 		text-decoration: underline;
+		width: 458px;
+	}
+
+	.well{
+		padding: 10px 15px 0;
+	}
+	
+	.well label {
+		font-size: 16px;
+		color: #999999;
 	}
 
 
@@ -59,7 +69,7 @@
     
     			
       <form class="form-signin" method="get" >
-        <h1 class="form-signin-heading">Inscription grand public</h1>
+        <h2 class="form-signin-heading">Inscription Professionels</h2>
         
         <input type="text" id="nom" class="input-block-level" placeholder="Nom" required>
         <input type="text" id="prenom" class="input-block-level" placeholder="Prénom" required>        

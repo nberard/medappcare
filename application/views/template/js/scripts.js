@@ -13,3 +13,7 @@ $(window).load(function() {
         pauseOnAction: true
 	});
 });
+
+$(function() {
+	$('input, textarea').placeholder();
+});

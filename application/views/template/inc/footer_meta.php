@@ -2,9 +2,11 @@
 <script>window.jQuery || document.write('<script src="js/query-2.0.0.min.js"><\/script>')</script>
         
 <script src="js/jquery.flexslider-min.js"></script>
-<script src="js/scripts.js"></script>
 <script src="js/menu.js"></script>
 <script src="js/jquery-ui-1.10.2.custom.min.js"></script>
+<script src="js/jquery.placeholder.min.js"></script>
+
+<script src="js/scripts.js"></script>
 
 <!-- Google Analytics -->
 <script>

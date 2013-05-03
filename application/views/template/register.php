@@ -41,8 +41,17 @@
 	.multiselect-group {
 		font-weight: bold;
 		text-decoration: underline;
+		width: 458px;
 	}
 
+	.well{
+		padding: 10px 15px 0;
+	}
+	
+	.well label {
+		font-size: 16px;
+		color: #999999;
+	}
 
 </style>
 
@@ -58,7 +67,7 @@
     
     			
       <form class="form-signin" method="get" >
-        <h1 class="form-signin-heading">Inscription grand public</h1>
+        <h2 class="form-signin-heading">Inscription grand public</h2>
         
         <input type="email" id="email" class="input-block-level" placeholder="Email" required>
         <input type="password" id="password" class="input-block-level" placeholder="Mot de passe" required>
@@ -66,7 +75,7 @@
         <input type="text" class="input-block-level"  placeholder="Date de naissance" data-date-format="dd/mm/yyyy" data-date-viewmode="years" id="ddn" autocomplete="off" required>
         
 
-        <div class="well"> Sexe<br><br>
+        <div class="well"><label> Sexe</label>
 	        <div class="btn-group" data-toggle="buttons-radio" >		
 			  <button type="button" class="btn" data-toggle="button" id="homme">Homme</button>
 			  <button type="button" class="btn" data-toggle="button" id="femme">Femme</button>

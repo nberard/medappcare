@@ -213,7 +213,8 @@ input[type="checkbox"]:focus {
   height: auto;
 }
 input:-moz-placeholder,
-textarea:-moz-placeholder {
+textarea:-moz-placeholder,
+.placeholder {
   color: #999999;
 }
 input:-ms-input-placeholder,
