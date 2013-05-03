@@ -87,15 +87,18 @@ $(document).ready(function() {
 		event.stopPropagation();
 		if (searchForm.css('display') == 'none') {
 			searchForm.toggle("slide", { direction: "right" }, 'normal', 'easeOutCubic');
+			searchForm.children('input').focus();
 		} else {
 			searchForm.submit();
 		}
 	});
 	
 	$('body').click(function(event){
-		if (searchForm.css('display') != 'none') {
-			event.preventDefault();
-			searchForm.toggle("slide", { direction: "right" }, 'normal', 'easeOutCubic');
+		if (event.target != $('form.search-form input')[0]) {
+			if (searchForm.css('display') != 'none') {
+				event.preventDefault();
+				searchForm.toggle("slide", { direction: "right" }, 'normal', 'easeOutCubic');
+			}
 		}
 	}); 
 	

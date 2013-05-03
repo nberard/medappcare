@@ -8,6 +8,8 @@ body{font-family: 'PT Sans', arial, sans-serif; color: #111313;}
 #dropdown a {font-weight: normal; font-size: 1.1em;}
 #dropdown .sponsored-selection .sponsored-indicator {font-weight: normal; color:white; font-size: .6em;}
 
+header form.search-form input {font-family: 'PT Sans', arial, sans-serif; font-size: 1.2em; line-height: 1.4em;}
+
 #selections h3{font-size: 30px; color: #0f6eb4;}
 
 #listApps h2{color: #0f6eb4; font-size: 24px;}

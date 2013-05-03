@@ -26,12 +26,12 @@
 .navmedeplacer, #dropdown nav.medeplacer {background: #D769AF;}
 
 /*header form.search-form {display: none;}*/
-header form.search-form {z-index: 300; position: absolute; width: 840px; height:52px; top:0; left:56px; display: none;}
-header form.search-form input {width:100%; height:100%; margin: 1px; padding: 0; border: none; outline: none; box-shadow: none;}
+header form.search-form {z-index: 300; position: absolute; width: 840px; height:54px; top:0; left:56px; display: none;}
+header form.search-form input {width:100%; height:100%; margin: 1px; padding: 5px 10px; border: none; outline: none; box-shadow: none; box-sizing: border-box; -moz-box-sizing: border-box;}
 
 #dropdown{position: relative; height:300px; overflow: hidden; display: none;}
 #dropdown > nav {position: abolute; width:100%; height:100%; display: none;}
-#dropdown .wrapper {height:100%; padding: 10px 0px 10px 60px; box-sizing: border-box;}
+#dropdown .wrapper {height:100%; padding: 10px 0px 10px 60px; box-sizing: border-box; -moz-box-sizing: border-box;}
 
 #dropdown .bigpicto{position: absolute; overflow: hidden; display: block; z-index: 1; }
 #dropdown .wrapper > ul{z-index: 2; position: relative; background: transparent: 50%; float:left; margin-right: 50px; margin-top: 20px;}
