@@ -51,7 +51,6 @@ class Site extends CI_Controller {
         );
 
         $data['inc'] = $this->_getCommonIncludes();
-        $data['inc']['menuParticulier'] = $this->load->view('inc/menuParticulier', '', true);
 
         $data['contenu'] = $this->load->view('contenu/index', $indexData, true);
 		$this->load->view('index', $data);
@@ -90,10 +89,8 @@ class Site extends CI_Controller {
         );
 
         $data['inc'] = $this->_getCommonIncludes(true);
-        $data['inc']['menuParticulier'] = $this->load->view('inc/menuMedecin', '', true);
-
         $data['contenu'] = $this->load->view('contenu/indexPro', $indexData, true);
-        $this->load->view('index', $data);
+        $this->load->view('indexPro', $data);
     }
 
     private function _getCommonIncludes($pro = false)
@@ -107,15 +104,12 @@ class Site extends CI_Controller {
                 'redirect' => redirect_language($this->uri->segment_array(), $shortLanguage),
             );
         }
-        $switch = array(
-            'wording' => lang($pro ? 'espace_particulier' : 'espace_pro'),
-            'link' => site_url($pro ? 'index' : 'indexPro'),
-            'class' => $pro ? 'pro' : 'link-particuliers',
-        );
+        $menu = $pro ? 'menuMedecin' : 'menuParticulier';
         return array(
             'header_meta' => $this->load->view('inc/header_meta', array('css_files' => array(css_url('stylesheet'))), true),
-            'header' => $this->load->view('inc/header', array('switch' => $switch), true),
+            'header' => $this->load->view('inc/header', array('pro' => $pro), true),
             'home_slider' => $this->load->view('inc/home_slider', '', true),
+            $menu => $this->load->view('inc/'.$menu, '', true),
             'widget_selection' => $this->load->view('inc/widget_selection', '', true),
             'footer' => $this->load->view('inc/footer', array('languages' => $languagesVars), true),
             'footer_meta' => $this->load->view('inc/footer_meta', array('js_files' => array(
@@ -138,8 +132,18 @@ class Site extends CI_Controller {
             'bootstrap-multiselect',
         );
         $data['contenu'] = $this->load->view('contenu/register', $data, true);
-        $data['inc']['menuParticulier'] = $this->load->view('inc/menuMedecin', '', true);
         $this->load->view('register', $data);
+    }
+
+    public function registerPro()
+    {
+        $data['inc'] = $this->_getCommonIncludes(true);
+        $data['js_files'] = array(
+            'bootstrap-datepicker',
+            'bootstrap-multiselect',
+        );
+        $data['contenu'] = $this->load->view('contenu/registerPro', $data, true);
+        $this->load->view('registerPro', $data);
     }
 
     function langTest()

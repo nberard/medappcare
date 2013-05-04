@@ -40,6 +40,7 @@
 $route['default_controller'] = "site";
 
 $route['^(fr|en)/register$'] = "site/register";
+$route['^(fr|en)/registerPro$'] = "site/registerPro";
 $route['^(fr|en)/indexPro'] = "site/indexPro";
 $route['^(fr|en)/index$'] = $route['default_controller'];
 
