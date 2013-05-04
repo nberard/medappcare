@@ -1,4 +1,13 @@
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<?php foreach($js_files as $file): ?>
-    <script src="<?php echo $file; ?>"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<?php foreach($js_files as $js_file): ?>
+    <script src="<?php echo $js_file; ?>"></script>
 <?php endforeach; ?>
+<!-- Google Analytics -->
+<script>
+/*
+    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src='//www.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+*/
+</script>

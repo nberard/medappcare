@@ -21,3 +21,5 @@
 <section id="news"><?php echo $widget_news ; ?></section> <!-- Section Actualité -->
 
 <section id="pushFooter"><?php echo $home_pushpartners ; ?></section> <!-- Section Push Information -->
+
+<section id="partners"><?php echo $partners ; ?></section> <!-- Section Partenaires -->

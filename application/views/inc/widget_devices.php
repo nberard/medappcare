@@ -1,5 +1,5 @@
 <div class="wrapper">
-    <h3>Les Produits Connectés</h3>
+    <h2>Les Produits Connectés</h2>
     <ul>
         <li>
             <a href="device.php" class="icone"></a> <!-- INSÉRER L'ICON DU DEVICE -->

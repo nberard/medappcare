@@ -145,18 +145,18 @@ class Admin extends CI_Controller
     {
         $this->crud->set_subject("Membre");
         $this->crud->set_table('membre');
-        $this->crud->required_fields('email', 'est_pro');
+        $this->crud->required_fields('email', 'est_pro', 'mot_de_passe');
         $this->crud->set_relation('device_id', 'device', '{nom}');
         $this->crud->field_type('sexe','enum',array('M', 'F'));
         $this->crud->set_rules('email', 'E-mail', 'valid_email');
         $this->crud->callback_after_insert(function($post_array,$primary_key) {
             $this->_handle_default_values($post_array,$primary_key,
-                array('cgu_valid' => 0, 'cgv_valid' => 0, 'newsletter' => 0, 'device_id' => -1),
+                array('cgu_valid' => 0, 'cgv_valid' => 0, 'newsletter' => 0, 'device_id' => -1, 'droits' => 0),
                 'membre');
         });
         $this->crud->callback_after_update(function($post_array,$primary_key) {
             $this->_handle_default_values($post_array,$primary_key,
-                array('cgu_valid' => 0, 'cgv_valid' => 0, 'newsletter' => 0, 'device_id' => -1),
+                array('cgu_valid' => 0, 'cgv_valid' => 0, 'newsletter' => 0, 'device_id' => -1, 'droits' => 0),
                 'membre');
         });
         $this->crud->callback_add_field('pays', function($value = '', $primary_key = null){

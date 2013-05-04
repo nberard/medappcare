@@ -34,11 +34,27 @@ class Site extends CI_Controller {
             'widget_devices' => $this->load->view('inc/widget_devices', '', true),
             'widget_news' => $this->load->view('inc/widget_news', '', true),
             'home_pushpartners' => $this->load->view('inc/home_pushpartners', '', true),
+            'partners' => $this->load->view('inc/partners', '', true),
         );
 
-        $data['header'] =  $this->load->view('inc/header', '', true);
-        $data['footer_meta'] = $this->load->view('inc/footer_meta', array('js_files' => array(js_url('scripts'), js_url('jquery.flexslider-min'))), true);
-        $data['css_files'] = array(css_url('stylesheet'));
+        $data['inc'] = array(
+            'header_meta' => $this->load->view('inc/header_meta', array('css_files' => array(css_url('stylesheet'))), true),
+            'header' => $this->load->view('inc/header', '', true),
+            'menuParticulier' => $this->load->view('inc/menuParticulier', '', true),
+            'home_slider' => $this->load->view('inc/home_slider', '', true),
+            'widget_selection' => $this->load->view('inc/widget_selection', '', true),
+            'footer' => $this->load->view('inc/footer', '', true),
+            'footer_meta' => $this->load->view('inc/footer_meta', array('js_files' => array(
+                    js_url('menu'),
+                    js_url('jquery-ui-1.10.2.custom.min'),
+                    js_url('jquery.placeholder.min'),
+                    js_url('jquery.flexslider-min'),
+                    js_url('bootstrap'),
+//                    js_url('query-2.0.0.min'),
+                    js_url('scripts'),
+            )), true),
+        );
+
         $data['contenu'] = $this->load->view('contenu/index', $indexData, true);
 		$this->load->view('index', $data);
 	}

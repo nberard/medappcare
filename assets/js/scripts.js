@@ -1,4 +1,4 @@
-$(window).load(function() {
+$(window).ready(function() {
 	$('.flexslider').flexslider({
         animation: "fade",
         slideDirection: "horizontal",
@@ -12,4 +12,8 @@ $(window).load(function() {
         initDelay: 1000,
         pauseOnAction: true
 	});
+});
+
+$(function() {
+	$('input, textarea').placeholder();
 });
