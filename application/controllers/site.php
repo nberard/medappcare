@@ -14,6 +14,7 @@ class Site extends CI_Controller {
     {
         parent::__construct();
         $this->load->helper('assets');
+        $this->load->helper('redirect');
     }
 
 	public function index()
@@ -56,13 +57,22 @@ class Site extends CI_Controller {
 
     private function _getCommonIncludes()
     {
+        $languagesVars = $this->lang->languages;
+        foreach ($languagesVars as $shortLanguage => &$longLanguage)
+        {
+            $longLanguage = array(
+                'long' => $longLanguage,
+                'wording' => lang($longLanguage),
+                'redirect' => redirect_language($this->uri->segment_array(), $shortLanguage),
+            );
+        }
         return array(
             'header_meta' => $this->load->view('inc/header_meta', array('css_files' => array(css_url('stylesheet'))), true),
             'header' => $this->load->view('inc/header', '', true),
             'menuParticulier' => $this->load->view('inc/menuParticulier', '', true),
             'home_slider' => $this->load->view('inc/home_slider', '', true),
             'widget_selection' => $this->load->view('inc/widget_selection', '', true),
-            'footer' => $this->load->view('inc/footer', '', true),
+            'footer' => $this->load->view('inc/footer', array('languages' => $languagesVars), true),
             'footer_meta' => $this->load->view('inc/footer_meta', array('js_files' => array(
                 js_url('menu'),
                 js_url('jquery-ui-1.10.2.custom.min'),

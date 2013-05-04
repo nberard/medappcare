@@ -41,7 +41,7 @@ class MY_Lang extends CI_Lang {
 		{
 			$language = $this->languages[$segment];
 			$CFG->set_item('language', $language);
-
+			$CFG->set_item('language_short', $segment);
 		}
 		else if($this->is_special($segment)) // special URI -> no redirect
 		{

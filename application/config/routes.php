@@ -38,6 +38,7 @@
 |
 */
 $route['^(fr|en)/register$'] = "site/register";
+$route['^(fr|en)/index$'] = "site/index";
 $route['^fr/(.+)$'] = "$1";
 $route['^en/(.+)$'] = "$1";
 $route['default_controller'] = "site";
