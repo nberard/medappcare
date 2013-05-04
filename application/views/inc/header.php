@@ -6,7 +6,7 @@
             <a class="twitter" href="twitter.com" target="_blank">Toutes les infos sur Twitter</a>
         </div>
         <div class="meta">
-            <a href="indexPro.php" class="pro">Espace Pro</a>
+            <a href="<?= $switch['link'] ?>" class="<?= $switch['class'] ?>"><?= $switch['wording'] ?></a>
             <a data-toggle="modal" href="#connexionModal" class="connexion">Connexion</a>
             
         </div>

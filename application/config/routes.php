@@ -37,14 +37,16 @@
 | in the URL cannot be matched to a valid route.
 |
 */
+$route['default_controller'] = "site";
+
 $route['^(fr|en)/register$'] = "site/register";
-$route['^(fr|en)/index$'] = "site/index";
+$route['^(fr|en)/indexPro'] = "site/indexPro";
+$route['^(fr|en)/index$'] = $route['default_controller'];
+
 $route['^fr/(.+)$'] = "$1";
 $route['^en/(.+)$'] = "$1";
-$route['default_controller'] = "site";
 $route['404_override'] = '';
 // '/en' and '/fr' -> use default controller
-$route['^fr$'] = $route['default_controller'];
-$route['^en$'] = $route['default_controller'];
+$route['^(fr|en)$'] = $route['default_controller'];
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

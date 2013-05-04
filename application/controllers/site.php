@@ -15,6 +15,7 @@ class Site extends CI_Controller {
         parent::__construct();
         $this->load->helper('assets');
         $this->load->helper('redirect');
+        $this->lang->load('common');
     }
 
 	public function index()
@@ -50,12 +51,52 @@ class Site extends CI_Controller {
         );
 
         $data['inc'] = $this->_getCommonIncludes();
+        $data['inc']['menuParticulier'] = $this->load->view('inc/menuParticulier', '', true);
 
         $data['contenu'] = $this->load->view('contenu/index', $indexData, true);
 		$this->load->view('index', $data);
 	}
 
-    private function _getCommonIncludes()
+
+    public function indexPro()
+    {
+        $this->load->model('Applications_model');
+        $this->load->model('Devices_model');
+        $lastEvalApplis = $this->Applications_model->get_last_eval_applications();
+        $top5Applis = $this->Applications_model->get_top_five_applications();
+        //var_dump($this->Applications_model->get_selection_applications(1));
+        foreach ($lastEvalApplis as &$lastEvalAppli)
+            $lastEvalAppli->prix_complet = $lastEvalAppli->prix == 0.00  ? $this->lang->line('free') : $lastEvalAppli->prix.$this->correspDevises[$lastEvalAppli->devise];
+        foreach ($top5Applis as &$top5Appli)
+            $top5Appli->prix_complet = $top5Appli->prix == 0.00  ? $this->lang->line('free') : $top5Appli->prix.$this->correspDevises[$top5Appli->devise];
+
+        $indexData = array(
+            'home_slider' => $this->load->view('inc/home_slider', '', true),
+            'widget_selection' => $this->load->view('inc/widget_selection', '', true),
+            'pro_pourlespros' => $this->load->view('inc/pro_pourlespros', array(
+                'applications' => $lastEvalApplis,
+                'deviceAndroid' => Devices_model::APPLICATION_DEVICE_ANDROID,
+                'deviceApple' => Devices_model::APPLICATION_DEVICE_APPLE,
+            ), true),
+            'pro_pourlesgens' => $this->load->view('inc/pro_pourlesgens', array(
+                'applications' => $top5Applis,
+                'deviceAndroid' => Devices_model::APPLICATION_DEVICE_ANDROID,
+                'deviceApple' => Devices_model::APPLICATION_DEVICE_APPLE,
+            ), true),
+            'widget_devices' => $this->load->view('inc/widget_devices', '', true),
+            'widget_news' => $this->load->view('inc/widget_news', '', true),
+            'home_pushpartners' => $this->load->view('inc/home_pushpartners', '', true),
+            'partners' => $this->load->view('inc/partners', '', true),
+        );
+
+        $data['inc'] = $this->_getCommonIncludes(true);
+        $data['inc']['menuParticulier'] = $this->load->view('inc/menuMedecin', '', true);
+
+        $data['contenu'] = $this->load->view('contenu/indexPro', $indexData, true);
+        $this->load->view('index', $data);
+    }
+
+    private function _getCommonIncludes($pro = false)
     {
         $languagesVars = $this->lang->languages;
         foreach ($languagesVars as $shortLanguage => &$longLanguage)
@@ -66,10 +107,14 @@ class Site extends CI_Controller {
                 'redirect' => redirect_language($this->uri->segment_array(), $shortLanguage),
             );
         }
+        $switch = array(
+            'wording' => lang($pro ? 'espace_particulier' : 'espace_pro'),
+            'link' => site_url($pro ? 'index' : 'indexPro'),
+            'class' => $pro ? 'pro' : 'link-particuliers',
+        );
         return array(
             'header_meta' => $this->load->view('inc/header_meta', array('css_files' => array(css_url('stylesheet'))), true),
-            'header' => $this->load->view('inc/header', '', true),
-            'menuParticulier' => $this->load->view('inc/menuParticulier', '', true),
+            'header' => $this->load->view('inc/header', array('switch' => $switch), true),
             'home_slider' => $this->load->view('inc/home_slider', '', true),
             'widget_selection' => $this->load->view('inc/widget_selection', '', true),
             'footer' => $this->load->view('inc/footer', array('languages' => $languagesVars), true),
@@ -93,6 +138,7 @@ class Site extends CI_Controller {
             'bootstrap-multiselect',
         );
         $data['contenu'] = $this->load->view('contenu/register', $data, true);
+        $data['inc']['menuParticulier'] = $this->load->view('inc/menuMedecin', '', true);
         $this->load->view('register', $data);
     }
 
