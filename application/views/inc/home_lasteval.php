@@ -15,10 +15,8 @@
             <div class="os">
                 <?php if($application->device_id == $deviceApple): ?>
                     <span class="ios">iOS</span> <!-- INSERER L'OS -->
-                <?php else: ?>
-                    <?php if($application->device_id == $deviceAndroid): ?>
-                        <span class="android">Android</span>
-                    <?php endif; ?>
+                <?php elseif($application->device_id == $deviceAndroid): ?>
+                    <span class="android">Android</span>
                 <?php endif; ?>
             </div>
         </li>
