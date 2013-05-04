@@ -9,10 +9,6 @@ class Applications_model extends CI_Model {
 
     protected $table = 'application';
     protected $tableSelection = 'selection_application';
-    private $correspDevises = array(
-        'USD' => '$',
-        'EUR' => '€',
-    );
 
     public function __construct()
     {
@@ -57,6 +53,11 @@ class Applications_model extends CI_Model {
     public function get_last_eval_applications($_limit = 5)
     {
         return $this->db->limit($_limit)->order_by('id', 'desc')->get($this->table)->result();
+    }
+
+    public function get_top_five_applications($_limit = 5)
+    {
+        return $this->db->limit($_limit)->order_by('id', 'asc')->get($this->table)->result();
     }
 
     public function get_selection_applications($_idSelection)

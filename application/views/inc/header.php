@@ -28,7 +28,7 @@
     </form>
     <div class="registration-call">
     	Nouveau sur Medappcare ?
-    	<a href="#" class="btn btn-primary">Inscription</a>
+    	<a href="<?php echo site_url('register'); ?>" class="btn btn-primary">Inscription</a>
     </div>
   </div>
 </div>

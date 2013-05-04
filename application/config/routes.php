@@ -37,6 +37,7 @@
 | in the URL cannot be matched to a valid route.
 |
 */
+$route['^(fr|en)/register$'] = "site/register";
 $route['^fr/(.+)$'] = "$1";
 $route['^en/(.+)$'] = "$1";
 $route['default_controller'] = "site";
