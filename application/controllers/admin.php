@@ -152,9 +152,17 @@ class Admin extends CI_Controller
         $this->crud->set_subject("Membre");
         $this->crud->set_table('membre');
         $this->crud->required_fields('email', 'est_pro');
+        if($this->crud->getState() == 'insert_validation')
+        {
+            $this->crud->required_fields('email', 'est_pro', 'mot_de_passe');
+        }
+        else
+        {
+            $this->crud->required_fields('email', 'est_pro');
+        }
         $this->crud->set_relation('device_id', 'device', '{nom}');
         $this->crud->field_type('sexe','enum',array('M', 'F'));
-        $this->crud->set_rules('email', 'E-mail', 'valid_email');
+        $this->crud->set_rules('email', 'E-mail', 'valid_email|required');
         $this->crud->callback_edit_field('mot_de_passe', function($value){
             return '<input type="text" name="mot_de_passe"/>';
         });
@@ -174,12 +182,12 @@ class Admin extends CI_Controller
         $this->crud->callback_edit_field('pays', function($value = '', $primary_key = null){
             return country_dropdown('pays', array('FR'), $value);
         });
-        $this->crud->callback_before_insert(array($this, '_membres_crypt_password'));
-        $this->crud->callback_before_update(array($this, '_membres_crypt_password'));
+        $this->crud->callback_before_insert(array($this, '_membres_before_action'));
+        $this->crud->callback_before_update(array($this, '_membres_before_action'));
         $this->_admin_output($this->crud->render());
     }
 
-    function _membres_crypt_password($post_array,$primary_key)
+    function _membres_before_action($post_array)
     {
         if(empty($post_array['mot_de_passe']))
         {
