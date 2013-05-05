@@ -12,6 +12,11 @@ class Admin extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $user = $this->session->userdata('user');
+        if(!$user || $user->droits != 1)
+        {
+            redirect(index_page());
+        }
         $this->load->database();
         $this->load->helper('url');
         $this->load->helper('country');

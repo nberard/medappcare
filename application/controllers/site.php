@@ -11,6 +11,12 @@ class Site extends CI_Controller {
         $this->output->enable_profiler(TRUE);
     }
 
+    public function deconnect()
+    {
+        $this->session->unset_userdata('user');
+        $this->session->set_flashdata('success', 'vous êtes déconnecté');
+        redirect($_SERVER['HTTP_REFERER'], 'refresh');
+    }
 
     public function connect()
     {

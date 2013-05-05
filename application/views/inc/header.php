@@ -5,7 +5,7 @@
     <?php endif; ?>
     <?php if($this->session->flashdata('success')): ?>
         <span class="alert alert-success"><?= $this->session->flashdata('success'); ?></span>
-    <?php endif; var_dump($user); ?>
+    <?php endif; //var_dump($user); ?>
     <div class="links">
         <div class="social">
             <a class="facebook" href="facebook.com" target="_blank">Rejoignez-nous sur Facebook !</a>
@@ -13,7 +13,11 @@
         </div>
         <div class="meta">
             <a href="<?= site_url($pro ? 'perso/index' : 'pro/index') ?>" class="<?= $pro ? 'link-particuliers' : 'pro' ?>"><?= lang($pro ? 'espace_particulier' : 'espace_pro') ?></a>
+            <?php if(!$user): ?>
             <a data-toggle="modal" href="#connexionModal" class="connexion">Connexion</a>
+            <?php else: ?>
+            Connecté en tant que <?= $user->email ?> | <a href="<?= site_url('site/deconnect') ?>">Déconnexion</a>
+            <?php endif; ?>
             
         </div>
     </div>
