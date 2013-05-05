@@ -8,6 +8,7 @@ class Site extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
+        $this->load->helper('crypt');
         $this->output->enable_profiler(TRUE);
     }
 
@@ -24,7 +25,7 @@ class Site extends CI_Controller {
         $this->load->model('Membres_model');
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $membre = $this->Membres_model->exists_membres(array('email' => $email, 'mot_de_passe' => $password));
+        $membre = $this->Membres_model->exists_membres(array('email' => $email, 'mot_de_passe' => get_crypt_password($password)));
         if($membre)
         {
             $this->session->set_userdata('user', $membre);

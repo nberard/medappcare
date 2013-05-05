@@ -181,7 +181,7 @@ $config['directory_trigger']	= 'd'; // experimental not currently in use
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 1;
+$config['log_threshold'] = 4;
 
 /*
 |--------------------------------------------------------------------------
@@ -590,3 +590,5 @@ $config['country_list'] = array(
 
 $config['note_min'] = 0;
 $config['note_max'] = 5;
+
+$config['password_salt'] = 'Qz2acvC7bjnjJdNK';

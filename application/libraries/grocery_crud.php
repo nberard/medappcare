@@ -1714,7 +1714,7 @@ class grocery_CRUD_Layout extends grocery_CRUD_Model_Driver
 					$actions_urls[$unique_id] =
 						$action->url_has_http ?
 							$action->link_url.$row->$primary_key :
-							site_url($action->link_url.'/'.$row->$primary_key);
+							base_url($action->link_url.'/'.$row->$primary_key);
 				}
 			}
 			$row->action_urls = $actions_urls;
@@ -2839,7 +2839,7 @@ class grocery_CRUD_States extends grocery_CRUD_Layout
 		        $state_url_array[$num+1] = 'index';
 		    }
 
-			$state_url =  site_url(implode('/',$state_url_array).'/'.$url);
+			$state_url =  base_url(implode('/',$state_url_array).'/'.$url);
 		}
 
 		return $state_url;

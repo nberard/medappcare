@@ -20,6 +20,7 @@ class Admin extends CI_Controller
         $this->load->database();
         $this->load->helper('url');
         $this->load->helper('country');
+        $this->load->helper('crypt');
         $this->load->library('grocery_CRUD');
         $this->load->library('log');
         $this->crud = new grocery_CRUD();
@@ -150,10 +151,13 @@ class Admin extends CI_Controller
     {
         $this->crud->set_subject("Membre");
         $this->crud->set_table('membre');
-        $this->crud->required_fields('email', 'est_pro', 'mot_de_passe');
+        $this->crud->required_fields('email', 'est_pro');
         $this->crud->set_relation('device_id', 'device', '{nom}');
         $this->crud->field_type('sexe','enum',array('M', 'F'));
         $this->crud->set_rules('email', 'E-mail', 'valid_email');
+        $this->crud->callback_edit_field('mot_de_passe', function($value){
+            return '<input type="text" name="mot_de_passe"/>';
+        });
         $this->crud->callback_after_insert(function($post_array,$primary_key) {
             $this->_handle_default_values($post_array,$primary_key,
                 array('cgu_valid' => 0, 'cgv_valid' => 0, 'newsletter' => 0, 'device_id' => -1, 'droits' => 0),
@@ -170,14 +174,29 @@ class Admin extends CI_Controller
         $this->crud->callback_edit_field('pays', function($value = '', $primary_key = null){
             return country_dropdown('pays', array('FR'), $value);
         });
+        $this->crud->callback_before_insert(array($this, '_membres_crypt_password'));
+        $this->crud->callback_before_update(array($this, '_membres_crypt_password'));
         $this->_admin_output($this->crud->render());
+    }
+
+    function _membres_crypt_password($post_array,$primary_key)
+    {
+        if(empty($post_array['mot_de_passe']))
+        {
+            unset($post_array['mot_de_passe']);
+        }
+        else
+        {
+            $post_array['mot_de_passe'] = get_crypt_password($post_array['mot_de_passe']);
+        }
+        return $post_array;
     }
 
     private function _handle_default_values($_post_array,$_primary_key,$_to_check, $_table, $_updates = array(), $_id = 'id')
     {
         foreach($_to_check as $field => $default_value)
         {
-            if(!empty($_post_array[$field]))
+            if(!isset($_post_array[$field]))
             {
                 $_updates[$field] = $default_value;
             }
