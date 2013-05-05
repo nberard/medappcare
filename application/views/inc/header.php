@@ -6,7 +6,7 @@
             <a class="twitter" href="twitter.com" target="_blank">Toutes les infos sur Twitter</a>
         </div>
         <div class="meta">
-            <a href="<?= site_url($pro ? 'index' : 'indexPro') ?>" class="<?= $pro ? 'link-particuliers' : 'pro' ?>"><?= lang($pro ? 'espace_particulier' : 'espace_pro') ?></a>
+            <a href="<?= site_url($pro ? 'perso/index' : 'pro/index') ?>" class="<?= $pro ? 'link-particuliers' : 'pro' ?>"><?= lang($pro ? 'espace_particulier' : 'espace_pro') ?></a>
             <a data-toggle="modal" href="#connexionModal" class="connexion">Connexion</a>
             
         </div>
@@ -28,7 +28,7 @@
     </form>
     <div class="registration-call">
     	Nouveau sur Medappcare ?
-    	<a href="<?php echo site_url($pro ? 'registerPro' : 'register') ?>" class="btn btn-primary"><?= lang('inscription') ?></a>
+    	<a href="<?php echo site_url($pro ? 'pro/register' : 'perso/register') ?>" class="btn btn-primary"><?= lang('inscription') ?></a>
     </div>
   </div>
 </div>

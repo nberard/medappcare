@@ -37,12 +37,12 @@
 | in the URL cannot be matched to a valid route.
 |
 */
-$route['default_controller'] = "site";
-
-$route['^(fr|en)/register$'] = "site/register";
-$route['^(fr|en)/registerPro$'] = "site/registerPro";
-$route['^(fr|en)/indexPro'] = "site/indexPro";
-$route['^(fr|en)/index$'] = $route['default_controller'];
+$route['default_controller'] = "perso";
+//
+//$route['^(fr|en)/register$'] = "site/register";
+//$route['^(fr|en)/registerPro$'] = "site/registerPro";
+//$route['^(fr|en)/indexPro'] = "site/indexPro";
+//$route['^(fr|en)/index$'] = $route['default_controller'];
 
 $route['^fr/(.+)$'] = "$1";
 $route['^en/(.+)$'] = "$1";

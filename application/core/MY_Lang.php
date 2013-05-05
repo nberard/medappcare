@@ -51,6 +51,7 @@ class MY_Lang extends CI_Lang {
 		{
 			// set default language
 			$CFG->set_item('language', $this->languages[$this->default_lang()]);
+			$CFG->set_item('language_short', $this->default_lang());
 
 			// redirect
 			header("Location: " . $CFG->site_url($this->localized($this->default_uri)), TRUE, 302);
