@@ -15,7 +15,7 @@ class Site extends CI_Controller {
     public function deconnect()
     {
         $this->session->unset_userdata('user');
-        $this->session->set_flashdata('success', 'vous êtes déconnecté');
+        $this->session->set_flashdata('success', lang('ok_logout'));
         redirect($_SERVER['HTTP_REFERER'], 'refresh');
     }
 
@@ -29,12 +29,12 @@ class Site extends CI_Controller {
         if($membre)
         {
             $this->session->set_userdata('user', $membre);
-            $this->session->set_flashdata('success', 'vous êtes loggé');
-            redirect($_SERVER['HTTP_REFERER'], 'refresh');
+            $this->session->set_flashdata('success', lang('ok_login'));
+            redirect($_SERVER['HTTP_REFERER'], lang('refresh'));
         }
         else
         {
-            $this->session->set_flashdata('error', 'email ou mot de passe invalide');
+            $this->session->set_flashdata('error', 'erreur_login');
             redirect($_SERVER['HTTP_REFERER'], 'refresh');
         }
     }
