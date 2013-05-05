@@ -14,6 +14,7 @@ class Site extends CI_Controller {
 
     public function connect()
     {
+        //test
         $this->load->model('Membres_model');
         $email = $_POST['email'];
         $password = $_POST['password'];
