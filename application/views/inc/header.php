@@ -1,5 +1,11 @@
 <div class="wrapper">
     <h1>Medappcare</h1>
+    <?php if($this->session->flashdata('error')): ?>
+    <span class="alert alert-error"><?= $this->session->flashdata('error'); ?></span>
+    <?php endif; ?>
+    <?php if($this->session->flashdata('success')): ?>
+        <span class="alert alert-success"><?= $this->session->flashdata('success'); ?></span>
+    <?php endif; var_dump($user); ?>
     <div class="links">
         <div class="social">
             <a class="facebook" href="facebook.com" target="_blank">Rejoignez-nous sur Facebook !</a>
@@ -19,9 +25,9 @@
     <h3>Connexion à Medappcare</h3>
   </div>
   <div class="modal-body">
-    <form method="post" action='connect.php' name="login_form">
-      <p><input type="text" required placeholder="Email"></p>
-      <p><input type="password" required placeholder="Mot de passe"></p>
+    <form method="post" action='<?= site_url('site/connect') ?>' name="login_form">
+      <p><input name="email" type="text" required placeholder="Email"></p>
+      <p><input name="password" type="password" required placeholder="Mot de passe"></p>
       <p><button type="submit" class="btn btn-primary">Connexion</button>
         <a href="#">Mot de passe oublié ?</a>
       </p>
