@@ -7,8 +7,8 @@
         <?php foreach($languages as $languageShort => $languagesVars):
             $current = config_item('language') == $languagesVars['long'];
         ?>
-        <a href="<?= $current ? '#' : $languagesVars['redirect'] ?> " <?= $current ? 'class="selected"' : '' ?> >
-            <?= $languagesVars['wording'] ?>
+        <a href="<?php echo $current ? '#' : $languagesVars['redirect'] ?> " <?php echo $current ? 'class="selected"' : '' ?> >
+            <?php echo $languagesVars['wording'] ?>
         </a> &nbsp;&nbsp;&nbsp;
     <?php endforeach; ?>
     </span>
