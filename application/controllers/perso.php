@@ -52,14 +52,17 @@ class Perso extends MY_Controller {
 
     public function register()
     {
+        $this->load->model('Plateformes_model');
+        $plateformes = $this->Plateformes_model->get_all_plateformes();
         $data['inc'] = $this->_getCommonIncludes();
-        $data['js_files'] = array(
+        $registerData['js_files'] = array(
             js_url('bootstrap-datepicker'),
             js_url('bootstrap-multiselect'),
         );
-        $data['nb_countries'] = count(config_item('country_list'));
-        $data['country_json'] = country_json();
-        $data['contenu'] = $this->load->view('contenu/register', $data, true);
+        $registerData['nb_countries'] = count(config_item('country_list'));
+        $registerData['country_json'] = country_json();
+        $registerData['plateformes'] = $plateformes;
+        $data['contenu'] = $this->load->view('contenu/register', $registerData, true);
         $this->load->view('register', $data);
     }
 
