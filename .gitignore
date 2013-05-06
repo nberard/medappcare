@@ -1,2 +1,4 @@
 /application/logs/log-2013-04-26.php
 .DS_Store
+
+/application/config/config.php

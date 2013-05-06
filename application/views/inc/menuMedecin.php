@@ -1,7 +1,7 @@
 <nav>
     <ul>
         <li class="home">
-            <a href="index.php">Home</a>
+            <a href="index.html">Home</a>
         </li>
         <li class="navadministratif megamenu">
             <a href="navadministratif.php"><span class="picto"></span><span class="text">Administratif<span></a>
