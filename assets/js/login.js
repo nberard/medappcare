@@ -5,20 +5,22 @@ $(document).ready(function(){
             type: 		"POST",
             url:  		$('#login_form').attr('data-action'),
             dataType: 'json',
+            contentType: 'application/json',
             data:
             JSON.stringify({
+                session : 1,
                 email : $('#email').val(),
                 password : $('#password').val()
             }),
-            success: function(xhr)
+            success: function(data, textStatus, xhr)
             {
-                if(xhr.status == 'ok')
+                window.location.reload();
+            },
+            error: function(xhr, textStatus, error)
+            {
+                if(xhr.responseJSON.message)
                 {
-                    window.location.reload();
-                }
-                else
-                {
-                    $('#login-error').text(xhr.message).show();
+                    $('#login-error').text(xhr.responseJSON.message).show();
                     return false;
                 }
             }
