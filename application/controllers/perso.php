@@ -8,6 +8,7 @@ class Perso extends MY_Controller {
     public function __construct()
     {
         parent::__construct();
+        $this->load->helper('country');
     }
 
 	public function index()
@@ -53,9 +54,11 @@ class Perso extends MY_Controller {
     {
         $data['inc'] = $this->_getCommonIncludes();
         $data['js_files'] = array(
-            'bootstrap-datepicker',
-            'bootstrap-multiselect',
+            js_url('bootstrap-datepicker'),
+            js_url('bootstrap-multiselect'),
         );
+        $data['nb_countries'] = count(config_item('country_list'));
+        $data['country_json'] = country_json();
         $data['contenu'] = $this->load->view('contenu/register', $data, true);
         $this->load->view('register', $data);
     }

@@ -51,8 +51,8 @@ class Pro extends MY_Controller {
     {
         $data['inc'] = $this->_getCommonIncludes(true);
         $data['js_files'] = array(
-            'bootstrap-datepicker',
-            'bootstrap-multiselect',
+            js_url('bootstrap-datepicker'),
+            js_url('bootstrap-multiselect'),
         );
         $data['contenu'] = $this->load->view('contenu/registerPro', $data, true);
         $this->load->view('registerPro', $data);
