@@ -296,6 +296,7 @@ abstract class REST_Controller extends CI_Controller
             $this->response(array('status' => false, 'error' => 'Invalid API Key.'), 403);
         }
 
+        $controller_method = $object_called.'_'.$controller_method;
         // Sure it exists, but can they do anything with it?
         if ( ! method_exists($this, $controller_method))
         {
