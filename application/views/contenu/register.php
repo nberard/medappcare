@@ -1,4 +1,4 @@
-<form class="form-signin" method="post" >
+<form class="form-signin" method="post" action="<?php echo site_url('perso/register_do'); ?>">
     <h2 class="form-signin-heading">Inscription grand public</h2>
 
     <input type="email" id="email" class="input-block-level" placeholder="Email" required>
@@ -54,14 +54,11 @@
             <option value="onions2">Onions2</option>
         </optgroup>
     </select>
-
-
     <div class="well"><label>Device (plusieurs choix possibles)</label>
         <div class="btn-group" data-toggle="buttons-checkbox">
-            <button type="button" class="btn">iPhone</button>
-            <button type="button" class="btn">iPad</button>
-            <button type="button" class="btn">Tablette Android</button>
-            <button type="button" class="btn">Smartphone Android</button>
+            <?php foreach($plateformes as $plateforme): ?>
+                <button type="button" name="plateformes[]" value="<?php echo $plateforme->id; ?>" class="btn"><?php echo $plateforme->{"label_".config_item('language_short')}; ?></button>
+            <?php endforeach; ?>
         </div>
     </div>
 

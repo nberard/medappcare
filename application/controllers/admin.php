@@ -53,7 +53,7 @@ class Admin extends CI_Controller
     {
         $this->crud->set_subject('Accessoire');
         $this->crud->set_table('accessoire');
-        $this->crud->required_fields('nom', 'fabriquant_id', 'photo', 'lien_achat');
+        $this->crud->required_fields('nom_'.config_item('language_short'), 'fabriquant_id', 'photo', 'lien_achat');
         $this->crud->set_relation('fabriquant_id', 'accessoire_fabriquant', '{nom}');
         $this->_admin_output($this->crud->render());
     }
@@ -124,8 +124,8 @@ class Admin extends CI_Controller
     {
         $this->crud->set_subject("Catégorie");
         $this->crud->set_table('categorie');
-        $this->crud->required_fields('nom', 'logo_url', 'est_pro');
-        $this->crud->set_relation('parent_id', 'categorie', '{nom}');
+        $this->crud->required_fields('nom_'.config_item('language_short'), 'logo_url', 'est_pro');
+        $this->crud->set_relation('parent_id', 'categorie', '{nom_'.config_item('language_short').'}');
         $this->crud->callback_after_insert(array($this, '_categories_after_add'));
         $this->crud->callback_after_update(array($this, '_categories_after_add'));
         $this->_admin_output($this->crud->render());
@@ -147,11 +147,22 @@ class Admin extends CI_Controller
         $this->_admin_output($this->crud->render());
     }
 
+    public function plateformes()
+    {
+        $this->crud->set_subject("Plateforme");
+        $this->crud->set_table('plateforme');
+        $this->crud->required_fields('label_'.config_item('language_short'));
+        $this->crud->set_relation('device_id', 'device', '{nom}');
+        $this->_admin_output($this->crud->render());
+    }
+
     public function membres()
     {
         $this->crud->set_subject("Membre");
         $this->crud->set_table('membre');
         $this->crud->required_fields('email', 'est_pro');
+        $this->crud->set_relation_n_n('plateformes', 'membre_plateforme', 'plateforme', 'membre_id', 'plateforme_id', '{label_'.config_item('language_short').'}');
+//        public function set_relation_n_n($field_name, $relation_table, $selection_table, $primary_key_alias_to_this_table, $primary_key_alias_to_selection_table , $title_field_selection_table , $priority_field_relation_table = null, $where_clause = null)
         if($this->crud->getState() == 'insert_validation')
         {
             $this->crud->required_fields('email', 'est_pro', 'mot_de_passe');
@@ -160,7 +171,6 @@ class Admin extends CI_Controller
         {
             $this->crud->required_fields('email', 'est_pro');
         }
-        $this->crud->set_relation('device_id', 'device', '{nom}');
         $this->crud->field_type('sexe','enum',array('M', 'F', 'A'));
         $this->crud->set_rules('email', 'E-mail', 'valid_email|required');
         $this->crud->callback_edit_field('mot_de_passe', function($value){
@@ -168,12 +178,12 @@ class Admin extends CI_Controller
         });
         $this->crud->callback_after_insert(function($post_array,$primary_key) {
             $this->_handle_default_values($post_array,$primary_key,
-                array('cgu_valid' => 0, 'cgv_valid' => 0, 'newsletter' => 0, 'device_id' => -1, 'droits' => 0),
+                array('cgu_valid' => 0, 'cgv_valid' => 0, 'newsletter' => 0, 'droits' => 0),
                 'membre');
         });
         $this->crud->callback_after_update(function($post_array,$primary_key) {
             $this->_handle_default_values($post_array,$primary_key,
-                array('cgu_valid' => 0, 'cgv_valid' => 0, 'newsletter' => 0, 'device_id' => -1, 'droits' => 0),
+                array('cgu_valid' => 0, 'cgv_valid' => 0, 'newsletter' => 0, 'droits' => 0),
                 'membre');
         });
         $this->crud->callback_add_field('pays', function($value = '', $primary_key = null){
