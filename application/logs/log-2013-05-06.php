@@ -74,3 +74,7 @@ ERROR - 2013-05-06 12:35:44 --> 404 Page Not Found --> perso/register.php
 ERROR - 2013-05-06 12:35:44 --> 404 Page Not Found --> perso/register.php
 ERROR - 2013-05-06 12:36:03 --> 404 Page Not Found --> perso/bootstrap-datepicker
 ERROR - 2013-05-06 12:36:03 --> 404 Page Not Found --> perso/bootstrap-multiselect
+ERROR - 2013-05-06 12:59:31 --> 404 Page Not Found --> perso/index.php
+ERROR - 2013-05-06 12:59:31 --> 404 Page Not Found --> perso/index.php
+ERROR - 2013-05-06 12:59:35 --> 404 Page Not Found --> perso/index.php
+ERROR - 2013-05-06 12:59:35 --> 404 Page Not Found --> perso/index.php
