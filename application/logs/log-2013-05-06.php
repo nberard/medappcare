@@ -139,3 +139,6 @@ ERROR - 2013-05-06 20:02:05 --> Unable to select database: c12medappcare
 ERROR - 2013-05-06 20:17:35 --> Unable to select database: c12medappcare
 ERROR - 2013-05-06 20:27:41 --> 404 Page Not Found --> perso/app.php
 ERROR - 2013-05-06 20:27:41 --> 404 Page Not Found --> perso/app.php
+ERROR - 2013-05-06 22:50:07 --> Unable to select database: c12medappcare
+ERROR - 2013-05-06 22:52:47 --> Unable to select database: c12medappcare
+ERROR - 2013-05-06 22:54:42 --> Unable to select database: c12medappcare
