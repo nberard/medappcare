@@ -43,7 +43,7 @@ class MY_Controller extends CI_Controller {
                 js_url('jquery-ui-1.10.2.custom.min'),
                 js_url('jquery.placeholder.min'),
                 js_url('jquery.flexslider-min'),
-//                js_url('bootstrap'),
+                js_url('bootstrap'),
 //                    js_url('query-2.0.0.min'),
                 js_url('scripts'),
             )), true),
