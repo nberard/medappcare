@@ -57,6 +57,38 @@ class Pro extends MY_Controller {
         $data['contenu'] = $this->load->view('contenu/registerPro', $data, true);
         $this->load->view('registerPro', $data);
     }
+
+    public function category()
+    {
+        $categoryData = array(
+            'widget_selection' => $this->load->view('inc/widget_selection', '', true),
+            'widget_lasteval' => $this->load->view('inc/widget_lasteval', '', true),
+            'widget_topfive' => $this->load->view('inc/widget_topfive', '', true),
+            'widget_allappcategory' => $this->load->view('inc/widget_allappcategory', '', true),
+            'widget_devices' => $this->load->view('inc/widget_devices', '', true),
+            'widget_news' => $this->load->view('inc/widget_news', '', true),
+            'home_pushpartners' => $this->load->view('inc/home_pushpartners', '', true),
+            'partners' => $this->load->view('inc/partners', '', true),
+        );
+
+        $data['inc'] = $this->_getCommonIncludes(true);
+
+        $data['contenu'] = $this->load->view('contenu/category', $categoryData, true);
+        $this->load->view('categoryPro', $data);
+    }
+
+    public function app()
+    {
+        $appData = array(
+            'widget_devices' => $this->load->view('inc/widget_devices', '', true),
+            'partners' => $this->load->view('inc/partners', '', true),
+        );
+
+        $data['inc'] = $this->_getCommonIncludes(true);
+
+        $data['contenu'] = $this->load->view('contenu/app', $appData, true);
+        $this->load->view('appPro', $data);
+    }
 }
 
 /* End of file perso.php */

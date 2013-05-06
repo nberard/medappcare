@@ -15,7 +15,7 @@
 |
 */
 //$config['base_url']	= 'http://medappcare.omts.fr/';
-$config['base_url']	= 'http://localhost';
+$config['base_url']	= 'http://localhost:8888';
 /* TEST mytho */
 
 /*
