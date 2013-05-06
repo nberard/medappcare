@@ -488,6 +488,9 @@ button{margin-right: 15px;}
     color: #999999;
 }
 
+#login-error {
+	margin: 0;
+}
 
 
 

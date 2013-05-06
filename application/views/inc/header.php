@@ -8,7 +8,7 @@
     <?php endif; ?>
     <div class="links">
         <div class="social">
-            <a class="facebook" href="https://www.facebook.com/Medappcare" target="_blank" title="facebook">Rejoignez-nous sur Facebook !</a>
+            <a class="facebook" href="https://.facebook.com/Medappcare" target="_blank" title="facebook">Rejoignez-nous sur Facebook !</a>
             <a class="twitter" href="https://twitter.com/Medappcare" target="_blank" title="twitter">Suivez-nous sur Twitter</a>
         </div>
         <div class="meta">
@@ -41,5 +41,5 @@
     	<a href="<?php echo site_url($pro ? 'pro/register' : 'perso/register') ?>" class="btn btn-primary"><?php echo lang('inscription') ?></a>
     </div>
   </div>
-    <span id="login-error" class="alert alert-error hide"></span>
+    <div id="login-error" class="alert alert-error hide"></div>
 </div>
