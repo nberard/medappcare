@@ -1,4 +1,4 @@
-<form class="form-signin" method="post" >
+<form class="form-signin" method="post" action="<?php echo site_url('perso/register_do'); ?>">
     <h2 class="form-signin-heading">Inscription grand public</h2>
 
     <input type="email" id="email" class="input-block-level" placeholder="Email" required>

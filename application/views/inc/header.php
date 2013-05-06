@@ -5,7 +5,7 @@
     <?php endif; ?>
     <?php if($this->session->flashdata('success')): ?>
         <span class="alert alert-success"><?php echo $this->session->flashdata('success'); ?></span>
-    <?php endif; //var_dump($user); ?>
+    <?php endif; ?>
     <div class="links">
         <div class="social">
             <a class="facebook" href="facebook.com" target="_blank">Rejoignez-nous sur Facebook !</a>
@@ -29,9 +29,9 @@
     <h3>Connexion à Medappcare</h3>
   </div>
   <div class="modal-body">
-    <form method="post" action='<?php echo site_url('site/connect') ?>' name="login_form">
-      <p><input name="email" type="text" required placeholder="Email"></p>
-      <p><input name="password" type="password" required placeholder="Mot de passe"></p>
+    <form method="post" data-action="<?php echo site_url('site/connect') ?>" name="login_form" id="login_form">
+      <p><input name="email" id="email" type="text" required placeholder="Email"></p>
+      <p><input name="password" id="password" type="password" required placeholder="Mot de passe"></p>
       <p><button type="submit" class="btn btn-primary">Connexion</button>
         <a href="#">Mot de passe oublié ?</a>
       </p>
@@ -41,4 +41,5 @@
     	<a href="<?php echo site_url($pro ? 'pro/register' : 'perso/register') ?>" class="btn btn-primary"><?php echo lang('inscription') ?></a>
     </div>
   </div>
+    <span id="login-error" class="alert alert-error hide"></span>
 </div>

@@ -45,6 +45,7 @@ class MY_Controller extends CI_Controller {
                 js_url('jquery.flexslider-min'),
                 js_url('bootstrap'),
 //                    js_url('query-2.0.0.min'),
+                js_url('login'),
                 js_url('scripts'),
             )), true),
         );

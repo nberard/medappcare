@@ -63,6 +63,13 @@ class Perso extends MY_Controller {
         $this->load->view('register', $data);
     }
 
+
+    public function register_do()
+    {
+        var_dump($_POST);
+    }
+
+
     public function category()
     {
         $categoryData = array(

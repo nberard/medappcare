@@ -53,7 +53,7 @@ class Admin extends CI_Controller
     {
         $this->crud->set_subject('Accessoire');
         $this->crud->set_table('accessoire');
-        $this->crud->required_fields('nom', 'fabriquant_id', 'photo', 'lien_achat');
+        $this->crud->required_fields('nom_'.config_item('language_short'), 'fabriquant_id', 'photo', 'lien_achat');
         $this->crud->set_relation('fabriquant_id', 'accessoire_fabriquant', '{nom}');
         $this->_admin_output($this->crud->render());
     }
