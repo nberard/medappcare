@@ -14,7 +14,7 @@
     
     <div class="title">
         <div class="wrapper">
-            <h2>Nom du device <a href="developer.php" title="Nom du Développeur"><span>par</span> Withings</a></h2> <!-- INSÉRER LE NOM DU DEVICE et le lien vers la page du fabricant-->
+            <h2>Titre d'Application <a href="developer.php" title="Nom du Développeur"><span>par</span> Nom du studio</a></h2> <!-- INSÉRER LE TITRE DE L'APP ICI et le lien vers la page du Développeur-->
         </div>
     </div>
     
@@ -35,14 +35,10 @@
     <section id="appSectionOne" class="catmasante">
         <div class="wrapper">
             <div class="sidebar left">
-                <div class="features">
-                    <span class="wifi">Wifi</span>
-                    <span class="bluetooth">Bluetooth</span>
-                    <span class="usb">USB</span>
-                </div>
-                <div class="labels">
-                	<span class="label ce">CE</span>
-                	<span class="text">Cet objet est un dispositif médical</span>
+                <div class="os">
+                    <div class="list"><span class="ios">iOS</span><span class="price">4,89 €</span></div> <!-- INSERER L'OS et le prix correspondant-->
+                    <div class="list"><span class="android">Android</span><span class="price">2,34 €</span></div>
+                    <div class="list"><span class="web">Web App</span><span class="price">gratuit</span></div>
                 </div>
                 <div class="buttons">
                     <a href="#" class="noter">Noter l'Application</a>
@@ -80,57 +76,11 @@
         </div> <!-- end wrapper -->
     </section>
     
-    <section id="deviceTabs" class="catmasante">
-    	<nav>
-    		<div class="wrapper">
-    			<ul>
-    				<li class="selected" data-destination="motDuFabricant">
-    					Le Mot du Fabricant
-    				</li>
-    				<li data-destination="galeriePhoto">
-    					Galerie Photos
-    				</li>
-    				<li data-destination="commentaires">
-    					Commentaires
-    				</li>
-    				<li data-destination="appsCompatibles">
-    					Apps Compatibles
-    				</li>
-    				<li data-destination="revueDePresse">
-    					Revue de presse
-    				</li>
-    			</ul>
-    		</div>
-    	</nav>
-    	
-    	<div class="wrapper">
-	    	<div class="tabContent open" id="motDuFabricant">
-	    		<div class="logoPart">
-		    		
-		    		<img src="../tmp/logo-withings.png" alt="[nom-du-fabricant]"/>
-		    		
-	    		</div>
-	    		<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla.</p>
-	    	</div>
-	    	
-	    	<div class="tabContent" id="galeriePhoto">
-	    		Galerie Photo
-	    	</div>
-	    	
-	    	<div class="tabContent" id="commentaires">
-	    		Commentaires
-	    	</div>
-	    	
-	    	<div class="tabContent" id="appsCompatibles">
-	    		Apps compatibles
-	    	</div>
-	    	
-	    	<div class="tabContent" id="revueDePresse">
-	    		Revue de presse
-	    	</div>
-    	</div>
-    	
+    <section id="appTabs" class="catmasante">
+    
     </section>
+    
+    <section id="devices"><?php include ('inc/widget_devices.php') ; ?></section> <!-- Section Devices connectés -->
     
     <section id="partners"><?php include ('inc/partners.php') ; ?></section> <!-- Section Partenaires -->
 

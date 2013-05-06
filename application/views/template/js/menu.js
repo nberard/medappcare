@@ -99,6 +99,21 @@ $(document).ready(function() {
 		$(this).children('.modal-body').children('form').children('p:nth-child(1)').children('input').focus();
 	});
 	
+	
+	/* Device tabs */
+	
+	$('#deviceTabs nav li').click(function() {
+		if (!$(this).hasClass('selected')) {
+			$('#deviceTabs nav li.selected').removeClass('selected');
+			$(this).addClass('selected');
+			
+			var destination = $('#deviceTabs .tabContent#'+$(this).attr('data-destination'));
+		
+			$('#deviceTabs .tabContent.open').removeClass('open');
+			destination.addClass('open');
+		}
+	})
+	
 });
 
 // this is a separate function that runs when the close button is clicked
