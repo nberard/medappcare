@@ -24,7 +24,8 @@
 #listApps li{list-style: none; display: block; border-bottom: 1px solid #0f6eb4; height: 80px; padding: 15px;}
 #listApps li:last-child{border-bottom: none;}
 #listApps .metaFooter{background: #0f6eb4; height: 28px; padding: 0 15px; }
-#listApps .metaFooter a{float: right;}
+#listApps .metaFooter a.next{float: right;}
+#listApps .metaFooter a.previous{float: left;}
 
 #listApps .icone{float: left; position: relative; width: 80px; height: 80px; border-radius: 10px; background: #ededed; margin: 0 15px 0 0;}
 #listApps .metapp{float: left; position: relative;}
