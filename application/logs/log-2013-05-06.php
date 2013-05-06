@@ -77,4 +77,4 @@ ERROR - 2013-05-06 12:36:03 --> 404 Page Not Found --> perso/bootstrap-multisele
 ERROR - 2013-05-06 12:55:06 --> 404 Page Not Found --> templates
 ERROR - 2013-05-06 14:26:50 --> 404 Page Not Found --> perso/app.php
 ERROR - 2013-05-06 15:17:27 --> 404 Page Not Found --> perso/search.php
-
+ERROR - 2013-05-06 15:48:04 --> 404 Page Not Found --> perso/contact.php

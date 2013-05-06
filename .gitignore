@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+/application/logs
+.DS_Store
+/application/config/config.php
+=======
 .DS_Store
 /application/config/config.php
 /application/logs
+>>>>>>> 42b102c78ce5349248602ca85e0c29c7ecc8a600
