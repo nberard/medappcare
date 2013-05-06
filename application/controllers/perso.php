@@ -79,7 +79,20 @@ class Perso extends MY_Controller {
         $data['inc'] = $this->_getCommonIncludes();
 
         $data['contenu'] = $this->load->view('contenu/category', $categoryData, true);
-        $this->load->view('index', $data);
+        $this->load->view('category', $data);
+    }
+
+    public function app()
+    {
+        $appData = array(
+            'widget_devices' => $this->load->view('inc/widget_devices', '', true),
+            'partners' => $this->load->view('inc/partners', '', true),
+        );
+
+        $data['inc'] = $this->_getCommonIncludes();
+
+        $data['contenu'] = $this->load->view('contenu/app', $appData, true);
+        $this->load->view('app', $data);
     }
 }
 
