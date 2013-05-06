@@ -32,7 +32,7 @@ class MY_Controller extends CI_Controller {
         }
         $menu = $pro ? 'menuMedecin' : 'menuParticulier';
         return array(
-            'header_meta' => $this->load->view('inc/header_meta', array('css_files' => array(css_url('stylesheet'), css_url('bootstrap'))), true),
+            'header_meta' => $this->load->view('inc/header_meta', array('css_files' => array(css_url('stylesheet'))), true),
             'header' => $this->load->view('inc/header', array('pro' => $pro, 'user' => $this->session->userdata('user')), true),
             'home_slider' => $this->load->view('inc/home_slider', '', true),
             $menu => $this->load->view('inc/'.$menu, '', true),
