@@ -18,7 +18,7 @@ $(document).ready(function(){
                 }
                 else
                 {
-                    $('#login-error').text(xhr.message).show();
+                    $('#login-error').text(xhr.message).show(); // On peut le mettre en display block au lieu de inline et ajouter un margin 0 svp ?
                     return false;
                 }
             }

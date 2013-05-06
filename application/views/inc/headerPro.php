@@ -2,8 +2,8 @@
     <h1>Medappcare</h1>
     <div class="links">
         <div class="social">
-            <a class="facebook" href="facebook.com" target="_blank">Rejoignez-nous sur Facebook !</a>
-            <a class="twitter" href="twitter.com" target="_blank">Toutes les infos sur Twitter</a>
+            <a class="facebook" href="https://www.facebook.com/Medappcare" target="_blank" title="facebook">Rejoignez-nous sur Facebook !</a>
+            <a class="twitter" href="https://twitter.com/Medappcare" target="_blank" title="twitter">Suivez-nous sur Twitter</a>
         </div>
         <div class="meta">
             <a href="index.php" class="link-particuliers">Espace Particuliers</a>
@@ -20,7 +20,7 @@
   </div>
   <div class="modal-body">
     <form method="post" action='connect.php' name="login_form">
-      <p><input type="text" required placeholder="Email"></p>
+      <p><input type="email" required placeholder="Email"></p>
       <p><input type="password" required placeholder="Mot de passe"></p>
       <p><button type="submit" class="btn btn-primary">Connexion</button>
         <a href="#">Mot de passe oublié ?</a>

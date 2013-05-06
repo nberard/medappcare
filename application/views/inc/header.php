@@ -30,7 +30,7 @@
   </div>
   <div class="modal-body">
     <form method="post" data-action="<?php echo site_url('site/connect') ?>" name="login_form" id="login_form">
-      <p><input name="email" id="email" type="text" required placeholder="Email"></p>
+      <p><input name="email" id="email" type="email" required placeholder="Email"></p>
       <p><input name="password" id="password" type="password" required placeholder="Mot de passe"></p>
       <p><button type="submit" class="btn btn-primary">Connexion</button>
         <a href="#">Mot de passe oublié ?</a>
