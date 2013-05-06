@@ -1,4 +1,4 @@
-<form class="form-signin" method="get" >
+<form class="form-signin" method="post" >
     <h2 class="form-signin-heading">Inscription grand public</h2>
 
     <input type="email" id="email" class="input-block-level" placeholder="Email" required>
@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <input type="text" class="input-block-level" placeholder="Pays" data-provide="typeahead" data-items="4" data-source='["Allemagne","France","Italie","Finlande","Belgique"]' autocomplete="off" required>
+    <input name="country" type="text" class="input-block-level" placeholder="Pays" data-provide="typeahead" data-items="<?php echo $nb_countries; ?>" data-source='<?php echo $country_json; ?>' autocomplete="off" required>
 
     <!--   Si on préfère les Checkbox classiques...
            <div class="btn-group">
