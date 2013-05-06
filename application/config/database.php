@@ -48,7 +48,8 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'ftp.u4h1.u4h.eu.com';
+//$db['default']['hostname'] = 'ftp.u4h1.u4h.eu.com';
+$db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'c12medappcaresql';
 $db['default']['password'] = 'KJhj676FTRDkk0';
 $db['default']['database'] = 'c12medappcare';
