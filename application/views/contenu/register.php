@@ -1,4 +1,4 @@
-<form id="#formTemplate" class="form-signin" method="post" >
+<form class="form-signin" method="post" >
     <h2 class="form-signin-heading">Inscription grand public</h2>
 
     <input type="email" id="email" class="input-block-level" placeholder="Email" required>
@@ -17,24 +17,6 @@
     </div>
 
     <input name="country" type="text" class="input-block-level" placeholder="Pays" data-provide="typeahead" data-items="<?php echo $nb_countries; ?>" data-source='<?php echo $country_json; ?>' autocomplete="off" required>
-
-    <!--   Si on préfère les Checkbox classiques...
-           <div class="btn-group">
-               Device
-               <label class="checkbox inline">
-                 <input type="checkbox" id="inlineCheckbox1" value="option1"> iPhone
-               </label>
-               <label class="checkbox inline">
-                 <input type="checkbox" id="inlineCheckbox2" value="option2"> iPad
-               </label>
-               <label class="checkbox inline">
-                 <input type="checkbox" id="inlineCheckbox3" value="option3"> Smartphone Android
-               </label>
-               <label class="checkbox inline">
-                 <input type="checkbox" id="inlineCheckbox4" value="option4"> Tablette Android
-           </label>
-           </div>
-    -->
 
     <select id="interets" multiple="multiple">
         <optgroup label="Ma santé"> <!-- Mettre contenu du menu Ma santé -->
