@@ -168,7 +168,7 @@ html[xmlns] .slides {display: block;}
 
 /* =========== PICTO OS =========== */
 
-.os span{display: inline-block; position: relative; vertical-align: middle; text-indent: -9999px; margin: 25px 0 0 0;}
+.os span{display: block; position: relative; vertical-align: middle; text-indent: -9999px; margin: auto;}
 
 .android{background: url(../img/android_blue.png) no-repeat; width: 32px; height: 29px;}
 .ios{background: url(../img/ios_blue.png) no-repeat; width: 16px; height: 29px;}
@@ -205,7 +205,7 @@ html[xmlns] .slides {display: block;}
 
 /* =========== PICTO NOTES =========== */
 
-.note span{display: inline-block; position: relative; margin: 20px 10px 0 10px; text-indent: -9999px;}
+.note span{display: inline-block; position: relative; text-indent: -9999px;}
 
 .default .zero,
 .zero{background: url(../img/notes_blue.png) -178px -136px no-repeat; width: 33px; height: 30px;}
