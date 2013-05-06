@@ -1,7 +1,7 @@
 <nav>
 	<ul>
         <li class="home">
-            <a href="index.php">Home</a>
+            <a href="index.html">Home</a>
         </li>
         <li class="navmasante megamenu" >
             <a href="#" dropdownDestination = "masante"><span class="picto"></span><span class="text">Ma Santé<span></a>

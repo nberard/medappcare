@@ -156,7 +156,7 @@
         </li>
         <span class="clear"></span>
     </ul>
-    <div class="metaFooter"><a href="category.php">voir tout ></a></div>
+    <div class="metaFooter"><a href="category.php" class="previous">< Précédent</a><a href="category.php" class="next">Suivant ></a></div>
     <div class="clear"></div>
 </div>
 <div class="clear"></div>
