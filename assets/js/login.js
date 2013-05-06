@@ -20,7 +20,7 @@ $(document).ready(function(){
             {
                 if(xhr.responseJSON.message)
                 {
-                    $('#login-error').text(xhr.responseJSON.message).show(); // On peut le mettre en display block au lieu de inline et ajouter un margin 0 svp ?
+                    $('#login-error').text(xhr.responseJSON.message).show();
                     return false;
                 }
             }

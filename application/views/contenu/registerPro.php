@@ -1,5 +1,5 @@
-<form class="form-signin" method="get" >
-    <h2 class="form-signin-heading">Inscription Professionels</h2>
+<form class="form-signup" method="get" >
+    <h2 class="form-signup-heading">Inscription Professionels</h2>
 
     <input type="text" id="nom" class="input-block-level" placeholder="Nom" required>
     <input type="text" id="prenom" class="input-block-level" placeholder="Prénom" required>

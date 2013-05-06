@@ -1,6 +1,6 @@
 <?php echo $inc['header_meta']; ?>
 
-<body class="signin particuliers">
+<body class="signup particuliers">
 
 <header id="header">
 

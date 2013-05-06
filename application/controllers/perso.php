@@ -99,6 +99,25 @@ class Perso extends MY_Controller {
         $data['contenu'] = $this->load->view('contenu/app', $appData, true);
         $this->load->view('app', $data);
     }
+    
+    public function mentionslegales()
+	{
+        $data['inc'] = $this->_getCommonIncludes();
+
+        $data['contenu'] = $this->load->view('contenu/mentionslegales', '', true);
+		$this->load->view('mentionslegales', $data);
+	}
+	
+	public function contact()
+    {
+        $data['inc'] = $this->_getCommonIncludes();
+        $registerData['js_files'] = array(
+            js_url('jquery.checkValidity'),
+        );
+        $data['contenu'] = $this->load->view('contenu/contact', '', true);
+        $this->load->view('contact', $data);
+    }
+
 }
 
 /* End of file perso.php */

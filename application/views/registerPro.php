@@ -1,6 +1,6 @@
 <?php echo $inc['header_meta']; ?>
 
-<body class="signin lespros">
+<body class="signup lespros">
 
 <header id="header">
 
