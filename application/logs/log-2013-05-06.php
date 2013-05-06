@@ -77,4 +77,12 @@ ERROR - 2013-05-06 12:36:03 --> 404 Page Not Found --> perso/bootstrap-multisele
 ERROR - 2013-05-06 12:55:06 --> 404 Page Not Found --> templates
 ERROR - 2013-05-06 14:26:50 --> 404 Page Not Found --> perso/app.php
 ERROR - 2013-05-06 15:17:27 --> 404 Page Not Found --> perso/search.php
-ERROR - 2013-05-06 15:48:04 --> 404 Page Not Found --> perso/contact.php
+
+ERROR - 2013-05-06 15:40:49 --> 404 Page Not Found --> perso/apple-touch-icon.png
+ERROR - 2013-05-06 15:54:16 --> 404 Page Not Found --> perso/register-pro
+ERROR - 2013-05-06 15:54:16 --> 404 Page Not Found --> perso/register-pro
+ERROR - 2013-05-06 15:54:20 --> 404 Page Not Found --> perso/registerpro
+ERROR - 2013-05-06 15:54:20 --> 404 Page Not Found --> perso/registerpro
+ERROR - 2013-05-06 15:58:57 --> 404 Page Not Found --> perso/search.php
+ERROR - 2013-05-06 15:58:57 --> 404 Page Not Found --> perso/search.php
+

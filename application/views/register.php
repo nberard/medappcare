@@ -24,7 +24,6 @@
 <?php endforeach; ?>
 
 <script>
-    //$('.typeahead').typeahead();
     // Datepicker
     $('#ddn').datepicker();
 

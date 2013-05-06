@@ -7,7 +7,7 @@
     <input type="text" class="input-block-level"  placeholder="Date de naissance" data-date-format="dd/mm/yyyy" data-date-viewmode="years" id="ddn" autocomplete="off" required>
 
 
-    <div class="well"><label> Sexe</label>
+    <div class="well"><label>Sexe</label>
         <div class="btn-group" data-toggle="buttons-radio" >
             <button type="button" class="btn" data-toggle="button" id="homme">Homme</button>
             <button type="button" class="btn" data-toggle="button" id="femme">Femme</button>
@@ -56,7 +56,7 @@
     </select>
 
 
-    <div class="well"> Device (plusieurs choix possibles)<br><br>
+    <div class="well"><label>Device (plusieurs choix possibles)</label>
         <div class="btn-group" data-toggle="buttons-checkbox">
             <button type="button" class="btn">iPhone</button>
             <button type="button" class="btn">iPad</button>
