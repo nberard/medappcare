@@ -23,19 +23,25 @@
     <script src="<?php echo $js_file; ?>"></script>
 <?php endforeach; ?>
 
-<script src="http://localhost/assets/js/jquery.checkValidity.js"></script>
-
 <script>
     // Datepicker
     $('#ddn').datepicker();
-
-    // Boutons radios
-    $('div.btn-group button').click(function(){
-        $("#sexe").attr('value', $(this).attr('id'));
-    })
-
+    var plateformeIds = [];
     // Multi Slect (FR)
     $(document).ready(function() {
+
+        // Boutons radios
+        $('#plateforme-group button').click(function(){
+            if(plateformeIds[$(this).attr('value')])
+                plateformeIds[$(this).attr('value')] = false;
+            else plateformeIds[$(this).attr('value')] = true;
+        });
+
+        // Boutons radios
+        $('#sexe-group button').click(function(){
+            $("#sexe").attr('value', $(this).attr('value'));
+        });
+
         $('#interets').multiselect({
             buttonWidth: '500px', // Default
             buttonText: function(options, select) {

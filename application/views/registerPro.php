@@ -23,8 +23,6 @@
     <script src="<?php echo $js_file; ?>"></script>
 <?php endforeach; ?>
 
-<script src="http://localhost/assets/js/jquery.checkValidity.js"></script>
-
 <script>
     // Datepicker
     $('#ddn').datepicker();

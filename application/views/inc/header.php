@@ -16,7 +16,7 @@
             <?php if(!$user): ?>
             <a data-toggle="modal" href="#connexionModal" class="connexion">Connexion</a>
             <?php else: ?>
-            Connecté en tant que <?php echo $user->email ?> | <a href="<?php echo site_url('site/deconnect') ?>">Déconnexion</a>
+            <span style="position: absolute; top: 0; right: 0;">Connecté en tant que <?php echo $user->email ?> | <a href="<?php echo site_url('site/deconnect') ?>">Déconnexion</a></span>
             <?php endif; ?>
             
         </div>

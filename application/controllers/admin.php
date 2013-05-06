@@ -124,7 +124,7 @@ class Admin extends CI_Controller
     {
         $this->crud->set_subject("Catégorie");
         $this->crud->set_table('categorie');
-        $this->crud->required_fields('nom_'.config_item('language_short'), 'logo_url', 'est_pro');
+        $this->crud->required_fields('nom_'.config_item('language_short'), 'est_pro');
         $this->crud->set_relation('parent_id', 'categorie', '{nom_'.config_item('language_short').'}');
         $this->crud->callback_after_insert(array($this, '_categories_after_add'));
         $this->crud->callback_after_update(array($this, '_categories_after_add'));
@@ -214,7 +214,7 @@ class Admin extends CI_Controller
     {
         foreach($_to_check as $field => $default_value)
         {
-            if(!isset($_post_array[$field]))
+            if(!empty($_post_array[$field]))
             {
                 $_updates[$field] = $default_value;
             }
