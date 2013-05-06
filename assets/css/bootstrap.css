@@ -208,8 +208,7 @@ input[type="checkbox"]:focus {
   height: auto;
 }
 input:-moz-placeholder,
-textarea:-moz-placeholder,
-.placeholder {
+textarea:-moz-placeholder {
   color: #999999;
 }
 input:-ms-input-placeholder,
@@ -218,6 +217,9 @@ textarea:-ms-input-placeholder {
 }
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
+  color: #999999;
+}
+.placeholder {
   color: #999999;
 }
 .radio,
