@@ -8,8 +8,8 @@
     <?php endif; //var_dump($user); ?>
     <div class="links">
         <div class="social">
-            <a class="facebook" href="facebook.com" target="_blank">Rejoignez-nous sur Facebook !</a>
-            <a class="twitter" href="twitter.com" target="_blank">Toutes les infos sur Twitter</a>
+            <a class="facebook" href="https://www.facebook.com/Medappcare" target="_blank" title="facebook">Rejoignez-nous sur Facebook !</a>
+            <a class="twitter" href="https://twitter.com/Medappcare" target="_blank" title="twitter">Suivez-nous sur Twitter</a>
         </div>
         <div class="meta">
             <a href="<?php echo site_url($pro ? 'perso/index' : 'pro/index') ?>" class="<?php echo $pro ? 'link-particuliers' : 'pro' ?>"><?php echo lang($pro ? 'espace_particulier' : 'espace_pro') ?></a>

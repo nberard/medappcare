@@ -91,3 +91,49 @@ ERROR - 2013-05-06 15:58:57 --> 404 Page Not Found --> perso/search.php
 ERROR - 2013-05-06 15:58:57 --> 404 Page Not Found --> perso/search.php
 
 >>>>>>> 612fbd8f7966bf41d208ba197ca26a81e80dc4c5
+ERROR - 2013-05-06 16:51:20 --> 404 Page Not Found --> perso/tmp
+ERROR - 2013-05-06 17:03:23 --> 404 Page Not Found --> perso/app.php
+ERROR - 2013-05-06 17:03:23 --> 404 Page Not Found --> perso/app.php
+ERROR - 2013-05-06 17:03:32 --> 404 Page Not Found --> perso/tmp
+ERROR - 2013-05-06 17:27:50 --> 404 Page Not Found --> perso/tmp
+ERROR - 2013-05-06 17:28:34 --> 404 Page Not Found --> perso/search.php
+ERROR - 2013-05-06 17:28:35 --> 404 Page Not Found --> perso/search.php
+ERROR - 2013-05-06 17:34:53 --> 404 Page Not Found --> perso/tmp
+ERROR - 2013-05-06 17:36:54 --> 404 Page Not Found --> perso/tmp
+ERROR - 2013-05-06 17:39:36 --> 404 Page Not Found --> perso/tmp
+ERROR - 2013-05-06 17:39:39 --> 404 Page Not Found --> perso/tmp
+ERROR - 2013-05-06 17:40:38 --> 404 Page Not Found --> perso/tmp
+ERROR - 2013-05-06 17:43:33 --> 404 Page Not Found --> perso/tmp
+ERROR - 2013-05-06 17:45:23 --> 404 Page Not Found --> perso/tmp
+ERROR - 2013-05-06 17:56:07 --> 404 Page Not Found --> perso/tmp
+ERROR - 2013-05-06 17:58:04 --> 404 Page Not Found --> perso/tmp
+ERROR - 2013-05-06 18:00:07 --> Severity: Notice  --> Undefined index: email /Users/jerome/Website/medappcare/application/controllers/site.php 26
+ERROR - 2013-05-06 18:00:07 --> Severity: Notice  --> Undefined index: password /Users/jerome/Website/medappcare/application/controllers/site.php 27
+ERROR - 2013-05-06 18:00:07 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /Users/jerome/Website/medappcare/system/core/Exceptions.php:185) /Users/jerome/Website/medappcare/system/libraries/Session.php 675
+ERROR - 2013-05-06 18:00:07 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /Users/jerome/Website/medappcare/system/core/Exceptions.php:185) /Users/jerome/Website/medappcare/system/helpers/url_helper.php 540
+ERROR - 2013-05-06 18:00:08 --> 404 Page Not Found --> perso/tmp
+ERROR - 2013-05-06 18:30:11 --> Severity: Notice  --> Undefined index: email /Users/jerome/Website/medappcare/application/controllers/site.php 26
+ERROR - 2013-05-06 18:30:11 --> Severity: Notice  --> Undefined index: password /Users/jerome/Website/medappcare/application/controllers/site.php 27
+ERROR - 2013-05-06 18:30:11 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /Users/jerome/Website/medappcare/system/core/Exceptions.php:185) /Users/jerome/Website/medappcare/system/libraries/Session.php 675
+ERROR - 2013-05-06 18:30:11 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /Users/jerome/Website/medappcare/system/core/Exceptions.php:185) /Users/jerome/Website/medappcare/system/helpers/url_helper.php 540
+ERROR - 2013-05-06 18:52:21 --> Severity: Notice  --> Undefined index: email /Users/jerome/Website/medappcare/application/controllers/site.php 26
+ERROR - 2013-05-06 18:52:21 --> Severity: Notice  --> Undefined index: password /Users/jerome/Website/medappcare/application/controllers/site.php 27
+ERROR - 2013-05-06 18:52:21 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /Users/jerome/Website/medappcare/system/core/Exceptions.php:185) /Users/jerome/Website/medappcare/system/libraries/Session.php 675
+ERROR - 2013-05-06 18:52:21 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /Users/jerome/Website/medappcare/system/core/Exceptions.php:185) /Users/jerome/Website/medappcare/system/helpers/url_helper.php 540
+ERROR - 2013-05-06 18:52:59 --> Could not find the language line "ok_login"
+ERROR - 2013-05-06 18:52:59 --> Could not find the language line "refresh"
+ERROR - 2013-05-06 18:53:00 --> Could not find the language line "ok_login"
+ERROR - 2013-05-06 18:53:00 --> Could not find the language line "refresh"
+ERROR - 2013-05-06 18:55:39 --> Query error: Lost connection to MySQL server during query
+ERROR - 2013-05-06 18:59:33 --> Could not find the language line "ok_logout"
+ERROR - 2013-05-06 18:59:33 --> Could not find the language line "ok_logout"
+ERROR - 2013-05-06 19:49:34 --> 404 Page Not Found --> perso/apple-touch-icon-precomposed.png
+ERROR - 2013-05-06 19:49:34 --> 404 Page Not Found --> perso/apple-touch-icon.png
+ERROR - 2013-05-06 19:59:00 --> 404 Page Not Found --> perso/assets
+ERROR - 2013-05-06 20:00:49 --> Unable to select database: c12medappcare
+ERROR - 2013-05-06 20:01:14 --> Unable to select database: c12medappcare
+ERROR - 2013-05-06 20:01:16 --> Unable to select database: c12medappcare
+ERROR - 2013-05-06 20:01:34 --> Unable to select database: c12medappcare
+ERROR - 2013-05-06 20:01:43 --> Unable to select database: c12medappcare
+ERROR - 2013-05-06 20:02:05 --> Unable to select database: c12medappcare
+ERROR - 2013-05-06 20:17:35 --> Unable to select database: c12medappcare

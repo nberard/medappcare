@@ -1,4 +1,4 @@
-<form class="form-signin" method="post" >
+<form id="#formTemplate" class="form-signin" method="post" >
     <h2 class="form-signin-heading">Inscription grand public</h2>
 
     <input type="email" id="email" class="input-block-level" placeholder="Email" required>

@@ -405,7 +405,9 @@ html[xmlns] .slides {display: block;}
 #metapp.catmedeplacer .appnote .note.dix{background: url(../img/notapp_medeplacer.png) -51px 0px no-repeat; width: 58px; height: 58px;}
 #metapp.catmedeplacer .appnote .note.zero{background: url(../img/notapp_medeplacer.png) -52px -126px no-repeat; width: 47px; height: 43px;}
 
-.app .os span{margin: 10px; width: 50px; background-position: center center;}
+.app .os {margin-top: 10px;}
+.app .list {text-align: center;}
+.app .os span{margin: 10px auto; width: 50px; background-position: center center; display: inline-block;}
 .app .price{background: #79c1d2; width: 40px; padding: 0 5px; line-height: 20px; text-align: center;}
 .app.monquotidien .price{background: #e05d5f;}
 .app.minformer .price{background: #84c790;}
