@@ -21,8 +21,8 @@
                 <li><a href="#">Médecins, évaluez nos applications</a></li>
                 <li><a href="#">Espace Annonceurs</a></li>
                 <li><a href="#">Medappcare dans la presse</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Mentions Légales</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="mentionslegales.html">Mentions Légales</a></li>
                 <li><a href="#">...</a></li>
             </ul>
         </nav>

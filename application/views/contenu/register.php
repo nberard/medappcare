@@ -1,5 +1,5 @@
-<form class="form-signin" method="post" >
-    <h2 class="form-signin-heading">Inscription grand public</h2>
+<form class="form-signup" method="post" >
+    <h2 class="form-signup-heading">Inscription grand public</h2>
 
     <input type="email" id="email" class="input-block-level" placeholder="Email" required>
     <input type="password" id="password" class="input-block-level" placeholder="Mot de passe" required>

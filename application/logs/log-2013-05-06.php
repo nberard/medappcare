@@ -142,3 +142,10 @@ ERROR - 2013-05-06 20:27:41 --> 404 Page Not Found --> perso/app.php
 ERROR - 2013-05-06 22:50:07 --> Unable to select database: c12medappcare
 ERROR - 2013-05-06 22:52:47 --> Unable to select database: c12medappcare
 ERROR - 2013-05-06 22:54:42 --> Unable to select database: c12medappcare
+ERROR - 2013-05-06 23:10:06 --> 404 Page Not Found --> perso/search.php
+ERROR - 2013-05-06 23:10:07 --> 404 Page Not Found --> perso/search.php
+ERROR - 2013-05-06 23:12:26 --> Unable to select database: c12medappcare
+ERROR - 2013-05-06 23:17:44 --> 404 Page Not Found --> perso/tmp
+ERROR - 2013-05-06 23:28:12 --> 404 Page Not Found --> perso/mentionslegales
+ERROR - 2013-05-06 23:28:12 --> 404 Page Not Found --> perso/mentionslegales
+ERROR - 2013-05-06 23:39:53 --> Query error: Lost connection to MySQL server during query
