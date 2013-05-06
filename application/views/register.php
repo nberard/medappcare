@@ -20,11 +20,10 @@
 <?php echo $inc['footer_meta'] ; ?>
 
 <?php foreach($js_files as $js_file): ?>
-    <script src="/assets/js/<?php echo $js_file; ?>.js"></script>
+    <script src="<?php echo $js_file; ?>"></script>
 <?php endforeach; ?>
 
 <script>
-    //$('.typeahead').typeahead();
     // Datepicker
     $('#ddn').datepicker();
 

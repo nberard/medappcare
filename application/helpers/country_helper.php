@@ -45,4 +45,12 @@ if(!function_exists('country_dropdown'))
         $html .= "</select>";
         return $html;
     }
+
+    if(!function_exists('country_json'))
+    {
+        function country_json()
+        {
+            return json_encode(array_values(config_item('country_list')));
+        }
+    }
 }

@@ -161,7 +161,7 @@ class Admin extends CI_Controller
             $this->crud->required_fields('email', 'est_pro');
         }
         $this->crud->set_relation('device_id', 'device', '{nom}');
-        $this->crud->field_type('sexe','enum',array('M', 'F'));
+        $this->crud->field_type('sexe','enum',array('M', 'F', 'A'));
         $this->crud->set_rules('email', 'E-mail', 'valid_email|required');
         $this->crud->callback_edit_field('mot_de_passe', function($value){
             return '<input type="text" name="mot_de_passe"/>';
