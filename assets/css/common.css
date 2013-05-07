@@ -520,5 +520,65 @@ button{margin-right: 15px;}
 
 
 
+/* =========== DEVICE PAGE =========== */
+
+#appSectionOne .features {text-align: center;}
+#appSectionOne .features span {display: inline-block; text-indent: -1999px; height: 22px; width: 25px; background-repeat: none; margin: 10px 5px;}
+#appSectionOne .features span.wifi {width: 31px;}
+
+.masante #appSectionOne .labels {color: #79C1D2;}
+.monquotidien #appSectionOne .labels {color: #E05D5F;}
+.minformer #appSectionOne .labels {color: #84C790;}
+.medeplacer #appSectionOne .labels {color: #D769AF;}
+
+#appSectionOne .labels {position:relative; height: 100px; text-align: center; margin: 10px 0; font-size: .8em; line-height: 1.2em;}
+#appSectionOne .labels .label {display: inline-block; text-indent: -1999px; margin: 10px 5px; background-repeat: none;}
+#appSectionOne .labels .text {position: absolute; bottom: 0; left:0; width: 100%;}
+
+#appSectionOne .labels .ce {width: 40px; height: 30px;}
+
+.masante #appSectionOne .labels .ce  {background-image: url(../img/pictoCE_blue.png);}
+.monquotidien #appSectionOne .labels .ce  {background-image: url(../img/pictoCE_red.png);}
+.minformer #appSectionOne .labels .ce  {background-image: url(../img/pictoCE_green.png);}
+.medeplacer #appSectionOne .labels .ce  {background-image: url(../img/pictoCE_pink.png);}
+
+.masante .features span.bluetooth {background-image: url(../img/pictoBluetooth_blue.png);}
+.masante .features span.wifi {background-image: url(../img/pictoWifi_blue.png);}
+.masante .features span.usb {background-image: url(../img/pictoUsb_blue.png);}
+
+.monquotidien .features span.bluetooth {background-image: url(../img/pictoBluetooth_red.png);}
+.monquotidien .features span.wifi {background-image: url(../img/pictoWifi_red.png);}
+.monquotidien .features span.usb {background-image: url(../img/pictoUsb_red.png);}
+
+.minformer .features span.bluetooth {background-image: url(../img/pictoBluetooth_green.png);}
+.minformer .features span.wifi {background-image: url(../img/pictoWifi_green.png);}
+.minformer .features span.usb {background-image: url(../img/pictoUsb_green.png);}
+
+.medeplacer .features span.bluetooth {background-image: url(../img/pictoBluetooth_pink.png);}
+.medeplacer .features span.wifi {background-image: url(../img/pictoWifi_pink.png);}
+.medeplacer .features span.usb {background-image: url(../img/pictoUsb_pink.png);}
+
+#deviceTabs nav {display: block; height: 54px;}
+
+#deviceTabs.catmasante nav{background: #79C1D2;}
+#deviceTabs.catmonquotidien nav{background: #E05D5F;}
+#deviceTabs.catminformer nav{background: #84C790;}
+#deviceTabs.catmedeplacer nav{background: #D769AF;}
+
+#deviceTabs nav .wrapper {height: 100%;}
+#deviceTabs nav ul {width: 100%; height: 100%;}
+#deviceTabs nav li {display: block; height: 100%; width: 20%; float: left; text-align: center; line-height: 54px; color:white; font-weight: bold;}
+#deviceTabs nav li:hover {cursor: pointer; background-color: rgba(255, 255, 255, .2);}
+#deviceTabs nav li.selected {background: rgba(255, 255, 255, .2) url(../img/deviceTabsSelectedIndicator.png) no-repeat;}
+
+
+#deviceTabs > .wrapper {height: 300px;}
+#deviceTabs .tabContent:not(#motDuFabricant) {display: none;}
+
+#deviceTabs .tabContent {padding: 20px;}
+#deviceTabs .tabContent .logoPart {width: 175px; height: 100%; float: left;}
+#deviceTabs .tabContent .logoPart img {margin: 20px auto;}
+
+
 
 
