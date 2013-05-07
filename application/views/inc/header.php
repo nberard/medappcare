@@ -1,5 +1,5 @@
 <div class="wrapper">
-    <h1>Medappcare</h1>
+    <h1><a href="<?php echo index_page(); ?>"><span>Medappcare - un site super cool qu'on aime parce qu'il est bien</span></a></h1>
 <!--    --><?php //if($this->session->flashdata('error')): ?>
 <!--    <span class="alert alert-error">--><?php //echo $this->session->flashdata('error'); ?><!--</span>-->
 <!--    --><?php //endif; ?>
@@ -8,7 +8,7 @@
 <!--    --><?php //endif; ?>
     <div class="links">
         <div class="social">
-            <a class="facebook" href="https://.facebook.com/Medappcare" target="_blank" title="facebook">Rejoignez-nous sur Facebook !</a>
+            <a class="facebook" href="https://www.facebook.com/Medappcare" target="_blank" title="facebook">Rejoignez-nous sur Facebook !</a>
             <a class="twitter" href="https://twitter.com/Medappcare" target="_blank" title="twitter">Suivez-nous sur Twitter</a>
         </div>
         <div class="meta">

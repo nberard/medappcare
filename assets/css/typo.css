@@ -18,6 +18,8 @@ h2.form-signin-heading{font-size: 30px; color: #0f6eb4;}
 
 h2{color: #0f6eb4; font-size: 24px;}
 
+.app h2, .device h2 {color: white;}
+
 #listApps h2{color: #0f6eb4; font-size: 24px;}
 #listApps .listapps h3,
 #listApps .allapps h3{color: white; font-size: 24px;}
@@ -57,12 +59,12 @@ h2{color: #0f6eb4; font-size: 24px;}
 .app.medeplacer #devices .category a,
 .app.medeplacer #devices .metaFooter a{color: #d769af;}
 
-.app .description{font-size: 18px; color: black;}
-.app .description h3{margin: 20px 0;}
+.app .description, .device .description{font-size: 18px; color: black;}
+.app .description h3, .device .description h3{margin: 20px 0;}
 
 .app .qrcode span{font-size: 10px; font-weight: 700;}
 
-.app .buttons a{color: white; font-size: 16px; font-weight: 700;}
+.app .buttons a, .device .buttons a{color: white; font-size: 16px; font-weight: 700;}
 .app .price{font-size: 12px; color: white; text-indent: 0; font-weight: 700;}
 
 
