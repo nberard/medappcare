@@ -77,16 +77,20 @@ header form.search-form input {width:100%; height:100%; margin: 1px; padding: 5p
 #dropdown.navmespatients .bigpicto{background: url(../img/picto_mespatients_big.png) no-repeat; width: 261px; height: 176px; bottom: -15px; left: -110px;}
 
 
-/* Bootstrap tweaks */
+/* Connexion & Lost password modals */
 .hide {display: none;}
 .modal-header {padding: 12px 15px 9px 15px; border-bottom: 1px solid #eee;}
 .modal-body {padding: 15px 30px;}
 .modal button {font-family: 'PT Sans', arial, sans-serif; font-weight: bold;}
 .modal button.close {float: right; background: white url(../img/close-picto.png) no-repeat; width: 16px; height: 17px; border: none; margin-top: 5px;}
 .modal button.close:hover {cursor: pointer;}
-.modal .registration-call, .modal form {float: left; width: 50%; margin:20px 0;}
-.modal form {box-sizing: border-box; border-right: 1px solid #ccc;}
+.modal form {width: 100%; margin: 20px 0;}
+.modal .registration-call, .modal form[name="login_form"] {float: left; width: 50%; margin:20px 0;}
+.modal form[name="login_form"] {box-sizing: border-box; border-right: 1px solid #ccc;}
 .modal form button {margin: 0;}
 .modal .registration-call {text-align: center; line-height: 2em; padding:10px 0;}
 
+.modal form[name="lost_password_form"] input {box-sizing: border-box; height: 30px; width: 100%;}
+.modal form[name="lost_password_form"] button {float: right;}
+.modal form[name="lost_password_form"]:after {display: block; content:''; clear: both;}
 
