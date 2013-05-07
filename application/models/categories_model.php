@@ -15,8 +15,13 @@ class Categories_model extends CI_Model {
         parent::__construct();
     }
 
-    public function get_categories_parentes($pro)
+    public function get_categories_parentes($_pro)
     {
-        return $this->db->where(array('parent_id' => -1, 'est_pro' => $pro ? 1 : 0))->get($this->table)->result();
+        return $this->db->where(array('parent_id' => -1, 'est_pro' => $_pro ? 1 : 0))->get($this->table)->result();
+    }
+
+    public function get_categories_enfantes($_parent_id)
+    {
+        return $this->db->where(array('parent_id' => $_parent_id))->order_by('nom_'.config_item('language_short').', poids', 'asc')->get($this->table)->result();
     }
 }

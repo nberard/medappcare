@@ -32,19 +32,25 @@ class MY_Controller extends CI_Controller {
                 'redirect' => redirect_language($this->uri->segment_array(), $shortLanguage),
             );
         }
+        $categories_enfants = array();
         $categories_principales = $this->Categories_model->get_categories_parentes($pro);
         $correspClasses = $pro ? array('administratif', 'mapratique', 'minformer', 'mespatients') :
                                  array('masante', 'monquotidien', 'minformer', 'medeplacer');
         foreach($categories_principales as &$categorie_principale)
         {
-            $categorie_principale->class = array_shift($correspClasses);
+            $class = array_shift($correspClasses);
+            $categorie_principale->class = $class;
+            $categories_enfants[$class] = $this->Categories_model->get_categories_enfantes($categorie_principale->id);
             $categorie_principale->link = '#';
         }
         return array(
             'header_meta' => $this->load->view('inc/header_meta', array('css_files' => array(css_url('stylesheet'))), true),
             'header' => $this->load->view('inc/header', array('pro' => $pro, 'user' => $this->session->userdata('user')), true),
             'home_slider' => $this->load->view('inc/home_slider', '', true),
-            'menu' => $this->load->view('inc/menu', array('categories_principales' => $categories_principales), true),
+            'menu' => $this->load->view('inc/menu', array(
+                'categories_principales' => $categories_principales,
+                'categories_enfants_assoc' => $categories_enfants,
+            ), true),
             'widget_selection' => $this->load->view('inc/widget_selection', '', true),
             'footer' => $this->load->view('inc/footer', array('languages' => $languagesVars), true),
             'footer_meta' => $this->load->view('inc/footer_meta', array('js_files' => array_merge($js_files, array(
