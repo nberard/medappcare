@@ -23,7 +23,7 @@
       <p><input type="text" required placeholder="Email"></p>
       <p><input type="password" required placeholder="Mot de passe"></p>
       <p><button type="submit" class="btn btn-primary">Connexion</button>
-        <a href="#">Mot de passe oublié ?</a>
+        <a href="#lostPassword">Mot de passe oublié ?</a>
       </p>
     </form>
     <div class="registration-call">
@@ -32,3 +32,21 @@
     </div>
   </div>
 </div>
+
+</div>
+
+
+<div class="modal hide fade" id="lostPasswordModal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"></button>
+    <h3>Mot de passe oublié</h3>
+  </div>
+  <div class="modal-body">
+    <form method="post" action='lostPassword.php' name="lost_password_form">
+      <p><input type="text" required placeholder="Email"></p>
+      <p><button type="submit" class="btn btn-primary">Récupérer mon mot de passe</button>
+      </p>
+    </form>
+  </div>
+  
+  

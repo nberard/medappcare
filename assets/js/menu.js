@@ -95,9 +95,52 @@ $(document).ready(function() {
 	
 	/* Modal */
 	
+	var shouldDisplayLostPasswordModal = false;
+	
 	$('.modal').on('shown', function() {
 		$(this).children('.modal-body').children('form').children('p:nth-child(1)').children('input').focus();
 	});
+	
+	/* Lost password Modal */
+	
+	$('a[href="#lostPassword"]').click(function() {
+		shouldDisplayLostPasswordModal = true;
+		$('#connexionModal').modal('hide');
+	});
+	
+	$('#connexionModal').on('hide', function() {
+		if (shouldDisplayLostPasswordModal) {
+			shouldDisplayLostPasswordModal = false;
+			$('#lostPasswordModal').modal('show');
+		}
+	});
+	
+	$('#lostPasswordModal').on('shown', function() {
+		$(this).children('.modal-body').children('form').children('p:nth-child(1)').children('input').focus();
+	});
+	
+	
+	/* Device tabs */
+	
+	$('#deviceTabs nav li').click(function() {
+		if (!$(this).hasClass('selected')) {
+			$('#deviceTabs nav li.selected').removeClass('selected');
+			$(this).addClass('selected');
+			
+			var destination = $('#deviceTabs .tabContent#'+$(this).attr('data-destination'));
+		
+			var previouslyOpened = $('#deviceTabs .tabContent.open');
+			previouslyOpened.removeClass('open');
+			destination.addClass('open');
+			
+			previouslyOpened.stop().fadeOut('fast', function() {
+				
+				destination.stop().fadeIn('fast');
+			});
+			
+		}
+	});
+	
 	
 });
 

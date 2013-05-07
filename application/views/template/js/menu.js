@@ -95,7 +95,27 @@ $(document).ready(function() {
 	
 	/* Modal */
 	
+	var shouldDisplayLostPasswordModal = false;
+	
 	$('.modal').on('shown', function() {
+		$(this).children('.modal-body').children('form').children('p:nth-child(1)').children('input').focus();
+	});
+	
+	/* Lost password Modal */
+	
+	$('a[href="#lostPassword"]').click(function() {
+		shouldDisplayLostPasswordModal = true;
+		$('#connexionModal').modal('hide');
+	});
+	
+	$('#connexionModal').on('hide', function() {
+		if (shouldDisplayLostPasswordModal) {
+			shouldDisplayLostPasswordModal = false;
+			$('#lostPasswordModal').modal('show');
+		}
+	});
+	
+	$('#lostPasswordModal').on('shown', function() {
 		$(this).children('.modal-body').children('form').children('p:nth-child(1)').children('input').focus();
 	});
 	
@@ -119,7 +139,8 @@ $(document).ready(function() {
 			});
 			
 		}
-	})
+	});
+	
 	
 });
 

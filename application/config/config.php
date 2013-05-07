@@ -15,7 +15,11 @@
 |
 */
 //$config['base_url']	= 'http://medappcare.omts.fr/';
+<<<<<<< HEAD
 $config['base_url']	= 'http://localhost';
+=======
+$config['base_url']	= 'http://localhost:8888';
+>>>>>>> 125b7ab9e60f275c95fae54c42a8a7455d203756
 //$config['base_url']	= 'http://my.server/medappcare/';
 /* TEST mytho */
 

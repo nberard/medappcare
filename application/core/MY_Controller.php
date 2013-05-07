@@ -32,10 +32,9 @@ class MY_Controller extends CI_Controller {
                 'redirect' => redirect_language($this->uri->segment_array(), $shortLanguage),
             );
         }
-        $menu = $pro ? 'menuMedecin' : 'menuParticulier';
         $categories_principales = $this->Categories_model->get_categories_parentes($pro);
-        $correspClasses = $pro ? array('navadministratif', 'navmapratique', 'navminformer', 'navmespatients') :
-                                 array('navmasante', 'navmonquotidien', 'navminformer', 'navmedeplacer');
+        $correspClasses = $pro ? array('administratif', 'mapratique', 'minformer', 'mespatients') :
+                                 array('masante', 'monquotidien', 'minformer', 'medeplacer');
         foreach($categories_principales as &$categorie_principale)
         {
             $categorie_principale->class = array_shift($correspClasses);
