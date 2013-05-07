@@ -4,7 +4,7 @@
             <a href="<?php echo index_page(); ?>">Home</a>
         </li>
         <?php foreach($categories_principales as $categorie_principale): ?>
-            <li class="<?php echo $categorie_principale->class; ?> megamenu">
+            <li class="nav<?php echo $categorie_principale->class; ?> megamenu">
                 <a dropdowndestination="<?php echo $categorie_principale->class; ?>" href="<?php echo $categorie_principale->link; ?>">
                     <span class="picto"></span>
                     <span class="text"><?php echo $categorie_principale->{"nom_".config_item('language_short')}; ?></span>
