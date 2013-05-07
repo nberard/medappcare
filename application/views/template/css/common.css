@@ -491,7 +491,7 @@ html[xmlns] .slides {display: block;}
 
 
 #deviceTabs > .wrapper {height: 300px;}
-#deviceTabs .tabContent:not(.open) {display: none;}
+#deviceTabs .tabContent:not(#motDuFabricant) {display: none;}
 
 #deviceTabs .tabContent {padding: 20px;}
 #deviceTabs .tabContent .logoPart {width: 175px; height: 100%; float: left;}

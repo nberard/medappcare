@@ -109,8 +109,15 @@ $(document).ready(function() {
 			
 			var destination = $('#deviceTabs .tabContent#'+$(this).attr('data-destination'));
 		
-			$('#deviceTabs .tabContent.open').removeClass('open');
+			var previouslyOpened = $('#deviceTabs .tabContent.open');
+			previouslyOpened.removeClass('open');
 			destination.addClass('open');
+			
+			previouslyOpened.stop().fadeOut('fast', function() {
+				
+				destination.stop().fadeIn('fast');
+			});
+			
 		}
 	})
 	
