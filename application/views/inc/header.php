@@ -1,11 +1,11 @@
 <div class="wrapper">
     <h1>Medappcare</h1>
-    <?php if($this->session->flashdata('error')): ?>
-    <span class="alert alert-error"><?php echo $this->session->flashdata('error'); ?></span>
-    <?php endif; ?>
-    <?php if($this->session->flashdata('success')): ?>
-        <span class="alert alert-success"><?php echo $this->session->flashdata('success'); ?></span>
-    <?php endif; ?>
+<!--    --><?php //if($this->session->flashdata('error')): ?>
+<!--    <span class="alert alert-error">--><?php //echo $this->session->flashdata('error'); ?><!--</span>-->
+<!--    --><?php //endif; ?>
+<!--    --><?php //if($this->session->flashdata('success')): ?>
+<!--        <span class="alert alert-success">--><?php //echo $this->session->flashdata('success'); ?><!--</span>-->
+<!--    --><?php //endif; ?>
     <div class="links">
         <div class="social">
             <a class="facebook" href="https://.facebook.com/Medappcare" target="_blank" title="facebook">Rejoignez-nous sur Facebook !</a>

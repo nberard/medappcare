@@ -44,19 +44,21 @@ class Pro extends MY_Controller {
 
         $data['inc'] = $this->_getCommonIncludes(true);
         $data['contenu'] = $this->load->view('contenu/indexPro', $indexData, true);
-        $this->load->view('indexPro', $data);
+        $data['body_class'] = 'homepage lespros';
+        $this->load->view('main', $data);
     }
 
     public function register()
     {
-        $data['inc'] = $this->_getCommonIncludes(true);
-        $data['js_files'] = array(
+        $data['inc'] = $this->_getCommonIncludes(true, array(
             js_url('bootstrap-datepicker'),
             js_url('bootstrap-multiselect'),
             js_url('jquery.checkValidity'),
-        );
-        $data['contenu'] = $this->load->view('contenu/registerPro', $data, true);
-        $this->load->view('registerPro', $data);
+            js_url('registerPro'),
+        ));
+        $data['contenu'] = $this->load->view('contenu/registerPro', '', true);
+        $data['body_class'] = 'signup lespros';
+        $this->load->view('main', $data);
     }
 
     public function category()
@@ -75,7 +77,8 @@ class Pro extends MY_Controller {
         $data['inc'] = $this->_getCommonIncludes(true);
 
         $data['contenu'] = $this->load->view('contenu/category', $categoryData, true);
-        $this->load->view('categoryPro', $data);
+        $data['body_class'] = 'category lespros masante';
+        $this->load->view('main', $data);
     }
 
     public function app()
@@ -88,7 +91,8 @@ class Pro extends MY_Controller {
         $data['inc'] = $this->_getCommonIncludes(true);
 
         $data['contenu'] = $this->load->view('contenu/app', $appData, true);
-        $this->load->view('appPro', $data);
+        $data['body_class'] = 'app lespros masante';
+        $this->load->view('main', $data);
     }
 }
 
