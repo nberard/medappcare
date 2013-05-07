@@ -34,7 +34,8 @@ class MY_Controller extends CI_Controller {
         }
         $menu = $pro ? 'menuMedecin' : 'menuParticulier';
         $categories_principales = $this->Categories_model->get_categories_parentes($pro);
-        $correspClasses = array('navadministratif megamenu', 'navmapratique megamenu', 'navminformer megamenu', 'navmespatients megamenu');
+        $correspClasses = $pro ? array('navadministratif', 'navmapratique', 'navminformer', 'navmespatients') :
+                                 array('navmasante', 'navmonquotidien', 'navminformer', 'navmedeplacer');
         foreach($categories_principales as &$categorie_principale)
         {
             $categorie_principale->class = array_shift($correspClasses);
