@@ -121,6 +121,20 @@ class Perso extends MY_Controller {
         $data['body_class'] = 'contact particuliers';
         $this->load->view('main', $data);
     }
+   
+    public function device()
+    {
+        $appData = array(
+            'widget_devices' => $this->load->view('inc/widget_devices', '', true),
+            'partners' => $this->load->view('inc/partners', '', true),
+        );
+
+        $data['inc'] = $this->_getCommonIncludes();
+
+        $data['contenu'] = $this->load->view('contenu/device', $appData, true);
+        $data['body_class'] = 'device particuliers masante';
+        $this->load->view('main', $data);
+    }    
 
 }
 
