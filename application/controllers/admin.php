@@ -214,7 +214,7 @@ class Admin extends CI_Controller
     {
         foreach($_to_check as $field => $default_value)
         {
-            if(!empty($_post_array[$field]))
+            if(empty($_post_array[$field]))
             {
                 $_updates[$field] = $default_value;
             }
