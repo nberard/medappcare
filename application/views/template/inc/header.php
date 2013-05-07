@@ -33,6 +33,8 @@
   </div>
 </div>
 
+</div>
+
 
 <div class="modal hide fade" id="lostPasswordModal">
   <div class="modal-header">
@@ -48,4 +50,3 @@
   </div>
   
   
-</div>
