@@ -23,35 +23,24 @@
 
 <div id = "dropdown">
     <div class="whiteLine"></div>
-    <nav class = "masante">
+    <?php foreach($categories_enfants_assoc as $class => $categories_enfants): ?>
+    <nav class = "<?php echo $class; ?>">
         <div class="wrapper">
-
-            <!-- Each <ul> has to contain 10 <li> -->
-            <ul>
-                <li><a href="">Activité physique</a></li>
-                <li><a href="">Alertes et rappels</a></li>
-                <li><a href="">Calculettes et convertisseurs</a></li>
-                <li><a href="">Carnets de santé</a></li>
-                <li><a href="">Diététique et suivi du poids</a></li>
-                <li><a href="">Grossesse et maternité</a></li>
-                <li><a href="">Menstruations et féminité</a></li>
-                <li><a href="">Pour les aidants</a></li>
-                <li><a href="">Sommeil</a></li>
-                <li><a href="">Urgences et secours</a></li>
+            <?php $cpt = 0; ?>
+            <?php foreach($categories_enfants as $categorie_enfant): ?>
+                <?php if($cpt%10 == 0)
+                {
+                    if($cpt != 0)
+                    {
+                        echo '</ul>';
+                    }
+                    echo '<ul>';
+                }
+                $cpt++;
+                ?>
+                <li><a href="#"><?php echo $categorie_enfant->{"nom_".config_item('language_short')};?></a></li>
+            <?php endforeach; ?>
             </ul>
-            <ul>
-                <li><a href="">Activité physique</a></li>
-                <li><a href="">Alertes et rappels</a></li>
-                <li><a href="">Calculettes et convertisseurs</a></li>
-                <li><a href="">Carnets de santé</a></li>
-                <li><a href="">Diététique et suivi du poids</a></li>
-                <li><a href="">Grossesse et maternité</a></li>
-                <li><a href="">Menstruations et féminité</a></li>
-                <li><a href="">Pour les aidants</a></li>
-                <li><a href="">Sommeil</a></li>
-                <li><a href="">Urgences et secours</a></li>
-            </ul>
-
             <div class="sponsored-selection">
                 <span class="title">Nos sélections</span>
                 <ul>
@@ -64,131 +53,5 @@
             <div class="bigpicto"></div>
         </div> <!-- end wrapper -->
     </nav> <!-- end masante -->
-
-    <nav class = "monquotidien">
-        <div class="wrapper">
-
-            <!-- Each <ul> has to contain 10 <li> -->
-            <ul>
-                <li><a href="">Activité physique</a></li>
-                <li><a href="">Alertes et rappels</a></li>
-                <li><a href="">Calculettes et convertisseurs</a></li>
-                <li><a href="">Carnets de santé</a></li>
-                <li><a href="">Diététique et suivi du poids</a></li>
-                <li><a href="">Grossesse et maternité</a></li>
-                <li><a href="">Menstruations et féminité</a></li>
-                <li><a href="">Pour les aidants</a></li>
-                <li><a href="">Sommeil</a></li>
-                <li><a href="">Urgences et secours</a></li>
-            </ul>
-            <ul>
-                <li><a href="">Activité physique</a></li>
-                <li><a href="">Alertes et rappels</a></li>
-                <li><a href="">Calculettes et convertisseurs</a></li>
-                <li><a href="">Carnets de santé</a></li>
-                <li><a href="">Diététique et suivi du poids</a></li>
-                <li><a href="">Grossesse et maternité</a></li>
-                <li><a href="">Menstruations et féminité</a></li>
-                <li><a href="">Pour les aidants</a></li>
-                <li><a href="">Sommeil</a></li>
-                <li><a href="">Urgences et secours</a></li>
-            </ul>
-
-            <div class="sponsored-selection">
-                <span class="title">Nos sélections</span>
-                <ul>
-                    <li><a href=""><img src="<?php echo img_url('tmp/app-icon-57.png'); ?>" alt="[app-title] icon"/>Ma super app</a></li>
-                    <li><a href=""><img src="<?php echo img_url('tmp/app-icon-57.png'); ?>" alt="[app-title] icon"/>Ma super app</a></li>
-                    <li><a href=""><img src="<?php echo img_url('tmp/app-icon-57.png'); ?>" alt="[app-title] icon"/>Ma super app</a></li>
-                </ul>
-                <span class="sponsored-indicator">Sponsorisées</span>
-            </div>
-
-            <div class="bigpicto"></div>
-        </div> <!-- end wrapper -->
-    </nav>
-
-    <nav class = "minformer">
-        <div class="wrapper">
-
-            <!-- Each <ul> has to contain 10 <li> -->
-            <ul>
-                <li><a href="">Activité physique</a></li>
-                <li><a href="">Alertes et rappels</a></li>
-                <li><a href="">Calculettes et convertisseurs</a></li>
-                <li><a href="">Carnets de santé</a></li>
-                <li><a href="">Diététique et suivi du poids</a></li>
-                <li><a href="">Grossesse et maternité</a></li>
-                <li><a href="">Menstruations et féminité</a></li>
-                <li><a href="">Pour les aidants</a></li>
-                <li><a href="">Sommeil</a></li>
-                <li><a href="">Urgences et secours</a></li>
-            </ul>
-            <ul>
-                <li><a href="">Activité physique</a></li>
-                <li><a href="">Alertes et rappels</a></li>
-                <li><a href="">Calculettes et convertisseurs</a></li>
-                <li><a href="">Carnets de santé</a></li>
-                <li><a href="">Diététique et suivi du poids</a></li>
-                <li><a href="">Grossesse et maternité</a></li>
-                <li><a href="">Menstruations et féminité</a></li>
-                <li><a href="">Pour les aidants</a></li>
-                <li><a href="">Sommeil</a></li>
-                <li><a href="">Urgences et secours</a></li>
-            </ul>
-
-            <div class="sponsored-selection">
-                <span class="title">Nos sélections</span>
-                <ul>
-                    <li><a href=""><img src="<?php echo img_url('tmp/app-icon-57.png'); ?>" alt="[app-title] icon"/>Ma super app</a></li>
-                    <li><a href=""><img src="<?php echo img_url('tmp/app-icon-57.png'); ?>" alt="[app-title] icon"/>Ma super app</a></li>
-                    <li><a href=""><img src="<?php echo img_url('tmp/app-icon-57.png'); ?>" alt="[app-title] icon"/>Ma super app</a></li>
-                </ul>
-                <span class="sponsored-indicator">Sponsorisées</span>
-            </div>
-            <div class="bigpicto"></div>
-        </div> <!-- end wrapper -->
-    </nav>
-
-    <nav class = "medeplacer">
-        <div class="wrapper">
-
-            <!-- Each <ul> has to contain 10 <li> -->
-            <ul>
-                <li><a href="">Activité physique</a></li>
-                <li><a href="">Alertes et rappels</a></li>
-                <li><a href="">Calculettes et convertisseurs</a></li>
-                <li><a href="">Carnets de santé</a></li>
-                <li><a href="">Diététique et suivi du poids</a></li>
-                <li><a href="">Grossesse et maternité</a></li>
-                <li><a href="">Menstruations et féminité</a></li>
-                <li><a href="">Pour les aidants</a></li>
-                <li><a href="">Sommeil</a></li>
-                <li><a href="">Urgences et secours</a></li>
-            </ul>
-            <ul>
-                <li><a href="">Activité physique</a></li>
-                <li><a href="">Alertes et rappels</a></li>
-                <li><a href="">Calculettes et convertisseurs</a></li>
-                <li><a href="">Carnets de santé</a></li>
-                <li><a href="">Diététique et suivi du poids</a></li>
-                <li><a href="">Grossesse et maternité</a></li>
-                <li><a href="">Menstruations et féminité</a></li>
-                <li><a href="">Pour les aidants</a></li>
-                <li><a href="">Sommeil</a></li>
-                <li><a href="">Urgences et secours</a></li>
-            </ul>
-
-            <div class="sponsored-selection">
-                <span class="title">Nos sélections</span>
-                <ul>
-                    <li><a href=""><img src="<?php echo img_url('tmp/app-icon-57.png'); ?>" alt="[app-title] icon"/>Ma super app</a></li>
-                    <li><a href=""><img src="<?php echo img_url('tmp/app-icon-57.png'); ?>" alt="[app-title] icon"/>Ma super app</a></li>
-                    <li><a href=""><img src="<?php echo img_url('tmp/app-icon-57.png'); ?>" alt="[app-title] icon"/>Ma super app</a></li>
-                </ul>
-                <span class="sponsored-indicator">Sponsorisées</span>
-            </div>
-            <div class="bigpicto"></div>
-        </div> <!-- end wrapper -->
-    </nav>
+    <?php endforeach; ?>
 </div>

@@ -71,10 +71,10 @@ header form.search-form input {width:100%; height:100%; margin: 1px; padding: 5p
 .navmapratique a{background: url(../img/picto_mapratique.png) no-repeat 20px center; }
 .navmespatients a{background: url(../img/picto_mespatients.png) no-repeat 20px center; }
 
-.navadministratif{background: #79C1D2;}
-.navmapratique{background: #E05D5F;}
-.navprominformer{background: #84C790;}
-.navmespatients{background: #D769AF;}
+.navadministratif, #dropdown nav.administratif {background: #79C1D2;}
+.navmapratique, #dropdown nav.mapratique {background: #E05D5F;}
+.navprominformer, #dropdown nav.prominformer {background: #84C790;}
+.navmespatients, #dropdown nav.mespatients {background: #D769AF;}
 
 #dropdown.navadministratif .bigpicto{background: url(../img/picto_administratif_big.png) no-repeat; width: 205px; height: 205px; bottom: -10px; left: -90px;}
 #dropdown.navmapratique .bigpicto{background: url(../img/picto_mapratique_big.png) no-repeat; width: 195px; height: 209px; bottom: -10px; left: -80px;}

@@ -16,7 +16,6 @@
 */
 //$config['base_url']	= 'http://medappcare.omts.fr/';
 $config['base_url']	= 'http://localhost';
-
 //$config['base_url']	= 'http://my.server/medappcare/';
 /* TEST mytho */
 
