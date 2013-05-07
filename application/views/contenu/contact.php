@@ -7,4 +7,10 @@
 	<textarea class="input-block-level" placeholder="Mon message" required></textarea>
 	
 	<button class="btn btn-primary" type="submit">Envoyer mon message</button>
-</form>	
+</form>
+<script>
+    // Check form validity (fallback pour Safari qui ne gère pas required)
+    if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
+        $("form").submit(function(e){});
+    }
+</script>

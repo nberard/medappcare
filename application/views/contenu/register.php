@@ -57,3 +57,7 @@
     <br> <br>
     <span class="help-block">Medappcare utilise ces données afin de vous recommander des applications qui correspondent à vos intérêts.</span>
 </form>
+
+<script>
+    var plateformeIds = [];
+</script>

@@ -77,7 +77,7 @@ class Admin extends CI_Controller
         $this->crud->set_subject('Article');
         $this->crud->set_table('article');
         $this->crud->required_fields('titre');
-        $this->crud->set_relation('categorie_id', 'categorie', '{nom}');
+        $this->crud->set_relation('categorie_id', 'categorie', '{nom_'.config_item('language_short').'}');
         $this->crud->set_relation('device_id', 'device', '{nom}');
         $this->crud->unset_fields('date_creation', 'date_modification');
         $this->crud->callback_after_insert(function($post_array,$primary_key) {
@@ -248,7 +248,7 @@ class Admin extends CI_Controller
                 array('categorie_id' => -1, 'poids' => 0),
                 'selection');
         });
-        $this->crud->set_relation('categorie_id', 'categorie', '{nom}');
+        $this->crud->set_relation('categorie_id', 'categorie', '{nom_'.config_item('language_short').'}');
         $this->crud->set_relation_n_n('applications', 'selection_application', 'application', 'selection_id', 'application_id', '{nom}');
         $this->_admin_output($this->crud->render());
     }
@@ -268,7 +268,7 @@ class Admin extends CI_Controller
                 array('categorie_id' => -1, 'poids' => 0),
                 'selection');
         });
-        $this->crud->set_relation('categorie_id', 'categorie', '{nom}');
+        $this->crud->set_relation('categorie_id', 'categorie', '{nom_'.config_item('language_short').'}');
         $this->_admin_output($this->crud->render());
     }
 

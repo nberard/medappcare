@@ -20,7 +20,7 @@ class MY_Controller extends CI_Controller {
 //                $this->output->enable_profiler(TRUE);
 	}
 
-    protected function _getCommonIncludes($pro = false)
+    protected function _getCommonIncludes($pro = false, $js_files = array())
     {
         $languagesVars = $this->lang->languages;
         $this->load->model('Categories_model');
@@ -40,26 +40,14 @@ class MY_Controller extends CI_Controller {
             $categorie_principale->class = array_shift($correspClasses);
             $categorie_principale->link = '#';
         }
-//        <!--        <li class="navadministratif megamenu">-->
-//<!--            <a href="navadministratif.php"><span class="picto"></span><span class="text">Administratif<span></a>-->
-//<!--        </li>-->
-//<!--        <li class="navmapratique megamenu">-->
-//<!--            <a href="navmapratique.php"><span class="picto"></span><span class="text">Ma Pratique</span></a>-->
-//<!--        </li>-->
-//<!--        <li class="navminformer megamenu">-->
-//<!--            <a href="navprominformer.php"><span class="picto"></span><span class="text">M'Informer</span></a>-->
-//<!--        </li>-->
-//<!--        <li class="navmespatients megamenu">-->
-//<!--            <a href="navmespatients.php"><span class="picto"></span><span class="text">Mes Patients</span></a>-->
-//<!--        </li>-->
         return array(
             'header_meta' => $this->load->view('inc/header_meta', array('css_files' => array(css_url('stylesheet'))), true),
             'header' => $this->load->view('inc/header', array('pro' => $pro, 'user' => $this->session->userdata('user')), true),
             'home_slider' => $this->load->view('inc/home_slider', '', true),
-            $menu => $this->load->view('inc/'.$menu, array('categories_principales' => $categories_principales), true),
+            'menu' => $this->load->view('inc/menu', array('categories_principales' => $categories_principales), true),
             'widget_selection' => $this->load->view('inc/widget_selection', '', true),
             'footer' => $this->load->view('inc/footer', array('languages' => $languagesVars), true),
-            'footer_meta' => $this->load->view('inc/footer_meta', array('js_files' => array(
+            'footer_meta' => $this->load->view('inc/footer_meta', array('js_files' => array_merge($js_files, array(
                 js_url('menu'),
                 js_url('jquery-ui-1.10.2.custom.min'),
                 js_url('jquery.placeholder.min'),
@@ -68,7 +56,7 @@ class MY_Controller extends CI_Controller {
 //                    js_url('query-2.0.0.min'),
                 js_url('login'),
                 js_url('scripts'),
-            )), true),
+            ))), true),
         );
     }
 	

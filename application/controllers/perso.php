@@ -46,7 +46,8 @@ class Perso extends MY_Controller {
         $data['inc'] = $this->_getCommonIncludes();
 
         $data['contenu'] = $this->load->view('contenu/index', $indexData, true);
-		$this->load->view('index', $data);
+        $data['body_class'] = 'homepage particuliers';
+		$this->load->view('main', $data);
 	}
 
 
@@ -54,18 +55,18 @@ class Perso extends MY_Controller {
     {
         $this->load->model('Plateformes_model');
         $plateformes = $this->Plateformes_model->get_all_plateformes();
-        $data['inc'] = $this->_getCommonIncludes();
-        $registerData['js_files'] = array(
+        $data['inc'] = $this->_getCommonIncludes(false, array(
             js_url('bootstrap-datepicker'),
             js_url('bootstrap-multiselect'),
             js_url('jquery.checkValidity'),
             js_url('register'),
-        );
+        ));
         $registerData['nb_countries'] = count(config_item('country_list'));
         $registerData['country_json'] = country_json();
         $registerData['plateformes'] = $plateformes;
         $data['contenu'] = $this->load->view('contenu/register', $registerData, true);
-        $this->load->view('register', $data);
+        $data['body_class'] = 'signup particuliers';
+        $this->load->view('main', $data);
     }
 
     public function category()
@@ -84,7 +85,8 @@ class Perso extends MY_Controller {
         $data['inc'] = $this->_getCommonIncludes();
 
         $data['contenu'] = $this->load->view('contenu/category', $categoryData, true);
-        $this->load->view('category', $data);
+        $data['body_class'] = 'category particuliers masante';
+        $this->load->view('main', $data);
     }
 
     public function app()
@@ -97,7 +99,8 @@ class Perso extends MY_Controller {
         $data['inc'] = $this->_getCommonIncludes();
 
         $data['contenu'] = $this->load->view('contenu/app', $appData, true);
-        $this->load->view('app', $data);
+        $data['body_class'] = 'app particuliers masante';
+        $this->load->view('main', $data);
     }
     
     public function mentionslegales()
@@ -105,17 +108,18 @@ class Perso extends MY_Controller {
         $data['inc'] = $this->_getCommonIncludes();
 
         $data['contenu'] = $this->load->view('contenu/mentionslegales', '', true);
-		$this->load->view('mentionslegales', $data);
+        $data['body_class'] = 'mentionslegales particuliers';
+		$this->load->view('main', $data);
 	}
 	
 	public function contact()
     {
-        $data['inc'] = $this->_getCommonIncludes();
-        $registerData['js_files'] = array(
+        $data['inc'] = $this->_getCommonIncludes(false, array(
             js_url('jquery.checkValidity'),
-        );
+        ));
         $data['contenu'] = $this->load->view('contenu/contact', '', true);
-        $this->load->view('contact', $data);
+        $data['body_class'] = 'contact particuliers';
+        $this->load->view('main', $data);
     }
 
 }
