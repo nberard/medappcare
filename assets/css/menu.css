@@ -7,16 +7,16 @@
 .navmedeplacer a{background: #D769AF;}
 .search a{border-right: 1px solid white;}
 
-.megamenu .picto{display: inline-block; vertical-align: middle; position: relative;}
+/*.megamenu .picto{display: inline-block; vertical-align: middle; position: relative;}*/
 
 .home a, .search a{display: block; text-indent: -9999px;}
 
-.home a{background: url(../img/home.png) no-repeat #283278 center center; width: 24px; height: 54px;}
-.search a{background: url(../img/search.png) no-repeat #283278 center center; width: 24px; height: 54px;}
-.navmasante .picto{background: url(../img/masante.png) no-repeat; width: 35px; height: 31px;}
-.navmonquotidien .picto{background: url(../img/monquotidien.png) no-repeat; width: 29px; height: 31px;}
-.navminformer .picto{background: url(../img/minformer.png) no-repeat; width: 36px; height: 25px;}
-.navmedeplacer .picto{background: url(../img/medeplacer.png) no-repeat; width: 19px; height: 25px;}
+.home a{background: url(../img/home.png) no-repeat #283278 center center;}
+.search a{background: url(../img/search.png) no-repeat #283278 center center;}
+.navmasante a{background: url(../img/masante.png) no-repeat 20px center;}
+.navmonquotidien a{background: url(../img/monquotidien.png) no-repeat 20px center;}
+.navminformer a{background: url(../img/minformer.png) no-repeat 20px center;}
+.navmedeplacer a{background: url(../img/medeplacer.png) no-repeat 20px center;}
 
 .loading{background: transparent url(../img/loading.gif) no-repeat center center;}
 
@@ -25,6 +25,11 @@
 .navminformer, #dropdown nav.minformer {background: #84C790;}
 .navmedeplacer, #dropdown nav.medeplacer {background: #D769AF;}
 
+header > nav li.home, header > nav li.search {width: 56px;}
+header > nav li {box-sizing: border-box; }
+header > nav li:not(.home):not(.search) a {box-sizing: border-box; padding-left: 55px;}
+#header > nav li.navmonquotidien a, #header > nav li.navminformer a {padding-left: 60px;}
+#header > nav li.medeplacer a {padding-left: 45px;}
 
 /*header form.search-form {display: none;}*/
 header form.search-form {z-index: 300; position: absolute; width: 831px; height:52px; top:0; left:58px; display: none;}
@@ -62,9 +67,9 @@ header form.search-form input {width:100%; height:100%; margin: 1px; padding: 5p
 .navmapratique a{background: #E05D5F;}
 .navmespatients a{background: #D769AF;}
 
-.navadministratif .picto{background: url(../img/picto_administratif.png) no-repeat; width: 27px; height: 27px;}
-.navmapratique .picto{background: url(../img/picto_mapratique.png) no-repeat; width: 29px; height: 31px;}
-.navmespatients .picto{background: url(../img/picto_mespatients.png) no-repeat; width: 34px; height: 23px;}
+.navadministratif a{background: url(../img/picto_administratif.png) no-repeat 20px center;}
+.navmapratique a{background: url(../img/picto_mapratique.png) no-repeat 20px center; }
+.navmespatients a{background: url(../img/picto_mespatients.png) no-repeat 20px center; }
 
 .navadministratif{background: #79C1D2;}
 .navmapratique{background: #E05D5F;}
