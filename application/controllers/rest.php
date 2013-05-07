@@ -34,6 +34,46 @@ class Rest extends REST_Controller {
             $this->response(array('status' => 'ko', 'message' => lang('erreur_login')), 400);
         }
     }
+
+    public function signup_post()
+    {
+        $_POST = $this->_post();
+        $countries = array_flip(config_item('country_list'));
+        $list = !empty($_POST['pro']) ?
+            array() :
+            array('email', 'password', 'date_naissance', 'sexe', 'country', 'cgu', 'cgv');
+        foreach($list as $field)
+            if(!isset($_POST[$field]))
+                $_POST[$field] = '';
+        $_POST['country'] = isset($countries[$_POST['country']]) ? $countries[$_POST['country']] : 'FR';
+        $this->load->library('form_validation');
+        $this->lang->load('form_validation');
+        $this->form_validation->set_rules('email', 'E-mail', 'required|valid_email|is_unique[membre.email]');
+        $this->form_validation->set_rules('password', 'Mot de passe', 'required|max_length[32]|min_length[4]');
+        $this->form_validation->set_rules('date_naissance', 'Date de naissance', 'required|regex_match[/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/]');
+        $this->form_validation->set_rules('sexe', 'Sexe', 'required|alpha_numeric|exact_length[1]|enum[F,M,A]');
+        $this->form_validation->set_rules('country', 'Pays', 'required|alpha_numeric|exact_length[2]');
+        $this->form_validation->set_rules('cgu', 'CGU', 'required|enum[1]');
+        $this->form_validation->set_rules('cgv', 'CGV', 'required|enum[1]');
+        if(!$this->form_validation->run())
+        {
+            $errorMessage = '';
+            foreach($_POST as $key => $value)
+            {
+                $error = form_error($key);
+                if($error)
+                {
+                    log_message('debug', "adding $error for $key");
+                    $errorMessage.=$error;
+                }
+            }
+            $this->response(array('status' => 'ko', 'message' => $errorMessage), 400);
+        }
+        else
+        {
+            $this->response(array('status' => 'ok'), 200);
+        }
+    }
 }
 
 /* End of file perso.php */

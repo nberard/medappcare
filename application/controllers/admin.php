@@ -162,6 +162,7 @@ class Admin extends CI_Controller
         $this->crud->set_table('membre');
         $this->crud->required_fields('email', 'est_pro');
         $this->crud->set_relation_n_n('plateformes', 'membre_plateforme', 'plateforme', 'membre_id', 'plateforme_id', '{label_'.config_item('language_short').'}');
+        $this->crud->set_relation_n_n('categories', 'membre_categorie', 'categorie', 'membre_id', 'categorie_id', '{nom_'.config_item('language_short').'}', '', array('parent_id !=' => -1));
 //        public function set_relation_n_n($field_name, $relation_table, $selection_table, $primary_key_alias_to_this_table, $primary_key_alias_to_selection_table , $title_field_selection_table , $priority_field_relation_table = null, $where_clause = null)
         if($this->crud->getState() == 'insert_validation')
         {

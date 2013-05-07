@@ -51,6 +51,8 @@ class MY_Controller extends CI_Controller {
                 'categories_principales' => $categories_principales,
                 'categories_enfants_assoc' => $categories_enfants,
             ), true),
+            'data_categories_principales' => $categories_principales,
+            'data_categories_enfants_assoc' => $categories_enfants,
             'widget_selection' => $this->load->view('inc/widget_selection', '', true),
             'footer' => $this->load->view('inc/footer', array('languages' => $languagesVars), true),
             'footer_meta' => $this->load->view('inc/footer_meta', array('js_files' => array_merge($js_files, array(

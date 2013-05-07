@@ -1,6 +1,25 @@
 $(document).ready(function(){
-    $('#reg_form').submit(function()
+    $('#form-signup').submit(function()
     {
+//        console.dir($('#email').val());
+//        console.dir($('#password').val());
+//        console.dir($('#date_naissance').val());
+//        console.dir($('#sexe').val());
+//        console.dir($('#country').val());
+//        console.dir($('#interets').val());
+//        console.dir(plateformeIds);
+//        console.dir($('#cgu').is(':checked'));
+//        console.dir($('#cgv').is(':checked'));
+        var plateformes = [];
+        for(var i=0; i<plateformeIds.length; i++)
+        {
+            if(plateformeIds[i] && plateformeIds[i] != "undefined" && plateformeIds[i] == true)
+            {
+                plateformes.push(i);
+            }
+        }
+//        console.dir(plateformes);
+//        return false;
         $.ajax({
             type: 		"POST",
             url:  		$('#form-signup').attr('data-action'),
@@ -8,19 +27,27 @@ $(document).ready(function(){
             contentType: 'application/json',
             data:
                 JSON.stringify({
-                    session : 1,
+                    pro : 0,
                     email : $('#email').val(),
-                    password : $('#password').val()
+                    password : $('#password').val(),
+                    date_naissance : $('#date_naissance').val(),
+                    sexe : $('#sexe').val(),
+                    country : $('#country').val(),
+                    interets : $('#interets').val(),
+                    plateformes : plateformes,
+                    cgu : $('#cgu').is(':checked') ? 1 : 0,
+                    cgv : $('#cgv').is(':checked') ? 1 : 0
                 }),
             success: function(data, textStatus, xhr)
             {
-                window.location.reload();
+                alert('ok');
+//                window.location.reload();
             },
             error: function(xhr, textStatus, error)
             {
                 if(xhr.responseJSON.message)
                 {
-                    $('#login-error').text(xhr.responseJSON.message).show(); // On peut le mettre en display block au lieu de inline et ajouter un margin 0 svp ?
+                    $('#reg-error').text(xhr.responseJSON.message).show();
                     return false;
                 }
             }
@@ -29,7 +56,7 @@ $(document).ready(function(){
     });
 
     // Datepicker
-    $('#ddn').datepicker();
+    $('#date_naissance').datepicker();
 
     // Boutons radios
     $('#plateforme-group button').click(function(){
