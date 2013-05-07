@@ -8,7 +8,7 @@
 <!--    --><?php //endif; ?>
     <div class="links">
         <div class="social">
-            <a class="facebook" href="https://.facebook.com/Medappcare" target="_blank" title="facebook">Rejoignez-nous sur Facebook !</a>
+            <a class="facebook" href="https://www.facebook.com/Medappcare" target="_blank" title="facebook">Rejoignez-nous sur Facebook !</a>
             <a class="twitter" href="https://twitter.com/Medappcare" target="_blank" title="twitter">Suivez-nous sur Twitter</a>
         </div>
         <div class="meta">
