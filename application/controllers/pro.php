@@ -53,6 +53,7 @@ class Pro extends MY_Controller {
         $data['js_files'] = array(
             js_url('bootstrap-datepicker'),
             js_url('bootstrap-multiselect'),
+            js_url('jquery.checkValidity'),
         );
         $data['contenu'] = $this->load->view('contenu/registerPro', $data, true);
         $this->load->view('registerPro', $data);

@@ -1,40 +1,22 @@
-<form class="form-signin" method="post" action="<?php echo site_url('perso/register_do'); ?>">
-    <h2 class="form-signin-heading">Inscription grand public</h2>
+<form class="form-signup" method="post" id="form-signup" data-action="<?php echo site_url('rest/signup'); ?>">
+    <h2 class="form-signup-heading">Inscription grand public</h2>
+    <div id="error-reg" class="alert alert-error hide"></div>
+    <input name="email" type="email" id="email" class="input-block-level" placeholder="Email" required>
+    <input name="password" type="password" id="password" class="input-block-level" placeholder="Mot de passe" required>
 
-    <input type="email" id="email" class="input-block-level" placeholder="Email" required>
-    <input type="password" id="password" class="input-block-level" placeholder="Mot de passe" required>
-
-    <input type="text" class="input-block-level"  placeholder="Date de naissance" data-date-format="dd/mm/yyyy" data-date-viewmode="years" id="ddn" autocomplete="off" required>
+    <input name="date_naissance" type="text" class="input-block-level"  placeholder="Date de naissance" data-date-format="dd/mm/yyyy" data-date-viewmode="years" id="ddn" autocomplete="off" required>
 
 
     <div class="well"><label>Sexe</label>
-        <div class="btn-group" data-toggle="buttons-radio" >
-            <button type="button" class="btn" data-toggle="button" id="homme">Homme</button>
-            <button type="button" class="btn" data-toggle="button" id="femme">Femme</button>
-            <button type="button" class="btn" data-toggle="button" id="autre">Autre</button>
+        <div id="sexe-group" class="btn-group" data-toggle="buttons-radio" >
+            <button type="button" class="btn" data-toggle="button" value="H">Homme</button>
+            <button type="button" class="btn" data-toggle="button" value="F">Femme</button>
+            <button type="button" class="btn" data-toggle="button" value="A">Autre</button>
             <input type="hidden" name="sexe" id="sexe" value="" required>
         </div>
     </div>
 
     <input name="country" type="text" class="input-block-level" placeholder="Pays" data-provide="typeahead" data-items="<?php echo $nb_countries; ?>" data-source='<?php echo $country_json; ?>' autocomplete="off" required>
-
-    <!--   Si on préfère les Checkbox classiques...
-           <div class="btn-group">
-               Device
-               <label class="checkbox inline">
-                 <input type="checkbox" id="inlineCheckbox1" value="option1"> iPhone
-               </label>
-               <label class="checkbox inline">
-                 <input type="checkbox" id="inlineCheckbox2" value="option2"> iPad
-               </label>
-               <label class="checkbox inline">
-                 <input type="checkbox" id="inlineCheckbox3" value="option3"> Smartphone Android
-               </label>
-               <label class="checkbox inline">
-                 <input type="checkbox" id="inlineCheckbox4" value="option4"> Tablette Android
-           </label>
-           </div>
-    -->
 
     <select id="interets" multiple="multiple">
         <optgroup label="Ma santé"> <!-- Mettre contenu du menu Ma santé -->
@@ -54,11 +36,14 @@
             <option value="onions2">Onions2</option>
         </optgroup>
     </select>
+
+
     <div class="well"><label>Device (plusieurs choix possibles)</label>
-        <div class="btn-group" data-toggle="buttons-checkbox">
+        <div id="plateforme-group" class="btn-group" data-toggle="buttons-checkbox">
             <?php foreach($plateformes as $plateforme): ?>
-                <button type="button" name="plateformes[]" value="<?php echo $plateforme->id; ?>" class="btn"><?php echo $plateforme->{"label_".config_item('language_short')}; ?></button>
+                <button type="button" value="<?php echo $plateforme->id; ?>" class="btn"><?php echo $plateforme->{"label_".config_item('language_short')}; ?></button>
             <?php endforeach; ?>
+            <input type="hidden" name="plateformes[]"/>
         </div>
     </div>
 

@@ -46,7 +46,7 @@
 #listApps .allapps h3{background: #79c1d2; border: 1px solid #79c1d2; line-height: 50px; padding: 0 15px;}
 
 #listApps .allapps ul{border-left: 1px solid #79c1d2; border-right: 1px solid #79c1d2; padding: 0;}
-#listApps .allapps li{border-bottom: 1px solid #79c1d2; width: 443px; float: left; margin: 0;}
+#listApps .allapps li{border-bottom: 1px solid #79c1d2; width: 458px; float: left; margin: 0;}
 #listApps .allapps li:nth-child(odd){border-right: 1px solid #79c1d2;}
 
 #listApps .allapps .metaFooter{background: #79c1d2;}

@@ -1,6 +1,6 @@
 <?php echo $inc['header_meta']; ?>
 
-<body class="signin particuliers">
+<body class="signup particuliers">
 
 <header id="header">
 
@@ -26,14 +26,22 @@
 <script>
     // Datepicker
     $('#ddn').datepicker();
-
-    // Boutons radios
-    $('div.btn-group button').click(function(){
-        $("#sexe").attr('value', $(this).attr('id'));
-    })
-
+    var plateformeIds = [];
     // Multi Slect (FR)
     $(document).ready(function() {
+
+        // Boutons radios
+        $('#plateforme-group button').click(function(){
+            if(plateformeIds[$(this).attr('value')])
+                plateformeIds[$(this).attr('value')] = false;
+            else plateformeIds[$(this).attr('value')] = true;
+        });
+
+        // Boutons radios
+        $('#sexe-group button').click(function(){
+            $("#sexe").attr('value', $(this).attr('value'));
+        });
+
         $('#interets').multiselect({
             buttonWidth: '500px', // Default
             buttonText: function(options, select) {
@@ -53,6 +61,12 @@
             },
         });
     });
+
+
+    // Check form validity (fallback pour Safari qui ne gère pas required)
+    if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
+    	$("form").submit(function(e){});
+    }  
 
 </script>
 

@@ -13,7 +13,7 @@
 	
 	<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <?php foreach($css_files as $css_file): ?>
-        <link rel="stylesheet" type="text/css" media="all" href="<?php echo $css_file; ?>" />
+    <link rel="stylesheet" type="text/css" media="all" href="<?php echo $css_file; ?>" />
     <?php endforeach; ?>
 	
 	<!--[if lt IE 9]>

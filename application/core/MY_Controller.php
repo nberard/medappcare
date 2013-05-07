@@ -17,11 +17,13 @@ class MY_Controller extends CI_Controller {
         $this->load->helper('assets');
         $this->load->helper('redirect');
         $this->lang->load('common');
+//                $this->output->enable_profiler(TRUE);
 	}
 
     protected function _getCommonIncludes($pro = false)
     {
         $languagesVars = $this->lang->languages;
+        $this->load->model('Categories_model');
         foreach ($languagesVars as $shortLanguage => &$longLanguage)
         {
             $longLanguage = array(
@@ -31,11 +33,30 @@ class MY_Controller extends CI_Controller {
             );
         }
         $menu = $pro ? 'menuMedecin' : 'menuParticulier';
+        $categories_principales = $this->Categories_model->get_categories_parentes($pro);
+        $correspClasses = array('navadministratif megamenu', 'navmapratique megamenu', 'navminformer megamenu', 'navmespatients megamenu');
+        foreach($categories_principales as &$categorie_principale)
+        {
+            $categorie_principale->class = array_shift($correspClasses);
+            $categorie_principale->link = '#';
+        }
+//        <!--        <li class="navadministratif megamenu">-->
+//<!--            <a href="navadministratif.php"><span class="picto"></span><span class="text">Administratif<span></a>-->
+//<!--        </li>-->
+//<!--        <li class="navmapratique megamenu">-->
+//<!--            <a href="navmapratique.php"><span class="picto"></span><span class="text">Ma Pratique</span></a>-->
+//<!--        </li>-->
+//<!--        <li class="navminformer megamenu">-->
+//<!--            <a href="navprominformer.php"><span class="picto"></span><span class="text">M'Informer</span></a>-->
+//<!--        </li>-->
+//<!--        <li class="navmespatients megamenu">-->
+//<!--            <a href="navmespatients.php"><span class="picto"></span><span class="text">Mes Patients</span></a>-->
+//<!--        </li>-->
         return array(
             'header_meta' => $this->load->view('inc/header_meta', array('css_files' => array(css_url('stylesheet'))), true),
             'header' => $this->load->view('inc/header', array('pro' => $pro, 'user' => $this->session->userdata('user')), true),
             'home_slider' => $this->load->view('inc/home_slider', '', true),
-            $menu => $this->load->view('inc/'.$menu, '', true),
+            $menu => $this->load->view('inc/'.$menu, array('categories_principales' => $categories_principales), true),
             'widget_selection' => $this->load->view('inc/widget_selection', '', true),
             'footer' => $this->load->view('inc/footer', array('languages' => $languagesVars), true),
             'footer_meta' => $this->load->view('inc/footer_meta', array('js_files' => array(
