@@ -34,7 +34,10 @@ a:hover{text-decoration: underline;}
 
 #header > .wrapper{height: 116px;}
 
-#header h1{background: url(../img/medappcare.jpg) no-repeat; width: 304px; height: 73px; display: block; text-indent: -9999px; float: left; position: relative; margin: 20px 0 0 0;}
+#header h1{background: url(../img/medappcare.jpg) no-repeat; width: 304px; height: 73px; display: block; float: left; position: relative; margin: 20px 0 0 0;}
+#header h1 a {display: block; width: 100%; height: 100%;}
+#header h1 a span {display: none;}
+
 .lespros #header h1{background: url(../img/medappcarepro.png) no-repeat; width: 345px;}
 
 header > nav a, #header .links a{margin: 0 0 0 10px;}
