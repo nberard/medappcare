@@ -1,15 +1,6 @@
 $(document).ready(function(){
     $('#form-signup').submit(function()
     {
-//        console.dir($('#email').val());
-//        console.dir($('#password').val());
-//        console.dir($('#date_naissance').val());
-//        console.dir($('#sexe').val());
-//        console.dir($('#country').val());
-//        console.dir($('#interets').val());
-//        console.dir(plateformeIds);
-//        console.dir($('#cgu').is(':checked'));
-//        console.dir($('#cgv').is(':checked'));
         var plateformes = [];
         for(var i=0; i<plateformeIds.length; i++)
         {
@@ -18,8 +9,6 @@ $(document).ready(function(){
                 plateformes.push(i);
             }
         }
-//        console.dir(plateformes);
-//        return false;
         $.ajax({
             type: 		"POST",
             url:  		$('#form-signup').attr('data-action'),
@@ -28,26 +17,29 @@ $(document).ready(function(){
             data:
                 JSON.stringify({
                     pro : 0,
-                    email : $('#email').val(),
-                    password : $('#password').val(),
+                    email : $('#reg_email').val(),
+                    mot_de_passe : $('#reg_password').val(),
                     date_naissance : $('#date_naissance').val(),
                     sexe : $('#sexe').val(),
-                    country : $('#country').val(),
+                    pays : $('#country').val(),
                     interets : $('#interets').val(),
                     plateformes : plateformes,
-                    cgu : $('#cgu').is(':checked') ? 1 : 0,
-                    cgv : $('#cgv').is(':checked') ? 1 : 0
+                    cgu_valid : $('#cgu').is(':checked') ? 1 : 0,
+                    cgv_valid : $('#cgv').is(':checked') ? 1 : 0
                 }),
             success: function(data, textStatus, xhr)
             {
-                alert('ok');
-//                window.location.reload();
+                $('#form-signup').empty().html('<div id="reg-sucess" class="alert alert-success">'+xhr.responseJSON.message+'</div>');
+                setTimeout(function(){
+                    $('#reg-sucess').hide('slow');
+                    window.location = xhr.responseJSON.redirect;
+                }, 2000);
             },
             error: function(xhr, textStatus, error)
             {
-                if(xhr.responseJSON.message)
+                if(xhr.responseJSON.errors)
                 {
-                    $('#reg-error').text(xhr.responseJSON.message).show();
+                    $('#reg-error').empty().html(xhr.responseJSON.errors).show();
                     return false;
                 }
             }

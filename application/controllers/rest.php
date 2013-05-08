@@ -9,7 +9,7 @@ class Rest extends REST_Controller {
     {
         parent::__construct();
         $this->load->helper('crypt');
-        $this->lang->load('common');
+        $this->lang->load('alert');
 //        $this->output->enable_profiler(TRUE);
     }
 
@@ -39,39 +39,57 @@ class Rest extends REST_Controller {
     {
         $_POST = $this->_post();
         $countries = array_flip(config_item('country_list'));
-        $list = !empty($_POST['pro']) ?
+        $pro = !empty($_POST['pro']);
+        $list = $pro ?
             array() :
-            array('email', 'password', 'date_naissance', 'sexe', 'country', 'cgu', 'cgv');
+            array('email', 'mot_de_passe', 'date_naissance', 'sexe', 'pays', 'cgu_valid', 'cgv_valid');
         foreach($list as $field)
             if(!isset($_POST[$field]))
                 $_POST[$field] = '';
-        $_POST['country'] = isset($countries[$_POST['country']]) ? $countries[$_POST['country']] : 'FR';
+        $_POST['pays'] = isset($countries[$_POST['pays']]) ? $countries[$_POST['pays']] : 'FR';
         $this->load->library('form_validation');
         $this->lang->load('form_validation');
         $this->form_validation->set_rules('email', 'E-mail', 'required|valid_email|is_unique[membre.email]');
-        $this->form_validation->set_rules('password', 'Mot de passe', 'required|max_length[32]|min_length[4]');
+        $this->form_validation->set_rules('mot_de_passe', 'Mot de passe', 'required|max_length[32]|min_length[4]');
         $this->form_validation->set_rules('date_naissance', 'Date de naissance', 'required|regex_match[/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/]');
-        $this->form_validation->set_rules('sexe', 'Sexe', 'required|alpha_numeric|exact_length[1]|enum[F,M,A]');
-        $this->form_validation->set_rules('country', 'Pays', 'required|alpha_numeric|exact_length[2]');
-        $this->form_validation->set_rules('cgu', 'CGU', 'required|enum[1]');
-        $this->form_validation->set_rules('cgv', 'CGV', 'required|enum[1]');
+        $this->form_validation->set_rules('sexe', 'Sexe', 'required|alpha_numeric|exact_length[1]|enum[H,F,A]');
+        $this->form_validation->set_rules('pays', 'Pays', 'required|alpha_numeric|exact_length[2]');
+        $this->form_validation->set_rules('cgu_valid', 'CGU', 'required|enum[1]');
+        $this->form_validation->set_rules('cgv_valid', 'CGV', 'required|enum[1]');
+        log_message('debug', "run for=".var_export($_POST, true)."");
         if(!$this->form_validation->run())
         {
-            $errorMessage = '';
+            $errors = array();
             foreach($_POST as $key => $value)
             {
                 $error = form_error($key);
                 if($error)
                 {
                     log_message('debug', "adding $error for $key");
-                    $errorMessage.=$error;
+                    $errors[] = $error;
                 }
             }
-            $this->response(array('status' => 'ko', 'message' => $errorMessage), 400);
+            $this->response(array('status' => 'ko', 'errors' => $errors), 400);
         }
         else
         {
-            $this->response(array('status' => 'ok'), 200);
+            log_message('debug', "post=".var_export($_POST, true)."");
+//            $this->form_validation->
+//            log_message('debug', "post2=".var_export($_POST, true)."");
+
+            $this->load->model('Membres_model');
+            $membre_id = $this->Membres_model->insert_membres($_POST, $list);
+            if($membre_id && ($membre = $this->Membres_model->exists_membres(array('id' => $membre_id))))
+            {
+                $this->session->set_userdata('user', $membre);
+                $this->response(array('status' => 'ok', 'message' => lang('ok_reg'), 'redirect' => site_url(($pro ? 'pro' : 'perso').'/index')), 200);
+                return;
+            }
+            else
+            {
+                log_message('error', "la création d'un membre a échouté : ".var_export($_POST, true));
+                $this->response(array('status' => 'ko', 'errors' => lang('ko_reg_server')), 500);
+            }
         }
     }
 }
