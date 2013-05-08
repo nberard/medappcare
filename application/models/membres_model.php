@@ -49,7 +49,7 @@ class Membres_model extends CI_Model {
                 }
             }
         }
-        $this->db->set('est_pro', isset($_params['est_pro']) && $_params['est_pro'] ? 1 : 0);
+        $this->db->set('est_pro', 0); //will be set if rpps number ok or e-mail validation ok
         $this->db->insert($this->table);
         $membre_id = $this->db->insert_id();
         log_message('debug', "membre_id=".var_export($membre_id, true)."");

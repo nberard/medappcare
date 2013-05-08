@@ -125,7 +125,7 @@ class Admin extends CI_Controller
         $this->crud->set_subject("Catégorie");
         $this->crud->set_table('categorie');
         $this->crud->required_fields('nom_'.config_item('language_short'), 'est_pro');
-        $this->crud->set_relation('parent_id', 'categorie', '{nom_'.config_item('language_short').'}');
+        $this->crud->set_relation('parent_id', 'categorie', '{nom_'.config_item('language_short').'} (pro:{est_pro})');
         $this->crud->callback_after_insert(array($this, '_categories_after_add'));
         $this->crud->callback_after_update(array($this, '_categories_after_add'));
         $this->_admin_output($this->crud->render());
@@ -269,7 +269,7 @@ class Admin extends CI_Controller
                 array('categorie_id' => -1, 'poids' => 0),
                 'selection');
         });
-        $this->crud->set_relation('categorie_id', 'categorie', '{nom_'.config_item('language_short').'}');
+        $this->crud->set_relation('categorie_id', 'categorie', '{nom_'.config_item('language_short').'} (pro:{est_pro})');
         $this->_admin_output($this->crud->render());
     }
 

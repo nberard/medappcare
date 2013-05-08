@@ -1,11 +1,42 @@
 $(document).ready(function() {
 
-    // Datepicker
-    $('#ddn').datepicker();
-
-    // Boutons radios
-    $('div.btn-group button').click(function(){
-        $("#sexe").attr('value', $(this).attr('id'));
+    $('#form-signup').submit(function()
+    {
+        $.ajax({
+            type: 		"POST",
+            url:  		$('#form-signup').attr('data-action'),
+            dataType: 'json',
+            contentType: 'application/json',
+            data:
+                JSON.stringify({
+                    pro : 1,
+                    nom : $('#nom').val(),
+                    prenom : $('#prenom').val(),
+                    email : $('#reg_email').val(),
+                    mot_de_passe : $('#reg_password').val(),
+                    interets : $('#interets').val(),
+                    profession : $('#profession').val(),
+                    cgu_valid : $('#cgu').is(':checked') ? 1 : 0,
+                    numero_rpps : $('#rpps').val()
+                }),
+            success: function(data, textStatus, xhr)
+            {
+                $('#form-signup').empty().html('<div id="reg-sucess" class="alert alert-success">'+xhr.responseJSON.message+'</div>');
+                setTimeout(function(){
+                    $('#reg-sucess').hide('slow');
+                    window.location = xhr.responseJSON.redirect;
+                }, 2000);
+            },
+            error: function(xhr, textStatus, error)
+            {
+                if(xhr.responseJSON.errors)
+                {
+                    $('#reg-error').empty().html(xhr.responseJSON.errors).show();
+                    return false;
+                }
+            }
+        });
+        return false;
     });
 
     $('#profession').multiselect({

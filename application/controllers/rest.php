@@ -38,24 +38,38 @@ class Rest extends REST_Controller {
     public function signup_post()
     {
         $_POST = $this->_post();
-        $countries = array_flip(config_item('country_list'));
+
         $pro = !empty($_POST['pro']);
         $list = $pro ?
-            array() :
+            array('email', 'mot_de_passe', 'nom', 'prenom', 'cgu_valid', 'profession', 'numero_rpps') :
             array('email', 'mot_de_passe', 'date_naissance', 'sexe', 'pays', 'cgu_valid', 'cgv_valid');
         foreach($list as $field)
             if(!isset($_POST[$field]))
                 $_POST[$field] = '';
-        $_POST['pays'] = isset($countries[$_POST['pays']]) ? $countries[$_POST['pays']] : 'FR';
+        if(!$pro)
+        {
+            $countries = array_flip(config_item('country_list'));
+            $_POST['pays'] = isset($countries[$_POST['pays']]) ? $countries[$_POST['pays']] : 'FR';
+        }
         $this->load->library('form_validation');
         $this->lang->load('form_validation');
         $this->form_validation->set_rules('email', 'E-mail', 'required|valid_email|is_unique[membre.email]');
         $this->form_validation->set_rules('mot_de_passe', 'Mot de passe', 'required|max_length[32]|min_length[4]');
-        $this->form_validation->set_rules('date_naissance', 'Date de naissance', 'required|regex_match[/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/]');
-        $this->form_validation->set_rules('sexe', 'Sexe', 'required|alpha_numeric|exact_length[1]|enum[H,F,A]');
-        $this->form_validation->set_rules('pays', 'Pays', 'required|alpha_numeric|exact_length[2]');
         $this->form_validation->set_rules('cgu_valid', 'CGU', 'required|enum[1]');
-        $this->form_validation->set_rules('cgv_valid', 'CGV', 'required|enum[1]');
+        if($pro)
+        {
+            $this->form_validation->set_rules('nom', 'Nom', 'required|max_length[256]');
+            $this->form_validation->set_rules('prenom', 'Prénom', 'required|max_length[256]');
+            $this->form_validation->set_rules('profession', 'Profession', 'required|max_length[256]');
+            $this->form_validation->set_rules('numero_rpps', 'Numéro RPPS', 'max_length[128]');
+        }
+        else
+        {
+            $this->form_validation->set_rules('date_naissance', 'Date de naissance', 'required|regex_match[/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/]');
+            $this->form_validation->set_rules('sexe', 'Sexe', 'required|alpha_numeric|exact_length[1]|enum[H,F,A]');
+            $this->form_validation->set_rules('pays', 'Pays', 'required|alpha_numeric|exact_length[2]');
+            $this->form_validation->set_rules('cgv_valid', 'CGV', 'required|enum[1]');
+        }
         log_message('debug', "run for=".var_export($_POST, true)."");
         if(!$this->form_validation->run())
         {
