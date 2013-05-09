@@ -2,14 +2,14 @@
 
 <div class="title">
     <div class="wrapper">
-        <h2>Titre d'Application <a href="developer.php" title="Nom du Développeur"><span>par</span> Nom du studio</a></h2> <!-- INSÉRER LE TITRE DE L'APP ICI et le lien vers la page du Développeur-->
+        <h2><?php echo $application->titre; ?><span> par</span> <a href="<?php echo $application->lien_contact; ?>" title="<?php echo $application->nom_editeur; ?>"><?php echo $application->nom_editeur; ?></a></h2> <!-- INSÉRER LE TITRE DE L'APP ICI et le lien vers la page du Développeur-->
     </div>
 </div>
 
 <section id="metapp" class="catmasante">
     <div class="wrapper">
 
-        <div class="icone"></div>
+        <div class="icone"><img width="80px" height="80px" src="<?php echo $application->logo_url; ?>"></div>
 
         <div class="content right">
             <div class="appnote noteMedappcare"><span></span><a href="#thegrid" class="note deux">Deux</a></div>
@@ -24,9 +24,16 @@
     <div class="wrapper">
         <div class="sidebar left">
             <div class="os">
-                <div class="list"><span class="ios">iOS</span><span class="price">4,89 €</span></div> <!-- INSERER L'OS et le prix correspondant-->
-                <div class="list"><span class="android">Android</span><span class="price">2,34 €</span></div>
-                <div class="list"><span class="web">Web App</span><span class="price">gratuit</span></div>
+                <div class="list">
+                    <?php if($application->device_id == $deviceApple): ?>
+                        <span class="ios">iOS</span> <!-- INSERER L'OS -->
+                    <?php elseif($application->device_id == $deviceAndroid): ?>
+                        <span class="android">Android</span>
+                    <?php else: ?>
+                        <span class="web">Web App</span>
+                    <?php endif; ?>
+                    <span class="price"><?php echo $application->prix_complet; ?></span>
+                </div>
             </div>
             <div class="buttons">
                 <a href="#" class="noter">Noter l'Application</a>

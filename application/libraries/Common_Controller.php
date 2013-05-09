@@ -9,19 +9,23 @@
 
 class Common_Controller extends CI_Controller
 {
-    function __construct()
+    protected $pro;
+    protected $access_label;
+    function __construct($_pro)
     {
         parent::__construct();
+        $this->pro = $_pro;
+        $this->access_label = $_pro ? 'pro' : 'perso';
         $this->config->load('price');
         $this->config->load('country');
         $this->load->helper('assets');
-        $this->load->helper('redirect');
+        $this->load->helper('link');
         $this->load->helper('price');
         $this->lang->load('common');
-//                $this->output->enable_profiler(TRUE);
+                $this->output->enable_profiler(TRUE);
     }
 
-    protected function _getCommonIncludes($pro = false, $js_files = array())
+    protected function _getCommonIncludes($js_files = array())
     {
         $languagesVars = $this->lang->languages;
         $this->load->model('Categories_model');
@@ -34,8 +38,8 @@ class Common_Controller extends CI_Controller
             );
         }
         $categories_enfants = array();
-        $categories_principales = $this->Categories_model->get_categories_parentes($pro);
-        $correspClasses = $pro ? array('administratif', 'mapratique', 'minformer', 'mespatients') :
+        $categories_principales = $this->Categories_model->get_categories_parentes($this->pro);
+        $correspClasses = $this->pro ? array('administratif', 'mapratique', 'minformer', 'mespatients') :
             array('masante', 'monquotidien', 'minformer', 'medeplacer');
         foreach($categories_principales as &$categorie_principale)
         {
@@ -46,7 +50,7 @@ class Common_Controller extends CI_Controller
         }
         return array(
             'header_meta' => $this->load->view('inc/header_meta', array('css_files' => array(css_url('stylesheet'))), true),
-            'header' => $this->load->view('inc/header', array('pro' => $pro, 'user' => $this->session->userdata('user')), true),
+            'header' => $this->load->view('inc/header', array('pro' => $this->pro, 'access_label' => $this->access_label, 'user' => $this->session->userdata('user')), true),
             'home_slider' => $this->load->view('inc/home_slider', '', true),
             'menu' => $this->load->view('inc/menu', array(
                 'categories_principales' => $categories_principales,
@@ -67,5 +71,32 @@ class Common_Controller extends CI_Controller
                 js_url('scripts'),
             ),$js_files)), true),
         );
+    }
+
+    protected function _format_all_apps_prices(&$_applis_array)
+    {
+        $this->load->helper('price');
+        foreach ($_applis_array as &$_appli)
+            $_appli->prix_complet = format_price($_appli->prix, $_appli->devise, $this->lang->line('free'));
+    }
+
+    protected function _format_all_apps_links(&$_applis_array)
+    {
+        $this->load->helper('url');
+        foreach ($_applis_array as &$_appli)
+            $_appli->link = site_url($this->access_label.'/app_'.to_ascii($_appli->titre).'_'.$_appli->id);
+//        var_dump($_applis_array);
+    }
+
+    protected function _get_app_infos($_id)
+    {
+        $this->load->model('Applications_model');
+        $application = $this->Applications_model->get_application($_id);
+        if($application)
+        {
+            $application->prix_complet = format_price($application->prix, $application->devise, $this->lang->line('free'));
+        }
+//        var_dump($application);
+        return $application;
     }
 }

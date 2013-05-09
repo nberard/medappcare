@@ -7,7 +7,7 @@ class Pro extends Common_Controller {
 
     public function __construct()
     {
-        parent::__construct();
+        parent::__construct(true);
     }
 
 
@@ -18,8 +18,10 @@ class Pro extends Common_Controller {
         $lastEvalApplis = $this->Applications_model->get_last_eval_applications();
         $top5Applis = $this->Applications_model->get_top_five_applications();
         //var_dump($this->Applications_model->get_selection_applications(1));
-        format_all_prices($lastEvalApplis, $this->lang->line('free'));
-        format_all_prices($top5Applis, $this->lang->line('free'));
+        $this->_format_all_apps_prices($lastEvalApplis);
+        $this->_format_all_apps_prices($top5Applis);
+        $this->_format_all_apps_links($lastEvalApplis);
+        $this->_format_all_apps_links($top5Applis);
         $indexData = array(
             'home_slider' => $this->load->view('inc/home_slider', '', true),
             'widget_selection' => $this->load->view('inc/widget_selection', '', true),
@@ -78,13 +80,14 @@ class Pro extends Common_Controller {
         $this->load->view('main', $data);
     }
 
-    public function app()
+    public function app($_id)
     {
         $appData = array(
             'widget_devices' => $this->load->view('inc/widget_devices', '', true),
             'partners' => $this->load->view('inc/partners', '', true),
         );
 
+        $appData['app'] = $this->_get_app_infos($_id);
         $data['inc'] = $this->_getCommonIncludes(true);
 
         $data['contenu'] = $this->load->view('contenu/app', $appData, true);

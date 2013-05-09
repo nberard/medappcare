@@ -9,11 +9,3 @@ if(!function_exists('format_price'))
                 $_price.$currency_map[$_currency]);
     }
 }
-if(!function_exists('format_all_prices'))
-{
-    function format_all_prices(&$_applis_array, $_free_label)
-    {
-        foreach ($_applis_array as &$_appli)
-            $_appli->prix_complet = format_price($_appli->prix, $_appli->devise, $_free_label);
-    }
-}

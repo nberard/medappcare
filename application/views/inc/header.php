@@ -1,5 +1,5 @@
 <div class="wrapper">
-    <h1><a href="<?php echo site_url(($pro ? 'pro' : 'perso').'/index'); ?>"><span>Medappcare - un site super cool qu'on aime parce qu'il est bien</span></a></h1>
+    <h1><a href="<?php echo site_url("$access_label/index"); ?>"><span>Medappcare - un site super cool qu'on aime parce qu'il est bien</span></a></h1>
 <!--    --><?php //if($this->session->flashdata('error')): ?>
 <!--    <span class="alert alert-error">--><?php //echo $this->session->flashdata('error'); ?><!--</span>-->
 <!--    --><?php //endif; ?>
@@ -12,7 +12,7 @@
             <a class="twitter" href="https://twitter.com/Medappcare" target="_blank" title="twitter">Suivez-nous sur Twitter</a>
         </div>
         <div class="meta">
-            <a href="<?php echo site_url($pro ? 'perso/index' : 'pro/index') ?>" class="<?php echo $pro ? 'link-particuliers' : 'pro' ?>"><?php echo lang($pro ? 'espace_particulier' : 'espace_pro') ?></a>
+            <a href="<?php echo site_url("$access_label/index") ?>" class="<?php echo $pro ? 'link-particuliers' : 'pro' ?>"><?php echo lang($pro ? 'espace_particulier' : 'espace_pro') ?></a>
             <?php if(!$user): ?>
             <a data-toggle="modal" href="#connexionModal" class="connexion">Connexion</a>
             <?php else: ?>
@@ -38,7 +38,7 @@
     </form>
     <div class="registration-call">
     	Nouveau sur Medappcare ?
-    	<a href="<?php echo site_url($pro ? 'pro/register' : 'perso/register') ?>" class="btn btn-primary"><?php echo lang('inscription') ?></a>
+    	<a href="<?php echo site_url("$access_label/register") ?>" class="btn btn-primary"><?php echo lang('inscription') ?></a>
     </div>
   </div>
     <div id="login-error" class="alert alert-error hide"></div>

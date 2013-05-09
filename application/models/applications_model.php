@@ -9,6 +9,7 @@ class Applications_model extends CI_Model {
 
     protected $table = 'application';
     protected $tableSelection = 'selection_application';
+    protected $tableEditeur = 'editeur';
 
     public function __construct()
     {
@@ -65,6 +66,17 @@ class Applications_model extends CI_Model {
         return $this->db->from($this->table)
                     ->join($this->tableSelection, $this->table.'.id = '.$this->tableSelection.'.application_id')
                     ->where(array('selection_id' => $_idSelection))->get()->result();
+    }
+
+    public function get_application($_id)
+    {
+        return $this->db->select(
+                $this->table.'.*, '
+                .$this->tableEditeur.'.nom as nom_editeur, '
+                .$this->tableEditeur.'.lien_contact'
+            )->from($this->table)
+            ->join($this->tableEditeur, $this->tableEditeur.'.id = '.$this->table.'.editeur_id', 'INNER')
+            ->where(array($this->table.'.id' => $_id))->get()->row();
     }
 
 }

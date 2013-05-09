@@ -38,11 +38,7 @@
 |
 */
 $route['default_controller'] = "perso";
-//
-//$route['^(fr|en)/register$'] = "site/register";
-//$route['^(fr|en)/registerPro$'] = "site/registerPro";
-//$route['^(fr|en)/indexPro'] = "site/indexPro";
-//$route['^(fr|en)/index$'] = $route['default_controller'];
+$route['^(fr|en)/([a-z]+)/app_[a-z0-9\-]+_(:num)$'] = "$2/app/$3";
 
 $route['^fr/(.+)$'] = "$1";
 $route['^en/(.+)$'] = "$1";
