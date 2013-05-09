@@ -13,6 +13,7 @@ class Perso extends Common_Controller {
 
 	public function index()
 	{
+        log_message('debug', "index");
         $this->load->model('Applications_model');
         $this->load->model('Devices_model');
         $this->lang->load('common');
@@ -23,6 +24,18 @@ class Perso extends Common_Controller {
         $this->_format_all_apps_prices($top5Applis);
         $this->_format_all_apps_links($lastEvalApplis);
         $this->_format_all_apps_links($top5Applis);
+
+        $this->load->model('Accessoires_model');
+        $accessoires = $this->Accessoires_model->get_last_accessoires(6);
+        foreach($accessoires as &$accessoire)
+        {
+            $description_text = html_entity_decode(strip_tags($accessoire->{"description_".config_item('language_short')}));
+            $accessoire->description_short = substr($description_text, 0, 80).' ...';
+        }
+        $this->_format_all_apps_prices($accessoires);
+        $this->_format_all_accessoires_links($accessoires);
+
+        $this->load->model('Devices_model');
         $indexData = array(
             'home_slider' => $this->load->view('inc/home_slider', '', true),
             'widget_selection' => $this->load->view('inc/widget_selection', '', true),
@@ -36,7 +49,7 @@ class Perso extends Common_Controller {
                 'deviceAndroid' => Devices_model::APPLICATION_DEVICE_ANDROID,
                 'deviceApple' => Devices_model::APPLICATION_DEVICE_APPLE,
             ), true),
-            'widget_devices' => $this->load->view('inc/widget_devices', '', true),
+            'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $accessoires), true),
             'widget_news' => $this->load->view('inc/widget_news', '', true),
             'home_pushpartners' => $this->load->view('inc/home_pushpartners', '', true),
             'partners' => $this->load->view('inc/partners', '', true),
@@ -129,14 +142,14 @@ class Perso extends Common_Controller {
    
     public function device()
     {
-        $appData = array(
+//        $this->_format_all_apps_links($top5Applis);
+        $devices_data = array(
             'widget_devices' => $this->load->view('inc/widget_devices', '', true),
             'partners' => $this->load->view('inc/partners', '', true),
         );
-
         $data['inc'] = $this->_getCommonIncludes();
 
-        $data['contenu'] = $this->load->view('contenu/device', $appData, true);
+        $data['contenu'] = $this->load->view('contenu/device', $devices_data, true);
         $data['body_class'] = 'device particuliers masante';
         $this->load->view('main', $data);
     }    

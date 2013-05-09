@@ -9,7 +9,7 @@
 <section id="metapp" class="catmasante">
     <div class="wrapper">
 
-        <div class="icone"><img width="80px" height="80px" src="<?php echo $application->logo_url; ?>"></div>
+        <div class="icone"><img width="90px" height="90px" src="<?php echo $application->logo_url; ?>"></div>
 
         <div class="content right">
             <div class="appnote noteMedappcare"><span></span><a href="#thegrid" class="note deux">Deux</a></div>

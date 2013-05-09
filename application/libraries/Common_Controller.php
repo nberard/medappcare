@@ -76,6 +76,7 @@ class Common_Controller extends CI_Controller
     protected function _format_all_apps_prices(&$_applis_array)
     {
         $this->load->helper('price');
+        $this->config->load('price');
         foreach ($_applis_array as &$_appli)
             $_appli->prix_complet = format_price($_appli->prix, $_appli->devise, $this->lang->line('free'));
     }
@@ -85,7 +86,13 @@ class Common_Controller extends CI_Controller
         $this->load->helper('url');
         foreach ($_applis_array as &$_appli)
             $_appli->link = site_url($this->access_label.'/app_'.to_ascii($_appli->titre).'_'.$_appli->id);
-//        var_dump($_applis_array);
+    }
+
+    protected function _format_all_accessoires_links(&$_accessoires_array)
+    {
+        $this->load->helper('url');
+        foreach ($_accessoires_array as &$_accessoire)
+            $_accessoire->link = site_url($this->access_label.'/device_'.to_ascii($_accessoire->{"nom_".config_item('language_short')}).'_'.$_accessoire->id);
     }
 
     protected function _get_app_infos($_id)
@@ -96,7 +103,6 @@ class Common_Controller extends CI_Controller
         {
             $application->prix_complet = format_price($application->prix, $application->devise, $this->lang->line('free'));
         }
-//        var_dump($application);
         return $application;
     }
 }

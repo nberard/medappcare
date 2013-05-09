@@ -51,8 +51,10 @@ class Admin extends CI_Controller
 
     public function accessoires()
     {
+        $this->config->load('price');
         $this->crud->set_subject('Accessoire');
         $this->crud->set_table('accessoire');
+        $this->crud->field_type('devise','enum',array_keys(config_item('currency_map')));
         $this->crud->required_fields('nom_'.config_item('language_short'), 'fabriquant_id', 'photo', 'lien_achat');
         $this->crud->set_relation('fabriquant_id', 'accessoire_fabriquant', '{nom}');
         $this->_admin_output($this->crud->render());
@@ -76,7 +78,7 @@ class Admin extends CI_Controller
     {
         $this->crud->set_subject('Article');
         $this->crud->set_table('article');
-        $this->crud->required_fields('titre');
+        $this->crud->required_fields('titre_'.config_item('language_short'));
         $this->crud->set_relation('categorie_id', 'categorie', '{nom_'.config_item('language_short').'}');
         $this->crud->set_relation('device_id', 'device', '{nom}');
         $this->crud->unset_fields('date_creation', 'date_modification');
