@@ -53,4 +53,13 @@ if(!function_exists('country_dropdown'))
             return json_encode(array_values(config_item('country_list')));
         }
     }
+
+    if(!function_exists('validate_full_country'))
+    {
+        function validate_full_country($_country_long)
+        {
+            $countries = array_flip(config_item('country_list'));
+            return isset($countries[$_country_long]) ? $countries[$_country_long] : config_item('default_country');
+        }
+    }
 }

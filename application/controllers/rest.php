@@ -8,7 +8,9 @@ class Rest extends REST_Controller {
     public function __construct()
     {
         parent::__construct();
+        $this->config->load('country');
         $this->load->helper('crypt');
+        $this->load->helper('country');
         $this->lang->load('alert');
 //        $this->output->enable_profiler(TRUE);
     }

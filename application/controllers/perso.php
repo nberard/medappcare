@@ -1,9 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+require_once APPPATH.'libraries/Common_Controller.php';
 /*
  * @property Applications_model $Applications_model
  */
-class Perso extends MY_Controller {
+class Perso extends Common_Controller {
 
     public function __construct()
     {
@@ -19,11 +19,8 @@ class Perso extends MY_Controller {
         $lastEvalApplis = $this->Applications_model->get_last_eval_applications();
         $top5Applis = $this->Applications_model->get_top_five_applications();
         //var_dump($this->Applications_model->get_selection_applications(1));
-        foreach ($lastEvalApplis as &$lastEvalAppli)
-            $lastEvalAppli->prix_complet = $lastEvalAppli->prix == 0.00  ? $this->lang->line('free') : $lastEvalAppli->prix.$this->correspDevises[$lastEvalAppli->devise];
-        foreach ($top5Applis as &$top5Appli)
-            $top5Appli->prix_complet = $top5Appli->prix == 0.00  ? $this->lang->line('free') : $top5Appli->prix.$this->correspDevises[$top5Appli->devise];
-
+        format_all_prices($lastEvalApplis, $this->lang->line('free'));
+        format_all_prices($top5Applis, $this->lang->line('free'));
         $indexData = array(
             'home_slider' => $this->load->view('inc/home_slider', '', true),
             'widget_selection' => $this->load->view('inc/widget_selection', '', true),

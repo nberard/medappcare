@@ -1,4 +1,3 @@
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <?php foreach($js_files as $js_file): ?>
     <script src="<?php echo $js_file; ?>"></script>
 <?php endforeach; ?>
