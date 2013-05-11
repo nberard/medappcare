@@ -21,6 +21,7 @@ class Common_Controller extends CI_Controller
         $this->load->helper('assets');
         $this->load->helper('link');
         $this->load->helper('price');
+        $this->load->helper('date');
         $this->lang->load('common');
                 $this->output->enable_profiler(TRUE);
     }
@@ -73,7 +74,7 @@ class Common_Controller extends CI_Controller
         );
     }
 
-    protected function _format_all_apps_prices(&$_applis_array)
+    protected function _format_all_prices(&$_applis_array)
     {
         $this->load->helper('price');
         $this->config->load('price');
@@ -81,18 +82,11 @@ class Common_Controller extends CI_Controller
             $_appli->prix_complet = format_price($_appli->prix, $_appli->devise, $this->lang->line('free'));
     }
 
-    protected function _format_all_apps_links(&$_applis_array)
+    protected function _format_all_links(&$_data_link_array, $_target, $_label_titre = 'titre', $_link = 'link', $_label_id = 'id')
     {
         $this->load->helper('url');
-        foreach ($_applis_array as &$_appli)
-            $_appli->link = site_url($this->access_label.'/app_'.to_ascii($_appli->titre).'_'.$_appli->id);
-    }
-
-    protected function _format_all_accessoires_links(&$_accessoires_array)
-    {
-        $this->load->helper('url');
-        foreach ($_accessoires_array as &$_accessoire)
-            $_accessoire->link = site_url($this->access_label.'/device_'.to_ascii($_accessoire->{"nom_".config_item('language_short')}).'_'.$_accessoire->id);
+        foreach ($_data_link_array as &$_data_link)
+            $_data_link->{$_link} = site_url($this->access_label.'/'.$_target.'_'.to_ascii($_data_link->{$_label_titre}).'_'.$_data_link->{$_label_id});
     }
 
     protected function _get_app_infos($_id)

@@ -18,10 +18,10 @@ class Pro extends Common_Controller {
         $lastEvalApplis = $this->Applications_model->get_last_eval_applications();
         $top5Applis = $this->Applications_model->get_top_five_applications();
         //var_dump($this->Applications_model->get_selection_applications(1));
-        $this->_format_all_apps_prices($lastEvalApplis);
-        $this->_format_all_apps_prices($top5Applis);
-        $this->_format_all_apps_links($lastEvalApplis);
-        $this->_format_all_apps_links($top5Applis);
+        $this->_format_all_prices($lastEvalApplis);
+        $this->_format_all_prices($top5Applis);
+        $this->_format_all_links($lastEvalApplis, 'app');
+        $this->_format_all_links($top5Applis, 'app');
         $indexData = array(
             'home_slider' => $this->load->view('inc/home_slider', '', true),
             'widget_selection' => $this->load->view('inc/widget_selection', '', true),

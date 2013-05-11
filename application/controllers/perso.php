@@ -20,10 +20,10 @@ class Perso extends Common_Controller {
         $lastEvalApplis = $this->Applications_model->get_last_eval_applications();
         $top5Applis = $this->Applications_model->get_top_five_applications();
         //var_dump($this->Applications_model->get_selection_applications(1));
-        $this->_format_all_apps_prices($lastEvalApplis);
-        $this->_format_all_apps_prices($top5Applis);
-        $this->_format_all_apps_links($lastEvalApplis);
-        $this->_format_all_apps_links($top5Applis);
+        $this->_format_all_prices($lastEvalApplis);
+        $this->_format_all_prices($top5Applis);
+        $this->_format_all_links($lastEvalApplis, 'app');
+        $this->_format_all_links($top5Applis, 'app');
 
         $this->load->model('Accessoires_model');
         $accessoires = $this->Accessoires_model->get_last_accessoires(6);
@@ -32,10 +32,19 @@ class Perso extends Common_Controller {
             $description_text = html_entity_decode(strip_tags($accessoire->{"description_".config_item('language_short')}));
             $accessoire->description_short = substr($description_text, 0, 80).' ...';
         }
-        $this->_format_all_apps_prices($accessoires);
-        $this->_format_all_accessoires_links($accessoires);
-
+        $this->_format_all_prices($accessoires);
+        $this->_format_all_links($accessoires, 'device', "nom_".config_item('language_short'));
         $this->load->model('Devices_model');
+        $this->load->model('Articles_model');
+        $articles = $this->Articles_model->get_last_articles(2);
+        foreach ($articles as $article)
+        {
+            $article->date_full = date_full($article->date_creation);
+        }
+        $this->_format_all_links($articles, 'news', "titre_".config_item('language_short'));
+        $this->_format_all_links($articles, 'category', 'nom_categorie', 'categorie_link', 'categorie_id');
+
+
         $indexData = array(
             'home_slider' => $this->load->view('inc/home_slider', '', true),
             'widget_selection' => $this->load->view('inc/widget_selection', '', true),
@@ -50,7 +59,7 @@ class Perso extends Common_Controller {
                 'deviceApple' => Devices_model::APPLICATION_DEVICE_APPLE,
             ), true),
             'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $accessoires), true),
-            'widget_news' => $this->load->view('inc/widget_news', '', true),
+            'widget_news' => $this->load->view('inc/widget_news', array('articles' => $articles), true),
             'home_pushpartners' => $this->load->view('inc/home_pushpartners', '', true),
             'partners' => $this->load->view('inc/partners', '', true),
         );
@@ -140,7 +149,7 @@ class Perso extends Common_Controller {
         $this->load->view('main', $data);
     }
    
-    public function device()
+    public function device($_id)
     {
 //        $this->_format_all_apps_links($top5Applis);
         $devices_data = array(
@@ -152,7 +161,21 @@ class Perso extends Common_Controller {
         $data['contenu'] = $this->load->view('contenu/device', $devices_data, true);
         $data['body_class'] = 'device particuliers masante';
         $this->load->view('main', $data);
-    }    
+    }
+
+    public function news($_id)
+    {
+//        $this->_format_all_apps_links($top5Applis);
+        $devices_data = array(
+            'widget_devices' => $this->load->view('inc/widget_devices', '', true),
+            'partners' => $this->load->view('inc/partners', '', true),
+        );
+        $data['inc'] = $this->_getCommonIncludes();
+
+        $data['contenu'] = $this->load->view('contenu/category', $devices_data, true);
+        $data['body_class'] = 'category particuliers masante';
+        $this->load->view('main', $data);
+    }
 
 }
 
