@@ -2,7 +2,7 @@
 
 <div class="title">
     <div class="wrapper">
-        <h2><?php echo $application->titre; ?><span> par</span> <a href="<?php echo $application->lien_contact; ?>" title="<?php echo $application->nom_editeur; ?>"><?php echo $application->nom_editeur; ?></a></h2> <!-- INSÉRER LE TITRE DE L'APP ICI et le lien vers la page du Développeur-->
+        <h2><?php echo $application->titre; ?><span> par</span> <a href="<?php echo $application->lien_contact ? $application->lien_contact : '#'; ?>" title="<?php echo $application->nom_editeur; ?>"><?php echo $application->nom_editeur; ?></a></h2> <!-- INSÉRER LE TITRE DE L'APP ICI et le lien vers la page du Développeur-->
     </div>
 </div>
 

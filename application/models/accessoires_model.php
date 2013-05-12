@@ -8,6 +8,7 @@
 class Accessoires_model extends CI_Model {
 
     protected $table = 'accessoire';
+    protected $tableFabriquant = 'accessoire_fabriquant';
 
     public function __construct()
     {
@@ -18,6 +19,13 @@ class Accessoires_model extends CI_Model {
     public function get_last_accessoires($_limit)
     {
         return $this->db->limit($_limit)->order_by('id', 'desc')->get($this->table)->result();
+    }
+
+    public function get_accessoire($_id)
+    {
+        return $this->db->select('A.*, F.nom AS nom_fabriquant')->from($this->table.' A')
+                        ->join($this->tableFabriquant.' F', 'F.id = A.fabriquant_id', 'INNER')
+                        ->where(array('A.id' => $_id))->get()->row();
     }
 
 }

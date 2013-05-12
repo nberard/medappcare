@@ -2,14 +2,14 @@
 
 <div class="title">
         <div class="wrapper">
-            <h2>Nom du device <a href="developer.php" title="Nom du Développeur"><span>par</span> Withings</a></h2> <!-- INSÉRER LE NOM DU DEVICE et le lien vers la page du fabricant-->
+            <h2><?php echo $device->{"nom_".config_item('language_short')}; ?> <span>par</span> <a href="#" title="<?php echo $device->nom_fabriquant; ?>"><?php echo $device->nom_fabriquant; ?></a></h2> <!-- INSÉRER LE NOM DU DEVICE et le lien vers la page du fabricant-->
         </div>
     </div>
     
     <section id="metapp" class="catmasante">
         <div class="wrapper">
     
-        <div class="icone"></div>
+        <div class="icone"><img width="90px" height="90px" src="<?php echo $device->photo; ?>"></div>
         
         <div class="content right">
             <div class="appnote noteMedappcare"><span></span><a href="#thegrid" class="note deux">Deux</a></div>
@@ -52,7 +52,7 @@
         <div class="wrapper">
         <div class="sidebar left">
             <div class="qrcode">
-                <img src="tmp/qr.png" alt="qr" width="200" height="200">
+                <img src="<?php echo img_url('tmp/qr.png'); ?>" alt="qr" width="200" height="200">
                 <span>Flashez le code ci-dessus pour télécharger l’application.</span>
             </div>
             <div class="social">
@@ -95,10 +95,10 @@
 	    	<div class="tabContent open" id="motDuFabricant">
 	    		<div class="logoPart">
 		    		
-		    		<img src="../tmp/logo-withings.png" alt="[nom-du-fabricant]"/>
+		    		<img src="<?php echo img_url('tmp/logo-withings.png'); ?>" alt="[nom-du-fabricant]"/>
 		    		
 	    		</div>
-	    		<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla.</p>
+	    		<p><?php echo $device->{"description_".config_item('language_short')}; ?></p>
 	    	</div>
 	    	
 	    	<div class="tabContent" id="galeriePhoto">

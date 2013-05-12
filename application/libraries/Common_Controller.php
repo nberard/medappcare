@@ -99,4 +99,18 @@ class Common_Controller extends CI_Controller
         }
         return $application;
     }
+
+    protected function _get_accessoires($_nb)
+    {
+        $this->load->model('Accessoires_model');
+        $accessoires = $this->Accessoires_model->get_last_accessoires($_nb);
+        foreach($accessoires as &$accessoire)
+        {
+            $description_text = html_entity_decode(strip_tags($accessoire->{"description_".config_item('language_short')}));
+            $accessoire->description_short = substr($description_text, 0, 80).' ...';
+        }
+        $this->_format_all_prices($accessoires);
+        $this->_format_all_links($accessoires, 'device', "nom_".config_item('language_short'));
+        return $accessoires;
+    }
 }

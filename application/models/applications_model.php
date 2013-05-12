@@ -51,14 +51,26 @@ class Applications_model extends CI_Model {
         return $this->db->where($_conditionString)->where($_condition_Int, NULL, FALSE)->count_all_results($this->table) > 0;
     }
 
-    public function get_last_eval_applications($_limit = 5)
+    public function get_last_eval_applications($_category_id = -1, $_limit = 5)
     {
-        return $this->db->limit($_limit)->order_by('id', 'desc')->get($this->table)->result();
+        $this->db->limit($_limit)->order_by('id', 'desc');
+        if($_category_id != -1)
+        {
+            $this->db->where(array('categorie_id' => $_category_id));
+        }
+        $res = $this->db->get($this->table)->result();
+        return $res ? $res : array();
     }
 
-    public function get_top_five_applications($_limit = 5)
+    public function get_top_five_applications($_category_id = -1, $_limit = 5)
     {
-        return $this->db->limit($_limit)->order_by('id', 'asc')->get($this->table)->result();
+        $this->db->limit($_limit)->order_by('id', 'asc');
+        if($_category_id != -1)
+        {
+            $this->db->where(array('categorie_id' => $_category_id));
+        }
+        $res = $this->db->get($this->table)->result();
+        return $res ? $res : array();
     }
 
     public function get_selection_applications($_idSelection)
