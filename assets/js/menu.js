@@ -120,16 +120,16 @@ $(document).ready(function() {
 	});
 	
 	
-	/* Device tabs */
+	/* App & Device tabs */
 	
-	$('#deviceTabs nav li').click(function() {
+	$('#descTabs nav li').click(function() {
 		if (!$(this).hasClass('selected')) {
-			$('#deviceTabs nav li.selected').removeClass('selected');
+			$('#descTabs nav li.selected').removeClass('selected');
 			$(this).addClass('selected');
 			
-			var destination = $('#deviceTabs .tabContent#'+$(this).attr('data-destination'));
+			var destination = $('#descTabs .tabContent#'+$(this).attr('data-destination'));
 		
-			var previouslyOpened = $('#deviceTabs .tabContent.open');
+			var previouslyOpened = $('#descTabs .tabContent.open');
 			previouslyOpened.removeClass('open');
 			destination.addClass('open');
 			

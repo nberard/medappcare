@@ -68,15 +68,15 @@
         </div> <!-- end wrapper -->
     </section>
     
-    <section id="deviceTabs" class="catmasante">
+    <section id="descTabs" class="catmasante">
     	<nav>
     		<div class="wrapper">
     			<ul>
-    				<li class="selected" data-destination="motDuFabricant">
-    					Le Mot du Fabricant
-    				</li>
-    				<li data-destination="galeriePhoto">
+    				<li class="selected" data-destination="galeriePhotos">
     					Galerie Photos
+    				</li>
+    				<li data-destination="motDuFabricant">
+    					Le Mot du Fabricant
     				</li>
     				<li data-destination="commentaires">
     					Commentaires
@@ -92,7 +92,11 @@
     	</nav>
     	
     	<div class="wrapper">
-	    	<div class="tabContent open" id="motDuFabricant">
+	    	<div class="tabContent open" id="galeriePhotos">
+	    		Galerie Photos
+	    	</div>
+	    	
+	    	<div class="tabContent" id="motDuFabricant">
 	    		<div class="logoPart">
 		    		
 		    		<img src="<?php echo img_url('tmp/logo-withings.png'); ?>" alt="[nom-du-fabricant]"/>
@@ -101,16 +105,12 @@
 	    		<p><?php echo $device->{"description_".config_item('language_short')}; ?></p>
 	    	</div>
 	    	
-	    	<div class="tabContent" id="galeriePhoto">
-	    		Galerie Photo
-	    	</div>
-	    	
 	    	<div class="tabContent" id="commentaires">
 	    		Commentaires
 	    	</div>
 	    	
 	    	<div class="tabContent" id="appsCompatibles">
-	    		Apps compatibles
+	    		<section id="devices"><?php  //echo $widget_devices; ?></section> <!-- Section App compatobles --> <?php // TODO : remplacer par widget app compatobles ?>
 	    	</div>
 	    	
 	    	<div class="tabContent" id="revueDePresse">

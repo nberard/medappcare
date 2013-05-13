@@ -134,6 +134,11 @@
 #devices .metaFooter{background: #ededed; height: 28px; padding: 0 15px; }
 #devices .metaFooter a{float: right;}
 
+/* =========== LISTE DEVICES (sans titre) =========== */
+
+#devicesCompatibles #devices{border: none; min-height: 350px;}
+#devicesCompatibles #devices h2{display: none;}
+
 /* =========== NEWS =========== */
 
 #news{background: white; min-height: 175px; border-bottom: 1px solid #a3a3a3; display: block;}

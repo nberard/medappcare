@@ -1,7 +1,7 @@
 <nav>
     <ul>
         <li class="home">
-            <a href="<?php echo index_page(); ?>">Home</a>
+            <a href="<?php echo site_url("$access_label/index"); ?>">Home</a>
         </li>
         <?php foreach($categories_principales as $categorie_principale): ?>
             <li class="nav<?php echo $categorie_principale->class; ?> megamenu">

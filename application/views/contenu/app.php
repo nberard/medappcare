@@ -55,7 +55,7 @@
     <div class="wrapper">
         <div class="sidebar left">
             <div class="qrcode">
-                <img src="tmp/qr.png" alt="qr" width="200" height="200">
+                <img src="<?php echo img_url('tmp/qr.png'); ?>" alt="qr" width="200" height="200">
                 <span>Flashez le code ci-dessus pour télécharger l’application.</span>
             </div>
             <div class="social">
@@ -71,10 +71,56 @@
     </div> <!-- end wrapper -->
 </section>
 
-<section id="appTabs" class="catmasante">
-
+<section id="descTabs" class="catmasante">
+    	<nav>
+    		<div class="wrapper">
+    			<ul>
+    				<li class="selected" data-destination="galeriePhotos">
+    					Screenshots
+    				</li>
+    				<li data-destination="motDelEditeur">
+    					Le mot de l'éditeur
+    				</li>
+    				<li data-destination="commentaires">
+    					Commentaires
+    				</li>
+    				<li data-destination="devicesCompatibles">
+    					Produits connectés compatibles
+    				</li>
+    				<li data-destination="revueDePresse">
+    					Revue de presse
+    				</li>
+    			</ul>
+    		</div>
+    	</nav>
+    	
+    	<div class="wrapper">
+	    	<div class="tabContent open" id="galeriePhotos">
+	    		Screenshots
+	    	</div>
+	    	
+	    	<div class="tabContent" id="motDelEditeur">
+	    		<div class="logoPart">
+		    		
+		    		<img src="<?php echo img_url('tmp/logo-withings.png'); ?>" alt="[nom-de-l-editeur]"/>
+		    		
+	    		</div>
+	    		<p><?php // echo $device->{"description_".config_item('language_short')}; ?></p>
+	    	</div>
+	    	
+	    	<div class="tabContent" id="commentaires">
+	    		Commentaires
+	    	</div>
+	    	
+	    	<div class="tabContent" id="devicesCompatibles">
+	    		<section id="devices"><?php echo $widget_devices; ?></section> <!-- Section Devices connectés -->
+	    	</div>
+	    	
+	    	<div class="tabContent" id="revueDePresse">
+	    		Revue de presse
+	    	</div>
+    	</div>
+    	
 </section>
-
-<section id="devices"><?php echo $widget_devices; ?></section> <!-- Section Devices connectés -->
 
 <section id="partners"><?php echo $partners; ?></section> <!-- Section Partenaires -->

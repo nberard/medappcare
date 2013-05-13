@@ -18,7 +18,7 @@ h2.form-signin-heading{font-size: 30px; color: #0f6eb4;}
 
 h2{color: #0f6eb4; font-size: 24px;}
 
-.app h2, .device h2 {color: white;}
+.app h2, .device h2, .category h2 {color: white;}
 
 #listApps h2{color: #0f6eb4; font-size: 24px;}
 #listApps .listapps h3,
