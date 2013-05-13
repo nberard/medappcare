@@ -428,7 +428,8 @@ html[xmlns] .slides {display: block;}
 #appSectionOne .sidebar,
 #appSectionTwo .sidebar{width: 20%; max-width: 150px;}
 
-.qrcode img{display: block; max-width: 150px; max-height: 150px; margin: 0 auto 10px auto;}
+.qrcode img{display: block; max-width: 150px; max-height: 150px; margin: 0 auto;}
+.qrcode p {padding: 0 10px;}
 
 .app #devices{background: #cfe3e7; border-top: 1px solid #0f6eb4; border-bottom: 1px solid #0f6eb4; margin: 0 0 50px 0;}
 .app.monquotidien #devices{background: #f1d2d2; border-top: 1px solid #e05d5f; border-bottom: 1px solid #e05d5f;}
@@ -540,11 +541,18 @@ button{margin-right: 15px;}
 
 #appSectionOne .labels .ce {width: 40px; height: 30px;}
 
+.device .labels .ce  {background-image: url(../img/pictoCE_blue.png);}
+
 .masante #appSectionOne .labels .ce  {background-image: url(../img/pictoCE_blue.png);}
 .monquotidien #appSectionOne .labels .ce  {background-image: url(../img/pictoCE_red.png);}
 .minformer #appSectionOne .labels .ce  {background-image: url(../img/pictoCE_green.png);}
 .medeplacer #appSectionOne .labels .ce  {background-image: url(../img/pictoCE_pink.png);}
 
+.features span.bluetooth {background-image: url(../img/pictoBluetooth_blue.png);}
+.features span.wifi {background-image: url(../img/pictoWifi_blue.png);}
+.features span.usb {background-image: url(../img/pictoUsb_blue.png);}
+
+/* PAS DE CATEGORIE POUR LES DEVICES
 .masante .features span.bluetooth {background-image: url(../img/pictoBluetooth_blue.png);}
 .masante .features span.wifi {background-image: url(../img/pictoWifi_blue.png);}
 .masante .features span.usb {background-image: url(../img/pictoUsb_blue.png);}
@@ -560,13 +568,17 @@ button{margin-right: 15px;}
 .medeplacer .features span.bluetooth {background-image: url(../img/pictoBluetooth_pink.png);}
 .medeplacer .features span.wifi {background-image: url(../img/pictoWifi_pink.png);}
 .medeplacer .features span.usb {background-image: url(../img/pictoUsb_pink.png);}
+*/
 
 #descTabs nav {display: block; height: 54px;}
 
+#descTabs nav{background: #79C1D2;}
+/* Pas de catégorie dans device
 #descTabs.catmasante nav{background: #79C1D2;}
 #descTabs.catmonquotidien nav{background: #E05D5F;}
 #descTabs.catminformer nav{background: #84C790;}
 #descTabs.catmedeplacer nav{background: #D769AF;}
+*/
 
 #descTabs nav .wrapper {height: 100%;}
 #descTabs nav ul {width: 100%; height: 100%;}

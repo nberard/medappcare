@@ -6,7 +6,7 @@
         </div>
     </div>
     
-    <section id="metapp" class="catmasante">
+    <section id="metapp">
         <div class="wrapper">
     
         <div class="icone"><img width="90px" height="90px" src="<?php echo $device->photo; ?>"></div>
@@ -20,7 +20,7 @@
         </div>
     </section>
     
-    <section id="appSectionOne" class="catmasante">
+    <section id="appSectionOne">
         <div class="wrapper">
             <div class="sidebar left">
                 <div class="features">
@@ -47,7 +47,8 @@
     </section>
     
     <div class="line"></div>
-    
+
+<?php /*   
     <section id="appSectionTwo" class="catmasante">
         <div class="wrapper">
         <div class="sidebar left">
@@ -67,8 +68,9 @@
         <div class="clear"></div>
         </div> <!-- end wrapper -->
     </section>
+    */ ?>
     
-    <section id="descTabs" class="catmasante">
+    <section id="descTabs">
     	<nav>
     		<div class="wrapper">
     			<ul>

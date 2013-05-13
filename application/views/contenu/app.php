@@ -60,7 +60,7 @@
         <div class="sidebar left">
             <div class="qrcode">
                 <img src="<?php echo img_url('tmp/qr.png'); ?>" alt="qr" width="200" height="200">
-                <span>Flashez le code ci-dessus pour télécharger l’application.</span>
+                <p>Flashez le code ci-dessus pour télécharger l’app.</p>
             </div>
             <div class="social">
                 <div class="sharingTwitter"></div>
