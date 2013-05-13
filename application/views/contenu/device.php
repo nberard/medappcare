@@ -24,14 +24,14 @@
         <div class="wrapper">
             <div class="sidebar left">
                 <div class="features">
-                    <span class="wifi">Wifi</span>
-                    <span class="bluetooth">Bluetooth</span>
-                    <span class="usb">USB</span>
+                    <span class="<?php echo $device->type; ?>"><?php echo ucfirst($device->type); ?></span>
                 </div>
+                <?php if($device->est_ce): ?>
                 <div class="labels">
                 	<span class="label ce">CE</span>
                 	<span class="text">Cet objet est un dispositif médical</span>
                 </div>
+                <?php endif; ?>
                 <div class="buttons">
                     <a href="#" class="noter">Noter l'Application</a>
                     <a href="#" class="signaler">Signaler</a>
