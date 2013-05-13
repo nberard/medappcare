@@ -40,16 +40,16 @@ class Common_Controller extends CI_Controller
                 'redirect' => redirect_language($this->uri->segment_array(), $shortLanguage),
             );
         }
-        $categories_enfants = $categories_enfants_assoc = $categories_enfants_target = array();
+         $categories_enfants_assoc = $categories_enfants_target = array();
         $categories_principales = $this->Categories_model->get_categories_parentes($this->pro);
         $categories_principales_target = $this->Categories_model->get_categories_parentes(!$this->pro);
-        $arrayClassesPro =  array('administratif', 'mapratique', 'minformer', 'mespatients');
-        $arrayClassesPerso =  array('masante', 'monquotidien', 'minformer', 'medeplacer');
-        $correspClasses = $this->pro ? $arrayClassesPro : $arrayClassesPerso;
+//        $arrayClassesPro =  array('administratif', 'mapratique', 'minformer', 'mespatients');
+//        $arrayClassesPerso =  array('masante', 'monquotidien', 'minformer', 'medeplacer');
+//        $correspClasses = $this->pro ? $arrayClassesPro : $arrayClassesPerso;
         foreach($categories_principales as &$categorie_principale)
         {
-            $class = array_shift($correspClasses);
-            $categorie_principale->class = $class;
+//            $class = array_shift($correspClasses);
+//            $categorie_principale->class = $class;
             $categorie_principale->enfants = $this->Categories_model->get_categories_enfantes($categorie_principale->id);
             $categorie_principale->link = '#';
         }
@@ -71,15 +71,12 @@ class Common_Controller extends CI_Controller
                 'categories_principales' => $categories_principales,
             ), true),
             'data_categories_principales' => $categories_principales,
-            'data_categories_enfants_assoc' => $categories_enfants_assoc,
             'widget_selection' => $this->load->view('inc/widget_selection', '', true),
             'footer' => $this->load->view('inc/footer', array(
                 'languages' => $languagesVars,
                 'access_label' => $this->access_label,
                 'categories_principales_pro' => $this->pro ? $categories_principales : $categories_principales_target,
-                'categories_enfants_pro' => $this->pro ? $categories_enfants : $categories_enfants_target,
                 'categories_principales_perso' => $this->pro ? $categories_principales_target : $categories_principales,
-                'categories_enfants_perso' => $this->pro ? $categories_enfants_target : $categories_enfants,
             ), true),
             'footer_meta' => $this->load->view('inc/footer_meta', array('js_files' => array_merge(array(
                 js_url('jquery-2.0.0.min'),
@@ -207,8 +204,7 @@ class Common_Controller extends CI_Controller
             'widget_allappcategory' => $this->load->view('inc/widget_allappcategory', array(
                 'categorie' => $categorie,
             ), true),
-            'widget_devices' => $this->load->view('inc/widget_devices', '', true),
-            'widget_news' => $this->load->view('inc/widget_news', '', true),
+            'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(6)), true),
             'home_pushpartners' => $this->load->view('inc/home_pushpartners', '', true),
             'partners' => $this->load->view('inc/partners', '', true),
             'categorie' => $categorie,
@@ -217,7 +213,7 @@ class Common_Controller extends CI_Controller
         $data['inc'] = $this->_getCommonIncludes();
 
         $data['contenu'] = $this->load->view('contenu/category', $categoryData, true);
-        $data['body_class'] = 'category '.$this->body_class.' '.to_ascii($categorie->{"nom_".config_item('language_short')});
+        $data['body_class'] = 'category '.$this->body_class.' '.$categorie->class;
         $this->load->view('main', $data);
     }
 
@@ -236,7 +232,7 @@ class Common_Controller extends CI_Controller
         $data['inc'] = $this->_getCommonIncludes();
 
         $data['contenu'] = $this->load->view('contenu/app', $appData, true);
-        $data['body_class'] = 'app '.$this->body_class.' '.to_ascii($application->titre);
+        $data['body_class'] = 'app '.$this->body_class.' '.$application->class;
         $this->load->view('main', $data);
     }
 

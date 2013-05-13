@@ -30,8 +30,7 @@ class Perso extends Common_Controller {
         $registerData['nb_countries'] = count(config_item('country_list'));
         $registerData['country_json'] = country_json();
         $registerData['plateformes'] = $plateformes;
-        $registerData['categories_principales'] = $data['inc']['data_categories_principales'];
-        $registerData['categories_enfants_assoc'] = $data['inc']['data_categories_enfants_assoc'];
+        $registerData['categories_principales'] =$data['inc']['data_categories_principales'];
         $data['contenu'] = $this->load->view('contenu/register', $registerData, true);
         $data['body_class'] = 'signup '.$this->body_class;
         $this->load->view('main', $data);
