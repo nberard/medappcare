@@ -18,7 +18,7 @@ class Pro extends Common_Controller {
 
     public function register()
     {
-        $data['inc'] = $this->_getCommonIncludes(true, array(
+        $data['inc'] = $this->_getCommonIncludes(array(
             js_url('bootstrap-datepicker'),
             js_url('bootstrap-multiselect'),
             js_url('jquery.checkValidity'),

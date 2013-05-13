@@ -21,7 +21,7 @@ class Perso extends Common_Controller {
     {
         $this->load->model('Plateformes_model');
         $plateformes = $this->Plateformes_model->get_all_plateformes();
-        $data['inc'] = $this->_getCommonIncludes(false, array(
+        $data['inc'] = $this->_getCommonIncludes(array(
             js_url('bootstrap-datepicker'),
             js_url('bootstrap-multiselect'),
             js_url('jquery.checkValidity'),
