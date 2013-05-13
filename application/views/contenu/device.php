@@ -47,8 +47,9 @@
     </section>
     
     <div class="line"></div>
-    
-    <section id="appSectionTwo">
+
+<?php /*   
+    <section id="appSectionTwo" class="catmasante">
         <div class="wrapper">
         <div class="sidebar left">
             <div class="qrcode">
@@ -67,6 +68,7 @@
         <div class="clear"></div>
         </div> <!-- end wrapper -->
     </section>
+    */ ?>
     
     <section id="descTabs">
     	<nav>
