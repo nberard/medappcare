@@ -35,6 +35,10 @@
                     <span class="price"><?php echo $application->prix_complet; ?></span>
                 </div>
             </div>
+            <div class="labels">
+            	<span class="label ce">CE</span>
+            	<span class="text">Cet objet est un dispositif médical</span>
+            </div>
             <div class="buttons">
                 <a href="#" class="noter">Noter l'Application</a>
                 <a href="#" class="signaler">Signaler</a>
