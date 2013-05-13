@@ -8,8 +8,9 @@
 class Applications_model extends CI_Model {
 
     protected $table = 'application';
-    protected $tableSelection = 'selection_application';
+    protected $tableSelection = 'selection_items';
     protected $tableEditeur = 'editeur';
+    protected $tableCategorie = 'categorie';
 
     public function __construct()
     {
@@ -85,9 +86,11 @@ class Applications_model extends CI_Model {
         return $this->db->select(
                 $this->table.'.*, '
                 .$this->tableEditeur.'.nom as nom_editeur, '
-                .$this->tableEditeur.'.lien_contact'
+                .$this->tableEditeur.'.lien_contact, '
+                .$this->tableCategorie.'.class'
             )->from($this->table)
             ->join($this->tableEditeur, $this->tableEditeur.'.id = '.$this->table.'.editeur_id', 'INNER')
+            ->join($this->tableCategorie, $this->tableCategorie.'.id = '.$this->table.'.categorie_parente_id', 'LEFT')
             ->where(array($this->table.'.id' => $_id))->get()->row();
     }
 
