@@ -86,7 +86,6 @@ class Admin extends CI_Controller
         $this->crud->callback_after_insert(function($post_array,$primary_key) {
             $updates = array("date_creation" => date('Y-m-d H:i:s'));
             $this->_handle_default_values($post_array,$primary_key,array('categorie_id' => -1, 'device_id' => -1), 'article', $updates);
-            $this->log->write_log('ERROR', 'res='.var_export($updates,true).'');
         });
         $this->crud->callback_after_update(function($post_array,$primary_key) {
             $updates = array("date_modification" => date('Y-m-d H:i:s'));

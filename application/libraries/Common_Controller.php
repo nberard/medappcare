@@ -227,7 +227,6 @@ class Common_Controller extends CI_Controller
             'deviceAndroid' => Devices_model::APPLICATION_DEVICE_ANDROID,
             'deviceApple' => Devices_model::APPLICATION_DEVICE_APPLE,
             'application' => $application,
-            'application' => $application,
         );
 //var_dump($appData['application']);
         $data['inc'] = $this->_getCommonIncludes();

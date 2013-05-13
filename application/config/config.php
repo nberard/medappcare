@@ -183,7 +183,7 @@ $config['directory_trigger']	= 'd'; // experimental not currently in use
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 1;
+$config['log_threshold'] = 4;
 
 /*
 |--------------------------------------------------------------------------
@@ -367,4 +367,8 @@ $config['proxy_ips'] = '';
 $config['note_min'] = 0;
 $config['note_max'] = 5;
 
+$config['types_accessoires'] = array('bluetooth', 'wifi', 'usb');
+
 $config['password_salt'] = 'Qz2acvC7bjnjJdNK';
+
+$config['body_class_categories'] = array('administratif', 'mapratique', 'minformer', 'mespatients', 'masante', 'monquotidien', 'minformer', 'medeplacer');

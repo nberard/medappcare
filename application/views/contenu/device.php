@@ -6,7 +6,7 @@
         </div>
     </div>
     
-    <section id="metapp" class="catmasante">
+    <section id="metapp">
         <div class="wrapper">
     
         <div class="icone"><img width="90px" height="90px" src="<?php echo $device->photo; ?>"></div>
@@ -20,18 +20,18 @@
         </div>
     </section>
     
-    <section id="appSectionOne" class="catmasante">
+    <section id="appSectionOne">
         <div class="wrapper">
             <div class="sidebar left">
                 <div class="features">
-                    <span class="wifi">Wifi</span>
-                    <span class="bluetooth">Bluetooth</span>
-                    <span class="usb">USB</span>
+                    <span class="<?php echo $device->type; ?>"><?php echo ucfirst($device->type); ?></span>
                 </div>
+                <?php if($device->est_ce): ?>
                 <div class="labels">
                 	<span class="label ce">CE</span>
                 	<span class="text">Cet objet est un dispositif médical</span>
                 </div>
+                <?php endif; ?>
                 <div class="buttons">
                     <a href="#" class="noter">Noter l'Application</a>
                     <a href="#" class="signaler">Signaler</a>
@@ -48,7 +48,7 @@
     
     <div class="line"></div>
     
-    <section id="appSectionTwo" class="catmasante">
+    <section id="appSectionTwo">
         <div class="wrapper">
         <div class="sidebar left">
             <div class="qrcode">
@@ -68,7 +68,7 @@
         </div> <!-- end wrapper -->
     </section>
     
-    <section id="descTabs" class="catmasante">
+    <section id="descTabs">
     	<nav>
     		<div class="wrapper">
     			<ul>
