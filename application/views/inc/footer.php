@@ -21,8 +21,8 @@
                 <li><a href="#">Médecins, évaluez nos applications</a></li>
                 <li><a href="#">Espace Annonceurs</a></li>
                 <li><a href="#">Medappcare dans la presse</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="mentionslegales.html">Mentions Légales</a></li>
+                <li><a href="<?php echo site_url($access_label.'/contact'); ?>">Contact</a></li>
+                <li><a href="<?php echo site_url($access_label.'/mentionslegales'); ?>">Mentions Légales</a></li>
                 <li><a href="#">...</a></li>
             </ul>
         </nav>
@@ -30,83 +30,25 @@
     <div class="right">
         <nav class="secondary grandPublic">
             <h5>Grand Public</h5>
-            <ul>
-                <h6>Ma Santé</h6>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">...</a></li>
-            </ul>
-            <ul>
-                <h6>Mon Quotidien</h6>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">...</a></li>
-            </ul>
-            <ul>
-                <h6>M'informer</h6>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">...</a></li>
-            </ul>
-            <ul>
-                <h6>Me Déplacer</h6>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">...</a></li>
-            </ul>
+            <?php foreach($categories_principales_perso as $categorie_principale_perso): ?>
+                <ul>
+                    <h6><?php echo $categorie_principale_perso->{"nom_".config_item('language_short')}; ?></h6>
+                    <?php foreach($categorie_principale_perso->enfants as $categorie_enfants_perso): ?>
+                        <li><a href="#"><?php echo $categorie_enfants_perso->{"nom_".config_item('language_short')}; ?> </a></li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endforeach; ?>
         </nav>
         <nav class="secondary professionnal">
             <h5>Professionnels de Santé</h5>
+            <?php foreach($categories_principales_pro as $categorie_principale_pro): ?>
             <ul>
-                <h6>Ma Santé</h6>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">...</a></li>
+                <h6><?php echo $categorie_principale_pro->{"nom_".config_item('language_short')}; ?></h6>
+                <?php foreach($categorie_principale_pro->enfants as $categorie_enfants_pro): ?>
+                    <li><a href="#"><?php echo $categorie_enfants_pro->{"nom_".config_item('language_short')}; ?> </a></li>
+                <?php endforeach; ?>
             </ul>
-            <ul>
-                <h6>Mon Quotidien</h6>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">...</a></li>
-            </ul>
-            <ul>
-                <h6>M'informer</h6>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">...</a></li>
-            </ul>
-            <ul>
-                <h6>Me Déplacer</h6>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">Addictions</a></li>
-                <li><a href="#">...</a></li>
-            </ul>
+            <?php endforeach; ?>
         </nav>
     </div> <!-- end right -->
     <div class="clear"></div>

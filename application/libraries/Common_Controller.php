@@ -16,6 +16,8 @@ class Common_Controller extends CI_Controller
         parent::__construct();
         $this->pro = $_pro;
         $this->access_label = $_pro ? 'pro' : 'perso';
+        $this->access_label_target = $_pro ? 'perso' : 'pro';
+        $this->body_class = $_pro ? 'lespros' : 'particuliers';
         $this->config->load('price');
         $this->config->load('country');
         $this->load->helper('assets');
@@ -23,7 +25,7 @@ class Common_Controller extends CI_Controller
         $this->load->helper('price');
         $this->load->helper('date');
         $this->lang->load('common');
-                $this->output->enable_profiler(TRUE);
+        $this->output->enable_profiler(TRUE);
     }
 
     protected function _getCommonIncludes($js_files = array())
@@ -38,29 +40,47 @@ class Common_Controller extends CI_Controller
                 'redirect' => redirect_language($this->uri->segment_array(), $shortLanguage),
             );
         }
-        $categories_enfants = array();
+        $categories_enfants = $categories_enfants_assoc = $categories_enfants_target = array();
         $categories_principales = $this->Categories_model->get_categories_parentes($this->pro);
-        $correspClasses = $this->pro ? array('administratif', 'mapratique', 'minformer', 'mespatients') :
-            array('masante', 'monquotidien', 'minformer', 'medeplacer');
+        $categories_principales_target = $this->Categories_model->get_categories_parentes(!$this->pro);
+        $arrayClassesPro =  array('administratif', 'mapratique', 'minformer', 'mespatients');
+        $arrayClassesPerso =  array('masante', 'monquotidien', 'minformer', 'medeplacer');
+        $correspClasses = $this->pro ? $arrayClassesPro : $arrayClassesPerso;
         foreach($categories_principales as &$categorie_principale)
         {
             $class = array_shift($correspClasses);
             $categorie_principale->class = $class;
-            $categories_enfants[$class] = $this->Categories_model->get_categories_enfantes($categorie_principale->id);
+            $categorie_principale->enfants = $this->Categories_model->get_categories_enfantes($categorie_principale->id);
             $categorie_principale->link = '#';
+        }
+        foreach($categories_principales_target as &$categorie_principale_target)
+        {
+            $categorie_principale_target->enfants = $this->Categories_model->get_categories_enfantes($categorie_principale_target->id);
+            $categorie_principale_target->link = '#';
         }
         return array(
             'header_meta' => $this->load->view('inc/header_meta', array('css_files' => array(css_url('stylesheet'))), true),
-            'header' => $this->load->view('inc/header', array('pro' => $this->pro, 'access_label' => $this->access_label, 'user' => $this->session->userdata('user')), true),
+            'header' => $this->load->view('inc/header', array(
+                'pro' => $this->pro,
+                'access_label' => $this->access_label,
+                'access_label_target' => $this->access_label_target,
+                'user' => $this->session->userdata('user'),
+            ), true),
             'home_slider' => $this->load->view('inc/home_slider', '', true),
             'menu' => $this->load->view('inc/menu', array(
                 'categories_principales' => $categories_principales,
-                'categories_enfants_assoc' => $categories_enfants,
             ), true),
             'data_categories_principales' => $categories_principales,
-            'data_categories_enfants_assoc' => $categories_enfants,
+            'data_categories_enfants_assoc' => $categories_enfants_assoc,
             'widget_selection' => $this->load->view('inc/widget_selection', '', true),
-            'footer' => $this->load->view('inc/footer', array('languages' => $languagesVars), true),
+            'footer' => $this->load->view('inc/footer', array(
+                'languages' => $languagesVars,
+                'access_label' => $this->access_label,
+                'categories_principales_pro' => $this->pro ? $categories_principales : $categories_principales_target,
+                'categories_enfants_pro' => $this->pro ? $categories_enfants : $categories_enfants_target,
+                'categories_principales_perso' => $this->pro ? $categories_principales_target : $categories_principales,
+                'categories_enfants_perso' => $this->pro ? $categories_enfants_target : $categories_enfants,
+            ), true),
             'footer_meta' => $this->load->view('inc/footer_meta', array('js_files' => array_merge(array(
                 js_url('jquery-2.0.0.min'),
                 js_url('jquery-ui-1.10.2.custom.min'),
@@ -112,5 +132,160 @@ class Common_Controller extends CI_Controller
         $this->_format_all_prices($accessoires);
         $this->_format_all_links($accessoires, 'device', "nom_".config_item('language_short'));
         return $accessoires;
+    }
+
+    protected function _common_index()
+    {
+        $this->load->model('Applications_model');
+        $this->load->model('Devices_model');
+        $this->load->model('Articles_model');
+        $lastEvalApplis = $this->Applications_model->get_last_eval_applications();
+        $top5Applis = $this->Applications_model->get_top_five_applications();
+        //var_dump($this->Applications_model->get_selection_applications(1));
+        $this->_format_all_prices($lastEvalApplis);
+        $this->_format_all_prices($top5Applis);
+        $this->_format_all_links($lastEvalApplis, 'app');
+        $this->_format_all_links($top5Applis, 'app');
+
+        $articles = $this->Articles_model->get_last_articles(2);
+        foreach ($articles as $article)
+        {
+            $article->date_full = date_full($article->date_creation);
+        }
+        $this->_format_all_links($articles, 'news', "titre_".config_item('language_short'));
+        $this->_format_all_links($articles, 'category', 'nom_categorie', 'categorie_link', 'categorie_id');
+
+        $selectionLabel1 = $this->pro ? 'pro_pourlespros' : 'home_lasteval';
+        $selectionLabel2 = $this->pro ? 'pro_pourlesgens' : 'home_topfive';
+        $indexData = array(
+            'home_slider' => $this->load->view('inc/home_slider', '', true),
+            'widget_selection' => $this->load->view('inc/widget_selection', '', true),
+            $selectionLabel1 => $this->load->view('inc/'.$selectionLabel1, array(
+                'applications' => $lastEvalApplis,
+                'deviceAndroid' => Devices_model::APPLICATION_DEVICE_ANDROID,
+                'deviceApple' => Devices_model::APPLICATION_DEVICE_APPLE,
+            ), true),
+            $selectionLabel2 => $this->load->view('inc/'.$selectionLabel2, array(
+                'applications' => $top5Applis,
+                'deviceAndroid' => Devices_model::APPLICATION_DEVICE_ANDROID,
+                'deviceApple' => Devices_model::APPLICATION_DEVICE_APPLE,
+            ), true),
+            'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(6)), true),
+            'widget_news' => $this->load->view('inc/widget_news', array('articles' => $articles), true),
+            'home_pushpartners' => $this->load->view('inc/home_pushpartners', '', true),
+            'partners' => $this->load->view('inc/partners', '', true),
+        );
+
+        $data['inc'] = $this->_getCommonIncludes();
+        $template = $this->pro ? 'indexPro' : 'index';
+        $data['contenu'] = $this->load->view('contenu/'.$template, $indexData, true);
+        $data['body_class'] = 'homepage '.$this->body_class;
+        $this->load->view('main', $data);
+    }
+
+    protected function _common_category($_id)
+    {
+        $this->load->model('Applications_model');
+        $this->load->model('Devices_model');
+        $this->load->model('Categories_model');
+        $lastEvalApplis = $this->Applications_model->get_last_eval_applications($_id);
+        $top5Applis = $this->Applications_model->get_top_five_applications($_id);
+        $categorie = $this->Categories_model->get_categorie($_id);
+        $categoryData = array(
+            'widget_selection' => $this->load->view('inc/widget_selection', '', true),
+            'widget_lasteval' => $this->load->view('inc/widget_lasteval', array(
+                'applications' => $lastEvalApplis,
+                'deviceAndroid' => Devices_model::APPLICATION_DEVICE_ANDROID,
+                'deviceApple' => Devices_model::APPLICATION_DEVICE_APPLE,
+            ), true),
+            'widget_topfive' => $this->load->view('inc/widget_topfive', array(
+                'applications' => $top5Applis,
+                'categorie' => $categorie,
+                'deviceAndroid' => Devices_model::APPLICATION_DEVICE_ANDROID,
+                'deviceApple' => Devices_model::APPLICATION_DEVICE_APPLE,
+            ), true),
+            'widget_allappcategory' => $this->load->view('inc/widget_allappcategory', array(
+                'categorie' => $categorie,
+            ), true),
+            'widget_devices' => $this->load->view('inc/widget_devices', '', true),
+            'widget_news' => $this->load->view('inc/widget_news', '', true),
+            'home_pushpartners' => $this->load->view('inc/home_pushpartners', '', true),
+            'partners' => $this->load->view('inc/partners', '', true),
+            'categorie' => $categorie,
+        );
+
+        $data['inc'] = $this->_getCommonIncludes();
+
+        $data['contenu'] = $this->load->view('contenu/category', $categoryData, true);
+        $data['body_class'] = 'category '.$this->body_class.' '.to_ascii($categorie->{"nom_".config_item('language_short')});
+        $this->load->view('main', $data);
+    }
+
+    protected function _common_app($_id)
+    {
+        $this->load->model('Devices_model');
+        $application = $this->_get_app_infos($_id);
+        $appData = array(
+            'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(6)), true),
+            'partners' => $this->load->view('inc/partners', '', true),
+            'deviceAndroid' => Devices_model::APPLICATION_DEVICE_ANDROID,
+            'deviceApple' => Devices_model::APPLICATION_DEVICE_APPLE,
+            'application' => $application,
+        );
+//var_dump($appData['application']);
+        $data['inc'] = $this->_getCommonIncludes();
+
+        $data['contenu'] = $this->load->view('contenu/app', $appData, true);
+        $data['body_class'] = 'app '.$this->body_class.' '.to_ascii($application->titre);
+        $this->load->view('main', $data);
+    }
+
+    protected function _common_device($_id)
+    {
+        $this->load->model('Accessoires_model');
+        $accessoire = $this->Accessoires_model->get_accessoire($_id);
+        $devices_data = array(
+            'widget_devices' => $this->load->view('inc/widget_devices', '', true),
+            'partners' => $this->load->view('inc/partners', '', true),
+            'device' => $accessoire,
+        );
+//        var_dump($accessoire);
+        $data['inc'] = $this->_getCommonIncludes();
+
+        $data['contenu'] = $this->load->view('contenu/device', $devices_data, true);
+        $data['body_class'] = 'device '.$this->body_class.' '.to_ascii($accessoire->{"nom_".config_item('language_short')});
+        $this->load->view('main', $data);
+    }
+
+    protected function _common_mentionslegales()
+    {
+        $data['inc'] = $this->_getCommonIncludes();
+
+        $data['contenu'] = $this->load->view('contenu/mentionslegales', '', true);
+        $data['body_class'] = 'mentionslegales particuliers';
+        $this->load->view('main', $data);
+    }
+
+    protected function _common_contact()
+    {
+        $data['inc'] = $this->_getCommonIncludes(array(
+            js_url('jquery.checkValidity'),
+        ));
+        $data['contenu'] = $this->load->view('contenu/contact', '', true);
+        $data['body_class'] = 'contact particuliers';
+        $this->load->view('main', $data);
+    }
+
+    protected function _common_news($_id)
+    {
+        //        $this->_format_all_apps_links($top5Applis);
+        $devices_data = array(
+            'partners' => $this->load->view('inc/partners', '', true),
+        );
+        $data['inc'] = $this->_getCommonIncludes();
+
+        $data['contenu'] = $this->load->view('contenu/category', $devices_data, true);
+        $data['body_class'] = 'category particuliers '.to_ascii('news');
+        $this->load->view('main', $data);
     }
 }

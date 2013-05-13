@@ -12,7 +12,7 @@
             <a class="twitter" href="https://twitter.com/Medappcare" target="_blank" title="twitter">Suivez-nous sur Twitter</a>
         </div>
         <div class="meta">
-            <a href="<?php echo site_url("$access_label/index") ?>" class="<?php echo $pro ? 'link-particuliers' : 'pro' ?>"><?php echo lang($pro ? 'espace_particulier' : 'espace_pro') ?></a>
+            <a href="<?php echo site_url("$access_label_target/index") ?>" class="<?php echo $pro ? 'link-particuliers' : 'pro' ?>"><?php echo lang($pro ? 'espace_particulier' : 'espace_pro') ?></a>
             <?php if(!$user): ?>
             <a data-toggle="modal" href="#connexionModal" class="connexion">Connexion</a>
             <?php else: ?>

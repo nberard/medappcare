@@ -5,7 +5,7 @@
             <li>
                 <a href="<?php echo $accessoire->link; ?>" class="icone"><img width="80px" height="80px" src="<?php echo $accessoire->photo; ?>"></a> <!-- INSÉRER L'ICON DU DEVICE -->
                 <div class="metapp">
-                    <h4><a href="<?php echo $accessoire->link; ?>"><?echo $accessoire->{"nom_".config_item('language_short')}; ?></a></h4> <!-- INSÉRER LE LIEN ET LE TITRE DU DEVICE -->
+                    <h4><a href="<?php echo $accessoire->link; ?>"><?php echo $accessoire->{"nom_".config_item('language_short')}; ?></a></h4> <!-- INSÉRER LE LIEN ET LE TITRE DU DEVICE -->
                     <p class="excerpt"><?php echo $accessoire->description_short; ?></p>
 <!--                    <p class="category">dans <a href="category.php">Addictions</a></p> <!-- INSÉRER LE LIEN VERS LE DEVICE -- WTF ?-->
                 </div>

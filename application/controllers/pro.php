@@ -13,38 +13,7 @@ class Pro extends Common_Controller {
 
     public function index()
     {
-        $this->load->model('Applications_model');
-        $this->load->model('Devices_model');
-        $lastEvalApplis = $this->Applications_model->get_last_eval_applications();
-        $top5Applis = $this->Applications_model->get_top_five_applications();
-        //var_dump($this->Applications_model->get_selection_applications(1));
-        $this->_format_all_prices($lastEvalApplis);
-        $this->_format_all_prices($top5Applis);
-        $this->_format_all_links($lastEvalApplis, 'app');
-        $this->_format_all_links($top5Applis, 'app');
-        $indexData = array(
-            'home_slider' => $this->load->view('inc/home_slider', '', true),
-            'widget_selection' => $this->load->view('inc/widget_selection', '', true),
-            'pro_pourlespros' => $this->load->view('inc/pro_pourlespros', array(
-                'applications' => $lastEvalApplis,
-                'deviceAndroid' => Devices_model::APPLICATION_DEVICE_ANDROID,
-                'deviceApple' => Devices_model::APPLICATION_DEVICE_APPLE,
-            ), true),
-            'pro_pourlesgens' => $this->load->view('inc/pro_pourlesgens', array(
-                'applications' => $top5Applis,
-                'deviceAndroid' => Devices_model::APPLICATION_DEVICE_ANDROID,
-                'deviceApple' => Devices_model::APPLICATION_DEVICE_APPLE,
-            ), true),
-            'widget_devices' => $this->load->view('inc/widget_devices', '', true),
-            'widget_news' => $this->load->view('inc/widget_news', '', true),
-            'home_pushpartners' => $this->load->view('inc/home_pushpartners', '', true),
-            'partners' => $this->load->view('inc/partners', '', true),
-        );
-
-        $data['inc'] = $this->_getCommonIncludes(true);
-        $data['contenu'] = $this->load->view('contenu/indexPro', $indexData, true);
-        $data['body_class'] = 'homepage lespros';
-        $this->load->view('main', $data);
+        $this->_common_index();
     }
 
     public function register()
@@ -56,43 +25,38 @@ class Pro extends Common_Controller {
             js_url('registerPro'),
         ));
         $data['contenu'] = $this->load->view('contenu/registerPro', '', true);
-        $data['body_class'] = 'signup lespros';
+        $data['body_class'] = 'signup '.$this->body_class;
         $this->load->view('main', $data);
     }
 
-    public function category()
+    public function category($_id)
     {
-        $categoryData = array(
-            'widget_selection' => $this->load->view('inc/widget_selection', '', true),
-            'widget_lasteval' => $this->load->view('inc/widget_lasteval', '', true),
-            'widget_topfive' => $this->load->view('inc/widget_topfive', '', true),
-            'widget_allappcategory' => $this->load->view('inc/widget_allappcategory', '', true),
-            'widget_devices' => $this->load->view('inc/widget_devices', '', true),
-            'widget_news' => $this->load->view('inc/widget_news', '', true),
-            'home_pushpartners' => $this->load->view('inc/home_pushpartners', '', true),
-            'partners' => $this->load->view('inc/partners', '', true),
-        );
-
-        $data['inc'] = $this->_getCommonIncludes(true);
-
-        $data['contenu'] = $this->load->view('contenu/category', $categoryData, true);
-        $data['body_class'] = 'category lespros masante';
-        $this->load->view('main', $data);
+        $this->_common_category($_id);
     }
 
     public function app($_id)
     {
-        $appData = array(
-            'widget_devices' => $this->load->view('inc/widget_devices', '', true),
-            'partners' => $this->load->view('inc/partners', '', true),
-        );
+        $this->_common_app($_id);
+    }
 
-        $appData['app'] = $this->_get_app_infos($_id);
-        $data['inc'] = $this->_getCommonIncludes(true);
+    public function mentionslegales()
+    {
+        $this->_common_mentionslegales();
+    }
 
-        $data['contenu'] = $this->load->view('contenu/app', $appData, true);
-        $data['body_class'] = 'app lespros masante';
-        $this->load->view('main', $data);
+    public function contact()
+    {
+        $this->_common_contact();
+    }
+
+    public function device($_id)
+    {
+        $this->_common_device($_id);
+    }
+
+    public function news($_id)
+    {
+        $this->_common_news($_id);
     }
 }
 

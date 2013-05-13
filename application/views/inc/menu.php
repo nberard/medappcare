@@ -23,11 +23,11 @@
 
 <div id = "dropdown">
     <div class="whiteLine"></div>
-    <?php foreach($categories_enfants_assoc as $class => $categories_enfants): ?>
-    <nav class = "<?php echo $class; ?>">
+    <?php foreach($categories_principales as $categorie_principale): ?>
+    <nav class = "<?php echo $categorie_principale->class; ?>">
         <div class="wrapper">
             <?php $cpt = 0; ?>
-            <?php foreach($categories_enfants as $categorie_enfant): ?>
+            <?php foreach($categorie_principale->enfants as $categorie_enfant): ?>
                 <?php if($cpt%10 == 0)
                 {
                     if($cpt != 0)
