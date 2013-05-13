@@ -58,6 +58,23 @@ class Admin extends CI_Controller
         $this->crud->field_type('type','enum', config_item('types_accessoires'));
         $this->crud->required_fields('nom_'.config_item('language_short'), 'fabriquant_id', 'photo', 'lien_achat');
         $this->crud->set_relation('fabriquant_id', 'accessoire_fabriquant', '{nom}');
+
+        $this->crud->set_relation_n_n('applications', 'accessoire_application_compatible', 'application', 'accessoire_id', 'application_id', '{titre}');
+
+        $this->_admin_output($this->crud->render());
+    }
+
+    public function accessoire_commentaires()
+    {
+        $this->crud->set_subject("Commentaire d'accessoire");
+        $this->crud->set_table('accessoire_commentaire');
+        $this->crud->required_fields('accessoire_id', 'membre_id', 'est_suspendu');
+        $this->crud->set_relation('membre_id', 'membre', '{email}');
+        $this->crud->set_relation('accessoire_id', 'accessoire', '{nom_'.config_item('language_short').'}');
+        $this->crud->unset_fields('date');
+        $this->crud->change_field_type('contenu', 'text');
+        $this->crud->callback_after_insert(array($this, '_accessoire_commentaires_after_add'));
+        $this->crud->callback_after_update(array($this, '_accessoire_commentaires_after_add'));
         $this->_admin_output($this->crud->render());
     }
 
@@ -96,6 +113,12 @@ class Admin extends CI_Controller
     }
 
     function _article_commentaires_after_add($post_array,$primary_key)
+    {
+        $this->db->update('article_commentaire',array("date" => date('Y-m-d H:i:s')), array('id' => $primary_key));
+        return true;
+    }
+
+    function _accessoire_commentaires_after_add($post_array,$primary_key)
     {
         $this->db->update('article_commentaire',array("date" => date('Y-m-d H:i:s')), array('id' => $primary_key));
         return true;
@@ -276,6 +299,9 @@ class Admin extends CI_Controller
         });
         $this->crud->set_relation('categorie_id', 'categorie', '{nom_'.config_item('language_short').'} (pro:{est_pro})');
         $this->crud->set_relation('categorie_parente_id', 'categorie', '{nom_'.config_item('language_short').'} (pro:{est_pro})', array('parent_id' => -1));
+
+        $this->crud->set_relation_n_n('accessoires', 'accessoire_application_compatible', 'accessoire', 'application_id', 'accessoire_id', '{nom_'.config_item('language_short').'}');
+
         $this->_admin_output($this->crud->render());
     }
 
