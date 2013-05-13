@@ -12,9 +12,9 @@ a:hover{text-decoration: underline;}
 .whiteLine{height: 1px; width: 100%; background: white; display: block;}
 
 .line{height: 1px; width: 100%; background: #79c1d2; display: block; margin: 50px 0;}
-.monquotidien .line{background: #e05d5f;}
+.monquotidien .line, .mapratique .line{background: #e05d5f;}
 .minformer .line{background: #84c790;}
-.medeplacer .line{background: #d769af;}
+.medeplacer .line, .mespatients .line{background: #d769af;}
 
 .right{float: right; position: relative;}
 .left{float: left; position: relative;}
@@ -177,26 +177,30 @@ html[xmlns] .slides {display: block;}
 .ios{background: url(../img/ios_blue.png) no-repeat; width: 16px; height: 29px;}
 .web{background: url(../img/web_blue.png) no-repeat; width: 18px; height: 27px;}
 
-.catmasante .android{background: url(../img/android_lightblue.png) no-repeat;}
-.catmasante .ios{background: url(../img/ios_lightblue.png) no-repeat;}
-.catmasante .web{background: url(../img/web_lightblue.png) no-repeat;}
+.masante .android, .administratif .android{background: url(../img/android_lightblue.png) no-repeat;}
+.masante .ios, .administratif .ios{background: url(../img/ios_lightblue.png) no-repeat;}
+.masante .web, .administratif .web{background: url(../img/web_lightblue.png) no-repeat;}
 
-.catmonquotidien .android,
+.monquotidien .android,
+.mapratique .android,
 #listApps .listapps.pourlespros .android{background: url(../img/android_red.png) no-repeat;}
-.catmonquotidien .ios,
+.monquotidien .ios,
 #listApps .listapps.pourlespros .ios{background: url(../img/ios_red.png) no-repeat;}
-.catmonquotidien .web,
+.monquotidien .web,
 #listApps .listapps.pourlespros .web{background: url(../img/web_red.png) no-repeat;}
 
-.catminformer .android{background: url(../img/android_green.png) no-repeat;}
-.catminformer .ios{background: url(../img/ios_green.png) no-repeat;}
-.catminformer .web{background: url(../img/web_green.png) no-repeat;}
+.minformer .android{background: url(../img/android_green.png) no-repeat;}
+.minformer .ios{background: url(../img/ios_green.png) no-repeat;}
+.minformer .web{background: url(../img/web_green.png) no-repeat;}
 
-.catmedeplacer .android,
+.medeplacer .android,
+.mespatients .android,
 #listApps .listapps.pourlesgens .android{background: url(../img/android_pink.png) no-repeat;}
-.catmedeplacer .ios,
+.medeplacer .ios,
+.mespatients .ios,
 #listApps .listapps.pourlesgens .ios{background: url(../img/ios_pink.png) no-repeat;}
-.catmedeplacer .web,
+.medeplacer .web,
+.mespatients .web,
 #listApps .listapps.pourlesgens .web{background: url(../img/web_pink.png) no-repeat;}
 
 /* À PRIORI ÇA NE SERT À RIEN ICI....
@@ -233,74 +237,96 @@ html[xmlns] .slides {display: block;}
 .default .dixsurdix,
 .dixsurdix{background: url(../img/notes_blue.png) -170px -244px no-repeat; width: 42px; height: 42px;}
 
-.catmasante .zero{background: url(../img/notes_lightblue.png) -178px -136px no-repeat; width: 33px; height: 30px;}
-.catmasante .un{background: url(../img/notes_lightblue.png) -217px -244px no-repeat; width: 33px; height: 30px;}
-.catmasante .deux{background: url(../img/notes_lightblue.png) -255px -244px no-repeat; width: 33px; height: 30px;}
-.catmasante .trois{background: url(../img/notes_lightblue.png) -305px 0px no-repeat; width: 33px; height: 30px;}
-.catmasante .quatre{background: url(../img/notes_lightblue.png) -305px -35px no-repeat; width: 33px; height: 30px;}
-.catmasante .cinq{background: url(../img/notes_lightblue.png) -178px -89px no-repeat; width: 33px; height: 42px;}
-.catmasante .six{background: url(../img/notes_lightblue.png) 0px -244px no-repeat; width: 33px; height: 42px;}
-.catmasante .sept{background: url(../img/notes_lightblue.png) -38px -244px no-repeat; width: 33px; height: 42px;}
-.catmasante .huit{background: url(../img/notes_lightblue.png) -76px -244px no-repeat; width: 42px; height: 42px;}
-.catmasante .neuf{background: url(../img/notes_lightblue.png) -123px -244px no-repeat; width: 42px; height: 42px;}
-.catmasante .dixsurdix{background: url(../img/notes_lightblue.png) -170px -244px no-repeat; width: 42px; height: 42px;}
+.masante .zero,
+.administratif .zero{background: url(../img/notes_lightblue.png) -178px -136px no-repeat; width: 33px; height: 30px;}
+.masante .un,
+.administratif .un{background: url(../img/notes_lightblue.png) -217px -244px no-repeat; width: 33px; height: 30px;}
+.masante .deux,
+.administratif .deux{background: url(../img/notes_lightblue.png) -255px -244px no-repeat; width: 33px; height: 30px;}
+.masante .trois,
+.administratif .trois{background: url(../img/notes_lightblue.png) -305px 0px no-repeat; width: 33px; height: 30px;}
+.masante .quatre,
+.administratif .quatre{background: url(../img/notes_lightblue.png) -305px -35px no-repeat; width: 33px; height: 30px;}
+.masante .cinq,
+.administratif .cinq{background: url(../img/notes_lightblue.png) -178px -89px no-repeat; width: 33px; height: 42px;}
+.masante .six,
+.administratif .six{background: url(../img/notes_lightblue.png) 0px -244px no-repeat; width: 33px; height: 42px;}
+.masante .sept,
+.administratif .sept{background: url(../img/notes_lightblue.png) -38px -244px no-repeat; width: 33px; height: 42px;}
+.masante .huit,
+.administratif .huit{background: url(../img/notes_lightblue.png) -76px -244px no-repeat; width: 42px; height: 42px;}
+.masante .neuf,
+.administratif .neuf{background: url(../img/notes_lightblue.png) -123px -244px no-repeat; width: 42px; height: 42px;}
+.masante .dixsurdix,
+.administratif .dixsurdix{background: url(../img/notes_lightblue.png) -170px -244px no-repeat; width: 42px; height: 42px;}
 
-.catmonquotidien .zero,
+.monquotidien .zero,
 #listApps .listapps.pourlespros .zero{background: url(../img/notes_red.png) -178px -136px no-repeat; width: 33px; height: 30px;}
-.catmonquotidien .un,
+.monquotidien .un,
 #listApps .listapps.pourlespros .un{background: url(../img/notes_red.png) -217px -244px no-repeat; width: 33px; height: 30px;}
-.catmonquotidien .deux,
+.monquotidien .deux,
 #listApps .listapps.pourlespros .deux{background: url(../img/notes_red.png) -255px -244px no-repeat; width: 33px; height: 30px;}
-.catmonquotidien .trois,
+.monquotidien .trois,
 #listApps .listapps.pourlespros .trois{background: url(../img/notes_red.png) -305px 0px no-repeat; width: 33px; height: 30px;}
-.catmonquotidien .quatre,
+.monquotidien .quatre,
 #listApps .listapps.pourlespros .quatre{background: url(../img/notes_red.png) -305px -35px no-repeat; width: 33px; height: 30px;}
-.catmonquotidien .cinq,
+.monquotidien .cinq,
 #listApps .listapps.pourlespros .cinq{background: url(../img/notes_red.png) -178px -89px no-repeat; width: 33px; height: 42px;}
-.catmonquotidien .six,
+.monquotidien .six,
 #listApps .listapps.pourlespros .six{background: url(../img/notes_red.png) 0px -244px no-repeat; width: 33px; height: 42px;}
-.catmonquotidien .sept,
+.monquotidien .sept,
 #listApps .listapps.pourlespros .sept{background: url(../img/notes_red.png) -38px -244px no-repeat; width: 33px; height: 42px;}
-.catmonquotidien .huit,
+.monquotidien .huit,
 #listApps .listapps.pourlespros .huit{background: url(../img/notes_red.png) -76px -244px no-repeat; width: 42px; height: 42px;}
-.catmonquotidien .neuf,
+.monquotidien .neuf,
 #listApps .listapps.pourlespros .neuf{background: url(../img/notes_red.png) -123px -244px no-repeat; width: 42px; height: 42px;}
-.catmonquotidien .dixsurdix,
+.monquotidien .dixsurdix,
 #listApps .listapps.pourlespros .dixsurdix{background: url(../img/notes_red.png) -170px -244px no-repeat; width: 42px; height: 42px;}
 
-.catminformer .zero{background: url(../img/notes_green.png) -178px -136px no-repeat; width: 33px; height: 30px;}
-.catminformer .un{background: url(../img/notes_green.png) -217px -244px no-repeat; width: 33px; height: 30px;}
-.catminformer .deux{background: url(../img/notes_green.png) -255px -244px no-repeat; width: 33px; height: 30px;}
-.catminformer .trois{background: url(../img/notes_green.png) -305px 0px no-repeat; width: 33px; height: 30px;}
-.catminformer .quatre{background: url(../img/notes_green.png) -305px -35px no-repeat; width: 33px; height: 30px;}
-.catminformer .cinq{background: url(../img/notes_green.png) -178px -89px no-repeat; width: 33px; height: 42px;}
-.catminformer .six{background: url(../img/notes_green.png) 0px -244px no-repeat; width: 33px; height: 42px;}
-.catminformer .sept{background: url(../img/notes_green.png) -38px -244px no-repeat; width: 33px; height: 42px;}
-.catminformer .huit{background: url(../img/notes_green.png) -76px -244px no-repeat; width: 42px; height: 42px;}
-.catminformer .neuf{background: url(../img/notes_green.png) -123px -244px no-repeat; width: 42px; height: 42px;}
-.catminformer .dixsurdix{background: url(../img/notes_green.png) -170px -244px no-repeat; width: 42px; height: 42px;}
+.minformer .zero{background: url(../img/notes_green.png) -178px -136px no-repeat; width: 33px; height: 30px;}
+.minformer .un{background: url(../img/notes_green.png) -217px -244px no-repeat; width: 33px; height: 30px;}
+.minformer .deux{background: url(../img/notes_green.png) -255px -244px no-repeat; width: 33px; height: 30px;}
+.minformer .trois{background: url(../img/notes_green.png) -305px 0px no-repeat; width: 33px; height: 30px;}
+.minformer .quatre{background: url(../img/notes_green.png) -305px -35px no-repeat; width: 33px; height: 30px;}
+.minformer .cinq{background: url(../img/notes_green.png) -178px -89px no-repeat; width: 33px; height: 42px;}
+.minformer .six{background: url(../img/notes_green.png) 0px -244px no-repeat; width: 33px; height: 42px;}
+.minformer .sept{background: url(../img/notes_green.png) -38px -244px no-repeat; width: 33px; height: 42px;}
+.minformer .huit{background: url(../img/notes_green.png) -76px -244px no-repeat; width: 42px; height: 42px;}
+.minformer .neuf{background: url(../img/notes_green.png) -123px -244px no-repeat; width: 42px; height: 42px;}
+.minformer .dixsurdix{background: url(../img/notes_green.png) -170px -244px no-repeat; width: 42px; height: 42px;}
 
-.catmedeplacer .zero,
+.medeplacer .zero,
+.mespatients .zero,
 #listApps .listapps.pourlesgens .zero{background: url(../img/notes_pink.png) -178px -136px no-repeat; width: 33px; height: 30px;}
-.catmedeplacer .un,
+.medeplacer .un,
+.mespatients .un,
 #listApps .listapps.pourlesgens .un{background: url(../img/notes_pink.png) -217px -244px no-repeat; width: 33px; height: 30px;}
-.catmedeplacer .deux,
+.medeplacer .deux,
+.mespatients .deux,
 #listApps .listapps.pourlesgens .deux{background: url(../img/notes_pink.png) -255px -244px no-repeat; width: 33px; height: 30px;}
-.catmedeplacer .trois,
+.medeplacer .trois,
+.mespatients .trois,
 #listApps .listapps.pourlesgens .trois{background: url(../img/notes_pink.png) -305px 0px no-repeat; width: 33px; height: 30px;}
-.catmedeplacer .quatre,
+.medeplacer .quatre,
+.mespatients .quatre,
 #listApps .listapps.pourlesgens .quatre{background: url(../img/notes_pink.png) -305px -35px no-repeat; width: 33px; height: 30px;}
-.catmedeplacer .cinq,
+.medeplacer .cinq,
+.mespatients .cinq,
 #listApps .listapps.pourlesgens .cinq{background: url(../img/notes_pink.png) -178px -89px no-repeat; width: 33px; height: 42px;}
-.catmedeplacer .six,
+.medeplacer .six,
+.mespatients .six,
 #listApps .listapps.pourlesgens .six{background: url(../img/notes_pink.png) 0px -244px no-repeat; width: 33px; height: 42px;}
-.catmedeplacer .sept,
+.medeplacer .sept,
+.mespatients .sept,
 #listApps .listapps.pourlesgens .sept{background: url(../img/notes_pink.png) -38px -244px no-repeat; width: 33px; height: 42px;}
-.catmedeplacer .huit,
+.medeplacer .huit,
+.mespatients .huit,
 #listApps .listapps.pourlesgens .huit{background: url(../img/notes_pink.png) -76px -244px no-repeat; width: 42px; height: 42px;}
-.catmedeplacer .neuf,
+.medeplacer .neuf,
+.mespatients .neuf,
 #listApps .listapps.pourlesgens .neuf{background: url(../img/notes_pink.png) -123px -244px no-repeat; width: 42px; height: 42px;}
-.catmedeplacer .dixsurdix,
+.medeplacer .dixsurdix,
+.mespatients .dixsurdix,
 #listApps .listapps.pourlesgens .dixsurdix{background: url(../img/notes_pink.png) -170px -244px no-repeat; width: 42px; height: 42px;}
 
 /* À PRIORI ÇA NE SERT À RIEN ICI....
@@ -329,18 +355,18 @@ html[xmlns] .slides {display: block;}
 
 .title{background: #79c1d2; width: 100%; height: 54px; line-height: 54px; margin: 40px 0 20px 0;}
 
-.monquotidien .title{background: #E05D5F;}
+.monquotidien .title, .mapratique .title{background: #E05D5F;}
 .minformer .title{background: #84C790;}
-.medeplacer .title{background: #D769AF;}
+.medeplacer .title, .mespatients .title{background: #D769AF;}
 
 
 /* =========== APPS =========== */
 
 #metapp{background: #79c1d2; width: 100%; height: 130px; position: relative; padding: 1px 0 0 0;}
 
-.monquotidien #metapp{background: #E05D5F;}
+.monquotidien #metapp, .mapratique #metapp{background: #E05D5F;}
 .minformer #metapp{background: #84C790;}
-.medeplacer #metapp{background: #D769AF;}
+.medeplacer #metapp, .mespatients #metapp{background: #D769AF;}
 
 #metapp .appnote{background: #f0f0f0; display: inline-block; width: 230px; height: 75px; vertical-align: middle; position: relative; margin: 26px 20px 0 0;}
 #metapp .appnote:last-child{margin: 26px 0 0 0;}
@@ -351,17 +377,17 @@ html[xmlns] .slides {display: block;}
 #metapp .notePro span{background: url(../img/pictapp_pro_lightblue.png) no-repeat; width: 120px; height: 50px;}
 #metapp .noteGens span{background: url(../img/pictapp_gens_lightblue.png) no-repeat; width: 88px; height: 44px;}
 
-#metapp.catmonquotidien .noteMedappcare span{background: url(../img/pictapp_medappcare_red.png) no-repeat;}
-#metapp.catminformer .noteMedappcare span{background: url(../img/pictapp_medappcare_green.png) no-repeat;}
-#metapp.catmedeplacer .noteMedappcare span{background: url(../img/pictapp_medappcare_pink.png) no-repeat;}
+.monquotidien #metapp .noteMedappcare span, .mapratique #metapp .noteMedappcare span{background: url(../img/pictapp_medappcare_red.png) no-repeat;}
+.minformer #metapp .noteMedappcare span{background: url(../img/pictapp_medappcare_green.png) no-repeat;}
+.medeplacer #metapp .noteMedappcare span, .mespatients #metapp .noteMedappcare span{background: url(../img/pictapp_medappcare_pink.png) no-repeat;}
 
-#metapp.catmonquotidien .notePro span{background: url(../img/pictapp_pro_red.png) no-repeat;}
-#metapp.catminformer .notePro span{background: url(../img/pictapp_pro_green.png) no-repeat;}
-#metapp.catmedeplacer .notePro span{background: url(../img/pictapp_pro_pink.png) no-repeat;}
+.monquotidien #metapp .notePro span, .mapratique #metapp .notePro span{background: url(../img/pictapp_pro_red.png) no-repeat;}
+.minformer #metapp .notePro span{background: url(../img/pictapp_pro_green.png) no-repeat;}
+.medeplacer #metapp .notePro span, .mespatients #metapp .notePro span{background: url(../img/pictapp_pro_pink.png) no-repeat;}
 
-#metapp.catmonquotidien .noteGens span{background: url(../img/pictapp_gens_red.png) no-repeat;}
-#metapp.catminformer .noteGens span{background: url(../img/pictapp_gens_green.png) no-repeat;}
-#metapp.catmedeplacer .noteGens span{background: url(../img/pictapp_gens_pink.png) no-repeat;}
+.monquotidien #metapp .noteGens span, .mapratique #metapp .noteGens span{background: url(../img/pictapp_gens_red.png) no-repeat;}
+.minformer #metapp .noteGens span{background: url(../img/pictapp_gens_green.png) no-repeat;}
+.medeplacer #metapp .noteGens span, .mespatients #metapp .noteGens span{background: url(../img/pictapp_gens_pink.png) no-repeat;}
 
 #metapp .appnote .note{display: block; position: relative; text-indent: -9999px; float: right; margin: 9px 20px 0 0;}
 #metapp .appnote .note.un{background: url(../img/notapp_masante.png) -177px -48px no-repeat; width: 46px; height: 43px;}
@@ -376,52 +402,52 @@ html[xmlns] .slides {display: block;}
 #metapp .appnote .note.dix{background: url(../img/notapp_masante.png) -51px 0px no-repeat; width: 58px; height: 58px;}
 #metapp .appnote .note.zero{background: url(../img/notapp_masante.png) -52px -126px no-repeat; width: 47px; height: 43px;}
 
-#metapp.catmonquotidien .appnote .note{display: block; position: relative; text-indent: -9999px; float: right; margin: 9px 20px 0 0;}
-#metapp.catmonquotidien .appnote .note.un{background: url(../img/notapp_monquotidien.png) -177px -48px no-repeat; width: 46px; height: 43px;}
-#metapp.catmonquotidien .appnote .note.deux{background: url(../img/notapp_monquotidien.png) 0px -126px no-repeat; width: 47px; height: 43px;}
-#metapp.catmonquotidien .appnote .note.trois{background: url(../img/notapp_monquotidien.png) -177px 0px no-repeat; width: 46px; height: 43px;}
-#metapp.catmonquotidien .appnote .note.quatre{background: url(../img/notapp_monquotidien.png) -104px -126px no-repeat; width: 46px; height: 43px;}
-#metapp.catmonquotidien .appnote .note.cinq{background: url(../img/notapp_monquotidien.png) 0px 0px no-repeat; width: 46px; height: 58px;}
-#metapp.catmonquotidien .appnote .note.six{background: url(../img/notapp_monquotidien.png) -114px -63px no-repeat; width: 46px; height: 58px;}
-#metapp.catmonquotidien .appnote .note.sept{background: url(../img/notapp_monquotidien.png) -63px -63px no-repeat; width: 46px; height: 58px;}
-#metapp.catmonquotidien .appnote .note.huit{background: url(../img/notapp_monquotidien.png) -114px 0px no-repeat; width: 58px; height: 58px;}
-#metapp.catmonquotidien .appnote .note.neuf{background: url(../img/notapp_monquotidien.png) 0px -63px no-repeat; width: 58px; height: 58px;}
-#metapp.catmonquotidien .appnote .note.dix{background: url(../img/notapp_monquotidien.png) -51px 0px no-repeat; width: 58px; height: 58px;}
-#metapp.catmonquotidien .appnote .note.zero{background: url(../img/notapp_monquotidien.png) -52px -126px no-repeat; width: 47px; height: 43px;}
+.monquotidien #metapp .appnote .note{display: block; position: relative; text-indent: -9999px; float: right; margin: 9px 20px 0 0;}
+.monquotidien #metapp .appnote .note.un{background: url(../img/notapp_monquotidien.png) -177px -48px no-repeat; width: 46px; height: 43px;}
+.monquotidien #metapp .appnote .note.deux{background: url(../img/notapp_monquotidien.png) 0px -126px no-repeat; width: 47px; height: 43px;}
+.monquotidien #metapp .appnote .note.trois{background: url(../img/notapp_monquotidien.png) -177px 0px no-repeat; width: 46px; height: 43px;}
+.monquotidien #metapp .appnote .note.quatre{background: url(../img/notapp_monquotidien.png) -104px -126px no-repeat; width: 46px; height: 43px;}
+.monquotidien #metapp .appnote .note.cinq{background: url(../img/notapp_monquotidien.png) 0px 0px no-repeat; width: 46px; height: 58px;}
+.monquotidien #metapp .appnote .note.six{background: url(../img/notapp_monquotidien.png) -114px -63px no-repeat; width: 46px; height: 58px;}
+.monquotidien #metapp .appnote .note.sept{background: url(../img/notapp_monquotidien.png) -63px -63px no-repeat; width: 46px; height: 58px;}
+.monquotidien #metapp .appnote .note.huit{background: url(../img/notapp_monquotidien.png) -114px 0px no-repeat; width: 58px; height: 58px;}
+.monquotidien #metapp .appnote .note.neuf{background: url(../img/notapp_monquotidien.png) 0px -63px no-repeat; width: 58px; height: 58px;}
+.monquotidien #metapp .appnote .note.dix{background: url(../img/notapp_monquotidien.png) -51px 0px no-repeat; width: 58px; height: 58px;}
+.monquotidien #metapp .appnote .note.zero{background: url(../img/notapp_monquotidien.png) -52px -126px no-repeat; width: 47px; height: 43px;}
 
-#metapp.catminformer .appnote .note{display: block; position: relative; text-indent: -9999px; float: right; margin: 9px 20px 0 0;}
-#metapp.catminformer .appnote .note.un{background: url(../img/notapp_minformer.png) -177px -48px no-repeat; width: 46px; height: 43px;}
-#metapp.catminformer .appnote .note.deux{background: url(../img/notapp_minformer.png) 0px -126px no-repeat; width: 47px; height: 43px;}
-#metapp.catminformer .appnote .note.trois{background: url(../img/notapp_minformer.png) -177px 0px no-repeat; width: 46px; height: 43px;}
-#metapp.catminformer .appnote .note.quatre{background: url(../img/notapp_minformer.png) -104px -126px no-repeat; width: 46px; height: 43px;}
-#metapp.catminformer .appnote .note.cinq{background: url(../img/notapp_minformer.png) 0px 0px no-repeat; width: 46px; height: 58px;}
-#metapp.catminformer .appnote .note.six{background: url(../img/notapp_minformer.png) -114px -63px no-repeat; width: 46px; height: 58px;}
-#metapp.catminformer .appnote .note.sept{background: url(../img/notapp_minformer.png) -63px -63px no-repeat; width: 46px; height: 58px;}
-#metapp.catminformer .appnote .note.huit{background: url(../img/notapp_minformer.png) -114px 0px no-repeat; width: 58px; height: 58px;}
-#metapp.catminformer .appnote .note.neuf{background: url(../img/notapp_minformer.png) 0px -63px no-repeat; width: 58px; height: 58px;}
-#metapp.catminformer .appnote .note.dix{background: url(../img/notapp_minformer.png) -51px 0px no-repeat; width: 58px; height: 58px;}
-#metapp.catminformer .appnote .note.zero{background: url(../img/notapp_minformer.png) -52px -126px no-repeat; width: 47px; height: 43px;}
+.minformer #metapp .appnote .note{display: block; position: relative; text-indent: -9999px; float: right; margin: 9px 20px 0 0;}
+.minformer #metapp .appnote .note.un{background: url(../img/notapp_minformer.png) -177px -48px no-repeat; width: 46px; height: 43px;}
+.minformer #metapp .appnote .note.deux{background: url(../img/notapp_minformer.png) 0px -126px no-repeat; width: 47px; height: 43px;}
+.minformer #metapp .appnote .note.trois{background: url(../img/notapp_minformer.png) -177px 0px no-repeat; width: 46px; height: 43px;}
+.minformer #metapp .appnote .note.quatre{background: url(../img/notapp_minformer.png) -104px -126px no-repeat; width: 46px; height: 43px;}
+.minformer #metapp .appnote .note.cinq{background: url(../img/notapp_minformer.png) 0px 0px no-repeat; width: 46px; height: 58px;}
+.minformer #metapp .appnote .note.six{background: url(../img/notapp_minformer.png) -114px -63px no-repeat; width: 46px; height: 58px;}
+.minformer #metapp .appnote .note.sept{background: url(../img/notapp_minformer.png) -63px -63px no-repeat; width: 46px; height: 58px;}
+.minformer #metapp .appnote .note.huit{background: url(../img/notapp_minformer.png) -114px 0px no-repeat; width: 58px; height: 58px;}
+.minformer #metapp .appnote .note.neuf{background: url(../img/notapp_minformer.png) 0px -63px no-repeat; width: 58px; height: 58px;}
+.minformer #metapp .appnote .note.dix{background: url(../img/notapp_minformer.png) -51px 0px no-repeat; width: 58px; height: 58px;}
+.minformer #metapp .appnote .note.zero{background: url(../img/notapp_minformer.png) -52px -126px no-repeat; width: 47px; height: 43px;}
 
-#metapp.catmedeplacer .appnote .note{display: block; position: relative; text-indent: -9999px; float: right; margin: 9px 20px 0 0;}
-#metapp.catmedeplacer .appnote .note.un{background: url(../img/notapp_medeplacer.png) -177px -48px no-repeat; width: 46px; height: 43px;}
-#metapp.catmedeplacer .appnote .note.deux{background: url(../img/notapp_medeplacer.png) 0px -126px no-repeat; width: 47px; height: 43px;}
-#metapp.catmedeplacer .appnote .note.trois{background: url(../img/notapp_medeplacer.png) -177px 0px no-repeat; width: 46px; height: 43px;}
-#metapp.catmedeplacer .appnote .note.quatre{background: url(../img/notapp_medeplacer.png) -104px -126px no-repeat; width: 46px; height: 43px;}
-#metapp.catmedeplacer .appnote .note.cinq{background: url(../img/notapp_medeplacer.png) 0px 0px no-repeat; width: 46px; height: 58px;}
-#metapp.catmedeplacer .appnote .note.six{background: url(../img/notapp_medeplacer.png) -114px -63px no-repeat; width: 46px; height: 58px;}
-#metapp.catmedeplacer .appnote .note.sept{background: url(../img/notapp_medeplacer.png) -63px -63px no-repeat; width: 46px; height: 58px;}
-#metapp.catmedeplacer .appnote .note.huit{background: url(../img/notapp_medeplacer.png) -114px 0px no-repeat; width: 58px; height: 58px;}
-#metapp.catmedeplacer .appnote .note.neuf{background: url(../img/notapp_medeplacer.png) 0px -63px no-repeat; width: 58px; height: 58px;}
-#metapp.catmedeplacer .appnote .note.dix{background: url(../img/notapp_medeplacer.png) -51px 0px no-repeat; width: 58px; height: 58px;}
-#metapp.catmedeplacer .appnote .note.zero{background: url(../img/notapp_medeplacer.png) -52px -126px no-repeat; width: 47px; height: 43px;}
+.medeplacer #metapp .appnote .note{display: block; position: relative; text-indent: -9999px; float: right; margin: 9px 20px 0 0;}
+.medeplacer #metapp .appnote .note.un{background: url(../img/notapp_medeplacer.png) -177px -48px no-repeat; width: 46px; height: 43px;}
+.medeplacer #metapp .appnote .note.deux, #metapp.mespatients .appnote .note.deux{background: url(../img/notapp_medeplacer.png) 0px -126px no-repeat; width: 47px; height: 43px;}
+.medeplacer #metapp .appnote .note.trois{background: url(../img/notapp_medeplacer.png) -177px 0px no-repeat; width: 46px; height: 43px;}
+.medeplacer #metapp .appnote .note.quatre{background: url(../img/notapp_medeplacer.png) -104px -126px no-repeat; width: 46px; height: 43px;}
+.medeplacer #metapp .appnote .note.cinq{background: url(../img/notapp_medeplacer.png) 0px 0px no-repeat; width: 46px; height: 58px;}
+.medeplacer #metapp .appnote .note.six{background: url(../img/notapp_medeplacer.png) -114px -63px no-repeat; width: 46px; height: 58px;}
+.medeplacer #metapp .appnote .note.sept{background: url(../img/notapp_medeplacer.png) -63px -63px no-repeat; width: 46px; height: 58px;}
+.medeplacer #metapp .appnote .note.huit{background: url(../img/notapp_medeplacer.png) -114px 0px no-repeat; width: 58px; height: 58px;}
+.medeplacer #metapp .appnote .note.neuf{background: url(../img/notapp_medeplacer.png) 0px -63px no-repeat; width: 58px; height: 58px;}
+.medeplacer #metapp .appnote .note.dix{background: url(../img/notapp_medeplacer.png) -51px 0px no-repeat; width: 58px; height: 58px;}
+.medeplacer #metapp .appnote .note.zero{background: url(../img/notapp_medeplacer.png) -52px -126px no-repeat; width: 47px; height: 43px;}
 
 .app .os {margin-top: 10px;}
 .app .list {text-align: center;}
 .app .os span{margin: 10px auto; width: 50px; background-position: center center; display: inline-block;}
 .app .price{background: #79c1d2; width: 40px; padding: 0 5px; line-height: 20px; text-align: center;}
-.app.monquotidien .price{background: #e05d5f;}
-.app.minformer .price{background: #84c790;}
-.app.medeplacer .price{background: #d769af;}
+.monquotidien .price, .mapratique .price{background: #e05d5f;}
+.minformer .price{background: #84c790;}
+.medeplacer .price, .mespatients .price{background: #d769af;}
 
 #appSectionOne .content,
 #appSectionTwo .content{width: 70%; max-width: 710px;}
@@ -432,18 +458,18 @@ html[xmlns] .slides {display: block;}
 .qrcode p {padding: 0 10px;}
 
 .app #devices{background: #cfe3e7; border-top: 1px solid #0f6eb4; border-bottom: 1px solid #0f6eb4; margin: 0 0 50px 0;}
-.app.monquotidien #devices{background: #f1d2d2; border-top: 1px solid #e05d5f; border-bottom: 1px solid #e05d5f;}
-.app.minformer #devices{background: #ceecd4; border-top: 1px solid #84c790; border-bottom: 1px solid #84c790;}
-.app.medeplacer #devices{background: #efe1ea; border-top: 1px solid #d769af; border-bottom: 1px solid #d769af;}
+.monquotidien #devices, .mapratique #devices{background: #f1d2d2; border-top: 1px solid #e05d5f; border-bottom: 1px solid #e05d5f;}
+.minformer #devices{background: #ceecd4; border-top: 1px solid #84c790; border-bottom: 1px solid #84c790;}
+.medeplacer #devices, .mespatients #devices{background: #efe1ea; border-top: 1px solid #d769af; border-bottom: 1px solid #d769af;}
 
-.app #devices .metaFooter{background: #cfe3e7;}
-.app.monquotidien #devices .metaFooter{background: #f1d2d2;}
-.app.minformer #devices .metaFooter{background: #ceecd4;}
-.app.medeplacer #devices .metaFooter{background: #efe1ea;}
+#devices .metaFooter{background: #cfe3e7;}
+.monquotidien #devices .metaFooter, .app.mapratique #devices .metaFooter{background: #f1d2d2;}
+.minformer #devices .metaFooter{background: #ceecd4;}
+.medeplacer #devices .metaFooter, .mespatients #devices .metaFooter{background: #efe1ea;}
 
-.app.monquotidien #devices .price{background: #e05d5f;}
-.app.minformer #devices .price{background: #84c790;}
-.app.medeplacer #devices .price{background: #d769af;}
+.monquotidien #devices .price, .app.mapratique #devices .price{background: #e05d5f;}
+.minformer #devices .price{background: #84c790;}
+.medeplacer #devices .price, .mespatients #devices .price{background: #d769af;}
 
 #appSectionOne{min-height: 250px;}
 
@@ -530,10 +556,10 @@ button{margin-right: 15px;}
 #appSectionOne .features span {display: inline-block; text-indent: -1999px; height: 22px; width: 25px; background-repeat: none; margin: 10px 5px;}
 #appSectionOne .features span.wifi {width: 31px;}
 
-.masante #appSectionOne .labels {color: #79C1D2;}
-.monquotidien #appSectionOne .labels {color: #E05D5F;}
+.masante #appSectionOne .labels,.administratif #appSectionOne .labels {color: #79C1D2;}
+.monquotidien #appSectionOne .labels, .mapratique #appSectionOne .labels {color: #E05D5F;}
 .minformer #appSectionOne .labels {color: #84C790;}
-.medeplacer #appSectionOne .labels {color: #D769AF;}
+.medeplacer #appSectionOne .labels, .mespatients #appSectionOne .labels {color: #D769AF;}
 
 #appSectionOne .labels {position:relative; height: 100px; text-align: center; margin: 10px 0; font-size: .8em; line-height: 1.2em;}
 #appSectionOne .labels .label {display: inline-block; text-indent: -1999px; margin: 10px 5px; background-repeat: none;}
@@ -543,10 +569,10 @@ button{margin-right: 15px;}
 
 .device .labels .ce  {background-image: url(../img/pictoCE_blue.png);}
 
-.masante #appSectionOne .labels .ce  {background-image: url(../img/pictoCE_blue.png);}
-.monquotidien #appSectionOne .labels .ce  {background-image: url(../img/pictoCE_red.png);}
-.minformer #appSectionOne .labels .ce  {background-image: url(../img/pictoCE_green.png);}
-.medeplacer #appSectionOne .labels .ce  {background-image: url(../img/pictoCE_pink.png);}
+.masante #appSectionOne .labels .ce, .administratif #appSectionOne .labels .ce {background-image: url(../img/pictoCE_blue.png);}
+.monquotidien #appSectionOne .labels .ce, .mapratique #appSectionOne .labels .ce  {background-image: url(../img/pictoCE_red.png);}
+.minformer #appSectionOne .labels .ce {background-image: url(../img/pictoCE_green.png);}
+.medeplacer #appSectionOne .labels .ce, .mespatients #appSectionOne .labels .ce {background-image: url(../img/pictoCE_pink.png);}
 
 .features span.bluetooth {background-image: url(../img/pictoBluetooth_blue.png);}
 .features span.wifi {background-image: url(../img/pictoWifi_blue.png);}
@@ -573,12 +599,12 @@ button{margin-right: 15px;}
 #descTabs nav {display: block; height: 54px;}
 
 #descTabs nav{background: #79C1D2;}
-/* Pas de catégorie dans device
-#descTabs.catmasante nav{background: #79C1D2;}
-#descTabs.catmonquotidien nav{background: #E05D5F;}
-#descTabs.catminformer nav{background: #84C790;}
-#descTabs.catmedeplacer nav{background: #D769AF;}
-*/
+
+.masante #descTabs nav, .administratif #descTabs nav{background: #79C1D2;}
+.monquotidien #descTabs nav, .mapratique #descTabs nav{background: #E05D5F;}
+.minformer #descTabs nav{background: #84C790;}
+.medeplacer #descTabs nav, .mespatients #descTabs nav{background: #D769AF;}
+
 
 #descTabs nav .wrapper {height: 100%;}
 #descTabs nav ul {width: 100%; height: 100%;}

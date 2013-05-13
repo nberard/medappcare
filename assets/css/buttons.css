@@ -25,9 +25,11 @@
 
 .signaler{background: #c9c9c9;}
 .noter{background: #79c1d2;}
-.monquotidien .noter{background: #e05d5f;}
+
+.masante .noter, .administratif .noter{background: #79c1d2;}
+.monquotidien .noter, .mapratique .noter{background: #e05d5f;}
 .minformer .noter{background: #84c790;}
-.medeplacer .noter{background: #d769af;}
+.medeplacer .noter, .mespatients .noter{background: #d769af;}
 
 
 
