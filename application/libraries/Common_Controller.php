@@ -163,7 +163,7 @@ class Common_Controller extends MY_Controller
         $this->load->model('Devices_model');
         $this->load->model('Categories_model');
         $lastEvalApplis = $this->Applications_model->get_last_eval_applications($_id);
-        $top5Applis = $this->Applications_model->get_top_five_applications($_id);
+        $top5Applis = $this->Applications_model->get_top_five_applications(false, $this->pro, $_id);
         $this->_format_all_prices($lastEvalApplis);
         $this->_format_all_prices($top5Applis);
         $this->_format_all_links($lastEvalApplis, 'app');

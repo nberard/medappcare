@@ -282,23 +282,40 @@ class Admin extends CI_Controller
         $this->_admin_output($this->crud->render());
     }
 
+    function _applications_before_action($post_array)
+    {
+        if(empty($post_array['categorie_parente_id']) && !empty($post_array['categorie_id']))
+        {
+            $categorie_infos = $this->db->select('parent_id')->get_where('categorie', array('id' => $post_array['categorie_id']))->row();
+            if($categorie_infos->parent_id != -1)
+            {
+                $post_array['categorie_parente_id'] = $categorie_infos->parent_id;
+            }
+        }
+        return $post_array;
+    }
+
     public function applications()
     {
         $this->crud->set_subject("Application");
         $this->crud->set_table('application');
         $this->crud->required_fields('nom', 'package', 'device_id' , 'logo_url', 'titre', 'date_ajout', 'prix', 'devise', 'langue_store', 'editeur_id', 'lien_download');
+
+        $this->crud->callback_before_insert(array($this, '_applications_before_action'));
+        $this->crud->callback_before_update(array($this, '_applications_before_action'));
+
         $this->crud->callback_after_insert(function($post_array,$primary_key) {
             $this->_handle_default_values($post_array,$primary_key,
-                array('categorie_id' => -1, 'categorie_parente_id' => -1, 'poids' => 0),
-                'selection');
+                array('categorie_id' => -1, 'categorie_parente_id' => -1),
+                'application');
         });
         $this->crud->callback_after_update(function($post_array,$primary_key) {
             $this->_handle_default_values($post_array,$primary_key,
-                array('categorie_id' => -1, 'categorie_parente_id' => -1, 'poids' => 0),
-                'selection');
+                array('categorie_id' => -1, 'categorie_parente_id' => -1),
+                'application');
         });
         $this->crud->set_relation('categorie_id', 'categorie', '{nom_'.config_item('lng').'} (pro:{est_pro})');
-        $this->crud->set_relation('categorie_parente_id', 'categorie', '{nom_'.config_item('lng').'} (pro:{est_pro})', array('parent_id' => -1));
+//        $this->crud->set_relation('categorie_parente_id', 'categorie', '{nom_'.config_item('lng').'} (pro:{est_pro})', array('parent_id' => -1));
 
         $this->crud->set_relation_n_n('accessoires', 'accessoire_application_compatible', 'accessoire', 'application_id', 'accessoire_id', '{nom_'.config_item('lng').'}');
 
