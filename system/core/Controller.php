@@ -69,6 +69,15 @@
  * @property CI_Jquery $jquery
  * @property CI_Utf8 $utf8
  * @property CI_Security $security
+ *
+ * @property Applications_model $Applications_model
+ * @property Accessoires_model $Accessoires_model
+ * @property Articles_model $Articles_model
+ * @property Categories_model $Categories_model
+ * @property Devices_model $Devices_model
+ * @property Editeurs_model $Editeurs_model
+ * @property Membres_model $Membres_model
+ * @property Plateformes_model $Plateformes_model
  */
 class CI_Controller {
 

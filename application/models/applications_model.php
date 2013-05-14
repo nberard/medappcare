@@ -42,6 +42,7 @@ class Applications_model extends CI_Model {
         $this->db->set('est_partageable', 1);
         $this->db->set('est_pro', 0);
         $this->db->set('est_penalisee', 0);
+        $this->db->set('est_valide', 0);
 
         $this->db->set('date_ajout', 'NOW()', false);
         return $this->db->insert($this->table);
@@ -62,11 +63,12 @@ class Applications_model extends CI_Model {
         {
             $this->db->where(array('categorie_id' => $_category_id));
         }
+        $this->db->where(array('est_valide' => 1));
         $res = $this->db->get()->result();
         return $res ? $res : array();
     }
 
-    public function get_top_five_applications($_free, $_category_id = -1, $_limit = 5)
+    public function get_top_five_applications($_free, $_pro, $_category_id = -1, $_limit = 5)
     {
         $this->db->select('A.*, C.nom_'.config_item('lng').' AS nom_categorie')
             ->from($this->table.' A')
@@ -84,15 +86,16 @@ class Applications_model extends CI_Model {
         {
             $this->db->where('prix > 0.00');
         }
+        $this->db->where(array('est_valide' => 1, 'A.est_pro' => $_pro ? 1 : 0));
         $res = $this->db->get()->result();
         return $res ? $res : array();
     }
 
-    public function get_selection_applications($_idSelection)
+    public function get_selection_applications($_id_selection)
     {
         return $this->db->from($this->table)
                     ->join($this->tableSelection, $this->table.'.id = '.$this->tableSelection.'.application_id')
-                    ->where(array('selection_id' => $_idSelection))->get()->result();
+                    ->where(array('selection_id' => $_id_selection))->get()->result();
     }
 
     public function get_application($_id)
