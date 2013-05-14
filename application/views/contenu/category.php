@@ -2,7 +2,7 @@
 
 <div class="title">
     <div class="wrapper">
-        <h2><?php echo $categorie->{"nom_".config_item('language_short')}; ?></h2> <!-- INSÉRER LE TITRE DE LA CATÉGORIE ICI -->
+        <h2><?php echo $categorie->{"nom_".config_item('lng')}; ?></h2> <!-- INSÉRER LE TITRE DE LA CATÉGORIE ICI -->
     </div>
 </div>
 

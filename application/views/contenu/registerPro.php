@@ -44,9 +44,9 @@
 
     <select name="interets" id="interets" multiple="multiple">
         <?php foreach($categories_principales as $categorie_principale): ?>
-            <optgroup label="<?php echo $categorie_principale->{"nom_".config_item('language_short')}; ?>">
+            <optgroup label="<?php echo $categorie_principale->{"nom_".config_item('lng')}; ?>">
                 <?php foreach($categorie_principale->enfants as $categorie_enfant): ?>
-                    <option value="<?php echo $categorie_enfant->id; ?>"><?php echo $categorie_enfant->{"nom_".config_item('language_short')}; ?></option>
+                    <option value="<?php echo $categorie_enfant->id; ?>"><?php echo $categorie_enfant->{"nom_".config_item('lng')}; ?></option>
                 <?php endforeach; ?>
             </optgroup>
         <?php endforeach; ?>

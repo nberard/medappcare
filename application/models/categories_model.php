@@ -27,7 +27,7 @@ class Categories_model extends CI_Model {
 
     public function get_categories_enfantes($_parent_id)
     {
-        $results = $this->db->where(array('parent_id' => $_parent_id))->order_by('nom_'.config_item('language_short').', poids', 'asc')->get($this->table)->result();
+        $results = $this->db->select('*, nom_'.config_item('lng').' AS nom')->where(array('parent_id' => $_parent_id))->order_by('nom_'.config_item('lng').', poids', 'asc')->get($this->table)->result();
         return $results ? $results : array();
     }
 }

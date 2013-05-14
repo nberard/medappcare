@@ -18,7 +18,8 @@ class Articles_model extends CI_Model {
 
     public function get_last_articles($_limit)
     {
-        return $this->db->select('A.*, C.nom_'.config_item('language_short').' AS nom_categorie')->from($this->table.' A')
+        return $this->db->select('A.*, A.titre_'.config_item('lng').' AS titre, A.contenu_'.config_item('lng').' AS contenu, C.nom_'.config_item('lng').' AS nom_categorie')
+                ->from($this->table.' A')
                 ->join($this->tableCategorie.' C', 'A.categorie_id = C.id')
                 ->limit($_limit)->order_by('A.id', 'desc')->get()->result();
     }

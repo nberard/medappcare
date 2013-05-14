@@ -32,9 +32,9 @@
             <h5>Grand Public</h5>
             <?php foreach($categories_principales_perso as $categorie_principale_perso): ?>
                 <ul>
-                    <h6><?php echo $categorie_principale_perso->{"nom_".config_item('language_short')}; ?></h6>
+                    <h6><?php echo $categorie_principale_perso->{"nom_".config_item('lng')}; ?></h6>
                     <?php foreach($categorie_principale_perso->enfants as $categorie_enfants_perso): ?>
-                        <li><a href="#"><?php echo $categorie_enfants_perso->{"nom_".config_item('language_short')}; ?> </a></li>
+                        <li><a href="#"><?php echo $categorie_enfants_perso->{"nom_".config_item('lng')}; ?> </a></li>
                     <?php endforeach; ?>
                 </ul>
             <?php endforeach; ?>
@@ -43,9 +43,9 @@
             <h5>Professionnels de Santé</h5>
             <?php foreach($categories_principales_pro as $categorie_principale_pro): ?>
             <ul>
-                <h6><?php echo $categorie_principale_pro->{"nom_".config_item('language_short')}; ?></h6>
+                <h6><?php echo $categorie_principale_pro->{"nom_".config_item('lng')}; ?></h6>
                 <?php foreach($categorie_principale_pro->enfants as $categorie_enfants_pro): ?>
-                    <li><a href="#"><?php echo $categorie_enfants_pro->{"nom_".config_item('language_short')}; ?> </a></li>
+                    <li><a href="#"><?php echo $categorie_enfants_pro->{"nom_".config_item('lng')}; ?> </a></li>
                 <?php endforeach; ?>
             </ul>
             <?php endforeach; ?>

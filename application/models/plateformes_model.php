@@ -17,7 +17,7 @@ class Plateformes_model extends CI_Model {
 
     public function get_all_plateformes()
     {
-        return $this->db->get($this->table)->result();
+        return $this->db->select('*, label_'.config_item('lng').' AS label')->get($this->table)->result();
     }
 
 }

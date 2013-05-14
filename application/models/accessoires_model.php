@@ -23,7 +23,7 @@ class Accessoires_model extends CI_Model {
 
     public function get_accessoire($_id)
     {
-        return $this->db->select('A.*, F.nom AS nom_fabriquant')->from($this->table.' A')
+        return $this->db->select('A.*, A.nom_'.config_item('lng').' AS nom F.nom AS nom_fabriquant')->from($this->table.' A')
                         ->join($this->tableFabriquant.' F', 'F.id = A.fabriquant_id', 'INNER')
                         ->where(array('A.id' => $_id))->get()->row();
     }

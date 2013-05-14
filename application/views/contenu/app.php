@@ -109,7 +109,7 @@
 		    		<img src="<?php echo img_url('tmp/logo-withings.png'); ?>" alt="[nom-de-l-editeur]"/>
 		    		
 	    		</div>
-	    		<p><?php // echo $device->{"description_".config_item('language_short')}; ?></p>
+	    		<p><?php // echo $device->{"description_".config_item('lng')}; ?></p>
 	    	</div>
 	    	
 	    	<div class="tabContent" id="commentaires">

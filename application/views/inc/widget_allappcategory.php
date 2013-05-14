@@ -1,5 +1,5 @@
 <div class="allapps catmasante"> <!-- Insérer ici la class de la catégorie (ex : catmasante) -->
-    <h3>Toutes les applications dans <?php echo $categorie->{"nom_".config_item('language_short')}; ?></h3>
+    <h3>Toutes les applications dans <?php echo $categorie->{"nom_".config_item('lng')}; ?></h3>
     <div class="filter">
         <a href="#" class="gratuit" title="Filtrer les apps gratuites"><span></span>gratuit</a>
         <a href="#" class="payant actif" title="Filtrer les apps payantes"><span></span>€</a>

@@ -5,9 +5,9 @@
         </li>
         <?php foreach($categories_principales as $categorie_principale): ?>
             <li class="nav<?php echo $categorie_principale->class; ?> megamenu">
-                <a dropdowndestination="<?php echo $categorie_principale->class; ?>" href="<?php echo $categorie_principale->link; ?>">
+                <a dropdowndestination="<?php echo $categorie_principale->class; ?>" href="#">
                     <!--<span class="picto"></span>
-                    <span class="text">--><?php echo $categorie_principale->{"nom_".config_item('language_short')}; ?><!--</span>-->
+                    <span class="text">--><?php echo $categorie_principale->{"nom_".config_item('lng')}; ?><!--</span>-->
                 </a>
             </li>
         <?php endforeach; ?>
@@ -38,7 +38,7 @@
                 }
                 $cpt++;
                 ?>
-                <li><a href="#"><?php echo $categorie_enfant->{"nom_".config_item('language_short')};?></a></li>
+                <li><a href="<?php echo $categorie_enfant->link; ?>"><?php echo $categorie_enfant->{"nom_".config_item('lng')};?></a></li>
             <?php endforeach; ?>
             </ul>
             <div class="sponsored-selection">

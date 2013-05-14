@@ -41,7 +41,7 @@ class MY_Lang extends CI_Lang {
 		{
 			$language = $this->languages[$segment];
 			$CFG->set_item('language', $language);
-			$CFG->set_item('language_short', $segment);
+			$CFG->set_item('lng', $segment);
 		}
 		else if($this->is_special($segment)) // special URI -> no redirect
 		{
@@ -51,7 +51,7 @@ class MY_Lang extends CI_Lang {
 		{
 			// set default language
 			$CFG->set_item('language', $this->languages[$this->default_lang()]);
-			$CFG->set_item('language_short', $this->default_lang());
+			$CFG->set_item('lng', $this->default_lang());
 
 			// redirect
 			header("Location: " . $CFG->site_url($this->localized($this->default_uri)), TRUE, 302);

@@ -5,7 +5,7 @@ if(!function_exists('date_full'))
         $tab_date = explode('-', $_date);
         $timestamp = mktime (0 , 0, 0, intval($tab_date[1]),intval($tab_date[2]),intval($tab_date[0]));
         $mois = date('F', $timestamp);
-        if(config_item('language_short') == 'en')
+        if(config_item('lng') == 'en')
         {
             return sprintf(lang('date_news'), lang($mois), $tab_date[2], $tab_date[0]);
         }

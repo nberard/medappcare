@@ -40,24 +40,11 @@ class Common_Controller extends CI_Controller
                 'redirect' => redirect_language($this->uri->segment_array(), $shortLanguage),
             );
         }
-         $categories_enfants_assoc = $categories_enfants_target = array();
         $categories_principales = $this->Categories_model->get_categories_parentes($this->pro);
         $categories_principales_target = $this->Categories_model->get_categories_parentes(!$this->pro);
-//        $arrayClassesPro =  array('administratif', 'mapratique', 'minformer', 'mespatients');
-//        $arrayClassesPerso =  array('masante', 'monquotidien', 'minformer', 'medeplacer');
-//        $correspClasses = $this->pro ? $arrayClassesPro : $arrayClassesPerso;
-        foreach($categories_principales as &$categorie_principale)
-        {
-//            $class = array_shift($correspClasses);
-//            $categorie_principale->class = $class;
-            $categorie_principale->enfants = $this->Categories_model->get_categories_enfantes($categorie_principale->id);
-            $categorie_principale->link = '#';
-        }
-        foreach($categories_principales_target as &$categorie_principale_target)
-        {
-            $categorie_principale_target->enfants = $this->Categories_model->get_categories_enfantes($categorie_principale_target->id);
-            $categorie_principale_target->link = '#';
-        }
+
+        $this->_populate_categories_enfants($categories_principales_target);
+        $this->_populate_categories_enfants($categories_principales);
         return array(
             'header_meta' => $this->load->view('inc/header_meta', array('css_files' => array(css_url('stylesheet'))), true),
             'header' => $this->load->view('inc/header', array(
@@ -91,6 +78,18 @@ class Common_Controller extends CI_Controller
         );
     }
 
+    protected function _populate_categories_enfants(&$_categories_array, $add_link = true)
+    {
+        foreach($_categories_array as &$_categorie)
+        {
+            $_categorie->enfants = $this->Categories_model->get_categories_enfantes($_categorie->id);
+            if($add_link)
+            {
+                $this->_format_all_links($_categorie->enfants, 'category', 'nom_'.config_item('lng'));
+            }
+        }
+    }
+
     protected function _format_all_prices(&$_applis_array)
     {
         $this->load->helper('price');
@@ -121,13 +120,14 @@ class Common_Controller extends CI_Controller
     {
         $this->load->model('Accessoires_model');
         $accessoires = $this->Accessoires_model->get_last_accessoires($_nb);
+//        var_dump($accessoires);
         foreach($accessoires as &$accessoire)
         {
-            $description_text = html_entity_decode(strip_tags($accessoire->{"description_".config_item('language_short')}));
+            $description_text = html_entity_decode(strip_tags($accessoire->{"presse_".config_item('lng')}));
             $accessoire->description_short = substr($description_text, 0, 80).' ...';
         }
         $this->_format_all_prices($accessoires);
-        $this->_format_all_links($accessoires, 'device', "nom_".config_item('language_short'));
+        $this->_format_all_links($accessoires, 'device', "nom_".config_item('lng'));
         return $accessoires;
     }
 
@@ -149,7 +149,7 @@ class Common_Controller extends CI_Controller
         {
             $article->date_full = date_full($article->date_creation);
         }
-        $this->_format_all_links($articles, 'news', "titre_".config_item('language_short'));
+        $this->_format_all_links($articles, 'news', "titre_".config_item('lng'));
         $this->_format_all_links($articles, 'category', 'nom_categorie', 'categorie_link', 'categorie_id');
 
         $selectionLabel1 = $this->pro ? 'pro_pourlespros' : 'home_lasteval';
@@ -249,7 +249,7 @@ class Common_Controller extends CI_Controller
         $data['inc'] = $this->_getCommonIncludes();
 
         $data['contenu'] = $this->load->view('contenu/device', $devices_data, true);
-        $data['body_class'] = 'device '.$this->body_class.' '.to_ascii($accessoire->{"nom_".config_item('language_short')});
+        $data['body_class'] = 'device '.$this->body_class.' '.to_ascii($accessoire->{"nom_".config_item('lng')});
         $this->load->view('main', $data);
     }
 
