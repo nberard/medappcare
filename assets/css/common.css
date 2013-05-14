@@ -428,18 +428,18 @@ html[xmlns] .slides {display: block;}
 .minformer #metapp .appnote .note.dix{background: url(../img/notapp_minformer.png) -51px 0px no-repeat; width: 58px; height: 58px;}
 .minformer #metapp .appnote .note.zero{background: url(../img/notapp_minformer.png) -52px -126px no-repeat; width: 47px; height: 43px;}
 
-.medeplacer #metapp .appnote .note{display: block; position: relative; text-indent: -9999px; float: right; margin: 9px 20px 0 0;}
+.medeplacer #metapp .appnote .note, .mespatients #metapp .appnote .note{display: block; position: relative; text-indent: -9999px; float: right; margin: 9px 20px 0 0;}
 .medeplacer #metapp .appnote .note.un{background: url(../img/notapp_medeplacer.png) -177px -48px no-repeat; width: 46px; height: 43px;}
-.medeplacer #metapp .appnote .note.deux, #metapp.mespatients .appnote .note.deux{background: url(../img/notapp_medeplacer.png) 0px -126px no-repeat; width: 47px; height: 43px;}
-.medeplacer #metapp .appnote .note.trois{background: url(../img/notapp_medeplacer.png) -177px 0px no-repeat; width: 46px; height: 43px;}
-.medeplacer #metapp .appnote .note.quatre{background: url(../img/notapp_medeplacer.png) -104px -126px no-repeat; width: 46px; height: 43px;}
-.medeplacer #metapp .appnote .note.cinq{background: url(../img/notapp_medeplacer.png) 0px 0px no-repeat; width: 46px; height: 58px;}
-.medeplacer #metapp .appnote .note.six{background: url(../img/notapp_medeplacer.png) -114px -63px no-repeat; width: 46px; height: 58px;}
-.medeplacer #metapp .appnote .note.sept{background: url(../img/notapp_medeplacer.png) -63px -63px no-repeat; width: 46px; height: 58px;}
-.medeplacer #metapp .appnote .note.huit{background: url(../img/notapp_medeplacer.png) -114px 0px no-repeat; width: 58px; height: 58px;}
-.medeplacer #metapp .appnote .note.neuf{background: url(../img/notapp_medeplacer.png) 0px -63px no-repeat; width: 58px; height: 58px;}
-.medeplacer #metapp .appnote .note.dix{background: url(../img/notapp_medeplacer.png) -51px 0px no-repeat; width: 58px; height: 58px;}
-.medeplacer #metapp .appnote .note.zero{background: url(../img/notapp_medeplacer.png) -52px -126px no-repeat; width: 47px; height: 43px;}
+.medeplacer #metapp .appnote .note.deux, .mespatients #metapp .appnote .note.deux{background: url(../img/notapp_medeplacer.png) 0px -126px no-repeat; width: 47px; height: 43px;}
+.medeplacer #metapp .appnote .note.trois, .mespatients #metapp .appnote .note.trois{background: url(../img/notapp_medeplacer.png) -177px 0px no-repeat; width: 46px; height: 43px;}
+.medeplacer #metapp .appnote .note.quatre, .mespatients #metapp .appnote .note.quatre{background: url(../img/notapp_medeplacer.png) -104px -126px no-repeat; width: 46px; height: 43px;}
+.medeplacer #metapp .appnote .note.cinq, .mespatients #metapp .appnote .note.cinq{background: url(../img/notapp_medeplacer.png) 0px 0px no-repeat; width: 46px; height: 58px;}
+.medeplacer #metapp .appnote .note.six, .mespatients #metapp .appnote .note.six{background: url(../img/notapp_medeplacer.png) -114px -63px no-repeat; width: 46px; height: 58px;}
+.medeplacer #metapp .appnote .note.sept, .mespatients #metapp .appnote .note.sept{background: url(../img/notapp_medeplacer.png) -63px -63px no-repeat; width: 46px; height: 58px;}
+.medeplacer #metapp .appnote .note.huit, .mespatients #metapp .appnote .note.huit{background: url(../img/notapp_medeplacer.png) -114px 0px no-repeat; width: 58px; height: 58px;}
+.medeplacer #metapp .appnote .note.neuf, .mespatients #metapp .appnote .note.neuf{background: url(../img/notapp_medeplacer.png) 0px -63px no-repeat; width: 58px; height: 58px;}
+.medeplacer #metapp .appnote .note.dix, .mespatients #metapp .appnote .note.dix{background: url(../img/notapp_medeplacer.png) -51px 0px no-repeat; width: 58px; height: 58px;}
+.medeplacer #metapp .appnote .note.zero, .mespatients #metapp .appnote .note.zero{background: url(../img/notapp_medeplacer.png) -52px -126px no-repeat; width: 47px; height: 43px;}
 
 .app .os {margin-top: 10px;}
 .app .list {text-align: center;}
@@ -462,7 +462,7 @@ html[xmlns] .slides {display: block;}
 .minformer #devices{background: #ceecd4; border-top: 1px solid #84c790; border-bottom: 1px solid #84c790;}
 .medeplacer #devices, .mespatients #devices{background: #efe1ea; border-top: 1px solid #d769af; border-bottom: 1px solid #d769af;}
 
-#devices .metaFooter{background: #cfe3e7;}
+#devices .metaFooter{ibackground: #cfe3e7;}
 .monquotidien #devices .metaFooter, .app.mapratique #devices .metaFooter{background: #f1d2d2;}
 .minformer #devices .metaFooter{background: #ceecd4;}
 .medeplacer #devices .metaFooter, .mespatients #devices .metaFooter{background: #efe1ea;}
