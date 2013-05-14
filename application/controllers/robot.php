@@ -205,5 +205,54 @@ class Robot extends CI_Controller
             }
         }
     }
+
+    public function detect()
+    {
+        require_once 'Text/LanguageDetect.php';
+        require_once 'PEAR.php';
+        $l = new Text_LanguageDetect();
+        $languages = array();
+        for($i = 0; $i<20; $i++)
+        {
+            $results = $this->db->select('device_id, id, langue_store, titre, description')->limit(100, $i * 100)->get('application')->result();
+            foreach($results as $result)
+            {
+//                $resultTitre = $l->detect($result->titre, 4);
+//                if (PEAR::isError($resultTitre)) {
+//                    echo "erreur ".$result->id." : ".$resultTitre->getMessage()."<br/>";
+//                    log_message('debug', "erreur ".$result->id." : ".$resultTitre->getMessage());
+//                } else {
+                    $resultDescription = $l->detect($result->description, 4);
+                    if (PEAR::isError($resultDescription)) {
+//                        echo "erreur ".$result->id." : ".$resultDescription->getMessage()."<br/>";
+                        log_message('debug', "erreur ".$result->id." : ".$resultDescription->getMessage());
+                    } else {
+//                        echo "ok ".$result->id."<br/>";
+                        log_message('debug', "ok ".$result->id);
+//                        foreach($resultTitre as $lang => $proba){
+//                            $resultTitre = $lang; break;
+//                        }
+                        foreach($resultDescription as $lang => $proba){
+                            $resultDescription = $lang; break;
+                        }
+                        log_message('debug', "language=".var_export($resultDescription, true)."");
+//                        var_dump($resultTitre);
+//                        var_dump($resultDescription);
+                        $device = $result->device_id == 1 ? 'apple' : 'android';
+                        if(!isset($languages[$device]['store_'.$result->langue_store][$resultDescription]))
+                        {
+                            $languages[$device]['store_'.$result->langue_store][$resultDescription] = 1;
+                        }
+                        else
+                        {
+                            $languages[$device]['store_'.$result->langue_store][$resultDescription]++;
+                        }
+                    }
+//                }
+            }
+            log_message('debug', "languages=".var_export($languages, true)."");
+        }
+        var_dump($languages);
+    }
 }
 
