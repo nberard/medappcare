@@ -20,9 +20,9 @@
 
     <select name="interets" id="interets" multiple="multiple">
         <?php foreach($categories_principales as $categorie_principale): ?>
-            <optgroup label="<?php echo $categorie_principale->{"nom_".config_item('lng')}; ?>">
+            <optgroup label="<?php echo $categorie_principale->nom; ?>">
                 <?php foreach($categorie_principale->enfants as $categorie_enfant): ?>
-                    <option value="<?php echo $categorie_enfant->id; ?>"><?php echo $categorie_enfant->{"nom_".config_item('lng')}; ?></option>
+                    <option value="<?php echo $categorie_enfant->id; ?>"><?php echo $categorie_enfant->nom; ?></option>
                 <?php endforeach; ?>
             </optgroup>
         <?php endforeach; ?>
@@ -32,7 +32,7 @@
     <div class="well"><label>Device (plusieurs choix possibles)</label>
         <div id="plateforme-group" class="btn-group" data-toggle="buttons-checkbox">
             <?php foreach($plateformes as $plateforme): ?>
-                <button type="button" value="<?php echo $plateforme->id; ?>" class="btn"><?php echo $plateforme->{"label_".config_item('lng')}; ?></button>
+                <button type="button" value="<?php echo $plateforme->id; ?>" class="btn"><?php echo $plateforme->label; ?></button>
             <?php endforeach; ?>
             <input type="hidden" name="plateformes" id="plateformes"/>
         </div>

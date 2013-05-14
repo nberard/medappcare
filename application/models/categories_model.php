@@ -17,12 +17,12 @@ class Categories_model extends CI_Model {
 
     public function get_categorie($_id)
     {
-        return $this->db->where(array('id' => $_id))->get($this->table)->row();
+        return $this->db->select('*, nom_'.config_item('lng').' AS nom')->where(array('id' => $_id))->get($this->table)->row();
     }
 
     public function get_categories_parentes($_pro)
     {
-        return $this->db->where(array('parent_id' => -1, 'est_pro' => $_pro ? 1 : 0))->get($this->table)->result();
+        return $this->db->select('*, nom_'.config_item('lng').' AS nom')->where(array('parent_id' => -1, 'est_pro' => $_pro ? 1 : 0))->get($this->table)->result();
     }
 
     public function get_categories_enfantes($_parent_id)

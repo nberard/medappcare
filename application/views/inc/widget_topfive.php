@@ -1,5 +1,5 @@
 <div class="listapps topfive">
-    <h3>Le Top dans <?php echo $categorie->{"nom_".config_item('lng')}; ?></h3>
+    <h3>Le Top dans <?php echo $categorie->nom; ?></h3>
     <div class="filter">
         <a href="#" class="gratuit" title="Filtrer les apps gratuites"><span></span>gratuit</a>
         <a href="#" class="payant actif" title="Filtrer les apps payantes"><span></span>€</a>

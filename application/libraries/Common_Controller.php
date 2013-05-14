@@ -85,7 +85,7 @@ class Common_Controller extends CI_Controller
             $_categorie->enfants = $this->Categories_model->get_categories_enfantes($_categorie->id);
             if($add_link)
             {
-                $this->_format_all_links($_categorie->enfants, 'category', 'nom_'.config_item('lng'));
+                $this->_format_all_links($_categorie->enfants, 'category', 'nom');
             }
         }
     }
@@ -123,11 +123,11 @@ class Common_Controller extends CI_Controller
 //        var_dump($accessoires);
         foreach($accessoires as &$accessoire)
         {
-            $description_text = html_entity_decode(strip_tags($accessoire->{"presse_".config_item('lng')}));
+            $description_text = html_entity_decode(strip_tags($accessoire->presse));
             $accessoire->description_short = substr($description_text, 0, 80).' ...';
         }
         $this->_format_all_prices($accessoires);
-        $this->_format_all_links($accessoires, 'device', "nom_".config_item('lng'));
+        $this->_format_all_links($accessoires, 'device', "nom");
         return $accessoires;
     }
 
@@ -149,7 +149,7 @@ class Common_Controller extends CI_Controller
         {
             $article->date_full = date_full($article->date_creation);
         }
-        $this->_format_all_links($articles, 'news', "titre_".config_item('lng'));
+        $this->_format_all_links($articles, 'news', "titre");
         $this->_format_all_links($articles, 'category', 'nom_categorie', 'categorie_link', 'categorie_id');
 
         $selectionLabel1 = $this->pro ? 'pro_pourlespros' : 'home_lasteval';
@@ -249,7 +249,7 @@ class Common_Controller extends CI_Controller
         $data['inc'] = $this->_getCommonIncludes();
 
         $data['contenu'] = $this->load->view('contenu/device', $devices_data, true);
-        $data['body_class'] = 'device '.$this->body_class.' '.to_ascii($accessoire->{"nom_".config_item('lng')});
+        $data['body_class'] = 'device '.$this->body_class.' '.to_ascii($accessoire->nom);
         $this->load->view('main', $data);
     }
 

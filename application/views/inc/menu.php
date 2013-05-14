@@ -7,7 +7,7 @@
             <li class="nav<?php echo $categorie_principale->class; ?> megamenu">
                 <a dropdowndestination="<?php echo $categorie_principale->class; ?>" href="#">
                     <!--<span class="picto"></span>
-                    <span class="text">--><?php echo $categorie_principale->{"nom_".config_item('lng')}; ?><!--</span>-->
+                    <span class="text">--><?php echo $categorie_principale->nom; ?><!--</span>-->
                 </a>
             </li>
         <?php endforeach; ?>
@@ -38,7 +38,7 @@
                 }
                 $cpt++;
                 ?>
-                <li><a href="<?php echo $categorie_enfant->link; ?>"><?php echo $categorie_enfant->{"nom_".config_item('lng')};?></a></li>
+                <li><a href="<?php echo $categorie_enfant->link; ?>"><?php echo $categorie_enfant->nom;?></a></li>
             <?php endforeach; ?>
             </ul>
             <div class="sponsored-selection">

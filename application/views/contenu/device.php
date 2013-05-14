@@ -2,7 +2,7 @@
 
 <div class="title">
         <div class="wrapper">
-            <h2><?php echo $device->{"nom_".config_item('lng')}; ?> <span>par</span> <a href="#" title="<?php echo $device->nom_fabriquant; ?>"><?php echo $device->nom_fabriquant; ?></a></h2> <!-- INSÉRER LE NOM DU DEVICE et le lien vers la page du fabricant-->
+            <h2><?php echo $device->nom; ?> <span>par</span> <a href="#" title="<?php echo $device->nom_fabriquant; ?>"><?php echo $device->nom_fabriquant; ?></a></h2> <!-- INSÉRER LE NOM DU DEVICE et le lien vers la page du fabricant-->
         </div>
     </div>
     
@@ -104,7 +104,7 @@
 		    		<img src="<?php echo img_url('tmp/logo-withings.png'); ?>" alt="[nom-du-fabricant]"/>
 		    		
 	    		</div>
-	    		<p><?php echo $device->{"description_".config_item('lng')}; ?></p>
+	    		<p><?php echo $device->presse; ?></p>
 	    	</div>
 	    	
 	    	<div class="tabContent" id="commentaires">
