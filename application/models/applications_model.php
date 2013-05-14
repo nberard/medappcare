@@ -54,23 +54,37 @@ class Applications_model extends CI_Model {
 
     public function get_last_eval_applications($_category_id = -1, $_limit = 5)
     {
-        $this->db->limit($_limit)->order_by('id', 'desc');
+        $this->db->select('A.*, C.nom_'.config_item('lng').' AS nom_categorie')
+                ->from($this->table.' A')
+                ->join($this->tableCategorie.' C', 'A.categorie_id = C.id', 'LEFT')
+                ->limit($_limit)->order_by('id', 'desc');
         if($_category_id != -1)
         {
             $this->db->where(array('categorie_id' => $_category_id));
         }
-        $res = $this->db->get($this->table)->result();
+        $res = $this->db->get()->result();
         return $res ? $res : array();
     }
 
-    public function get_top_five_applications($_category_id = -1, $_limit = 5)
+    public function get_top_five_applications($_free, $_category_id = -1, $_limit = 5)
     {
-        $this->db->limit($_limit)->order_by('id', 'asc');
+        $this->db->select('A.*, C.nom_'.config_item('lng').' AS nom_categorie')
+            ->from($this->table.' A')
+            ->join($this->tableCategorie.' C', 'A.categorie_id = C.id', 'LEFT')
+            ->limit($_limit)->order_by('id', 'asc');
         if($_category_id != -1)
         {
             $this->db->where(array('categorie_id' => $_category_id));
         }
-        $res = $this->db->get($this->table)->result();
+        if($_free)
+        {
+            $this->db->where(array('prix' => 0.00));
+        }
+        else
+        {
+            $this->db->where('prix > 0.00');
+        }
+        $res = $this->db->get()->result();
         return $res ? $res : array();
     }
 

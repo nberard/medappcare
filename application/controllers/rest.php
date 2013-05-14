@@ -103,9 +103,51 @@ class Rest extends REST_Controller {
             }
             else
             {
-                log_message('error', "la création d'un membre a échouté : ".var_export($_POST, true));
+                log_message('error', "la création d'un membre a échoué : ".var_export($_POST, true));
                 $this->response(array('status' => 'ko', 'errors' => lang('ko_reg_server')), 500);
             }
+        }
+    }
+
+    public function topfiveapplis_get()
+    {
+        $free = $this->_get('free');
+        $free = ($free && $free == 1);
+        $links = $this->_get('links');
+        $links = ($links && $links == 1);
+        $this->load->model('Applications_model');
+        $top5Applis = $this->Applications_model->get_top_five_applications($free);
+        $this->_format_all_prices($top5Applis);
+        if($links)
+        {
+            $pro = $this->_get('pro');
+            $pro = ($pro && $pro == 1);
+            $access_label = $pro ? 'pro' : 'perso';
+            $this->_set_access_label($access_label);
+            $this->_format_all_links($top5Applis, 'app');
+            $this->_format_all_links($top5Applis, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
+        }
+        if($top5Applis)
+        {
+            log_message('debug', "format=".var_export($this->response->format, true));
+            if($this->response->format == "render")
+            {
+                $this->load->model('Devices_model');
+                $this->response($this->load->view('inc/home_topfive', array(
+                    'applications' => $top5Applis,
+                    'deviceAndroid' => Devices_model::APPLICATION_DEVICE_ANDROID,
+                    'deviceApple' => Devices_model::APPLICATION_DEVICE_APPLE,
+                    'free' => $free,
+                ), true), 200);
+            }
+            else
+            {
+                $this->response(array('status' => 'ok', 'apps' => $top5Applis), 200);
+            }
+        }
+        else
+        {
+            $this->response('', 204);
         }
     }
 }

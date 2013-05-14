@@ -10,10 +10,30 @@ class Pro extends Common_Controller {
         parent::__construct(true);
     }
 
+    protected function _display_pour_les_pros($_filtre = 'date')
+    {
+        $this->load->model('Applications_model');
+        $top5Applis = $this->Applications_model->get_top_five_applications();
+        $this->_format_all_prices($top5Applis);
+        $this->_format_all_links($top5Applis, 'app');
+        $this->_format_all_links($top5Applis, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
+        return $top5Applis;
+    }
+
+    protected function _display_pour_les_gens($_filtre = 'note')
+    {
+        $this->load->model('Applications_model');
+        $lastEvalApplis = $this->Applications_model->get_last_eval_applications();
+        $this->_format_all_prices($lastEvalApplis);
+        $this->_format_all_links($lastEvalApplis, 'app');
+        $this->_format_all_links($lastEvalApplis, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
+        return $lastEvalApplis;
+    }
+
 
     public function index()
     {
-        $this->_common_index();
+        $this->_common_index($this->_display_pour_les_pros(), 'pro_pourlespros', $this->_display_pour_les_gens(), 'pro_pourlesgens');
     }
 
     public function register()

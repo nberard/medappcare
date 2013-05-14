@@ -13,7 +13,7 @@
  * @link			https://github.com/awhitney42/codeigniter-restserver-resources
  * @version 		2.6.2
  */
-abstract class REST_Controller extends CI_Controller
+abstract class REST_Controller extends MY_Controller
 {
     /**
      * This defines the rest format.
@@ -127,6 +127,7 @@ abstract class REST_Controller extends CI_Controller
         'jsonp' => 'application/javascript',
         'serialized' => 'application/vnd.php.serialized',
         'php' => 'text/plain',
+        'render' => 'application/medappcare-render',
         'html' => 'text/html',
         'csv' => 'application/csv'
     );

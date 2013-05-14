@@ -34,7 +34,7 @@
                 <ul>
                     <h6><?php echo $categorie_principale_perso->nom; ?></h6>
                     <?php foreach($categorie_principale_perso->enfants as $categorie_enfants_perso): ?>
-                        <li><a href="#"><?php echo $categorie_enfants_perso->nom; ?> </a></li>
+                        <li><a href="<?php echo $categorie_enfants_perso->link; ?>"><?php echo $categorie_enfants_perso->nom; ?> </a></li>
                     <?php endforeach; ?>
                 </ul>
             <?php endforeach; ?>
@@ -45,7 +45,7 @@
             <ul>
                 <h6><?php echo $categorie_principale_pro->nom; ?></h6>
                 <?php foreach($categorie_principale_pro->enfants as $categorie_enfants_pro): ?>
-                    <li><a href="#"><?php echo $categorie_enfants_pro->nom; ?> </a></li>
+                    <li><a href="<?php echo $categorie_enfants_pro->link; ?>"><?php echo $categorie_enfants_pro->nom; ?> </a></li>
                 <?php endforeach; ?>
             </ul>
             <?php endforeach; ?>

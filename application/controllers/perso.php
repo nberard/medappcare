@@ -11,9 +11,29 @@ class Perso extends Common_Controller {
         $this->load->helper('country');
     }
 
+    protected function _display_top_five($_free)
+    {
+        $this->load->model('Applications_model');
+        $top5Applis = $this->Applications_model->get_top_five_applications($_free);
+        $this->_format_all_prices($top5Applis);
+        $this->_format_all_links($top5Applis, 'app');
+        $this->_format_all_links($top5Applis, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
+        return $top5Applis;
+    }
+
+    protected function _display_last_eval()
+    {
+        $this->load->model('Applications_model');
+        $lastEvalApplis = $this->Applications_model->get_last_eval_applications();
+        $this->_format_all_prices($lastEvalApplis);
+        $this->_format_all_links($lastEvalApplis, 'app');
+        $this->_format_all_links($lastEvalApplis, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
+        return $lastEvalApplis;
+    }
+
 	public function index()
 	{
-        $this->_common_index();
+        $this->_common_index($this->_display_last_eval(), 'home_lasteval', $this->_display_top_five(false), 'home_topfive');
 	}
 
 

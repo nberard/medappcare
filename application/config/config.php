@@ -371,4 +371,6 @@ $config['types_accessoires'] = array('bluetooth', 'wifi', 'usb');
 
 $config['password_salt'] = 'Qz2acvC7bjnjJdNK';
 
+$config['render_template_accept'] = 'application/medappcare-render';
+
 $config['body_class_categories'] = array('administratif', 'mapratique', 'minformer', 'mespatients', 'masante', 'monquotidien', 'minformer', 'medeplacer');

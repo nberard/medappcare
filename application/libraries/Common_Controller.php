@@ -7,10 +7,11 @@
  * To change this template use File | Settings | File Templates.
  */
 
-class Common_Controller extends CI_Controller
+class Common_Controller extends MY_Controller
 {
     protected $pro;
-    protected $access_label;
+    protected $access_label_target;
+    protected $body_class;
     function __construct($_pro)
     {
         parent::__construct();
@@ -90,21 +91,6 @@ class Common_Controller extends CI_Controller
         }
     }
 
-    protected function _format_all_prices(&$_applis_array)
-    {
-        $this->load->helper('price');
-        $this->config->load('price');
-        foreach ($_applis_array as &$_appli)
-            $_appli->prix_complet = format_price($_appli->prix, $_appli->devise, $this->lang->line('free'));
-    }
-
-    protected function _format_all_links(&$_data_link_array, $_target, $_label_titre = 'titre', $_link = 'link', $_label_id = 'id')
-    {
-        $this->load->helper('url');
-        foreach ($_data_link_array as &$_data_link)
-            $_data_link->{$_link} = site_url($this->access_label.'/'.$_target.'_'.to_ascii($_data_link->{$_label_titre}).'_'.$_data_link->{$_label_id});
-    }
-
     protected function _get_app_infos($_id)
     {
         $this->load->model('Applications_model');
@@ -131,18 +117,11 @@ class Common_Controller extends CI_Controller
         return $accessoires;
     }
 
-    protected function _common_index()
+    protected function _common_index($_applis_selection_left, $_label_selection_left, $_applis_selection_right, $_label_selection_right)
     {
-        $this->load->model('Applications_model');
         $this->load->model('Devices_model');
         $this->load->model('Articles_model');
-        $lastEvalApplis = $this->Applications_model->get_last_eval_applications();
-        $top5Applis = $this->Applications_model->get_top_five_applications();
-        //var_dump($this->Applications_model->get_selection_applications(1));
-        $this->_format_all_prices($lastEvalApplis);
-        $this->_format_all_prices($top5Applis);
-        $this->_format_all_links($lastEvalApplis, 'app');
-        $this->_format_all_links($top5Applis, 'app');
+        $this->load->model('Applications_model');
 
         $articles = $this->Articles_model->get_last_articles(2);
         foreach ($articles as $article)
@@ -151,19 +130,17 @@ class Common_Controller extends CI_Controller
         }
         $this->_format_all_links($articles, 'news', "titre");
         $this->_format_all_links($articles, 'category', 'nom_categorie', 'categorie_link', 'categorie_id');
-
-        $selectionLabel1 = $this->pro ? 'pro_pourlespros' : 'home_lasteval';
-        $selectionLabel2 = $this->pro ? 'pro_pourlesgens' : 'home_topfive';
         $indexData = array(
             'home_slider' => $this->load->view('inc/home_slider', '', true),
             'widget_selection' => $this->load->view('inc/widget_selection', '', true),
-            $selectionLabel1 => $this->load->view('inc/'.$selectionLabel1, array(
-                'applications' => $lastEvalApplis,
+            $_label_selection_left => $this->load->view('inc/'.$_label_selection_left, array(
+                'applications' => $_applis_selection_left,
                 'deviceAndroid' => Devices_model::APPLICATION_DEVICE_ANDROID,
                 'deviceApple' => Devices_model::APPLICATION_DEVICE_APPLE,
             ), true),
-            $selectionLabel2 => $this->load->view('inc/'.$selectionLabel2, array(
-                'applications' => $top5Applis,
+            $_label_selection_right => $this->load->view('inc/'.$_label_selection_right, array(
+                'free' => false,
+                'applications' => $_applis_selection_right,
                 'deviceAndroid' => Devices_model::APPLICATION_DEVICE_ANDROID,
                 'deviceApple' => Devices_model::APPLICATION_DEVICE_APPLE,
             ), true),
@@ -173,7 +150,7 @@ class Common_Controller extends CI_Controller
             'partners' => $this->load->view('inc/partners', '', true),
         );
 
-        $data['inc'] = $this->_getCommonIncludes();
+        $data['inc'] = $this->_getCommonIncludes(array(js_url('home')));
         $template = $this->pro ? 'indexPro' : 'index';
         $data['contenu'] = $this->load->view('contenu/'.$template, $indexData, true);
         $data['body_class'] = 'homepage '.$this->body_class;
@@ -187,6 +164,12 @@ class Common_Controller extends CI_Controller
         $this->load->model('Categories_model');
         $lastEvalApplis = $this->Applications_model->get_last_eval_applications($_id);
         $top5Applis = $this->Applications_model->get_top_five_applications($_id);
+        $this->_format_all_prices($lastEvalApplis);
+        $this->_format_all_prices($top5Applis);
+        $this->_format_all_links($lastEvalApplis, 'app');
+        $this->_format_all_links($lastEvalApplis, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
+        $this->_format_all_links($top5Applis, 'app');
+        $this->_format_all_links($top5Applis, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
         $categorie = $this->Categories_model->get_categorie($_id);
         $categoryData = array(
             'widget_selection' => $this->load->view('inc/widget_selection', '', true),

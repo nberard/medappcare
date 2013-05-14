@@ -4,7 +4,7 @@ $(document).ready(function() {
     {
         $.ajax({
             type: 		"POST",
-            url:  		$('#form-signup').attr('data-action'),
+            url:  		$('#form-signup').data('action'),
             dataType: 'json',
             contentType: 'application/json',
             data:
