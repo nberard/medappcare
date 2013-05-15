@@ -365,7 +365,7 @@ $config['proxy_ips'] = '';
 /* Location: ./application/config/config.php */
 
 $config['note_min'] = 0;
-$config['note_max'] = 5;
+$config['note_max'] = 10;
 
 $config['types_accessoires'] = array('bluetooth', 'wifi', 'usb');
 
