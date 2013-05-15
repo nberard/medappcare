@@ -71,7 +71,9 @@ class Perso extends Common_Controller {
     {
         $data['inc'] = $this->_getCommonIncludes();
 
-        $data['contenu'] = $this->load->view('contenu/list_app', '', true);
+        $data['contenu'] = $this->load->view('contenu/list_app', array(
+            'list_apps' => $this->load->view('inc/app_grid', '', true),
+            ), true);
         $data['body_class'] = 'list particuliers';
         $this->load->view('main', $data);
     }
