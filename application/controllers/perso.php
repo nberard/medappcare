@@ -82,7 +82,16 @@ class Perso extends Common_Controller {
 	{
         $this->_common_mentionslegales();
 	}
-	
+
+    public function cgu()
+    {
+        $data['inc'] = $this->_getCommonIncludes();
+
+        $data['contenu'] = $this->load->view('contenu/cgu', '', true);
+        $data['body_class'] = 'cgu particuliers';
+        $this->load->view('main', $data);
+    }
+		
 	public function contact()
     {
         $this->_common_contact();
