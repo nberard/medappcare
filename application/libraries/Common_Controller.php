@@ -212,7 +212,7 @@ class Common_Controller extends MY_Controller
                 'deviceApple' => Devices_model::APPLICATION_DEVICE_APPLE,
             ), true),
             'widget_allappcategory' => $this->load->view('inc/widget_allappcategory', array(
-                'app_grid' => $this->load->view('inc/list_apps', array('categorie' => $categorie), true)
+                'app_grid' => $this->load->view('inc/app_grid', array('categorie' => $categorie), true)
                         ), true),
             'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(6)), true),
             'home_pushpartners' => $this->load->view('inc/home_pushpartners', '', true),

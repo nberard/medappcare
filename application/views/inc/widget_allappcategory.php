@@ -4,7 +4,7 @@
         <a href="#" class="gratuit" title="Filtrer les apps gratuites"><span></span>gratuit</a>
         <a href="#" class="payant actif" title="Filtrer les apps payantes"><span></span>€</a>
     </div>
-        <?php echo $list_apps; ?>
+        <?php echo $app_grid; ?>
     <div class="metaFooter"><a href="category.php">voir tout ></a></div>
     <div class="clear"></div>
 </div>
