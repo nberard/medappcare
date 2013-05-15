@@ -11,6 +11,7 @@ class Applications_model extends CI_Model {
     protected $tableNotes = 'application_note';
     protected $tableSelection = 'selection_items';
     protected $tableEditeur = 'editeur';
+    protected $tableDevice = 'device';
     protected $tableCategorie = 'categorie';
 
     public function __construct()
@@ -56,9 +57,12 @@ class Applications_model extends CI_Model {
 
     public function get_last_eval_applications($_category_id = -1, $_limit = 5)
     {
-        $this->db->select('A.*, C.nom_'.config_item('lng').' AS nom_categorie')
+        $this->db->select('CEIL(AVG(N.note)) AS moyenne_note, A.*, C.nom_'.config_item('lng').' AS nom_categorie, D.nom AS device_nom, D.class as device_class')
                 ->from($this->table.' A')
                 ->join($this->tableCategorie.' C', 'A.categorie_id = C.id', 'LEFT')
+                ->join($this->tableDevice.' D', 'D.id = A.device_id', 'INNER')
+                ->join($this->tableNotes.' N', 'A.id = N.application_id', 'LEFT')
+                ->group_by('A.id')
                 ->limit($_limit)->order_by('id', 'desc');
         if($_category_id != -1)
         {
@@ -71,9 +75,10 @@ class Applications_model extends CI_Model {
 
     public function get_top_five_applications($_free, $_pro, $_category_id = -1, $_limit = 5)
     {
-        $this->db->select('CEIL(AVG(N.note)) AS moyenne_note, A.*, C.nom_'.config_item('lng').' AS nom_categorie')
+        $this->db->select('CEIL(AVG(N.note)) AS moyenne_note, A.*, C.nom_'.config_item('lng').' AS nom_categorie, D.nom AS device_nom, D.class as device_class')
             ->from($this->table.' A')
             ->join($this->tableCategorie.' C', 'A.categorie_id = C.id', 'LEFT')
+            ->join($this->tableDevice.' D', 'D.id = A.device_id', 'INNER')
             ->join($this->tableNotes.' N', 'A.id = N.application_id', 'LEFT')
             ->group_by('A.id')
             ->limit($_limit)->order_by('id', 'asc');

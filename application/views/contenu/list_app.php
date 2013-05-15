@@ -3,7 +3,7 @@
 
     <div class="wrapper">
 	    
-	    
+	    <?php echo $app_grid; ?>
 
     </div>
 
