@@ -78,6 +78,16 @@ class Pro extends Common_Controller {
     {
         $this->_common_news($_id);
     }
+
+    public function cgu()
+    {
+        $this->_common_cgu();
+    }
+
+    public function list_app()
+    {
+        $this->_common_list_app();
+    }
 }
 
 /* End of file perso.php */

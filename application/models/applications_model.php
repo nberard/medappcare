@@ -108,15 +108,12 @@ class Applications_model extends CI_Model {
 
     public function get_application($_id)
     {
-        return $this->db->select(
-                $this->table.'.*, '
-                .$this->tableEditeur.'.nom as nom_editeur, '
-                .$this->tableEditeur.'.lien_contact, '
-                .$this->tableCategorie.'.class'
-            )->from($this->table)
-            ->join($this->tableEditeur, $this->tableEditeur.'.id = '.$this->table.'.editeur_id', 'INNER')
-            ->join($this->tableCategorie, $this->tableCategorie.'.id = '.$this->table.'.categorie_parente_id', 'LEFT')
-            ->where(array($this->table.'.id' => $_id))->get()->row();
+        return $this->db->select('A.*, E.nom AS nom_editeur, E.lien_contact, C.class, D.nom AS device_nom, D.class AS device_class'
+            )->from($this->table.' A')
+            ->join($this->tableEditeur.' E', 'E.id = A.editeur_id', 'INNER')
+            ->join($this->tableDevice.' D', 'D.id = A.device_id', 'INNER')
+            ->join($this->tableCategorie.' C', 'C.id = A.categorie_parente_id', 'LEFT')
+            ->where(array('A.id' => $_id))->get()->row();
     }
 
 }

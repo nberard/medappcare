@@ -69,13 +69,7 @@ class Perso extends Common_Controller {
         
     public function list_app()
     {
-        $data['inc'] = $this->_getCommonIncludes();
-
-        $data['contenu'] = $this->load->view('contenu/list_app', array(
-            'app_grid' => $this->load->view('inc/app_grid', '', true),
-            ), true);
-        $data['body_class'] = 'list particuliers';
-        $this->load->view('main', $data);
+        $this->_common_list_app();
     }
     
     public function mentionslegales()
@@ -85,11 +79,7 @@ class Perso extends Common_Controller {
 
     public function cgu()
     {
-        $data['inc'] = $this->_getCommonIncludes();
-
-        $data['contenu'] = $this->load->view('contenu/cgu', '', true);
-        $data['body_class'] = 'cgu particuliers';
-        $this->load->view('main', $data);
+        $this->_common_cgu();
     }
 		
 	public function contact()

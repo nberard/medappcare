@@ -41,14 +41,14 @@ class Common_Controller extends MY_Controller
                 'redirect' => redirect_language($this->uri->segment_array(), $shortLanguage),
             );
         }
-        $this->benchmark->mark('get_parents_start');
+//        $this->benchmark->mark('get_parents_start');
         $categories_principales = $this->Categories_model->get_categories_parentes($this->pro);
         $categories_principales_target = $this->Categories_model->get_categories_parentes(!$this->pro);
-        $this->benchmark->mark('get_parents_end');
-        $this->benchmark->mark('get_enfants_start');
+//        $this->benchmark->mark('get_parents_end');
+//        $this->benchmark->mark('get_enfants_start');
         $this->_populate_categories_enfants($categories_principales_target);
         $this->_populate_categories_enfants($categories_principales);
-        $this->benchmark->mark('get_enfants_end');
+//        $this->benchmark->mark('get_enfants_end');
         return array(
             'header_meta' => $this->load->view('inc/header_meta', array('css_files' => array(css_url('stylesheet'))), true),
             'header' => $this->load->view('inc/header', array(
@@ -292,6 +292,26 @@ class Common_Controller extends MY_Controller
 
         $data['contenu'] = $this->load->view('contenu/category', $devices_data, true);
         $data['body_class'] = 'category particuliers '.to_ascii('news');
+        $this->load->view('main', $data);
+    }
+
+    protected function _common_cgu()
+    {
+        $data['inc'] = $this->_getCommonIncludes();
+
+        $data['contenu'] = $this->load->view('contenu/cgu', '', true);
+        $data['body_class'] = 'cgu particuliers';
+        $this->load->view('main', $data);
+    }
+
+    protected function _common_list_app()
+    {
+        $data['inc'] = $this->_getCommonIncludes();
+
+        $data['contenu'] = $this->load->view('contenu/list_app', array(
+            'app_grid' => $this->load->view('inc/app_grid', '', true),
+        ), true);
+        $data['body_class'] = 'list particuliers';
         $this->load->view('main', $data);
     }
 }
