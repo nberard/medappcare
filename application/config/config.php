@@ -366,6 +366,7 @@ $config['proxy_ips'] = '';
 
 $config['note_min'] = 0;
 $config['note_max'] = 10;
+$config['notes_classes'] = array('zero', 'un', 'deux', 'trois', 'quatre', 'cinq', 'six', 'sept', 'huit', 'neuf', 'dixsurdix');
 
 $config['types_accessoires'] = array('bluetooth', 'wifi', 'usb');
 

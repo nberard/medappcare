@@ -16,6 +16,7 @@ class Perso extends Common_Controller {
         $this->load->model('Applications_model');
         $top5Applis = $this->Applications_model->get_top_five_applications($_free, false);
         $this->_format_all_prices($top5Applis);
+        $this->_format_all_notes($top5Applis);
         $this->_format_all_links($top5Applis, 'app');
         $this->_format_all_links($top5Applis, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
         return $top5Applis;

@@ -239,6 +239,11 @@ class Admin extends CI_Controller
 
     private function _handle_default_values($_post_array,$_primary_key,$_to_check, $_table, $_updates = array(), $_id = 'id')
     {
+        log_message('debug', "_handle_default_values=".var_export($_post_array, true));
+        log_message('debug', "_handle_default_values=".var_export($_primary_key, true));
+        log_message('debug', "_handle_default_values=".var_export($_to_check, true));
+        log_message('debug', "_handle_default_values=".var_export($_table, true));
+        log_message('debug', "_handle_default_values=".var_export($_updates, true));
         foreach($_to_check as $field => $default_value)
         {
             if(empty($_post_array[$field]))
@@ -345,10 +350,10 @@ class Admin extends CI_Controller
         $this->crud->set_table('application_note');
         $this->crud->required_fields('membre_id', 'application_id', 'note');
         $this->crud->callback_after_insert(function($post_array,$primary_key) {
-            $this->_handle_default_values($post_array,$primary_key,array(),'application_note', array("date" => date('Y-m-d H:i:s')));
+            $this->_handle_default_values($post_array,$primary_key,array("date" => date('Y-m-d H:i:s')),'application_note');
         });
         $this->crud->callback_after_update(function($post_array,$primary_key) {
-            $this->_handle_default_values($post_array,$primary_key,array(),'application_note', array("date" => date('Y-m-d H:i:s')));
+            $this->_handle_default_values($post_array,$primary_key,array("date" => date('Y-m-d H:i:s')),'application_note');
         });
         $this->crud->set_relation('membre_id', 'membre', '{email}');
         $this->crud->set_relation('application_id', 'application', '{nom}');

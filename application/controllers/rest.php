@@ -118,6 +118,7 @@ class Rest extends REST_Controller {
         $this->load->model('Applications_model');
         $top5Applis = $this->Applications_model->get_top_five_applications($free, false);
         $this->_format_all_prices($top5Applis);
+        $this->_format_all_notes($top5Applis);
         if($links)
         {
             $pro = $this->_get('pro');
