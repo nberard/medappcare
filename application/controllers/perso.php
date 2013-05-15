@@ -66,6 +66,15 @@ class Perso extends Common_Controller {
     {
         $this->_common_app($_id);
     }
+        
+    public function list()
+    {
+        $data['inc'] = $this->_getCommonIncludes();
+
+        $data['contenu'] = $this->load->view('contenu/list', '', true);
+        $data['body_class'] = 'list particuliers';
+        $this->load->view('main', $data);
+    }
     
     public function mentionslegales()
 	{
