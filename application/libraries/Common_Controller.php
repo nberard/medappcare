@@ -74,6 +74,7 @@ class Common_Controller extends MY_Controller
                 js_url('jquery-ui-1.10.2.custom.min'),
                 js_url('jquery.placeholder.min'),
                 js_url('jquery.flexslider-min'),
+                js_url('jquery.autoellipsis'),
                 js_url('bootstrap'),
                 js_url('menu'),
                 js_url('login'),
@@ -211,7 +212,7 @@ class Common_Controller extends MY_Controller
                 'deviceApple' => Devices_model::APPLICATION_DEVICE_APPLE,
             ), true),
             'widget_allappcategory' => $this->load->view('inc/widget_allappcategory', array(
-                'list_apps' => $this->load->view('inc/list_apps', array('categorie' => $categorie), true)
+                'app_grid' => $this->load->view('inc/list_apps', array('categorie' => $categorie), true)
                         ), true),
             'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(6)), true),
             'home_pushpartners' => $this->load->view('inc/home_pushpartners', '', true),
