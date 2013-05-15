@@ -6,7 +6,10 @@ $(document).ready(function() {
             type: 		"POST",
             url:  		$('#form-signup').data('action'),
             dataType: 'json',
-            contentType: 'application/json',
+            headers: {
+                Accept : 'application/json',
+                "Content-Type": 'application/json'
+            },
             data:
                 JSON.stringify({
                     pro : 1,
