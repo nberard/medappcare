@@ -67,7 +67,7 @@ class Perso extends Common_Controller {
         $this->_common_app($_id);
     }
         
-    public function list()
+    public function list_app()
     {
         $data['inc'] = $this->_getCommonIncludes();
 
