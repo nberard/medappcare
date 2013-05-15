@@ -41,11 +41,14 @@ class Common_Controller extends MY_Controller
                 'redirect' => redirect_language($this->uri->segment_array(), $shortLanguage),
             );
         }
+        $this->benchmark->mark('get_parents_start');
         $categories_principales = $this->Categories_model->get_categories_parentes($this->pro);
         $categories_principales_target = $this->Categories_model->get_categories_parentes(!$this->pro);
-
+        $this->benchmark->mark('get_parents_end');
+        $this->benchmark->mark('get_enfants_start');
         $this->_populate_categories_enfants($categories_principales_target);
         $this->_populate_categories_enfants($categories_principales);
+        $this->benchmark->mark('get_enfants_end');
         return array(
             'header_meta' => $this->load->view('inc/header_meta', array('css_files' => array(css_url('stylesheet'))), true),
             'header' => $this->load->view('inc/header', array(
@@ -81,14 +84,37 @@ class Common_Controller extends MY_Controller
 
     protected function _populate_categories_enfants(&$_categories_array, $add_link = true)
     {
+//        log_message('debug', "_populate_categories_enfants=".var_export($_categories_array, true));
+        $_categories_ids = array();
+        foreach($_categories_array as $_categorie)
+        {
+            $_categories_ids[] = $_categorie->id;
+            $_categories_enfants[$_categorie->id] = array();
+        }
+//        log_message('debug', "_categories_ids=".var_export($_categories_ids, true));
+        $_categories_enfants_brut = $this->Categories_model->get_categories_enfantes($_categories_ids);
+        foreach($_categories_enfants_brut as $_categorie_enfant)
+        {
+            $_categories_enfants[$_categorie_enfant->parent_id][] = $_categorie_enfant;
+        }
+//        log_message('debug', "_categories_enfants=".var_export($_categories_enfants, true));
         foreach($_categories_array as &$_categorie)
         {
-            $_categorie->enfants = $this->Categories_model->get_categories_enfantes($_categorie->id);
+            $_categorie->enfants = $_categories_enfants[$_categorie->id];
             if($add_link)
             {
                 $this->_format_all_links($_categorie->enfants, 'category', 'nom');
             }
         }
+//        log_message('debug', "_categories_array=".var_export($_categories_array, true));
+//        foreach($_categories_array as &$_categorie)
+//        {
+//            $_categorie->enfants = $this->Categories_model->get_categories_enfantes($_categorie->id);
+//            if($add_link)
+//            {
+//                $this->_format_all_links($_categorie->enfants, 'category', 'nom');
+//            }
+//        }
     }
 
     protected function _get_app_infos($_id)
