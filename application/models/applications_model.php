@@ -11,6 +11,7 @@ class Applications_model extends CI_Model {
     protected $tableNotes = 'application_note';
     protected $tableSelection = 'selection_items';
     protected $tableEditeur = 'editeur';
+    protected $tableMembre = 'membre';
     protected $tableDevice = 'device';
     protected $tableCategorie = 'categorie';
 
@@ -108,8 +109,12 @@ class Applications_model extends CI_Model {
 
     public function get_application($_id)
     {
-        return $this->db->select('A.*, E.nom AS nom_editeur, E.lien_contact, C.class, D.nom AS device_nom, D.class AS device_class'
-            )->from($this->table.' A')
+        return $this->db->select('CEIL(AVG(N1.note)) as moyenne_note_user, CEIL(AVG(N2.note)) as moyenne_note_pro, A.*, E.nom AS nom_editeur, E.lien_contact, C.class, D.nom AS device_nom, D.class AS device_class')
+            ->from($this->table.' A')
+            ->join($this->tableNotes.' N1', 'A.id = N1.application_id', 'LEFT')
+            ->join($this->tableMembre.' M1', 'M1.id = N1.membre_id AND M1.est_pro = 0', 'INNER')
+            ->join($this->tableNotes.' N2', 'A.id = N2.application_id', 'LEFT')
+            ->join($this->tableMembre.' M2', 'M2.id = N2.membre_id AND M2.est_pro = 1', 'INNER')
             ->join($this->tableEditeur.' E', 'E.id = A.editeur_id', 'INNER')
             ->join($this->tableDevice.' D', 'D.id = A.device_id', 'INNER')
             ->join($this->tableCategorie.' C', 'C.id = A.categorie_parente_id', 'LEFT')

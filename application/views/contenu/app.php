@@ -13,8 +13,8 @@
 
         <div class="content right">
             <div class="appnote noteMedappcare"><span></span><a href="#thegrid" class="note deux">Deux</a></div>
-            <div class="appnote notePro"><span></span><a href="#thegrid" class="note neuf">Cinq</a></div>
-            <div class="appnote noteGens"><span></span><a href="#thegrid" class="note huit">Huit</a></div>
+            <?php if($application->moyenne_note_pro): ?><div class="appnote notePro"><span></span><a href="#thegrid" class="note <?php echo $application->class_note_pro; ?>"><?php echo ucfirst($application->class_note_pro); ?></a></div><?php endif; ?>
+            <?php if($application->moyenne_note_user): ?><div class="appnote noteGens"><span></span><a href="#thegrid" class="note <?php echo $application->class_note_user; ?>"><?php echo ucfirst($application->class_note_user); ?></a></div><?php endif; ?>
         </div>
 
     </div>
@@ -29,10 +29,12 @@
                     <span class="price"><?php echo $application->prix_complet; ?></span>
                 </div>
             </div>
+            <?php if($application->est_ce): ?>
             <div class="labels">
             	<span class="label ce">CE</span>
             	<span class="text">Cet objet est un dispositif médical</span>
             </div>
+            <?php endif; ?>
             <div class="buttons">
                 <a href="#" class="noter">Noter l'Application</a>
                 <a href="#" class="signaler">Signaler</a>

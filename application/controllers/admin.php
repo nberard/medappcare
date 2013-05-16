@@ -19,6 +19,7 @@ class Admin extends CI_Controller
         }
         $this->load->database();
         $this->load->helper('url');
+        $this->config->load('country');
         $this->load->helper('country');
         $this->load->helper('crypt');
         $this->load->library('grocery_CRUD');

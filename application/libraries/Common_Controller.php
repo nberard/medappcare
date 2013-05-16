@@ -125,6 +125,7 @@ class Common_Controller extends MY_Controller
         if($application)
         {
             $application->prix_complet = format_price($application->prix, $application->devise, $this->lang->line('free'));
+            $this->_format_note($application, array('note_user', 'note_pro'));
         }
         return $application;
     }
