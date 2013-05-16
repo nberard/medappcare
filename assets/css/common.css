@@ -177,9 +177,12 @@ html[xmlns] .slides {display: block;}
 .ios{background: url(../img/ios_blue.png) no-repeat; width: 16px; height: 29px;}
 .web{background: url(../img/web_blue.png) no-repeat; width: 18px; height: 27px;}
 
-.masante .android, .administratif .android{background: url(../img/android_lightblue.png) no-repeat;}
-.masante .ios, .administratif .ios{background: url(../img/ios_lightblue.png) no-repeat;}
-.masante .web, .administratif .web{background: url(../img/web_lightblue.png) no-repeat;}
+.masante .android, 
+.administratif .android{background: url(../img/android_lightblue.png) no-repeat;}
+.masante .ios, 
+.administratif .ios{background: url(../img/ios_lightblue.png) no-repeat;}
+.masante .web, 
+.administratif .web{background: url(../img/web_lightblue.png) no-repeat;}
 
 .monquotidien .android,
 .mapratique .android,
