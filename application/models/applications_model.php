@@ -51,6 +51,18 @@ class Applications_model extends CI_Model {
         return $this->db->insert($this->table);
     }
 
+    public function update_application($_updates, $_conditions)
+    {
+        if(!empty($_updates) && !empty($_conditions))
+        {
+            return $this->db->update($this->table, $_updates, $_conditions);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public function exists_applications($_conditionString, $_condition_Int = array())
     {
         return $this->db->where($_conditionString)->where($_condition_Int, NULL, FALSE)->count_all_results($this->table) > 0;
