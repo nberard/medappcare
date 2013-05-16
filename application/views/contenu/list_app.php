@@ -13,9 +13,9 @@
 	                </optgroup>
 	                
 	                <optgroup label="Plateforme">
-	                    <option value="0">Web</option>
-	                    <option value="1">iOS</option>
-	                    <option value="1">Android</option>
+	                    <option value="2">Web</option>
+	                    <option value="3">iOS</option>
+	                    <option value="4">Android</option>
 	                </optgroup>
 	                
 	            </select>
