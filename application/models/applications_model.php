@@ -11,6 +11,8 @@ class Applications_model extends CI_Model {
     protected $tableNotes = 'application_note';
     protected $tableSelection = 'selection_items';
     protected $tableEditeur = 'editeur';
+    protected $tableMembre = 'membre';
+    protected $tableDevice = 'device';
     protected $tableCategorie = 'categorie';
 
     public function __construct()
@@ -56,9 +58,12 @@ class Applications_model extends CI_Model {
 
     public function get_last_eval_applications($_category_id = -1, $_limit = 5)
     {
-        $this->db->select('A.*, C.nom_'.config_item('lng').' AS nom_categorie')
+        $this->db->select('CEIL(AVG(N.note)) AS moyenne_note, A.*, C.nom_'.config_item('lng').' AS nom_categorie, D.nom AS device_nom, D.class as device_class')
                 ->from($this->table.' A')
                 ->join($this->tableCategorie.' C', 'A.categorie_id = C.id', 'LEFT')
+                ->join($this->tableDevice.' D', 'D.id = A.device_id', 'INNER')
+                ->join($this->tableNotes.' N', 'A.id = N.application_id', 'LEFT')
+                ->group_by('A.id')
                 ->limit($_limit)->order_by('id', 'desc');
         if($_category_id != -1)
         {
@@ -71,9 +76,10 @@ class Applications_model extends CI_Model {
 
     public function get_top_five_applications($_free, $_pro, $_category_id = -1, $_limit = 5)
     {
-        $this->db->select('CEIL(AVG(N.note)) AS moyenne_note, A.*, C.nom_'.config_item('lng').' AS nom_categorie')
+        $this->db->select('CEIL(AVG(N.note)) AS moyenne_note, A.*, C.nom_'.config_item('lng').' AS nom_categorie, D.nom AS device_nom, D.class as device_class')
             ->from($this->table.' A')
             ->join($this->tableCategorie.' C', 'A.categorie_id = C.id', 'LEFT')
+            ->join($this->tableDevice.' D', 'D.id = A.device_id', 'INNER')
             ->join($this->tableNotes.' N', 'A.id = N.application_id', 'LEFT')
             ->group_by('A.id')
             ->limit($_limit)->order_by('id', 'asc');
@@ -103,15 +109,16 @@ class Applications_model extends CI_Model {
 
     public function get_application($_id)
     {
-        return $this->db->select(
-                $this->table.'.*, '
-                .$this->tableEditeur.'.nom as nom_editeur, '
-                .$this->tableEditeur.'.lien_contact, '
-                .$this->tableCategorie.'.class'
-            )->from($this->table)
-            ->join($this->tableEditeur, $this->tableEditeur.'.id = '.$this->table.'.editeur_id', 'INNER')
-            ->join($this->tableCategorie, $this->tableCategorie.'.id = '.$this->table.'.categorie_parente_id', 'LEFT')
-            ->where(array($this->table.'.id' => $_id))->get()->row();
+        return $this->db->select('CEIL(AVG(N1.note)) as moyenne_note_user, CEIL(AVG(N2.note)) as moyenne_note_pro, A.*, E.nom AS nom_editeur, E.lien_contact, C.class, D.nom AS device_nom, D.class AS device_class')
+            ->from($this->table.' A')
+            ->join($this->tableNotes.' N1', 'A.id = N1.application_id', 'LEFT')
+            ->join($this->tableMembre.' M1', 'M1.id = N1.membre_id AND M1.est_pro = 0', 'INNER')
+            ->join($this->tableNotes.' N2', 'A.id = N2.application_id', 'LEFT')
+            ->join($this->tableMembre.' M2', 'M2.id = N2.membre_id AND M2.est_pro = 1', 'INNER')
+            ->join($this->tableEditeur.' E', 'E.id = A.editeur_id', 'INNER')
+            ->join($this->tableDevice.' D', 'D.id = A.device_id', 'INNER')
+            ->join($this->tableCategorie.' C', 'C.id = A.categorie_parente_id', 'LEFT')
+            ->where(array('A.id' => $_id))->get()->row();
     }
 
 }

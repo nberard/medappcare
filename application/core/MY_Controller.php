@@ -40,14 +40,22 @@ class MY_Controller extends CI_Controller {
         }
     }
 
-    protected function _format_all_notes(&$_data_notes_array)
+    protected function _format_all_notes(&$_data_notes_array, $_notes_to_format = array('note'))
     {
-        $map_class_notes = config_item('notes_classes');
         foreach ($_data_notes_array as &$_data_note)
         {
-            if($_data_note->moyenne_note && isset($map_class_notes[$_data_note->moyenne_note]))
+            $this->_format_note($_data_note, $_notes_to_format);
+        }
+    }
+
+    protected function _format_note(&$_data_note, $_notes_to_format = array('note'))
+    {
+        $map_class_notes = config_item('notes_classes');
+        foreach($_notes_to_format as $_note_to_format)
+        {
+            if($_data_note->{"moyenne_".$_note_to_format} && isset($map_class_notes[$_data_note->{"moyenne_".$_note_to_format}]))
             {
-                $_data_note->class_note = $map_class_notes[$_data_note->moyenne_note];
+                $_data_note->{"class_".$_note_to_format} = $map_class_notes[$_data_note->{"moyenne_".$_note_to_format}];
             }
         }
     }

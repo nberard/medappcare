@@ -56,7 +56,6 @@ class Perso extends Common_Controller {
         $data['body_class'] = 'signup '.$this->body_class;
         $this->load->view('main', $data);
     }
-
     public function category($_id)
     {
         $this->_common_category($_id);

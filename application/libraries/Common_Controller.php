@@ -41,14 +41,14 @@ class Common_Controller extends MY_Controller
                 'redirect' => redirect_language($this->uri->segment_array(), $shortLanguage),
             );
         }
-        $this->benchmark->mark('get_parents_start');
+//        $this->benchmark->mark('get_parents_start');
         $categories_principales = $this->Categories_model->get_categories_parentes($this->pro);
         $categories_principales_target = $this->Categories_model->get_categories_parentes(!$this->pro);
-        $this->benchmark->mark('get_parents_end');
-        $this->benchmark->mark('get_enfants_start');
+//        $this->benchmark->mark('get_parents_end');
+//        $this->benchmark->mark('get_enfants_start');
         $this->_populate_categories_enfants($categories_principales_target);
         $this->_populate_categories_enfants($categories_principales);
-        $this->benchmark->mark('get_enfants_end');
+//        $this->benchmark->mark('get_enfants_end');
         return array(
             'header_meta' => $this->load->view('inc/header_meta', array('css_files' => array(css_url('stylesheet'))), true),
             'header' => $this->load->view('inc/header', array(
@@ -125,6 +125,7 @@ class Common_Controller extends MY_Controller
         if($application)
         {
             $application->prix_complet = format_price($application->prix, $application->devise, $this->lang->line('free'));
+            $this->_format_note($application, array('note_user', 'note_pro'));
         }
         return $application;
     }
@@ -184,7 +185,7 @@ class Common_Controller extends MY_Controller
         $this->load->view('main', $data);
     }
 
-    protected function _common_category($_id)
+    public function category($_id)
     {
         $this->load->model('Applications_model');
         $this->load->model('Devices_model');
@@ -227,7 +228,7 @@ class Common_Controller extends MY_Controller
         $this->load->view('main', $data);
     }
 
-    protected function _common_app($_id)
+    public function app($_id)
     {
         $this->load->model('Devices_model');
         $application = $this->_get_app_infos($_id);
@@ -246,7 +247,7 @@ class Common_Controller extends MY_Controller
         $this->load->view('main', $data);
     }
 
-    protected function _common_device($_id)
+    public function device($_id)
     {
         $this->load->model('Accessoires_model');
         $accessoire = $this->Accessoires_model->get_accessoire($_id);
@@ -263,7 +264,7 @@ class Common_Controller extends MY_Controller
         $this->load->view('main', $data);
     }
 
-    protected function _common_mentionslegales()
+    public function mentionslegales()
     {
         $data['inc'] = $this->_getCommonIncludes();
 
@@ -272,7 +273,7 @@ class Common_Controller extends MY_Controller
         $this->load->view('main', $data);
     }
 
-    protected function _common_contact()
+    public function contact()
     {
         $data['inc'] = $this->_getCommonIncludes(array(
             js_url('jquery.checkValidity'),
@@ -282,7 +283,7 @@ class Common_Controller extends MY_Controller
         $this->load->view('main', $data);
     }
 
-    protected function _common_news($_id)
+    public function news($_id)
     {
         //        $this->_format_all_apps_links($top5Applis);
         $devices_data = array(
@@ -292,6 +293,26 @@ class Common_Controller extends MY_Controller
 
         $data['contenu'] = $this->load->view('contenu/category', $devices_data, true);
         $data['body_class'] = 'category particuliers '.to_ascii('news');
+        $this->load->view('main', $data);
+    }
+
+    public function cgu()
+    {
+        $data['inc'] = $this->_getCommonIncludes();
+
+        $data['contenu'] = $this->load->view('contenu/cgu', '', true);
+        $data['body_class'] = 'cgu particuliers';
+        $this->load->view('main', $data);
+    }
+
+    public function list_app()
+    {
+        $data['inc'] = $this->_getCommonIncludes();
+
+        $data['contenu'] = $this->load->view('contenu/list_app', array(
+            'app_grid' => $this->load->view('inc/app_grid', '', true),
+        ), true);
+        $data['body_class'] = 'list particuliers';
         $this->load->view('main', $data);
     }
 }

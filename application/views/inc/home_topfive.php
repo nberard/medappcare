@@ -21,13 +21,7 @@
                     </div>
                 <?php endif; ?>
                 <div class="os">
-                    <?php if($application->device_id == $deviceApple): ?>
-                        <span class="ios">iOS</span> <!-- INSERER L'OS -->
-                    <?php elseif($application->device_id == $deviceAndroid): ?>
-                        <span class="android">Android</span>
-                    <?php else: ?>
-                        <span class="web">Web App</span>
-                    <?php endif; ?>
+                    <span class="<?php echo $application->device_class; ?>"><?php echo $application->device_nom; ?></span>
                 </div>
             </li>
         <?php endforeach; ?>

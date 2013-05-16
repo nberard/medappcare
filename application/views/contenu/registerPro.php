@@ -59,7 +59,7 @@
 
 
     <label class="checkbox">
-        <input type="checkbox" id="cgu"  name="cgu" required> J'accepte des <a href="#" title="CGU">Conditions Générales d'Utilisation</a>
+        <input type="checkbox" id="cgu"  name="cgu" required> J'accepte des <a href="<?php echo site_url($access_label.'/cgu'); ?>" title="CGU" target="_blank">Conditions Générales d'Utilisation</a>
     </label>
     <button class="btn btn-primary" type="submit">M'inscrire</button>
     <br> <br>

@@ -32,6 +32,9 @@
         </div>
     </div>
 
+    <div class="wrapper">
+	    
+	    <?php echo $app_grid; ?>
 
     <div class="wrapper">
 	    <section class="allapps">

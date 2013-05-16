@@ -19,6 +19,7 @@ class Admin extends CI_Controller
         }
         $this->load->database();
         $this->load->helper('url');
+        $this->config->load('country');
         $this->load->helper('country');
         $this->load->helper('crypt');
         $this->load->library('grocery_CRUD');
@@ -239,11 +240,6 @@ class Admin extends CI_Controller
 
     private function _handle_default_values($_post_array,$_primary_key,$_to_check, $_table, $_updates = array(), $_id = 'id')
     {
-        log_message('debug', "_handle_default_values=".var_export($_post_array, true));
-        log_message('debug', "_handle_default_values=".var_export($_primary_key, true));
-        log_message('debug', "_handle_default_values=".var_export($_to_check, true));
-        log_message('debug', "_handle_default_values=".var_export($_table, true));
-        log_message('debug', "_handle_default_values=".var_export($_updates, true));
         foreach($_to_check as $field => $default_value)
         {
             if(empty($_post_array[$field]))
@@ -305,7 +301,7 @@ class Admin extends CI_Controller
         $this->crud->set_subject("Application");
         $this->crud->set_table('application');
         $this->crud->required_fields('nom', 'package', 'device_id' , 'logo_url', 'titre', 'date_ajout', 'prix', 'devise', 'langue_store', 'editeur_id', 'lien_download');
-
+        $this->crud->set_relation('device_id', 'device', '{nom}');
         $this->crud->callback_before_insert(array($this, '_applications_before_action'));
         $this->crud->callback_before_update(array($this, '_applications_before_action'));
 

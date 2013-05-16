@@ -6,8 +6,9 @@
 <!--    --><?php //if($this->session->flashdata('success')): ?>
 <!--        <span class="alert alert-success">--><?php //echo $this->session->flashdata('success'); ?><!--</span>-->
 <!--    --><?php //endif; ?>
-
-    <span class="connected-user">Connecté en tant que <?php echo $user->email ?> | <a href="<?php echo site_url('site/deconnect') ?>">Déconnexion</a></span>
+    <?php if($user): ?>
+        <span class="connected-user">Connecté en tant que <?php echo $user->email ?> | <a href="<?php echo site_url('site/deconnect') ?>">Déconnexion</a></span>
+    <?php endif; ?>
     <div class="links">
         <div class="social">
             <a class="facebook" href="https://www.facebook.com/Medappcare" target="_blank" title="facebook">Rejoignez-nous sur Facebook !</a>
@@ -17,7 +18,6 @@
             <a href="<?php echo site_url("$access_label_target/index") ?>" class="<?php echo $pro ? 'link-particuliers' : 'pro' ?>"><?php echo lang($pro ? 'espace_particulier' : 'espace_pro') ?></a>
             <?php if(!$user): ?>
             <a data-toggle="modal" href="#connexionModal" class="connexion">Connexion</a>
-            <?php else: ?>
             <?php endif; ?>
             
         </div>
