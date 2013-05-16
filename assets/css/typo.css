@@ -98,7 +98,7 @@ h2{color: #0f6eb4; font-size: 24px;}
 .copyright{font-size: 14px; color: #0f6eb4;}
 
 .title{font-size: 30px; color: white;}
-.title a{color: white; font-size: 14px;}
+.title a, .title span{color: white; font-size: 14px;}
 .title a:hover{text-decoration: underline;}
 .title a span{font-weight: normal;}
 
