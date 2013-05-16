@@ -141,7 +141,7 @@
 
 /* =========== LISTE DEVICES (sans titre) =========== */
 
-#devicesCompatibles #devices{border: none; min-height: 350px;}
+#devicesCompatibles #devices{border: none; min-height: 0;}
 #devicesCompatibles #devices h2{display: none;}
 
 /* =========== NEWS =========== */
