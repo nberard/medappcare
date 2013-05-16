@@ -56,47 +56,6 @@ class Perso extends Common_Controller {
         $data['body_class'] = 'signup '.$this->body_class;
         $this->load->view('main', $data);
     }
-
-    public function category($_id)
-    {
-        $this->_common_category($_id);
-    }
-
-    public function app($_id)
-    {
-        $this->_common_app($_id);
-    }
-        
-    public function list_app()
-    {
-        $this->_common_list_app();
-    }
-    
-    public function mentionslegales()
-	{
-        $this->_common_mentionslegales();
-	}
-
-    public function cgu()
-    {
-        $this->_common_cgu();
-    }
-		
-	public function contact()
-    {
-        $this->_common_contact();
-    }
-   
-    public function device($_id)
-    {
-        $this->_common_device($_id);
-    }
-
-    public function news($_id)
-    {
-        $this->_common_news($_id);
-    }
-
 }
 
 /* End of file perso.php */

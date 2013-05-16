@@ -184,7 +184,7 @@ class Common_Controller extends MY_Controller
         $this->load->view('main', $data);
     }
 
-    protected function _common_category($_id)
+    public function category($_id)
     {
         $this->load->model('Applications_model');
         $this->load->model('Devices_model');
@@ -227,7 +227,7 @@ class Common_Controller extends MY_Controller
         $this->load->view('main', $data);
     }
 
-    protected function _common_app($_id)
+    public function app($_id)
     {
         $this->load->model('Devices_model');
         $application = $this->_get_app_infos($_id);
@@ -246,7 +246,7 @@ class Common_Controller extends MY_Controller
         $this->load->view('main', $data);
     }
 
-    protected function _common_device($_id)
+    public function device($_id)
     {
         $this->load->model('Accessoires_model');
         $accessoire = $this->Accessoires_model->get_accessoire($_id);
@@ -263,7 +263,7 @@ class Common_Controller extends MY_Controller
         $this->load->view('main', $data);
     }
 
-    protected function _common_mentionslegales()
+    public function mentionslegales()
     {
         $data['inc'] = $this->_getCommonIncludes();
 
@@ -272,7 +272,7 @@ class Common_Controller extends MY_Controller
         $this->load->view('main', $data);
     }
 
-    protected function _common_contact()
+    public function contact()
     {
         $data['inc'] = $this->_getCommonIncludes(array(
             js_url('jquery.checkValidity'),
@@ -282,7 +282,7 @@ class Common_Controller extends MY_Controller
         $this->load->view('main', $data);
     }
 
-    protected function _common_news($_id)
+    public function news($_id)
     {
         //        $this->_format_all_apps_links($top5Applis);
         $devices_data = array(
@@ -295,7 +295,7 @@ class Common_Controller extends MY_Controller
         $this->load->view('main', $data);
     }
 
-    protected function _common_cgu()
+    public function cgu()
     {
         $data['inc'] = $this->_getCommonIncludes();
 
@@ -304,7 +304,7 @@ class Common_Controller extends MY_Controller
         $this->load->view('main', $data);
     }
 
-    protected function _common_list_app()
+    public function list_app()
     {
         $data['inc'] = $this->_getCommonIncludes();
 
