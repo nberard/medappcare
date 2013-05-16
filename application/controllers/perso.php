@@ -69,10 +69,12 @@ class Perso extends Common_Controller {
         
     public function list_app()
     {
-        $data['inc'] = $this->_getCommonIncludes();
+        $data['inc'] = $this->_getCommonIncludes(array(
+            js_url('bootstrap-multiselect')
+        ));
 
         $data['contenu'] = $this->load->view('contenu/list_app', array(
-            'list_apps' => $this->load->view('inc/app_grid', '', true),
+            'app_grid' => $this->load->view('inc/app_grid', '', true),
             ), true);
         $data['body_class'] = 'list particuliers';
         $this->load->view('main', $data);

@@ -354,6 +354,11 @@ html[xmlns] .slides {display: block;}
 /* =========== CATEGORY =========== */
 
 .title{background: #79c1d2; width: 100%; height: 54px; line-height: 54px; margin: 40px 0 20px 0;}
+.fullList .title {margin-bottom: 0px;}
+.fullList #sort-filter {position: absolute; right:0; top:0;}
+.fullList #sort-filter .btn-group {display: inline-block;}
+.fullList #sort-filter .btn:hover, .fullList #sort-filter .btn:focus {background: white; color: black;}
+.fullList #sort-filter .btn-group input {display: none;}
 
 .monquotidien .title, .mapratique .title{background: #E05D5F;}
 .minformer .title{background: #84C790;}

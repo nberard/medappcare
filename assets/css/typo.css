@@ -21,6 +21,7 @@ h2{color: #0f6eb4; font-size: 24px;}
 .app h2, .device h2, .category h2 {color: white;}
 
 #listApps h2{color: #0f6eb4; font-size: 24px;}
+#listApps.fullList h2 {color:white; text-align: left; padding-left: 10px;}
 #listApps .listapps h3,
 #listApps .allapps h3{color: white; font-size: 24px;}
 #listApps .metapp a{color: #111313; font-size: 18px;}
@@ -101,6 +102,10 @@ h2{color: #0f6eb4; font-size: 24px;}
 .title a{color: white; font-size: 14px;}
 .title a:hover{text-decoration: underline;}
 .title a span{font-weight: normal;}
+
+#sort-filter {color:black;}
+#sort-filter a {color:rgb(15,110,180);}
+#sort-filter li:hover a, #sort-filter .active a {color:white;}
 
 
 /* ESPACE PROS */
