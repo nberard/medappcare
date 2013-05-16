@@ -40,8 +40,7 @@ $(function() {
     $('#filters').multiselect({
         buttonWidth: '150px', // Default
         buttonText: function(options, select) {
-        	alert(select);
-	    	return 'Filtrer par... <b class="caret"></b>';
+          	return 'Filtrer par... <b class="caret"></b>';
         }
     });
     

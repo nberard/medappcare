@@ -33,10 +33,6 @@
     </div>
 
     <div class="wrapper">
-	    
-	    <?php echo $app_grid; ?>
-
-    <div class="wrapper">
 	    <section class="allapps">
 	    	<?php echo $app_grid; ?>
 	    	<div class="metaFooter">
