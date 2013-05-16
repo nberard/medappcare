@@ -38,16 +38,33 @@ $(function() {
     });
     
     $('#filters').multiselect({
-        buttonWidth: '150px', // Default
+        buttonWidth: '230px', // Default
         buttonText: function(options, select) {
-          	return 'Filtrer par... <b class="caret"></b>';
+          	if (options.length == 0) {
+                return 'Filtrer par... <b class="caret"></b>';
+            
+            }
+            else if (options.length > 2) {
+                return options.length + ' filtres <b class="caret"></b>';
+            }
+            else {
+                var selected = '';
+                options.each(function() {
+                    selected += $(this).text() + ', ';
+                });
+                return 'Filtré par : ' + selected.substr(0, selected.length -2) + ' <b class="caret"></b>';
+            }
         }
     });
     
     $('#sort').multiselect({
-        buttonWidth: '150px', // Default
+        buttonWidth: '160px', // Default
         buttonText: function(options, select) {
-        	return 'Trier par... <b class="caret"></b>'; 
+        	var selected = '';
+                options.each(function() {
+                    selected += $(this).text() + ' <b class="caret"></b>';
+                });
+                return selected;
         }
     });
 

@@ -56,29 +56,29 @@
 #listApps .allapps .price{background: #79c1d2;}
 #listApps .allapps .featured{background: #d9eef3;}
 
-#listApps .allapps.catmonquotidien h3{background: #e05d5f; border: 1px solid #e05d5f;}
-#listApps .allapps.catmonquotidien ul{border-left: 1px solid #e05d5f; border-right: 1px solid #e05d5f;}
-#listApps .allapps.catmonquotidien li{border-bottom: 1px solid #e05d5f;}
-#listApps .allapps.catmonquotidien li:nth-child(odd){border-right: 1px solid #e05d5f;}
-#listApps .allapps.catmonquotidien .metaFooter{background: #e05d5f;}
-#listApps .allapps.catmonquotidien .price{background: #e05d5f;}
-#listApps .allapps.catmonquotidien .featured{background: #f1d2d2;}
+.monquotidien #listApps .allapps h3{background: #e05d5f; border: 1px solid #e05d5f;}
+.monquotidien #listApps .allapps ul{border-left: 1px solid #e05d5f; border-right: 1px solid #e05d5f;}
+.monquotidien #listApps .allapps li{border-bottom: 1px solid #e05d5f;}
+.monquotidien #listApps .allapps li:nth-child(odd){border-right: 1px solid #e05d5f;}
+.monquotidien #listApps .allapps .metaFooter{background: #e05d5f;}
+.monquotidien #listApps .allapps .price{background: #e05d5f;}
+.monquotidien #listApps .allapps .featured{background: #f1d2d2;}
 
-#listApps .allapps.catminformer h3{background: #84c790; border: 1px solid #84c790;}
-#listApps .allapps.catminformer ul{border-left: 1px solid #84c790; border-right: 1px solid #84c790;}
-#listApps .allapps.catminformer li{border-bottom: 1px solid #84c790;}
-#listApps .allapps.catminformer li:nth-child(odd){border-right: 1px solid #84c790;}
-#listApps .allapps.catminformer .metaFooter{background: #84c790;}
-#listApps .allapps.catminformer .price{background: #84c790;}
-#listApps .allapps.catminformer .featured{background: #ceecd4;}
+.minformer #listApps .allapps h3{background: #84c790; border: 1px solid #84c790;}
+.minformer #listApps .allapps ul{border-left: 1px solid #84c790; border-right: 1px solid #84c790;}
+.minformer #listApps .allapps li{border-bottom: 1px solid #84c790;}
+.minformer #listApps .allapps li:nth-child(odd){border-right: 1px solid #84c790;}
+.minformer #listApps .allapps .metaFooter{background: #84c790;}
+.minformer #listApps .allapps .price{background: #84c790;}
+.minformer #listApps .allapps .featured{background: #ceecd4;}
 
-#listApps .allapps.catmedeplacer h3{background: #d769af; border: 1px solid #d769af;}
-#listApps .allapps.catmedeplacer ul{border-left: 1px solid #d769af; border-right: 1px solid #d769af;}
-#listApps .allapps.catmedeplacer li{border-bottom: 1px solid #d769af;}
-#listApps .allapps.catmedeplacer li:nth-child(odd){border-right: 1px solid #d769af;}
-#listApps .allapps.catmedeplacer .metaFooter{background: #d769af;}
-#listApps .allapps.catmedeplacer .price{background: #d769af;}
-#listApps .allapps.catmedeplacer .featured{background: #efe1ea;}
+.medeplacer #listApps .allapps h3{background: #d769af; border: 1px solid #d769af;}
+.medeplacer #listApps .allapps ul{border-left: 1px solid #d769af; border-right: 1px solid #d769af;}
+.medeplacer #listApps .allapps li{border-bottom: 1px solid #d769af;}
+.medeplacer #listApps .allapps li:nth-child(odd){border-right: 1px solid #d769af;}
+.medeplacer #listApps .allapps .metaFooter{background: #d769af;}
+.medeplacer #listApps .allapps .price{background: #d769af;}
+.medeplacer #listApps .allapps .featured{background: #efe1ea;}
 
 #listApps.fullList .metaFooter {position: relative;}
 #listApps .previousLink {position: absolute; left: 10px; top:2px;}
