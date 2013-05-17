@@ -85,6 +85,7 @@
       </p>
     </form>
   </div>
+    <div id="login-error" class="alert alert-error hide"></div>
 </div>
   
   
