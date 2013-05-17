@@ -552,7 +552,8 @@ button{margin-right: 15px;}
     color: #999999;
 }
 
-#login-error {
+#login-error, 
+#login-error-pro {
 	margin: 0;
 }
 
