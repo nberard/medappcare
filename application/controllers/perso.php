@@ -62,16 +62,77 @@ class Perso extends Common_Controller {
         $this->load->view('main', $data);
     }
 
-    public function list_app()
+    public function app_category($_categorie_id, $_page)
     {
+        $_page--;
+        $this->load->model('Categories_model');
+        $this->load->model('Applications_model');
+        $this->load->model('Devices_model');
+        $device_objs = $this->Devices_model->get_all_devices();
+        foreach($device_objs as $device_obj)
+        {
+            $devices_ids_bd[] = $device_obj->id;
+        }
+        $sort = 'date_ajout';
+        $order = 'desc';
+        $free = -1;
+        $devices = -1;
+        if(isset($_GET['sort']))
+        {
+            $_get_sort = xss_clean($_GET['sort']);
+            if(in_array($_get_sort, array('date_ajout', 'prix')))
+            {
+                $sort = $_get_sort;
+                if(isset($_GET['order']))
+                {
+                    $_get_order = xss_clean($_GET['order']);
+                    if(in_array($_get_sort, array('asc', 'desc')))
+                    {
+                        $order = $_get_order;
+                    }
+                }
+            }
+        }
+        if(isset($_GET['free']))
+        {
+            $_get_free = xss_clean($_GET['free']);
+            if(in_array($_get_free, array(0,1)))
+            {
+                $free = $_get_free == 1 ? true : false;
+            }
+        }
+        if(isset($_GET['devices']))
+        {
+            $_get_devices = xss_clean($_GET['devices']);
+            $tab_devices = explode(',', $_get_devices);
+            if(is_array($tab_devices))
+            {
+                foreach($tab_devices as $device_id)
+                {
+                    if(in_array($device_id, $devices_ids_bd))
+                    {
+                        $devices[] = $device_id;
+                    }
+                }
+            }
+        }
+        $categorie = $this->Categories_model->get_categorie($_categorie_id);
+        $applications = $this->Applications_model->get_applications_from_categorie($this->pro, $devices, $_categorie_id, $free, $sort, $order, $_page);
+        $this->_format_all_prices($applications);
+        $this->_format_all_notes($applications);
+        $this->_format_all_links($applications, 'app');
+        $this->_format_all_links($applications, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
         $data['inc'] = $this->_getCommonIncludes(array(
             js_url('bootstrap-multiselect')
         ));
 
         $data['contenu'] = $this->load->view('contenu/list_app', array(
-            'app_grid' => $this->load->view('inc/app_grid', '', true),
-            ), true);
-        $data['body_class'] = 'list particuliers';
+            'app_grid' => $this->load->view('inc/app_grid', array(
+                'applications' => $applications,
+            ), true),
+            'categorie' => $categorie,
+        ), true);
+        $data['body_class'] = 'category '.$this->body_class.' '.$categorie->class;
         $this->load->view('main', $data);
     }
 }

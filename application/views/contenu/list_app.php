@@ -3,7 +3,7 @@
 	
 	<div class="title">
     	<div class="wrapper">
-        	<h2>Toutes les applications dans Allergies</h2> <!-- INSÉRER LE TITRE DE LA CATÉGORIE ICI -->
+        	<h2>Toutes les applications dans <?php echo $categorie->nom; ?></h2> <!-- INSÉRER LE TITRE DE LA CATÉGORIE ICI -->
         	<form method="POST" id="sort-filter">
 	        	<select name="filters" id="filters" multiple="multiple">
 	        

@@ -201,6 +201,7 @@ class Common_Controller extends MY_Controller
         $this->_format_all_links($top5Applis, 'app');
         $this->_format_all_links($top5Applis, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
         $categorie = $this->Categories_model->get_categorie($_id);
+        $this->_format_link($categorie, 'app_category', 'nom', 'link_all', 'id' ,1);
         $categoryData = array(
             'widget_selection' => $this->load->view('inc/widget_selection', '', true),
             'widget_lasteval' => $this->load->view('inc/widget_lasteval', array(
@@ -215,8 +216,11 @@ class Common_Controller extends MY_Controller
                 'deviceApple' => Devices_model::APPLICATION_DEVICE_APPLE,
             ), true),
             'widget_allappcategory' => $this->load->view('inc/widget_allappcategory', array(
-                'app_grid' => $this->load->view('inc/app_grid', array('categorie' => $categorie), true)
-                        ), true),
+                'app_grid' => $this->load->view('inc/app_grid', array(
+                    'categorie' => $categorie,
+                ), true),
+                'access_label' => $this->access_label,
+            ), true),
             'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(6)), true),
             'home_pushpartners' => $this->load->view('inc/home_pushpartners', '', true),
             'partners' => $this->load->view('inc/partners', '', true),

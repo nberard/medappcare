@@ -86,30 +86,57 @@ class Applications_model extends CI_Model {
         return $res ? $res : array();
     }
 
-    public function get_top_five_applications($_free, $_pro, $_category_id = -1, $_limit = 5)
+    public function get_applications($_pro, $_devices_id, $_categorie_id, $_free, $_sort, $_order, $_limit, $_offset = 0)
     {
+        log_message('debug', "get_applications($_pro, $_devices_id, $_categorie_id, $_free, $_sort, $_order, $_limit, $_offset = 0)");
         $this->db->select('CEIL(AVG(N.note)) AS moyenne_note, A.*, C.nom_'.config_item('lng').' AS nom_categorie, D.nom AS device_nom, D.class as device_class')
             ->from($this->table.' A')
             ->join($this->tableCategorie.' C', 'A.categorie_id = C.id', 'LEFT')
             ->join($this->tableDevice.' D', 'D.id = A.device_id', 'INNER')
             ->join($this->tableNotes.' N', 'A.id = N.application_id', 'LEFT')
             ->group_by('A.id')
-            ->limit($_limit)->order_by('id', 'asc');
-        if($_category_id != -1)
+            ->limit($_limit, $_offset)
+            ->order_by($_sort, $_order);
+        if($_categorie_id != -1)
         {
-            $this->db->where(array('categorie_id' => $_category_id));
+            $this->db->where(array('categorie_id' => $_categorie_id));
         }
-        if($_free)
+        if($_free !== -1)
         {
-            $this->db->where(array('prix' => 0.00));
+            if($_free === true)
+            {
+                $this->db->where(array('prix' => 0.00));
+            }
+            else
+            {
+                $this->db->where('prix > 0.00');
+            }
         }
-        else
+        if($_devices_id != -1)
         {
-            $this->db->where('prix > 0.00');
+            if(is_array($_devices_id))
+            {
+                $this->db->where('device_id IN ('.implode(',', $_devices_id).')');
+            }
+            else
+            {
+                $this->db->where(array('device_id' => $_devices_id));
+            }
         }
         $this->db->where(array('est_valide' => 1, 'A.est_pro' => $_pro ? 1 : 0));
         $res = $this->db->get()->result();
         return $res ? $res : array();
+    }
+
+    public function get_applications_from_categorie($_pro, $_devices_id, $_categorie_id, $_free, $_sort, $_order, $_page)
+    {
+        log_message('debug', "get_applications_from_categorie($_pro, $_devices_id, $_categorie_id, $_free, $_sort, $_order, $_page)");
+        return $this->get_applications($_pro, $_devices_id, $_categorie_id, $_free, $_sort, $_order, 10, $_page);
+    }
+
+    public function get_top_five_applications($_free, $_pro, $_category_id = -1)
+    {
+        return $this->get_applications($_pro, -1, $_category_id, $_free, 'id', 'desc', 5);
     }
 
     public function get_selection_applications($_id_selection)
