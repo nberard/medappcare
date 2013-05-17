@@ -1,17 +1,19 @@
 $(document).ready(function(){
-    $('#login_form').submit(function()
+    function login(pro)
     {
+        var url = pro ? $('#login_form_pro').data('action') : $('#login_form').data('action');
+        var suffixe = pro ? '-pro' : '';
         $.ajax({
             type: 		"POST",
-            url:  		$('#login_form').attr('data-action'),
+            url:  		url,
             dataType: 'json',
             contentType: 'application/json',
             data:
-            JSON.stringify({
-                session : 1,
-                email : $('#email').val(),
-                password : $('#password').val()
-            }),
+                JSON.stringify({
+                    session : 1,
+                    email : $('#email'+suffixe).val(),
+                    password : $('#password'+suffixe).val()
+                }),
             success: function(data, textStatus, xhr)
             {
                 if(data.redirect)
@@ -27,11 +29,22 @@ $(document).ready(function(){
             {
                 if(xhr.responseJSON.message)
                 {
-                    $('#login-error').text(xhr.responseJSON.message).show();
+                    $('#login-error'+suffixe).text(xhr.responseJSON.message).show();
                     return false;
                 }
             }
         });
+    }
+
+    $('#login_form').submit(function()
+    {
+        login(false);
+        return false;
+    });
+
+    $('#login_form_pro').submit(function()
+    {
+        login(true);
         return false;
     });
 });

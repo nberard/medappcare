@@ -57,9 +57,9 @@
     <h3>Connexion à Medappcare Pro</h3>
   </div>
   <div class="modal-body">
-    <form method="post" data-action="<?php echo site_url('rest/connect') ?>" name="login_form" id="login_form">
-      <p><input name="email" id="email" type="email" required placeholder="Email"></p>
-      <p><input name="password" id="password" type="password" required placeholder="Mot de passe"></p>
+    <form method="post" data-action="<?php echo site_url('rest/connect') ?>" name="login_form" id="login_form_pro">
+      <p><input name="email" id="email-pro" type="email" required placeholder="Email"></p>
+      <p><input name="password" id="password-pro" type="password" required placeholder="Mot de passe"></p>
       <p><button type="submit" class="btn btn-primary">Connexion</button>
         <a href="#lostPassword">Mot de passe oublié ?</a>
       </p>
@@ -69,7 +69,7 @@
     	<a href="<?php echo site_url("$access_label/register") ?>" class="btn btn-primary">Inscription pro</a>
     </div>
   </div>
-    <div id="login-error" class="alert alert-error hide"></div>
+    <div id="login-error-pro" class="alert alert-error hide"></div>
 </div>
 
 
@@ -85,7 +85,4 @@
       </p>
     </form>
   </div>
-    <div id="login-error" class="alert alert-error hide"></div>
 </div>
-  
-  
