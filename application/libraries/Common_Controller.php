@@ -126,6 +126,8 @@ class Common_Controller extends MY_Controller
         {
             $application->prix_complet = format_price($application->prix, $application->devise, $this->lang->line('free'));
             $this->_format_note($application, array('note_user', 'note_pro'));
+            $this->load->model('Application_screenshots_model');
+            $application->screenshots = $this->Application_screenshots_model->get_screenshots($application->id);
         }
         return $application;
     }

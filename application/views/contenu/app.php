@@ -96,7 +96,11 @@
     	
     	<div class="wrapper">
 	    	<div class="tabContent open" id="galeriePhotos">
-	    		Screenshots
+                <ul>
+	    		<?php foreach($application->screenshots as $screenshot): ?>
+                    <li><img src="<?php echo $screenshot->url; ?>"/></li>
+                <?php endforeach; ?>
+                </ul>
 	    	</div>
 	    	
 	    	<div class="tabContent" id="motDelEditeur">

@@ -27,4 +27,10 @@ class Application_screenshots_model extends CI_Model {
         $this->db->insert($this->table);
         return $this->db->insert_id();
     }
+
+    public function get_screenshots($_application_id)
+    {
+        $res = $this->db->from($this->table)->where(array('application_id' => $_application_id))->get()->result();
+        return $res ? $res : array();
+    }
 }

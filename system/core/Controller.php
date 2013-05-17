@@ -71,6 +71,7 @@
  * @property CI_Security $security
  *
  * @property Applications_model $Applications_model
+ * @property Application_screenshots_model $Application_screenshots_model
  * @property Accessoires_model $Accessoires_model
  * @property Articles_model $Articles_model
  * @property Categories_model $Categories_model
