@@ -17,7 +17,9 @@ class Categories_model extends CI_Model {
 
     public function get_categorie($_id)
     {
-        return $this->db->select('*, nom_'.config_item('lng').' AS nom')->where(array('id' => $_id))->get($this->table)->row();
+        return $this->db->select('C.*, C.nom_'.config_item('lng').' AS nom, C2.class')
+                        ->join($this->table.' C2', 'C.parent_id = C2.id', 'LEFT')
+                        ->where(array('C.id' => $_id))->get($this->table.' C')->row();
     }
 
     public function get_categories_parentes($_pro)
