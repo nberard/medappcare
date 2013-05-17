@@ -15,10 +15,16 @@
             <a class="twitter" href="https://twitter.com/Medappcare" target="_blank" title="twitter">Suivez-nous sur Twitter</a>
         </div>
         <div class="meta">
-            <a href="<?php echo site_url("$access_label_target/index") ?>" class="<?php echo $pro ? 'link-particuliers' : 'pro' ?>"><?php echo lang($pro ? 'espace_particulier' : 'espace_pro') ?></a>
-            <?php if(!$user): ?>
-            <a data-toggle="modal" href="#connexionModal" class="connexion">Connexion</a>
-            <?php endif; ?>
+        	<?php if (!$pro) { ?>
+            <a data-toggle="modal" href="#connexionModalPro" class="pro">Espace Pro</a>
+            <?php }
+            
+            if(!$user) { ?>
+            <a data-toggle="modal" href="<?php echo $pro ? '#connexionModalPro' : '#connexionModal'?>" class="connexion">Connexion</a>
+            
+            <?php } else { ?>
+	            <a href="<?php echo site_url($access_label.'/target'); ?>" class="<?php echo $pro ? 'pro' : 'link-particuliers' ?>">Mon espace</a>
+            <?php } ?>
             
         </div>
     </div>
@@ -45,6 +51,27 @@
     <div id="login-error" class="alert alert-error hide"></div>
 </div>
 
+
+<div class="modal hide fade" id="connexionModalPro">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"></button>
+    <h3>Connexion à Medappcare Pro</h3>
+  </div>
+  <div class="modal-body">
+    <form method="post" data-action="<?php echo site_url('rest/connect') ?>" name="login_form" id="login_form">
+      <p><input name="email" id="email" type="email" required placeholder="Email"></p>
+      <p><input name="password" id="password" type="password" required placeholder="Mot de passe"></p>
+      <p><button type="submit" class="btn btn-primary">Connexion</button>
+        <a href="#lostPassword">Mot de passe oublié ?</a>
+      </p>
+    </form>
+    <div class="registration-call">
+    	Nouveau sur Medappcare Pro ?
+    	<a href="<?php echo site_url("$access_label/register") ?>" class="btn btn-primary">Inscription pro</a>
+    </div>
+  </div>
+    <div id="login-error" class="alert alert-error hide"></div>
+</div>
 
 
 <div class="modal hide fade" id="lostPasswordModal">

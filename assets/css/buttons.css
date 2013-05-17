@@ -16,7 +16,7 @@
 
 .lespros .connexion{background-color: #DAA83C;}
 
-.lespros .btn-primary {background-color: #DAA83C}
+.lespros .btn-primary, #connexionModalPro .btn-primary {background-color: #DAA83C}
 
 
 /* =========== APP PAGE =========== */
