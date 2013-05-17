@@ -38,7 +38,7 @@
 |
 */
 $route['default_controller'] = "perso";
-$route['^(fr|en)/([a-z]+)/app_[a-z0-9\-]+_(:num)$'] = "$2/app/$3";
+$route['^(fr|en)/([a-z]+)/app/[a-z0-9\-]+_(:num)$'] = "$2/app/$3";
 $route['^(fr|en)/([a-z]+)/device/[a-z0-9\-]+_(:num)$'] = "$2/device/$3";
 $route['^(fr|en)/([a-z]+)/category/[a-z0-9\-]+_(:num)$'] = "$2/category/$3";
 $route['^(fr|en)/([a-z]+)/news/[a-z0-9\-]+_(:num)$'] = "$2/news/$3";
