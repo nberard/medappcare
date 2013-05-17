@@ -75,18 +75,20 @@ class apple_feeder extends ApplicationFeeder {
                             $this->applicationScreenshotModel->insert_application_screenshots($screen, $application_id);
                         }
                     }
+                    if(!$this->spoolCrawlApplicationModel->exists_packages($item["id"]["attributes"]["im:id"]))
+                    {
+                        log_message('debug', 'adding '.$item["id"]["attributes"]["im:id"]);
+                        $this->spoolCrawlApplicationModel->insert_package($item["id"]["attributes"]["im:id"], $application_id);
+                    }
+
                     echo $item["im:name"]["label"]." done <br/>";
                     log_message('info',$item["im:name"]["label"].' done ');
+
                 }
                 else
                 {
                     echo $item["im:name"]["label"]." failed <br/>";
                     log_message('info',$item["im:name"]["label"].' failed ');
-                }
-                if(!$this->spoolCrawlApplicationModel->exists_packages($item["id"]["attributes"]["im:id"], Devices_model::APPLICATION_DEVICE_APPLE, Spool_crawl_applications_model::TABLE_APPLE))
-                {
-                    log_message('debug', 'adding '.$item["id"]["attributes"]["im:id"]);
-                    $this->spoolCrawlApplicationModel->insert_package($item["id"]["attributes"]["im:id"], Devices_model::APPLICATION_DEVICE_APPLE, Spool_crawl_applications_model::TABLE_APPLE);
                 }
             }
             else
