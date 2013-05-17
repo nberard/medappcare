@@ -99,6 +99,7 @@
                 <ul>
 	    		<?php foreach($application->screenshots as $screenshot): ?>
                     <li><img src="<?php echo $screenshot->url; ?>"/></li>
+                                        <li><img src="<?php echo $screenshot->url; ?>"/></li>
                 <?php endforeach; ?>
                 </ul>
 	    	</div>

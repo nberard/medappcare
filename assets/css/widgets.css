@@ -1,5 +1,3 @@
-
-
 /* =========== NOS SELECTIONS =========== */
 
 #selections{background: #ededed; height: auto; text-align: center; position: relative; padding: 1px 0; margin: 1px 0 0 0;}
@@ -32,7 +30,6 @@
 #listApps .metapp h4 a {display: block; height: 40px;}
 #listApps .os{float: left; position: relative; width: 60px; margin: 25px 0 0 0;}
 #listApps .price{background: #0f6eb4; width: 40px; padding: 0 5px; line-height: 21px; text-align: center; margin: 0 0 5px 0;}
-
 #listApps .note{width: 42px; height: 42px; position: relative; float: left; text-align: center; vertical-align: middle; margin:20px 0;}
 
 #listApps .topfive,
@@ -56,13 +53,33 @@
 #listApps .allapps .price{background: #79c1d2;}
 #listApps .allapps .featured{background: #d9eef3;}
 
-.monquotidien #listApps .allapps h3{background: #e05d5f; border: 1px solid #e05d5f;}
-.monquotidien #listApps .allapps ul{border-left: 1px solid #e05d5f; border-right: 1px solid #e05d5f;}
-.monquotidien #listApps .allapps li{border-bottom: 1px solid #e05d5f;}
-.monquotidien #listApps .allapps li:nth-child(odd){border-right: 1px solid #e05d5f;}
-.monquotidien #listApps .allapps .metaFooter{background: #e05d5f;}
-.monquotidien #listApps .allapps .price{background: #e05d5f;}
-.monquotidien #listApps .allapps .featured{background: #f1d2d2;}
+.masante #listApps .allapps h3,
+.administratif #listApps .allapps h3{background: #79c1d1; border: 1px solid #79c1d1;}
+.masante #listApps .allapps ul,
+.administratif #listApps .allapps ul{border-left: 1px solid #79c1d1; border-right: 1px solid #79c1d1;}
+.masante #listApps .allapps li,
+.administratif #listApps .allapps li{border-bottom: 1px solid #79c1d1;}
+.masante #listApps .allapps li:nth-child(odd),
+.administratif #listApps .allapps li:nth-child(odd){border-right: 1px solid #79c1d1;}
+.masante #listApps .allapps .metaFooter,
+.administratif #listApps .allapps .metaFooter{background: #79c1d1;}
+.masante #listApps .allapps .price,
+.administratif #listApps .allapps .price{background: #79c1d1;}
+
+.monquotidien #listApps .allapps h3,
+.mapratique #listApps .allapps h3{background: #e05d5f; border: 1px solid #e05d5f;}
+.monquotidien #listApps .allapps ul,
+.mapratique #listApps .allapps ul{border-left: 1px solid #e05d5f; border-right: 1px solid #e05d5f;}
+.monquotidien #listApps .allapps li,
+.mapratique #listApps .allapps li{border-bottom: 1px solid #e05d5f;}
+.monquotidien #listApps .allapps li:nth-child(odd),
+.mapratique #listApps .allapps li:nth-child(odd){border-right: 1px solid #e05d5f;}
+.monquotidien #listApps .allapps .metaFooter,
+.mapratique #listApps .allapps .metaFooter{background: #e05d5f;}
+.monquotidien #listApps .allapps .price,
+.mapratique #listApps .allapps .price{background: #e05d5f;}
+.monquotidien #listApps .allapps .featured,
+.mapratique #listApps .allapps .featured{background: #f1d2d2;}
 
 .minformer #listApps .allapps h3{background: #84c790; border: 1px solid #84c790;}
 .minformer #listApps .allapps ul{border-left: 1px solid #84c790; border-right: 1px solid #84c790;}
@@ -72,13 +89,20 @@
 .minformer #listApps .allapps .price{background: #84c790;}
 .minformer #listApps .allapps .featured{background: #ceecd4;}
 
-.medeplacer #listApps .allapps h3{background: #d769af; border: 1px solid #d769af;}
-.medeplacer #listApps .allapps ul{border-left: 1px solid #d769af; border-right: 1px solid #d769af;}
-.medeplacer #listApps .allapps li{border-bottom: 1px solid #d769af;}
-.medeplacer #listApps .allapps li:nth-child(odd){border-right: 1px solid #d769af;}
-.medeplacer #listApps .allapps .metaFooter{background: #d769af;}
-.medeplacer #listApps .allapps .price{background: #d769af;}
-.medeplacer #listApps .allapps .featured{background: #efe1ea;}
+.medeplacer #listApps .allapps h3,
+.mespatients #listApps .allapps h3{background: #d769af; border: 1px solid #d769af;}
+.medeplacer #listApps .allapps ul,
+.mespatients #listApps .allapps ul{border-left: 1px solid #d769af; border-right: 1px solid #d769af;}
+.medeplacer #listApps .allapps li,
+.mespatients #listApps .allapps li{border-bottom: 1px solid #d769af;}
+.medeplacer #listApps .allapps li:nth-child(odd),
+.mespatients #listApps .allapps li:nth-child(odd){border-right: 1px solid #d769af;}
+.medeplacer #listApps .allapps .metaFooter,
+.mespatients #listApps .allapps .metaFooter{background: #d769af;}
+.medeplacer #listApps .allapps .price,
+.mespatients #listApps .allapps .price{background: #d769af;}
+.medeplacer #listApps .allapps .featured,
+.mespatients #listApps .allapps .featured{background: #efe1ea;}
 
 #listApps.fullList .metaFooter {position: relative;}
 #listApps .previousLink {position: absolute; left: 10px; top:2px;}
@@ -135,6 +159,13 @@
 #devices .metapp{float: left; position: relative; width: 260px;}
 
 #devices .price{background: #0f6eb4; width: 40px; padding: 0 5px; line-height: 21px; text-align: center; margin: 13px 0; float: right;}
+.masante #devices .price,
+.administratif #devices .price{background: #79c1d1;}
+.monquotidien #devices .price, 
+.mapratique #devices .price{background: #E05D5F;}
+.minformer #devices .price{background: #84C790;}
+.medeplacer #devices .price, 
+.mespatients #devices .price{background: #D769AF;}
 
 #devices .metaFooter{background: #ededed; height: 28px; padding: 0 15px; }
 #devices .metaFooter a{float: right;}

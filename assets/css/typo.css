@@ -48,17 +48,17 @@ h2{color: #0f6eb4; font-size: 24px;}
 #devices .metaFooter a{color: #787878; text-decoration: none; font-weight: 700; font-size: 14px; line-height: 26px;}
 #devices .metaFooter a:hover{text-decoration: underline;}
 
-.app.monquotidien #devices h3{color: #e05d5f;}
-.app.minformer #devices h3{color: #84c790;}
-.app.medeplacer #devices h3{color: #d769af;}
+.monquotidien #devices h3{color: #e05d5f;}
+.minformer #devices h3{color: #84c790;}
+.medeplacer #devices h3{color: #d769af;}
 
 .app #devices .metaFooter a{color: #0f6eb4;}
-.app.monquotidien #devices .category a,
-.app.monquotidien #devices .metaFooter a{color: #e05d5f;}
-.app.minformer #devices .category a,
-.app.minformer #devices .metaFooter a{color: #84c790;}
-.app.medeplacer #devices .category a,
-.app.medeplacer #devices .metaFooter a{color: #d769af;}
+.monquotidien #devices .category a,
+.monquotidien #devices .metaFooter a{color: #e05d5f;}
+.minformer #devices .category a,
+.minformer #devices .metaFooter a{color: #84c790;}
+.medeplacer #devices .category a,
+.medeplacer #devices .metaFooter a{color: #d769af;}
 
 .app .description, .device .description{font-size: 18px; color: black;}
 .app .description h3, .device .description h3{margin: 20px 0;}
