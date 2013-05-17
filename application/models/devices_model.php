@@ -18,4 +18,9 @@ class Devices_model extends CI_Model {
         parent::__construct();
     }
 
+    public function get_all_devices()
+    {
+        return $this->db->select('id')->get_where($this->table)->result();
+    }
+
 }

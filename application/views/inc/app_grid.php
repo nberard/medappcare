@@ -1,152 +1,23 @@
 <ul>
+    <?php foreach($applications as $application): ?>
     <li>
-        <a href="app.php" class="icone"></a> <!-- INSÉRER L'ICON DE L'APP -->
+        <a href="<?php echo $application->link; ?>" class="icone"><img width="80px" height="80px" src="<?php echo $application->logo_url; ?>"></a> <!-- INSÉRER L'ICON DE L'APP -->
         <div class="metapp">
-            <h4><a href="app.php">Titre de l'appli</a></h4> <!-- INSÉRER LE LIEN ET LE TITRE DE L'APP -->
-            <p class="price">4,89 €</p> <!-- INSÉRER LE PRIX DE L'APP -->
-            <p class="category">dans <a href="category.php">Addictions</a></p> <!-- INSÉRER LE LIEN VERS L'APP -->
+            <h4><a href="<?php echo $application->link; ?>"><?php echo $application->titre; ?></a></h4> <!-- INSÉRER LE LIEN ET LE TITRE DE L'APP -->
+            <p class="price"><?php echo $application->prix_complet; ?></p> <!-- INSÉRER LE PRIX DE L'APP -->
+            <?php if($application->nom_categorie): ?>
+                <p class="category"><?php echo lang('dans');?> <a href="<?php echo $application->link_categorie; ?>"><?php echo $application->nom_categorie; ?></a></p> <!-- INSÉRER LE LIEN VERS L'APP -->
+            <?php endif; ?>
         </div>
-        <div class="note">
-            <span class="dixsurdix">10</span> <!-- INSÉRER LA NOTE -->
-        </div>
+        <?php if($application->moyenne_note): ?>
+            <div class="note">
+                <span class="<?php echo $application->class_note; ?>"><?php echo $application->moyenne_note; ?></span> <!-- INSÉRER LA NOTE -->
+            </div>
+        <?php endif; ?>
         <div class="os">
-            <span class="ios">iOS</span> <!-- INSERER L'OS -->
-            <span class="android">Android</span>
+            <span class="<?php echo $application->device_class; ?>"><?php echo $application->device_nom; ?></span>
         </div>
     </li>
-    <li class="featured"> <!-- ATTENTION FEATURED APP (JUSTE AJOUTER LA CLASSE) -->
-        <a href="app.php" class="icone"></a> <!-- INSÉRER L'ICON DE L'APP -->
-        <div class="metapp">
-            <h4><a href="app.php">Titre de l'appli</a></h4> <!-- INSÉRER LE LIEN ET LE TITRE DE L'APP -->
-            <p class="price">4,89 €</p> <!-- INSÉRER LE PRIX DE L'APP -->
-            <p class="category">dans <a href="category.php">Addictions</a></p> <!-- INSÉRER LE LIEN VERS L'APP -->
-        </div>
-        <div class="note">
-            <span class="dixsurdix">10</span> <!-- INSÉRER LA NOTE -->
-        </div>
-        <div class="os">
-            <span class="web">Web App</span> <!-- INSERER L'OS -->
-        </div>
-    </li>
-    <li>
-        <a href="app.php" class="icone"></a> <!-- INSÉRER L'ICON DE L'APP -->
-        <div class="metapp">
-            <h4><a href="app.php">Titre de l'appli</a></h4> <!-- INSÉRER LE LIEN ET LE TITRE DE L'APP -->
-            <p class="price">4,89 €</p> <!-- INSÉRER LE PRIX DE L'APP -->
-            <p class="category">dans <a href="category.php">Addictions</a></p> <!-- INSÉRER LE LIEN VERS L'APP -->
-        </div>
-        <div class="note">
-            <span class="dixsurdix">10</span> <!-- INSÉRER LA NOTE -->
-        </div>
-        <div class="os">
-            <span class="ios">iOS</span> <!-- INSERER L'OS -->
-            <span class="android">Android</span>
-        </div>
-    </li>
-    <li>
-        <a href="app.php" class="icone"></a> <!-- INSÉRER L'ICON DE L'APP -->
-        <div class="metapp">
-            <h4><a href="app.php">Titre de l'appli</a></h4> <!-- INSÉRER LE LIEN ET LE TITRE DE L'APP -->
-            <p class="price">4,89 €</p> <!-- INSÉRER LE PRIX DE L'APP -->
-            <p class="category">dans <a href="category.php">Addictions</a></p> <!-- INSÉRER LE LIEN VERS L'APP -->
-        </div>
-        <div class="note">
-            <span class="dixsurdix">10</span> <!-- INSÉRER LA NOTE -->
-        </div>
-        <div class="os">
-            <span class="ios">iOS</span> <!-- INSERER L'OS -->
-            <span class="android">Android</span>
-        </div>
-    </li>
-    <li>
-        <a href="app.php" class="icone"></a> <!-- INSÉRER L'ICON DE L'APP -->
-        <div class="metapp">
-            <h4><a href="app.php">Titre de l'appli</a></h4> <!-- INSÉRER LE LIEN ET LE TITRE DE L'APP -->
-            <p class="price">4,89 €</p> <!-- INSÉRER LE PRIX DE L'APP -->
-            <p class="category">dans <a href="category.php">Addictions</a></p> <!-- INSÉRER LE LIEN VERS L'APP -->
-        </div>
-        <div class="note">
-            <span class="dixsurdix">10</span> <!-- INSÉRER LA NOTE -->
-        </div>
-        <div class="os">
-            <span class="ios">iOS</span> <!-- INSERER L'OS -->
-            <span class="android">Android</span>
-        </div>
-    </li>
-    <li>
-        <a href="app.php" class="icone"></a> <!-- INSÉRER L'ICON DE L'APP -->
-        <div class="metapp">
-            <h4><a href="app.php">Titre de l'appli</a></h4> <!-- INSÉRER LE LIEN ET LE TITRE DE L'APP -->
-            <p class="price">4,89 €</p> <!-- INSÉRER LE PRIX DE L'APP -->
-            <p class="category">dans <a href="category.php">Addictions</a></p> <!-- INSÉRER LE LIEN VERS L'APP -->
-        </div>
-        <div class="note">
-            <span class="dixsurdix">10</span> <!-- INSÉRER LA NOTE -->
-        </div>
-        <div class="os">
-            <span class="ios">iOS</span> <!-- INSERER L'OS -->
-            <span class="android">Android</span>
-        </div>
-    </li>
-    <li class="featured"> <!-- ATTENTION FEATURED APP (JUSTE AJOUTER LA CLASSE) -->
-        <a href="app.php" class="icone"></a> <!-- INSÉRER L'ICON DE L'APP -->
-        <div class="metapp">
-            <h4><a href="app.php">Titre de l'appli</a></h4> <!-- INSÉRER LE LIEN ET LE TITRE DE L'APP -->
-            <p class="price">4,89 €</p> <!-- INSÉRER LE PRIX DE L'APP -->
-            <p class="category">dans <a href="category.php">Addictions</a></p> <!-- INSÉRER LE LIEN VERS L'APP -->
-        </div>
-        <div class="note">
-            <span class="dixsurdix">10</span> <!-- INSÉRER LA NOTE -->
-        </div>
-        <div class="os">
-            <span class="ios">iOS</span> <!-- INSERER L'OS -->
-            <span class="android">Android</span>
-        </div>
-    </li>
-    <li>
-        <a href="app.php" class="icone"></a> <!-- INSÉRER L'ICON DE L'APP -->
-        <div class="metapp">
-            <h4><a href="app.php">Titre de l'appli</a></h4> <!-- INSÉRER LE LIEN ET LE TITRE DE L'APP -->
-            <p class="price">4,89 €</p> <!-- INSÉRER LE PRIX DE L'APP -->
-            <p class="category">dans <a href="category.php">Addictions</a></p> <!-- INSÉRER LE LIEN VERS L'APP -->
-        </div>
-        <div class="note">
-            <span class="dixsurdix">10</span> <!-- INSÉRER LA NOTE -->
-        </div>
-        <div class="os">
-            <span class="ios">iOS</span> <!-- INSERER L'OS -->
-            <span class="android">Android</span>
-        </div>
-    </li>
-    <li>
-        <a href="app.php" class="icone"></a> <!-- INSÉRER L'ICON DE L'APP -->
-        <div class="metapp">
-            <h4><a href="app.php">Titre de l'appli</a></h4> <!-- INSÉRER LE LIEN ET LE TITRE DE L'APP -->
-            <p class="price">4,89 €</p> <!-- INSÉRER LE PRIX DE L'APP -->
-            <p class="category">dans <a href="category.php">Addictions</a></p> <!-- INSÉRER LE LIEN VERS L'APP -->
-        </div>
-        <div class="note">
-            <span class="dixsurdix">10</span> <!-- INSÉRER LA NOTE -->
-        </div>
-        <div class="os">
-            <span class="ios">iOS</span> <!-- INSERER L'OS -->
-            <span class="android">Android</span>
-        </div>
-    </li>
-    <li>
-        <a href="app.php" class="icone"></a> <!-- INSÉRER L'ICON DE L'APP -->
-        <div class="metapp">
-            <h4><a href="app.php">Titre de l'appli</a></h4> <!-- INSÉRER LE LIEN ET LE TITRE DE L'APP -->
-            <p class="price">4,89 €</p> <!-- INSÉRER LE PRIX DE L'APP -->
-            <p class="category">dans <a href="category.php">Addictions</a></p> <!-- INSÉRER LE LIEN VERS L'APP -->
-        </div>
-        <div class="note">
-            <span class="dixsurdix">10</span> <!-- INSÉRER LA NOTE -->
-        </div>
-        <div class="os">
-            <span class="ios">iOS</span> <!-- INSERER L'OS -->
-            <span class="android">Android</span>
-        </div>
-    </li>
+    <?php endforeach; ?>
     <span class="clear"></span>
 </ul>
