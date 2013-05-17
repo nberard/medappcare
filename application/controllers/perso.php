@@ -8,6 +8,11 @@ class Perso extends Common_Controller {
     public function __construct()
     {
         parent::__construct(false);
+        $user = $this->session->userdata('user');
+        if($user && $user->est_pro == 1)
+        {
+            redirect(site_url('pro/index'));
+        }
         $this->load->helper('country');
     }
 

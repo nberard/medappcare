@@ -14,7 +14,14 @@ $(document).ready(function(){
             }),
             success: function(data, textStatus, xhr)
             {
-                window.location.reload();
+                if(data.redirect)
+                {
+                    window.location = data.redirect;
+                }
+                else
+                {
+                    window.location.reload();
+                }
             },
             error: function(xhr, textStatus, error)
             {

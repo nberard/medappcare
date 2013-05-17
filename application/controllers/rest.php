@@ -25,11 +25,13 @@ class Rest extends REST_Controller {
         $membre = $this->Membres_model->exists_membres(array('email' => $email, 'mot_de_passe' => get_crypt_password($password)));
         if($membre)
         {
+            $response = array('status' => 'ok');
             if($session)
             {
                 $this->session->set_userdata('user', $membre);
+                $response['redirect'] = site_url(($membre->est_pro ? 'pro' : 'perso').'/index');
             }
-            $this->response(array('status' => 'ok'), 200);
+            $this->response($response, 200);
         }
         else
         {

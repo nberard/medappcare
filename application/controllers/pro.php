@@ -8,6 +8,11 @@ class Pro extends Common_Controller {
     public function __construct()
     {
         parent::__construct(true);
+        $user = $this->session->userdata('user');
+        if(!$user || $user->est_pro != 1)
+        {
+            redirect(index_page());
+        }
     }
 
     protected function _display_pour_les_pros($_filtre = 'date')

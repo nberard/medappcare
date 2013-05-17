@@ -15,16 +15,15 @@
             <a class="twitter" href="https://twitter.com/Medappcare" target="_blank" title="twitter">Suivez-nous sur Twitter</a>
         </div>
         <div class="meta">
-        	<?php if (!$pro) { ?>
-            <a data-toggle="modal" href="#connexionModalPro" class="pro">Espace Pro</a>
-            <?php }
+        	<?php if (!$pro && !$user): ?>
+                <a data-toggle="modal" href="#connexionModalPro" class="pro">Espace Pro</a>
+            <?php endif; ?>
             
-            if(!$user) { ?>
-            <a data-toggle="modal" href="<?php echo $pro ? '#connexionModalPro' : '#connexionModal'?>" class="connexion">Connexion</a>
-            
-            <?php } else { ?>
+            <?php if(!$user): ?>
+                <a data-toggle="modal" href="<?php echo $pro ? '#connexionModalPro' : '#connexionModal'?>" class="connexion">Connexion</a>
+            <?php else: ?>
 	            <a href="<?php echo site_url($access_label.'/target'); ?>" class="<?php echo $pro ? 'pro' : 'link-particuliers' ?>">Mon espace</a>
-            <?php } ?>
+            <?php endif; ?>
             
         </div>
     </div>
