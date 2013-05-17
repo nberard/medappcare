@@ -25,7 +25,7 @@
                     <option value="0">Les plus récentes</option>
                     <option value="1">Les mieux notées</option>
                     <option value="2">Prix croissant</option>
-                    <option value="2">Prix décroissant</option>
+                    <option value="3">Prix décroissant</option>
 	                
 	            </select>
         	</form>
