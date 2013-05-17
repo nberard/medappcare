@@ -13,16 +13,18 @@ abstract class ApplicationFeeder
 
     protected $applicationModel;
     protected $applicationScreenshotModel;
+    protected $spoolCrawlApplicationModel;
     protected $editeurModel;
     protected $items;
     protected $device;
 
-    public function __construct($_applicationModel, $_editeurModel, $_applicationScreenshotModel, $_device)
+    public function __construct($_applicationModel, $_editeurModel, $_applicationScreenshotModel, $_device, $_spoolCrawlApplicationModel)
     {
         $this->applicationModel = $_applicationModel;
         $this->editeurModel = $_editeurModel;
         $this->applicationScreenshotModel = $_applicationScreenshotModel;
         $this->device = $_device;
+        $this->spoolCrawlApplicationModel = $_spoolCrawlApplicationModel;
     }
 
     public function setItems($_items)

@@ -16,6 +16,7 @@ class Robot extends CI_Controller
 
     const ANDROID_TOKEN_API = '121bc1910a119f65f19910356ca8faaaf9bb9dd3';
     const ANDROID_APPAWARE_WEBSITE = 'http://dev.appaware.com/1/app/';
+    const APPLE_LOOKUP_WEBSITE = 'https://itunes.apple.com';
 
     public function __construct()
     {
@@ -60,9 +61,9 @@ class Robot extends CI_Controller
                         $this->load->model('Spool_crawl_applications_model');
                         foreach($matches[1] as $package)
                         {
-                            if(!$this->Spool_crawl_applications_model->exists_packages($package, Devices_model::APPLICATION_DEVICE_ANDROID))
+                            if(!$this->Spool_crawl_applications_model->exists_packages($package, Devices_model::APPLICATION_DEVICE_ANDROID, Spool_crawl_applications_model::TABLE_ANDROID))
                             {
-                                $this->Spool_crawl_applications_model->insert_package($package, Devices_model::APPLICATION_DEVICE_ANDROID);
+                                $this->Spool_crawl_applications_model->insert_package($package, Devices_model::APPLICATION_DEVICE_ANDROID, Spool_crawl_applications_model::TABLE_ANDROID);
                             }
                         }
                     }
@@ -83,7 +84,7 @@ class Robot extends CI_Controller
     {
         $allAppsDetailed = array();
         $this->load->model('Spool_crawl_applications_model');
-        $crawls = $this->Spool_crawl_applications_model->get_unadded_packages(Devices_model::APPLICATION_DEVICE_ANDROID);
+        $crawls = $this->Spool_crawl_applications_model->get_unadded_packages(Devices_model::APPLICATION_DEVICE_ANDROID, Spool_crawl_applications_model::TABLE_APPAWARE);
         foreach ($crawls as $crawlPackage)
         {
             try
@@ -113,7 +114,7 @@ class Robot extends CI_Controller
             log_message('debug', 'oks = '.var_export($oks, true));
             foreach($oks as $packageOk)
             {
-                $this->Spool_crawl_applications_model->set_package_added($packageOk, Devices_model::APPLICATION_DEVICE_ANDROID);
+                $this->Spool_crawl_applications_model->set_package_added($packageOk, Devices_model::APPLICATION_DEVICE_ANDROID, Spool_crawl_applications_model::TABLE_APPAWARE);
             }
         }
         catch(Exception $e)
@@ -149,10 +150,10 @@ class Robot extends CI_Controller
                                 $this->load->model('Spool_crawl_applications_model');
                                 foreach($data["results"] as $app)
                                 {
-                                    if(!$this->Spool_crawl_applications_model->exists_packages($app['package_name'], Devices_model::APPLICATION_DEVICE_ANDROID))
+                                    if(!$this->Spool_crawl_applications_model->exists_packages($app['package_name'], Devices_model::APPLICATION_DEVICE_ANDROID, Spool_crawl_applications_model::TABLE_APPAWARE))
                                     {
                                         log_message('debug', 'adding '.$app['package_name']);
-                                        $this->Spool_crawl_applications_model->insert_package($app['package_name'], Devices_model::APPLICATION_DEVICE_ANDROID);
+                                        $this->Spool_crawl_applications_model->insert_package($app['package_name'], Devices_model::APPLICATION_DEVICE_ANDROID, Spool_crawl_applications_model::TABLE_APPAWARE);
                                     }
 //                                    echo $app['package_name'];
                                 }
@@ -170,10 +171,57 @@ class Robot extends CI_Controller
         }
     }
 
+    public function updateApple()
+    {
+//        https://itunes.apple.com/lookup?id=
+        $this->load->model('Spool_crawl_applications_model');
+        $crawls = $this->Spool_crawl_applications_model->get_unadded_packages(Devices_model::APPLICATION_DEVICE_APPLE, Spool_crawl_applications_model::TABLE_APPLE);
+        foreach ($crawls as $crawlPackage)
+        {
+            echo $crawlPackage->package."<br/>";
+            try
+            {
+                $resultWs = $this->http_call_manager->call('GET',
+                    'lookup',
+                    '?id='.$crawlPackage->package,
+                    self::APPLE_LOOKUP_WEBSITE);
+                if(isset($resultWs["resultCount"]) && $resultWs["resultCount"] == 1 && isset($resultWs["results"][0]))
+                {
+                    $appDetailed = $resultWs["results"][0];
+                    $updates = array();
+                    if(!empty($appDetailed['version']))
+                    {
+                        $updates['version'] = $appDetailed['version'];
+                    }
+                    if(!$this->Applications_model->update_application($updates, array('package' => $appDetailed['bundleId'], 'device_id' => Devices_model::APPLICATION_DEVICE_APPLE)))
+                    {
+                        log_message('debug', "fail to update version for =".var_export($appDetailed['bundleId'], true));
+                    }
+                    if(!empty($appDetailed['screenshotUrls']))
+                    {
+                        foreach($appDetailed['screenshotUrls'] as $screen)
+                        {
+                            if(!$this->applicationScreenshotModel->exists_application_screenshots($screen, $application_id))
+                            {
+                                $this->applicationScreenshotModel->insert_application_screenshots($screen, $application_id);
+                            }
+                        }
+                    }
+                }
+            }
+            catch(Exception $e)
+            {
+                echo 'erreur '.$e->getCode().' : '.$e->getMessage();
+            }
+        }
+
+    }
+
     public function apple()
     {
         $langues = array('en', 'fr');
         $types = array('topfreeapplications', 'toppaidapplications', 'topgrossingapplications');
+        $this->load->model('Spool_crawl_applications_model');
         foreach($langues as $langue)
         {
             foreach ($types as $type)
@@ -186,7 +234,7 @@ class Robot extends CI_Controller
                                                             'https://itunes.apple.com/'.$langue.'/rss');
                     if(!empty($data['feed']['entry']))
                     {
-                        $this->load->library('apple_feeder', array($this->Applications_model, $this->Editeurs_model, $this->Application_screenshots_model, Devices_model::APPLICATION_DEVICE_APPLE));
+                        $this->load->library('apple_feeder', array($this->Applications_model, $this->Editeurs_model, $this->Application_screenshots_model, Devices_model::APPLICATION_DEVICE_APPLE, $this->Spool_crawl_applications_model));
                         try
                         {
                             $this->apple_feeder->setItems($data['feed']['entry']);
@@ -194,7 +242,7 @@ class Robot extends CI_Controller
                         }
                         catch(Exception $e)
                         {
-                            echo 'ERREUR : '.$e->getMessage();
+                            log_message('error', $e->getMessage());
                         }
                     }
                 }

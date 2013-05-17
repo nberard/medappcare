@@ -291,7 +291,7 @@ class Common_Controller extends MY_Controller
         );
         $data['inc'] = $this->_getCommonIncludes();
 
-        $data['contenu'] = $this->load->view('contenu/category', $devices_data, true);
+        $data['contenu'] = $this->load->view('contenu/news', $devices_data, true);
         $data['body_class'] = 'category particuliers '.to_ascii('news');
         $this->load->view('main', $data);
     }

@@ -6,7 +6,7 @@ class apple_feeder extends ApplicationFeeder {
 
     public function __construct($_params)
     {
-        parent::__construct($_params[0], $_params[1], $_params[2], $_params[3]);
+        parent::__construct($_params[0], $_params[1], $_params[2], $_params[3], $_params[4]);
     }
 
     public function feed($_langue_store, $_langue_appli)
@@ -83,7 +83,11 @@ class apple_feeder extends ApplicationFeeder {
                     echo $item["im:name"]["label"]." failed <br/>";
                     log_message('info',$item["im:name"]["label"].' failed ');
                 }
-
+                if(!$this->spoolCrawlApplicationModel->exists_packages($item["id"]["attributes"]["im:id"], Devices_model::APPLICATION_DEVICE_APPLE, Spool_crawl_applications_model::TABLE_APPLE))
+                {
+                    log_message('debug', 'adding '.$item["id"]["attributes"]["im:id"]);
+                    $this->spoolCrawlApplicationModel->insert_package($item["id"]["attributes"]["im:id"], Devices_model::APPLICATION_DEVICE_APPLE, Spool_crawl_applications_model::TABLE_APPLE);
+                }
             }
             else
             {
