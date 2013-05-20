@@ -76,6 +76,7 @@ class Common_Controller extends MY_Controller
                 js_url('jquery.flexslider-min'),
               //  js_url('jquery.autoellipsis'),
                 js_url('bootstrap'),
+                js_url('bootstrap-multiselect'),
                 js_url('menu'),
                 js_url('login'),
                 js_url('scripts'),
