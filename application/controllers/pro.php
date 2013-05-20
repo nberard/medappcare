@@ -11,7 +11,7 @@ class Pro extends Common_Controller {
         $user = $this->session->userdata('user');
         if(!$user || $user->est_pro != 1)
         {
-            redirect(index_page());
+      //      redirect(index_page());
         }
     }
 
