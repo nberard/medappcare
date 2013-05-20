@@ -73,51 +73,26 @@ class Perso extends Common_Controller {
         {
             $devices_ids_bd[] = $device_obj->id;
         }
-        $sort = 'date_ajout';
-        $order = 'desc';
-        $free = -1;
-        $devices = -1;
-        if(isset($_GET['sort']))
+        $this->load->helper('format_string');
+        $sort = request_get_param($_GET, 'sort', 'date_ajout', array('date_ajout', 'prix'));
+        $order = request_get_param($_GET, 'order', 'desc', array('asc', 'desc'));
+        $free = request_get_param($_GET, 'free', -1, array(0, 1));
+        $free = ($free == -1 ? -1 : ($free == 1 ? true : false));
+
+        $devices = request_get_param($_GET, 'devices', -1);
+        $tab_devices = explode(',', $devices);
+        if(is_array($tab_devices))
         {
-            $_get_sort = xss_clean($_GET['sort']);
-            if(in_array($_get_sort, array('date_ajout', 'prix')))
+            foreach($tab_devices as $device_id)
             {
-                $sort = $_get_sort;
-                if(isset($_GET['order']))
+                if(in_array($device_id, $devices_ids_bd))
                 {
-                    $_get_order = xss_clean($_GET['order']);
-                    if(in_array($_get_sort, array('asc', 'desc')))
-                    {
-                        $order = $_get_order;
-                    }
-                }
-            }
-        }
-        if(isset($_GET['free']))
-        {
-            $_get_free = xss_clean($_GET['free']);
-            if(in_array($_get_free, array(0,1)))
-            {
-                $free = $_get_free == 1 ? true : false;
-            }
-        }
-        if(isset($_GET['devices']))
-        {
-            $_get_devices = xss_clean($_GET['devices']);
-            $tab_devices = explode(',', $_get_devices);
-            if(is_array($tab_devices))
-            {
-                foreach($tab_devices as $device_id)
-                {
-                    if(in_array($device_id, $devices_ids_bd))
-                    {
-                        $devices[] = $device_id;
-                    }
+                    $devices[] = $device_id;
                 }
             }
         }
         $categorie = $this->Categories_model->get_categorie($_categorie_id);
-        $applications = $this->Applications_model->get_applications_from_categorie($this->pro, $devices, $_categorie_id, $free, $sort, $order, $_page);
+        $applications = $this->Applications_model->get_applications_from_categorie($this->pro, $devices, intval($_categorie_id), $free, $sort, $order, $_page);
         $this->_format_all_prices($applications);
         $this->_format_all_notes($applications);
         $this->_format_all_links($applications, 'app');

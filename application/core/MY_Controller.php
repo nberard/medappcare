@@ -41,7 +41,7 @@ class MY_Controller extends CI_Controller {
     protected function _format_link(&$_data_link, $_target, $_label_titre = 'titre', $_link = 'link', $_label_id = 'id', $_page = 0)
     {
         $this->load->helper('url');
-        $this->load->helper('link');
+        $this->load->helper('format_string');
         $path = $this->access_label.'/'.$_target.'/'.to_ascii($_data_link->{$_label_titre}).'_'.$_data_link->{$_label_id};
         if($_page != 0)
         {
