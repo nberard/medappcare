@@ -280,6 +280,8 @@ class Admin extends CI_Controller
 //        set_relation_n_n($field_name, $relation_table, $selection_table, $primary_key_alias_to_this_table, $primary_key_alias_to_selection_table , $title_field_selection_table , $priority_field_relation_table = null, $where_clause = null)
         $this->crud->set_relation_n_n('accessoires', 'selection_accessoire', 'accessoire', 'selection_id', 'accessoire_id', '{nom_'.config_item('lng').'}');
         $this->crud->set_relation_n_n('applications', 'selection_application', 'application', 'selection_id', 'application_id', '{nom}');
+        $upload_paths = config_item('upload_paths');
+        $this->crud->set_field_upload('image',$upload_paths['selection']);
         $this->_admin_output($this->crud->render());
     }
 
