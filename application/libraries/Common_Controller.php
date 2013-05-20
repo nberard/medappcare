@@ -138,10 +138,10 @@ class Common_Controller extends MY_Controller
         $this->load->model('Accessoires_model');
         $accessoires = $this->Accessoires_model->get_last_accessoires($_nb);
 //        var_dump($accessoires);
+        $this->load->helper('format_string');
         foreach($accessoires as &$accessoire)
         {
-            $description_text = html_entity_decode(strip_tags($accessoire->presse));
-            $accessoire->description_short = substr($description_text, 0, 80).' ...';
+            $accessoire->description_short = short_html_text($accessoire->presse);
         }
         $this->_format_all_prices($accessoires);
         $this->_format_all_links($accessoires, 'device', "nom");
@@ -155,9 +155,11 @@ class Common_Controller extends MY_Controller
         $this->load->model('Applications_model');
 
         $articles = $this->Articles_model->get_last_articles(2);
-        foreach ($articles as $article)
+        $this->load->helper('format_string');
+        foreach ($articles as &$article)
         {
             $article->date_full = date_full($article->date_creation);
+            $article->contenu_short = short_html_text($article->contenu);
         }
         $this->_format_all_links($articles, 'news', "titre");
         $this->_format_all_links($articles, 'category', 'nom_categorie', 'categorie_link', 'categorie_id');
