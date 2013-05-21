@@ -70,10 +70,10 @@ class Applications_model extends CI_Model {
 
     public function get_last_eval_applications($_pro, $_category_id = -1, $_limit = 5)
     {
-        return $this->get_applications($_pro, -1, $_category_id, true, -1, 'id', 'desc', 5);
+        return $this->get_applications($_pro, -1, $_category_id, null, true, -1, 'id', 'desc', 5);
     }
 
-    public function get_applications($_pro, $_devices_id, $_categorie_id, $_eval_medappcare, $_free, $_sort, $_order, $_limit, $_offset = 0)
+    public function get_applications($_pro, $_devices_id, $_categorie_id, $_term, $_eval_medappcare, $_free, $_sort, $_order, $_limit, $_offset = 0)
     {
         log_message('debug', "get_applications($_pro, ".var_export($_devices_id,true).", $_categorie_id, $_free, $_sort, $_order, $_limit, $_offset = 0)");
         $this->db->select('CEIL(AVG(N.note)) AS moyenne_note, A.*, C.nom_'.config_item('lng').' AS nom_categorie, D.nom AS device_nom, D.class as device_class')
@@ -99,6 +99,10 @@ class Applications_model extends CI_Model {
                 $this->db->where('prix > 0.00');
             }
         }
+        if(!is_null($_term))
+        {
+            $this->db->where("(LOWER(A.nom) LIKE '%".strtolower($_term)."%') OR (LOWER(A.titre) LIKE '%".strtolower($_term)."%')");
+        }
         if($_devices_id !== -1)
         {
             if(is_array($_devices_id))
@@ -110,7 +114,7 @@ class Applications_model extends CI_Model {
                 $this->db->where(array('device_id' => $_devices_id));
             }
         }
-        if($_eval_medappcare !== -1)
+        if($_eval_medappcare)
         {
             $this->db->join('application_critere_note CN', 'CN.application_id = A.id', 'INNER');
         }
@@ -122,12 +126,17 @@ class Applications_model extends CI_Model {
     public function get_applications_from_categorie($_pro, $_devices_id, $_categorie_id, $_free, $_sort, $_order, $_page)
     {
         log_message('debug', "get_applications_from_categorie($_pro, ".var_export($_devices_id,true).", $_categorie_id, $_free, $_sort, $_order, $_page)");
-        return $this->get_applications($_pro, $_devices_id, $_categorie_id, -1, $_free, $_sort, $_order, config_item('nb_results_list'), $_page);
+        return $this->get_applications($_pro, $_devices_id, $_categorie_id, null, false, $_free, $_sort, $_order, config_item('nb_results_list'), $_page);
+    }
+
+    public function get_applications_from_keyword($_pro, $_devices_id, $_term, $_free, $_sort, $_order, $_page)
+    {
+        return $this->get_applications($_pro, $_devices_id, -1, $_term, false, $_free, $_sort, $_order, config_item('nb_results_list'), $_page);
     }
 
     public function get_top_five_applications($_free, $_pro, $_category_id = -1)
     {
-        return $this->get_applications($_pro, -1, $_category_id, -1, $_free, 'id', 'desc', 5);
+        return $this->get_applications($_pro, -1, $_category_id, null, false, $_free, 'id', 'desc', 5);
     }
 
     public function get_selection_applications($_id_selection)
