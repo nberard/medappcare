@@ -23,7 +23,7 @@ $(document).ready(function()
         params+= '?sort='+sortTab[0]+'&order='+sortTab[1];
         if(prixTab.length == 1)
         {
-            params+= '&prix='+(prixTab[0] == 'true' ? 1 : 0);
+            params+= '&free='+(prixTab[0] == 'true' ? 1 : 0);
         }
         if(devicesTab.length > 0)
         {
