@@ -1,7 +1,6 @@
 $(document).ready(function(){
     function populateList(that)
     {
-        console.dir($(this).data('free'));
         $.ajax({
             type: 		"GET",
             url:  		$('#listapps_topfive').data('action')+'?links=1&free='+that.data('free')+'&template=home_lasteval',

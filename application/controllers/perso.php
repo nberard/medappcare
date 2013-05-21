@@ -30,7 +30,7 @@ class Perso extends Common_Controller {
     protected function _display_last_eval()
     {
         $this->load->model('Applications_model');
-        $lastEvalApplis = $this->Applications_model->get_last_eval_applications();
+        $lastEvalApplis = $this->Applications_model->get_last_eval_applications($this->pro);
         $this->_format_all_prices($lastEvalApplis);
         $this->_format_all_links($lastEvalApplis, 'app');
         $this->_format_all_links($lastEvalApplis, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
@@ -64,41 +64,33 @@ class Perso extends Common_Controller {
 
     public function app_category($_categorie_id, $_page)
     {
-        $_page--;
+        $offset = $_page-1;
         $this->load->model('Categories_model');
         $this->load->model('Applications_model');
-        $this->load->model('Devices_model');
-        $device_objs = $this->Devices_model->get_all_devices();
-        foreach($device_objs as $device_obj)
-        {
-            $devices_ids_bd[] = $device_obj->id;
-        }
-        $this->load->helper('format_string');
-        $sort = request_get_param($_GET, 'sort', 'date_ajout', array('date_ajout', 'prix'));
-        $order = request_get_param($_GET, 'order', 'desc', array('asc', 'desc'));
-        $free = request_get_param($_GET, 'free', -1, array(0, 1));
-        $free = ($free == -1 ? -1 : ($free == 1 ? true : false));
+        $search_params = $this->_get_all_search_params($_GET);
+        log_message('debug', "search_params=".var_export($search_params, true));
 
-        $devices = request_get_param($_GET, 'devices', -1);
-        $tab_devices = explode(',', $devices);
-        if(is_array($tab_devices))
-        {
-            foreach($tab_devices as $device_id)
-            {
-                if(in_array($device_id, $devices_ids_bd))
-                {
-                    $devices[] = $device_id;
-                }
-            }
-        }
         $categorie = $this->Categories_model->get_categorie($_categorie_id);
-        $applications = $this->Applications_model->get_applications_from_categorie($this->pro, $devices, intval($_categorie_id), $free, $sort, $order, $_page);
+        $applications = $this->Applications_model->get_applications_from_categorie($this->pro, $search_params['devices'], $_categorie_id, $search_params['free'], $search_params['sort'], $search_params['order'], $offset * config_item('nb_results_list'));
         $this->_format_all_prices($applications);
         $this->_format_all_notes($applications);
         $this->_format_all_links($applications, 'app');
         $this->_format_all_links($applications, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
+
+        if(count($applications) == config_item('nb_results_list'))
+        {
+            $this->_format_link($categorie, 'app_category', 'nom', 'link_all_next', 'id' ,$_page+1, $search_params);
+        }
+        if($_page > 1)
+        {
+            $this->_format_link($categorie, 'app_category', 'nom', 'link_all_prev', 'id' ,$_page-1, $search_params);
+        }
+        $this->load->model('Devices_model');
+        $devices = $this->Devices_model->get_all_devices();
+
         $data['inc'] = $this->_getCommonIncludes(array(
-            js_url('bootstrap-multiselect')
+            js_url('bootstrap-multiselect'),
+            js_url('search'),
         ));
 
         $data['contenu'] = $this->load->view('contenu/list_app', array(
@@ -106,6 +98,7 @@ class Perso extends Common_Controller {
                 'applications' => $applications,
             ), true),
             'categorie' => $categorie,
+            'devices' => $devices,
         ), true);
         $data['body_class'] = 'category '.$this->body_class.' '.$categorie->class;
         $this->load->view('main', $data);

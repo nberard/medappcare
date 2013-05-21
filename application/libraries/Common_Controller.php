@@ -324,4 +324,42 @@ class Common_Controller extends MY_Controller
         $data['body_class'] = 'list particuliers';
         $this->load->view('main', $data);
     }
+
+    protected function _get_all_search_params($_params)
+    {
+        $this->load->model('Devices_model');
+        $device_objs = $this->Devices_model->get_all_devices();
+        foreach($device_objs as $device_obj)
+        {
+            $devices_ids_bd[] = $device_obj->id;
+        }
+        $this->load->helper('format_string');
+        $sort = request_get_param($_params, 'sort', 'date_ajout', array('date_ajout', 'prix'));
+        $order = request_get_param($_params, 'order', 'desc', array('asc', 'desc'));
+        $free = request_get_param($_params, 'free', -1, array(0, 1));
+        $free = ($free == -1 ? -1 : ($free == 1 ? true : false));
+
+        $devices = request_get_param($_params, 'devices', -1);
+        $tab_devices = explode(',', $devices);
+        if(is_array($tab_devices))
+        {
+            foreach($tab_devices as $device_id)
+            {
+                if(in_array($device_id, $devices_ids_bd))
+                {
+                    if(is_string($devices))
+                    {
+                        $devices = array();
+                    }
+                    $devices[] = $device_id;
+                }
+            }
+        }
+        return array(
+            'sort' => $sort,
+            'order' => $order,
+            'free' => $free,
+            'devices' => $devices,
+        );
+    }
 }
