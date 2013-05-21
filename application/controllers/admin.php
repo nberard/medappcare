@@ -206,7 +206,7 @@ class Admin extends CI_Controller
         });
         $this->crud->callback_after_insert(function($post_array,$primary_key) {
             $this->_handle_default_values($post_array,$primary_key,
-                array('cgu_valid' => 0, 'cgv_valid' => 0, 'newsletter' => 0, 'droits' => 0),
+                array('cgu_valid' => 0, 'cgv_valid' => 0, 'newsletter' => 0, 'droits' => 0, 'date_creation' => date('Y-m-d')),
                 'membre');
         });
         $this->crud->callback_after_update(function($post_array,$primary_key) {

@@ -99,6 +99,7 @@ class Perso extends Common_Controller {
             ), true),
             'categorie' => $categorie,
             'devices' => $devices,
+            'search_params' => $search_params,
         ), true);
         $data['body_class'] = 'category '.$this->body_class.' '.$categorie->class;
         $this->load->view('main', $data);
