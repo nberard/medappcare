@@ -284,14 +284,19 @@ class Common_Controller extends MY_Controller
 
     public function news($_id)
     {
-        //        $this->_format_all_apps_links($top5Applis);
-        $devices_data = array(
-            'partners' => $this->load->view('inc/partners', '', true),
-        );
         $data['inc'] = $this->_getCommonIncludes();
 
-        $data['contenu'] = $this->load->view('contenu/news', $devices_data, true);
-        $data['body_class'] = 'category particuliers '.to_ascii('news');
+        $data['contenu'] = $this->load->view('contenu/news', '', true);
+        $data['body_class'] = '';
+        $this->load->view('main', $data);
+    }
+
+    public function list_news()
+    {
+        $data['inc'] = $this->_getCommonIncludes();
+
+        $data['contenu'] = $this->load->view('contenu/list_news', '', true);
+        $data['body_class'] = '';
         $this->load->view('main', $data);
     }
 
