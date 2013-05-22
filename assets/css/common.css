@@ -115,6 +115,7 @@ html[xmlns] .slides {display: block;}
 #pushFooter li{list-style: none; display: inline-block; width: 195px; min-height: 265px; position: relative; margin: 50px 18px; vertical-align: top;}
 
 #pushFooter h4{margin: 10px auto; position: relative; display: block; height: 50px;}
+#pushFooter a:hover {text-decoration: none;}
 #pushFooter p{padding: 15px; position: absolute; bottom: 0;}
 
 #pushFooter li.medappcare{background: #79c1d2;}
@@ -126,6 +127,8 @@ html[xmlns] .slides {display: block;}
 #pushFooter li.professionnels p{background: #bd3437;}
 #pushFooter li.dev p{background: #558c61;}
 #pushFooter li.partners p{background: #9b467d;}
+
+#pushFooter li:hover{opacity:0.8;}
 
 #pushFooter .picto{display: block; margin: 20px auto;}
 
