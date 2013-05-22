@@ -6,7 +6,7 @@
     <input type="text" id="nom" id="nom" class="input-block-level" placeholder="Nom" value="Dumont" required>
     <input type="text" id="prenom" id="prenom" class="input-block-level" placeholder="Prénom" value="Jérôme" required>
     <input type="email" id="reg_email" id="email" class="input-block-level" placeholder="Email" value="djedie@gmail.com" required>
-    <input type="password" id="reg_password" id="password" class="input-block-level" placeholder="******">
+    <input type="password" id="reg_password" id="password" class="input-block-level" placeholder="********">
 
     <select id="profession" name="profession">
         <option value="">Profession</option>
@@ -54,13 +54,11 @@
         <?php endforeach; ?>
     </select>
 
-    <input name="rpps" type="text" id="rpps" class="input-block-level" placeholder="Numéro RPPS*" value="12345679">
+    <input name="rpps" type="text" id="rpps" class="input-block-level" placeholder="Numéro RPPS*" value="N° RPPS : 123456789" disabled>
 
 
     <span class="help-block">* ou bien j'envoie une preuve de ma fonction de professionnel de santé ou d'étudiant en santé (carte professionnelle, carte d'étudiant(e), diplôme, ordonnance barrée,...) par email à identification@medappcare.com dans les 1 mois. Ce document peut être scanné ou pris en photo par votre smartphone.</span>
 
 
     <button class="btn btn-primary" type="submit">Enregistrer</button>
-    <br> <br>
-    <span class="help-block">Medappcare utilise ces données afin de vous recommander des applications qui correspondent à vos intérêts.</span>
 </form>

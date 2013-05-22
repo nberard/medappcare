@@ -3,7 +3,7 @@
     <div id="reg-error" class="alert alert-error hide"></div>
     
     <input name="email" type="email" id="reg_email" class="input-block-level" placeholder="Email" value="djedie@gmail.com" required>
-    <input name="password" type="password" id="reg_password" class="input-block-level" placeholder="******">
+    <input name="password" type="password" id="reg_password" class="input-block-level" placeholder="********">
 
     <input name="date_naissance" id="date_naissance" type="text" class="input-block-level"  placeholder="Date de naissance" value="16/12/1983" data-date-format="dd/mm/yyyy" data-date-viewmode="years" autocomplete="off" required>
 
