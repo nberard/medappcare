@@ -235,15 +235,17 @@ $(document).ready(function() {
 // Page App > commentaires
 $('#pagination-app').bootpag({
     total: 23,
-	maxVisible: 10
+	maxVisible: 10,
+	href: "#page-{{number}}"
 }).on("page", function(event, /* page number here */ num){
-     $("#list-comentaires").html("Insert content"); // some ajax content loading...
+     $("#list-comentaires").html("Page " + num); // some ajax content loading...
 });
 
 // Page Liste news 
 $('#pagination-news').bootpag({
     total: 23,
-	maxVisible: 10
+	maxVisible: 10,
+	href: "#page-{{number}}"
 }).on("page", function(event, /* page number here */ num){
-     $("#list-comentaires").html("Insert content"); // some ajax content loading...
+     $("#list-news").html("Page " + num); // some ajax content loading...
 });

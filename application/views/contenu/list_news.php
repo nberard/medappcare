@@ -7,7 +7,7 @@
 </div>
 
 <div class="articles">
-    <ul id="list-comentaires">
+    <ul id="list-news">
         <li class="wrapper unarticle lacategorie"><!-- Liste des news --> <!-- AJOUTER LA CATÉGORIE DE LA NEWS POUR CHAQUE -->
             <h2>Titre de la news</h2>
             <div class="categorie">Posté dans <a href="#" title="Titre de la Catégorie">Titre de la Catégorie</a></div>
