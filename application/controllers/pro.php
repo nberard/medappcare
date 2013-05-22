@@ -54,7 +54,7 @@ class Pro extends Common_Controller {
         $this->load->view('main', $data);
     }
 
-    public function espace_membre()
+    public function espacemembre()
     {
         $data['inc'] = $this->_getCommonIncludes();
         $data['contenu'] = $this->load->view('contenu/espace_membre_pro', '', true);
