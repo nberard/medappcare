@@ -35,7 +35,9 @@ if ( ! function_exists('request_get_param'))
             $value = $_array[$_index];
             if($_xss_clean)
             {
-                $value = xss_clean($_GET['sort']);
+                $instanceName =& get_instance();
+                $instanceName->load->helper('security');
+                $value = xss_clean($value);
             }
             if(!empty($_authorized_values))
             {

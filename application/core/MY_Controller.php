@@ -38,7 +38,7 @@ class MY_Controller extends CI_Controller {
         }
     }
 
-    protected function _format_link(&$_data_link, $_target, $_label_titre = 'titre', $_link = 'link', $_label_id = 'id', $_page = 0)
+    protected function _format_link(&$_data_link, $_target, $_label_titre = 'titre', $_link = 'link', $_label_id = 'id', $_page = 0, $_params = '')
     {
         $this->load->helper('url');
         $this->load->helper('format_string');
@@ -48,6 +48,48 @@ class MY_Controller extends CI_Controller {
             $path.='_'.$_page;
         }
         $_data_link->{$_link} = site_url($path);
+        if(!empty($_params))
+        {
+            $_data_link->{$_link}.='?';
+            foreach($_params as $key => $value)
+            {
+                if(is_array($value))
+                {
+                    $_data_link->{$_link}.= $key.'='.implode(',',$value).'&';
+                }
+                else
+                {
+                    $_data_link->{$_link}.= $key.'='.$value.'&';
+                }
+            }
+        }
+    }
+
+    protected function _format_link_no_id($_target, $_page = 0, $_params = '')
+    {
+        $this->load->helper('url');
+        $path = $this->access_label.'/'.$_target;
+        if($_page != 0)
+        {
+            $path.='_'.$_page;
+        }
+        $link = site_url($path);
+        if(!empty($_params))
+        {
+            $link.='?';
+            foreach($_params as $key => $value)
+            {
+                if(is_array($value))
+                {
+                    $link.= $key.'='.implode(',',$value).'&';
+                }
+                else
+                {
+                    $link.= $key.'='.$value.'&';
+                }
+            }
+        }
+        return $link;
     }
 
     protected function _format_all_notes(&$_data_notes_array, $_notes_to_format = array('note'))
