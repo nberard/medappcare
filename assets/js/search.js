@@ -17,9 +17,6 @@ $(document).ready(function()
                 devicesTab.push($(this).val());
             }
         });
-//        console.dir(prixTab);
-//        console.dir(devicesTab);
-//        console.dir(sortTab);
         params+= '?sort='+sortTab[0]+'&order='+sortTab[1];
         if(prixTab.length == 1)
         {
@@ -29,9 +26,10 @@ $(document).ready(function()
         {
             params+='&devices='+devicesTab.join(',');
         }
-//        console.dir(target+params);
-//        console.dir(params);
-//        console.dir(target+params);
+        if($('#search-query').val() != '')
+        {
+            params+='&term='+encodeURIComponent($('#search-query').val());
+        }
         window.location = target+params;
     }
     $('#sort-filter').submit(function()
@@ -39,4 +37,10 @@ $(document).ready(function()
         refreshSearch();
         return false;
     });
+
+    if($('#search-term').length)
+    {
+        $('#link-search').click();
+        $('#search-query').val($('#search-term').val());
+    }
 });

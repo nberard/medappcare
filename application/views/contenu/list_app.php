@@ -1,5 +1,7 @@
 <section id="listApps" class="fullList">
-	
+	<?php if($search_params['term']): ?>
+        <input type="hidden" id="search-term" value="<?php echo $search_params['term']; ?>"/>
+    <?php endif; ?>
 	<div class="title">
     	<div class="wrapper">
         	<h2><?php echo $titre; ?></h2> <!-- INSÉRER LE TITRE DE LA CATÉGORIE ICI -->
