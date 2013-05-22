@@ -42,4 +42,12 @@ class Categories_model extends CI_Model {
         $results = $this->db->get($this->table)->result();
         return $results ? $results : array();
     }
+
+    public function get_categories_from_application($_application_id)
+    {
+        $this->db->select('C.*, C.nom_'.config_item('lng').' AS nom');
+        $this->db->join($this->table.' C','C.id=AC.categorie_id', 'LEFT');
+        $results = $this->db->get_where('application_categorie AC', array('AC.application_id' => $_application_id))->result();
+        return $results ? $results : array();
+    }
 }

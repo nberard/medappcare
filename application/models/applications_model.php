@@ -76,9 +76,8 @@ class Applications_model extends CI_Model {
     public function get_applications($_pro, $_devices_id, $_categorie_id, $_term, $_eval_medappcare, $_free, $_sort, $_order, $_limit, $_offset = 0)
     {
         log_message('debug', "get_applications($_pro, ".var_export($_devices_id,true).", $_categorie_id, $_free, $_sort, $_order, $_limit, $_offset = 0)");
-        $this->db->select('CEIL(AVG(N.note)) AS moyenne_note, A.*, C.nom_'.config_item('lng').' AS nom_categorie, D.nom AS device_nom, D.class as device_class')
+        $this->db->select('CEIL(AVG(N.note)) AS moyenne_note, A.*, D.nom AS device_nom, D.class as device_class')
             ->from($this->table.' A')
-            ->join($this->tableCategorie.' C', 'A.categorie_id = C.id', 'LEFT')
             ->join($this->tableDevice.' D', 'D.id = A.device_id', 'INNER')
             ->join($this->tableNotes.' N', 'A.id = N.application_id', 'LEFT')
             ->group_by('A.id')
@@ -86,7 +85,8 @@ class Applications_model extends CI_Model {
             ->order_by($_sort, $_order);
         if($_categorie_id != -1)
         {
-            $this->db->where(array('categorie_id' => $_categorie_id));
+            $this->db->join('application_categorie C', 'A.id = C.application_id', 'INNER');
+            $this->db->where(array('C.categorie_id' => $_categorie_id));
         }
         if($_free !== -1)
         {
@@ -148,7 +148,7 @@ class Applications_model extends CI_Model {
 
     public function get_application($_id)
     {
-        return $this->db->select('CEIL(AVG(N1.note)) as moyenne_note_user, CEIL(AVG(N2.note)) as moyenne_note_pro, A.*, E.nom AS nom_editeur, E.lien_contact, C.class, D.nom AS device_nom, D.class AS device_class')
+        return $this->db->select('CEIL(AVG(N1.note)) as moyenne_note_user, CEIL(AVG(N2.note)) as moyenne_note_pro, A.*, E.nom AS nom_editeur, E.lien_contact, A.class, D.nom AS device_nom, D.class AS device_class')
             ->from($this->table.' A')
             ->join($this->tableNotes.' N1', 'A.id = N1.application_id', 'LEFT')
             ->join($this->tableMembre.' M1', 'M1.id = N1.membre_id AND M1.est_pro = 0', 'INNER')
@@ -156,7 +156,7 @@ class Applications_model extends CI_Model {
             ->join($this->tableMembre.' M2', 'M2.id = N2.membre_id AND M2.est_pro = 1', 'INNER')
             ->join($this->tableEditeur.' E', 'E.id = A.editeur_id', 'INNER')
             ->join($this->tableDevice.' D', 'D.id = A.device_id', 'INNER')
-            ->join($this->tableCategorie.' C', 'C.id = A.categorie_parente_id', 'LEFT')
+//            ->join($this->tableCategorie.' C', 'C.id = A.categorie_parente_id', 'LEFT')
             ->where(array('A.id' => $_id))->get()->row();
     }
 

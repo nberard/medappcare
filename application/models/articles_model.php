@@ -8,7 +8,7 @@
 class Articles_model extends CI_Model {
 
     protected $table = 'article';
-    protected $tableCategorie = 'categorie';
+    protected $tableCategorie = 'article_categorie';
 
     public function __construct()
     {
@@ -20,7 +20,7 @@ class Articles_model extends CI_Model {
     {
         return $this->db->select('A.*, A.titre_'.config_item('lng').' AS titre, A.contenu_'.config_item('lng').' AS contenu, C.nom_'.config_item('lng').' AS nom_categorie')
                 ->from($this->table.' A')
-                ->join($this->tableCategorie.' C', 'A.categorie_id = C.id')
+                ->join($this->tableCategorie.' C', 'A.categorie_id = C.id', 'LEFT')
                 ->limit($_limit)->order_by('A.id', 'desc')->get()->result();
     }
 
