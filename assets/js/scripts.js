@@ -242,10 +242,10 @@ $('#pagination-app').bootpag({
 });
 
 // Page Liste news 
-$('#pagination-news').bootpag({
-    total: 23,
-	maxVisible: 10,
-	href: "#page-{{number}}"
-}).on("page", function(event, /* page number here */ num){
-     $("#list-news").html("Page " + num); // some ajax content loading...
-});
+//$('#pagination-news').bootpag({
+//    total: 23,
+//	maxVisible: 10,
+//	href: "#page-{{number}}"
+//}).on("page", function(event, /* page number here */ num){
+//     $("#list-news").html("Page " + num); // some ajax content loading...
+//});

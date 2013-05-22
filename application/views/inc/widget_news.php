@@ -14,5 +14,5 @@
         <?php endforeach; ?>
     </ul>
     <div class="clear"></div>
-    <div class="metaFooter"><a href="list_news.html">voir tout ></a></div>
+    <div class="metaFooter"><a href="<?php echo site_url($access_label.'/list_news_1'); ?>">voir tout ></a></div>
 </div>

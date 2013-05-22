@@ -369,6 +369,7 @@ $config['note_min'] = 0;
 $config['note_max'] = 10;
 
 $config['nb_results_list'] = 10;
+$config['nb_results_news_list'] = 2;
 
 $config['notes_classes'] = array('zero', 'un', 'deux', 'trois', 'quatre', 'cinq', 'six', 'sept', 'huit', 'neuf', 'dixsurdix');
 
