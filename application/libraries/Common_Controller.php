@@ -125,6 +125,7 @@ class Common_Controller extends MY_Controller
         $application = $this->Applications_model->get_application($_id);
         if($application)
         {
+
             $application->prix_complet = format_price($application->prix, $application->devise, $this->lang->line('free'));
             $this->_format_note($application, array('note_user', 'note_pro'));
             $this->load->model('Application_screenshots_model');
@@ -322,7 +323,7 @@ class Common_Controller extends MY_Controller
         $this->_format_all_prices($applications);
         $this->_format_all_notes($applications);
         $this->_format_all_links($applications, 'app');
-        $this->_format_all_links($applications, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
+        $this->_populate_categories_applications($applications);
 
         if(count($applications) == config_item('nb_results_list'))
         {
@@ -365,7 +366,7 @@ class Common_Controller extends MY_Controller
         $this->_format_all_prices($applications);
         $this->_format_all_notes($applications);
         $this->_format_all_links($applications, 'app');
-        $this->_format_all_links($applications, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
+        $this->_populate_categories_applications($applications);
         $next_link = count($applications) == config_item('nb_results_list') ?
             $this->_format_link_no_id('app_search', $_page+1, $search_params) :
             null;
