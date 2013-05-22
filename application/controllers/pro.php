@@ -53,6 +53,14 @@ class Pro extends Common_Controller {
         $data['body_class'] = 'signup '.$this->body_class;
         $this->load->view('main', $data);
     }
+
+    public function espacemembre()
+    {
+        $data['inc'] = $this->_getCommonIncludes();
+        $data['contenu'] = $this->load->view('contenu/espace_membre_pro', '', true);
+        $data['body_class'] = 'membre '.$this->body_class;
+        $this->load->view('main', $data);
+    }
 }
 
 /* End of file perso.php */
