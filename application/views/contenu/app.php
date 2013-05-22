@@ -2,7 +2,7 @@
 
 <div class="title">
     <div class="wrapper">
-        <h2><?php echo $application->titre; ?><span> par</span> <a href="<?php echo $application->lien_contact ? $application->lien_contact : '#'; ?>" title="<?php echo $application->nom_editeur; ?>"><?php echo $application->nom_editeur; ?></a></h2> <!-- INSÉRER LE TITRE DE L'APP ICI et le lien vers la page du Développeur-->
+        <h2><?php echo $application->titre; ?><span> par</span> <a href="<?php echo $application->lien_contact ? $application->lien_contact : '#'; ?>" title="<?php echo $application->nom_editeur; ?>"><?php echo $application->nom_editeur; ?></a></h2>
     </div>
 </div>
 
@@ -37,7 +37,7 @@
             <?php endif; ?>
             <div class="buttons">
                 <a href="#" class="noter">Noter l'Application</a>
-                <a href="#" class="signaler">Signaler</a>
+                <a href="#signalerModal" class="signaler">Signaler</a>
             </div>
         </div>
         <div class="content right description">
@@ -129,3 +129,31 @@
 </section>
 
 <section id="partners"><?php echo $partners; ?></section> <!-- Section Partenaires -->
+
+<div class="modal hide fade" id="signalerModal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"></button>
+    <h3>Signalez cette application</h3>
+  </div>
+  <div class="modal-body">
+    <p class="explication">Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+    <form method="post" data-action="<?php echo site_url('rest/signaler') ?>" name="email_form" id="email_form">
+      <p><input name="email" id="email" type="email" required placeholder="Email"></p>
+      <p>
+          <select name="typeSignaler" id="typeSignaler">
+	            	<optgroup label="Prix" id="prix">
+	                    <option value="true">Gratuit</option>
+	                    <option value="false">Payant</option>
+	                </optgroup>
+	                <optgroup label="Plateforme" id="devices">
+                            <option value="">Test</option>
+	                </optgroup>
+          </select>
+      </p>
+      <p><textarea id="textSignaler"></textarea></p>
+      <p><button type="submit" class="btn btn-primary">Envoyer</button>
+      </p>
+    </form>
+  </div>
+    <div id="login-error" class="alert alert-error hide"></div>
+</div>
