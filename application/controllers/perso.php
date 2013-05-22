@@ -23,7 +23,7 @@ class Perso extends Common_Controller {
         $this->_format_all_prices($top5Applis);
         $this->_format_all_notes($top5Applis);
         $this->_format_all_links($top5Applis, 'app');
-        $this->_format_all_links($top5Applis, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
+        $this->_populate_categories_application($top5Applis);
         return $top5Applis;
     }
 
@@ -33,7 +33,7 @@ class Perso extends Common_Controller {
         $lastEvalApplis = $this->Applications_model->get_last_eval_applications($this->pro);
         $this->_format_all_prices($lastEvalApplis);
         $this->_format_all_links($lastEvalApplis, 'app');
-        $this->_format_all_links($lastEvalApplis, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
+        $this->_populate_categories_application($lastEvalApplis);
         return $lastEvalApplis;
     }
 

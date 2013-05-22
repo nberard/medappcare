@@ -92,6 +92,16 @@ class MY_Controller extends CI_Controller {
         return $link;
     }
 
+    protected function _populate_categories_application(&$_applications)
+    {
+        $this->load->model('Categories_model');
+        foreach($_applications as &$application)
+        {
+            $application->categories = $this->Categories_model->get_categories_from_application($application->id);
+            $this->_format_all_links($application->categories, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
+        }
+    }
+
     protected function _format_all_notes(&$_data_notes_array, $_notes_to_format = array('note'))
     {
         foreach ($_data_notes_array as &$_data_note)
