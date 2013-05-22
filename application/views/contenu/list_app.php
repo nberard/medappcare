@@ -2,7 +2,7 @@
 	
 	<div class="title">
     	<div class="wrapper">
-        	<h2>Toutes les applications dans <?php echo $categorie->nom; ?></h2> <!-- INSÉRER LE TITRE DE LA CATÉGORIE ICI -->
+        	<h2><?php echo $titre; ?></h2> <!-- INSÉRER LE TITRE DE LA CATÉGORIE ICI -->
         	<form method="POST" id="sort-filter">
 	        	<select name="filters" id="filters" multiple="multiple">
 	        
@@ -36,8 +36,8 @@
 	    <section class="allapps">
 	    	<?php echo $app_grid; ?>
 	    	<div class="metaFooter">
-	    		<?php if(isset($categorie->link_all_prev)): ?><a href="<?php echo $categorie->link_all_prev; ?>" id="previousLink" class="previousLink">&laquo; Précédent</a><?php endif; ?>
-                <?php if(isset($categorie->link_all_next)): ?><a href="<?php echo $categorie->link_all_next; ?>"  id="nextLink" class="nextLink">Suivant &raquo;</a><?php endif; ?>
+	    		<?php if(!is_null($prev_link)): ?><a href="<?php echo $prev_link; ?>" id="previousLink" class="previousLink">&laquo; Précédent</a><?php endif; ?>
+                <?php if(!is_null($next_link)): ?><a href="<?php echo $next_link; ?>"  id="nextLink" class="nextLink">Suivant &raquo;</a><?php endif; ?>
 	    	</div>
 	    </section>
     </div>

@@ -62,48 +62,7 @@ class Perso extends Common_Controller {
         $this->load->view('main', $data);
     }
 
-    public function app_category($_categorie_id, $_page)
-    {
-        $offset = $_page-1;
-        $this->load->model('Categories_model');
-        $this->load->model('Applications_model');
-        $search_params = $this->_get_all_search_params($_GET);
-        log_message('debug', "search_params=".var_export($search_params, true));
 
-        $categorie = $this->Categories_model->get_categorie($_categorie_id);
-        $applications = $this->Applications_model->get_applications_from_categorie($this->pro, $search_params['devices'], $_categorie_id, $search_params['free'], $search_params['sort'], $search_params['order'], $offset * config_item('nb_results_list'));
-        $this->_format_all_prices($applications);
-        $this->_format_all_notes($applications);
-        $this->_format_all_links($applications, 'app');
-        $this->_format_all_links($applications, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
-
-        if(count($applications) == config_item('nb_results_list'))
-        {
-            $this->_format_link($categorie, 'app_category', 'nom', 'link_all_next', 'id' ,$_page+1, $search_params);
-        }
-        if($_page > 1)
-        {
-            $this->_format_link($categorie, 'app_category', 'nom', 'link_all_prev', 'id' ,$_page-1, $search_params);
-        }
-        $this->load->model('Devices_model');
-        $devices = $this->Devices_model->get_all_devices();
-
-        $data['inc'] = $this->_getCommonIncludes(array(
-            js_url('bootstrap-multiselect'),
-            js_url('search'),
-        ));
-
-        $data['contenu'] = $this->load->view('contenu/list_app', array(
-            'app_grid' => $this->load->view('inc/app_grid', array(
-                'applications' => $applications,
-            ), true),
-            'categorie' => $categorie,
-            'devices' => $devices,
-            'search_params' => $search_params,
-        ), true);
-        $data['body_class'] = 'category '.$this->body_class.' '.$categorie->class;
-        $this->load->view('main', $data);
-    }
 }
 
 /* End of file perso.php */

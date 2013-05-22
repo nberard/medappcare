@@ -138,8 +138,6 @@ class Rest extends REST_Controller {
                 $this->load->model('Devices_model');
                 $this->response($this->load->view('inc/home_topfive', array(
                     'applications' => $top5Applis,
-                    'deviceAndroid' => Devices_model::APPLICATION_DEVICE_ANDROID,
-                    'deviceApple' => Devices_model::APPLICATION_DEVICE_APPLE,
                     'free' => $free,
                 ), true), 200);
             }
