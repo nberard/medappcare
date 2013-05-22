@@ -8,7 +8,7 @@
 class Articles_model extends CI_Model {
 
     protected $table = 'article';
-    protected $tableCategorie = 'categorie';
+    protected $tableCategorie = 'article_categorie';
 
     public function __construct()
     {

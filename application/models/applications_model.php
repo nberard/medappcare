@@ -76,9 +76,8 @@ class Applications_model extends CI_Model {
     public function get_applications($_pro, $_devices_id, $_categorie_id, $_term, $_eval_medappcare, $_free, $_sort, $_order, $_limit, $_offset = 0)
     {
         log_message('debug', "get_applications($_pro, ".var_export($_devices_id,true).", $_categorie_id, $_free, $_sort, $_order, $_limit, $_offset = 0)");
-        $this->db->select('CEIL(AVG(N.note)) AS moyenne_note, A.*, C.nom_'.config_item('lng').' AS nom_categorie, D.nom AS device_nom, D.class as device_class')
+        $this->db->select('CEIL(AVG(N.note)) AS moyenne_note, A.*, D.nom AS device_nom, D.class as device_class')
             ->from($this->table.' A')
-            ->join($this->tableCategorie.' C', 'A.categorie_id = C.id', 'LEFT')
             ->join($this->tableDevice.' D', 'D.id = A.device_id', 'INNER')
             ->join($this->tableNotes.' N', 'A.id = N.application_id', 'LEFT')
             ->group_by('A.id')
@@ -86,7 +85,8 @@ class Applications_model extends CI_Model {
             ->order_by($_sort, $_order);
         if($_categorie_id != -1)
         {
-            $this->db->where(array('categorie_id' => $_categorie_id));
+            $this->db->join('application_categorie C', 'A.id = C.application_id', 'INNER');
+            $this->db->where(array('C.categorie_id' => $_categorie_id));
         }
         if($_free !== -1)
         {

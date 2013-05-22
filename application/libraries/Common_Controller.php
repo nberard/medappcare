@@ -162,7 +162,7 @@ class Common_Controller extends MY_Controller
             $article->contenu_short = short_html_text($article->contenu);
         }
         $this->_format_all_links($articles, 'news', "titre");
-        $this->_format_all_links($articles, 'category', 'nom_categorie', 'categorie_link', 'categorie_id');
+        $this->_format_all_links($articles, 'news_category', 'nom_categorie', 'categorie_link', 'categorie_id');
         $indexData = array(
             'home_slider' => $this->load->view('inc/home_slider', '', true),
             'widget_selection' => $this->load->view('inc/widget_selection', '', true),

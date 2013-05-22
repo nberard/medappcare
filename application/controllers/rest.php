@@ -128,7 +128,7 @@ class Rest extends REST_Controller {
             $access_label = $pro ? 'pro' : 'perso';
             $this->_set_access_label($access_label);
             $this->_format_all_links($top5Applis, 'app');
-            $this->_format_all_links($top5Applis, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
+            $this->_populate_categories_application($top5Applis);
         }
         if($top5Applis)
         {
