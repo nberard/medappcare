@@ -206,7 +206,7 @@ class Admin extends CI_Controller
         });
         $this->crud->callback_after_insert(function($post_array,$primary_key) {
             $this->_handle_default_values($post_array,$primary_key,
-                array('cgu_valid' => 0, 'cgv_valid' => 0, 'newsletter' => 0, 'droits' => 0),
+                array('cgu_valid' => 0, 'cgv_valid' => 0, 'newsletter' => 0, 'droits' => 0, 'date_creation' => date('Y-m-d')),
                 'membre');
         });
         $this->crud->callback_after_update(function($post_array,$primary_key) {
@@ -280,6 +280,8 @@ class Admin extends CI_Controller
 //        set_relation_n_n($field_name, $relation_table, $selection_table, $primary_key_alias_to_this_table, $primary_key_alias_to_selection_table , $title_field_selection_table , $priority_field_relation_table = null, $where_clause = null)
         $this->crud->set_relation_n_n('accessoires', 'selection_accessoire', 'accessoire', 'selection_id', 'accessoire_id', '{nom_'.config_item('lng').'}');
         $this->crud->set_relation_n_n('applications', 'selection_application', 'application', 'selection_id', 'application_id', '{nom}');
+        $upload_paths = config_item('upload_paths');
+        $this->crud->set_field_upload('image',$upload_paths['selection']);
         $this->_admin_output($this->crud->render());
     }
 

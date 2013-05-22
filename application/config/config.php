@@ -367,6 +367,9 @@ $config['proxy_ips'] = '';
 
 $config['note_min'] = 0;
 $config['note_max'] = 10;
+
+$config['nb_results_list'] = 10;
+
 $config['notes_classes'] = array('zero', 'un', 'deux', 'trois', 'quatre', 'cinq', 'six', 'sept', 'huit', 'neuf', 'dixsurdix');
 
 $config['types_accessoires'] = array('bluetooth', 'wifi', 'usb');
@@ -374,5 +377,7 @@ $config['types_accessoires'] = array('bluetooth', 'wifi', 'usb');
 $config['password_salt'] = 'Qz2acvC7bjnjJdNK';
 
 $config['render_template_accept'] = 'application/medappcare-render';
+
+$config['upload_paths'] = array('selection' => 'assets/uploads/selections/');
 
 $config['body_class_categories'] = array('administratif', 'mapratique', 'minformer', 'mespatients', 'masante', 'monquotidien', 'minformer', 'medeplacer');

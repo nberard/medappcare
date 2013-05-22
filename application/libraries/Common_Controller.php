@@ -76,6 +76,7 @@ class Common_Controller extends MY_Controller
                 js_url('jquery.flexslider-min'),
               //  js_url('jquery.autoellipsis'),
                 js_url('bootstrap'),
+                js_url('bootstrap-multiselect'),
                 js_url('menu'),
                 js_url('login'),
                 js_url('scripts'),
@@ -137,10 +138,10 @@ class Common_Controller extends MY_Controller
         $this->load->model('Accessoires_model');
         $accessoires = $this->Accessoires_model->get_last_accessoires($_nb);
 //        var_dump($accessoires);
+        $this->load->helper('format_string');
         foreach($accessoires as &$accessoire)
         {
-            $description_text = html_entity_decode(strip_tags($accessoire->presse));
-            $accessoire->description_short = substr($description_text, 0, 80).' ...';
+            $accessoire->description_short = short_html_text($accessoire->presse);
         }
         $this->_format_all_prices($accessoires);
         $this->_format_all_links($accessoires, 'device', "nom");
@@ -154,9 +155,11 @@ class Common_Controller extends MY_Controller
         $this->load->model('Applications_model');
 
         $articles = $this->Articles_model->get_last_articles(2);
-        foreach ($articles as $article)
+        $this->load->helper('format_string');
+        foreach ($articles as &$article)
         {
             $article->date_full = date_full($article->date_creation);
+            $article->contenu_short = short_html_text($article->contenu);
         }
         $this->_format_all_links($articles, 'news', "titre");
         $this->_format_all_links($articles, 'category', 'nom_categorie', 'categorie_link', 'categorie_id');
@@ -165,14 +168,10 @@ class Common_Controller extends MY_Controller
             'widget_selection' => $this->load->view('inc/widget_selection', '', true),
             $_label_selection_left => $this->load->view('inc/'.$_label_selection_left, array(
                 'applications' => $_applis_selection_left,
-                'deviceAndroid' => Devices_model::APPLICATION_DEVICE_ANDROID,
-                'deviceApple' => Devices_model::APPLICATION_DEVICE_APPLE,
             ), true),
             $_label_selection_right => $this->load->view('inc/'.$_label_selection_right, array(
                 'free' => false,
                 'applications' => $_applis_selection_right,
-                'deviceAndroid' => Devices_model::APPLICATION_DEVICE_ANDROID,
-                'deviceApple' => Devices_model::APPLICATION_DEVICE_APPLE,
             ), true),
             'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(6)), true),
             'widget_news' => $this->load->view('inc/widget_news', array('articles' => $articles), true),
@@ -206,14 +205,10 @@ class Common_Controller extends MY_Controller
             'widget_selection' => $this->load->view('inc/widget_selection', '', true),
             'widget_lasteval' => $this->load->view('inc/widget_lasteval', array(
                 'applications' => $lastEvalApplis,
-                'deviceAndroid' => Devices_model::APPLICATION_DEVICE_ANDROID,
-                'deviceApple' => Devices_model::APPLICATION_DEVICE_APPLE,
             ), true),
             'widget_topfive' => $this->load->view('inc/widget_topfive', array(
                 'applications' => $top5Applis,
                 'categorie' => $categorie,
-                'deviceAndroid' => Devices_model::APPLICATION_DEVICE_ANDROID,
-                'deviceApple' => Devices_model::APPLICATION_DEVICE_APPLE,
             ), true),
             'widget_allappcategory' => $this->load->view('inc/widget_allappcategory', array(
                 'app_grid' => $this->load->view('inc/app_grid', array(
@@ -241,8 +236,6 @@ class Common_Controller extends MY_Controller
         $appData = array(
             'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(6)), true),
             'partners' => $this->load->view('inc/partners', '', true),
-            'deviceAndroid' => Devices_model::APPLICATION_DEVICE_ANDROID,
-            'deviceApple' => Devices_model::APPLICATION_DEVICE_APPLE,
             'application' => $application,
         );
 //var_dump($appData['application']);
@@ -311,14 +304,130 @@ class Common_Controller extends MY_Controller
         $this->load->view('main', $data);
     }
 
-    public function list_app()
+    public function app_category($_categorie_id, $_page)
     {
-        $data['inc'] = $this->_getCommonIncludes();
+        $offset = $_page-1;
+        $this->load->model('Categories_model');
+        $this->load->model('Applications_model');
+        $search_params = $this->_get_all_search_params($_GET);
+        log_message('debug', "search_params=".var_export($search_params, true));
+
+        $categorie = $this->Categories_model->get_categorie($_categorie_id);
+        $applications = $this->Applications_model->get_applications_from_categorie($this->pro, $search_params['devices'], $_categorie_id, $search_params['free'], $search_params['sort'], $search_params['order'], $offset * config_item('nb_results_list'));
+        $this->_format_all_prices($applications);
+        $this->_format_all_notes($applications);
+        $this->_format_all_links($applications, 'app');
+        $this->_format_all_links($applications, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
+
+        if(count($applications) == config_item('nb_results_list'))
+        {
+            $this->_format_link($categorie, 'app_category', 'nom', 'link_all_next', 'id' ,$_page+1, $search_params);
+        }
+        if($_page > 1)
+        {
+            $this->_format_link($categorie, 'app_category', 'nom', 'link_all_prev', 'id' ,$_page-1, $search_params);
+        }
+        $this->load->model('Devices_model');
+        $devices = $this->Devices_model->get_all_devices();
+
+        $data['inc'] = $this->_getCommonIncludes(array(
+            js_url('bootstrap-multiselect'),
+            js_url('search'),
+        ));
 
         $data['contenu'] = $this->load->view('contenu/list_app', array(
-            'app_grid' => $this->load->view('inc/app_grid', '', true),
+            'app_grid' => $this->load->view('inc/app_grid', array(
+                'applications' => $applications,
+            ), true),
+            'prev_link' => isset($categorie->link_all_prev) ? $categorie->link_all_prev : null,
+            'next_link' => isset($categorie->link_all_next) ? $categorie->link_all_next : null,
+            'titre' => 'Toutes les applications dans '.$categorie->nom,
+            'devices' => $devices,
+            'search_params' => $search_params,
         ), true);
-        $data['body_class'] = 'list particuliers';
+        $data['body_class'] = 'category '.$this->body_class.' '.$categorie->class;
         $this->load->view('main', $data);
+    }
+
+    public function app_search($_page)
+    {
+        $offset = $_page-1;
+        $this->load->model('Applications_model');
+        $search_params = $this->_get_all_search_params($_GET);
+        $term = request_get_param($_GET, 'term', null);
+        $search_params['term'] = $term;
+        $applications = $this->Applications_model->get_applications_from_keyword($this->pro, $search_params['devices'], $term, $search_params['free'], $search_params['sort'], $search_params['order'], $offset * config_item('nb_results_list'));
+        $this->_format_all_prices($applications);
+        $this->_format_all_notes($applications);
+        $this->_format_all_links($applications, 'app');
+        $this->_format_all_links($applications, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
+        $next_link = count($applications) == config_item('nb_results_list') ?
+            $this->_format_link_no_id('app_search', $_page+1, $search_params) :
+            null;
+        $prev_link = $_page > 1 ? $this->_format_link_no_id('app_search', $_page-1, $search_params) :
+            null;
+
+        $this->load->model('Devices_model');
+        $devices = $this->Devices_model->get_all_devices();
+
+        $data['inc'] = $this->_getCommonIncludes(array(
+            js_url('bootstrap-multiselect'),
+            js_url('search'),
+        ));
+
+        $data['contenu'] = $this->load->view('contenu/list_app', array(
+            'app_grid' => $this->load->view('inc/app_grid', array(
+                'applications' => $applications,
+            ), true),
+            'prev_link' => $prev_link,
+            'next_link' => $next_link,
+            'titre' => 'Toutes les applications correspondant à "'.$term.'"',
+            'devices' => $devices,
+            'search_params' => $search_params,
+        ), true);
+        $data['body_class'] = 'category '.$this->body_class;
+        $this->load->view('main', $data);
+    }
+
+    protected function _get_all_search_params($_params)
+    {
+        $this->load->model('Devices_model');
+        $device_objs = $this->Devices_model->get_all_devices();
+        foreach($device_objs as $device_obj)
+        {
+            $devices_ids_bd[] = $device_obj->id;
+        }
+        $this->load->helper('format_string');
+        $sort = request_get_param($_params, 'sort', 'date_ajout', array('date_ajout', 'prix'));
+        $order = request_get_param($_params, 'order', 'desc', array('asc', 'desc'));
+        $free = request_get_param($_params, 'free', -1, array(0, 1));
+        $free = ($free == -1 ? -1 : ($free == 1 ? true : false));
+
+        $devices = request_get_param($_params, 'devices', -1);
+        if($devices != -1)
+        {
+            $tab_devices = explode(',', $devices);
+            if(is_array($tab_devices))
+            {
+                foreach($tab_devices as $device_id)
+                {
+                    if(in_array($device_id, $devices_ids_bd))
+                    {
+                        if(is_string($devices))
+                        {
+                            $devices = array();
+                        }
+                        $devices[] = $device_id;
+                    }
+                }
+            }
+        }
+
+        return array(
+            'sort' => $sort,
+            'order' => $order,
+            'free' => $free,
+            'devices' => $devices,
+        );
     }
 }

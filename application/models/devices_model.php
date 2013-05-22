@@ -20,7 +20,7 @@ class Devices_model extends CI_Model {
 
     public function get_all_devices()
     {
-        return $this->db->select('id')->get_where($this->table)->result();
+        return $this->db->select('*')->get_where($this->table)->result();
     }
 
 }
