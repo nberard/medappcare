@@ -36,7 +36,7 @@
             </div>
             <?php endif; ?>
             <div class="buttons">
-                <a href="#" class="noter">Noter l'Application</a>
+                <a href="#commentModal" class="noter">Noter l'Application</a>
                 <a href="#signalerModal" class="signaler">Signaler</a>
             </div>
         </div>
@@ -161,6 +161,24 @@
 	                </optgroup>
           </select>
       </p>
+      <p><textarea id="textSignaler"></textarea></p>
+      <p><button type="submit" class="btn btn-primary">Envoyer</button>
+      </p>
+    </form>
+  </div>
+    <div id="login-error" class="alert alert-error hide"></div>
+</div>
+
+<div class="modal hide fade" id="commentModal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"></button>
+    <h3>Noter cette application</h3>
+  </div>
+  <div class="modal-body">
+    <p class="explication">Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+    <form method="post" data-action="<?php echo site_url('rest/signaler') ?>" name="email_form" id="email_form">
+      <p><input name="email" id="email" type="email" required placeholder="Email"></p>
+      <p>Sélectionnez la note</p>
       <p><textarea id="textSignaler"></textarea></p>
       <p><button type="submit" class="btn btn-primary">Envoyer</button>
       </p>

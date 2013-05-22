@@ -188,6 +188,19 @@ $(document).ready(function() {
 		$(this).children('.modal-body').children('form').children('p:nth-child(1)').children('input').focus();
 	});
 	
+	/* Commenter une app Modal */
+	
+	var shouldDisplayCommenterModal = false;
+	
+	$('a[href="#commentModal"]').click(function() {
+		shouldDisplayCommentModal = true;
+		$('#commentModal').modal('show');
+	});
+	
+	$('#commentModal').on('shown', function() {
+		$(this).children('.modal-body').children('form').children('p:nth-child(1)').children('input').focus();
+	});
+	
 	
 	/* App & Device tabs */
 	
