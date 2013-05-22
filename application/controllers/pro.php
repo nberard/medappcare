@@ -21,7 +21,7 @@ class Pro extends Common_Controller {
         $top5Applis = $this->Applications_model->get_top_five_applications(false, true);
         $this->_format_all_prices($top5Applis);
         $this->_format_all_links($top5Applis, 'app');
-        $this->_format_all_links($top5Applis, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
+        $this->_populate_categories_application($top5Applis);
         return $top5Applis;
     }
 
@@ -29,9 +29,8 @@ class Pro extends Common_Controller {
     {
         $this->load->model('Applications_model');
         $lastEvalApplis = $this->Applications_model->get_last_eval_applications(true);
-        $this->_format_all_prices($lastEvalApplis);
         $this->_format_all_links($lastEvalApplis, 'app');
-        $this->_format_all_links($lastEvalApplis, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
+        $this->_populate_categories_application($lastEvalApplis);
         return $lastEvalApplis;
     }
 

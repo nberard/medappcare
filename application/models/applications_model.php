@@ -70,7 +70,8 @@ class Applications_model extends CI_Model {
 
     public function get_last_eval_applications($_pro, $_category_id = -1, $_limit = 5)
     {
-        return $this->get_applications($_pro, -1, $_category_id, null, true, -1, 'id', 'desc', 5);
+        $res = $this->get_applications($_pro, -1, $_category_id, null, true, -1, 'id', 'desc', 5);
+        return $res ? $res : array();
     }
 
     public function get_applications($_pro, $_devices_id, $_categorie_id, $_term, $_eval_medappcare, $_free, $_sort, $_order, $_limit, $_offset = 0)
@@ -136,7 +137,8 @@ class Applications_model extends CI_Model {
 
     public function get_top_five_applications($_free, $_pro, $_category_id = -1)
     {
-        return $this->get_applications($_pro, -1, $_category_id, null, false, $_free, 'id', 'desc', 5);
+        $res =  $this->get_applications($_pro, -1, $_category_id, null, false, $_free, 'id', 'desc', 5);
+        return $res ? $res : array();
     }
 
     public function get_selection_applications($_id_selection)
