@@ -772,8 +772,6 @@ legend + .control-group {
 }
 .btn:hover,
 .btn:focus,
-.btn:active,
-.btn.active,
 .btn.disabled,
 .btn[disabled] {
   color: #fff;
@@ -781,6 +779,10 @@ legend + .control-group {
   *background-color: #79C1D2;
     text-shadow: none;
 }
+
+.btn:active,
+.btn.active{background: #006dcc; color: white;}
+
 .btn:active,
 .btn.active {
   background-color: #cccccc \9;

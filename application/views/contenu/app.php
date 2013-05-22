@@ -219,7 +219,7 @@
     <form method="post" data-action="<?php echo site_url('rest/signaler') ?>" name="email_form" id="email_form">
       <p><input name="email" id="email" type="email" required placeholder="Email"></p>
       <p>Sélectionnez la note</p>
-      <p><textarea id="textSignaler"></textarea></p>
+      <p><textarea id="textCommenter"></textarea></p>
       <p><button type="submit" class="btn btn-primary">Envoyer</button>
       </p>
     </form>

@@ -683,6 +683,28 @@ button{margin-right: 15px;}
 #descTabs .tabContent .logoPart img {margin: 20px auto;}
 
 
+/* =========== NEWS PAGES =========== */
+.news .title{background: #ededed;}
+
+.unarticle{border-bottom: 1px solid #0f6eb4; margin: 0 auto 50px auto; padding: 0 0 50px 0;}
+.unarticle:last-child{border: 0;}
+
+.articles .content ul{list-style: circle; padding: 0 0 0 20px; margin: 10px 0 10px 20px;}
+.articles .content ol{padding: 0 0 0 20px; margin: 10px 0 10px 20px;}
+.articles .content p{margin: 10px auto;}
+
+.articles .date{margin: 5px 0 0 0;}
+
+.articles .categorie, .articles .date{display: inline-block;}
+
+.articles img{max-width: 450px; height: auto;}
+
+.alignright{float: right; margin: 0 0 10px 10px;}
+.alignleft{float: left; margin: 0 10px 10px 0;}
+.center{margin: 10px auto;}
+
+.pagination{text-align: center;}
+.pagination a{display: inline-block; margin: 0 5px;}
 
 
 /* MEDIAQUERIES

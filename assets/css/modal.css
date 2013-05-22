@@ -15,6 +15,11 @@
 .modal form[name="lost_password_form"] button {float: right;}
 .modal form[name="lost_password_form"]:after {display: block; content:''; clear: both;}
 
+/* Commenter une application */
+
+#commentModal .modal-body #email,
+#commentModal .modal-body #textCommenter{width: 486px;}
+
 
 /* Signaler une application */
 
