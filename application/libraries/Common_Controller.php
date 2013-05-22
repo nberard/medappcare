@@ -295,7 +295,7 @@ class Common_Controller extends MY_Controller
     {
         $data['inc'] = $this->_getCommonIncludes();
 
-        $data['contenu'] = $this->load->view('contenu/news', '', true);
+        $data['contenu'] = $this->load->view('contenu/list_news', '', true);
         $data['body_class'] = '';
         $this->load->view('main', $data);
     }
