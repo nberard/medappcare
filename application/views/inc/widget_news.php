@@ -14,5 +14,5 @@
         <?php endforeach; ?>
     </ul>
     <div class="clear"></div>
-    <div class="metaFooter"><a href="news-list.php">voir tout ></a></div>
+    <div class="metaFooter"><a href="list_news.html">voir tout ></a></div>
 </div>
