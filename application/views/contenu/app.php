@@ -99,7 +99,7 @@
                 <ul>
 	    		<?php foreach($application->screenshots as $screenshot): ?>
                     <li><img src="<?php echo $screenshot->url; ?>"/></li>
-                                        <li><img src="<?php echo $screenshot->url; ?>"/></li>
+                    <li><img src="<?php echo $screenshot->url; ?>"/></li>
                 <?php endforeach; ?>
                 </ul>
 	    	</div>
@@ -113,8 +113,19 @@
 	    		<p><?php // echo $device->{"description_".config_item('lng')}; ?></p>
 	    	</div>
 	    	
-	    	<div class="tabContent" id="commentaires">
-	    		Commentaires
+	    	<div class="tabContent" id="commentaires"> <!-- Liste des commentaires déjà publiés -->
+	    	    <ul class="commentsList">
+	    	        <li class="commentSingle">
+    	    	        <span class="name">Toto</span>
+    	    	        <span class="note">La note</span>
+    	    	        <p class="comment">Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum.</p>
+	    	        </li>
+	    	        <li class="commentSingle">
+    	    	        <span class="name">Jean-Pierre</span>
+    	    	        <span class="note">La note</span>
+    	    	        <p class="comment">Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum.</p>
+	    	        </li>
+	    	    </ul>
 	    	</div>
 	    	
 	    	<div class="tabContent" id="devicesCompatibles">
