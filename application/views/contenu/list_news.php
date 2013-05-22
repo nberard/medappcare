@@ -74,12 +74,16 @@
         
     </ul>
     
-    <div class="pagination">
-        <a href="#" class="previous">< Page Précédente</a>
-        <a href="#" class="numbers active">1</a>
-        <a href="#" class="numbers">2</a>
-        <a href="#" class="numbers">3</a>
-        <a href="#" class="previous">Page suivante ></a>
-    </div>
+	<div class="pagination pagination-centered">
+	  <ul>
+	    <li class="disabled"><a href="#">Prev</a></li>
+	    <li class="active"><a href="#">1</a></li>
+	    <li><a href="#">2</a></li>
+	    <li><a href="#">3</a></li>
+	    <li><a href="#">4</a></li>
+	    <li><a href="#">5</a></li>
+	    <li><a href="#">Next</a></li>
+	  </ul>
+	</div>
     
 </div>

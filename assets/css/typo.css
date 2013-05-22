@@ -120,8 +120,4 @@ h2{color: #0f6eb4; font-size: 24px;}
 .articles .categorie, .articles .date{font-size: 12px; color: #999;}
 .articles .categorie a{font-weight: 700; color: #0f6eb4;}
 
-.pagination{margin: 0 0 50px 0;}
-.pagination a{color: #999; font-size: 14px;}
-.pagination a:hover,
-.pagination a.active{color: #0f6eb4; font-weight: 700;}
 

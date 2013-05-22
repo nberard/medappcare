@@ -124,12 +124,13 @@
     	    	        <span class="name">Jean-Pierre</span>
     	    	        <span class="note">La note</span>
     	    	        <p class="comment">Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum.</p>
-	    	        </li><!--
+	    	        </li>
 	    	        <li class="commentSingle">
     	    	        <span class="name">Toto</span>
     	    	        <span class="note">La note</span>
     	    	        <p class="comment">Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum.</p>
 	    	        </li>
+	    	        <!--
 	    	        <li class="commentSingle">
     	    	        <span class="name">Jean-Pierre</span>
     	    	        <span class="note">La note</span>
@@ -154,17 +155,21 @@
     	    	        <span class="name">Jean-Pierre</span>
     	    	        <span class="note">La note</span>
     	    	        <p class="comment">Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum.</p>
-	    	        </li>	-->    	        	    	        	    	        
+	    	        </li>	
+	    	        -->    	        	    	        	    	        
 	    	    </ul>
 
-   		    	<div class="pagination">
-   		    		<ul>
-	   		    		<li class="disabled"><span>&laquo;</span></li>
-	   		    		<li class="active"><span>1</span></li>
-	   		    		<li class="active"><span>2</span></li>
-	   		    		<li class="active"><span>3</span></li>
-	   		    	</ul>
-	   		    </div>
+				<div class="pagination pagination-centered">
+				  <ul>
+				    <li class="disabled"><a href="#">Prev</a></li>
+				    <li class="active"><a href="#">1</a></li>
+				    <li><a href="#">2</a></li>
+				    <li><a href="#">3</a></li>
+				    <li><a href="#">4</a></li>
+				    <li><a href="#">5</a></li>
+				    <li><a href="#">Next</a></li>
+				  </ul>
+				</div>
    		    	
 	    	</div>
 	    	

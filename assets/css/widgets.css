@@ -211,7 +211,7 @@
 
 /* =========== COMMENTAIRES in APPS =========== */
 
-#commentaires li{background: #cfe3e7; padding: 10px; margin: 10px auto;}
+#commentaires .commentsList li{background: #cfe3e7; padding: 10px; margin: 10px auto;}
 #commentaires .note{display: block;}
 #commentaires .comment{margin: 10px 0;}
 
