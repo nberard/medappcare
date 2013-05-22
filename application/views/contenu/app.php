@@ -114,7 +114,7 @@
 	    	</div>
 	    	
 	    	<div class="tabContent" id="commentaires"> <!-- Liste des commentaires déjà publiés -->
-	    	    <ul class="commentsList">
+	    	    <ul id="list-comentaires" class="commentsList">
 	    	        <li class="commentSingle">
     	    	        <span class="name">Toto</span>
     	    	        <span class="note">La note</span>
@@ -159,20 +159,11 @@
 	    	        -->    	        	    	        	    	        
 	    	    </ul>
 
-				<div class="pagination pagination-centered">
-				  <ul>
-				    <li class="disabled"><a href="#">Prev</a></li>
-				    <li class="active"><a href="#">1</a></li>
-				    <li><a href="#">2</a></li>
-				    <li><a href="#">3</a></li>
-				    <li><a href="#">4</a></li>
-				    <li><a href="#">5</a></li>
-				    <li><a href="#">Next</a></li>
-				  </ul>
-				</div>
+				<div id="pagination-app" class="pagination pagination-centered"></div>
    		    	
 	    	</div>
 	    	
+    	
 	    	<div class="tabContent" id="devicesCompatibles">
 	    		<section id="devices"><?php echo $widget_devices; ?></section> <!-- Section Devices connectés -->
 	    	</div>

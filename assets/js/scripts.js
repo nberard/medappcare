@@ -228,3 +228,22 @@ $(document).ready(function() {
 
 // this is a separate function that runs when the close button is clicked
 // If anyone has a more efficient way to do this, I'm all ears
+
+
+/* PAGINATION */
+
+// Page App > commentaires
+$('#pagination-app').bootpag({
+    total: 23,
+	maxVisible: 10
+}).on("page", function(event, /* page number here */ num){
+     $("#list-comentaires").html("Insert content"); // some ajax content loading...
+});
+
+// Page Liste news 
+$('#pagination-news').bootpag({
+    total: 23,
+	maxVisible: 10
+}).on("page", function(event, /* page number here */ num){
+     $("#list-comentaires").html("Insert content"); // some ajax content loading...
+});

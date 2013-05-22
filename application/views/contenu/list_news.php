@@ -7,7 +7,7 @@
 </div>
 
 <div class="articles">
-    <ul>
+    <ul id="list-comentaires">
         <li class="wrapper unarticle lacategorie"><!-- Liste des news --> <!-- AJOUTER LA CATÉGORIE DE LA NEWS POUR CHAQUE -->
             <h2>Titre de la news</h2>
             <div class="categorie">Posté dans <a href="#" title="Titre de la Catégorie">Titre de la Catégorie</a></div>
@@ -74,16 +74,6 @@
         
     </ul>
     
-	<div class="pagination pagination-centered">
-	  <ul>
-	    <li class="disabled"><a href="#">Prev</a></li>
-	    <li class="active"><a href="#">1</a></li>
-	    <li><a href="#">2</a></li>
-	    <li><a href="#">3</a></li>
-	    <li><a href="#">4</a></li>
-	    <li><a href="#">5</a></li>
-	    <li><a href="#">Next</a></li>
-	  </ul>
-	</div>
+	<div id="pagination-news" class="pagination pagination-centered"></div>
     
 </div>
