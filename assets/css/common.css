@@ -128,6 +128,8 @@ html[xmlns] .slides {display: block;}
 #pushFooter li.dev p{background: #558c61;}
 #pushFooter li.partners p{background: #9b467d;}
 
+#pushFooter li:hover{opacity:0.8;}
+
 #pushFooter .picto{display: block; margin: 20px auto;}
 
 #pushFooter li.medappcare .picto{background: url(../img/picto_medappcare.png) no-repeat; width: 54px; height: 62px;}

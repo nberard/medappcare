@@ -1,5 +1,5 @@
 <form class="form-signup" method="post" id="form-signup" data-action="<?php echo site_url('rest/signup'); ?>">
-    <h2 class="form-signup-heading">Inscription grand public</h2>
+    <h2 class="form-signup-heading">Mon Espace</h2>
     <div id="reg-error" class="alert alert-error hide"></div>
     <input name="email" type="email" id="reg_email" class="input-block-level" placeholder="Email" required>
     <input name="password" type="password" id="reg_password" class="input-block-level" placeholder="Mot de passe" required>
