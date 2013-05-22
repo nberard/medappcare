@@ -64,8 +64,19 @@ class Perso extends Common_Controller {
 
     public function espacemembre()
     {
-        $data['inc'] = $this->_getCommonIncludes();
-        $data['contenu'] = $this->load->view('contenu/espace_membre', '', true);
+        $this->load->model('Plateformes_model');
+        $plateformes = $this->Plateformes_model->get_all_plateformes();
+        $data['inc'] = $this->_getCommonIncludes(array(
+            js_url('bootstrap-datepicker'),
+            js_url('bootstrap-multiselect'),
+            js_url('jquery.checkValidity'),
+            js_url('register'),
+        ));
+        $espaceData['nb_countries'] = count(config_item('country_list'));
+        $espaceData['country_json'] = country_json();
+        $espaceData['plateformes'] = $plateformes;
+        $espaceData['categories_principales'] =$data['inc']['data_categories_principales'];
+        $data['contenu'] = $this->load->view('contenu/espace_membre', $espaceData, true);
         $data['body_class'] = 'membre '.$this->body_class;
         $this->load->view('main', $data);
     }
