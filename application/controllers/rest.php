@@ -111,35 +111,42 @@ class Rest extends REST_Controller {
         }
     }
 
-    public function topfiveapplis_get()
+    public function topfiveapplis_get($_categorie_id = -1)
     {
         $free = $this->_get('free');
+        $template = $this->_get('template');
         $free = ($free && $free == 1);
         $links = $this->_get('links');
         $links = ($links && $links == 1);
         $this->load->model('Applications_model');
-        $top5Applis = $this->Applications_model->get_top_five_applications($free, false);
+        $top5Applis = $this->Applications_model->get_top_five_applications($free, false, $_categorie_id);
         $this->_format_all_prices($top5Applis);
         $this->_format_all_notes($top5Applis);
-        if($links)
-        {
-            $pro = $this->_get('pro');
-            $pro = ($pro && $pro == 1);
-            $access_label = $pro ? 'pro' : 'perso';
-            $this->_set_access_label($access_label);
-            $this->_format_all_links($top5Applis, 'app');
-            $this->_populate_categories_applications($top5Applis);
-        }
+
         if($top5Applis)
         {
-            log_message('debug', "format=".var_export($this->response->format, true));
+            if($links)
+            {
+                $pro = $this->_get('pro');
+                $pro = ($pro && $pro == 1);
+                $access_label = $pro ? 'pro' : 'perso';
+                $this->_set_access_label($access_label);
+                $this->_format_all_links($top5Applis, 'app');
+                $this->_populate_categories_applications($top5Applis);
+            }
             if($this->response->format == "render")
             {
-                $this->load->model('Devices_model');
-                $this->response($this->load->view('inc/home_topfive', array(
+                $data = array(
                     'applications' => $top5Applis,
                     'free' => $free,
-                ), true), 200);
+                    'template_render' => $template,
+                );
+                if($_categorie_id != -1)
+                {
+                    $this->load->model('Categories_model');
+                    $data['categorie'] = $this->Categories_model->get_categorie($_categorie_id);
+                }
+                $this->response($this->load->view('inc/'.$template, $data, true), 200);
             }
             else
             {

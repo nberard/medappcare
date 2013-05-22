@@ -1,5 +1,6 @@
 <div id="listapps_topfive" class="listapps topfive" data-action="<?php echo site_url('rest/topfiveapplis');?>" data-render="<?php echo config_item('render_template_accept'); ?>">
     <h3>Le Top Medappcare</h3>
+    <input type="hidden" id="template-render" value="<?php echo $template_render; ?>"/>
     <div class="filter">
         <a href="javascript:void(0)" class="gratuit<?php if($free) echo " actif"; ?>" title="Filtrer les apps gratuites" data-free="1"><span></span>gratuit</a>
         <a href="javascript:void(0)" class="payant<?php if(!$free) echo " actif"; ?>" title="Filtrer les apps payantes" data-free="0"><span></span>€</a>
@@ -12,7 +13,7 @@
                     <h4><a href="<?php echo $application->link; ?>"><?php echo $application->nom; ?></a></h4> <!-- INSÉRER LE LIEN ET LE TITRE DE L'APP -->
                     <p class="price"><?php echo $application->prix_complet; ?></p> <!-- INSÉRER LE PRIX DE L'APP -->
                     <?php foreach($application->categories as $categorie): ?>
-                        <p class="category"><?php echo lang('dans');?> <a href="<?php echo $categorie->link_categorie; ?>"><?php echo $categorie->nom_categorie; ?></a></p> <!-- INSÉRER LE LIEN VERS L'APP -->
+                        <p class="category"><?php echo lang('dans');?> <a href="<?php echo $categorie->link_categorie; ?>"><?php echo $categorie->nom; ?></a></p> <!-- INSÉRER LE LIEN VERS L'APP -->
                     <?php endforeach; ?>
                 </div>
                 <?php if($application->moyenne_note): ?>

@@ -6,7 +6,7 @@
             <h4><a href="<?php echo $application->link; ?>"><?php echo $application->titre; ?></a></h4> <!-- INSÉRER LE LIEN ET LE TITRE DE L'APP -->
             <p class="price"><?php echo $application->prix_complet; ?></p> <!-- INSÉRER LE PRIX DE L'APP -->
             <?php foreach($application->categories as $categorie): ?>
-            <p class="category"><?php echo lang('dans');?> <a href="<?php echo $categorie->link_categorie; ?>"><?php echo $categorie->nom_categorie; ?></a></p> <!-- INSÉRER LE LIEN VERS L'APP -->
+            <p class="category"><?php echo lang('dans');?> <a href="<?php echo $categorie->link_categorie; ?>"><?php echo $categorie->nom; ?></a></p> <!-- INSÉRER LE LIEN VERS L'APP -->
             <?php endforeach; ?>
         </div>
         <?php if($application->moyenne_note): ?>

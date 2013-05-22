@@ -174,6 +174,7 @@ class Common_Controller extends MY_Controller
             $_label_selection_right => $this->load->view('inc/'.$_label_selection_right, array(
                 'free' => false,
                 'applications' => $_applis_selection_right,
+                'template_render' => 'home_topfive',
             ), true),
             'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(6)), true),
             'widget_news' => $this->load->view('inc/widget_news', array(
@@ -184,7 +185,7 @@ class Common_Controller extends MY_Controller
             'partners' => $this->load->view('inc/partners', '', true),
         );
 
-        $data['inc'] = $this->_getCommonIncludes(array(js_url('home')));
+        $data['inc'] = $this->_getCommonIncludes(array(js_url('list')));
         $template = $this->pro ? 'indexPro' : 'index';
         $data['contenu'] = $this->load->view('contenu/'.$template, $indexData, true);
         $data['body_class'] = 'homepage '.$this->body_class;
@@ -214,6 +215,8 @@ class Common_Controller extends MY_Controller
             'widget_topfive' => $this->load->view('inc/widget_topfive', array(
                 'applications' => $top5Applis,
                 'categorie' => $categorie,
+                'free' => false,
+                'template_render' => 'widget_topfive',
             ), true),
             'widget_allappcategory' => $this->load->view('inc/widget_allappcategory', array(
                 'app_grid' => $this->load->view('inc/app_grid', array(
@@ -227,7 +230,7 @@ class Common_Controller extends MY_Controller
             'categorie' => $categorie,
         );
 
-        $data['inc'] = $this->_getCommonIncludes();
+        $data['inc'] = $this->_getCommonIncludes(array(js_url('list')));
 
         $data['contenu'] = $this->load->view('contenu/category', $categoryData, true);
         $data['body_class'] = 'category '.$this->body_class.' '.$categorie->class;
