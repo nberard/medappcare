@@ -124,8 +124,48 @@
     	    	        <span class="name">Jean-Pierre</span>
     	    	        <span class="note">La note</span>
     	    	        <p class="comment">Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum.</p>
+	    	        </li><!--
+	    	        <li class="commentSingle">
+    	    	        <span class="name">Toto</span>
+    	    	        <span class="note">La note</span>
+    	    	        <p class="comment">Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum.</p>
 	    	        </li>
+	    	        <li class="commentSingle">
+    	    	        <span class="name">Jean-Pierre</span>
+    	    	        <span class="note">La note</span>
+    	    	        <p class="comment">Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum.</p>
+	    	        </li>
+	    	        <li class="commentSingle">
+    	    	        <span class="name">Toto</span>
+    	    	        <span class="note">La note</span>
+    	    	        <p class="comment">Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum.</p>
+	    	        </li>
+	    	        <li class="commentSingle">
+    	    	        <span class="name">Jean-Pierre</span>
+    	    	        <span class="note">La note</span>
+    	    	        <p class="comment">Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum.</p>
+	    	        </li>
+	    	        <li class="commentSingle">
+    	    	        <span class="name">Toto</span>
+    	    	        <span class="note">La note</span>
+    	    	        <p class="comment">Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum.</p>
+	    	        </li>
+	    	        <li class="commentSingle">
+    	    	        <span class="name">Jean-Pierre</span>
+    	    	        <span class="note">La note</span>
+    	    	        <p class="comment">Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum.</p>
+	    	        </li>	-->    	        	    	        	    	        
 	    	    </ul>
+
+   		    	<div class="pagination">
+   		    		<ul>
+	   		    		<li class="disabled"><span>&laquo;</span></li>
+	   		    		<li class="active"><span>1</span></li>
+	   		    		<li class="active"><span>2</span></li>
+	   		    		<li class="active"><span>3</span></li>
+	   		    	</ul>
+	   		    </div>
+   		    	
 	    	</div>
 	    	
 	    	<div class="tabContent" id="devicesCompatibles">
