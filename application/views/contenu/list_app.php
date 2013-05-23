@@ -4,7 +4,7 @@
     <?php endif; ?>
 	<div class="title">
     	<div class="wrapper">
-        	<h2><?php echo $titre; ?></h2> <!-- INSÉRER LE TITRE DE LA CATÉGORIE ICI -->
+        	<h2 class="short"><?php echo $titre; ?></h2> <!-- INSÉRER LE TITRE DE LA CATÉGORIE ICI -->
         	<form method="POST" id="sort-filter">
 	        	<select name="filters" id="filters" multiple="multiple">
 	        

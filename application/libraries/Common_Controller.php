@@ -406,7 +406,7 @@ class Common_Controller extends MY_Controller
         $devices = $this->Devices_model->get_all_devices();
 
         $data['inc'] = $this->_getCommonIncludes(array(
-            js_url('bootstrap-multiselect'),
+         //   js_url('bootstrap-multiselect'),
             js_url('search'),
         ));
 
