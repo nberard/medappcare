@@ -44,9 +44,9 @@
             <div class="sponsored-selection">
                 <span class="title">Nos sélections</span>
                 <ul>
-                    <li><a href=""><img src="<?php echo img_url('tmp/app-icon-57.png'); ?>" alt="[app-title] icon"/>Ma super app</a></li>
-                    <li><a href=""><img src="<?php echo img_url('tmp/app-icon-57.png'); ?>" alt="[app-title] icon"/>Ma super app</a></li>
-                    <li><a href=""><img src="<?php echo img_url('tmp/app-icon-57.png'); ?>" alt="[app-title] icon"/>Ma super app</a></li>
+                    <li  class="short"><a href=""><img src="<?php echo img_url('tmp/app-icon-57.png'); ?>" alt="[app-title] icon" />Ma super app jdfil jfkl dsjkfl jsdklf jsdkl fjkdls jfklds jfklds</a></li>
+                    <li><a href=""><img src="<?php echo img_url('tmp/app-icon-57.png'); ?>" alt="[app-title] icon" />Ma super app</a></li>
+                    <li><a href=""><img src="<?php echo img_url('tmp/app-icon-57.png'); ?>" alt="[app-title] icon" />Ma super app</a></li>
                 </ul>
                 <span class="sponsored-indicator">Sponsorisées</span>
             </div>

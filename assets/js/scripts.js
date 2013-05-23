@@ -224,6 +224,10 @@ $(document).ready(function() {
 	});
 	
 	
+	/* Racourcis des textes trop long ... */
+	
+	$('.short').ellipsis({live:true});
+	
 });
 
 // this is a separate function that runs when the close button is clicked

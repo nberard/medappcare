@@ -1,5 +1,23 @@
-var e=!0,g=!1,h=jQuery;
-function k(a,d){var b=a.data("jqae");b||(b={});var c=b.m;c||(c=a.r("<div/>").find(">div"),c.f({margin:0,padding:0,border:0}));(b=c.data("jqae"))||(b={});var j=b.d;j?c=b.d.i(e).data("jqae",{d:j}).q(c):c.data("jqae",{d:c.i(e)});a.data("jqae",{m:c,k:a.width(),j:a.height()});var s=a.height(),t=(parseInt(a.f("padding-top"),10)||0)+(parseInt(a.f("border-top-width"),10)||0)-(c.offset().top-a.offset().top),m=g,b=c;d.b&&(b=h(c.find(d.b).get().reverse()));b.g(function(){var a=h(this),b=a.text(),f=g;if(c.innerHeight()-
-a.innerHeight()>s+t)a.remove();else if(l(a),a.a().length){m&&(n(a).get(0).nodeValue+=d.c,m=g);for(;c.innerHeight()>s+t;){f=n(a);if(f.length){var j=f.get(0).nodeValue,u=j.lastIndexOf(" ");-1<u?(j=h.trim(j.substring(0,u)),f.get(0).nodeValue=j):f.get(0).nodeValue="";f=e}else f=g;if(f)if(l(a),a.a().length)n(a).get(0).nodeValue+=d.c;else{m=e;a.remove();break}else{m=e;a.remove();break}}"onEllipsis"==d.e&&f||"always"==d.e?a.n("title",b):"never"!=d.e&&a.p("title")}})}
-function n(a){if(a.a().length)return a=a.a(),a=a.h(a.length-1),a.filter(p).length?a:n(a);a.append("");a=a.a();return a.h(a.length-1)}function l(a){if(a.a().length)if(a=a.a(),a=a.h(a.length-1),a.filter(p).length){var d=a.get(0).nodeValue,d=h.trim(d);if(""==d)return a.remove(),e}else{for(;l(a););if(!a.a().length)return a.remove(),e}return g}function p(){return 3===this.nodeType}var q={},r,v=g,w={c:"...",e:"never",l:g};
-h.o.c=function(a,d){var b,c;b=h(this);"string"!==typeof a&&(d=a,a=void 0);c=h.extend({},w,d);c.b=a;b.g(function(){var a=h(this);k(a,c)});c.l?(q[b.b]=c,r||(r=window.setInterval(function(){if(!v){v=e;for(var a in q)h(a).g(function(){var b,c;b=h(this);c=b.data("jqae");(c.k!=b.width()||c.j!=b.height())&&k(b,q[a])});v=g}},200))):(b=b.b,q[b]&&(delete q[b],!q.length&&r&&(window.clearInterval(r),r=void 0)));return this};
+/*!
+
+    Copyright (c) 2011 Peter van der Spek
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+    
+ */(function(a){function m(){if(!d){d=!0;for(var c in b)a(c).each(function(){var d,e;d=a(this),e=d.data("jqae"),(e.containerWidth!=d.width()||e.containerHeight!=d.height())&&f(d,b[c])});d=!1}}function l(a){b[a]&&(delete b[a],b.length||c&&(window.clearInterval(c),c=undefined))}function k(a,d){b[a]=d,c||(c=window.setInterval(function(){m()},200))}function j(){return this.nodeType===3}function i(b){if(b.contents().length){var c=b.contents(),d=c.eq(c.length-1);if(d.filter(j).length){var e=d.get(0).nodeValue;e=a.trim(e);if(e==""){d.remove();return!0}return!1}while(i(d));if(d.contents().length)return!1;d.remove();return!0}return!1}function h(a){if(a.contents().length){var b=a.contents(),c=b.eq(b.length-1);return c.filter(j).length?c:h(c)}a.append("");var b=a.contents();return b.eq(b.length-1)}function g(b){var c=h(b);if(c.length){var d=c.get(0).nodeValue,e=d.lastIndexOf(" ");e>-1?(d=a.trim(d.substring(0,e)),c.get(0).nodeValue=d):c.get(0).nodeValue="";return!0}return!1}function f(b,c){var d=b.data("jqae");d||(d={});var e=d.wrapperElement;e||(e=b.wrapInner("<div/>").find(">div"),e.css({margin:0,padding:0,border:0}));var f=e.data("jqae");f||(f={});var j=f.originalContent;j?e=f.originalContent.clone(!0).data("jqae",{originalContent:j}).replaceAll(e):e.data("jqae",{originalContent:e.clone(!0)}),b.data("jqae",{wrapperElement:e,containerWidth:b.width(),containerHeight:b.height()});var k=b.height(),l=(parseInt(b.css("padding-top"),10)||0)+(parseInt(b.css("border-top-width"),10)||0)-(e.offset().top-b.offset().top),m=!1,n=e;c.selector&&(n=a(e.find(c.selector).get().reverse())),n.each(function(){var b=a(this),d=b.text(),f=!1;if(e.innerHeight()-b.innerHeight()>k+l)b.remove();else{i(b);if(b.contents().length){m&&(h(b).get(0).nodeValue+=c.ellipsis,m=!1);while(e.innerHeight()>k+l){f=g(b);if(!f){m=!0,b.remove();break}i(b);if(b.contents().length)h(b).get(0).nodeValue+=c.ellipsis;else{m=!0,b.remove();break}}c.setTitle=="onEllipsis"&&f||c.setTitle=="always"?b.attr("title",d):c.setTitle!="never"&&b.removeAttr("title")}}})}var b={},c,d=!1,e={ellipsis:"...",setTitle:"never",live:!1};a.fn.ellipsis=function(b,c){var d,g;d=a(this),typeof b!="string"&&(c=b,b=undefined),g=a.extend({},e,c),g.selector=b,d.each(function(){var b=a(this);f(b,g)}),g.live?k(d.selector,g):l(d.selector);return this}})(jQuery)

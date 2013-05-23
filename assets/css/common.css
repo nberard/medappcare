@@ -675,7 +675,7 @@ button{margin-right: 15px;}
 #descTabs nav li.selected {background: rgba(255, 255, 255, .2) url(../img/deviceTabsSelectedIndicator.png) no-repeat;}
 
 
-#descTabs > .wrapper {height: 405px;}
+#descTabs > .wrapper {min-height: 405px;}
 #descTabs .tabContent:not(#galeriePhotos) {display: none;}
 
 #descTabs .tabContent {padding: 20px;}

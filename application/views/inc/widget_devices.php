@@ -5,7 +5,7 @@
             <li>
                 <a href="<?php echo $accessoire->link; ?>" class="icone"><img width="80px" height="80px" src="<?php echo $accessoire->photo; ?>"></a> <!-- INSÉRER L'ICON DU DEVICE -->
                 <div class="metapp">
-                    <h4><a href="<?php echo $accessoire->link; ?>"><?php echo $accessoire->nom; ?></a></h4> <!-- INSÉRER LE LIEN ET LE TITRE DU DEVICE -->
+                    <h4 class="short"><a href="<?php echo $accessoire->link; ?>"><?php echo $accessoire->nom; ?> iodp iodp idop iopd iop iop isop iop iosp iop iops iops</a></h4> <!-- INSÉRER LE LIEN ET LE TITRE DU DEVICE -->
                     <p class="excerpt"><?php echo $accessoire->description_short; ?></p>
 <!--                    <p class="category">dans <a href="category.php">Addictions</a></p> <!-- INSÉRER LE LIEN VERS LE DEVICE -- WTF ?-->
                 </div>

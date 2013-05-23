@@ -17,7 +17,8 @@
 #listApps .listapps{width: 447px; height: auto; margin: 50px 0 0 0; float: left; position: relative;}
 
 .lespros #listApps .listapps {margin: 25px 0 0 0;}
-#listApps .listapps h3{background: #0f6eb4; padding: 0 15px; line-height: 50px; border: 1px solid #0f6eb4;}
+#listApps .listapps h3{background: #0f6eb4; padding: 0 120px 0 15px; line-height: 50px; height: 52px; border: 1px solid #0f6eb4;}
+.homepage #listApps .listapps h3{padding: 0 15px;}
 
 #listApps > .wrapper ul{border-left: 1px solid #0f6eb4; border-right: 1px solid #0f6eb4;}
 #listApps > .wrapper li{list-style: none; display: block; border-bottom: 1px solid #0f6eb4; height: 80px; padding: 15px 0 15px 15px;}
@@ -27,6 +28,7 @@
 
 #listApps .icone{float: left; position: relative; width: 80px; height: 80px; border-radius: 10px; background: #ededed; margin: 0 15px 0 0;}
 #listApps .metapp{float: left; position: relative; height: 100%; width: 230px;}
+#listApps .metapp h4 {width: 220px;}
 #listApps .metapp h4 a {display: block; height: 40px;}
 #listApps .os{float: left; position: relative; width: 60px; margin: 25px 0 0 0;}
 #listApps .price{background: #0f6eb4; width: 40px; padding: 0 5px; line-height: 21px; text-align: center; margin: 0 0 5px 0;}
@@ -41,7 +43,7 @@
 /* =========== LISTE ALL APPS (category) =========== */
 
 #listApps .allapps{width: 100%; height: auto; margin: 50px 0; display: block; position: relative; float: left; clear: both;}
-#listApps .allapps h3{background: #79c1d2; border: 1px solid #79c1d2; line-height: 50px; padding: 0 15px;}
+#listApps .allapps h3{background: #79c1d2; border: 1px solid #79c1d2; line-height: 50px; padding: 0 15px; height: 52px;}
 
 #listApps.fullList .allapps {margin: 0;}
 
@@ -175,6 +177,8 @@
 #devices h2{padding: 5px 15px 0px 15px; line-height: 52px; border-bottom: 1px solid white;}
 #devices .icone{float: left; position: relative; width: 80px; height: 80px; border-radius: 10px; background: #333; margin: 0 15px 0 0;}
 #devices .metapp{float: left; position: relative; width: 260px;}
+#devices .metapp h4 {height: 40px;}
+
 
 #devices .price{background: #0f6eb4; width: 40px; padding: 0 5px; line-height: 21px; text-align: center; margin: 13px 0; float: right;}
 .masante #devices .price,
