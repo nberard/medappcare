@@ -69,7 +69,9 @@ h2{color: #0f6eb4; font-size: 24px;}
 .app .price{font-size: 12px; color: white; text-indent: 0; font-weight: 700;}
 
 
-#news h2{color: #0f6eb4; font-size: 24px;}
+.titlenews{color: #0f6eb4; font-size: 24px;}
+.titlenews a{color: #0f6eb4;}
+
 #news h4 a{color: #111313; font-size: 18px;}
 #news .date{font-size: 12px; color: #9c9c9c; margin: 10px 0 20px 0; display: block;}
 #news .category{font-size: 12px;}
