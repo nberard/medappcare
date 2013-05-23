@@ -37,7 +37,11 @@ class Pro extends Common_Controller {
 
     public function index()
     {
-        $this->_common_index($this->_display_pour_les_pros(), 'pro_pourlespros', $this->_display_pour_les_gens(), 'pro_pourlesgens');
+        $this->_common_index(array(
+            'applications' => $this->_display_pour_les_pros(),
+        ), 'pro_pourlespros', array(
+            'applications' => $this->_display_pour_les_gens(),
+        ), 'pro_pourlesgens');
     }
 
     public function register()

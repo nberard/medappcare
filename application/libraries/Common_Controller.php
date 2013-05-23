@@ -152,7 +152,7 @@ class Common_Controller extends MY_Controller
         return $accessoires;
     }
 
-    protected function _common_index($_applis_selection_left, $_label_selection_left, $_applis_selection_right, $_label_selection_right)
+    protected function _common_index($_data_selection_left, $_label_selection_left, $_data_selection_right, $_label_selection_right)
     {
         $this->load->model('Devices_model');
         $this->load->model('Articles_model');
@@ -170,14 +170,8 @@ class Common_Controller extends MY_Controller
         $indexData = array(
             'home_slider' => $this->load->view('inc/home_slider', '', true),
             'widget_selection' => $this->load->view('inc/widget_selection', '', true),
-            $_label_selection_left => $this->load->view('inc/'.$_label_selection_left, array(
-                'applications' => $_applis_selection_left,
-            ), true),
-            $_label_selection_right => $this->load->view('inc/'.$_label_selection_right, array(
-                'free' => false,
-                'applications' => $_applis_selection_right,
-                'template_render' => 'home_topfive',
-            ), true),
+            $_label_selection_left => $this->load->view('inc/'.$_label_selection_left, $_data_selection_left, true),
+            $_label_selection_right => $this->load->view('inc/'.$_label_selection_right, $_data_selection_right, true),
             'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(6)), true),
             'widget_news' => $this->load->view('inc/widget_news', array(
                 'access_label' => $this->access_label,
@@ -412,13 +406,20 @@ class Common_Controller extends MY_Controller
             js_url('search'),
         ));
 
+        $titre = 'Toutes les applications';
+
+        if(!is_null($term))
+        {
+            $titre.=  'correspondant à "'.$term.'"';
+        }
+
         $data['contenu'] = $this->load->view('contenu/list_app', array(
             'app_grid' => $this->load->view('inc/app_grid', array(
                 'applications' => $applications,
             ), true),
             'prev_link' => $prev_link,
             'next_link' => $next_link,
-            'titre' => 'Toutes les applications correspondant à "'.$term.'"',
+            'titre' => $titre,
             'devices' => $devices,
             'search_params' => $search_params,
         ), true);
