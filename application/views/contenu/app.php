@@ -47,8 +47,7 @@
         </div>
         <div class="content right description">
             <h3>Description de l'application</h3>
-            <p>Nullam quis risus eget urna mollis ornare vel eu leo. Donec id elit non mi porta gravida at eget metus. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porta sem malesuada magna mollis euismod. Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor.</p>
+            <?php echo $application->description; ?>
         </div>
         <div class="clear"></div>
     </div> <!-- end wrapper -->
@@ -60,7 +59,7 @@
     <div class="wrapper">
         <div class="sidebar left">
             <div class="qrcode">
-                <img src="<?php echo img_url('tmp/qr.png'); ?>" alt="qr" width="200" height="200">
+                <img src="<?php echo $application->qr_code_url; ?>" title="Lien vers <?php echo $application->nom; ?>" />
                 <p>Flashez le code ci-dessus pour télécharger l’app.</p>
             </div>
             <div class="social">

@@ -131,7 +131,9 @@ class Common_Controller extends MY_Controller
             $this->_format_note($application, array('note_user', 'note_pro'));
             $this->load->model('Application_screenshots_model');
             $application->screenshots = $this->Application_screenshots_model->get_screenshots($application->id);
+            $application->qr_code_url = qr_code_url($application->lien_download);
         }
+        log_message('debug', "application=".var_export($application, true)."");
         return $application;
     }
 
