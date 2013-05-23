@@ -16,12 +16,17 @@ class Articles_model extends CI_Model {
         parent::__construct();
     }
 
-    public function get_last_articles($_limit)
+    public function get_last_articles($_page)
     {
         return $this->db->select('A.*, A.titre_'.config_item('lng').' AS titre, A.contenu_'.config_item('lng').' AS contenu, C.nom_'.config_item('lng').' AS nom_categorie')
                 ->from($this->table.' A')
                 ->join($this->tableCategorie.' C', 'A.categorie_id = C.id', 'LEFT')
-                ->limit($_limit)->order_by('A.id', 'desc')->get()->result();
+                ->limit(config_item('nb_results_news_list'), ($_page - 1) * config_item('nb_results_news_list'))->order_by('A.id', 'desc')->get()->result();
+    }
+
+    public function get_count_news()
+    {
+        return $this->db->count_all_results($this->table);
     }
 
 }

@@ -12,10 +12,10 @@
             </li>
         <?php endforeach; ?>
         <li class="search">
-            <a href="#">Rechercher</a>
+            <a id="link-search" href="#">Rechercher</a>
         </li>
         
-        <form action="search.php" method="post" class="search-form">
+        <form action="<?php echo site_url($access_label.'/app_search_1') ; ?>" method="post" id="search-form" class="search-form">
 			<input type="text" id="search-query" placeholder="Trouvez l'app qui vous plaît...">
 		</form>
     </ul>

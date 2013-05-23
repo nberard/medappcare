@@ -42,6 +42,7 @@ $route['^(fr|en)/([a-z]+)/app/[a-z0-9\-]+_(:num)$'] = "$2/app/$3";
 $route['^(fr|en)/([a-z]+)/device/[a-z0-9\-]+_(:num)$'] = "$2/device/$3";
 $route['^(fr|en)/([a-z]+)/category/[a-z0-9\-]+_(:num)$'] = "$2/category/$3";
 $route['^(fr|en)/([a-z]+)/news/[a-z0-9\-]+_(:num)$'] = "$2/news/$3";
+$route['^(fr|en)/([a-z]+)/list_news_(:num)$'] = "$2/list_news/$3";
 $route['^(fr|en)/([a-z]+)/app_category/[a-z0-9\-]+_(:num)_(:num)$'] = "$2/app_category/$3/$4";
 $route['^(fr|en)/([a-z]+)/app_search_(:num)$'] = "$2/app_search/$3";
 

@@ -3,7 +3,7 @@ $(document).ready(function(){
     {
         $.ajax({
             type: 		"GET",
-            url:  		$('#listapps_topfive').data('action')+'?links=1&free='+that.data('free')+'&template=home_lasteval',
+            url:  		$('#listapps_topfive').data('action')+'?links=1&free='+that.data('free')+'&template='+$('#template-render').val(),
             headers: {
                 Accept : $('#listapps_topfive').data('render'),
                 "Content-Type": $('#listapps_topfive').data('render')

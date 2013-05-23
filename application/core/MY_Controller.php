@@ -96,7 +96,7 @@ class MY_Controller extends CI_Controller {
     {
         $this->load->model('Categories_model');
         $_application->categories = $this->Categories_model->get_categories_from_application($_application->id);
-        $this->_format_all_links($_application->categories, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
+        $this->_format_all_links($_application->categories, 'category', 'nom', 'link_categorie', 'id');
     }
 
     protected function _populate_categories_applications(&$_applications)

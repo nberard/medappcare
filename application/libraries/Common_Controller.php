@@ -156,7 +156,7 @@ class Common_Controller extends MY_Controller
         $this->load->model('Articles_model');
         $this->load->model('Applications_model');
 
-        $articles = $this->Articles_model->get_last_articles(2);
+        $articles = $this->Articles_model->get_last_articles(1);
         $this->load->helper('format_string');
         foreach ($articles as &$article)
         {
@@ -174,14 +174,18 @@ class Common_Controller extends MY_Controller
             $_label_selection_right => $this->load->view('inc/'.$_label_selection_right, array(
                 'free' => false,
                 'applications' => $_applis_selection_right,
+                'template_render' => 'home_topfive',
             ), true),
             'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(6)), true),
-            'widget_news' => $this->load->view('inc/widget_news', array('articles' => $articles), true),
+            'widget_news' => $this->load->view('inc/widget_news', array(
+                'access_label' => $this->access_label,
+                'articles' => $articles
+            ), true),
             'home_pushpartners' => $this->load->view('inc/home_pushpartners', '', true),
             'partners' => $this->load->view('inc/partners', '', true),
         );
 
-        $data['inc'] = $this->_getCommonIncludes(array(js_url('home')));
+        $data['inc'] = $this->_getCommonIncludes(array(js_url('list')));
         $template = $this->pro ? 'indexPro' : 'index';
         $data['contenu'] = $this->load->view('contenu/'.$template, $indexData, true);
         $data['body_class'] = 'homepage '.$this->body_class;
@@ -211,6 +215,8 @@ class Common_Controller extends MY_Controller
             'widget_topfive' => $this->load->view('inc/widget_topfive', array(
                 'applications' => $top5Applis,
                 'categorie' => $categorie,
+                'free' => false,
+                'template_render' => 'widget_topfive',
             ), true),
             'widget_allappcategory' => $this->load->view('inc/widget_allappcategory', array(
                 'app_grid' => $this->load->view('inc/app_grid', array(
@@ -224,7 +230,7 @@ class Common_Controller extends MY_Controller
             'categorie' => $categorie,
         );
 
-        $data['inc'] = $this->_getCommonIncludes();
+        $data['inc'] = $this->_getCommonIncludes(array(js_url('list')));
 
         $data['contenu'] = $this->load->view('contenu/category', $categoryData, true);
         $data['body_class'] = 'category '.$this->body_class.' '.$categorie->class;
@@ -293,11 +299,33 @@ class Common_Controller extends MY_Controller
         $this->load->view('main', $data);
     }
 
-    public function list_news()
+    public function list_news($_page)
     {
-        $data['inc'] = $this->_getCommonIncludes();
 
-        $data['contenu'] = $this->load->view('contenu/list_news', '', true);
+        $data['inc'] = $this->_getCommonIncludes();
+        $this->load->model('Articles_model');
+        $articles = $this->Articles_model->get_last_articles($_page);
+        $this->load->helper('format_string');
+        foreach ($articles as &$article)
+        {
+            $article->date_full = date_full($article->date_creation);
+        }
+        $nb_news = $this->Articles_model->get_count_news();
+        $prev_link = $next_link = null;
+        if($nb_news > config_item('nb_results_news_list') * $_page)
+        {
+            $next_link = $this->_format_link_no_id('list_news', $_page + 1);
+        }
+        if($_page > 1)
+        {
+            $prev_link = $this->_format_link_no_id('list_news', $_page - 1);
+        }
+
+        $data['contenu'] = $this->load->view('contenu/list_news', array(
+            'articles' => $articles,
+            'prev_link' => $prev_link,
+            'next_link' => $next_link,
+        ), true);
         $data['body_class'] = 'news';
         $this->load->view('main', $data);
     }
