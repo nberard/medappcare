@@ -2,7 +2,7 @@
 
 <div class="title">
     <div class="wrapper">
-        <h2>Actualité</h2>
+        <h2>Actualités</h2>
     </div>
 </div>
 
@@ -21,9 +21,14 @@
             </li>
         <?php endforeach; ?>
     </ul>
-    <div class="metaFooter">
-        <?php if(!is_null($prev_link)): ?><a href="<?php echo $prev_link; ?>" id="previousLink" class="previousLink">&laquo; Précédent</a><?php endif; ?>
-        <?php if(!is_null($next_link)): ?><a href="<?php echo $next_link; ?>"  id="nextLink" class="nextLink">Suivant &raquo;</a><?php endif; ?>
-    </div>
+    
+	<ul class="wrapper pager">
+	  <li class="previous<?php if(is_null($prev_link)): ?> disabled<?php endif; ?>">	
+	  		<a href="<?php echo $prev_link; ?>" id="previousLink" class="previousLink">&laquo; Précédent</a>
+	  </li>
+	  <li class="next<?php if(is_null($next_link)): ?> disabled<?php endif; ?>">
+	        <a href="<?php echo $next_link; ?>"  id="nextLink" class="nextLink">Suivant &raquo;</a>
+	  </li>
+	</ul>
 
 </div>
