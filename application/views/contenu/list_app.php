@@ -1,5 +1,5 @@
 <section id="listApps" class="fullList">
-	<?php if(!is_null($search_params['term'])): ?>
+	<?php var_dump($search_params); if(!is_null($search_params['term'])): ?>
         <input type="hidden" id="search-term" value="<?php echo $search_params['term']; ?>"/>
     <?php endif; ?>
 	<div class="title">
@@ -9,8 +9,8 @@
                 <select name="filters" id="filters" multiple="multiple">
 	        
 	            	<optgroup label="Prix" id="prix">
-	                    <option value="true" <?php if($search_params['free']) echo 'selected'; ?>>Gratuit</option>
-	                    <option value="false" <?php if(!$search_params['free']) echo 'selected'; ?>>Payant</option>
+	                    <option value="true" <?php if($search_params['free'] === true) echo 'selected'; ?>>Gratuit</option>
+	                    <option value="false" <?php if($search_params['free'] === false) echo 'selected'; ?>>Payant</option>
 	                </optgroup>
 	                
 	                <optgroup label="Plateforme" id="devices">
@@ -18,6 +18,9 @@
                             <option value="<?php echo $device->id; ?>" <?php if(is_array($search_params['devices']) && in_array($device->id, $search_params['devices'])) echo 'selected'; ?>><?php echo $device->nom; ?></option>
                         <?php endforeach; ?>
 	                </optgroup>
+                    <optgroup label="Medappcare" id="medappcare_note">
+                        <option value="1">Evalué par Medappcare</option>
+                    </optgroup>
 	                
 	            </select>
 	            
