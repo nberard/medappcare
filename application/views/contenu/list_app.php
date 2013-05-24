@@ -7,7 +7,11 @@
         	<h2 class="short"><?php echo $titre; ?></h2>
         	<form method="POST" id="sort-filter">
                 <select name="filters" id="filters" multiple="multiple">
-	        
+
+	                <optgroup label="Medappcare" id="eval-medapp">
+	                	<option value="eval-medapp" <?php // if($search_params['rated']) echo 'selected'; ?>>Évaluée par Medappcare</option>
+	                </optgroup>
+	            	
 	            	<optgroup label="Prix" id="prix">
 	                    <option value="true" <?php if($search_params['free']) echo 'selected'; ?>>Gratuit</option>
 	                    <option value="false" <?php if(!$search_params['free']) echo 'selected'; ?>>Payant</option>
@@ -28,7 +32,7 @@
                     <option <?php if($search_params['sort'] == 'prix' && $search_params['order'] == 'desc') echo 'selected'; ?> value="prix|desc">Prix décroissant</option>
 	                
 	            </select>
-<!--                <label for="eval-medapp">Evaluation Medappcare</label><input type="checkbox" name="eval-medapp" id="eval-medapp" checked=""/>-->
+
                 <input type="submit" value="Raffraichir"/>
         	</form>
         </div>

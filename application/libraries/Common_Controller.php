@@ -410,7 +410,7 @@ class Common_Controller extends MY_Controller
 
         if(!is_null($term))
         {
-            $titre.=  'correspondant à "'.$term.'"';
+            $titre =  'Résultats pour "'.$term.'"';
         }
 
         $data['contenu'] = $this->load->view('contenu/list_app', array(
