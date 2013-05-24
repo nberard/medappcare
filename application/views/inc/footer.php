@@ -16,14 +16,18 @@
     <div class="left">
         <nav class="principale">
             <ul>
-                <li><a href="#">La Charte Medappcare</a></li>
+                <li><a href="#">La Démarche Qualité Medappcare</a></li>
                 <li><a href="#">Développeurs, soumettez votre application</a></li>
-                <li><a href="#">Médecins, évaluez nos applications</a></li>
+                <li><a href="#">Accès professionnels de santé</a></li>
                 <li><a href="#">Espace Annonceurs</a></li>
                 <li><a href="#">Medappcare dans la presse</a></li>
-                <li><a href="<?php echo site_url($access_label.'/contact'); ?>">Contact</a></li>
+                <li><a href="#">Qui sommes-nous ?</a></li>
+                <li><a href="#">Nos partenaires</a></li>  
+                <li><a href="#">Consulting Medappcare</a></li>  
+                <li><a href="#">Actualités sur Medappcare</a></li>                                                                
+                <li><a href="<?php echo site_url($access_label.'/cgu'); ?>">CGU</a></li>
                 <li><a href="<?php echo site_url($access_label.'/mentionslegales'); ?>">Mentions Légales</a></li>
-                <li><a href="#">...</a></li>
+                <li><a href="<?php echo site_url($access_label.'/contact'); ?>">Contact</a></li>
             </ul>
         </nav>
     </div>
@@ -56,4 +60,4 @@
 
 </footer>
 
-<p class="copyright">© Medappcare 2013 - Tous droits réservés</p>
+<p class="copyright">&copy; Medappcare 2013 - Tous droits réservés</p>

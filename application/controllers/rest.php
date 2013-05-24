@@ -113,9 +113,9 @@ class Rest extends REST_Controller {
 
     public function topfiveapplis_get($_categorie_id = -1)
     {
-        $free = $this->_get('free');
+        $_free = $this->_get('free');
         $template = $this->_get('template');
-        $free = ($free && $free == 1);
+        $free = ($_free && $_free == 1);
         $links = $this->_get('links');
         $links = ($links && $links == 1);
         $this->load->model('Applications_model');
@@ -133,6 +133,7 @@ class Rest extends REST_Controller {
                 $this->_set_access_label($access_label);
                 $this->_format_all_links($top5Applis, 'app');
                 $this->_populate_categories_applications($top5Applis);
+                $see_all_link = $this->_format_link_no_id('app_search', 1, array('free' => $_free));
             }
             if($this->response->format == "render")
             {
@@ -140,6 +141,7 @@ class Rest extends REST_Controller {
                     'applications' => $top5Applis,
                     'free' => $free,
                     'template_render' => $template,
+                    'see_all_link' => $see_all_link,
                 );
                 if($_categorie_id != -1)
                 {

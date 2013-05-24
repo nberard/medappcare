@@ -22,7 +22,7 @@
             <?php if(!$user): ?>
                 <a data-toggle="modal" href="<?php echo $pro ? '#connexionModalPro' : '#connexionModal'?>" class="connexion">Connexion</a>
             <?php else: ?>
-	            <a href="<?php echo site_url($access_label.'/target'); ?>" class="<?php echo $pro ? 'pro' : 'link-particuliers' ?>">Mon espace</a>
+	            <a href="<?php echo site_url($access_label.'/espacemembre'); ?>" class="<?php echo $pro ? 'pro' : 'link-particuliers' ?>">Mon espace</a>
             <?php endif; ?>
             
         </div>

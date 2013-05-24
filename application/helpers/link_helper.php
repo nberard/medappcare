@@ -13,3 +13,13 @@ if ( ! function_exists('redirect_language'))
         return site_url($url);
     }
 }
+
+if ( ! function_exists('qr_code_url'))
+{
+    function qr_code_url($_url, $_size = 150)
+    {
+        $prefixe = config_item('qr_code_url');
+        $target = urlencode($_url);
+        return $prefixe.'?chs='.$_size.'x'.$_size.'&cht=qr&chl='.$target.'&choe='.config_item('charset');
+    }
+}

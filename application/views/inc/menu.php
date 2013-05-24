@@ -21,10 +21,10 @@
     </ul>
 </nav>
 
-<div id = "dropdown">
+<div id="dropdown">
     <div class="whiteLine"></div>
     <?php foreach($categories_principales as $categorie_principale): ?>
-    <nav class = "<?php echo $categorie_principale->class; ?>">
+    <nav class= "<?php echo $categorie_principale->class; ?>">
         <div class="wrapper">
             <?php $cpt = 0; ?>
             <?php foreach($categorie_principale->enfants as $categorie_enfant): ?>
@@ -44,7 +44,7 @@
             <div class="sponsored-selection">
                 <span class="title">Nos sélections</span>
                 <ul>
-                    <li  class="short"><a href=""><img src="<?php echo img_url('tmp/app-icon-57.png'); ?>" alt="[app-title] icon" />Ma super app jdfil jfkl dsjkfl jsdklf jsdkl fjkdls jfklds jfklds</a></li>
+                    <li class="short"><a href=""><img src="<?php echo img_url('tmp/app-icon-57.png'); ?>" alt="[app-title] icon" />Ma super app</a></li>
                     <li><a href=""><img src="<?php echo img_url('tmp/app-icon-57.png'); ?>" alt="[app-title] icon" />Ma super app</a></li>
                     <li><a href=""><img src="<?php echo img_url('tmp/app-icon-57.png'); ?>" alt="[app-title] icon" />Ma super app</a></li>
                 </ul>

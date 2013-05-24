@@ -371,6 +371,8 @@ $config['note_max'] = 10;
 $config['nb_results_list'] = 10;
 $config['nb_results_news_list'] = 2;
 
+$config['qr_code_url'] = 'https://chart.googleapis.com/chart';
+
 $config['notes_classes'] = array('zero', 'un', 'deux', 'trois', 'quatre', 'cinq', 'six', 'sept', 'huit', 'neuf', 'dixsurdix');
 
 $config['types_accessoires'] = array('bluetooth', 'wifi', 'usb');

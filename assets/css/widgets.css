@@ -55,6 +55,8 @@
 #listApps .allapps .price{background: #79c1d2;}
 #listApps .allapps .featured{background: #d9eef3;}
 
+#listApps h2 {width:440px; height:54px;}
+
 .masante #listApps h3,
 .administratif #listApps h3{background: #79c1d1; border: 1px solid #79c1d1;}
 .masante #listApps .allapps ul,

@@ -39,7 +39,14 @@ class Perso extends Common_Controller {
 
 	public function index()
 	{
-        $this->_common_index($this->_display_last_eval(), 'home_lasteval', $this->_display_top_five(false), 'home_topfive');
+        $this->_common_index(array(
+            'applications' => $this->_display_last_eval(),
+        ), 'home_lasteval', array(
+            'free' => false,
+            'applications' => $this->_display_top_five(false),
+            'template_render' => 'home_topfive',
+            'see_all_link' => $this->_format_link_no_id('app_search', 1, array('free' => 0)),
+        ), 'home_topfive');
 	}
 
 
