@@ -22,7 +22,6 @@
 	            </select>
 	            
 	            <select name="sort" id="sort">
-	        <?php var_dump($search_params); ?>
                     <option <?php if($search_params['sort'] == 'date_ajout') echo 'selected'; ?> value="date_ajout|desc">Les plus récentes</option>
                     <option <?php if($search_params['sort'] == 'note') echo 'selected'; ?> value="note|desc">Les mieux notées</option>
                     <option <?php if($search_params['sort'] == 'prix' && $search_params['order'] == 'asc') echo 'selected'; ?> value="prix|asc">Prix croissant</option>
