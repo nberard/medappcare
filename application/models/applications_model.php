@@ -130,9 +130,9 @@ class Applications_model extends CI_Model {
         return $this->get_applications($_pro, $_devices_id, $_categorie_id, null, false, $_free, $_sort, $_order, config_item('nb_results_list'), $_page);
     }
 
-    public function get_applications_from_keyword($_pro, $_devices_id, $_term, $_free, $_sort, $_order, $_page)
+    public function get_applications_classic($_pro, $_devices_id, $_term, $_eval_medapp, $_free, $_sort, $_order, $_page)
     {
-        return $this->get_applications($_pro, $_devices_id, -1, $_term, false, $_free, $_sort, $_order, config_item('nb_results_list'), $_page);
+        return $this->get_applications($_pro, $_devices_id, -1, $_term, $_eval_medapp, $_free, $_sort, $_order, config_item('nb_results_list'), $_page);
     }
 
     public function get_top_five_applications($_free, $_pro, $_category_id = -1)

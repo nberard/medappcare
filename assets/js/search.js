@@ -5,9 +5,11 @@ $(document).ready(function()
         var target = window.location.origin+window.location.pathname;
         var params = '', prixTab = [], devicesTab = [];
         var sortTab = $('#sort').val().split('|');
+        var eval_medapp = false;
         $('#filters option:selected').each(function()
         {
             var parent = $(this).parent()[0].id;
+            console.debug('parent='+parent);
             if(parent == 'prix')
             {
                 prixTab.push($(this).val());
@@ -15,6 +17,10 @@ $(document).ready(function()
             else if(parent == 'devices')
             {
                 devicesTab.push($(this).val());
+            }
+            else if(parent == 'eval-medapp')
+            {
+                eval_medapp = true;
             }
         });
         params+= '?sort='+sortTab[0]+'&order='+sortTab[1];
@@ -29,6 +35,10 @@ $(document).ready(function()
         if($('#search-query').val() != '')
         {
             params+='&term='+encodeURIComponent($('#search-query').val());
+        }
+        if(eval_medapp)
+        {
+            params+='&eval_medapp=1';
         }
         window.location = target+params;
     }
