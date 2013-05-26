@@ -2,16 +2,17 @@
 
 <div class="title">
     <div class="wrapper">
-        <h2>Le titre de la news</h2> <!-- Insérer le titre ici -->
+        <h2><?php echo $article->titre; ?></h2> <!-- Insérer le titre ici -->
     </div>
 </div>
 
 <div class="wrapper singlenews">
-
-    <div class="meta">Postée dans <a href="#" title="Nom de la catégorie">Nom de la catégorie</a> le 23 mai 2013.</div>
+    <?php if($article->nom_categorie): ?>
+        <div class="meta">Posté dans <a href="#" title="<?php echo $article->nom_categorie; ?>"><?php echo $article->nom_categorie; ?></a> <?php echo $article->date_full; ?></div>
+    <?php endif; ?>
 
     <div class="content">
-        <p>Aenean lacinia bibendum nulla sed consectetur. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec id elit non mi porta gravida at eget metus.</p>        
+        <?php echo $article->contenu; ?>
     </div>
 
 </div>

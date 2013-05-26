@@ -289,8 +289,11 @@ class Common_Controller extends MY_Controller
     public function news($_id)
     {
         $data['inc'] = $this->_getCommonIncludes();
+        $this->load->model('Articles_model');
+        $article = $this->Articles_model->get_article($_id);
+        $article->date_full = date_full($article->date_creation);
 
-        $data['contenu'] = $this->load->view('contenu/news', '', true);
+        $data['contenu'] = $this->load->view('contenu/news', array('article' => $article), true);
         $data['body_class'] = 'news';
         $this->load->view('main', $data);
     }
@@ -302,11 +305,12 @@ class Common_Controller extends MY_Controller
         $this->load->model('Articles_model');
         $articles = $this->Articles_model->get_last_articles($_page);
         $this->load->helper('format_string');
+        $this->_format_all_links($articles, 'news');
         foreach ($articles as &$article)
         {
             $article->date_full = date_full($article->date_creation);
         }
-        $nb_news = $this->Articles_model->get_count_news();
+        $nb_news = $this->Articles_model->get_count_articles();
         $prev_link = $next_link = null;
         if($nb_news > config_item('nb_results_news_list') * $_page)
         {
