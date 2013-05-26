@@ -50,7 +50,7 @@ class Rest extends REST_Controller {
         else
         {
             $list = $_pro ?
-                array('email', 'mot_de_passe', 'nom', 'prenom', 'profession', 'numero_rpps') :
+                array('email', 'mot_de_passe', 'nom', 'prenom', 'profession') :
                 array('email', 'mot_de_passe', 'date_naissance', 'sexe', 'pays');
         }
         foreach($list as $field)
@@ -155,7 +155,7 @@ class Rest extends REST_Controller {
         else
         {
             $this->load->model('Membres_model');
-            if($this->Membres_model->update_membre($_id, $_POST, $list) && $membre = $this->Membres_model->exists_membres(array('id' => $_id)))
+            if($this->Membres_model->update_membre($_id, $_POST, $list, $pro) && $membre = $this->Membres_model->exists_membres(array('id' => $_id)))
             {
                 $this->session->set_userdata('user', $membre);
                 $this->response(array('status' => 'ok', 'message' => lang('ok_membre_update')), 200);

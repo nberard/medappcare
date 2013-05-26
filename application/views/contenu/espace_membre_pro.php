@@ -1,60 +1,27 @@
-<form id="form-signup" class="form-signup" method="post" data-action="<?php echo site_url('rest/signup');?>" >
+<form id="form-membre-update" class="form-signup" method="post" data-action="<?php echo site_url('rest/membre/'.$user->id); ?>"" >
     <h2 class="form-signup-heading">Mon Espace Pro</h2>
+    <div id="update-success" class="alert alert-success hide"></div>
+    <div id="update-error" class="alert alert-error hide"></div>
     
-    <div id="reg-error" class="alert alert-error hide"></div>
-    
-    <input type="text" id="nom" id="nom" class="input-block-level" placeholder="Nom" value="Dumont" required>
-    <input type="text" id="prenom" id="prenom" class="input-block-level" placeholder="Prénom" value="Jérôme" required>
-    <input type="email" id="reg_email" id="email" class="input-block-level" placeholder="Email" value="djedie@gmail.com" required>
+    <input type="text" id="nom" id="nom" class="input-block-level" placeholder="Nom" value="<?php echo $user->nom; ?>" required>
+    <input type="text" id="prenom" id="prenom" class="input-block-level" placeholder="Prénom" value="<?php echo $user->prenom; ?>" required>
+    <input type="email" id="reg_email" id="email" class="input-block-level" placeholder="Email" value="<?php echo $user->email; ?>" required>
     <input type="password" id="reg_password" id="password" class="input-block-level" placeholder="********">
 
-    <select id="profession" name="profession">
-        <option value="">Profession</option>
-        <optgroup label="Profession médicale">
-            <option value="Biologiste" selected="selected">Biologiste</option>
-            <option value="Dentiste">Dentiste</option>
-            <option value="Médecin">Médecin</option>
-            <option value="Pharmacien hospitalier">Pharmacien hospitalier</option>
-            <option value="Pharmacien d'officine">Pharmacien d'officine</option>
-            <option value="Sage-femme">Sage-femme</option>
-            <option value="Interne">Interne</option>
-            <option value="Etudiant">Etudiant</option>
-        </optgroup>
-        <optgroup label="Profession paramédicale">
-            <option value="Aide-soigant">Aide-soigant</option>
-            <option value="Ambulancier">Ambulancier</option>
-            <option value="Audioprothésiste">Audioprothésiste</option>
-            <option value="Diététicien">Diététicien</option>
-            <option value="Ergothérapeute">Ergothérapeute</option>
-            <option value="Infirmier">Infirmier</option>
-            <option value="Kinésithérapeute">Kinésithérapeute</option>
-            <option value="Manipulateur d'électroradiologie médicale">Manipulateur d'électroradiologie médicale</option>
-            <option value="Opticien">Opticien</option>
-            <option value="Orthophoniste">Orthophoniste</option>
-            <option value="Orthoptiste">Orthoptiste</option>
-            <option value="Podologue">Podologue</option>
-            <option value="Préparateur en Pharmacie">Préparateur en Pharmacie</option>
-            <option value="Psychomotricien">Psychomotricien</option>
-            <option value="Technicien de laboratoire">Technicien de laboratoire</option>
-            <option value="Psychomotricien">Psychomotricien</option>
-            <option value="Technicien de laboratoire">Technicien de laboratoire</option>
-            <option value="Etudiant">Etudiant</option>
-            <option value="Autres">Autres</option>
-        </optgroup>
-    </select>
+    <?php echo form_dropdown('profession', config_item('metiers'), array($user->profession), 'id="profession"'); ?>
 
 
     <select name="interets" id="interets" multiple="multiple">
         <?php foreach($categories_principales as $categorie_principale): ?>
             <optgroup label="<?php echo $categorie_principale->nom; ?>">
                 <?php foreach($categorie_principale->enfants as $categorie_enfant): ?>
-                    <option value="<?php echo $categorie_enfant->id; ?>" selected><?php echo $categorie_enfant->nom; ?></option>
+                    <option value="<?php echo $categorie_enfant->id; ?>" <?php if(in_array($categorie_enfant->id, $user->categories)) echo 'selected';?>><?php echo $categorie_enfant->nom; ?></option>
                 <?php endforeach; ?>
             </optgroup>
         <?php endforeach; ?>
     </select>
 
-    <input name="rpps" type="text" id="rpps" class="input-block-level" placeholder="Numéro RPPS*" value="N° RPPS : 123456789" disabled>
+    <input name="rpps" type="text" id="rpps" class="input-block-level" placeholder="Numéro RPPS*" value="N° RPPS : <?php echo $user->numero_rpps; ?>" disabled>
 
 
     <span class="help-block">* ou bien j'envoie une preuve de ma fonction de professionnel de santé ou d'étudiant en santé (carte professionnelle, carte d'étudiant(e), diplôme, ordonnance barrée,...) par email à identification@medappcare.com dans les 1 mois. Ce document peut être scanné ou pris en photo par votre smartphone.</span>

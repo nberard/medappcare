@@ -26,14 +26,18 @@ class Membres_model extends CI_Model {
         return !empty($membre) ? $membre[0] : false;
     }
 
-    public function update_membre($_membre_id, $_params, $_list)
+    public function update_membre($_membre_id, $_params, $_list, $_pro)
     {
+        log_message('debug', "update_membre($_membre_id,  =".var_export($_params, true)."=".var_export($_list, true)."");
         $updates = $this->_clean_parameters($_params, $_list, false);
         $this->db->update($this->table, $updates, array('id' => $_membre_id));
         $this->db->delete($this->table_categories, array('membre_id' => $_membre_id));
         $this->_insert_membre_interets($_membre_id);
-        $this->db->delete($this->table_plateformes, array('membre_id' => $_membre_id));
-        $this->_insert_membre_plateformes($_membre_id);
+        if(!$_pro)
+        {
+            $this->db->delete($this->table_plateformes, array('membre_id' => $_membre_id));
+            $this->_insert_membre_plateformes($_membre_id);
+        }
         return true;
     }
 

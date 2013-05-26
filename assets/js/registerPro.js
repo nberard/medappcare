@@ -1,5 +1,43 @@
 $(document).ready(function() {
 
+    $('#form-membre-update').submit(function()
+    {
+        $.ajax({
+            type: 		"PUT",
+            url:  		$(this).data('action'),
+            dataType: 'json',
+            headers: {
+                Accept : 'application/json',
+                "Content-Type": 'application/json'
+            },
+            data:
+                JSON.stringify({
+                    pro : 1,
+                    nom : $('#nom').val(),
+                    prenom : $('#prenom').val(),
+                    email : $('#reg_email').val(),
+                    mot_de_passe : $('#reg_password').val(),
+                    interets : $('#interets').val(),
+                    profession : $('#profession').val()
+                }),
+            success: function(data, textStatus, xhr)
+            {
+                $('#update-success').empty().html(xhr.responseJSON.message).show();
+                setTimeout(function(){
+                    $('#update-success').hide('slow');
+                }, 1000);
+            },
+            error: function(xhr, textStatus, error)
+            {
+                $('#update-error').empty().html(xhr.responseJSON.errors).show();
+                setTimeout(function(){
+                    $('#update-error').hide('slow');
+                }, 1000);
+            }
+        });
+        return false;
+    });
+
     $('#form-signup').submit(function()
     {
         $.ajax({

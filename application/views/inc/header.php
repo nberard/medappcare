@@ -44,7 +44,7 @@
     </form>
     <div class="registration-call">
     	Nouveau sur Medappcare ?
-    	<a href="<?php echo site_url("$access_label/register") ?>" class="btn btn-primary"><?php echo lang('inscription') ?></a>
+    	<a href="<?php echo site_url("perso/register") ?>" class="btn btn-primary"><?php echo lang('inscription') ?></a>
     </div>
   </div>
     <div id="login-error" class="alert alert-error hide"></div>
@@ -66,7 +66,7 @@
     </form>
     <div class="registration-call">
     	Nouveau sur Medappcare Pro ?
-    	<a href="<?php echo site_url("$access_label/register") ?>" class="btn btn-primary">Inscription pro</a>
+    	<a href="<?php echo site_url("pro/register") ?>" class="btn btn-primary">Inscription pro</a>
     </div>
   </div>
     <div id="login-error-pro" class="alert alert-error hide"></div>

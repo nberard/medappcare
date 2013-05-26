@@ -46,6 +46,7 @@ class Pro extends Common_Controller {
 
     public function register()
     {
+        $this->load->helper('form');
         $data['inc'] = $this->_getCommonIncludes(array(
             js_url('bootstrap-datepicker'),
             js_url('bootstrap-multiselect'),
@@ -59,13 +60,19 @@ class Pro extends Common_Controller {
 
     public function espacemembre()
     {
+        $this->load->helper('form');
+        $user = $this->session->userdata('user');
+        $this->load->model('Membres_model');
+        $user->categories = $this->Membres_model->get_categories_id_membre($user->id);
         $data['inc'] = $this->_getCommonIncludes(array(
             js_url('bootstrap-datepicker'),
             js_url('bootstrap-multiselect'),
             js_url('jquery.checkValidity'),
             js_url('registerPro'),
         ));
-        $data['contenu'] = $this->load->view('contenu/espace_membre_pro', '', true);
+        $espaceData['categories_principales'] =$data['inc']['data_categories_principales'];
+        $espaceData['user'] = $user;
+        $data['contenu'] = $this->load->view('contenu/espace_membre_pro', $espaceData, true);
         $data['body_class'] = 'membre '.$this->body_class;
         $this->load->view('main', $data);
     }
