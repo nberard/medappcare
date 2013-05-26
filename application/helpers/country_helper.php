@@ -62,4 +62,14 @@ if(!function_exists('country_dropdown'))
             return isset($countries[$_country_long]) ? $countries[$_country_long] : config_item('default_country');
         }
     }
+
+    if(!function_exists('get_full_country'))
+    {
+        function get_full_country($_country_short)
+        {
+            $countries = config_item('country_list');
+            return isset($countries[$_country_short]) ? $countries[$_country_short] : $countries[config_item('default_country')];
+        }
+    }
+
 }

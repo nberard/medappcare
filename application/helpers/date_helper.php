@@ -15,3 +15,19 @@ if(!function_exists('date_full'))
         }
     }
 }
+if(!function_exists('date_classic'))
+{
+    function date_classic($_date)
+    {
+        $tab_date = explode('-', $_date);
+        return $tab_date[2].'/'.$tab_date[1].'/'.$tab_date[0];
+    }
+}
+if(!function_exists('date_to_date_mysql'))
+{
+    function date_to_date_mysql($_date)
+    {
+        $tab_date = explode('/', $_date);
+        return $tab_date[2].'-'.$tab_date[1].'-'.$tab_date[0];
+    }
+}

@@ -1,4 +1,54 @@
 $(document).ready(function(){
+
+    $('#form-membre-update').submit(function()
+    {
+        var plateformes = [];
+        console.dir(plateformeIds);
+        for(var i=0; i<plateformeIds.length; i++)
+        {
+            if(plateformeIds[i] && plateformeIds[i] != "undefined" && plateformeIds[i] == true)
+            {
+                plateformes.push(i);
+            }
+        }
+        console.dir(plateformes);
+        $.ajax({
+            type: 		"PUT",
+            url:  		$(this).data('action'),
+            dataType: 'json',
+            headers: {
+                Accept : 'application/json',
+                "Content-Type": 'application/json'
+            },
+            data:
+                JSON.stringify({
+                    pro : 0,
+                    email : $('#reg_email').val(),
+                    mot_de_passe : $('#reg_password').val(),
+                    date_naissance : $('#date_naissance').val(),
+                    sexe : $('#sexe').val(),
+                    pays : $('#country').val(),
+                    interets : $('#interets').val(),
+                    plateformes : plateformes
+                }),
+            success: function(data, textStatus, xhr)
+            {
+                $('#update-success').empty().html(xhr.responseJSON.message).show();
+                setTimeout(function(){
+                    $('#update-success').hide('slow');
+                }, 1000);
+            },
+            error: function(xhr, textStatus, error)
+            {
+                $('#update-error').empty().html(xhr.responseJSON.errors).show();
+                setTimeout(function(){
+                    $('#update-error').hide('slow');
+                }, 1000);
+            }
+        });
+        return false;
+    });
+
     $('#form-signup').submit(function()
     {
         var plateformes = [];
@@ -55,6 +105,7 @@ $(document).ready(function(){
 
     // Boutons radios
     $('#plateforme-group button').click(function(){
+        console.debug('click='+$(this).attr('value'));
         if(plateformeIds[$(this).attr('value')])
             plateformeIds[$(this).attr('value')] = false;
         else plateformeIds[$(this).attr('value')] = true;

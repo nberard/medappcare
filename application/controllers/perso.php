@@ -72,7 +72,21 @@ class Perso extends Common_Controller {
 
     public function espacemembre()
     {
+        if(!$user = $this->session->userdata('user'))
+        {
+            redirect('perso/index');
+        }
         $this->load->model('Plateformes_model');
+        $this->load->model('Membres_model');
+        $user->categories = $this->Membres_model->get_categories_id_membre($user->id);
+        $user->plateformes = $this->Membres_model->get_plateformes_id_membre($user->id);
+        $user->plateformes_json = array();
+        foreach($user->plateformes as $plateforme)
+        {
+            $user->plateformes_json[intval($plateforme)] = true;
+        }
+        $user->plateformes_json = json_encode($user->plateformes_json);
+
         $plateformes = $this->Plateformes_model->get_all_plateformes();
         $data['inc'] = $this->_getCommonIncludes(array(
             js_url('bootstrap-datepicker'),
@@ -84,6 +98,10 @@ class Perso extends Common_Controller {
         $espaceData['country_json'] = country_json();
         $espaceData['plateformes'] = $plateformes;
         $espaceData['categories_principales'] =$data['inc']['data_categories_principales'];
+        $user->date_naissance_classic = date_classic($user->date_naissance);
+        $user->pays_full = get_full_country($user->pays);
+        $espaceData['user'] = $user;
+        log_message('debug', "user=".var_export($user, true)."");
         $data['contenu'] = $this->load->view('contenu/espace_membre', $espaceData, true);
         $data['body_class'] = 'membre '.$this->body_class;
         $this->load->view('main', $data);
