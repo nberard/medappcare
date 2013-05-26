@@ -33,6 +33,7 @@ class Perso extends Common_Controller {
         $lastEvalApplis = $this->Applications_model->get_last_eval_applications($this->pro);
         $this->_format_all_prices($lastEvalApplis);
         $this->_format_all_links($lastEvalApplis, 'app');
+        $this->_format_all_notes($lastEvalApplis, array('note_medappcare'));
         $this->_populate_categories_applications($lastEvalApplis);
         return $lastEvalApplis;
     }

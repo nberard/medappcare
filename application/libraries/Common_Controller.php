@@ -70,7 +70,7 @@ class Common_Controller extends MY_Controller
                 'categories_principales_perso' => $this->pro ? $categories_principales_target : $categories_principales,
             ), true),
             'footer_meta' => $this->load->view('inc/footer_meta', array('js_files' => array_merge(array(
-                js_url('jquery-2.0.0.min'),
+//                js_url('jquery-2.0.0.min'),
                 js_url('jquery-ui-1.10.2.custom.min'),
                 js_url('jquery.placeholder.min'),
                 js_url('jquery.flexslider-min'),
@@ -128,7 +128,7 @@ class Common_Controller extends MY_Controller
         {
 
             $application->prix_complet = format_price($application->prix, $application->devise, $this->lang->line('free'));
-            $this->_format_note($application, array('note_user', 'note_pro'));
+            $this->_format_note($application, array('note_user', 'note_pro', 'note_medappcare'));
             $this->load->model('Application_screenshots_model');
             $application->screenshots = $this->Application_screenshots_model->get_screenshots($application->id);
             $application->qr_code_url = qr_code_url($application->lien_download);
