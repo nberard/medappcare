@@ -384,3 +384,38 @@ $config['render_template_accept'] = 'application/medappcare-render';
 $config['upload_paths'] = array('selection' => 'assets/uploads/selections/');
 
 $config['body_class_categories'] = array('administratif', 'mapratique', 'minformer', 'mespatients', 'masante', 'monquotidien', 'minformer', 'medeplacer');
+
+$config['metiers'] = array(
+    "" => "Profession",
+    "Profession Médicale" => array(
+        "Biologiste" => "Biologiste",
+        "Dentiste" => "Dentiste",
+        "Médecin" => "Médecin",
+        "Pharmacien hospitalier" => "Pharmacien hospitalier",
+        "Pharmacien d'officine" => "Pharmacien d'officine",
+        "Sage-femme" => "Sage-femme",
+        "Interne" => "Interne",
+        "Etudiant" => "Etudiant",
+    ),
+    "Profession Paramédicale" => array(
+        "Aide-soigant" => "Aide-soigant",
+        "Ambulancier" => "Ambulancier",
+        "Audioprothésiste" => "Audioprothésiste",
+        "Diététicien" => "Diététicien",
+        "Ergothérapeute" => "Ergothérapeute",
+        "Infirmier" => "Infirmier",
+        "Kinésithérapeute" => "Kinésithérapeute",
+        "Manipulateur d'électroradiologie médicale" => "Manipulateur d'électroradiologie médicale",
+        "Opticien" => "Opticien",
+        "Orthophoniste" => "Orthophoniste",
+        "Orthoptiste" => "Orthoptiste",
+        "Podologue" => "Podologue",
+        "Préparateur en Pharmacie" => "Préparateur en Pharmacie",
+        "Psychomotricien" => "Psychomotricien",
+        "Technicien de laboratoire" => "Technicien de laboratoire",
+        "Psychomotricien" => "Psychomotricien",
+        "Technicien de laboratoire" => "Technicien de laboratoire",
+        "Etudiant" => "Etudiant",
+        "Autres" => "Autres",
+    ),
+);

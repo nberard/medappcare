@@ -28,4 +28,13 @@ class Accessoires_model extends CI_Model {
                         ->where(array('A.id' => $_id))->get()->row();
     }
 
+    public function get_accessoires_from_application($_application_id)
+    {
+        $this->db->select('A.*, A.nom_'.config_item('lng').' AS nom, A.presse_'.config_item('lng').' AS presse')
+                ->join('accessoire_application_compatible AAC', 'AAC.accessoire_id=A.id', 'LEFT');
+        $res = $this->db->get_where($this->table.' A', array('AAC.application_id' => $_application_id))->result();
+        return $res ? $res : array();
+
+    }
+
 }

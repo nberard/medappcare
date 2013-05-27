@@ -9,12 +9,12 @@
                 <select name="filters" id="filters" multiple="multiple">
 
 	                <optgroup label="Medappcare" id="eval-medapp">
-	                	<option value="eval-medapp" <?php // if($search_params['rated']) echo 'selected'; ?>>Évaluée par Medappcare</option>
+	                	<option value="1" <?php if($search_params['eval_medapp']) echo 'selected'; ?>>Évaluée par Medappcare</option>
 	                </optgroup>
 	            	
 	            	<optgroup label="Prix" id="prix">
-	                    <option value="true" <?php if($search_params['free']) echo 'selected'; ?>>Gratuit</option>
-	                    <option value="false" <?php if(!$search_params['free']) echo 'selected'; ?>>Payant</option>
+	                    <option value="true" <?php if($search_params['free'] === true) echo 'selected'; ?>>Gratuit</option>
+	                    <option value="false" <?php if($search_params['free'] === false) echo 'selected'; ?>>Payant</option>
 	                </optgroup>
 	                
 	                <optgroup label="Plateforme" id="devices">

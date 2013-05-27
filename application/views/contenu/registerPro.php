@@ -1,4 +1,4 @@
-<form id="form-signup" class="form-signup" method="post" data-action="<?php echo site_url('rest/signup');?>" >
+<form id="form-signup" class="form-signup" method="post" data-action="<?php echo site_url('rest/membre');?>" >
     <h2 class="form-signup-heading">Inscription Professionels</h2>
     <div id="reg-error" class="alert alert-error hide"></div>
     <input type="text" id="nom" id="nom" class="input-block-level" placeholder="Nom" required>
@@ -6,40 +6,7 @@
     <input type="email" id="reg_email" id="email" class="input-block-level" placeholder="Email" required>
     <input type="password" id="reg_password" id="password" class="input-block-level" placeholder="Mot de passe" required>
 
-    <select id="profession" name="profession">
-        <option value="">Profession</option>
-        <optgroup label="Profession médicale">
-            <option value="Biologiste">Biologiste</option>
-            <option value="Dentiste">Dentiste</option>
-            <option value="Médecin">Médecin</option>
-            <option value="Pharmacien hospitalier">Pharmacien hospitalier</option>
-            <option value="Pharmacien d'officine">Pharmacien d'officine</option>
-            <option value="Sage-femme">Sage-femme</option>
-            <option value="Interne">Interne</option>
-            <option value="Etudiant">Etudiant</option>
-        </optgroup>
-        <optgroup label="Profession paramédicale">
-            <option value="Aide-soigant">Aide-soigant</option>
-            <option value="Ambulancier">Ambulancier</option>
-            <option value="Audioprothésiste">Audioprothésiste</option>
-            <option value="Diététicien">Diététicien</option>
-            <option value="Ergothérapeute">Ergothérapeute</option>
-            <option value="Infirmier">Infirmier</option>
-            <option value="Kinésithérapeute">Kinésithérapeute</option>
-            <option value="Manipulateur d'électroradiologie médicale">Manipulateur d'électroradiologie médicale</option>
-            <option value="Opticien">Opticien</option>
-            <option value="Orthophoniste">Orthophoniste</option>
-            <option value="Orthoptiste">Orthoptiste</option>
-            <option value="Podologue">Podologue</option>
-            <option value="Préparateur en Pharmacie">Préparateur en Pharmacie</option>
-            <option value="Psychomotricien">Psychomotricien</option>
-            <option value="Technicien de laboratoire">Technicien de laboratoire</option>
-            <option value="Psychomotricien">Psychomotricien</option>
-            <option value="Technicien de laboratoire">Technicien de laboratoire</option>
-            <option value="Etudiant">Etudiant</option>
-            <option value="Autres">Autres</option>
-        </optgroup>
-    </select>
+    <?php echo form_dropdown('profession', config_item('metiers'), array(), 'id="profession"'); ?>
 
 
     <select name="interets" id="interets" multiple="multiple">

@@ -70,7 +70,7 @@ class Common_Controller extends MY_Controller
                 'categories_principales_perso' => $this->pro ? $categories_principales_target : $categories_principales,
             ), true),
             'footer_meta' => $this->load->view('inc/footer_meta', array('js_files' => array_merge(array(
-                js_url('jquery-2.0.0.min'),
+//                js_url('jquery-2.0.0.min'),
                 js_url('jquery-ui-1.10.2.custom.min'),
                 js_url('jquery.placeholder.min'),
                 js_url('jquery.flexslider-min'),
@@ -128,7 +128,7 @@ class Common_Controller extends MY_Controller
         {
 
             $application->prix_complet = format_price($application->prix, $application->devise, $this->lang->line('free'));
-            $this->_format_note($application, array('note_user', 'note_pro'));
+            $this->_format_note($application, array('note_user', 'note_pro', 'note_medappcare'));
             $this->load->model('Application_screenshots_model');
             $application->screenshots = $this->Application_screenshots_model->get_screenshots($application->id);
             $application->qr_code_url = qr_code_url($application->lien_download);
@@ -137,10 +137,17 @@ class Common_Controller extends MY_Controller
         return $application;
     }
 
-    protected function _get_accessoires($_nb)
+    protected function _get_accessoires($_nb, $application_id = -1)
     {
         $this->load->model('Accessoires_model');
-        $accessoires = $this->Accessoires_model->get_last_accessoires($_nb);
+        if($application_id == -1)
+        {
+            $accessoires = $this->Accessoires_model->get_last_accessoires($_nb);
+        }
+        else
+        {
+            $accessoires = $this->Accessoires_model->get_accessoires_from_application($application_id);
+        }
 //        var_dump($accessoires);
         $this->load->helper('format_string');
         foreach($accessoires as &$accessoire)
@@ -238,7 +245,7 @@ class Common_Controller extends MY_Controller
         $this->load->model('Devices_model');
         $application = $this->_get_app_infos($_id);
         $appData = array(
-            'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(6)), true),
+            'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(-1, $_id)), true),
             'partners' => $this->load->view('inc/partners', '', true),
             'application' => $application,
         );
@@ -289,8 +296,11 @@ class Common_Controller extends MY_Controller
     public function news($_id)
     {
         $data['inc'] = $this->_getCommonIncludes();
+        $this->load->model('Articles_model');
+        $article = $this->Articles_model->get_article($_id);
+        $article->date_full = date_full($article->date_creation);
 
-        $data['contenu'] = $this->load->view('contenu/news', '', true);
+        $data['contenu'] = $this->load->view('contenu/news', array('article' => $article), true);
         $data['body_class'] = 'news';
         $this->load->view('main', $data);
     }
@@ -302,11 +312,12 @@ class Common_Controller extends MY_Controller
         $this->load->model('Articles_model');
         $articles = $this->Articles_model->get_last_articles($_page);
         $this->load->helper('format_string');
+        $this->_format_all_links($articles, 'news');
         foreach ($articles as &$article)
         {
             $article->date_full = date_full($article->date_creation);
         }
-        $nb_news = $this->Articles_model->get_count_news();
+        $nb_news = $this->Articles_model->get_count_articles();
         $prev_link = $next_link = null;
         if($nb_news > config_item('nb_results_news_list') * $_page)
         {
@@ -385,9 +396,10 @@ class Common_Controller extends MY_Controller
         $offset = $_page-1;
         $this->load->model('Applications_model');
         $search_params = $this->_get_all_search_params($_GET);
-        $term = request_get_param($_GET, 'term', null);
-        $search_params['term'] = $term;
-        $applications = $this->Applications_model->get_applications_from_keyword($this->pro, $search_params['devices'], $term, $search_params['free'], $search_params['sort'], $search_params['order'], $offset * config_item('nb_results_list'));
+        $applications = $this->Applications_model->get_applications_classic(
+                        $this->pro, $search_params['devices'], $search_params['term'], $search_params['eval_medapp'],
+                        $search_params['free'], $search_params['sort'], $search_params['order'], $offset * config_item('nb_results_list')
+        );
         $this->_format_all_prices($applications);
         $this->_format_all_notes($applications);
         $this->_format_all_links($applications, 'app');
@@ -408,7 +420,7 @@ class Common_Controller extends MY_Controller
 
         $titre = 'Toutes les applications';
 
-        if(!is_null($term))
+        if(!is_null($search_params['term']))
         {
             $titre =  'Résultats pour "'.$term.'"';
         }
@@ -438,6 +450,8 @@ class Common_Controller extends MY_Controller
         $this->load->helper('format_string');
         $sort = request_get_param($_params, 'sort', 'date_ajout', array('date_ajout', 'prix'));
         $order = request_get_param($_params, 'order', 'desc', array('asc', 'desc'));
+        $eval_medapp = request_get_param($_params, 'eval_medapp', 0, array(1));
+        $term = request_get_param($_params, 'term', null);
         $free = request_get_param($_params, 'free', -1, array(0, 1));
         $free = ($free == -1 ? -1 : ($free == 1 ? true : false));
 
@@ -466,6 +480,8 @@ class Common_Controller extends MY_Controller
             'order' => $order,
             'free' => $free,
             'devices' => $devices,
+            'term' => $term,
+            'eval_medapp' => $eval_medapp,
         );
     }
 }

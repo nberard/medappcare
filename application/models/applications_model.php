@@ -116,7 +116,8 @@ class Applications_model extends CI_Model {
         }
         if($_eval_medappcare)
         {
-            $this->db->join('application_critere_note CN', 'CN.application_id = A.id', 'INNER');
+            $this->db->select('CEIL(A.note_medappcare) AS moyenne_note_medappcare');
+            $this->db->where('A.note_medappcare > 0.00');
         }
         $this->db->where(array('est_valide' => 1, 'A.est_pro' => $_pro ? 1 : 0));
         $res = $this->db->get()->result();
@@ -129,14 +130,14 @@ class Applications_model extends CI_Model {
         return $this->get_applications($_pro, $_devices_id, $_categorie_id, null, false, $_free, $_sort, $_order, config_item('nb_results_list'), $_page);
     }
 
-    public function get_applications_from_keyword($_pro, $_devices_id, $_term, $_free, $_sort, $_order, $_page)
+    public function get_applications_classic($_pro, $_devices_id, $_term, $_eval_medapp, $_free, $_sort, $_order, $_page)
     {
-        return $this->get_applications($_pro, $_devices_id, -1, $_term, false, $_free, $_sort, $_order, config_item('nb_results_list'), $_page);
+        return $this->get_applications($_pro, $_devices_id, -1, $_term, $_eval_medapp, $_free, $_sort, $_order, config_item('nb_results_list'), $_page);
     }
 
     public function get_top_five_applications($_free, $_pro, $_category_id = -1)
     {
-        return $this->get_applications($_pro, -1, $_category_id, null, false, $_free, 'id', 'desc', 5);
+        return $this->get_applications($_pro, -1, $_category_id, null, false, $_free, 'moyenne_note', 'desc', 5);
     }
 
     public function get_selection_applications($_id_selection)
@@ -148,7 +149,7 @@ class Applications_model extends CI_Model {
 
     public function get_application($_id)
     {
-        return $this->db->select('CEIL(AVG(N1.note)) as moyenne_note_user, CEIL(AVG(N2.note)) as moyenne_note_pro, A.*, E.nom AS nom_editeur, E.lien_contact, A.class, D.nom AS device_nom, D.class AS device_class')
+        return $this->db->select('CEIL(AVG(N1.note)) as moyenne_note_user, CEIL(AVG(N2.note)) as moyenne_note_pro, CEIL(A.note_medappcare) AS moyenne_note_medappcare, A.*, E.nom AS nom_editeur, E.lien_contact, A.class, D.nom AS device_nom, D.class AS device_class')
             ->from($this->table.' A')
             ->join($this->tableNotes.' N1', 'A.id = N1.application_id', 'LEFT')
             ->join($this->tableMembre.' M1', 'M1.id = N1.membre_id AND M1.est_pro = 0', 'INNER')

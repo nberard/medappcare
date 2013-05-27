@@ -12,7 +12,7 @@
         <div class="icone"><img width="90px" height="90px" src="<?php echo $application->logo_url; ?>"></div>
 
         <div class="content right">
-            <div class="appnote noteMedappcare"><span></span><a href="#thegrid" class="note deux">Deux</a></div>
+            <?php if($application->moyenne_note_medappcare > 0): ?><div class="appnote noteMedappcare"><span></span><a href="#thegrid" class="note <?php echo $application->class_note_medappcare; ?>"><?php echo ucfirst($application->class_note_medappcare); ?></a></div><?php endif; ?>
             <?php if($application->moyenne_note_pro): ?><div class="appnote notePro"><span></span><a href="#thegrid" class="note <?php echo $application->class_note_pro; ?>"><?php echo ucfirst($application->class_note_pro); ?></a></div><?php endif; ?>
             <?php if($application->moyenne_note_user): ?><div class="appnote noteGens"><span></span><a href="#thegrid" class="note <?php echo $application->class_note_user; ?>"><?php echo ucfirst($application->class_note_user); ?></a></div><?php endif; ?>
         </div>
@@ -59,8 +59,8 @@
     <div class="wrapper">
         <div class="sidebar left">
             <div class="qrcode">
-                <img src="<?php echo $application->qr_code_url; ?>" title="Lien vers <?php echo $application->nom; ?>" />
-                <p>Flashez le code ci-dessus pour télécharger l’app.</p>
+                <a href="<?php echo $application->lien_download; ?>" target="_blank" title="<?php echo $application->nom; ?>"><img src="<?php echo $application->qr_code_url; ?>" title="Lien vers <?php echo $application->nom; ?>" /></a>
+                <p>Flashez le code ci-dessus ou <a href="<?php echo $application->lien_download; ?>" target="_blank" title="<?php echo $application->nom; ?>">cliquez ici</a> pour télécharger l’app.</p>
             </div>
             <div class="social">
                 <div class="sharingTwitter"></div>
