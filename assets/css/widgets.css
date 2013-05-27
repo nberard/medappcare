@@ -90,7 +90,7 @@
 .mapratique #listApps .allapps li:nth-child(odd),
 .monquotidien #listApps li:nth-child(odd),
 .mapratique #listApps li:nth-child(odd){border-right: 1px solid #e05d5f;}
-.monquotidien #listApps .allapps .metaFooter,
+.monquotidien #listApps .metaFooter,
 .mapratique #listApps .metaFooter{background: #e05d5f;}
 .monquotidien #listApps .price,
 .mapratique #listApps .price{background: #e05d5f;}
