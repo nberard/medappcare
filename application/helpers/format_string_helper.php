@@ -4,7 +4,7 @@ if ( ! function_exists('short_html_text'))
 {
     function short_html_text($_text, $_limit = 80)
     {
-        $text = html_entity_decode(strip_tags($_text));
+        $text = html_entity_decode(strip_tags($_text), ENT_COMPAT | ENT_HTML401, 'UTF-8');
         return strlen($text) < $_limit ? $text : substr($text, 0, $_limit).' ...';
     }
 }
