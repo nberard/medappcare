@@ -419,10 +419,12 @@ class Common_Controller extends MY_Controller
         ));
 
         $titre = 'Toutes les applications';
+        $data['body_class'] = $this->body_class;
 
         if(!is_null($search_params['term']))
         {
-            $titre =  'Résultats pour "'.$term.'"';
+            $titre =  'Résultats pour "'.$search_params['term'].'"';
+            $data['body_class'].=' search';
         }
 
         $data['contenu'] = $this->load->view('contenu/list_app', array(
@@ -435,7 +437,7 @@ class Common_Controller extends MY_Controller
             'devices' => $devices,
             'search_params' => $search_params,
         ), true);
-        $data['body_class'] = 'category '.$this->body_class;
+
         $this->load->view('main', $data);
     }
 
@@ -484,4 +486,6 @@ class Common_Controller extends MY_Controller
             'eval_medapp' => $eval_medapp,
         );
     }
+
+
 }
