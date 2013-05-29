@@ -9,6 +9,7 @@ class Accessoires_model extends CI_Model {
 
     protected $table = 'accessoire';
     protected $tableFabriquant = 'accessoire_fabriquant';
+    protected $tablePhoto = 'accessoire_photo';
 
     public function __construct()
     {
@@ -23,9 +24,26 @@ class Accessoires_model extends CI_Model {
 
     public function get_accessoire($_id)
     {
-        return $this->db->select('A.*, A.nom_'.config_item('lng').' AS nom, A.presse_'.config_item('lng').' AS presse, F.nom AS nom_fabriquant')->from($this->table.' A')
+        return $this->db->select('A.*, A.nom_'.config_item('lng').' AS nom, A.presse_'.config_item('lng').' AS presse, '.
+                                 'F.nom AS nom_fabriquant, A.avis_'.config_item('lng').' AS avis, '.
+                                 'A.mot_fabriquant_'.config_item('lng').' AS mot_fabriquant')
+                        ->from($this->table.' A')
                         ->join($this->tableFabriquant.' F', 'F.id = A.fabriquant_id', 'INNER')
                         ->where(array('A.id' => $_id))->get()->row();
+    }
+
+    public function get_photo_from_accessoire($_id)
+    {
+        $res = $this->db->get_where($this->tablePhoto, array('accessoire_id' => $_id))->result();
+        if(!empty($res))
+        {
+            $upload_paths = config_item('upload_paths');
+            foreach ($res as &$photo)
+            {
+                $photo->full_url = base_url().$upload_paths['accessoire'].'/'.$photo->photo;
+            }
+        }
+        return $res ? $res : array();
     }
 
     public function get_accessoires_from_application($_application_id)

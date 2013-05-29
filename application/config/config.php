@@ -381,7 +381,10 @@ $config['password_salt'] = 'Qz2acvC7bjnjJdNK';
 
 $config['render_template_accept'] = 'application/medappcare-render';
 
-$config['upload_paths'] = array('selection' => 'assets/uploads/selections/');
+$config['upload_paths'] = array(
+    'selection' => 'assets/uploads/selections/',
+    'accessoire' => 'assets/uploads/accessoires/',
+);
 
 $config['body_class_categories'] = array('administratif', 'mapratique', 'minformer', 'mespatients', 'masante', 'monquotidien', 'minformer', 'medeplacer');
 

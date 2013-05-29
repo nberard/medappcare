@@ -31,6 +31,7 @@ a:hover
 		<a href='<?php echo site_url('admin/pages')?>'>Pages</a> |
 		<a href='<?php echo site_url('admin/accessoire_fabriquants')?>'>Fabriquants d'accessoires</a> |
 		<a href='<?php echo site_url('admin/accessoires')?>'>Accessoires</a> |
+		<a href='<?php echo site_url('admin/accessoire_photos')?>'>Photos d'accessoires</a> |
 		<a href='<?php echo site_url('admin/articles')?>'>Articles</a> |
 <!--		<a href='--><?php //echo site_url('admin/article_commentaires')?><!--'>Commentaires d'articles</a> |-->
 <!--		<a href='--><?php //echo site_url('admin/devices')?><!--'>Devices</a> |-->
