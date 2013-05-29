@@ -11,7 +11,7 @@
                 </a>
             </li>
         <?php endforeach; ?>
-        <li class="search">
+        <li class="bt-search">
             <a id="link-search" href="#">Rechercher</a>
         </li>
         

@@ -128,7 +128,7 @@ $(document).ready(function() {
 	
 	/* Search Form */
 	var searchForm = $('#header nav .search-form');
-	$('#header > nav li.search a').click(function(event) {
+	$('#header > nav li.bt-search a').click(function(event) {
 		event.stopPropagation();
 		if (searchForm.css('display') == 'none') {
 			searchForm.toggle("slide", { direction: "right" }, 'normal', 'easeOutCubic');
