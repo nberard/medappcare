@@ -10,7 +10,16 @@
 
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 320px) {
-/* Styles */
+
+
+/* ON cache tout pour le moment */
+#codeigniter_profiler, #header, #selections, #listApps, #devices, #news, #pushFooter, #partners, #footer, .copyright{display: none;}
+
+#dl-menu{display: block;}
+
+body{background: red;}
+
+
 }
 
 /* iPads (portrait and landscape) ----------- */

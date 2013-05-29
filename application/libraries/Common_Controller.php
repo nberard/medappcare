@@ -78,6 +78,8 @@ class Common_Controller extends MY_Controller
                 js_url('bootstrap'),
                 js_url('bootstrap-multiselect'),
                 js_url('jquery.bootpag.min'),
+                js_url('modernizr.custom'),
+                js_url('jquery.dlmenu'),
                 js_url('menu'),
                 js_url('login'),
                 js_url('scripts'),
