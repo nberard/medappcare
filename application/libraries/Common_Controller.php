@@ -154,7 +154,7 @@ class Common_Controller extends MY_Controller
         $this->load->helper('format_string');
         foreach($accessoires as &$accessoire)
         {
-            $accessoire->description_short = short_html_text($accessoire->presse);
+            $accessoire->description_short = short_html_text($accessoire->avis);
         }
         $this->_format_all_prices($accessoires);
         $this->_format_all_links($accessoires, 'device', "nom");

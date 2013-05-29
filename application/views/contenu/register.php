@@ -1,4 +1,4 @@
-<form class="form-signup" method="post" id="form-signup" data-action="<?php echo site_url('rest/membre'); ?>">
+<form class="form-signup" method="post" id="form-signup" data-action="<?php echo site_url('membre'); ?>">
     <h2 class="form-signup-heading">Inscription grand public</h2>
     <div id="reg-error" class="alert alert-error hide"></div>
     <input name="email" type="email" id="reg_email" class="input-block-level" placeholder="Email" required>

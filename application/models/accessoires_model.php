@@ -19,7 +19,7 @@ class Accessoires_model extends CI_Model {
 
     public function get_last_accessoires($_limit)
     {
-        return $this->db->select('*, nom_'.config_item('lng').' AS nom, presse_'.config_item('lng').' AS presse')->limit($_limit)->order_by('id', 'desc')->get($this->table)->result();
+        return $this->db->select('*, nom_'.config_item('lng').' AS nom, avis_'.config_item('lng').' AS avis')->limit($_limit)->order_by('id', 'desc')->get($this->table)->result();
     }
 
     public function get_accessoire($_id)
@@ -48,7 +48,7 @@ class Accessoires_model extends CI_Model {
 
     public function get_accessoires_from_application($_application_id)
     {
-        $this->db->select('A.*, A.nom_'.config_item('lng').' AS nom, A.presse_'.config_item('lng').' AS presse')
+        $this->db->select('A.*, A.nom_'.config_item('lng').' AS nom, A.avis_'.config_item('lng').' AS avis')
                 ->join('accessoire_application_compatible AAC', 'AAC.accessoire_id=A.id', 'LEFT');
         $res = $this->db->get_where($this->table.' A', array('AAC.application_id' => $_application_id))->result();
         return $res ? $res : array();
