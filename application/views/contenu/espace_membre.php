@@ -2,6 +2,7 @@
     <h2 class="form-signup-heading">Mon Espace</h2>
     <div id="update-success" class="alert alert-success hide"></div>
     <div id="update-error" class="alert alert-error hide"></div>
+    <input name="pseudo" type="text" id="reg_pseudo" class="input-block-level" placeholder="Pseudo" value="<?php echo $user->pseudo; ?>" required disabled>    
     <input name="email" type="email" id="reg_email" class="input-block-level" placeholder="Email" value="<?php echo $user->email; ?>" required>
     <input name="password" type="password" id="reg_password" class="input-block-level" placeholder="********">
 

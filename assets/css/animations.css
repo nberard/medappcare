@@ -1,7 +1,47 @@
+/* =========== FADE IN MENU =========== */
 
+@keyframes fadeIn {
+0% {opacity: 0;}
+100% {opacity: 1;}
+}
 
+@-webkit-keyframes fadeIn {
+0% {opacity: 0;}
+100% {opacity: 1;}
+}
 
+@-moz-keyframes fadeIn {
+0% {opacity: 0;}
+100% {opacity: 1;}
+}
 
+@-ms-keyframes fadeIn {
+0% {opacity: 0;}
+100% {opacity: 1;}
+}
+
+@-o-keyframes fadeIn {
+0% {opacity: 0;}
+100% {opacity: 1;}
+}
+
+#dropdown.open .wrapper{
+    animation: fadeIn .2s ease-in;
+    animation-fill-mode: both;
+    animation-delay: 0.2s;
+    -webkit-animation: fadeIn .2s ease-in;
+    -webkit-animation-fill-mode: both;
+    -webkit-animation-delay: 0.2s;
+    -moz-animation: fadeIn .2s ease-in;
+    -moz-animation-fill-mode: both;
+    -moz-animation-delay: 0.2s;
+    -ms-animation: fadeIn .2s ease-in;
+    -ms-animation-fill-mode: both;
+    -ms-animation-delay: 0.2s;
+    -o-animation: fadeIn .2s ease-in;
+    -o-animation-fill-mode: both;
+    -o-animation-delay: 0.2s;
+}
 
 /* =========== ANIMATIONS FOR MOBILE MENU =========== */
 

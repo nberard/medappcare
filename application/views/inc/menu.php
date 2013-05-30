@@ -51,8 +51,10 @@
                 <span class="sponsored-indicator">Sponsorisées</span>
             </div>
             <div class="bigpicto"></div>
+            <a href="#" class="closeLink">Fermer le menu</a>
         </div> <!-- end wrapper -->
     </nav> <!-- end masante -->
     <?php endforeach; ?>
 </div>
 
+ 

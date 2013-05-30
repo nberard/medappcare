@@ -3,6 +3,7 @@
     <div id="reg-error" class="alert alert-error hide"></div>
     <input type="text" id="nom" id="nom" class="input-block-level" placeholder="Nom" required>
     <input type="text" id="prenom" id="prenom" class="input-block-level" placeholder="Prénom" required>
+    <input type="text" id="pseudo" id="pseudo" class="input-block-level" placeholder="Pseudo (utilisé pour les commentaires)" required>
     <input type="email" id="reg_email" id="email" class="input-block-level" placeholder="Email" required>
     <input type="password" id="reg_password" id="password" class="input-block-level" placeholder="Mot de passe" required>
 
