@@ -154,7 +154,7 @@ class Common_Controller extends MY_Controller
         $this->load->helper('format_string');
         foreach($accessoires as &$accessoire)
         {
-            $accessoire->description_short = short_html_text($accessoire->presse);
+            $accessoire->description_short = short_html_text($accessoire->avis);
         }
         $this->_format_all_prices($accessoires);
         $this->_format_all_links($accessoires, 'device', "nom");
@@ -263,6 +263,7 @@ class Common_Controller extends MY_Controller
     {
         $this->load->model('Accessoires_model');
         $accessoire = $this->Accessoires_model->get_accessoire($_id);
+        $accessoire->photos = $this->Accessoires_model->get_photo_from_accessoire($_id);
         $devices_data = array(
             'widget_devices' => $this->load->view('inc/widget_devices', '', true),
             'partners' => $this->load->view('inc/partners', '', true),

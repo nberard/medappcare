@@ -1,4 +1,4 @@
-<div id="listapps_topfive" class="listapps topfive" data-action="<?php echo site_url('rest/topfiveapplis/'.$categorie->id);?>" data-render="<?php echo config_item('render_template_accept'); ?>">
+<div id="listapps_topfive" class="listapps topfive" data-action="<?php echo site_url('application/topfiveapplis/'.$categorie->id);?>" data-render="<?php echo config_item('render_template_accept'); ?>">
     <h3 class="short">Le Top dans <?php echo $categorie->nom; ?></h3>
     <input type="hidden" id="template-render" value="<?php echo $template_render; ?>"/>
 

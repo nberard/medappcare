@@ -50,6 +50,16 @@ class Admin extends CI_Controller
         $this->_admin_output($this->crud->render());
     }
 
+    public function accessoire_photos()
+    {
+        $this->crud->set_subject("Photo d'accessoires");
+        $this->crud->set_table('accessoire_photo');
+        $upload_paths = config_item('upload_paths');
+        $this->crud->set_field_upload('photo',$upload_paths['accessoire']);
+        $this->crud->set_relation('accessoire_id', 'accessoire', '{nom_'.config_item('lng').'}');
+        $this->_admin_output($this->crud->render());
+    }
+
     public function accessoires()
     {
         $this->config->load('price');

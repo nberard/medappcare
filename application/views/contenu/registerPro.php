@@ -1,4 +1,4 @@
-<form id="form-signup" class="form-signup" method="post" data-action="<?php echo site_url('rest/membre');?>" >
+<form id="form-signup" class="form-signup" method="post" data-action="<?php echo site_url('membre');?>" >
     <h2 class="form-signup-heading">Inscription Professionels</h2>
     <div id="reg-error" class="alert alert-error hide"></div>
     <input type="text" id="nom" id="nom" class="input-block-level" placeholder="Nom" required>

@@ -223,6 +223,11 @@ $(document).ready(function() {
 		}
 	});
 	
+	/* Close Menu */
+	
+	$('#dropdown a.closeLink').click(function() {
+	    closeDropDown();
+    });
 	
 	/* Racourcis des textes trop long ... */
 	
