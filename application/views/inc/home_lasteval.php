@@ -13,7 +13,8 @@
             </div>
             <?php if($application->moyenne_note_medappcare): ?>
                 <div class="note">
-                    <span class="<?php echo $application->class_note_medappcare; ?>"><?php echo $application->moyenne_note_medappcare; ?></span> <!-- INSÉRER LA NOTE -->
+<!--                    <span class="--><?php //echo $application->class_note_medappcare; ?><!--">--><?php //echo $application->moyenne_note_medappcare; ?><!--</span>-->
+                    en cours
                 </div>
             <?php endif; ?>
             <div class="os">

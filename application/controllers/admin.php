@@ -327,24 +327,6 @@ class Admin extends CI_Controller
         $this->_admin_output($this->crud->render());
     }
 
-    public function application_notes()
-    {
-        $this->crud->set_subject("Note d'application (utilisateur)");
-        $this->crud->set_table('application_note');
-        $this->crud->required_fields('membre_id', 'application_id', 'note');
-        $this->crud->callback_after_insert(function($post_array,$primary_key) {
-            $this->_handle_default_values($post_array,$primary_key,array("date" => date('Y-m-d H:i:s')),'application_note');
-        });
-        $this->crud->callback_after_update(function($post_array,$primary_key) {
-            $this->_handle_default_values($post_array,$primary_key,array("date" => date('Y-m-d H:i:s')),'application_note');
-        });
-        $this->crud->set_relation('membre_id', 'membre', '{email}');
-        $this->crud->set_relation('application_id', 'application', '{nom}');
-        $this->crud->change_field_type('commentaire', 'text');
-        $this->crud->field_type('note','enum',range(config_item('note_min'), config_item('note_max')));
-        $this->_admin_output($this->crud->render());
-    }
-
     public function application_screenshots()
     {
         $this->crud->set_subject("Screenshot d'application");
