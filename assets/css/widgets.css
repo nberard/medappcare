@@ -17,7 +17,7 @@
 #listApps .listapps{width: 447px; height: auto; margin: 50px 0 0 0; float: left; position: relative;}
 
 .lespros #listApps .listapps {margin: 25px 0 0 0;}
-#listApps .listapps h3{background: #0f6eb4; padding: 0 120px 0 15px; line-height: 50px; height: 52px; border: 1px solid #0f6eb4;}
+#listApps .listapps h3{background: #0f6eb4; padding: 0 120px 0 15px; line-height: 50px; height: 50px; border: 1px solid #0f6eb4;}
 .homepage #listApps .listapps h3{padding: 0 15px;}
 
 #listApps > .wrapper ul{border-left: 1px solid #0f6eb4; border-right: 1px solid #0f6eb4;}
