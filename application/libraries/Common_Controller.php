@@ -351,12 +351,18 @@ class Common_Controller extends MY_Controller
         $this->load->view('main', $data);
     }
 
-    public function cgu()
+    public function page($_nom)
     {
         $data['inc'] = $this->_getCommonIncludes();
+        $this->load->model('Pages_model');
 
-        $data['contenu'] = $this->load->view('contenu/cgu', '', true);
-        $data['body_class'] = 'cgu particuliers';
+        $page = $this->Pages_model->get_page($_nom);
+        if(!$page)
+        {
+            redirect($this->access_label.'/index');
+        }
+        $data['contenu'] = $this->load->view('contenu/page', array('page' => $page), true);
+        $data['body_class'] = $_nom.' '.$this->body_class;
         $this->load->view('main', $data);
     }
 
