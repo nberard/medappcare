@@ -262,14 +262,24 @@ class Common_Controller extends MY_Controller
     public function device($_id)
     {
         $this->load->model('Accessoires_model');
+        $this->load->model('Applications_model');
         $accessoire = $this->Accessoires_model->get_accessoire($_id);
         $accessoire->photos = $this->Accessoires_model->get_photo_from_accessoire($_id);
         $accessoire->notes = $this->Accessoires_model->get_notes_from_accessoire($_id);
+        $applications_compatibles = $this->Applications_model->get_applications_compatibles($this->pro, $_id);
+        $this->_format_all_prices($applications_compatibles);
+        $this->_format_all_notes($applications_compatibles);
+        $this->_format_all_links($applications_compatibles, 'app');
+        $this->_populate_categories_applications($applications_compatibles);
+
+        log_message('debug', "applications_compatibles=".var_export($applications_compatibles, true)."");
         $this->_format_all_notes($accessoire->notes);
         $this->_format_all_dates($accessoire->notes, 'date', 'datetime');
         $this->_format_note($accessoire);
         $devices_data = array(
-            'widget_devices' => $this->load->view('inc/widget_devices', '', true),
+            'widget_deviceapps' => $this->load->view('inc/widget_deviceapps', array(
+                'app_grid' => $this->load->view('inc/app_grid', array('applications' => $applications_compatibles), true),
+            ), true),
             'partners' => $this->load->view('inc/partners', '', true),
             'device' => $accessoire,
         );

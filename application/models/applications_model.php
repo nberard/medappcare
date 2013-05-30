@@ -70,10 +70,10 @@ class Applications_model extends CI_Model {
 
     public function get_last_eval_applications($_pro, $_category_id = -1, $_limit = 5)
     {
-        return $this->get_applications($_pro, -1, $_category_id, null, true, -1, 'id', 'desc', 5);
+        return $this->get_applications($_pro, -1, $_category_id, null, true, -1, -1, 'id', 'desc', 5);
     }
 
-    public function get_applications($_pro, $_devices_id, $_categorie_id, $_term, $_eval_medappcare, $_free, $_sort, $_order, $_limit, $_offset = 0)
+    public function get_applications($_pro, $_devices_id, $_categorie_id, $_term, $_eval_medappcare, $_free, $_accessoire_ref_id, $_sort, $_order, $_limit, $_offset = 0)
     {
         log_message('debug', "get_applications($_pro, ".var_export($_devices_id,true).", $_categorie_id, $_free, $_sort, $_order, $_limit, $_offset = 0)");
         $this->db->select('A.*, D.nom AS device_nom, D.class as device_class')
@@ -119,6 +119,11 @@ class Applications_model extends CI_Model {
             $this->db->select('CEIL(A.note_medappcare) AS moyenne_note_medappcare');
             $this->db->where('A.note_medappcare > 0.00');
         }
+        if($_accessoire_ref_id != -1)
+        {
+            $this->db->join('accessoire_application_compatible AAC', 'AAC.application_id = A.id', 'INNER');
+            $this->db->where(array('AAC.accessoire_id' => $_accessoire_ref_id));
+        }
         $this->db->where(array('est_valide' => 1, 'A.est_pro' => $_pro ? 1 : 0));
         $res = $this->db->get()->result();
         return $res ? $res : array();
@@ -127,17 +132,22 @@ class Applications_model extends CI_Model {
     public function get_applications_from_categorie($_pro, $_devices_id, $_categorie_id, $_free, $_sort, $_order, $_page)
     {
         log_message('debug', "get_applications_from_categorie($_pro, ".var_export($_devices_id,true).", $_categorie_id, $_free, $_sort, $_order, $_page)");
-        return $this->get_applications($_pro, $_devices_id, $_categorie_id, null, false, $_free, $_sort, $_order, config_item('nb_results_list'), $_page);
+        return $this->get_applications($_pro, $_devices_id, $_categorie_id, null, false, $_free, -1, $_sort, $_order, config_item('nb_results_list'), $_page);
     }
 
     public function get_applications_classic($_pro, $_devices_id, $_term, $_eval_medapp, $_free, $_sort, $_order, $_page)
     {
-        return $this->get_applications($_pro, $_devices_id, -1, $_term, $_eval_medapp, $_free, $_sort, $_order, config_item('nb_results_list'), $_page);
+        return $this->get_applications($_pro, $_devices_id, -1, $_term, $_eval_medapp, $_free, -1, $_sort, $_order, config_item('nb_results_list'), $_page);
     }
 
     public function get_top_five_applications($_free, $_pro, $_category_id = -1)
     {
-        return $this->get_applications($_pro, -1, $_category_id, null, false, $_free, 'id', 'desc', 5);
+        return $this->get_applications($_pro, -1, $_category_id, null, false, $_free, -1, 'id', 'desc', 5);
+    }
+
+    public function get_applications_compatibles($_pro, $_accessoire_id)
+    {
+        return $this->get_applications($_pro, -1, -1, null, false, -1, $_accessoire_id, 'id', 'desc', 10);
     }
 
     public function get_selection_applications($_id_selection)

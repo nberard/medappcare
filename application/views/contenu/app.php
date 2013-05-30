@@ -117,12 +117,11 @@
 	    	</div>
 	    	
 	    	<div class="tabContent" id="motDelEditeur">
-	    		<div class="logoPart">
-		    		
-		    		<img src="<?php echo img_url('tmp/logo-withings.png'); ?>" alt="[nom-de-l-editeur]"/>
-		    		
-	    		</div>
-	    		<p><?php // echo $device->{"description_".config_item('lng')}; ?></p>
+                <?php if(!empty($application->mot_editeur)): ?>
+	    		<?php echo $application->mot_editeur; ?>
+                <?php else: ?>
+                    Si vous êtes l'éditeur de cette application, contactez-nous par mail à <a href="mailto:<?php echo config_item('contact_mail'); ?>"><?php echo config_item('contact_mail'); ?></a>
+                <?php endif; ?>
 	    	</div>
 	    	
 	    	<div class="tabContent" id="commentaires"> <!-- Liste des commentaires déjà publiés -->

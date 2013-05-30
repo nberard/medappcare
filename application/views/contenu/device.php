@@ -106,14 +106,11 @@
 	    	</div>
 	    	
 	    	<div class="tabContent" id="motDuFabricant">
-                <div class="logoPart">
-
-                    <img src="<?php echo img_url('tmp/logo-withings.png'); ?>" alt="[nom-du-fabricant]"/>
-
-                </div>
-
-                    <p><?php echo $device->mot_fabriquant; ?></p>
-
+                <?php if(!empty($application->mot_fabriquant)): ?>
+                    <?php echo $application->mot_fabriquant; ?>
+                <?php else: ?>
+                    Si vous êtes l'éditeur de cette application, contactez-nous par mail à <a href="mailto:<?php echo config_item('contact_mail'); ?>"><?php echo config_item('contact_mail'); ?></a>
+                <?php endif; ?>
 	    	</div>
 	    	
 	    	<div class="tabContent" id="commentaires">
@@ -125,7 +122,7 @@
 	    	</div>
 	    	
 	    	<div class="tabContent" id="appsCompatibles">
-	    		<section id="devices"><?php  //echo $widget_devices; ?></section> <!-- Section App compatobles --> <?php // TODO : remplacer par widget app compatobles ?>
+	    		<section id="devices"><?php  echo $widget_deviceapps; ?></section> <!-- Section App compatobles --> <?php // TODO : remplacer par widget app compatobles ?>
 	    	</div>
 	    	
 	    	<div class="tabContent" id="revueDePresse">
