@@ -20,14 +20,14 @@ class Membre extends REST_Controller {
         if($_action == 'create')
         {
             $list = $_pro ?
-                array('email', 'mot_de_passe', 'nom', 'prenom', 'cgu_valid', 'profession', 'numero_rpps') :
-                array('email', 'mot_de_passe', 'date_naissance', 'sexe', 'pays', 'cgu_valid', 'cgv_valid');
+                array('email', 'pseudo', 'mot_de_passe', 'nom', 'prenom', 'cgu_valid', 'profession', 'numero_rpps') :
+                array('email', 'pseudo', 'mot_de_passe', 'date_naissance', 'sexe', 'pays', 'cgu_valid', 'cgv_valid');
         }
         else
         {
             $list = $_pro ?
-                array('email', 'mot_de_passe', 'nom', 'prenom', 'profession') :
-                array('email', 'mot_de_passe', 'date_naissance', 'sexe', 'pays');
+                array('email', 'pseudo', 'mot_de_passe', 'nom', 'prenom', 'profession') :
+                array('email', 'pseudo', 'mot_de_passe', 'date_naissance', 'sexe', 'pays');
         }
         foreach($list as $field)
             if(!isset($_POST[$field]))
@@ -74,6 +74,9 @@ class Membre extends REST_Controller {
                     break;
                 case 'prenom':
                     $this->form_validation->set_rules('prenom', 'Prénom', 'required|max_length[256]');
+                    break;
+                case 'pseudo':
+                    $this->form_validation->set_rules('pseudo', 'Pseudo', 'required|max_length[64]|alpha_numeric');
                     break;
                 case 'cgu_valid':
                     $this->form_validation->set_rules('cgu_valid', 'CGU', 'required|enum[1]');

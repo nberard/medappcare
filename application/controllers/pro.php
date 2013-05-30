@@ -51,7 +51,7 @@ class Pro extends Common_Controller {
             js_url('bootstrap-datepicker'),
             js_url('bootstrap-multiselect'),
             js_url('jquery.checkValidity'),
-            js_url('registerPro'),
+            js_url('membre_pro'),
         ));
         $data['contenu'] = $this->load->view('contenu/registerPro', '', true);
         $data['body_class'] = 'signup '.$this->body_class;
@@ -68,7 +68,7 @@ class Pro extends Common_Controller {
             js_url('bootstrap-datepicker'),
             js_url('bootstrap-multiselect'),
             js_url('jquery.checkValidity'),
-            js_url('registerPro'),
+            js_url('membre_pro'),
         ));
         $espaceData['categories_principales'] =$data['inc']['data_categories_principales'];
         $espaceData['user'] = $user;

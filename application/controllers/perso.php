@@ -59,7 +59,7 @@ class Perso extends Common_Controller {
             js_url('bootstrap-datepicker'),
             js_url('bootstrap-multiselect'),
             js_url('jquery.checkValidity'),
-            js_url('register'),
+            js_url('membre'),
         ));
         $registerData['nb_countries'] = count(config_item('country_list'));
         $registerData['country_json'] = country_json();
@@ -92,7 +92,7 @@ class Perso extends Common_Controller {
             js_url('bootstrap-datepicker'),
             js_url('bootstrap-multiselect'),
             js_url('jquery.checkValidity'),
-            js_url('register'),
+            js_url('membre'),
         ));
         $espaceData['nb_countries'] = count(config_item('country_list'));
         $espaceData['country_json'] = country_json();
