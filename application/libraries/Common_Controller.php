@@ -169,9 +169,9 @@ class Common_Controller extends MY_Controller
 
         $articles = $this->Articles_model->get_last_articles(1);
         $this->load->helper('format_string');
+        $this->_format_all_dates($articles, 'date_creation');
         foreach ($articles as &$article)
         {
-            $article->date_full = date_full($article->date_creation);
             $article->contenu_short = short_html_text($article->contenu);
         }
         $this->_format_all_links($articles, 'news', "titre");
@@ -264,6 +264,10 @@ class Common_Controller extends MY_Controller
         $this->load->model('Accessoires_model');
         $accessoire = $this->Accessoires_model->get_accessoire($_id);
         $accessoire->photos = $this->Accessoires_model->get_photo_from_accessoire($_id);
+        $accessoire->notes = $this->Accessoires_model->get_notes_from_accessoire($_id);
+        $this->_format_all_notes($accessoire->notes);
+        $this->_format_all_dates($accessoire->notes, 'date', 'datetime');
+        $this->_format_note($accessoire);
         $devices_data = array(
             'widget_devices' => $this->load->view('inc/widget_devices', '', true),
             'partners' => $this->load->view('inc/partners', '', true),
@@ -271,7 +275,6 @@ class Common_Controller extends MY_Controller
         );
 //        var_dump($accessoire);
         $data['inc'] = $this->_getCommonIncludes();
-
         $data['contenu'] = $this->load->view('contenu/device', $devices_data, true);
         $data['body_class'] = 'device '.$this->body_class.' '.to_ascii($accessoire->nom);
         $this->load->view('main', $data);
@@ -316,10 +319,8 @@ class Common_Controller extends MY_Controller
         $articles = $this->Articles_model->get_last_articles($_page);
         $this->load->helper('format_string');
         $this->_format_all_links($articles, 'news');
-        foreach ($articles as &$article)
-        {
-            $article->date_full = date_full($article->date_creation);
-        }
+        $this->_format_all_dates($articles, 'date_creation');
+
         $nb_news = $this->Articles_model->get_count_articles();
         $prev_link = $next_link = null;
         if($nb_news > config_item('nb_results_news_list') * $_page)

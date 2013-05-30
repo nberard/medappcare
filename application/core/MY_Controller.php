@@ -65,6 +65,25 @@ class MY_Controller extends CI_Controller {
         }
     }
 
+    protected function _format_all_dates(&$_data_dates_array, $_label_date = 'date', $_type_date = 'date')
+    {
+        foreach ($_data_dates_array as &$_data_date)
+        {
+            if($_data_date->{$_label_date})
+            {
+                $this->load->helper('date');
+                if($_type_date == 'date')
+                {
+                    $_data_date->date_full = date_full($_data_date->{$_label_date});
+                }
+                else if($_type_date == 'datetime')
+                {
+                    $_data_date->date_full = date_time_full($_data_date->{$_label_date});
+                }
+            }
+        }
+    }
+
     protected function _format_link_no_id($_target, $_page = 0, $_params = '')
     {
         $this->load->helper('url');

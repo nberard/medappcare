@@ -12,9 +12,9 @@
         <div class="icone"><img width="90px" height="90px" src="<?php echo $device->photo; ?>"></div>
         
         <div class="content right">
-            <div class="appnote noteMedappcare"><span></span><a href="#thegrid" class="note deux">Deux</a></div>
-            <div class="appnote notePro"><span></span><a href="#thegrid" class="note neuf">Cinq</a></div>
-            <div class="appnote noteGens"><span></span><a href="#thegrid" class="note huit">Huit</a></div>
+            <?php if($device->moyenne_note): ?>
+                <div class="appnote noteGens"><span></span><a href="#thegrid" class="note <?php echo $device->class_note; ?>"><?php echo ucfirst($device->class_note); ?></a></div>
+            <?php endif; ?>
         </div>
         
         </div>
@@ -117,7 +117,11 @@
 	    	</div>
 	    	
 	    	<div class="tabContent" id="commentaires">
-	    		Commentaires
+	    		Commentaires :
+                <?php foreach($device->notes as $notation): ?>
+                    <?php echo $notation->pseudo.' a noté cette application '.$notation->date_full.' : '.$notation->moyenne_note.' / 10 <br/>'; ?>
+                <?php endforeach; ?>
+
 	    	</div>
 	    	
 	    	<div class="tabContent" id="appsCompatibles">

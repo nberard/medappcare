@@ -9,6 +9,8 @@ class Accessoires_model extends CI_Model {
 
     protected $table = 'accessoire';
     protected $tableFabriquant = 'accessoire_fabriquant';
+    protected $tableNotes = 'accessoire_critere_note';
+    protected $tableNotation = 'accessoire_notation';
     protected $tablePhoto = 'accessoire_photo';
 
     public function __construct()
@@ -24,11 +26,14 @@ class Accessoires_model extends CI_Model {
 
     public function get_accessoire($_id)
     {
-        return $this->db->select('A.*, A.nom_'.config_item('lng').' AS nom, A.presse_'.config_item('lng').' AS presse, '.
+        return $this->db->select('ROUND(AVG(NC.note)) as moyenne_note, A.*, A.nom_'.config_item('lng').' AS nom, A.presse_'.config_item('lng').' AS presse, '.
                                  'F.nom AS nom_fabriquant, A.avis_'.config_item('lng').' AS avis, '.
                                  'A.mot_fabriquant_'.config_item('lng').' AS mot_fabriquant')
                         ->from($this->table.' A')
-                        ->join($this->tableFabriquant.' F', 'F.id = A.fabriquant_id', 'INNER')
+                        ->join($this->tableNotation.' N', 'N.accessoire_id = A.id', 'LEFT')
+                        ->join($this->tableNotes.' NC', 'NC.accessoire_notation_id = N.id', 'INNER')
+                        ->join($this->tableFabriquant.' F', 'F.id = A.fabriquant_id', 'LEFT')
+                        ->group_by('A.id')
                         ->where(array('A.id' => $_id))->get()->row();
     }
 
@@ -43,6 +48,21 @@ class Accessoires_model extends CI_Model {
                 $photo->full_url = base_url().$upload_paths['accessoire'].'/'.$photo->photo;
             }
         }
+        return $res ? $res : array();
+    }
+
+    public function get_notes_from_accessoire($_id, $_limit = 4, $_offset = 0)
+    {
+        $res = $this->db->select('N.commentaire_'.config_item('lng').' as commentaire, M.pseudo, N.date, ROUND(AVG(NC.note)) as moyenne_note')
+            ->from($this->table.' A')
+            ->join($this->tableNotation.' N', 'N.accessoire_id = A.id', 'LEFT')
+            ->join($this->tableNotes.' NC', 'NC.accessoire_notation_id = N.id', 'INNER')
+            ->join('membre M', 'M.id = N.membre_id', 'INNER')
+            ->group_by('M.id')
+            ->limit($_limit, $_offset)
+            ->where(array('A.id' => $_id))
+            ->get()->result();
+
         return $res ? $res : array();
     }
 
