@@ -5,7 +5,7 @@
     
     <input type="text" id="nom" id="nom" class="input-block-level" placeholder="Nom" value="<?php echo $user->nom; ?>" required>
     <input type="text" id="prenom" id="prenom" class="input-block-level" placeholder="Prénom" value="<?php echo $user->prenom; ?>" required>
-    <input type="text" id="reg_pseudo" class="input-block-level" placeholder="Pseudo" value="<?php echo $user->pseudo; ?>" required>     
+    <input type="text" id="reg_pseudo" class="input-block-level" placeholder="Pseudo" value="<?php echo $user->pseudo; ?>" required disabled>     
     <input type="email" id="reg_email" id="email" class="input-block-level" placeholder="Email" value="<?php echo $user->email; ?>" required>
     <input type="password" id="reg_password" id="password" class="input-block-level" placeholder="********">
 
