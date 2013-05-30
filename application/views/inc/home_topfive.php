@@ -1,4 +1,4 @@
-<div id="listapps_topfive" class="listapps topfive" data-action="<?php echo site_url('rest/topfiveapplis');?>" data-render="<?php echo config_item('render_template_accept'); ?>">
+<div id="listapps_topfive" class="listapps topfive" data-action="<?php echo site_url('application/topfiveapplis');?>" data-render="<?php echo config_item('render_template_accept'); ?>">
     <h3>Le Top Medappcare</h3>
     <input type="hidden" id="template-render" value="<?php echo $template_render; ?>"/>
     <div class="filter">

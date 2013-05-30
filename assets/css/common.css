@@ -46,12 +46,12 @@ header > nav ul{padding: 0; margin: 0 auto; width: 950px; position: relative; di
 header > nav li{list-style: none; display: table-cell; height: auto; width: auto;}
 header > nav a{border-left: 1px solid white; height: 54px; min-width: 56px; margin: 0 -4px 0 0; text-align: center; vertical-align: middle; position: relative; line-height: 56px; padding: 0 22px; display: block;}
 header .language{margin: 0 !important;}
-header > nav .home a, #header nav .search a{padding: 0; margin: 0;}
+header > nav .home a, #header nav .bt-search a{padding: 0; margin: 0;}
 header .picto{padding: 0 22px 0 0;}
 
 /*.lespros #header nav a{padding: 0 20px;}*/
 
-.lespros #header nav .home a, .lespros #header nav .search a{padding: 0;}
+.lespros #header nav .home a, .lespros #header nav .bt-search a{padding: 0;}
 
 /* =========== SLIDER =========== */
 
@@ -180,10 +180,13 @@ html[xmlns] .slides {display: block;}
 .ios{background: url(../img/ios_blue.png) no-repeat; width: 16px; height: 29px;}
 .web{background: url(../img/web_blue.png) no-repeat; width: 18px; height: 27px;}
 
+.search .android,
 .masante .android, 
 .administratif .android{background: url(../img/android_lightblue.png) no-repeat;}
+.search .ios,
 .masante .ios, 
 .administratif .ios{background: url(../img/ios_lightblue.png) no-repeat;}
+.search .web,
 .masante .web, 
 .administratif .web{background: url(../img/web_lightblue.png) no-repeat;}
 
@@ -705,5 +708,15 @@ button{margin-right: 15px;}
 
 .singlenews .content,
 .singlenews .date{margin: 0 0 50px 0;}
+
+
+
+
+
+
+
+
+
+
 
 

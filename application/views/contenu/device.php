@@ -26,10 +26,14 @@
                 <div class="features">
                     <span class="<?php echo $device->type; ?>"><?php echo ucfirst($device->type); ?></span>
                 </div>
-                <?php if($device->est_ce): ?>
+                <?php if($device->est_ce || $device->est_dispo_medical): ?>
                 <div class="labels">
-                	<span class="label ce">CE</span>
-                	<span class="text">Cet objet est un dispositif médical</span>
+                    <?php if($device->est_ce): ?>
+                	    <span class="label ce">CE</span>
+                    <?php endif; ?>
+                    <?php if($device->est_dispo_medical): ?>
+                	    <span class="text">Cet objet est un dispositif médical</span>
+                    <?php endif; ?>
                 </div>
                 <?php endif; ?>
                 <div class="buttons">
@@ -39,8 +43,7 @@
             </div>
             <div class="content right description">
                 <h3>Notre Avis</h3>
-                <p>Nullam quis risus eget urna mollis ornare vel eu leo. Donec id elit non mi porta gravida at eget metus. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porta sem malesuada magna mollis euismod. Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor.</p>
+                <?php echo $device->avis; ?>
             </div>
             <div class="clear"></div>
         </div> <!-- end wrapper -->
@@ -95,16 +98,22 @@
     	
     	<div class="wrapper">
 	    	<div class="tabContent open" id="galeriePhotos">
-	    		Galerie Photos
+	    		<ul>
+                    <?php foreach($device->photos as $photo): ?>
+                        <li><img src="<?php echo $photo->full_url; ?>"/></li>
+                    <?php endforeach; ?>
+	    		</ul>
 	    	</div>
 	    	
 	    	<div class="tabContent" id="motDuFabricant">
-	    		<div class="logoPart">
-		    		
-		    		<img src="<?php echo img_url('tmp/logo-withings.png'); ?>" alt="[nom-du-fabricant]"/>
-		    		
-	    		</div>
-	    		<p><?php echo $device->presse; ?></p>
+                <div class="logoPart">
+
+                    <img src="<?php echo img_url('tmp/logo-withings.png'); ?>" alt="[nom-du-fabricant]"/>
+
+                </div>
+
+                    <p><?php echo $device->mot_fabriquant; ?></p>
+
 	    	</div>
 	    	
 	    	<div class="tabContent" id="commentaires">
@@ -116,7 +125,7 @@
 	    	</div>
 	    	
 	    	<div class="tabContent" id="revueDePresse">
-	    		Revue de presse
+                <p><?php echo $device->presse; ?></p>
 	    	</div>
     	</div>
     	

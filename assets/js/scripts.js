@@ -128,7 +128,7 @@ $(document).ready(function() {
 	
 	/* Search Form */
 	var searchForm = $('#header nav .search-form');
-	$('#header > nav li.search a').click(function(event) {
+	$('#header > nav li.bt-search a').click(function(event) {
 		event.stopPropagation();
 		if (searchForm.css('display') == 'none') {
 			searchForm.toggle("slide", { direction: "right" }, 'normal', 'easeOutCubic');
@@ -223,6 +223,11 @@ $(document).ready(function() {
 		}
 	});
 	
+	/* Close Menu */
+	
+	$('#dropdown a.closeLink').click(function() {
+	    closeDropDown();
+    });
 	
 	/* Racourcis des textes trop long ... */
 	

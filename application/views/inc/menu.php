@@ -11,7 +11,7 @@
                 </a>
             </li>
         <?php endforeach; ?>
-        <li class="search">
+        <li class="bt-search">
             <a id="link-search" href="#">Rechercher</a>
         </li>
         
@@ -51,7 +51,9 @@
                 <span class="sponsored-indicator">Sponsorisées</span>
             </div>
             <div class="bigpicto"></div>
+            <a href="#" class="closeLink">Fermer le menu</a>
         </div> <!-- end wrapper -->
     </nav> <!-- end masante -->
     <?php endforeach; ?>
 </div>
+

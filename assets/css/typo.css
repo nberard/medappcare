@@ -71,6 +71,8 @@ h2{color: #0f6eb4; font-size: 24px;}
 .signup form a,
 .qrcode a{color: #0f6eb4;}
 
+#dropdown a.closeLink{font-size: 12px;}
+
 .titlenews{color: #0f6eb4; font-size: 24px;}
 .titlenews a{color: #0f6eb4;}
 

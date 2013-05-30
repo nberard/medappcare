@@ -61,3 +61,38 @@
 </footer>
 
 <p class="copyright">&copy; Medappcare 2013 - Tous droits réservés</p>
+
+
+
+
+<div id="dl-menu" class="dl-menuwrapper">
+    <button>Open Menu</button>
+    <ul class="dl-menu">
+        <li class="navMobileItem">
+            <a dropdowndestination="masante" href="#">Ma Santé</a>
+            <ul class="dl-submenu">
+                <li class="navMobileItem">Addictions</li>
+                <li class="navMobileItem">Allergies</li>
+            </ul>
+        </li>
+        <li class="navMobileItem">
+            <a dropdowndestination="monquotidien" href="#">Mon Quotidien</a>
+            <ul class="dl-submenu">
+                <li class="navMobileItem">Item 1</li>
+                <li class="navMobileItem">Item 2</li>
+            </ul>
+        </li>
+        <li>Search</li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+</div> <!-- end mobile menu -->
