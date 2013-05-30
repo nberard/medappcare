@@ -263,6 +263,13 @@ abstract class REST_Controller extends MY_Controller
      */
     public function _remap($object_called, $arguments)
     {
+        //fix for index not mandatory
+        if(is_numeric($object_called))
+        {
+            $arguments[] = $object_called;
+            $object_called = 'index';
+        }
+        //end fix
         // Should we answer if not over SSL?
         if (config_item('force_https') AND !$this->_detect_ssl())
         {
