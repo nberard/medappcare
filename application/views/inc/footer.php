@@ -64,13 +64,13 @@
 
 
 
-
 <div id="dl-menu" class="dl-menuwrapper">
-    <button>Open Menu</button>
-    <ul class="dl-menu">
+    <button class="dl-trigger">Open Menu</button>
+    <ul class="dl-menu dl-menu-toggle">
         <li class="navMobileItem">
             <a dropdowndestination="masante" href="#">Ma Santé</a>
             <ul class="dl-submenu">
+                <li class="dl-back"><a href="#">back</a></li>
                 <li class="navMobileItem">Addictions</li>
                 <li class="navMobileItem">Allergies</li>
             </ul>
@@ -78,21 +78,13 @@
         <li class="navMobileItem">
             <a dropdowndestination="monquotidien" href="#">Mon Quotidien</a>
             <ul class="dl-submenu">
+                <li class="dl-back"><a href="#">back</a></li>
                 <li class="navMobileItem">Item 1</li>
                 <li class="navMobileItem">Item 2</li>
             </ul>
         </li>
         <li>Search</li>
     </ul>
-
-
-
-
-
-
-
-
-
 
 
 </div> <!-- end mobile menu -->

@@ -1,4 +1,4 @@
-<section class="static">
+<section class="static page">
 
     <div class="wrapper">
 
