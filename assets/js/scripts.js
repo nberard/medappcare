@@ -285,9 +285,11 @@ window.___gcfg = {lang: 'fr'};
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
+/* MOBILE MENU */
 
-
-
+$(function() {
+    $( '#dl-menu' ).dlmenu();
+});
 
 
 

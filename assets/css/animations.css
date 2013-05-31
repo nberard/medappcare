@@ -45,10 +45,9 @@
 
 /* =========== ANIMATIONS FOR MOBILE MENU =========== */
 
+
 .dl-menuwrapper {
 	width: 100%;
-	max-width: 300px;
-	float: left;
 	position: relative;
 	-webkit-perspective: 1000px;
 	-moz-perspective: 1000px;
@@ -62,8 +61,8 @@
 	margin-right: 100px;
 }
 
-.dl-menuwrapper button {
-	background: #ccc;
+.dl-menuwrapper .dl-trigger{
+	background: #283278;
 	border: none;
 	width: 48px;
 	height: 45px;
@@ -72,15 +71,30 @@
 	position: relative;
 	cursor: pointer;
 	outline: none;
+	border-right: 1px solid white;
 }
 
-.dl-menuwrapper button:hover,
-.dl-menuwrapper button.dl-active,
-.dl-menuwrapper ul {
-	background: #aaa;
+.dl-menuwrapper #bt-search{
+	background: #283278;
+	border: none;
+	width: 48px;
+	height: 45px;
+	text-indent: -900em;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	right: -20px;
+	cursor: pointer;
+	outline: none;
+	border-left: 1px solid white;
 }
 
-.dl-menuwrapper button:after {
+.dl-menuwrapper .dl-trigger:hover,
+.dl-menuwrapper .dl-trigger.dl-active{
+    background: #0F6EB4;
+}
+
+.dl-menuwrapper .dl-trigger:after {
 	content: '';
 	position: absolute;
 	width: 68%;
@@ -96,6 +110,7 @@
 .dl-menuwrapper ul {
 	padding: 0;
 	list-style: none;
+	border-top: 1px solid white;
 	-webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
 	transform-style: preserve-3d;
@@ -130,10 +145,9 @@
 	position: absolute;
 	top: 0;
 	line-height: 50px;
-	font-family: 'icomoon';
 	speak: none;
 	-webkit-font-smoothing: antialiased;
-	content: "\e000";
+	content: "> ";
 }
 
 .dl-menuwrapper li.dl-back:after {
@@ -150,7 +164,7 @@
 }
 
 .dl-menuwrapper .dl-menu {
-	margin: 5px 0 0 0;
+	margin: 0;
 	position: absolute;
 	width: 100%;
 	opacity: 0;
@@ -991,5 +1005,63 @@ All this is done for any sub-level being entered.
 .no-js .dl-menuwrapper li > a:not(:only-child):after {
 	content: '';
 }
+
+/* Colors for demos */
+
+/* Demo 1 */
+.demo-1 .dl-menuwrapper .dl-trigger {
+	background: #c62860;
+}
+
+.demo-1 .dl-menuwrapper .dl-trigger:hover,
+.demo-1 .dl-menuwrapper .dl-trigger.dl-active,
+.demo-1 .dl-menuwrapper ul {
+	background: #9e1847;
+}
+
+/* Demo 2 */
+.demo-2 .dl-menuwrapper button {
+	background: #e86814;
+}
+
+.demo-2 .dl-menuwrapper button:hover,
+.demo-2 .dl-menuwrapper button.dl-active,
+.demo-2 .dl-menuwrapper ul {
+	background: #D35400;
+}
+
+/* Demo 3 */
+.demo-3 .dl-menuwrapper button {
+	background: #08cbc4;
+}
+
+.demo-3 .dl-menuwrapper button:hover,
+.demo-3 .dl-menuwrapper button.dl-active,
+.demo-3 .dl-menuwrapper ul {
+	background: #00b4ae;
+}
+
+/* Demo 4 */
+.demo-4 .dl-menuwrapper button {
+	background: #90b912;
+}
+
+.demo-4 .dl-menuwrapper button:hover,
+.demo-4 .dl-menuwrapper button.dl-active,
+.demo-4 .dl-menuwrapper ul {
+	background: #79a002;
+}
+
+/* Demo 5 */
+.demo-5 .dl-menuwrapper button {
+	background: #744783;
+}
+
+.demo-5 .dl-menuwrapper button:hover,
+.demo-5 .dl-menuwrapper button.dl-active,
+.demo-5 .dl-menuwrapper ul {
+	background: #643771;
+}
+
 
 

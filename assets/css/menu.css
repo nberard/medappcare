@@ -90,7 +90,22 @@ header form.search-form input {width:100%; height:100%; margin: 1px; padding: 5p
 
 /* Mobile Navigation */
 
-#dl-menu{display: none;}
+#dl-menu{display: none; font-weight: 700 !important;}
+
+#dl-menu a:hover{text-decoration: none;}
+
+.dl-menuwrapper .masante,
+.dl-menuwrapper .masante .dl-submenu{background: #79C1D2;}
+.dl-menuwrapper .monquotidien,
+.dl-menuwrapper .monquotidien .dl-submenu{background: #E05D5F;}
+.dl-menuwrapper .minformer,
+.dl-menuwrapper .minformer .dl-submenu{background: #84C790;}
+.dl-menuwrapper .medeplacer,
+.dl-menuwrapper .medeplacer .dl-submenu{background: #D769AF;}
+
+
+
+
 
 
 

@@ -9,6 +9,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="Medappcare">
 	
+	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	
 	<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -45,5 +46,7 @@
 	<meta property="og:image" content="http://www.onemorethingstudio.com/unisize-app/wp-content/themes/unisize/img/apple-touch-icon-72x72-precomposed.png" /> <!-- AJOUTER ICI L'ADRESSE DE L'IMAGE DU LOGO MEDAPPCARE -->
 	<meta property="og:url" content="http://www.medappcare.com" /> <!-- AJOUTER ICI LE LIEN DIRECT VERS LA PAGE -->
 	<link rel="image_src" href="http://www.onemorethingstudio.com/unisize-app/wp-content/themes/unisize/img/apple-touch-icon-72x72-precomposed.png" /> <!-- AJOUTER ICI L'ADRESSE DE L'IMAGE DU LOGO MEDAPPCARE -->
+
+    
     
 </head>

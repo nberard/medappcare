@@ -71,7 +71,7 @@ class Common_Controller extends MY_Controller
             ), true),
             'footer_meta' => $this->load->view('inc/footer_meta', array('js_files' => array_merge(array(
 //                js_url('jquery-2.0.0.min'),
-//                js_url('modernizr.custom'),
+                js_url('modernizr.custom'),
                 js_url('jquery.dlmenu'),
                 js_url('jquery-ui-1.10.2.custom.min'),
                 js_url('jquery.placeholder.min'),
