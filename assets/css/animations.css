@@ -126,9 +126,10 @@
 	padding: 15px 20px;
 	font-size: 16px;
 	line-height: 20px;
-	font-weight: 300;
+	font-weight: 700;
 	color: #fff;
 	outline: none;
+	border-bottom: 1px solid white;
 }
 
 .no-touch .dl-menuwrapper li a:hover {
