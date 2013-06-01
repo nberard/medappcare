@@ -350,15 +350,6 @@ class Common_Controller extends MY_Controller
         $this->load->view('main', $data);
     }
 
-    public function mentionslegales()
-    {
-        $data['inc'] = $this->_getCommonIncludes();
-
-        $data['contenu'] = $this->load->view('contenu/mentionslegales', '', true);
-        $data['body_class'] = 'mentionslegales particuliers';
-        $this->load->view('main', $data);
-    }
-
     public function contact()
     {
         $data['inc'] = $this->_getCommonIncludes(array(

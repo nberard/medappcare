@@ -26,7 +26,7 @@
                 <li><a href="#">Consulting Medappcare</a></li>  
                 <li><a href="#">Actualités sur Medappcare</a></li>                                                                
                 <li><a href="<?php echo site_url($access_label.'/page/cgu'); ?>">CGU</a></li>
-                <li><a href="<?php echo site_url($access_label.'/mentionslegales'); ?>">Mentions Légales</a></li>
+                <li><a href="<?php echo site_url($access_label.'/page/mentionslegales'); ?>">Mentions Légales</a></li>
                 <li><a href="<?php echo site_url($access_label.'/contact'); ?>">Contact</a></li>
             </ul>
         </nav>
