@@ -143,6 +143,11 @@ class Applications_model extends CI_Model {
         return $res ? $res : array();
     }
 
+    public function update_note_medappcare($_application_id)
+    {
+
+    }
+
     public function get_applications_from_categorie($_pro, $_devices_id, $_categorie_id, $_free, $_sort, $_order, $_page)
     {
         log_message('debug', "get_applications_from_categorie($_pro, ".var_export($_devices_id,true).", $_categorie_id, $_free, $_sort, $_order, $_page)");

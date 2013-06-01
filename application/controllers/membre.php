@@ -103,21 +103,6 @@ class Membre extends REST_Controller {
         }
     }
 
-    protected function _membre_get_errors()
-    {
-        $errors = array();
-        foreach($_POST as $key => $value)
-        {
-            $error = form_error($key);
-            if($error)
-            {
-                log_message('debug', "adding $error for $key");
-                $errors[] = $error;
-            }
-        }
-        return $errors;
-    }
-
     public function index_put($_id)
     {
         $_POST = $this->_put();
@@ -128,7 +113,7 @@ class Membre extends REST_Controller {
 
         if(!$this->form_validation->run())
         {
-            $errors = $this->_membre_get_errors();
+            $errors = $this->_validation_get_errors();
             $this->response(array('status' => 'ko', 'errors' => $errors), 400);
         }
         else
@@ -159,7 +144,7 @@ class Membre extends REST_Controller {
 
         if(!$this->form_validation->run())
         {
-            $errors = $this->_membre_get_errors();
+            $errors = $this->_validation_get_errors();
             $this->response(array('status' => 'ko', 'errors' => $errors), 400);
         }
         else

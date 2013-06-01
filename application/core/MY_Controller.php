@@ -145,6 +145,21 @@ class MY_Controller extends CI_Controller {
             }
         }
     }
+
+    protected function _validation_get_errors()
+    {
+        $errors = array();
+        foreach($_POST as $key => $value)
+        {
+            $error = form_error($key);
+            if($error)
+            {
+                log_message('debug', "adding $error for $key");
+                $errors[] = $error;
+            }
+        }
+        return $errors;
+    }
 }
 
 /* End of file */

@@ -336,15 +336,23 @@ class Common_Controller extends MY_Controller
         $this->_format_all_notes($accessoire->notes);
         $this->_format_all_dates($accessoire->notes, 'date', 'datetime');
         $this->_format_note($accessoire);
+        $user = $this->session->userdata('user');
         $devices_data = array(
             'widget_deviceapps' => $this->load->view('inc/widget_deviceapps', array(
                 'app_grid' => $this->load->view('inc/app_grid', array('applications' => $applications_compatibles), true),
             ), true),
             'partners' => $this->load->view('inc/partners', '', true),
+            'user' => $user,
             'device' => $accessoire,
+            'criteres' => $this->Accessoires_model->get_criteres_for_accessoires(),
         );
+        if($user)
+        {
+            $devices_data['already_noted'] = $this->Accessoires_model->user_has_note_accessoire($_id, $user->id);
+        }
+
 //        var_dump($accessoire);
-        $data['inc'] = $this->_getCommonIncludes();
+        $data['inc'] = $this->_getCommonIncludes(array(js_url('accessoire')));
         $data['contenu'] = $this->load->view('contenu/device', $devices_data, true);
         $data['body_class'] = 'device '.$this->body_class.' '.to_ascii($accessoire->nom);
         $this->load->view('main', $data);

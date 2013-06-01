@@ -36,10 +36,14 @@
                     <?php endif; ?>
                 </div>
                 <?php endif; ?>
+                <?php if($user): ?>
                 <div class="buttons">
-                    <a href="#" class="noter">Noter l'Application</a>
+                    <?php if(!$already_noted): ?>
+                        <a href="#commentModal" class="noter">Noter le Produit</a>
+                    <?php endif; ?>
                     <a href="#" class="signaler">Signaler</a>
                 </div>
+                <?php endif; ?>
             </div>
             <div class="content right description">
                 <h3>Notre Avis</h3>
@@ -131,5 +135,24 @@
     	</div>
     	
     </section>
-
+<?php if($user): ?>
 <section id="partners"><?php echo $partners; ?></section> <!-- Section Partenaires -->
+<div class="modal hide fade" id="commentModal">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" id="modal-notation-close"></button>
+        <h3>Noter ce produit</h3>
+    </div>
+    <div class="modal-body">
+        <p class="explication">Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+        <form method="post" id="form-noter-accessoire" data-criteres='<?php echo json_encode($criteres); ?>' data-action="<?php echo site_url('accessoire/'.$device->id.'/note/'.$user->id) ?>" name="email_form" id="email_form">
+            <?php foreach($criteres as $critere): ?>
+                <p><input type="text" id="note-accessoire-<?php echo $critere->id; ?>"/></p>
+            <?php endforeach; ?>
+            <p><textarea id="commentaire-accessoire"></textarea></p>
+            <p><button type="submit" class="btn btn-primary">Envoyer</button>
+        </form>
+    </div>
+    <div id="accessoire-notation-error" class="alert alert-error hide"></div>
+    <div id="accessoire-notation-success" class="success alert-success hide"></div>
+</div>
+<?php endif; ?>

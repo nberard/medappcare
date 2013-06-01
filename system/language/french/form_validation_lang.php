@@ -20,6 +20,7 @@ $lang['matches']			= "Le champ %s doit correspondre au champ %s.";
 $lang['is_natural']			= "Le champ %s ne peut contenir que des nombres positifs.";
 $lang['is_natural_no_zero']	= "Le champ %s ne peut contenir que des nombres plus grand que z&eacute;.";
 $lang['is_unique'] 			= "Le champ %s est d&eacute;j&agrave; pris.";
+$lang['less_than'] 			= "Le champ %s est hors limites.";
 
 
 /* End of file form_validation_lang.php */
