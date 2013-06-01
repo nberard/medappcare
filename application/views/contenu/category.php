@@ -6,7 +6,9 @@
     </div>
 </div>
 
-<section id="selections"><?php echo $widget_selection; ?></section> <!-- Section La Sélection Medappcare -->
+<?php if(!empty($widget_selection)): ?>
+    <section id="selections"><?php echo $widget_selection ; ?></section> <!-- Section La Sélection Medappcare -->
+<?php endif; ?>
 
 <div class="colorsLine"></div>
 

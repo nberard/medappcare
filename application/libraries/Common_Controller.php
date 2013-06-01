@@ -166,6 +166,7 @@ class Common_Controller extends MY_Controller
         $this->load->model('Devices_model');
         $this->load->model('Articles_model');
         $this->load->model('Applications_model');
+        $this->load->model('Selections_model');
 
         $articles = $this->Articles_model->get_last_articles(1);
         $this->load->helper('format_string');
@@ -178,7 +179,6 @@ class Common_Controller extends MY_Controller
         $this->_format_all_links($articles, 'news_category', 'nom_categorie', 'categorie_link', 'categorie_id');
         $indexData = array(
             'home_slider' => $this->load->view('inc/home_slider', '', true),
-            'widget_selection' => $this->load->view('inc/widget_selection', '', true),
             $_label_selection_left => $this->load->view('inc/'.$_label_selection_left, $_data_selection_left, true),
             $_label_selection_right => $this->load->view('inc/'.$_label_selection_right, $_data_selection_right, true),
             'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(6)), true),
@@ -186,10 +186,14 @@ class Common_Controller extends MY_Controller
                 'access_label' => $this->access_label,
                 'articles' => $articles
             ), true),
-            'home_pushpartners' => $this->load->view('inc/home_pushpartners', '', true),
+            'home_pushpartners' => $this->load->view('inc/home_pushpartners', array('access_label' => $this->access_label), true),
             'partners' => $this->load->view('inc/partners', '', true),
         );
 
+        $selections = $this->Selections_model->get_selections_from_home($this->access_label);
+        $this->_format_all_links($selections, 'selection', 'nom');
+        $indexData['widget_selection'] = empty($selections) ? '' :
+                                        $this->load->view('inc/widget_selection', array('selections' =>$selections), true);
         $data['inc'] = $this->_getCommonIncludes(array(js_url('list')));
         $template = $this->pro ? 'indexPro' : 'index';
         $data['contenu'] = $this->load->view('contenu/'.$template, $indexData, true);
@@ -202,6 +206,7 @@ class Common_Controller extends MY_Controller
         $this->load->model('Applications_model');
         $this->load->model('Devices_model');
         $this->load->model('Categories_model');
+        $this->load->model('Selections_model');
         $lastEvalApplis = $this->Applications_model->get_last_eval_applications($_id);
         $top5Applis = $this->Applications_model->get_top_five_applications(false, $this->pro, $_id);
         $this->_format_all_prices($lastEvalApplis);
@@ -213,7 +218,6 @@ class Common_Controller extends MY_Controller
         $categorie = $this->Categories_model->get_categorie($_id);
         $this->_format_link($categorie, 'app_category', 'nom', 'link_all', 'id' ,1);
         $categoryData = array(
-            'widget_selection' => $this->load->view('inc/widget_selection', '', true),
             'widget_lasteval' => $this->load->view('inc/widget_lasteval', array(
                 'applications' => $lastEvalApplis,
             ), true),
@@ -230,15 +234,71 @@ class Common_Controller extends MY_Controller
                 'access_label' => $this->access_label,
             ), true),
             'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(6)), true),
-            'home_pushpartners' => $this->load->view('inc/home_pushpartners', '', true),
+            'home_pushpartners' => $this->load->view('inc/home_pushpartners', array('access_label' => $this->access_label), true),
             'partners' => $this->load->view('inc/partners', '', true),
             'categorie' => $categorie,
         );
+
+        $selections = $this->Selections_model->get_selections_from_category($_id);
+        $this->_format_all_links($selections, 'selection', 'nom');
+        $indexData['widget_selection'] = empty($selections) ? '' :
+            $this->load->view('inc/widget_selection', array('selections' =>$selections), true);
 
         $data['inc'] = $this->_getCommonIncludes(array(js_url('list')));
 
         $data['contenu'] = $this->load->view('contenu/category', $categoryData, true);
         $data['body_class'] = 'category '.$this->body_class.' '.$categorie->class;
+        $this->load->view('main', $data);
+    }
+
+    public function selection($_id)
+    {
+        $this->load->model('Selections_model');
+        $selection = $this->Selections_model->get_selection($_id);
+
+        $selectionData = array(
+            'selection' => $selection,
+            'home_pushpartners' => $this->load->view('inc/home_pushpartners', array('access_label' => $this->access_label), true),
+            'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(6)), true),
+            'partners' => $this->load->view('inc/partners', '', true),
+        );
+
+        if($selection->type_selection == Selections_model::TYPE_SELECTION_APPLICATIONS)
+        {
+            $this->load->model('Applications_model');
+            $selection->applications = $this->Applications_model->get_applications_from_selection($_id);
+            $this->_format_all_prices($selection->applications);
+            $this->_format_all_links($selection->applications, 'app');
+            $this->_populate_categories_applications($selection->applications);
+            $selectionData['widget_allappselection'] = $this->load->view('inc/widget_allappselection', array(
+            'selection' => $selection,
+            'app_grid' => $this->load->view('inc/app_grid', array(
+                'selection' => $selection,
+                'applications' => $selection->applications,
+                ), true),
+            ), true);
+        }
+        else if($selection->type_selection == Selections_model::TYPE_SELECTION_ACCESSOIRES)
+        {
+            //@TODO selection d'accessoires
+            $this->load->model('Applications_model');
+            $selection->applications = $this->Applications_model->get_applications_from_selection($_id);
+            $this->_format_all_prices($selection->applications);
+            $this->_format_all_links($selection->applications, 'app');
+            $this->_populate_categories_applications($selection->applications);
+            $selectionData['widget_allappselection'] = $this->load->view('inc/widget_allappselection', array(
+                'selection' => $selection,
+                'app_grid' => $this->load->view('inc/app_grid', array(
+                    'selection' => $selection,
+                    'applications' => $selection->applications,
+                ), true),
+            ), true);
+        }
+
+        $data['inc'] = $this->_getCommonIncludes(array(js_url('list')));
+
+        $data['contenu'] = $this->load->view('contenu/laselec', $selectionData, true);
+        $data['body_class'] = 'selection '.$this->body_class;
         $this->load->view('main', $data);
     }
 
