@@ -118,9 +118,13 @@
 	    	</div>
 	    	
 	    	<div class="tabContent" id="commentaires">
+                <?php foreach($device->moyennes as $moyenne): ?>
+                    moyenne pour <?php echo $moyenne->critere; ?> : <?php echo $moyenne->note; ?> <br/>
+                <?php endforeach; ?>
 	    		Commentaires :
-                <?php foreach($device->notes as $notation): ?>
-                    <?php echo $notation->pseudo.' a noté cette application '.$notation->date_full.' : '.$notation->moyenne_note.' / 10 <br/>'; ?>
+                <?php $cpt = 0; foreach($device->notes as $notation): ?>
+                    <?php $cpt++; echo $notation->pseudo.' a noté cette application '.$notation->date_full.' : '.$notation->note.' / 10 dans '.$notation->critere.'<br/>'; ?>
+                    <?php if($cpt % 4 == 0) echo '<br/>';  ?>
                 <?php endforeach; ?>
 
 	    	</div>

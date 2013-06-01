@@ -53,13 +53,28 @@ class Accessoires_model extends CI_Model {
 
     public function get_notes_from_accessoire($_id, $_limit = 4, $_offset = 0)
     {
-        $res = $this->db->select('N.commentaire_'.config_item('lng').' as commentaire, M.pseudo, N.date, ROUND(AVG(NC.note)) as moyenne_note')
+        $res = $this->db->select('C.nom_'.config_item('lng').' AS critere, N.commentaire_'.config_item('lng').' as commentaire, M.pseudo, N.date, NC.note, NC.critere_id')
             ->from($this->table.' A')
             ->join($this->tableNotation.' N', 'N.accessoire_id = A.id', 'LEFT')
             ->join($this->tableNotes.' NC', 'NC.accessoire_notation_id = N.id', 'INNER')
+            ->join('critere_accessoire C', 'NC.critere_id = C.id', 'INNER')
             ->join('membre M', 'M.id = N.membre_id', 'INNER')
-            ->group_by('M.id')
+            ->group_by('M.id, NC.critere_id')
             ->limit($_limit, $_offset)
+            ->where(array('A.id' => $_id))
+            ->get()->result();
+
+        return $res ? $res : array();
+    }
+
+    public function get_moyennes_from_accessoire($_id)
+    {
+        $res = $this->db->select('ROUND(AVG(note)) AS note, C.nom_'.config_item('lng').' AS critere')
+            ->from($this->table.' A')
+            ->join($this->tableNotation.' N', 'N.accessoire_id = A.id', 'LEFT')
+            ->join($this->tableNotes.' NC', 'NC.accessoire_notation_id = N.id', 'INNER')
+            ->join('critere_accessoire C', 'NC.critere_id = C.id', 'INNER')
+            ->group_by('NC.critere_id')
             ->where(array('A.id' => $_id))
             ->get()->result();
 

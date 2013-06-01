@@ -323,9 +323,12 @@ class Common_Controller extends MY_Controller
     {
         $this->load->model('Accessoires_model');
         $this->load->model('Applications_model');
+        $criteres = $this->Accessoires_model->get_criteres_for_accessoires();
         $accessoire = $this->Accessoires_model->get_accessoire($_id);
         $accessoire->photos = $this->Accessoires_model->get_photo_from_accessoire($_id);
-        $accessoire->notes = $this->Accessoires_model->get_notes_from_accessoire($_id);
+        $accessoire->notes = $this->Accessoires_model->get_notes_from_accessoire($_id, count($criteres) * 4);
+        $accessoire->moyennes = $this->Accessoires_model->get_moyennes_from_accessoire($_id);
+
         $applications_compatibles = $this->Applications_model->get_applications_compatibles($this->pro, $_id);
         $this->_format_all_prices($applications_compatibles);
         $this->_format_all_notes($applications_compatibles);
@@ -333,7 +336,7 @@ class Common_Controller extends MY_Controller
         $this->_populate_categories_applications($applications_compatibles);
 
         log_message('debug', "applications_compatibles=".var_export($applications_compatibles, true)."");
-        $this->_format_all_notes($accessoire->notes);
+        log_message('debug', "notes=".var_export($accessoire->notes, true)."");
         $this->_format_all_dates($accessoire->notes, 'date', 'datetime');
         $this->_format_note($accessoire);
         $user = $this->session->userdata('user');
@@ -344,7 +347,7 @@ class Common_Controller extends MY_Controller
             'partners' => $this->load->view('inc/partners', '', true),
             'user' => $user,
             'device' => $accessoire,
-            'criteres' => $this->Accessoires_model->get_criteres_for_accessoires(),
+            'criteres' => $criteres,
         );
         if($user)
         {
