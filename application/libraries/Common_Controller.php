@@ -326,7 +326,7 @@ class Common_Controller extends MY_Controller
         $criteres = $this->Accessoires_model->get_criteres_for_accessoires();
         $accessoire = $this->Accessoires_model->get_accessoire($_id);
         $accessoire->photos = $this->Accessoires_model->get_photo_from_accessoire($_id);
-        $accessoire->notes = $this->Accessoires_model->get_notes_from_accessoire($_id, count($criteres) * 4);
+        $accessoire->notes = $this->Accessoires_model->get_notes_from_accessoire($_id, count($criteres) * config_item('nb_comments_page'));
         $accessoire->moyennes = $this->Accessoires_model->get_moyennes_from_accessoire($_id);
 
         $applications_compatibles = $this->Applications_model->get_applications_compatibles($this->pro, $_id);

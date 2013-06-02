@@ -46,16 +46,16 @@ class Accessoire extends REST_Controller {
                 {
                     if($this->Accessoires_model->add_notes_to_accessoire($_accessoire_id, $_user_id, $notes, urldecode($_POST['commentaire'])))
                     {
-                        $this->response(array('status' => 'ok', 'message' => 'youhou', 200));
+                        $this->response(array('status' => 'ok', 'message' => 'Votre note a bien été prise en compte.', 200));
                     }
                     else
                     {
-                        $this->response(array('status' => 'ko', 'errors' => array('ko')), 500);
+                        $this->response(array('status' => 'ko', 'errors' => array("Impossible d'ajouter votre note, veuillez réessayer plus tard.")), 500);
                     }
                 }
                 else
                 {
-                    $this->response(array('status' => 'ko', 'errors' => array('already noted')), 400);
+                    $this->response(array('status' => 'ko', 'errors' => array('Vous avez déjà noté cet accessoire')), 400);
                 }
             }
         }
