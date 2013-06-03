@@ -25,7 +25,7 @@ class Application extends REST_Controller {
         $this->load->model('Applications_model');
         $top5Applis = $this->Applications_model->get_top_five_applications($free, false, $_categorie_id);
         $this->_format_all_prices($top5Applis);
-        $this->_format_all_notes($top5Applis);
+//        $this->_format_all_notes($top5Applis);
 
         if($top5Applis)
         {

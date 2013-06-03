@@ -368,6 +368,8 @@ $config['proxy_ips'] = '';
 $config['note_min'] = 0;
 $config['note_max'] = 10;
 
+$config['contact_mail'] = 'contact@medappcare.com';
+
 $config['nb_results_list'] = 10;
 $config['nb_results_news_list'] = 2;
 

@@ -21,7 +21,7 @@ class Perso extends Common_Controller {
         $this->load->model('Applications_model');
         $top5Applis = $this->Applications_model->get_top_five_applications($_free, false);
         $this->_format_all_prices($top5Applis);
-        $this->_format_all_notes($top5Applis);
+//        $this->_format_all_notes($top5Applis);
         $this->_format_all_links($top5Applis, 'app');
         $this->_populate_categories_applications($top5Applis);
         return $top5Applis;
@@ -33,7 +33,7 @@ class Perso extends Common_Controller {
         $lastEvalApplis = $this->Applications_model->get_last_eval_applications($this->pro);
         $this->_format_all_prices($lastEvalApplis);
         $this->_format_all_links($lastEvalApplis, 'app');
-        $this->_format_all_notes($lastEvalApplis, array('note_medappcare'));
+//        $this->_format_all_notes($lastEvalApplis, array('note_medappcare'));
         $this->_populate_categories_applications($lastEvalApplis);
         return $lastEvalApplis;
     }
@@ -59,7 +59,7 @@ class Perso extends Common_Controller {
             js_url('bootstrap-datepicker'),
             js_url('bootstrap-multiselect'),
             js_url('jquery.checkValidity'),
-            js_url('register'),
+            js_url('membre'),
         ));
         $registerData['nb_countries'] = count(config_item('country_list'));
         $registerData['country_json'] = country_json();
@@ -92,7 +92,7 @@ class Perso extends Common_Controller {
             js_url('bootstrap-datepicker'),
             js_url('bootstrap-multiselect'),
             js_url('jquery.checkValidity'),
-            js_url('register'),
+            js_url('membre'),
         ));
         $espaceData['nb_countries'] = count(config_item('country_list'));
         $espaceData['country_json'] = country_json();

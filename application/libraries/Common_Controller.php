@@ -71,6 +71,8 @@ class Common_Controller extends MY_Controller
             ), true),
             'footer_meta' => $this->load->view('inc/footer_meta', array('js_files' => array_merge(array(
 //                js_url('jquery-2.0.0.min'),
+                js_url('modernizr.custom'),
+                js_url('jquery.dlmenu'),
                 js_url('jquery-ui-1.10.2.custom.min'),
                 js_url('jquery.placeholder.min'),
                 js_url('jquery.flexslider-min'),
@@ -78,8 +80,6 @@ class Common_Controller extends MY_Controller
                 js_url('bootstrap'),
                 js_url('bootstrap-multiselect'),
                 js_url('jquery.bootpag.min'),
-                js_url('modernizr.custom'),
-                js_url('jquery.dlmenu'),
                 js_url('menu'),
                 js_url('login'),
                 js_url('scripts'),
@@ -166,19 +166,19 @@ class Common_Controller extends MY_Controller
         $this->load->model('Devices_model');
         $this->load->model('Articles_model');
         $this->load->model('Applications_model');
+        $this->load->model('Selections_model');
 
         $articles = $this->Articles_model->get_last_articles(1);
         $this->load->helper('format_string');
+        $this->_format_all_dates($articles, 'date_creation');
         foreach ($articles as &$article)
         {
-            $article->date_full = date_full($article->date_creation);
             $article->contenu_short = short_html_text($article->contenu);
         }
         $this->_format_all_links($articles, 'news', "titre");
         $this->_format_all_links($articles, 'news_category', 'nom_categorie', 'categorie_link', 'categorie_id');
         $indexData = array(
             'home_slider' => $this->load->view('inc/home_slider', '', true),
-            'widget_selection' => $this->load->view('inc/widget_selection', '', true),
             $_label_selection_left => $this->load->view('inc/'.$_label_selection_left, $_data_selection_left, true),
             $_label_selection_right => $this->load->view('inc/'.$_label_selection_right, $_data_selection_right, true),
             'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(6)), true),
@@ -186,10 +186,14 @@ class Common_Controller extends MY_Controller
                 'access_label' => $this->access_label,
                 'articles' => $articles
             ), true),
-            'home_pushpartners' => $this->load->view('inc/home_pushpartners', '', true),
+            'home_pushpartners' => $this->load->view('inc/home_pushpartners', array('access_label' => $this->access_label), true),
             'partners' => $this->load->view('inc/partners', '', true),
         );
 
+        $selections = $this->Selections_model->get_selections_from_home($this->access_label);
+        $this->_format_all_links($selections, 'selection', 'nom');
+        $indexData['widget_selection'] = empty($selections) ? '' :
+                                        $this->load->view('inc/widget_selection', array('selections' =>$selections), true);
         $data['inc'] = $this->_getCommonIncludes(array(js_url('list')));
         $template = $this->pro ? 'indexPro' : 'index';
         $data['contenu'] = $this->load->view('contenu/'.$template, $indexData, true);
@@ -202,6 +206,7 @@ class Common_Controller extends MY_Controller
         $this->load->model('Applications_model');
         $this->load->model('Devices_model');
         $this->load->model('Categories_model');
+        $this->load->model('Selections_model');
         $lastEvalApplis = $this->Applications_model->get_last_eval_applications($_id);
         $top5Applis = $this->Applications_model->get_top_five_applications(false, $this->pro, $_id);
         $this->_format_all_prices($lastEvalApplis);
@@ -213,7 +218,6 @@ class Common_Controller extends MY_Controller
         $categorie = $this->Categories_model->get_categorie($_id);
         $this->_format_link($categorie, 'app_category', 'nom', 'link_all', 'id' ,1);
         $categoryData = array(
-            'widget_selection' => $this->load->view('inc/widget_selection', '', true),
             'widget_lasteval' => $this->load->view('inc/widget_lasteval', array(
                 'applications' => $lastEvalApplis,
             ), true),
@@ -230,15 +234,71 @@ class Common_Controller extends MY_Controller
                 'access_label' => $this->access_label,
             ), true),
             'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(6)), true),
-            'home_pushpartners' => $this->load->view('inc/home_pushpartners', '', true),
+            'home_pushpartners' => $this->load->view('inc/home_pushpartners', array('access_label' => $this->access_label), true),
             'partners' => $this->load->view('inc/partners', '', true),
             'categorie' => $categorie,
         );
+
+        $selections = $this->Selections_model->get_selections_from_category($_id);
+        $this->_format_all_links($selections, 'selection', 'nom');
+        $indexData['widget_selection'] = empty($selections) ? '' :
+            $this->load->view('inc/widget_selection', array('selections' =>$selections), true);
 
         $data['inc'] = $this->_getCommonIncludes(array(js_url('list')));
 
         $data['contenu'] = $this->load->view('contenu/category', $categoryData, true);
         $data['body_class'] = 'category '.$this->body_class.' '.$categorie->class;
+        $this->load->view('main', $data);
+    }
+
+    public function selection($_id)
+    {
+        $this->load->model('Selections_model');
+        $selection = $this->Selections_model->get_selection($_id);
+
+        $selectionData = array(
+            'selection' => $selection,
+            'home_pushpartners' => $this->load->view('inc/home_pushpartners', array('access_label' => $this->access_label), true),
+            'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(6)), true),
+            'partners' => $this->load->view('inc/partners', '', true),
+        );
+
+        if($selection->type_selection == Selections_model::TYPE_SELECTION_APPLICATIONS)
+        {
+            $this->load->model('Applications_model');
+            $selection->applications = $this->Applications_model->get_applications_from_selection($_id);
+            $this->_format_all_prices($selection->applications);
+            $this->_format_all_links($selection->applications, 'app');
+            $this->_populate_categories_applications($selection->applications);
+            $selectionData['widget_allappselection'] = $this->load->view('inc/widget_allappselection', array(
+            'selection' => $selection,
+            'app_grid' => $this->load->view('inc/app_grid', array(
+                'selection' => $selection,
+                'applications' => $selection->applications,
+                ), true),
+            ), true);
+        }
+        else if($selection->type_selection == Selections_model::TYPE_SELECTION_ACCESSOIRES)
+        {
+            //@TODO selection d'accessoires
+            $this->load->model('Applications_model');
+            $selection->applications = $this->Applications_model->get_applications_from_selection($_id);
+            $this->_format_all_prices($selection->applications);
+            $this->_format_all_links($selection->applications, 'app');
+            $this->_populate_categories_applications($selection->applications);
+            $selectionData['widget_allappselection'] = $this->load->view('inc/widget_allappselection', array(
+                'selection' => $selection,
+                'app_grid' => $this->load->view('inc/app_grid', array(
+                    'selection' => $selection,
+                    'applications' => $selection->applications,
+                ), true),
+            ), true);
+        }
+
+        $data['inc'] = $this->_getCommonIncludes(array(js_url('list')));
+
+        $data['contenu'] = $this->load->view('contenu/laselec', $selectionData, true);
+        $data['body_class'] = 'selection '.$this->body_class;
         $this->load->view('main', $data);
     }
 
@@ -262,27 +322,42 @@ class Common_Controller extends MY_Controller
     public function device($_id)
     {
         $this->load->model('Accessoires_model');
+        $this->load->model('Applications_model');
+        $criteres = $this->Accessoires_model->get_criteres_for_accessoires();
         $accessoire = $this->Accessoires_model->get_accessoire($_id);
         $accessoire->photos = $this->Accessoires_model->get_photo_from_accessoire($_id);
-        $devices_data = array(
-            'widget_devices' => $this->load->view('inc/widget_devices', '', true),
-            'partners' => $this->load->view('inc/partners', '', true),
-            'device' => $accessoire,
-        );
-//        var_dump($accessoire);
-        $data['inc'] = $this->_getCommonIncludes();
+        $accessoire->notes = $this->Accessoires_model->get_notes_from_accessoire($_id, count($criteres) * config_item('nb_comments_page'));
+        $accessoire->moyennes = $this->Accessoires_model->get_moyennes_from_accessoire($_id);
 
+        $applications_compatibles = $this->Applications_model->get_applications_compatibles($this->pro, $_id);
+        $this->_format_all_prices($applications_compatibles);
+        $this->_format_all_notes($applications_compatibles);
+        $this->_format_all_links($applications_compatibles, 'app');
+        $this->_populate_categories_applications($applications_compatibles);
+
+        log_message('debug', "applications_compatibles=".var_export($applications_compatibles, true)."");
+        log_message('debug', "notes=".var_export($accessoire->notes, true)."");
+        $this->_format_all_dates($accessoire->notes, 'date', 'datetime');
+        $this->_format_note($accessoire);
+        $user = $this->session->userdata('user');
+        $devices_data = array(
+            'widget_deviceapps' => $this->load->view('inc/widget_deviceapps', array(
+                'app_grid' => $this->load->view('inc/app_grid', array('applications' => $applications_compatibles), true),
+            ), true),
+            'partners' => $this->load->view('inc/partners', '', true),
+            'user' => $user,
+            'device' => $accessoire,
+            'criteres' => $criteres,
+        );
+        if($user)
+        {
+            $devices_data['already_noted'] = $this->Accessoires_model->user_has_note_accessoire($_id, $user->id);
+        }
+
+//        var_dump($accessoire);
+        $data['inc'] = $this->_getCommonIncludes(array(js_url('accessoire')));
         $data['contenu'] = $this->load->view('contenu/device', $devices_data, true);
         $data['body_class'] = 'device '.$this->body_class.' '.to_ascii($accessoire->nom);
-        $this->load->view('main', $data);
-    }
-
-    public function mentionslegales()
-    {
-        $data['inc'] = $this->_getCommonIncludes();
-
-        $data['contenu'] = $this->load->view('contenu/mentionslegales', '', true);
-        $data['body_class'] = 'mentionslegales particuliers';
         $this->load->view('main', $data);
     }
 
@@ -316,10 +391,8 @@ class Common_Controller extends MY_Controller
         $articles = $this->Articles_model->get_last_articles($_page);
         $this->load->helper('format_string');
         $this->_format_all_links($articles, 'news');
-        foreach ($articles as &$article)
-        {
-            $article->date_full = date_full($article->date_creation);
-        }
+        $this->_format_all_dates($articles, 'date_creation');
+
         $nb_news = $this->Articles_model->get_count_articles();
         $prev_link = $next_link = null;
         if($nb_news > config_item('nb_results_news_list') * $_page)
@@ -340,12 +413,18 @@ class Common_Controller extends MY_Controller
         $this->load->view('main', $data);
     }
 
-    public function cgu()
+    public function page($_nom)
     {
         $data['inc'] = $this->_getCommonIncludes();
+        $this->load->model('Pages_model');
 
-        $data['contenu'] = $this->load->view('contenu/cgu', '', true);
-        $data['body_class'] = 'cgu particuliers';
+        $page = $this->Pages_model->get_page($_nom);
+        if(!$page)
+        {
+            redirect($this->access_label.'/index');
+        }
+        $data['contenu'] = $this->load->view('contenu/page', array('page' => $page), true);
+        $data['body_class'] = $_nom.' '.$this->body_class;
         $this->load->view('main', $data);
     }
 

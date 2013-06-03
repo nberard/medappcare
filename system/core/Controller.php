@@ -79,6 +79,7 @@
  * @property Editeurs_model $Editeurs_model
  * @property Membres_model $Membres_model
  * @property Plateformes_model $Plateformes_model
+ * @property Pages_model $Pages_model
  */
 class CI_Controller {
 

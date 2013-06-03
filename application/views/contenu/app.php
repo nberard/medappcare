@@ -35,6 +35,19 @@
             	<span class="text">Cet objet est un dispositif médical</span>
             </div>
             <?php endif; ?>
+            <div class="social">
+                <div class="sharingTwitter">
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="fr">Tweet</a>
+                </div>
+                <div class="sharingFacebook">
+                    <div id="fb-root"></div>
+                    <div class="fb-like" data-send="true" data-layout="button_count" data-width="250" data-show-faces="false" data-font="lucida grande"></div>
+                </div>
+                <div class="sharingGoogleplus">
+                    <div class="g-plus" data-action="share"></div>
+                </div>
+            </div>
+            
             <div class="buttons">
                 <a href="#commentModal" class="noter">Noter l'Application</a>
                 <a href="#signalerModal" class="signaler">Signaler</a>
@@ -61,11 +74,6 @@
             <div class="qrcode">
                 <a href="<?php echo $application->lien_download; ?>" target="_blank" title="<?php echo $application->nom; ?>"><img src="<?php echo $application->qr_code_url; ?>" title="Lien vers <?php echo $application->nom; ?>" /></a>
                 <p>Flashez le code ci-dessus ou <a href="<?php echo $application->lien_download; ?>" target="_blank" title="<?php echo $application->nom; ?>">cliquez ici</a> pour télécharger l’app.</p>
-            </div>
-            <div class="social">
-                <div class="sharingTwitter"></div>
-                <div class="sharingFacebook"></div>
-                <div class="sharingGoogleplus"></div>
             </div>
         </div>
         <div id ="thegrid" class="content right">
@@ -109,12 +117,11 @@
 	    	</div>
 	    	
 	    	<div class="tabContent" id="motDelEditeur">
-	    		<div class="logoPart">
-		    		
-		    		<img src="<?php echo img_url('tmp/logo-withings.png'); ?>" alt="[nom-de-l-editeur]"/>
-		    		
-	    		</div>
-	    		<p><?php // echo $device->{"description_".config_item('lng')}; ?></p>
+                <?php if(!empty($application->mot_editeur)): ?>
+	    		<?php echo $application->mot_editeur; ?>
+                <?php else: ?>
+                    Si vous êtes l'éditeur de cette application, contactez-nous par mail à <a href="mailto:<?php echo config_item('contact_mail'); ?>"><?php echo config_item('contact_mail'); ?></a>
+                <?php endif; ?>
 	    	</div>
 	    	
 	    	<div class="tabContent" id="commentaires"> <!-- Liste des commentaires déjà publiés -->

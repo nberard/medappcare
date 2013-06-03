@@ -17,7 +17,7 @@
 #listApps .listapps{width: 447px; height: auto; margin: 50px 0 0 0; float: left; position: relative;}
 
 .lespros #listApps .listapps {margin: 25px 0 0 0;}
-#listApps .listapps h3{background: #0f6eb4; padding: 0 120px 0 15px; line-height: 50px; height: 52px; border: 1px solid #0f6eb4;}
+#listApps .listapps h3{background: #0f6eb4; padding: 0 120px 0 15px; line-height: 50px; height: 50px; border: 1px solid #0f6eb4;}
 .homepage #listApps .listapps h3{padding: 0 15px;}
 
 #listApps > .wrapper ul{border-left: 1px solid #0f6eb4; border-right: 1px solid #0f6eb4;}
@@ -45,7 +45,7 @@
 #listApps .allapps{width: 100%; height: auto; margin: 50px 0; display: block; position: relative; float: left; clear: both;}
 #listApps .allapps h3{background: #79c1d2; border: 1px solid #79c1d2; line-height: 50px; padding: 0 15px; height: 52px;}
 
-#listApps.fullList .allapps {margin: 0;}
+#listApps.fullList .allapps {margin: 50px 0; border-top: 1px solid #79c1d2;}
 
 #listApps > .wrapper .allapps ul{border-left: 1px solid #79c1d2; border-right: 1px solid #79c1d2; padding: 0;}
 #listApps > .wrapper .allapps li{border-bottom: 1px solid #79c1d2; width: 458px; float: left; margin: 0;}
@@ -226,8 +226,8 @@
 
 .search #listApps .allapps{margin: 50px 0 0 0; border-top: 1px solid #79c1d2;}
 
-
-
+.social{margin: 20px 0 30px 0;}
+.social div{width: 100%; margin: 5px auto;}
 
 
 

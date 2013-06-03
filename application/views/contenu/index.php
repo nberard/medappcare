@@ -1,6 +1,8 @@
 <section id="slider"><?php echo $home_slider ; ?></section> <!-- Section Slider -->
 
+<?php if(!empty($widget_selection)): ?>
 <section id="selections"><?php echo $widget_selection ; ?></section> <!-- Section La Sélection Medappcare -->
+<?php endif; ?>
 
 <div class="colorsLine"></div>
 

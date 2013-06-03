@@ -50,7 +50,6 @@ $(document).ready(function()
 
     if($('#search-term').length)
     {
-        $('#link-search').click();
         $('#search-query').val($('#search-term').val());
     }
 });

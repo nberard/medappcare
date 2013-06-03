@@ -25,8 +25,8 @@
                 <li><a href="#">Nos partenaires</a></li>  
                 <li><a href="#">Consulting Medappcare</a></li>  
                 <li><a href="#">Actualités sur Medappcare</a></li>                                                                
-                <li><a href="<?php echo site_url($access_label.'/cgu'); ?>">CGU</a></li>
-                <li><a href="<?php echo site_url($access_label.'/mentionslegales'); ?>">Mentions Légales</a></li>
+                <li><a href="<?php echo site_url($access_label.'/page/cgu'); ?>">CGU</a></li>
+                <li><a href="<?php echo site_url($access_label.'/page/mentionslegales'); ?>">Mentions Légales</a></li>
                 <li><a href="<?php echo site_url($access_label.'/contact'); ?>">Contact</a></li>
             </ul>
         </nav>
@@ -62,37 +62,51 @@
 
 <p class="copyright">&copy; Medappcare 2013 - Tous droits réservés</p>
 
-
-
-
 <div id="dl-menu" class="dl-menuwrapper">
-    <button>Open Menu</button>
-    <ul class="dl-menu">
-        <li class="navMobileItem">
+    <button class="dl-trigger">Open Menu</button>
+    <button id="bt-search">Rechercher</button>
+    <ul class="dl-menu dl-menu-toggle">
+        <li class="navMobileItem masante">
             <a dropdowndestination="masante" href="#">Ma Santé</a>
             <ul class="dl-submenu">
-                <li class="navMobileItem">Addictions</li>
-                <li class="navMobileItem">Allergies</li>
+                <li class="navMobileItem"><a dropdowndestination="addictions" href="#">Addictions</a></li>
+                <li class="navMobileItem"><a dropdowndestination="allergies" href="#">Allergies</a></li>
             </ul>
         </li>
-        <li class="navMobileItem">
+        <li class="navMobileItem monquotidien">
             <a dropdowndestination="monquotidien" href="#">Mon Quotidien</a>
             <ul class="dl-submenu">
-                <li class="navMobileItem">Item 1</li>
-                <li class="navMobileItem">Item 2</li>
+                <li class="navMobileItem"><a dropdowndestination="item" href="#">Item 1</a></li>
+                <li class="navMobileItem"><a dropdowndestination="item" href="#">Item 2</a></li>
             </ul>
         </li>
-        <li>Search</li>
+        <li class="navMobileItem minformer">
+            <a dropdowndestination="minformer" href="#">M'Informer</a>
+            <ul class="dl-submenu">
+                <li class="navMobileItem"><a dropdowndestination="item" href="#">Item 1</a></li>
+                <li class="navMobileItem"><a dropdowndestination="item" href="#">Item 2</a></li>
+            </ul>
+        </li>
+        <li class="navMobileItem medeplacer">
+            <a dropdowndestination="medeplacer" href="#">Me Déplacer</a>
+            <ul class="dl-submenu">
+                <li class="navMobileItem"><a dropdowndestination="item" href="#">Item 1</a></li>
+                <li class="navMobileItem"><a dropdowndestination="item" href="#">Item 2</a></li>
+            </ul>
+        </li>
     </ul>
-
-
-
-
-
-
-
-
-
-
-
 </div> <!-- end mobile menu -->
+
+<script>
+
+/mobi/i.test(navigator.userAgent) && !location.hash && setTimeout(function () {
+  if (!pageYOffset) window.scrollTo(0, 1);
+}, 1000);
+
+
+</script>
+
+
+
+
+

@@ -12,9 +12,9 @@
         <div class="icone"><img width="90px" height="90px" src="<?php echo $device->photo; ?>"></div>
         
         <div class="content right">
-            <div class="appnote noteMedappcare"><span></span><a href="#thegrid" class="note deux">Deux</a></div>
-            <div class="appnote notePro"><span></span><a href="#thegrid" class="note neuf">Cinq</a></div>
-            <div class="appnote noteGens"><span></span><a href="#thegrid" class="note huit">Huit</a></div>
+            <?php if($device->moyenne_note): ?>
+                <div class="appnote noteGens"><span></span><a href="#thegrid" class="note <?php echo $device->class_note; ?>"><?php echo ucfirst($device->class_note); ?></a></div>
+            <?php endif; ?>
         </div>
         
         </div>
@@ -36,10 +36,14 @@
                     <?php endif; ?>
                 </div>
                 <?php endif; ?>
+                <?php if($user): ?>
                 <div class="buttons">
-                    <a href="#" class="noter">Noter l'Application</a>
+                    <?php if(!$already_noted): ?>
+                        <a href="#commentModal" class="noter">Noter le Produit</a>
+                    <?php endif; ?>
                     <a href="#" class="signaler">Signaler</a>
                 </div>
+                <?php endif; ?>
             </div>
             <div class="content right description">
                 <h3>Notre Avis</h3>
@@ -106,22 +110,27 @@
 	    	</div>
 	    	
 	    	<div class="tabContent" id="motDuFabricant">
-                <div class="logoPart">
-
-                    <img src="<?php echo img_url('tmp/logo-withings.png'); ?>" alt="[nom-du-fabricant]"/>
-
-                </div>
-
-                    <p><?php echo $device->mot_fabriquant; ?></p>
-
+                <?php if(!empty($application->mot_fabriquant)): ?>
+                    <?php echo $application->mot_fabriquant; ?>
+                <?php else: ?>
+                    Si vous êtes l'éditeur de cette application, contactez-nous par mail à <a href="mailto:<?php echo config_item('contact_mail'); ?>"><?php echo config_item('contact_mail'); ?></a>
+                <?php endif; ?>
 	    	</div>
 	    	
 	    	<div class="tabContent" id="commentaires">
-	    		Commentaires
+                <?php foreach($device->moyennes as $moyenne): ?>
+                    moyenne pour <?php echo $moyenne->critere; ?> : <?php echo $moyenne->note; ?> <br/>
+                <?php endforeach; ?>
+	    		Commentaires :
+                <?php $cpt = 0; foreach($device->notes as $notation): ?>
+                    <?php $cpt++; echo $notation->pseudo.' a noté cette application '.$notation->date_full.' : '.$notation->note.' / 10 dans '.$notation->critere.'<br/>'; ?>
+                    <?php if($cpt % config_item('nb_comments_page') == 0) echo '<br/>';  ?>
+                <?php endforeach; ?>
+
 	    	</div>
 	    	
 	    	<div class="tabContent" id="appsCompatibles">
-	    		<section id="devices"><?php  //echo $widget_devices; ?></section> <!-- Section App compatobles --> <?php // TODO : remplacer par widget app compatobles ?>
+	    		<section id="devices"><?php  echo $widget_deviceapps; ?></section> <!-- Section App compatobles --> <?php // TODO : remplacer par widget app compatobles ?>
 	    	</div>
 	    	
 	    	<div class="tabContent" id="revueDePresse">
@@ -130,5 +139,24 @@
     	</div>
     	
     </section>
-
+<?php if($user): ?>
 <section id="partners"><?php echo $partners; ?></section> <!-- Section Partenaires -->
+<div class="modal hide fade" id="commentModal">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" id="modal-notation-close"></button>
+        <h3>Noter ce produit</h3>
+    </div>
+    <div class="modal-body">
+        <p class="explication">Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+        <form method="post" id="form-noter-accessoire" data-criteres='<?php echo json_encode($criteres); ?>' data-action="<?php echo site_url('accessoire/'.$device->id.'/note/'.$user->id) ?>" name="email_form" id="email_form">
+            <?php foreach($criteres as $critere): ?>
+                <p><input type="text" id="note-accessoire-<?php echo $critere->id; ?>"/></p>
+            <?php endforeach; ?>
+            <p><textarea id="commentaire-accessoire"></textarea></p>
+            <p><button type="submit" class="btn btn-primary">Envoyer</button>
+        </form>
+    </div>
+    <div id="accessoire-notation-error" class="alert alert-error hide"></div>
+    <div id="accessoire-notation-success" class="success alert-success hide"></div>
+</div>
+<?php endif; ?>

@@ -9,11 +9,15 @@
             <p class="category"><?php echo lang('dans');?> <a href="<?php echo $categorie->link_categorie; ?>"><?php echo $categorie->nom; ?></a></p> <!-- INSÉRER LE LIEN VERS L'APP -->
             <?php endforeach; ?>
         </div>
-        <?php if($application->moyenne_note): ?>
+        <?php if(isset($application->moyenne_note)): ?>
             <div class="note">
                 <span class="<?php echo $application->class_note; ?>"><?php echo $application->moyenne_note; ?></span> <!-- INSÉRER LA NOTE -->
             </div>
-        <?php endif; ?>
+            <?php else: ?>
+                <div class="note">
+                    en cours
+                </div>
+            <?php endif; ?>
         <div class="os">
             <span class="<?php echo $application->device_class; ?>"><?php echo $application->device_nom; ?></span>
         </div>

@@ -1,6 +1,7 @@
 <form class="form-signup" method="post" id="form-signup" data-action="<?php echo site_url('membre'); ?>">
     <h2 class="form-signup-heading">Inscription grand public</h2>
     <div id="reg-error" class="alert alert-error hide"></div>
+    <input type="text" name="pseudo" id="pseudo" class="input-block-level" placeholder="Pseudo (utilisé pour les commentaires)" required>
     <input name="email" type="email" id="reg_email" class="input-block-level" placeholder="Email" required>
     <input name="password" type="password" id="reg_password" class="input-block-level" placeholder="Mot de passe" required>
 
@@ -11,7 +12,7 @@
         <div id="sexe-group" class="btn-group" data-toggle="buttons-radio" >
             <button type="button" class="btn" data-toggle="button" value="H">Homme</button>
             <button type="button" class="btn" data-toggle="button" value="F">Femme</button>
-            <button type="button" class="btn" data-toggle="button" value="A">Autre</button>
+            <button type="button" class="btn" data-toggle="button" value="A">Non précisé</button>
             <input type="hidden" name="sexe" id="sexe" value="" required>
         </div>
     </div>

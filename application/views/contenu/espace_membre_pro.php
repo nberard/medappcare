@@ -1,12 +1,13 @@
-<form id="form-membre-update" class="form-signup" method="post" data-action="<?php echo site_url('membre/index/'.$user->id); ?>"" >
+<form id="form-membre-update" class="form-signup" method="post" data-action="<?php echo site_url('membre/'.$user->id); ?>" >
     <h2 class="form-signup-heading">Mon Espace Pro</h2>
     <div id="update-success" class="alert alert-success hide"></div>
     <div id="update-error" class="alert alert-error hide"></div>
     
-    <input type="text" id="nom" id="nom" class="input-block-level" placeholder="Nom" value="<?php echo $user->nom; ?>" required>
-    <input type="text" id="prenom" id="prenom" class="input-block-level" placeholder="Prénom" value="<?php echo $user->prenom; ?>" required>
-    <input type="email" id="reg_email" id="email" class="input-block-level" placeholder="Email" value="<?php echo $user->email; ?>" required>
-    <input type="password" id="reg_password" id="password" class="input-block-level" placeholder="********">
+    <input type="text" name="nom" id="nom" class="input-block-level" placeholder="Nom" value="<?php echo $user->nom; ?>" required>
+    <input type="text" name="prenom" id="prenom" class="input-block-level" placeholder="Prénom" value="<?php echo $user->prenom; ?>" required>
+    <input type="text" name="pseudo" id="pseudo" class="input-block-level" placeholder="Pseudo" value="<?php echo $user->pseudo; ?>" required disabled>
+    <input type="email" name="email" id="upd_email" class="input-block-level" placeholder="Email" value="<?php echo $user->email; ?>" required>
+    <input type="password" name="password" id="upd_password" class="input-block-level" placeholder="********">
 
     <?php echo form_dropdown('profession', config_item('metiers'), array($user->profession), 'id="profession"'); ?>
 

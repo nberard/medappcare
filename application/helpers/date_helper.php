@@ -7,11 +7,31 @@ if(!function_exists('date_full'))
         $mois = date('F', $timestamp);
         if(config_item('lng') == 'en')
         {
-            return sprintf(lang('date_news'), lang($mois), $tab_date[2], $tab_date[0]);
+            return sprintf(lang('date_format'), lang($mois), $tab_date[2], $tab_date[0]);
         }
         else
         {
-            return sprintf(lang('date_news'), $tab_date[2], lang($mois), $tab_date[0]);
+            return sprintf(lang('date_format'), $tab_date[2], lang($mois), $tab_date[0]);
+        }
+    }
+
+    function  date_time_full($_date)  {
+        log_message('debug', "date_time_full=".var_export($_date, true)."");
+        $tab_date_all = explode(' ', $_date);
+        log_message('debug', "tab_date_all=".var_export($tab_date_all, true)."");
+        $tab_date = explode('-', $tab_date_all[0]);
+        $tab_time = explode(':', $tab_date_all[1]);
+        log_message('debug', "tab_date=".var_export($tab_date, true)."");
+        log_message('debug', "tab_time=".var_export($tab_time, true)."");
+        $timestamp = mktime (intval($tab_time[0]) , intval($tab_time[1]), intval($tab_time[2]), intval($tab_date[1]),intval($tab_date[2]),intval($tab_date[0]));
+        $mois = date('F', $timestamp);
+        if(config_item('lng') == 'en')
+        {
+            return sprintf(lang('date_time_format'), lang($mois), $tab_date[2], $tab_date[0], $tab_time[0], $tab_time[1]);
+        }
+        else
+        {
+            return sprintf(lang('date_time_format'), $tab_date[2], lang($mois), $tab_date[0], $tab_time[0], $tab_time[1]);
         }
     }
 }

@@ -33,7 +33,7 @@
 	                
 	            </select>
 
-                <input type="submit" value="Raffraichir"/>
+                <input type="submit" value="Rafraichir"/>
         	</form>
         </div>
     </div>

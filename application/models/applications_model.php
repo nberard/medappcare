@@ -8,8 +8,7 @@
 class Applications_model extends CI_Model {
 
     protected $table = 'application';
-    protected $tableNotes = 'application_note';
-    protected $tableSelection = 'selection_items';
+//    protected $tableNotes = 'application_note';
     protected $tableEditeur = 'editeur';
     protected $tableMembre = 'membre';
     protected $tableDevice = 'device';
@@ -70,19 +69,25 @@ class Applications_model extends CI_Model {
 
     public function get_last_eval_applications($_pro, $_category_id = -1, $_limit = 5)
     {
-        return $this->get_applications($_pro, -1, $_category_id, null, true, -1, 'id', 'desc', 5);
+        return $this->get_applications($_pro, -1, $_category_id, null, true, -1, -1, -1, 'id', 'desc', 5);
     }
 
-    public function get_applications($_pro, $_devices_id, $_categorie_id, $_term, $_eval_medappcare, $_free, $_sort, $_order, $_limit, $_offset = 0)
+    public function get_applications($_pro, $_devices_id, $_categorie_id, $_term, $_eval_medappcare, $_free, $_selection_id,
+                                     $_accessoire_ref_id, $_sort = 'id', $_order = 'desc', $_limit = 0, $_offset = 0)
     {
-        log_message('debug', "get_applications($_pro, ".var_export($_devices_id,true).", $_categorie_id, $_free, $_sort, $_order, $_limit, $_offset = 0)");
-        $this->db->select('CEIL(AVG(N.note)) AS moyenne_note, A.*, D.nom AS device_nom, D.class as device_class')
+        $callers=debug_backtrace();
+        log_message('debug', "get_applications($_pro, $_devices_id, $_categorie_id, $_term, $_eval_medappcare, $_free, $_selection_id,
+                                     $_accessoire_ref_id, $_sort = 'id', $_order = 'desc', $_limit = 0, $_offset = 0)".' caller = '.var_export($callers[1]['function'], true));
+        $this->db->select('A.*, D.nom AS device_nom, D.class as device_class')
             ->from($this->table.' A')
             ->join($this->tableDevice.' D', 'D.id = A.device_id', 'INNER')
-            ->join($this->tableNotes.' N', 'A.id = N.application_id', 'LEFT')
+//            ->join($this->tableNotes.' N', 'A.id = N.application_id', 'LEFT')
             ->group_by('A.id')
-            ->limit($_limit, $_offset)
             ->order_by($_sort, $_order);
+        if($_limit > 0)
+        {
+            $this->db->limit($_limit, $_offset);
+        }
         if($_categorie_id != -1)
         {
             $this->db->join('application_categorie C', 'A.id = C.application_id', 'INNER');
@@ -119,42 +124,64 @@ class Applications_model extends CI_Model {
             $this->db->select('CEIL(A.note_medappcare) AS moyenne_note_medappcare');
             $this->db->where('A.note_medappcare > 0.00');
         }
-        $this->db->where(array('est_valide' => 1, 'A.est_pro' => $_pro ? 1 : 0));
+        if($_accessoire_ref_id != -1)
+        {
+            $this->db->join('accessoire_application_compatible AAC', 'AAC.application_id = A.id', 'INNER');
+            $this->db->where(array('AAC.accessoire_id' => $_accessoire_ref_id));
+        }
+        if($_selection_id != -1)
+        {
+            $this->db->join('selection_application S', 'S.application_id = A.id', 'INNER');
+        }
+        if(!is_null($_pro))
+        {
+
+            $this->db->where(array('A.est_pro' => $_pro ? 1 : 0));
+        }
+        $this->db->where(array('est_valide' => 1));
         $res = $this->db->get()->result();
         return $res ? $res : array();
+    }
+
+    public function update_note_medappcare($_application_id)
+    {
+
     }
 
     public function get_applications_from_categorie($_pro, $_devices_id, $_categorie_id, $_free, $_sort, $_order, $_page)
     {
         log_message('debug', "get_applications_from_categorie($_pro, ".var_export($_devices_id,true).", $_categorie_id, $_free, $_sort, $_order, $_page)");
-        return $this->get_applications($_pro, $_devices_id, $_categorie_id, null, false, $_free, $_sort, $_order, config_item('nb_results_list'), $_page);
+        return $this->get_applications($_pro, $_devices_id, $_categorie_id, null, false, $_free, -1, -1, $_sort, $_order, config_item('nb_results_list'), $_page);
     }
 
     public function get_applications_classic($_pro, $_devices_id, $_term, $_eval_medapp, $_free, $_sort, $_order, $_page)
     {
-        return $this->get_applications($_pro, $_devices_id, -1, $_term, $_eval_medapp, $_free, $_sort, $_order, config_item('nb_results_list'), $_page);
+        return $this->get_applications($_pro, $_devices_id, -1, $_term, $_eval_medapp, $_free, -1, -1, $_sort, $_order, config_item('nb_results_list'), $_page);
     }
 
     public function get_top_five_applications($_free, $_pro, $_category_id = -1)
     {
-        return $this->get_applications($_pro, -1, $_category_id, null, false, $_free, 'moyenne_note', 'desc', 5);
+        return $this->get_applications($_pro, -1, $_category_id, null, false, $_free, -1, -1, 'id', 'desc', 5);
     }
 
-    public function get_selection_applications($_id_selection)
+    public function get_applications_compatibles($_pro, $_accessoire_id)
     {
-        return $this->db->from($this->table)
-                    ->join($this->tableSelection, $this->table.'.id = '.$this->tableSelection.'.application_id')
-                    ->where(array('selection_id' => $_id_selection))->get()->result();
+        return $this->get_applications($_pro, -1, -1, null, false, -1, -1, $_accessoire_id, 'id', 'desc', 10);
+    }
+
+    public function get_applications_from_selection($_selection_id)
+    {
+        return $this->get_applications(null, -1, -1, null, false, -1, $_selection_id, -1);
     }
 
     public function get_application($_id)
     {
-        return $this->db->select('CEIL(AVG(N1.note)) as moyenne_note_user, CEIL(AVG(N2.note)) as moyenne_note_pro, CEIL(A.note_medappcare) AS moyenne_note_medappcare, A.*, E.nom AS nom_editeur, E.lien_contact, A.class, D.nom AS device_nom, D.class AS device_class')
+        return $this->db->select('A.*, E.nom AS nom_editeur, E.lien_contact, A.class, D.nom AS device_nom, D.class AS device_class')
             ->from($this->table.' A')
-            ->join($this->tableNotes.' N1', 'A.id = N1.application_id', 'LEFT')
-            ->join($this->tableMembre.' M1', 'M1.id = N1.membre_id AND M1.est_pro = 0', 'INNER')
-            ->join($this->tableNotes.' N2', 'A.id = N2.application_id', 'LEFT')
-            ->join($this->tableMembre.' M2', 'M2.id = N2.membre_id AND M2.est_pro = 1', 'INNER')
+//            ->join($this->tableNotes.' N1', 'A.id = N1.application_id', 'LEFT')
+//            ->join($this->tableMembre.' M1', 'M1.id = N1.membre_id AND M1.est_pro = 0', 'INNER')
+//            ->join($this->tableNotes.' N2', 'A.id = N2.application_id', 'LEFT')
+//            ->join($this->tableMembre.' M2', 'M2.id = N2.membre_id AND M2.est_pro = 1', 'INNER')
             ->join($this->tableEditeur.' E', 'E.id = A.editeur_id', 'INNER')
             ->join($this->tableDevice.' D', 'D.id = A.device_id', 'INNER')
 //            ->join($this->tableCategorie.' C', 'C.id = A.categorie_parente_id', 'LEFT')
