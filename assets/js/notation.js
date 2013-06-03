@@ -48,6 +48,10 @@ function handleNotation(type)
 
     function loadNotesAndComments(type, link, render)
     {
+        if($('#'+type+'-notes-pro').length)
+        {
+            link+= '?pro='+$('#'+type+'-notes-pro').val();
+        }
         $.ajax({
             type: 		"GET",
             url:  		link,

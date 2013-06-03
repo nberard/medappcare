@@ -117,6 +117,48 @@ class Application extends REST_Controller {
         }
     }
 
+    public function index_get($_application_id, $_data, $_page)
+    {
+        if($_data == 'notes')
+        {
+            if(is_numeric($_application_id) && is_numeric($_page))
+            {
+                $pro = $this->_get('pro');
+                $pro = ($pro && $pro == 1);
+                $this->load->model('Applications_model');
+                $criteres = $this->Applications_model->get_criteres_for_applications($pro);
+                $notes = $this->Applications_model->get_notes_from_application($pro, $_application_id,
+                    count($criteres) * config_item('nb_comments_page'),
+                    ($_page-1) * count($criteres) * config_item('nb_comments_page'));
+                $number_notes = $this->Applications_model->get_number_notes_from_application($pro, $_application_id);
+                $this->_format_all_dates($notes, 'date', 'datetime');
+                $prev_link = $_page != 1 ? $_page-1 : null;
+                $next_link = $number_notes > config_item('nb_comments_page') * $_page ? $_page+1 : null;
+
+                if($this->response->format == "render")
+                {
+
+                    $data = array(
+                        'notes' => $notes,
+                        'application_id' => $_application_id,
+                        'prev_link' => $prev_link,
+                        'next_link' => $next_link,
+                        'pro' => $pro
+                    );
+                    $this->response($this->load->view('inc/widget_appcomments', $data, true), 200);
+                }
+                else
+                {
+                    $this->response(array('status' => 'ok', 'notes' => $notes), 200);
+                }
+            }
+            else
+            {
+                $this->response(array('status' => 'ko', 'errors' => array('Paramètres invalides')), 400);
+            }
+        }
+    }
+
 }
 
 /* End of file perso.php */

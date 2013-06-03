@@ -133,14 +133,10 @@
 
             <div class="tabContent" id="commentaires">
                 <?php foreach($application->moyennes as $moyenne): ?>
-                moyenne pour <?php echo $moyenne->critere; ?> : <?php echo $moyenne->note; ?> <br/>
+                    moyenne pour <?php echo $moyenne->critere; ?> : <?php echo $moyenne->note; ?> <br/>
                 <?php endforeach; ?>
                 Commentaires :
-                <?php $cpt = 0; foreach($application->notes as $notation): ?>
-                <?php $cpt++; echo $notation->pseudo.' a noté cette application '.$notation->date_full.' : '.$notation->note.' / 10 dans '.$notation->critere.'<br/>'; ?>
-                <?php if($cpt % config_item('nb_comments_page') == 0) echo '<br/>';  ?>
-                <?php endforeach; ?>
-
+                <?php echo $widget_appcomments; ?>
             </div>
 	    	
     	

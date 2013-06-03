@@ -282,6 +282,11 @@ class Applications_model extends CI_Model {
         }
     }
 
+    public function get_number_notes_from_application($_pro, $_id)
+    {
+        return $this->db->where(array('application_id' => $_id))->count_all_results($this->getTableName('notation', $_pro));
+    }
+
     public function get_application_push_from_categorie($_categorie_id)
     {
 //        $this->db->select('A.id, A.nom, A.logo_url')

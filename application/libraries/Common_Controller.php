@@ -308,8 +308,18 @@ class Common_Controller extends MY_Controller
         $this->load->model('Devices_model');
         $application = $this->_get_app_infos($_id);
         $user = $this->session->userdata('user');
+        $number_notes = $this->Applications_model->get_number_notes_from_application($application->est_pro, $_id);
+        $prev_link = null;
+        $next_link = $number_notes > config_item('nb_comments_page') ? 2 : null;
         $appData = array(
             'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(-1, $_id)), true),
+            'widget_appcomments' => $this->load->view('inc/widget_appcomments', array(
+                'notes' => $application->notes,
+                'application_id' => $application->id,
+                'prev_link' => $prev_link,
+                'next_link' => $next_link,
+                'pro' => $application->est_pro,
+            ), true),
             'partners' => $this->load->view('inc/partners', '', true),
             'application' => $application,
         );
@@ -345,10 +355,6 @@ class Common_Controller extends MY_Controller
 
         $prev_link = null;
         $next_link = $number_notes > config_item('nb_comments_page') ? 2 : null;
-        log_message('debug', "nb_comments_page=".var_export(config_item('nb_comments_page'), true)."");
-        log_message('debug', "count crit=".var_export(count($accessoire->criteres), true)."");
-        log_message('debug', "number_notes=".var_export($number_notes, true)."");
-        log_message('debug', "next_link=".var_export($next_link, true)."");
         $this->_format_all_dates($accessoire->notes, 'date', 'datetime');
         $this->_format_note($accessoire);
         $user = $this->session->userdata('user');
