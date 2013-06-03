@@ -36,14 +36,17 @@
                     <?php endif; ?>
                 </div>
                 <?php endif; ?>
-                <?php if($user): ?>
                 <div class="buttons">
+                <?php if($user): ?>
                     <?php if(!$already_noted): ?>
                         <a href="#commentModal" class="noter">Noter le Produit</a>
                     <?php endif; ?>
                     <a href="#" class="signaler">Signaler</a>
-                </div>
+                <?php else: ?>
+                    <a href="#device-connexionModal" class="noter">Noter le Produit</a>
+                    <a href="#" class="signaler">Signaler</a>
                 <?php endif; ?>
+                </div>
             </div>
             <div class="content right description">
                 <h3>Notre Avis</h3>
