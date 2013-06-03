@@ -113,8 +113,8 @@
 	    	</div>
 	    	
 	    	<div class="tabContent" id="motDuFabricant">
-                <?php if(!empty($application->mot_fabriquant)): ?>
-                    <?php echo $application->mot_fabriquant; ?>
+                <?php if(!empty($device->mot_fabriquant)): ?>
+                    <?php echo $device->mot_fabriquant; ?>
                 <?php else: ?>
                     Si vous êtes l'éditeur de cette application, contactez-nous par mail à <a href="mailto:<?php echo config_item('contact_mail'); ?>"><?php echo config_item('contact_mail'); ?></a>
                 <?php endif; ?>
@@ -151,9 +151,9 @@
     </div>
     <div class="modal-body">
         <p class="explication">Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-        <form method="post" id="form-noter-accessoire" data-criteres='<?php echo json_encode($criteres); ?>' data-action="<?php echo site_url('accessoire/'.$device->id.'/note/'.$user->id) ?>" name="email_form" id="email_form">
-            <?php foreach($criteres as $critere): ?>
-                <p><input type="text" id="note-accessoire-<?php echo $critere->id; ?>"/></p>
+        <form method="post" id="form-noter-accessoire" data-criteres='<?php echo json_encode($device->criteres); ?>' data-action="<?php echo site_url('accessoire/'.$device->id.'/note/'.$user->id) ?>">
+            <?php foreach($device->criteres as $critere): ?>
+                <p><label for="note-accessoire-<?php echo $critere->id; ?>"><?php echo $critere->nom; ?></label><input type="text" id="note-accessoire-<?php echo $critere->id; ?>"/></p>
             <?php endforeach; ?>
             <p><textarea id="commentaire-accessoire"></textarea></p>
             <p><button type="submit" class="btn btn-primary">Envoyer</button>

@@ -134,6 +134,10 @@ class Common_Controller extends MY_Controller
             $this->load->model('Application_screenshots_model');
             $application->screenshots = $this->Application_screenshots_model->get_screenshots($application->id);
             $application->qr_code_url = qr_code_url($application->lien_download);
+            $application->criteres = $this->Applications_model->get_criteres_for_applications($application->est_pro);
+            $application->notes = $this->Applications_model->get_notes_from_application($application->est_pro, $_id, count($application->criteres) * config_item('nb_comments_page'));
+            $application->moyennes = $this->Applications_model->get_moyennes_from_application($application->est_pro, $_id);
+            $this->_format_all_dates($application->notes, 'date', 'datetime');
         }
         log_message('debug', "application=".var_export($application, true)."");
         return $application;
@@ -304,15 +308,21 @@ class Common_Controller extends MY_Controller
 
     public function app($_id)
     {
+        $this->load->model('Applications_model');
         $this->load->model('Devices_model');
         $application = $this->_get_app_infos($_id);
+        $user = $this->session->userdata('user');
         $appData = array(
             'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(-1, $_id)), true),
             'partners' => $this->load->view('inc/partners', '', true),
             'application' => $application,
         );
 //var_dump($appData['application']);
-        $data['inc'] = $this->_getCommonIncludes();
+        if($user)
+        {
+            $appData['already_noted'] = $this->Applications_model->user_has_note_application($application->est_pro, $_id, $user->id);
+        }
+        $data['inc'] = $this->_getCommonIncludes(array(js_url('notation')));
 
         $data['contenu'] = $this->load->view('contenu/app', $appData, true);
         $data['body_class'] = 'app '.$this->body_class.(!empty($application->class) ? ' '.$application->class : '');
@@ -323,11 +333,12 @@ class Common_Controller extends MY_Controller
     {
         $this->load->model('Accessoires_model');
         $this->load->model('Applications_model');
-        $criteres = $this->Accessoires_model->get_criteres_for_accessoires();
+
         $accessoire = $this->Accessoires_model->get_accessoire($_id);
         $accessoire->photos = $this->Accessoires_model->get_photo_from_accessoire($_id);
-        $accessoire->notes = $this->Accessoires_model->get_notes_from_accessoire($_id, count($criteres) * config_item('nb_comments_page'));
         $accessoire->moyennes = $this->Accessoires_model->get_moyennes_from_accessoire($_id);
+        $accessoire->criteres = $this->Accessoires_model->get_criteres_for_accessoires();
+        $accessoire->notes = $this->Accessoires_model->get_notes_from_accessoire($_id, count($accessoire->criteres) * config_item('nb_comments_page'));
 
         $applications_compatibles = $this->Applications_model->get_applications_compatibles($this->pro, $_id);
         $this->_format_all_prices($applications_compatibles);
@@ -335,8 +346,6 @@ class Common_Controller extends MY_Controller
         $this->_format_all_links($applications_compatibles, 'app');
         $this->_populate_categories_applications($applications_compatibles);
 
-        log_message('debug', "applications_compatibles=".var_export($applications_compatibles, true)."");
-        log_message('debug', "notes=".var_export($accessoire->notes, true)."");
         $this->_format_all_dates($accessoire->notes, 'date', 'datetime');
         $this->_format_note($accessoire);
         $user = $this->session->userdata('user');
@@ -347,7 +356,6 @@ class Common_Controller extends MY_Controller
             'partners' => $this->load->view('inc/partners', '', true),
             'user' => $user,
             'device' => $accessoire,
-            'criteres' => $criteres,
         );
         if($user)
         {
@@ -355,7 +363,7 @@ class Common_Controller extends MY_Controller
         }
 
 //        var_dump($accessoire);
-        $data['inc'] = $this->_getCommonIncludes(array(js_url('accessoire')));
+        $data['inc'] = $this->_getCommonIncludes(array(js_url('notation')));
         $data['contenu'] = $this->load->view('contenu/device', $devices_data, true);
         $data['body_class'] = 'device '.$this->body_class.' '.to_ascii($accessoire->nom);
         $this->load->view('main', $data);

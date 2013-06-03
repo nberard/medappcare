@@ -10,7 +10,7 @@ class Accessoire extends REST_Controller {
         parent::__construct();
     }
 
-    public function index_put($_accessoire_id, $_action, $_user_id)
+    public function index_post($_accessoire_id, $_action, $_user_id)
     {
         log_message('debug', "Accessoire index_put($_accessoire_id, $_action, $_user_id)");
         if($_action == 'note')
@@ -22,7 +22,7 @@ class Accessoire extends REST_Controller {
             {
                 $list[] = 'note'.$critere->id;
             }
-            $_POST = $this->_put();
+            $_POST = $this->_post();
             foreach($list as $field)
                 if(!isset($_POST[$field]))
                     $_POST[$field] = '';
@@ -59,9 +59,7 @@ class Accessoire extends REST_Controller {
                 }
             }
         }
-
     }
-
 }
 
 /* End of file perso.php */

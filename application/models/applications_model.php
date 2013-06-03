@@ -14,6 +14,14 @@ class Applications_model extends CI_Model {
     protected $tableDevice = 'device';
     protected $tableCategorie = 'categorie';
 
+    protected $tableNotesPro = 'application_critere_note_pro';
+    protected $tableNotationPro = 'application_notation_pro';
+    protected $tableCriteresPro = 'critere_application_pro';
+
+    protected $tableNotesPerso = 'application_critere_note_perso';
+    protected $tableNotationPerso = 'application_notation_perso';
+    protected $tableCriteresPerso = 'critere_application_perso';
+
     public function __construct()
     {
         // Call the Model constructor
@@ -186,6 +194,92 @@ class Applications_model extends CI_Model {
             ->join($this->tableDevice.' D', 'D.id = A.device_id', 'INNER')
 //            ->join($this->tableCategorie.' C', 'C.id = A.categorie_parente_id', 'LEFT')
             ->where(array('A.id' => $_id))->get()->row();
+    }
+
+    public function get_criteres_for_applications($_pro)
+    {
+        return $this->db->select('*, nom_'.config_item('lng').' AS nom')->get($this->getTableName('criteres', $_pro))->result();
+    }
+
+    public function user_has_note_application($_pro, $_application_id, $_membre_id)
+    {
+        return $this->db->where(array('membre_id' => $_membre_id, 'application_id' => $_application_id))->count_all_results($this->getTableName('notation', $_pro)) > 0;
+    }
+
+    private function getTableName($_table, $_pro)
+    {
+        if($_table == 'notes')
+        {
+            return $_pro ? $this->tableNotesPro : $this->tableNotesPerso;
+        }
+        else if($_table == 'notation')
+        {
+            return $_pro ? $this->tableNotationPro : $this->tableNotationPerso;
+        }
+        else if($_table == 'criteres')
+        {
+            return $_pro ? $this->tableCriteresPro : $this->tableCriteresPerso;
+        }
+    }
+
+    public function get_notes_from_application($_pro, $_id, $_limit = 4, $_offset = 0)
+    {
+        $res = $this->db->select('C.nom_'.config_item('lng').' AS critere, N.commentaire_'.config_item('lng').' as commentaire, M.pseudo, N.date, NC.note, NC.critere_id')
+            ->from($this->table.' A')
+            ->join($this->getTableName('notation', $_pro).' N', 'N.application_id = A.id', 'LEFT')
+            ->join($this->getTableName('notes', $_pro).' NC', 'NC.application_notation_id = N.id', 'INNER')
+            ->join($this->getTableName('criteres', $_pro).' C', 'NC.critere_id = C.id', 'INNER')
+            ->join('membre M', 'M.id = N.membre_id', 'INNER')
+            ->group_by('M.id, NC.critere_id')
+            ->limit($_limit, $_offset)
+            ->where(array('A.id' => $_id))
+            ->get()->result();
+
+        return $res ? $res : array();
+    }
+
+    public function get_moyennes_from_application($_pro, $_id)
+    {
+        $res = $this->db->select('ROUND(AVG(note)) AS note, C.nom_'.config_item('lng').' AS critere')
+            ->from($this->table.' A')
+            ->join($this->getTableName('notation', $_pro).' N', 'N.application_id = A.id', 'LEFT')
+            ->join($this->getTableName('notes', $_pro).' NC', 'NC.application_notation_id = N.id', 'INNER')
+            ->join($this->getTableName('criteres', $_pro).' C', 'NC.critere_id = C.id', 'INNER')
+            ->group_by('NC.critere_id')
+            ->where(array('A.id' => $_id))
+            ->get()->result();
+
+        return $res ? $res : array();
+    }
+
+    public function add_notes_to_application($_pro, $_application_id, $_membre_id, $_notes, $_commentaire)
+    {
+        log_message("add_notes_to_application($_pro, $_application_id, $_membre_id, =".var_export($_notes, true).", $_commentaire from".__FUNCTION__."at line ".__LINE__, "nico");
+        $this->db->set('application_id', $_application_id);
+        $this->db->set('membre_id', $_membre_id);
+        $this->db->set('commentaire_'.config_item('lng'), $_commentaire);
+        $this->db->set('est_suspendu', 0);
+        $this->db->set('date', 'NOW()', false);
+        $notation_inserted = $this->db->insert($this->getTableName('notation', $_pro));
+        if($notation_inserted)
+        {
+            $notation_id = $this->db->insert_id();
+            foreach($_notes as $critere_id => $note)
+            {
+                $this->db->set('application_notation_id', $notation_id);
+                $this->db->set('critere_id', $critere_id);
+                $this->db->set('note', $note);
+                if(!$this->db->insert($this->getTableName('notes', $_pro)))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 }
