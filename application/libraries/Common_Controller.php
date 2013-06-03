@@ -43,6 +43,11 @@ class Common_Controller extends MY_Controller
         }
 //        $this->benchmark->mark('get_parents_start');
         $categories_principales = $this->Categories_model->get_categories_parentes($this->pro);
+        $this->load->model('Applications_model');
+        foreach($categories_principales as &$categorie_principale)
+        {
+//            $categorie_principale->push = $this->Applications_model->
+        }
         $categories_principales_target = $this->Categories_model->get_categories_parentes(!$this->pro);
 //        $this->benchmark->mark('get_parents_end');
 //        $this->benchmark->mark('get_enfants_start');
@@ -111,15 +116,6 @@ class Common_Controller extends MY_Controller
                 $this->_format_all_links($_categorie->enfants, 'category', 'nom');
             }
         }
-//        log_message('debug', "_categories_array=".var_export($_categories_array, true));
-//        foreach($_categories_array as &$_categorie)
-//        {
-//            $_categorie->enfants = $this->Categories_model->get_categories_enfantes($_categorie->id);
-//            if($add_link)
-//            {
-//                $this->_format_all_links($_categorie->enfants, 'category', 'nom');
-//            }
-//        }
     }
 
     protected function _get_app_infos($_id)
