@@ -143,10 +143,10 @@
 	    	<div class="tabContent" id="devicesCompatibles">
 	    		<section id="devices"><?php echo $widget_devices; ?></section> <!-- Section Devices connectés -->
 	    	</div>
-	    	
-	    	<div class="tabContent" id="revueDePresse">
-	    		Revue de presse
-	    	</div>
+
+            <div class="tabContent" id="revueDePresse">
+                <p><?php echo $device->presse; ?></p>
+            </div>
     	</div>
     	
 </section>
