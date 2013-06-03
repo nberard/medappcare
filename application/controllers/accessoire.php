@@ -60,6 +60,45 @@ class Accessoire extends REST_Controller {
             }
         }
     }
+
+    public function index_get($_accessoire_id, $_data, $_page)
+    {
+        if($_data == 'notes')
+        {
+            if(is_numeric($_accessoire_id) && is_numeric($_page))
+            {
+                $this->load->model('Accessoires_model');
+                $criteres = $this->Accessoires_model->get_criteres_for_accessoires();
+                $notes = $this->Accessoires_model->get_notes_from_accessoire($_accessoire_id,
+                                        count($criteres) * config_item('nb_comments_page'),
+                                        ($_page-1) * count($criteres) * config_item('nb_comments_page'));
+                $number_notes = $this->Accessoires_model->get_number_notes_from_accessoire($_accessoire_id);
+                $this->_format_all_dates($notes, 'date', 'datetime');
+                $prev_link = $_page != 1 ? $_page-1 : null;
+                $next_link = $number_notes > config_item('nb_comments_page') * $_page ? $_page+1 : null;
+
+                if($this->response->format == "render")
+                {
+
+                    $data = array(
+                        'notes' => $notes,
+                        'device_id' => $_accessoire_id,
+                        'prev_link' => $prev_link,
+                        'next_link' => $next_link,
+                    );
+                    $this->response($this->load->view('inc/widget_devicecomments', $data, true), 200);
+                }
+                else
+                {
+                    $this->response(array('status' => 'ok', 'notes' => $notes), 200);
+                }
+            }
+            else
+            {
+                $this->response(array('status' => 'ko', 'errors' => array('Paramètres invalides')), 400);
+            }
+        }
+    }
 }
 
 /* End of file perso.php */

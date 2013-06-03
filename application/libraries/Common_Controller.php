@@ -336,18 +336,31 @@ class Common_Controller extends MY_Controller
         $accessoire->criteres = $this->Accessoires_model->get_criteres_for_accessoires();
         $accessoire->notes = $this->Accessoires_model->get_notes_from_accessoire($_id, count($accessoire->criteres) * config_item('nb_comments_page'));
 
+        $number_notes = $this->Accessoires_model->get_number_notes_from_accessoire($_id);
         $applications_compatibles = $this->Applications_model->get_applications_compatibles($this->pro, $_id);
         $this->_format_all_prices($applications_compatibles);
         $this->_format_all_notes($applications_compatibles);
         $this->_format_all_links($applications_compatibles, 'app');
         $this->_populate_categories_applications($applications_compatibles);
 
+        $prev_link = null;
+        $next_link = $number_notes > config_item('nb_comments_page') ? 2 : null;
+        log_message('debug', "nb_comments_page=".var_export(config_item('nb_comments_page'), true)."");
+        log_message('debug', "count crit=".var_export(count($accessoire->criteres), true)."");
+        log_message('debug', "number_notes=".var_export($number_notes, true)."");
+        log_message('debug', "next_link=".var_export($next_link, true)."");
         $this->_format_all_dates($accessoire->notes, 'date', 'datetime');
         $this->_format_note($accessoire);
         $user = $this->session->userdata('user');
         $devices_data = array(
             'widget_deviceapps' => $this->load->view('inc/widget_deviceapps', array(
                 'app_grid' => $this->load->view('inc/app_grid', array('applications' => $applications_compatibles), true),
+            ), true),
+            'widget_devicecomments' => $this->load->view('inc/widget_devicecomments', array(
+                'notes' => $accessoire->notes,
+                'device_id' => $accessoire->id,
+                'prev_link' => $prev_link,
+                'next_link' => $next_link,
             ), true),
             'partners' => $this->load->view('inc/partners', '', true),
             'user' => $user,

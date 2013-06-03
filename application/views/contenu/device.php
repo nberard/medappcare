@@ -119,19 +119,13 @@
                     Si vous êtes l'éditeur de cette application, contactez-nous par mail à <a href="mailto:<?php echo config_item('contact_mail'); ?>"><?php echo config_item('contact_mail'); ?></a>
                 <?php endif; ?>
 	    	</div>
-	    	
-	    	<div class="tabContent" id="commentaires">
+            <div class="tabContent" id="commentaires">
                 <?php foreach($device->moyennes as $moyenne): ?>
                     moyenne pour <?php echo $moyenne->critere; ?> : <?php echo $moyenne->note; ?> <br/>
                 <?php endforeach; ?>
-	    		Commentaires :
-                <?php $cpt = 0; foreach($device->notes as $notation): ?>
-                    <?php $cpt++; echo $notation->pseudo.' a noté cette application '.$notation->date_full.' : '.$notation->note.' / 10 dans '.$notation->critere.'<br/>'; ?>
-                    <?php if($cpt % config_item('nb_comments_page') == 0) echo '<br/>';  ?>
-                <?php endforeach; ?>
-
-	    	</div>
-	    	
+                Commentaires :
+	    	    <?php echo $widget_devicecomments; ?>
+            </div>
 	    	<div class="tabContent" id="appsCompatibles">
 	    		<section id="devices"><?php  echo $widget_deviceapps; ?></section> <!-- Section App compatobles --> <?php // TODO : remplacer par widget app compatobles ?>
 	    	</div>

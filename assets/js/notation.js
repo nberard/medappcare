@@ -45,6 +45,41 @@ function handleNotation(type)
             return false;
         });
     }
+
+    function loadNotesAndComments(type, link, render)
+    {
+        $.ajax({
+            type: 		"GET",
+            url:  		link,
+            headers: {
+                Accept : render,
+                "Content-Type": render
+            },
+            success: function(data, textStatus, xhr)
+            {
+                $('#'+type+'-notes-browser').replaceWith(data);
+                handleNotation(type);
+            },
+            error: function(xhr, textStatus, error)
+            {
+
+            }
+        });
+    }
+    if($('#'+type+'-comments-nextLink').data('link'))
+    {
+        $('#'+type+'-comments-nextLink').click(function()
+        {
+            loadNotesAndComments(type, $(this).data('link'), $(this).data('render'));
+        });
+    }
+    if($('#'+type+'-comments-previousLink').data('link'))
+    {
+        $('#'+type+'-comments-previousLink').click(function()
+        {
+            loadNotesAndComments(type, $(this).data('link'), $(this).data('render'));
+        });
+    }
 }
 
 $(document).ready(function()

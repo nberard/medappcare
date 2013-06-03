@@ -53,6 +53,7 @@ class Accessoires_model extends CI_Model {
 
     public function get_notes_from_accessoire($_id, $_limit = 4, $_offset = 0)
     {
+        log_message('debug', "get_notes_from_accessoire($_id, $_limit = 4, $_offset = 0)");
         $res = $this->db->select('C.nom_'.config_item('lng').' AS critere, N.commentaire_'.config_item('lng').' as commentaire, M.pseudo, N.date, NC.note, NC.critere_id')
             ->from($this->table.' A')
             ->join($this->tableNotation.' N', 'N.accessoire_id = A.id', 'LEFT')
@@ -127,5 +128,10 @@ class Accessoires_model extends CI_Model {
     public function get_criteres_for_accessoires()
     {
         return $this->db->select('*, nom_'.config_item('lng').' AS nom')->get('critere_accessoire')->result();
+    }
+
+    public function get_number_notes_from_accessoire($_id)
+    {
+        return $this->db->where(array('accessoire_id' => $_id))->count_all_results($this->tableNotation);
     }
 }
