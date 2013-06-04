@@ -43,9 +43,9 @@ a:hover
 		<a href='<?php echo site_url('admin/categories')?>'>Catégories d'applications</a> |
 		<a href='<?php echo site_url('admin/selections')?>'>Sélections d'applications</a> |
         <a href='<?php echo site_url('admin/application_screenshots')?>'>Screenshots d'application</a> |
-		<a href='<?php echo site_url('admin/application_commentaires')?>'>Commentaires d'applications</a> |
-		<a href='<?php echo site_url('admin/application_notes')?>'>Notes d'applications (utilisateurs)</a> |
-		<a href='<?php echo site_url('admin/application_notes_critere')?>'>Notes d'applications (pro)</a> |
+		<a href='<?php echo site_url('admin/application_commentaires_medappcare')?>'>Commentaire Medappcare</a> |
+		<a href='<?php echo site_url('admin/application_notes_medappcare_perso')?>'>Note Medappcare perso</a> |
+		<a href='<?php echo site_url('admin/application_notes_medappcare_pro')?>'>Note Medappcare pro</a> |
 	</div>
 	<div style='height:20px;'></div>  
     <div>
