@@ -365,5 +365,35 @@ class Admin extends CI_Controller
         $this->_admin_output($this->crud->render());
     }
 
+    public function  application_criteres_medappcare_pro()
+    {
+        $this->crud->set_subject("Critères Medappcare pro");
+        $this->crud->set_table('critere_application_medappcare_pro');
+        $this->crud->set_relation('parent_id', 'critere_application_medappcare_pro', '{nom_'.config_item('lng').'}', 'parent_id = -1');
+        $this->_admin_output($this->crud->render());
+
+        $this->crud->callback_after_insert(function($post_array,$primary_key) {
+            $this->_handle_default_values($post_array,$primary_key,array('parent_id' => -1),'critere_application_medappcare_pro');
+        });
+        $this->crud->callback_after_update(function($post_array,$primary_key) {
+            $this->_handle_default_values($post_array,$primary_key,array('parent_id' => -1),'critere_application_medappcare_pro');
+        });
+    }
+
+    public function  application_criteres_medappcare_perso()
+    {
+        $this->crud->set_subject("Critères Medappcare perso");
+        $this->crud->set_table('critere_application_medappcare_perso');
+        $this->crud->set_relation('parent_id', 'critere_application_medappcare_perso', '{nom_'.config_item('lng').'}', 'parent_id = -1');
+        $this->_admin_output($this->crud->render());
+
+        $this->crud->callback_after_insert(function($post_array,$primary_key) {
+            $this->_handle_default_values($post_array,$primary_key,array('parent_id' => -1),'critere_application_medappcare_perso');
+        });
+        $this->crud->callback_after_update(function($post_array,$primary_key) {
+            $this->_handle_default_values($post_array,$primary_key,array('parent_id' => -1),'critere_application_medappcare_perso');
+        });
+    }
+
 
 }

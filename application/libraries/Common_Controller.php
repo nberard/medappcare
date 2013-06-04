@@ -167,7 +167,6 @@ class Common_Controller extends MY_Controller
         $this->load->model('Articles_model');
         $this->load->model('Applications_model');
         $this->load->model('Selections_model');
-
         $articles = $this->Articles_model->get_last_articles(1);
         $this->load->helper('format_string');
         $this->_format_all_dates($articles, 'date_creation');
@@ -590,6 +589,12 @@ class Common_Controller extends MY_Controller
             'term' => $term,
             'eval_medapp' => $eval_medapp,
         );
+    }
+
+    public function test()
+    {
+        $this->load->model('Applications_model');
+        $this->Applications_model->update_note_medappcare(4795);
     }
 
 

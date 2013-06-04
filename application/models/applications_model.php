@@ -151,9 +151,71 @@ class Applications_model extends CI_Model {
         return $res ? $res : array();
     }
 
+    public function get_note_medappcare($_pro, $_application_id)
+    {
+        return $this->db->select('SUM(NP.note) AS somme_notes, CP.parent_id, CP2.poids_pourcent')
+            ->from('application_notation_medappcare NM')
+            ->join($this->getTableName('notes_medappcare', $_pro).' NP', 'NP.application_notation_id=NM.id', 'INNER')
+            ->join($this->getTableName('criteres_medappcare', $_pro).' CP', 'CP.id=NP.critere_id', 'INNER')
+            ->join($this->getTableName('criteres_medappcare', $_pro).' CP2', 'CP2.id=CP.parent_id', 'INNER')
+            ->where(array('NM.application_id' => $_application_id))
+            ->group_by('CP.parent_id')
+            ->get()->result();
+    }
+
     public function update_note_medappcare($_application_id)
     {
+        //calcul des notes users
+        $moyenne_users_pro = $this->get_moyenne_users(true, $_application_id);
+        log_message('debug', "moyenne_pro=".var_export($moyenne_users_pro, true)."");
+        $moyenne_users_perso = $this->get_moyenne_users(false, $_application_id);
+        log_message('debug', "moyenne_perso=".var_export($moyenne_users_perso, true)."");
 
+        //calcul note medappcare si existe
+        $sommes_notes_pro = $this->get_note_medappcare(true, $_application_id);
+        $sommes_notes_perso = $this->get_note_medappcare(false, $_application_id);
+        $note_medappcare_exists = !empty($sommes_notes_pro) && !empty($sommes_notes_perso);
+        if($note_medappcare_exists)
+        {
+            log_message('debug', "OUI");
+            $moyenne_pro = 0;
+            $moyenne_perso = 0;
+            $nb_criteres_pro = count($sommes_notes_pro);
+            $nb_criteres_perso = count($sommes_notes_perso);
+            foreach($sommes_notes_pro as $somme_notes_pro)
+            {
+                $moyenne_pro+=$somme_notes_pro->somme_notes * $somme_notes_pro->poids_pourcent / 100 / $nb_criteres_pro;
+            }
+            foreach($sommes_notes_perso as $somme_notes_perso)
+            {
+                $moyenne_perso+=$somme_notes_perso->somme_notes * $somme_notes_perso->poids_pourcent / 100 / $nb_criteres_perso;
+            }
+            log_message('debug', "moyenne pro=".var_export($moyenne_pro, true)."");
+            log_message('debug', "moyenne perso=".var_export($moyenne_perso, true)."");
+            log_message('debug', "somme_notes_pro=".var_export($sommes_notes_pro, true)."");
+
+            $quotient_medappcare = 1;
+            if($moyenne_users_pro)
+            {
+                $quotient_medappcare-=0.1;
+            }
+            if($moyenne_users_perso)
+            {
+                $quotient_medappcare-=0.1;
+            }
+
+//            $moyenne_medappcare =
+        }
+
+    }
+
+    public function get_moyenne_users($_pro, $_application_id)
+    {
+        return $this->db->select('AVG(NP.note) AS moyenne')
+            ->from($this->getTableName('notation', $_pro).' N')
+            ->join($this->getTableName('notes', $_pro).' NP', 'NP.application_notation_id = N.id', 'INNER')
+            ->where(array('N.application_id' => $_application_id))
+            ->get()->row();
     }
 
     public function get_applications_from_categorie($_pro, $_devices_id, $_categorie_id, $_free, $_sort, $_order, $_page)
@@ -208,17 +270,23 @@ class Applications_model extends CI_Model {
 
     private function getTableName($_table, $_pro)
     {
-        if($_table == 'notes')
+        switch($_table)
         {
-            return $_pro ? $this->tableNotesPro : $this->tableNotesPerso;
-        }
-        else if($_table == 'notation')
-        {
-            return $_pro ? $this->tableNotationPro : $this->tableNotationPerso;
-        }
-        else if($_table == 'criteres')
-        {
-            return $_pro ? $this->tableCriteresPro : $this->tableCriteresPerso;
+            case 'notes':
+                return $_pro ? $this->tableNotesPro : $this->tableNotesPerso;
+                break;
+            case 'notation':
+                return $_pro ? $this->tableNotationPro : $this->tableNotationPerso;
+                break;
+            case 'criteres':
+                return $_pro ? $this->tableCriteresPro : $this->tableCriteresPerso;
+                break;
+            case 'notes_medappcare':
+                return $_pro ? 'application_critere_note_medappcare_perso' : 'application_critere_note_medappcare_pro';
+                break;
+            case 'criteres_medappcare':
+                return $_pro ? 'critere_application_medappcare_perso' : 'critere_application_medappcare_pro';
+                break;
         }
     }
 
@@ -274,6 +342,7 @@ class Applications_model extends CI_Model {
                     return false;
                 }
             }
+            $this->update_note_medappcare($_application_id);
             return true;
         }
         else
