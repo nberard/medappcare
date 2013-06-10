@@ -16,13 +16,9 @@ if(!function_exists('date_full'))
     }
 
     function  date_time_full($_date)  {
-        log_message('debug', "date_time_full=".var_export($_date, true)."");
         $tab_date_all = explode(' ', $_date);
-        log_message('debug', "tab_date_all=".var_export($tab_date_all, true)."");
         $tab_date = explode('-', $tab_date_all[0]);
         $tab_time = explode(':', $tab_date_all[1]);
-        log_message('debug', "tab_date=".var_export($tab_date, true)."");
-        log_message('debug', "tab_time=".var_export($tab_time, true)."");
         $timestamp = mktime (intval($tab_time[0]) , intval($tab_time[1]), intval($tab_time[2]), intval($tab_date[1]),intval($tab_date[2]),intval($tab_date[0]));
         $mois = date('F', $timestamp);
         if(config_item('lng') == 'en')

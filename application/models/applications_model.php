@@ -9,11 +9,18 @@ class Applications_model extends CI_Model {
 
     protected $table = 'application';
 //    protected $tableNotes = 'application_note';
-    protected $tableSelection = 'selection_items';
     protected $tableEditeur = 'editeur';
     protected $tableMembre = 'membre';
     protected $tableDevice = 'device';
     protected $tableCategorie = 'categorie';
+
+    protected $tableNotesPro = 'application_critere_note_pro';
+    protected $tableNotationPro = 'application_notation_pro';
+    protected $tableCriteresPro = 'critere_application_pro';
+
+    protected $tableNotesPerso = 'application_critere_note_perso';
+    protected $tableNotationPerso = 'application_notation_perso';
+    protected $tableCriteresPerso = 'critere_application_perso';
 
     public function __construct()
     {
@@ -70,19 +77,25 @@ class Applications_model extends CI_Model {
 
     public function get_last_eval_applications($_pro, $_category_id = -1, $_limit = 5)
     {
-        return $this->get_applications($_pro, -1, $_category_id, null, true, -1, -1, 'id', 'desc', 5);
+        return $this->get_applications($_pro, -1, $_category_id, null, true, -1, -1, -1, 'id', 'desc', 5);
     }
 
-    public function get_applications($_pro, $_devices_id, $_categorie_id, $_term, $_eval_medappcare, $_free, $_accessoire_ref_id, $_sort, $_order, $_limit, $_offset = 0)
+    public function get_applications($_pro, $_devices_id, $_categorie_id, $_term, $_eval_medappcare, $_free, $_selection_id,
+                                     $_accessoire_ref_id, $_sort = 'id', $_order = 'desc', $_limit = 0, $_offset = 0)
     {
-        log_message('debug', "get_applications($_pro, ".var_export($_devices_id,true).", $_categorie_id, $_free, $_sort, $_order, $_limit, $_offset = 0)");
+        $callers=debug_backtrace();
+        log_message('debug', "get_applications($_pro, $_devices_id, $_categorie_id, $_term, $_eval_medappcare, $_free, $_selection_id,
+                                     $_accessoire_ref_id, $_sort = 'id', $_order = 'desc', $_limit = 0, $_offset = 0)".' caller = '.var_export($callers[1]['function'], true));
         $this->db->select('A.*, D.nom AS device_nom, D.class as device_class')
             ->from($this->table.' A')
             ->join($this->tableDevice.' D', 'D.id = A.device_id', 'INNER')
 //            ->join($this->tableNotes.' N', 'A.id = N.application_id', 'LEFT')
             ->group_by('A.id')
-            ->limit($_limit, $_offset)
             ->order_by($_sort, $_order);
+        if($_limit > 0)
+        {
+            $this->db->limit($_limit, $_offset);
+        }
         if($_categorie_id != -1)
         {
             $this->db->join('application_categorie C', 'A.id = C.application_id', 'INNER');
@@ -124,37 +137,111 @@ class Applications_model extends CI_Model {
             $this->db->join('accessoire_application_compatible AAC', 'AAC.application_id = A.id', 'INNER');
             $this->db->where(array('AAC.accessoire_id' => $_accessoire_ref_id));
         }
-        $this->db->where(array('est_valide' => 1, 'A.est_pro' => $_pro ? 1 : 0));
+        if($_selection_id != -1)
+        {
+            $this->db->join('selection_application S', 'S.application_id = A.id', 'INNER');
+        }
+        if(!is_null($_pro))
+        {
+
+            $this->db->where(array('A.est_pro' => $_pro ? 1 : 0));
+        }
+        $this->db->where(array('est_valide' => 1));
         $res = $this->db->get()->result();
         return $res ? $res : array();
+    }
+
+    public function get_note_medappcare($_pro, $_application_id)
+    {
+        return $this->db->select('SUM(NP.note) AS somme_notes, CP.parent_id, CP2.poids_pourcent')
+            ->from('application_notation_medappcare NM')
+            ->join($this->getTableName('notes_medappcare', $_pro).' NP', 'NP.application_notation_id=NM.id', 'INNER')
+            ->join($this->getTableName('criteres_medappcare', $_pro).' CP', 'CP.id=NP.critere_id', 'INNER')
+            ->join($this->getTableName('criteres_medappcare', $_pro).' CP2', 'CP2.id=CP.parent_id', 'INNER')
+            ->where(array('NM.application_id' => $_application_id))
+            ->group_by('CP.parent_id')
+            ->get()->result();
+    }
+
+    public function update_note_medappcare($_application_id)
+    {
+        //calcul des notes users
+        $moyenne_users_pro = $this->get_moyenne_users(true, $_application_id);
+        log_message('debug', "moyenne_pro=".var_export($moyenne_users_pro, true)."");
+        $moyenne_users_perso = $this->get_moyenne_users(false, $_application_id);
+        log_message('debug', "moyenne_perso=".var_export($moyenne_users_perso, true)."");
+
+        //calcul note medappcare si existe
+        $sommes_notes_pro = $this->get_note_medappcare(true, $_application_id);
+        $sommes_notes_perso = $this->get_note_medappcare(false, $_application_id);
+        $note_medappcare_exists = !empty($sommes_notes_pro) && !empty($sommes_notes_perso);
+        if($note_medappcare_exists)
+        {
+            log_message('debug', "OUI");
+            $moyenne_pro = 0;
+            $moyenne_perso = 0;
+            $nb_criteres_pro = count($sommes_notes_pro);
+            $nb_criteres_perso = count($sommes_notes_perso);
+            foreach($sommes_notes_pro as $somme_notes_pro)
+            {
+                $moyenne_pro+=$somme_notes_pro->somme_notes * $somme_notes_pro->poids_pourcent / 100 / $nb_criteres_pro;
+            }
+            foreach($sommes_notes_perso as $somme_notes_perso)
+            {
+                $moyenne_perso+=$somme_notes_perso->somme_notes * $somme_notes_perso->poids_pourcent / 100 / $nb_criteres_perso;
+            }
+            log_message('debug', "moyenne pro=".var_export($moyenne_pro, true)."");
+            log_message('debug', "moyenne perso=".var_export($moyenne_perso, true)."");
+            log_message('debug', "somme_notes_pro=".var_export($sommes_notes_pro, true)."");
+
+            $quotient_medappcare = 1;
+            if($moyenne_users_pro)
+            {
+                $quotient_medappcare-=0.1;
+            }
+            if($moyenne_users_perso)
+            {
+                $quotient_medappcare-=0.1;
+            }
+
+//            $moyenne_medappcare =
+        }
+
+    }
+
+    public function get_moyenne_users($_pro, $_application_id)
+    {
+        return $this->db->select('AVG(NP.note) AS moyenne')
+            ->from($this->getTableName('notation', $_pro).' N')
+            ->join($this->getTableName('notes', $_pro).' NP', 'NP.application_notation_id = N.id', 'INNER')
+            ->where(array('N.application_id' => $_application_id))
+            ->get()->row();
     }
 
     public function get_applications_from_categorie($_pro, $_devices_id, $_categorie_id, $_free, $_sort, $_order, $_page)
     {
         log_message('debug', "get_applications_from_categorie($_pro, ".var_export($_devices_id,true).", $_categorie_id, $_free, $_sort, $_order, $_page)");
-        return $this->get_applications($_pro, $_devices_id, $_categorie_id, null, false, $_free, -1, $_sort, $_order, config_item('nb_results_list'), $_page);
+        return $this->get_applications($_pro, $_devices_id, $_categorie_id, null, false, $_free, -1, -1, $_sort, $_order, config_item('nb_results_list'), $_page);
     }
 
     public function get_applications_classic($_pro, $_devices_id, $_term, $_eval_medapp, $_free, $_sort, $_order, $_page)
     {
-        return $this->get_applications($_pro, $_devices_id, -1, $_term, $_eval_medapp, $_free, -1, $_sort, $_order, config_item('nb_results_list'), $_page);
+        return $this->get_applications($_pro, $_devices_id, -1, $_term, $_eval_medapp, $_free, -1, -1, $_sort, $_order, config_item('nb_results_list'), $_page);
     }
 
     public function get_top_five_applications($_free, $_pro, $_category_id = -1)
     {
-        return $this->get_applications($_pro, -1, $_category_id, null, false, $_free, -1, 'id', 'desc', 5);
+        return $this->get_applications($_pro, -1, $_category_id, null, false, $_free, -1, -1, 'id', 'desc', 5);
     }
 
     public function get_applications_compatibles($_pro, $_accessoire_id)
     {
-        return $this->get_applications($_pro, -1, -1, null, false, -1, $_accessoire_id, 'id', 'desc', 10);
+        return $this->get_applications($_pro, -1, -1, null, false, -1, -1, $_accessoire_id, 'id', 'desc', 10);
     }
 
-    public function get_selection_applications($_id_selection)
+    public function get_applications_from_selection($_selection_id)
     {
-        return $this->db->from($this->table)
-                    ->join($this->tableSelection, $this->table.'.id = '.$this->tableSelection.'.application_id')
-                    ->where(array('selection_id' => $_id_selection))->get()->result();
+        return $this->get_applications(null, -1, -1, null, false, -1, $_selection_id, -1);
     }
 
     public function get_application($_id)
@@ -169,6 +256,111 @@ class Applications_model extends CI_Model {
             ->join($this->tableDevice.' D', 'D.id = A.device_id', 'INNER')
 //            ->join($this->tableCategorie.' C', 'C.id = A.categorie_parente_id', 'LEFT')
             ->where(array('A.id' => $_id))->get()->row();
+    }
+
+    public function get_criteres_for_applications($_pro)
+    {
+        return $this->db->select('*, nom_'.config_item('lng').' AS nom')->get($this->getTableName('criteres', $_pro))->result();
+    }
+
+    public function user_has_note_application($_pro, $_application_id, $_membre_id)
+    {
+        return $this->db->where(array('membre_id' => $_membre_id, 'application_id' => $_application_id))->count_all_results($this->getTableName('notation', $_pro)) > 0;
+    }
+
+    private function getTableName($_table, $_pro)
+    {
+        switch($_table)
+        {
+            case 'notes':
+                return $_pro ? $this->tableNotesPro : $this->tableNotesPerso;
+                break;
+            case 'notation':
+                return $_pro ? $this->tableNotationPro : $this->tableNotationPerso;
+                break;
+            case 'criteres':
+                return $_pro ? $this->tableCriteresPro : $this->tableCriteresPerso;
+                break;
+            case 'notes_medappcare':
+                return $_pro ? 'application_critere_note_medappcare_perso' : 'application_critere_note_medappcare_pro';
+                break;
+            case 'criteres_medappcare':
+                return $_pro ? 'critere_application_medappcare_perso' : 'critere_application_medappcare_pro';
+                break;
+        }
+    }
+
+    public function get_notes_from_application($_pro, $_id, $_limit = 4, $_offset = 0)
+    {
+        $res = $this->db->select('C.nom_'.config_item('lng').' AS critere, N.commentaire_'.config_item('lng').' as commentaire, M.pseudo, N.date, NC.note, NC.critere_id')
+            ->from($this->table.' A')
+            ->join($this->getTableName('notation', $_pro).' N', 'N.application_id = A.id', 'LEFT')
+            ->join($this->getTableName('notes', $_pro).' NC', 'NC.application_notation_id = N.id', 'INNER')
+            ->join($this->getTableName('criteres', $_pro).' C', 'NC.critere_id = C.id', 'INNER')
+            ->join('membre M', 'M.id = N.membre_id', 'INNER')
+            ->group_by('M.id, NC.critere_id')
+            ->limit($_limit, $_offset)
+            ->where(array('A.id' => $_id))
+            ->get()->result();
+
+        return $res ? $res : array();
+    }
+
+    public function get_moyennes_from_application($_pro, $_id)
+    {
+        $res = $this->db->select('ROUND(AVG(note)) AS note, C.nom_'.config_item('lng').' AS critere')
+            ->from($this->table.' A')
+            ->join($this->getTableName('notation', $_pro).' N', 'N.application_id = A.id', 'LEFT')
+            ->join($this->getTableName('notes', $_pro).' NC', 'NC.application_notation_id = N.id', 'INNER')
+            ->join($this->getTableName('criteres', $_pro).' C', 'NC.critere_id = C.id', 'INNER')
+            ->group_by('NC.critere_id')
+            ->where(array('A.id' => $_id))
+            ->get()->result();
+
+        return $res ? $res : array();
+    }
+
+    public function add_notes_to_application($_pro, $_application_id, $_membre_id, $_notes, $_commentaire)
+    {
+        log_message("add_notes_to_application($_pro, $_application_id, $_membre_id, =".var_export($_notes, true).", $_commentaire from".__FUNCTION__."at line ".__LINE__, "nico");
+        $this->db->set('application_id', $_application_id);
+        $this->db->set('membre_id', $_membre_id);
+        $this->db->set('commentaire_'.config_item('lng'), $_commentaire);
+        $this->db->set('est_suspendu', 0);
+        $this->db->set('date', 'NOW()', false);
+        $notation_inserted = $this->db->insert($this->getTableName('notation', $_pro));
+        if($notation_inserted)
+        {
+            $notation_id = $this->db->insert_id();
+            foreach($_notes as $critere_id => $note)
+            {
+                $this->db->set('application_notation_id', $notation_id);
+                $this->db->set('critere_id', $critere_id);
+                $this->db->set('note', $note);
+                if(!$this->db->insert($this->getTableName('notes', $_pro)))
+                {
+                    return false;
+                }
+            }
+            $this->update_note_medappcare($_application_id);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function get_number_notes_from_application($_pro, $_id)
+    {
+        return $this->db->where(array('application_id' => $_id))->count_all_results($this->getTableName('notation', $_pro));
+    }
+
+    public function get_application_push_from_categorie($_categorie_id)
+    {
+//        $this->db->select('A.id, A.nom, A.logo_url')
+//            ->from($this->table)
+//            ->join()
     }
 
 }

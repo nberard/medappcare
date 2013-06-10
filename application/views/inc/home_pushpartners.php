@@ -8,7 +8,7 @@
             </a>
         </li>
         <li class="professionnels">
-        	<a href="<?php echo site_url($access_label.'/page/pro'); ?>" title="Professionnels de Santé">
+        	<a href="<?php echo site_url($access_label.'/page/professionnels'); ?>" title="Professionnels de Santé">
             	<span class="picto"></span>
             	<h4>Professionnels de Santé</h4>
             	<p>Donec ullamcorper nulla non metus auctor fringilla. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo.</p>

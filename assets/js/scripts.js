@@ -163,6 +163,13 @@ $(document).ready(function() {
 		shouldDisplayLostPasswordModal = true;
 		$('#connexionModal').modal('hide');
 	});
+
+    $('a[href="#device-connexionModal"]').click(function(){
+        $('a[href="#connexionModal"]').click();
+    });
+    $('a[href="#application-connexionModal"]').click(function(){
+        $('a[href="#connexionModal"]').click();
+    });
 	
 	$('#connexionModal').on('hide', function() {
 		if (shouldDisplayLostPasswordModal) {

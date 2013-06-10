@@ -24,7 +24,7 @@
 	                </optgroup>
 	                
 	            </select>
-	            
+<!--	            test-->
 	            <select name="sort" id="sort">
                     <option <?php if($search_params['sort'] == 'date_ajout') echo 'selected'; ?> value="date_ajout|desc">Les plus récentes</option>
                     <option <?php if($search_params['sort'] == 'note') echo 'selected'; ?> value="note|desc">Les mieux notées</option>

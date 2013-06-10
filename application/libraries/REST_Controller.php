@@ -266,7 +266,9 @@ abstract class REST_Controller extends MY_Controller
         //fix for index not mandatory
         if(is_numeric($object_called))
         {
-            $arguments[] = $object_called;
+            $new_arguments[] = $object_called;
+            $new_arguments = array_merge($new_arguments, $arguments);
+            $arguments = $new_arguments;
             $object_called = 'index';
         }
         //end fix

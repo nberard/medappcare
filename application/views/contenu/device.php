@@ -37,8 +37,15 @@
                 </div>
                 <?php endif; ?>
                 <div class="buttons">
-                    <a href="#" class="noter">Noter l'Application</a>
+                <?php if($user): ?>
+                    <?php if(!$already_noted): ?>
+                        <a href="#commentModal" class="noter">Noter le Produit</a>
+                    <?php endif; ?>
                     <a href="#" class="signaler">Signaler</a>
+                <?php else: ?>
+                    <a href="#device-connexionModal" class="noter">Noter le Produit</a>
+                    <a href="#" class="signaler">Signaler</a>
+                <?php endif; ?>
                 </div>
             </div>
             <div class="content right description">
@@ -106,21 +113,19 @@
 	    	</div>
 	    	
 	    	<div class="tabContent" id="motDuFabricant">
-                <?php if(!empty($application->mot_fabriquant)): ?>
-                    <?php echo $application->mot_fabriquant; ?>
+                <?php if(!empty($device->mot_fabriquant)): ?>
+                    <?php echo $device->mot_fabriquant; ?>
                 <?php else: ?>
                     Si vous êtes l'éditeur de cette application, contactez-nous par mail à <a href="mailto:<?php echo config_item('contact_mail'); ?>"><?php echo config_item('contact_mail'); ?></a>
                 <?php endif; ?>
 	    	</div>
-	    	
-	    	<div class="tabContent" id="commentaires">
-	    		Commentaires :
-                <?php foreach($device->notes as $notation): ?>
-                    <?php echo $notation->pseudo.' a noté cette application '.$notation->date_full.' : '.$notation->moyenne_note.' / 10 <br/>'; ?>
+            <div class="tabContent" id="commentaires">
+                <?php foreach($device->moyennes as $moyenne): ?>
+                    moyenne pour <?php echo $moyenne->critere; ?> : <?php echo $moyenne->note; ?> <br/>
                 <?php endforeach; ?>
-
-	    	</div>
-	    	
+                Commentaires :
+	    	    <?php echo $widget_devicecomments; ?>
+            </div>
 	    	<div class="tabContent" id="appsCompatibles">
 	    		<section id="devices"><?php  echo $widget_deviceapps; ?></section> <!-- Section App compatobles --> <?php // TODO : remplacer par widget app compatobles ?>
 	    	</div>
@@ -131,5 +136,24 @@
     	</div>
     	
     </section>
-
+<?php if($user): ?>
 <section id="partners"><?php echo $partners; ?></section> <!-- Section Partenaires -->
+<div class="modal hide fade" id="commentModal">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" id="modal-notation-close"></button>
+        <h3>Noter ce produit</h3>
+    </div>
+    <div class="modal-body">
+        <p class="explication">Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+        <form method="post" id="form-noter-accessoire" data-criteres='<?php echo json_encode($device->criteres); ?>' data-action="<?php echo site_url('accessoire/'.$device->id.'/note/'.$user->id) ?>">
+            <?php foreach($device->criteres as $critere): ?>
+                <p><label for="note-accessoire-<?php echo $critere->id; ?>"><?php echo $critere->nom; ?></label><input type="text" id="note-accessoire-<?php echo $critere->id; ?>"/></p>
+            <?php endforeach; ?>
+            <p><textarea id="commentaire-accessoire"></textarea></p>
+            <p><button type="submit" class="btn btn-primary">Envoyer</button>
+        </form>
+    </div>
+    <div id="accessoire-notation-error" class="alert alert-error hide"></div>
+    <div id="accessoire-notation-success" class="success alert-success hide"></div>
+</div>
+<?php endif; ?>

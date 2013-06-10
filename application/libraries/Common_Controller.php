@@ -43,6 +43,11 @@ class Common_Controller extends MY_Controller
         }
 //        $this->benchmark->mark('get_parents_start');
         $categories_principales = $this->Categories_model->get_categories_parentes($this->pro);
+        $this->load->model('Applications_model');
+        foreach($categories_principales as &$categorie_principale)
+        {
+//            $categorie_principale->push = $this->Applications_model->
+        }
         $categories_principales_target = $this->Categories_model->get_categories_parentes(!$this->pro);
 //        $this->benchmark->mark('get_parents_end');
 //        $this->benchmark->mark('get_enfants_start');
@@ -111,15 +116,6 @@ class Common_Controller extends MY_Controller
                 $this->_format_all_links($_categorie->enfants, 'category', 'nom');
             }
         }
-//        log_message('debug', "_categories_array=".var_export($_categories_array, true));
-//        foreach($_categories_array as &$_categorie)
-//        {
-//            $_categorie->enfants = $this->Categories_model->get_categories_enfantes($_categorie->id);
-//            if($add_link)
-//            {
-//                $this->_format_all_links($_categorie->enfants, 'category', 'nom');
-//            }
-//        }
     }
 
     protected function _get_app_infos($_id)
@@ -134,6 +130,10 @@ class Common_Controller extends MY_Controller
             $this->load->model('Application_screenshots_model');
             $application->screenshots = $this->Application_screenshots_model->get_screenshots($application->id);
             $application->qr_code_url = qr_code_url($application->lien_download);
+            $application->criteres = $this->Applications_model->get_criteres_for_applications($application->est_pro);
+            $application->notes = $this->Applications_model->get_notes_from_application($application->est_pro, $_id, count($application->criteres) * config_item('nb_comments_page'));
+            $application->moyennes = $this->Applications_model->get_moyennes_from_application($application->est_pro, $_id);
+            $this->_format_all_dates($application->notes, 'date', 'datetime');
         }
         log_message('debug', "application=".var_export($application, true)."");
         return $application;
@@ -166,7 +166,7 @@ class Common_Controller extends MY_Controller
         $this->load->model('Devices_model');
         $this->load->model('Articles_model');
         $this->load->model('Applications_model');
-
+        $this->load->model('Selections_model');
         $articles = $this->Articles_model->get_last_articles(1);
         $this->load->helper('format_string');
         $this->_format_all_dates($articles, 'date_creation');
@@ -178,7 +178,6 @@ class Common_Controller extends MY_Controller
         $this->_format_all_links($articles, 'news_category', 'nom_categorie', 'categorie_link', 'categorie_id');
         $indexData = array(
             'home_slider' => $this->load->view('inc/home_slider', '', true),
-            'widget_selection' => $this->load->view('inc/widget_selection', '', true),
             $_label_selection_left => $this->load->view('inc/'.$_label_selection_left, $_data_selection_left, true),
             $_label_selection_right => $this->load->view('inc/'.$_label_selection_right, $_data_selection_right, true),
             'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(6)), true),
@@ -186,10 +185,14 @@ class Common_Controller extends MY_Controller
                 'access_label' => $this->access_label,
                 'articles' => $articles
             ), true),
-            'home_pushpartners' => $this->load->view('inc/home_pushpartners', '', true),
+            'home_pushpartners' => $this->load->view('inc/home_pushpartners', array('access_label' => $this->access_label), true),
             'partners' => $this->load->view('inc/partners', '', true),
         );
 
+        $selections = $this->Selections_model->get_selections_from_home($this->access_label);
+        $this->_format_all_links($selections, 'selection', 'nom');
+        $indexData['widget_selection'] = empty($selections) ? '' :
+                                        $this->load->view('inc/widget_selection', array('selections' =>$selections), true);
         $data['inc'] = $this->_getCommonIncludes(array(js_url('list')));
         $template = $this->pro ? 'indexPro' : 'index';
         $data['contenu'] = $this->load->view('contenu/'.$template, $indexData, true);
@@ -202,6 +205,7 @@ class Common_Controller extends MY_Controller
         $this->load->model('Applications_model');
         $this->load->model('Devices_model');
         $this->load->model('Categories_model');
+        $this->load->model('Selections_model');
         $lastEvalApplis = $this->Applications_model->get_last_eval_applications($_id);
         $top5Applis = $this->Applications_model->get_top_five_applications(false, $this->pro, $_id);
         $this->_format_all_prices($lastEvalApplis);
@@ -213,7 +217,6 @@ class Common_Controller extends MY_Controller
         $categorie = $this->Categories_model->get_categorie($_id);
         $this->_format_link($categorie, 'app_category', 'nom', 'link_all', 'id' ,1);
         $categoryData = array(
-            'widget_selection' => $this->load->view('inc/widget_selection', '', true),
             'widget_lasteval' => $this->load->view('inc/widget_lasteval', array(
                 'applications' => $lastEvalApplis,
             ), true),
@@ -230,10 +233,15 @@ class Common_Controller extends MY_Controller
                 'access_label' => $this->access_label,
             ), true),
             'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(6)), true),
-            'home_pushpartners' => $this->load->view('inc/home_pushpartners', '', true),
+            'home_pushpartners' => $this->load->view('inc/home_pushpartners', array('access_label' => $this->access_label), true),
             'partners' => $this->load->view('inc/partners', '', true),
             'categorie' => $categorie,
         );
+
+        $selections = $this->Selections_model->get_selections_from_category($_id);
+        $this->_format_all_links($selections, 'selection', 'nom');
+        $indexData['widget_selection'] = empty($selections) ? '' :
+            $this->load->view('inc/widget_selection', array('selections' =>$selections), true);
 
         $data['inc'] = $this->_getCommonIncludes(array(js_url('list')));
 
@@ -242,17 +250,84 @@ class Common_Controller extends MY_Controller
         $this->load->view('main', $data);
     }
 
+    public function selection($_id)
+    {
+        $this->load->model('Selections_model');
+        $selection = $this->Selections_model->get_selection($_id);
+
+        $selectionData = array(
+            'selection' => $selection,
+            'home_pushpartners' => $this->load->view('inc/home_pushpartners', array('access_label' => $this->access_label), true),
+            'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(6)), true),
+            'partners' => $this->load->view('inc/partners', '', true),
+        );
+
+        if($selection->type_selection == Selections_model::TYPE_SELECTION_APPLICATIONS)
+        {
+            $this->load->model('Applications_model');
+            $selection->applications = $this->Applications_model->get_applications_from_selection($_id);
+            $this->_format_all_prices($selection->applications);
+            $this->_format_all_links($selection->applications, 'app');
+            $this->_populate_categories_applications($selection->applications);
+            $selectionData['widget_allappselection'] = $this->load->view('inc/widget_allappselection', array(
+            'selection' => $selection,
+            'app_grid' => $this->load->view('inc/app_grid', array(
+                'selection' => $selection,
+                'applications' => $selection->applications,
+                ), true),
+            ), true);
+        }
+        else if($selection->type_selection == Selections_model::TYPE_SELECTION_ACCESSOIRES)
+        {
+            //@TODO selection d'accessoires
+            $this->load->model('Applications_model');
+            $selection->applications = $this->Applications_model->get_applications_from_selection($_id);
+            $this->_format_all_prices($selection->applications);
+            $this->_format_all_links($selection->applications, 'app');
+            $this->_populate_categories_applications($selection->applications);
+            $selectionData['widget_allappselection'] = $this->load->view('inc/widget_allappselection', array(
+                'selection' => $selection,
+                'app_grid' => $this->load->view('inc/app_grid', array(
+                    'selection' => $selection,
+                    'applications' => $selection->applications,
+                ), true),
+            ), true);
+        }
+
+        $data['inc'] = $this->_getCommonIncludes(array(js_url('list')));
+
+        $data['contenu'] = $this->load->view('contenu/laselec', $selectionData, true);
+        $data['body_class'] = 'selection '.$this->body_class;
+        $this->load->view('main', $data);
+    }
+
     public function app($_id)
     {
+        $this->load->model('Applications_model');
         $this->load->model('Devices_model');
         $application = $this->_get_app_infos($_id);
+        $user = $this->session->userdata('user');
+        $number_notes = $this->Applications_model->get_number_notes_from_application($application->est_pro, $_id);
+        $prev_link = null;
+        $next_link = $number_notes > config_item('nb_comments_page') ? 2 : null;
         $appData = array(
             'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(-1, $_id)), true),
+            'widget_appcomments' => $this->load->view('inc/widget_appcomments', array(
+                'notes' => $application->notes,
+                'application_id' => $application->id,
+                'prev_link' => $prev_link,
+                'next_link' => $next_link,
+                'pro' => $application->est_pro,
+            ), true),
             'partners' => $this->load->view('inc/partners', '', true),
             'application' => $application,
         );
 //var_dump($appData['application']);
-        $data['inc'] = $this->_getCommonIncludes();
+        if($user)
+        {
+            $appData['already_noted'] = $this->Applications_model->user_has_note_application($application->est_pro, $_id, $user->id);
+        }
+        $data['inc'] = $this->_getCommonIncludes(array(js_url('notation')));
 
         $data['contenu'] = $this->load->view('contenu/app', $appData, true);
         $data['body_class'] = 'app '.$this->body_class.(!empty($application->class) ? ' '.$application->class : '');
@@ -263,39 +338,48 @@ class Common_Controller extends MY_Controller
     {
         $this->load->model('Accessoires_model');
         $this->load->model('Applications_model');
+
         $accessoire = $this->Accessoires_model->get_accessoire($_id);
         $accessoire->photos = $this->Accessoires_model->get_photo_from_accessoire($_id);
-        $accessoire->notes = $this->Accessoires_model->get_notes_from_accessoire($_id);
+        $accessoire->moyennes = $this->Accessoires_model->get_moyennes_from_accessoire($_id);
+        $accessoire->criteres = $this->Accessoires_model->get_criteres_for_accessoires();
+        $accessoire->notes = $this->Accessoires_model->get_notes_from_accessoire($_id, count($accessoire->criteres) * config_item('nb_comments_page'));
+
+        $number_notes = $this->Accessoires_model->get_number_notes_from_accessoire($_id);
         $applications_compatibles = $this->Applications_model->get_applications_compatibles($this->pro, $_id);
         $this->_format_all_prices($applications_compatibles);
         $this->_format_all_notes($applications_compatibles);
         $this->_format_all_links($applications_compatibles, 'app');
         $this->_populate_categories_applications($applications_compatibles);
 
-        log_message('debug', "applications_compatibles=".var_export($applications_compatibles, true)."");
-        $this->_format_all_notes($accessoire->notes);
+        $prev_link = null;
+        $next_link = $number_notes > config_item('nb_comments_page') ? 2 : null;
         $this->_format_all_dates($accessoire->notes, 'date', 'datetime');
         $this->_format_note($accessoire);
+        $user = $this->session->userdata('user');
         $devices_data = array(
             'widget_deviceapps' => $this->load->view('inc/widget_deviceapps', array(
                 'app_grid' => $this->load->view('inc/app_grid', array('applications' => $applications_compatibles), true),
             ), true),
+            'widget_devicecomments' => $this->load->view('inc/widget_devicecomments', array(
+                'notes' => $accessoire->notes,
+                'device_id' => $accessoire->id,
+                'prev_link' => $prev_link,
+                'next_link' => $next_link,
+            ), true),
             'partners' => $this->load->view('inc/partners', '', true),
+            'user' => $user,
             'device' => $accessoire,
         );
+        if($user)
+        {
+            $devices_data['already_noted'] = $this->Accessoires_model->user_has_note_accessoire($_id, $user->id);
+        }
+
 //        var_dump($accessoire);
-        $data['inc'] = $this->_getCommonIncludes();
+        $data['inc'] = $this->_getCommonIncludes(array(js_url('notation')));
         $data['contenu'] = $this->load->view('contenu/device', $devices_data, true);
         $data['body_class'] = 'device '.$this->body_class.' '.to_ascii($accessoire->nom);
-        $this->load->view('main', $data);
-    }
-
-    public function mentionslegales()
-    {
-        $data['inc'] = $this->_getCommonIncludes();
-
-        $data['contenu'] = $this->load->view('contenu/mentionslegales', '', true);
-        $data['body_class'] = 'mentionslegales particuliers';
         $this->load->view('main', $data);
     }
 
@@ -505,6 +589,12 @@ class Common_Controller extends MY_Controller
             'term' => $term,
             'eval_medapp' => $eval_medapp,
         );
+    }
+
+    public function test()
+    {
+        $this->load->model('Applications_model');
+        $this->Applications_model->update_note_medappcare(4795);
     }
 
 

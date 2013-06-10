@@ -47,10 +47,17 @@
                     <div class="g-plus" data-action="share"></div>
                 </div>
             </div>
-            
+
             <div class="buttons">
-                <a href="#commentModal" class="noter">Noter l'Application</a>
-                <a href="#signalerModal" class="signaler">Signaler</a>
+                <?php if($user): ?>
+                <?php if(!$already_noted): ?>
+                    <a href="#commentModal" class="noter">Noter l'Application</a>
+                    <?php endif; ?>
+                <a href="#" class="signaler">Signaler</a>
+                <?php else: ?>
+                <a href="#application-connexionModal" class="noter">Noter l'Application</a>
+                <a href="#" class="signaler">Signaler</a>
+                <?php endif; ?>
             </div>
         </div>
         <div class="content right description"> <!-- Ajouter une condition : s'il n'y a pas l'avis de Medappcare -->
@@ -123,68 +130,23 @@
                     Si vous êtes l'éditeur de cette application, contactez-nous par mail à <a href="mailto:<?php echo config_item('contact_mail'); ?>"><?php echo config_item('contact_mail'); ?></a>
                 <?php endif; ?>
 	    	</div>
-	    	
-	    	<div class="tabContent" id="commentaires"> <!-- Liste des commentaires déjà publiés -->
-	    	    <ul id="list-comentaires" class="commentsList">
-	    	        <li class="commentSingle">
-    	    	        <span class="name">Toto</span>
-    	    	        <span class="note">La note</span>
-    	    	        <p class="comment">Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum.
-	    	    	        Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum.
-	    	    	        Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum.
-    	    	        </p>
-	    	        </li>
-	    	        <li class="commentSingle">
-    	    	        <span class="name">Jean-Pierre</span>
-    	    	        <span class="note">La note</span>
-    	    	        <p class="comment">Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum.</p>
-	    	        </li>
-	    	        <li class="commentSingle">
-    	    	        <span class="name">Toto</span>
-    	    	        <span class="note">La note</span>
-    	    	        <p class="comment">Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum.</p>
-	    	        </li>
-	    	        <!--
-	    	        <li class="commentSingle">
-    	    	        <span class="name">Jean-Pierre</span>
-    	    	        <span class="note">La note</span>
-    	    	        <p class="comment">Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum.</p>
-	    	        </li>
-	    	        <li class="commentSingle">
-    	    	        <span class="name">Toto</span>
-    	    	        <span class="note">La note</span>
-    	    	        <p class="comment">Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum.</p>
-	    	        </li>
-	    	        <li class="commentSingle">
-    	    	        <span class="name">Jean-Pierre</span>
-    	    	        <span class="note">La note</span>
-    	    	        <p class="comment">Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum.</p>
-	    	        </li>
-	    	        <li class="commentSingle">
-    	    	        <span class="name">Toto</span>
-    	    	        <span class="note">La note</span>
-    	    	        <p class="comment">Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum.</p>
-	    	        </li>
-	    	        <li class="commentSingle">
-    	    	        <span class="name">Jean-Pierre</span>
-    	    	        <span class="note">La note</span>
-    	    	        <p class="comment">Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum.</p>
-	    	        </li>	
-	    	        -->    	        	    	        	    	        
-	    	    </ul>
 
-				<div id="pagination-app" class="pagination pagination-centered"></div>
-   		    	
-	    	</div>
+            <div class="tabContent" id="commentaires">
+                <?php foreach($application->moyennes as $moyenne): ?>
+                    moyenne pour <?php echo $moyenne->critere; ?> : <?php echo $moyenne->note; ?> <br/>
+                <?php endforeach; ?>
+                Commentaires :
+                <?php echo $widget_appcomments; ?>
+            </div>
 	    	
     	
 	    	<div class="tabContent" id="devicesCompatibles">
 	    		<section id="devices"><?php echo $widget_devices; ?></section> <!-- Section Devices connectés -->
 	    	</div>
-	    	
-	    	<div class="tabContent" id="revueDePresse">
-	    		Revue de presse
-	    	</div>
+
+            <div class="tabContent" id="revueDePresse">
+                <p><?php echo $device->presse; ?></p>
+            </div>
     	</div>
     	
 </section>
@@ -219,20 +181,25 @@
     <div id="login-error" class="alert alert-error hide"></div>
 </div>
 
+<?php if($user): ?>
+<section id="partners"><?php echo $partners; ?></section> <!-- Section Partenaires -->
 <div class="modal hide fade" id="commentModal">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal"></button>
-    <h3>Noter cette application</h3>
-  </div>
-  <div class="modal-body">
-    <p class="explication">Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-    <form method="post" data-action="<?php echo site_url('rest/signaler') ?>" name="email_form" id="email_form">
-      <p><input name="email" id="email" type="email" required placeholder="Email"></p>
-      <p>Sélectionnez la note</p>
-      <p><textarea id="textCommenter"></textarea></p>
-      <p><button type="submit" class="btn btn-primary">Envoyer</button>
-      </p>
-    </form>
-  </div>
-    <div id="login-error" class="alert alert-error hide"></div>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" id="modal-notation-close"></button>
+        <h3>Noter cette application</h3>
+    </div>
+    <div class="modal-body">
+        <p class="explication">Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+        <form method="post" id="form-noter-application" data-criteres='<?php echo json_encode($application->criteres); ?>' data-action="<?php echo site_url('application/'.$application->id.'/note/'.$user->id) ?>">
+            <input type="hidden" id="application-notation-pro" value="<?php echo $application->est_pro ? 1 : 0; ?>"/>
+            <?php foreach($application->criteres as $critere): ?>
+                <p><label for="note-application-<?php echo $critere->id; ?>"><?php echo $critere->nom; ?></label><input type="text" id="note-application-<?php echo $critere->id; ?>"/></p>
+            <?php endforeach; ?>
+            <p><textarea id="commentaire-application"></textarea></p>
+            <p><button type="submit" class="btn btn-primary">Envoyer</button>
+        </form>
+    </div>
+    <div id="application-notation-error" class="alert alert-error hide"></div>
+    <div id="application-notation-success" class="success alert-success hide"></div>
 </div>
+<?php endif; ?>
