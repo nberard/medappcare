@@ -67,7 +67,7 @@ class Application extends REST_Controller {
 
     public function index_post($_application_id, $_action, $_user_id)
     {
-        log_message('debug', "Application index_put($_application_id, $_action, $_user_id)");
+        log_message('debug', "Application index_post($_application_id, $_action, $_user_id)");
         if($_action == 'note')
         {
             $list = array('commentaire', 'pro');
@@ -88,7 +88,7 @@ class Application extends REST_Controller {
             foreach($criteres as $critere)
             {
                 $notes[$critere->id] = $_POST['note'.$critere->id];
-                $this->form_validation->set_rules('note'.$critere->id, 'Note '.$critere->nom, 'required|is_natural|less_than[11]');
+                $this->form_validation->set_rules('note'.$critere->id, 'Note '.$critere->nom, 'required|is_natural|less_than['.(config_item('note_max_user') + 1).']');
             }
             $this->form_validation->set_rules('commentaire', 'Commentaire', 'required|max_length[512]');
             if(!$this->form_validation->run())
@@ -111,7 +111,7 @@ class Application extends REST_Controller {
                 }
                 else
                 {
-                    $this->response(array('status' => 'ko', 'errors' => array('Vous avez déjà noté cet accessoire')), 400);
+                    $this->response(array('status' => 'ko', 'errors' => array('Vous avez déjà noté ce produit')), 400);
                 }
             }
         }

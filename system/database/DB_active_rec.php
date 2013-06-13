@@ -1660,6 +1660,16 @@ class CI_DB_active_record extends CI_DB_driver {
 		}
 	}
 
+    public function get_compiled_select()
+    {
+        return $this->_compile_select();
+    }
+
+    public function reset_select()
+    {
+        $this->_reset_select();
+    }
+
 	// --------------------------------------------------------------------
 
 	/**

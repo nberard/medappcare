@@ -153,50 +153,65 @@ class Applications_model extends CI_Model {
 
     public function get_note_medappcare($_pro, $_application_id)
     {
-        return $this->db->select('SUM(NP.note) AS somme_notes, CP.parent_id, SUM(CP.poids_pourcent) AS poids_pourcent')
+        log_message('debug', "get_note_medappcare($_pro, $_application_id)");
+        $this->db->select('SUM(NP.note * CP.poids_pourcent) AS somme_notes_pondere, `CP`.`parent_id`, SUM(CP.poids_pourcent) AS poids_pourcent')
             ->from('application_notation_medappcare NM')
             ->join($this->getTableName('notes_medappcare', $_pro).' NP', 'NP.application_notation_id=NM.id', 'INNER')
             ->join($this->getTableName('criteres_medappcare', $_pro).' CP', 'CP.id=NP.critere_id', 'INNER')
 //            ->join($this->getTableName('criteres_medappcare', $_pro).' CP2', 'CP2.id=CP.parent_id', 'INNER')
             ->where(array('NM.application_id' => $_application_id))
-            ->group_by('CP.parent_id')
-            ->get()->result();
+            ->group_by('CP.parent_id');
+        log_message('debug', "sql=".var_export($this->db->get_compiled_select(), true));
+        $sql = $this->db->get_compiled_select();
+
+        $sql = 'SELECT AVG( partial.somme_notes_pondere / partial.poids_pourcent ) AS note_medappcare FROM ('.$sql.') partial';
+        log_message('debug', "sql final=".var_export($sql, true));
+        log_message('debug', "res=".var_export($this->db->query($sql)->row(), true));
+        $row = $this->db->query($sql)->row();
+        $this->db->reset_select();
+        return $row->note_medappcare;
     }
 
-    public function update_note_medappcare($_application_id, $_pro)
+    public function is_application_pro($_application_id)
+    {
+        return $this->db->select('est_pro')->get_where($this->table, array('id' => $_application_id))->row()->est_pro == 1;
+    }
+
+    public function update_note_medappcare($_application_id)
     {
         //calcul note medappcare si existe
-        $sommes_notes = $this->get_note_medappcare($_pro, $_application_id);
-        $note_medappcare_exists = !empty($sommes_notes);
-        if($note_medappcare_exists)
+        $_pro = $this->is_application_pro($_application_id);
+        log_message('debug', "_pro=".var_export($_pro, true));
+        $moyenne_medappcare = $this->get_note_medappcare($_pro, $_application_id);
+        if(!is_null($moyenne_medappcare))
         {
             log_message('debug', "OUI");
             //calcul des notes users
-            $moyenne_users_pro = $this->get_moyenne_users(true, $_application_id);
+            $moyenne_users_pro = $_pro ? $this->get_moyenne_users(true, $_application_id) : null;
             log_message('debug', "moyenne_pro=".var_export($moyenne_users_pro, true)."");
             $moyenne_users_perso = $this->get_moyenne_users(false, $_application_id);
             log_message('debug', "moyenne_perso=".var_export($moyenne_users_perso, true)."");
 
-            $moyenne = 0;
-            foreach($sommes_notes as $somme_notes)
+            log_message('debug', "moyenne_medappcare=".var_export($moyenne_medappcare, true)."");
+
+            $moyenne_medappcare_modulee = $moyenne_medappcare;
+            if(!is_null($moyenne_users_perso))
             {
-                $moyenne+=$somme_notes->somme_notes * $somme_notes->poids_pourcent / 100;
+                $ecart = (($moyenne_users_perso - (config_item('note_max_user') / 2)) * 4 * 10) / 100;
+                log_message('debug', "ecart=".var_export($ecart, true));
+                $moyenne_medappcare_modulee+=$ecart;
+                log_message('debug', "moyenne_medappcare_modulee=".var_export($moyenne_medappcare_modulee, true));
             }
 
-            log_message('debug', "moyenne=".var_export($moyenne, true)."");
-            log_message('debug', "somme_notes_pro=".var_export($sommes_notes_pro, true)."");
-
-            $quotient_medappcare = 1;
-            if($moyenne_users_pro)
+            if(!is_null($moyenne_users_pro))
             {
-                $quotient_medappcare-=0.1;
-            }
-            if($moyenne_users_perso)
-            {
-                $quotient_medappcare-=0.1;
+                $ecart = (($moyenne_users_pro - (config_item('note_max_user') / 2)) * 4 * 10) / 100;
+                log_message('debug', "ecart=".var_export($ecart, true));
+                $moyenne_medappcare_modulee+=$ecart;
+                log_message('debug', "moyenne_medappcare_modulee=".var_export($moyenne_medappcare_modulee, true));
             }
 
-//            $moyenne_medappcare =
+            $this->db->update($this->table, array('note_medappcare' => $moyenne_medappcare_modulee), array('id' => $_application_id));
         }
 
     }
@@ -207,7 +222,7 @@ class Applications_model extends CI_Model {
             ->from($this->getTableName('notation', $_pro).' N')
             ->join($this->getTableName('notes', $_pro).' NP', 'NP.application_notation_id = N.id', 'INNER')
             ->where(array('N.application_id' => $_application_id))
-            ->get()->row();
+            ->get()->row()->moyenne;
     }
 
     public function get_applications_from_categorie($_pro, $_devices_id, $_categorie_id, $_free, $_sort, $_order, $_page)
@@ -274,10 +289,10 @@ class Applications_model extends CI_Model {
                 return $_pro ? $this->tableCriteresPro : $this->tableCriteresPerso;
                 break;
             case 'notes_medappcare':
-                return $_pro ? 'application_critere_note_medappcare_perso' : 'application_critere_note_medappcare_pro';
+                return $_pro ? 'application_critere_note_medappcare_pro' : 'application_critere_note_medappcare_perso';
                 break;
             case 'criteres_medappcare':
-                return $_pro ? 'critere_application_medappcare_perso' : 'critere_application_medappcare_pro';
+                return $_pro ? 'critere_application_medappcare_pro' : 'critere_application_medappcare_perso';
                 break;
         }
     }
