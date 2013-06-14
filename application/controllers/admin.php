@@ -5,7 +5,7 @@
  * Date: 26/03/13
  * Time: 18:21
  */
-class Admin extends CI_Controller
+class Admin extends MY_Controller
 {
     private $crud;
 
@@ -31,12 +31,82 @@ class Admin extends CI_Controller
 
     public function _admin_output($output = null)
     {
-        $this->load->view('admin.php',$output);
+        $this->load->view('admin/admin.php',$output);
     }
 
     public function index()
     {
         $this->_admin_output((object)array('output' => '' , 'js_files' => array() , 'css_files' => array()));
+    }
+
+    public function medappcare($_application_id)
+    {
+        $this->load->model('Applications_model');
+        $pro = $this->Applications_model->is_application_pro($_application_id);
+        if(!empty($_POST))
+        {
+            $this->load->library('form_validation');
+            $this->lang->load('form_validation');
+            $notes = array();
+            $avis = '';
+            $this->form_validation->set_rules('avis', 'Avis', 'required');
+            foreach($_POST as $key => $value)
+            {
+                if(substr($key, 0, 4) == 'note' && is_numeric($critere_id = substr($key, 4)) && $value != "")
+                {
+                    $this->form_validation->set_rules('note'.$critere_id, 'Note', 'is_natural|less_than['.(config_item('note_max_medappcare') + 1).']');
+                    $notes[$critere_id] = $value;
+                }
+                elseif($key == 'avis')
+                {
+                    $avis = $value;
+                }
+            }
+            if(!$this->form_validation->run())
+            {
+                $errors = $this->_validation_get_errors();
+                foreach($errors as $error)
+                {
+                    $this->session->set_flashdata('error', $error);
+                }
+            }
+            else if(count($notes) == 0)
+            {
+                $this->session->set_flashdata('error', "Une note minimum est requise");
+            }
+            else
+            {
+                if($this->Applications_model->add_notes_medappcare_to_application($_application_id, $notes, $avis, $pro))
+                {
+                    $this->session->set_flashdata('success', 'Note Medappcare mise à jour');
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', "Erreur dans l'insertion de la note");
+                }
+            }
+            redirect('admin/medappcare/'.$_application_id,'refresh');
+        }
+        $this->load->model('Applications_model');
+        $criteres = $this->Applications_model->get_criteres_medappcare($pro);
+        $application = $this->Applications_model->get_application($_application_id);
+        if($application->note_medappcare > 0.00)
+        {
+            $notes_criteres = $this->Applications_model->get_notes_criteres_medappcare($application->est_pro, $_application_id);
+            $avis = $this->Applications_model->get_avis_from_application($_application_id);
+        }
+        else
+        {
+            $notes_criteres = array();
+            $avis = '';
+        }
+        log_message('debug', "notes_criteres=".var_export($notes_criteres, true));
+        $this->load->helper('assets');
+        $this->_admin_output((object)array('output' => $this->load->view('admin/medappcare', array(
+            'avis' => $avis,
+            'criteres' => $criteres,
+            'notes_criteres' => $notes_criteres,
+        ), true) , 'js_files' => array() , 'css_files' => array(css_url('bootstrap'))));
     }
 
     public function pages()
@@ -306,6 +376,7 @@ class Admin extends CI_Controller
         $this->crud->set_relation_n_n('accessoires', 'accessoire_application_compatible', 'accessoire', 'application_id', 'accessoire_id', '{nom_'.config_item('lng').'}');
         $this->crud->set_relation_n_n('categories', 'application_categorie', 'categorie', 'application_id', 'categorie_id', '{nom_'.config_item('lng').'} (pro:{est_pro})');
         $this->crud->field_type('class','enum',config_item('body_class_categories'));
+        $this->crud->add_action('Notation Medappcare', '', config_item('lng').'/admin/medappcare','ui-icon-plus');
 
         $this->_admin_output($this->crud->render());
     }

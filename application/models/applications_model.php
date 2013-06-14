@@ -172,6 +172,22 @@ class Applications_model extends CI_Model {
         return $row->note_medappcare;
     }
 
+    public function get_criteres_medappcare($_pro)
+    {
+        $criteres = $this->db->select('*, nom_'.config_item('lng').' AS nom')->get_where($this->getTableName('criteres_medappcare', $_pro))->result();
+        $criteres_ordered = array();
+        foreach($criteres as $critere_obj)
+        {
+            $criteres_ordered[$critere_obj->parent_id][] = $critere_obj;
+        }
+        $criteres_ordered_tree = $criteres_ordered[-1];
+        foreach($criteres_ordered_tree as &$critere_ordered_tree)
+        {
+            $critere_ordered_tree->childs = $criteres_ordered[$critere_ordered_tree->id];
+        }
+        return $criteres_ordered_tree;
+    }
+
     public function is_application_pro($_application_id)
     {
         return $this->db->select('est_pro')->get_where($this->table, array('id' => $_application_id))->row()->est_pro == 1;
@@ -187,9 +203,9 @@ class Applications_model extends CI_Model {
         {
             log_message('debug', "OUI");
             //calcul des notes users
-            $moyenne_users_pro = $_pro ? $this->get_moyenne_users(true, $_application_id) : null;
+            $moyenne_users_pro = $this->get_moyenne_users(true, $_application_id);
             log_message('debug', "moyenne_pro=".var_export($moyenne_users_pro, true)."");
-            $moyenne_users_perso = $this->get_moyenne_users(false, $_application_id);
+            $moyenne_users_perso = !$_pro ? $this->get_moyenne_users(false, $_application_id) : null;
             log_message('debug', "moyenne_perso=".var_export($moyenne_users_perso, true)."");
 
             log_message('debug', "moyenne_medappcare=".var_export($moyenne_medappcare, true)."");
@@ -210,6 +226,14 @@ class Applications_model extends CI_Model {
                 $moyenne_medappcare_modulee+=$ecart;
                 log_message('debug', "moyenne_medappcare_modulee=".var_export($moyenne_medappcare_modulee, true));
             }
+
+            $moyenne_medappcare_modulee = max(
+                config_item('note_min_medappcare'),
+                min(
+                    config_item('note_max_medappcare'),
+                    $moyenne_medappcare_modulee
+                )
+            );
 
             $this->db->update($this->table, array('note_medappcare' => $moyenne_medappcare_modulee), array('id' => $_application_id));
         }
@@ -251,17 +275,39 @@ class Applications_model extends CI_Model {
         return $this->get_applications(null, -1, -1, null, false, -1, $_selection_id, -1);
     }
 
+    public function get_notes_criteres_medappcare($_pro, $_application_id)
+    {
+        $notes_criteres_db = $this->db->select('note, critere_id')
+            ->from($this->getTableName('notes_medappcare', $_pro).' NM')
+            ->join('application_notation_medappcare ANM', 'ANM.id = NM.application_notation_id', 'INNER')
+            ->where(array('ANM.application_id' => $_application_id))
+            ->get()->result();
+        $notes_criteres = array();
+        foreach($notes_criteres_db as $note_criteres_db)
+        {
+            $notes_criteres[$note_criteres_db->critere_id] = $note_criteres_db->note;
+        }
+        return $notes_criteres;
+    }
+
+    public function is_application_evaluated($_application_id)
+    {
+        $row = $this->db->get_where('application_notation_medappcare', array('application_id' => $_application_id))->row();
+        return $row ? $row->id : false;
+    }
+
+    public function get_avis_from_application($_application_id)
+    {
+        $avis_row = $this->db->select('avis_'.config_item('lng').' AS avis')->get_where('application_notation_medappcare', array('application_id' => $_application_id))->row();
+        return $avis_row ? $avis_row->avis : '';
+    }
+
     public function get_application($_id)
     {
         return $this->db->select('A.*, E.nom AS nom_editeur, E.lien_contact, A.class, D.nom AS device_nom, D.class AS device_class')
             ->from($this->table.' A')
-//            ->join($this->tableNotes.' N1', 'A.id = N1.application_id', 'LEFT')
-//            ->join($this->tableMembre.' M1', 'M1.id = N1.membre_id AND M1.est_pro = 0', 'INNER')
-//            ->join($this->tableNotes.' N2', 'A.id = N2.application_id', 'LEFT')
-//            ->join($this->tableMembre.' M2', 'M2.id = N2.membre_id AND M2.est_pro = 1', 'INNER')
             ->join($this->tableEditeur.' E', 'E.id = A.editeur_id', 'INNER')
             ->join($this->tableDevice.' D', 'D.id = A.device_id', 'INNER')
-//            ->join($this->tableCategorie.' C', 'C.id = A.categorie_parente_id', 'LEFT')
             ->where(array('A.id' => $_id))->get()->row();
     }
 
@@ -345,6 +391,39 @@ class Applications_model extends CI_Model {
                 $this->db->set('critere_id', $critere_id);
                 $this->db->set('note', $note);
                 if(!$this->db->insert($this->getTableName('notes', $_pro)))
+                {
+                    return false;
+                }
+            }
+            $this->update_note_medappcare($_application_id);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function add_notes_medappcare_to_application($_application_id, $_notes, $_avis, $_pro)
+    {
+        if($notation_id = $this->is_application_evaluated($_application_id))
+        {
+            $this->db->delete($this->getTableName('notes_medappcare', $_pro), array('application_notation_id' => $notation_id));
+            $this->db->delete('application_notation_medappcare', array('id' => $notation_id));
+        }
+        $this->db->set('application_id', $_application_id);
+        $this->db->set('avis_'.config_item('lng'), $_avis);
+        $this->db->set('date', 'NOW()', false);
+        $notation_inserted = $this->db->insert('application_notation_medappcare');
+        if($notation_inserted)
+        {
+            $notation_id = $this->db->insert_id();
+            foreach($_notes as $critere_id => $note)
+            {
+                $this->db->set('application_notation_id', $notation_id);
+                $this->db->set('critere_id', $critere_id);
+                $this->db->set('note', $note);
+                if(!$this->db->insert($this->getTableName('notes_medappcare', $_pro)))
                 {
                     return false;
                 }

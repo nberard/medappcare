@@ -60,7 +60,7 @@ if(!empty($list)){ ?>
 										$action = $actions[$action_unique_id];
 										?>
 										<li>
-											<a href="<?php echo $action_url; ?>" class="<?php echo $action->css_class; ?> crud-action" title="<?php echo $action->label?>"><?php
+											<a href="<?php echo $action_url; ?>" class="<?php echo $action->css_class; ?> crud-action" title="<?php echo $action->label?>"><?php echo $action->label?><?php
 											if(!empty($action->image_url)){ ?>
 												<img src="<?php echo $action->image_url; ?>" alt="<?php echo $action->label?>" />
 											<?php

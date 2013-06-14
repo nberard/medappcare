@@ -590,12 +590,4 @@ class Common_Controller extends MY_Controller
             'eval_medapp' => $eval_medapp,
         );
     }
-
-    public function test()
-    {
-        $this->load->model('Applications_model');
-        $this->Applications_model->update_note_medappcare(4795);
-    }
-
-
 }
