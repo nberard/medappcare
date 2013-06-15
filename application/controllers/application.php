@@ -58,6 +58,17 @@ class Application extends REST_Controller {
                     $this->load->model('Categories_model');
                     $data['categorie'] = $this->Categories_model->get_categorie($_categorie_id);
                 }
+                if($template == 'widget_allappcategory')
+                {
+                    $data['app_grid'] = $this->load->view('inc/app_grid', array(
+                            'applications' => $top5Applis,
+                            'template_render' => $template,
+                        ), true);
+                    unset($search_settings['eval_medapp']);
+                    $this->_format_link($data['categorie'], 'app_category', 'nom', 'link_all', 'id' ,1, $search_settings);
+                    $data['see_all_link'] = $data['categorie']->link_all;
+                }
+                log_message('debug', "data=".var_export($data, true)."");
                 $this->response($this->load->view('inc/'.$template, $data, true), 200);
             }
             else
@@ -88,6 +99,14 @@ class Application extends REST_Controller {
     {
         $_sort = $this->_get('sort');
         $this->_get_bloc_applis('sort', false, $this->Applications_model->get_pour_les_gens_applications($_sort, $_categorie_id), $_categorie_id);
+    }
+
+    public function allappcategory_get($_categorie_id = -1)
+    {
+        $_free = $this->_get('free');
+        $free = ($_free && $_free == 1);
+        $allappcategory = $this->Applications_model->get_applications_from_categorie(null, -1, $_categorie_id, $free, 'date', 'desc', 0);
+        $this->_get_bloc_applis('free', true, $allappcategory, $_categorie_id);
     }
 
     public function index_post($_application_id, $_action, $_user_id)

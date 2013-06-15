@@ -28,7 +28,7 @@ class Pro extends Common_Controller {
         return $top5Applis;
     }
 
-    protected function _display_pour_les_gens($_sort = 'note')
+    protected function _display_pour_les_gens($_sort = 'date')
     {
         $this->load->model('Applications_model');
         $top5Applis = $this->Applications_model->get_pour_les_gens_applications($_sort);

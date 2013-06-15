@@ -282,10 +282,10 @@ class Applications_model extends CI_Model {
         return $this->db->get()->row()->moyenne;
     }
 
-    public function get_applications_from_categorie($_pro, $_devices_id, $_categorie_id, $_free, $_sort, $_order, $_page)
+    public function get_applications_from_categorie($_pro, $_devices_id, $_categorie_id, $_free, $_sort, $_order, $_offset)
     {
-        log_message('debug', "get_applications_from_categorie($_pro, ".var_export($_devices_id,true).", $_categorie_id, $_free, $_sort, $_order, $_page)");
-        return $this->get_applications($_pro, $_devices_id, $_categorie_id, null, false, $_free, -1, -1, $_sort, $_order, config_item('nb_results_list'), $_page);
+        log_message('debug', "get_applications_from_categorie($_pro, ".var_export($_devices_id,true).", $_categorie_id, $_free, $_sort, $_order, $_offset)");
+        return $this->get_applications($_pro, $_devices_id, $_categorie_id, null, false, $_free, -1, -1, $_sort, $_order, config_item('nb_results_list'), $_offset);
     }
 
     public function get_applications_classic($_pro, $_devices_id, $_term, $_eval_medapp, $_free, $_sort, $_order, $_page)

@@ -220,31 +220,49 @@ class Common_Controller extends MY_Controller
         $this->load->model('Devices_model');
         $this->load->model('Categories_model');
         $this->load->model('Selections_model');
-        $lastEvalApplis = $this->Applications_model->get_last_eval_applications($_id);
+        $lastEvalApplis = $this->Applications_model->get_last_eval_applications($this->pro, $_id);
         $top5Applis = $this->Applications_model->get_top_five_applications(false, $this->pro, $_id);
+
+        $allappcategory = $this->Applications_model->get_applications_from_categorie($this->pro, -1, $_id, false, 'date', 'desc', 0);
+
+
+        $this->_populate_categories_applications($lastEvalApplis);
+        $this->_populate_categories_applications($top5Applis);
+        $this->_populate_categories_applications($allappcategory);
+        log_message('debug', "lastEvalApplis=".var_export($lastEvalApplis, true)."");
         $this->_format_all_prices($lastEvalApplis);
         $this->_format_all_prices($top5Applis);
+        $this->_format_all_prices($allappcategory);
         $this->_format_all_links($lastEvalApplis, 'app');
-        $this->_format_all_links($lastEvalApplis, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
         $this->_format_all_links($top5Applis, 'app');
-        $this->_format_all_links($top5Applis, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
+        $this->_format_all_links($allappcategory, 'app');
+        $this->_format_all_notes($lastEvalApplis, array('note_medappcare'));
         $this->_format_all_notes($top5Applis, array('note_medappcare'));
+        $this->_format_all_notes($allappcategory, array('note_medappcare'));
         log_message('debug', "top5Applis=".var_export($top5Applis, true)."");
         $categorie = $this->Categories_model->get_categorie($_id);
         $this->_format_link($categorie, 'app_category', 'nom', 'link_all', 'id' ,1);
+        log_message('debug', "categorie=".var_export($categorie, true)."");
+        $this->_format_link($categorie, 'app_category', 'nom', 'link_all_topfive', 'id' ,1, array('free' => 0, 'eval_medapp' => 1));
+        $this->_format_link($categorie, 'app_category', 'nom', 'link_all_lasteval', 'id' ,1, array('eval_medapp' => 1, 'sort' => 'date'));
         $categoryData = array(
             'widget_lasteval' => $this->load->view('inc/widget_lasteval', array(
                 'applications' => $lastEvalApplis,
+                'categorie' => $categorie,
+                'see_all_link' => $categorie->link_all_lasteval,
             ), true),
             'widget_topfive' => $this->load->view('inc/widget_topfive', array(
                 'applications' => $top5Applis,
                 'categorie' => $categorie,
                 'free' => false,
                 'template_render' => 'widget_topfive',
+                'see_all_link' => $categorie->link_all_topfive,
             ), true),
             'widget_allappcategory' => $this->load->view('inc/widget_allappcategory', array(
                 'app_grid' => $this->load->view('inc/app_grid', array(
-                    'categorie' => $categorie,
+                    'applications' => $allappcategory,
+                    'template_render' => 'widget_allappcategory',
+                    'see_all_link' => $categorie->link_all,
                 ), true),
                 'access_label' => $this->access_label,
             ), true),
@@ -477,7 +495,7 @@ class Common_Controller extends MY_Controller
         $categorie = $this->Categories_model->get_categorie($_categorie_id);
         $applications = $this->Applications_model->get_applications_from_categorie($this->pro, $search_params['devices'], $_categorie_id, $search_params['free'], $search_params['sort'], $search_params['order'], $offset * config_item('nb_results_list'));
         $this->_format_all_prices($applications);
-        $this->_format_all_notes($applications);
+        $this->_format_all_notes($applications, array('note_medappcare'));
         $this->_format_all_links($applications, 'app');
         $this->_populate_categories_applications($applications);
 
@@ -503,7 +521,7 @@ class Common_Controller extends MY_Controller
             ), true),
             'prev_link' => isset($categorie->link_all_prev) ? $categorie->link_all_prev : null,
             'next_link' => isset($categorie->link_all_next) ? $categorie->link_all_next : null,
-            'titre' => 'Toutes les applications dans '.$categorie->nom,
+//            'titre' => 'Toutes les applications dans '.$categorie->nom,
             'devices' => $devices,
             'search_params' => $search_params,
         ), true);

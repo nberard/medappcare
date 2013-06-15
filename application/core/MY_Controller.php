@@ -84,7 +84,7 @@ class MY_Controller extends CI_Controller {
         }
     }
 
-    protected function _format_link_no_id($_target, $_page = 0, $_params = '')
+    protected function _format_link_no_id($_target, $_page = 0, $_params = array())
     {
         log_message('debug', "_format_link_no_id($_target, $_page = 0, =".var_export($_params, true)."");
         $this->load->helper('url');
