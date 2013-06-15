@@ -75,23 +75,37 @@ class Applications_model extends CI_Model {
         return $this->db->where($_conditionString)->where($_condition_Int, NULL, FALSE)->count_all_results($this->table) > 0;
     }
 
-    public function get_last_eval_applications($_pro, $_category_id = -1, $_limit = 5)
+    public function get_last_eval_applications($_pro, $_category_id = -1)
     {
-        return $this->get_applications($_pro, -1, $_category_id, null, true, -1, -1, -1, 'id', 'desc', 5);
+        return $this->get_applications($_pro, -1, $_category_id, null, true, -1, -1, -1, 'date', 'desc', 5);
     }
 
     public function get_applications($_pro, $_devices_id, $_categorie_id, $_term, $_eval_medappcare, $_free, $_selection_id,
                                      $_accessoire_ref_id, $_sort = 'id', $_order = 'desc', $_limit = 0, $_offset = 0)
     {
         $callers=debug_backtrace();
-        log_message('debug', "get_applications($_pro, $_devices_id, $_categorie_id, $_term, $_eval_medappcare, $_free, $_selection_id,
+        log_message('debug', "get_applications($_pro, ".var_export($_devices_id, true).", $_categorie_id, $_term, $_eval_medappcare, $_free, $_selection_id,
                                      $_accessoire_ref_id, $_sort = 'id', $_order = 'desc', $_limit = 0, $_offset = 0)".' caller = '.var_export($callers[1]['function'], true));
-        $this->db->select('A.*, D.nom AS device_nom, D.class as device_class')
+
+        if($_sort == 'date')
+        {
+            $this->db->join('application_notation_medappcare NM', 'NM.application_id = A.id', 'INNER');
+        }
+        $sort_corresp = array(
+            'date' => 'NM.date',
+            'note' => 'moyenne_note_medappcare',
+        );
+        $_sort = isset($sort_corresp[$_sort]) ? $sort_corresp[$_sort] : $_sort;
+
+        $this->db->select('A.*, D.nom AS device_nom, D.class as device_class,
+                            IF( A.note_medappcare > 0.00, ROUND( A.note_medappcare ) , ROUND( AVG( 2 * ANP.note ) ) ) AS moyenne_note_medappcare')
             ->from($this->table.' A')
             ->join($this->tableDevice.' D', 'D.id = A.device_id', 'INNER')
-//            ->join($this->tableNotes.' N', 'A.id = N.application_id', 'LEFT')
+            ->join($this->getTableName('notation', $_pro).' ANO', 'ANO.application_id = A.id', 'LEFT')
+            ->join($this->getTableName('notes', $_pro).' ANP', 'ANP.application_notation_id = ANO.id', 'LEFT')
             ->group_by('A.id')
             ->order_by($_sort, $_order);
+
         if($_limit > 0)
         {
             $this->db->limit($_limit, $_offset);
@@ -114,7 +128,7 @@ class Applications_model extends CI_Model {
         }
         if(!is_null($_term))
         {
-            $this->db->where("(LOWER(A.nom) LIKE '%".strtolower($_term)."%') OR (LOWER(A.titre) LIKE '%".strtolower($_term)."%')");
+            $this->db->where("((LOWER(A.nom) LIKE '%".strtolower($_term)."%') OR (LOWER(A.titre) LIKE '%".strtolower($_term)."%'))");
         }
         if($_devices_id !== -1)
         {
@@ -129,9 +143,9 @@ class Applications_model extends CI_Model {
         }
         if($_eval_medappcare)
         {
-            $this->db->select('CEIL(A.note_medappcare) AS moyenne_note_medappcare');
             $this->db->where('A.note_medappcare > 0.00');
         }
+
         if($_accessoire_ref_id != -1)
         {
             $this->db->join('accessoire_application_compatible AAC', 'AAC.application_id = A.id', 'INNER');
@@ -143,7 +157,6 @@ class Applications_model extends CI_Model {
         }
         if(!is_null($_pro))
         {
-
             $this->db->where(array('A.est_pro' => $_pro ? 1 : 0));
         }
         $this->db->where(array('est_valide' => 1));
@@ -203,11 +216,19 @@ class Applications_model extends CI_Model {
         {
             log_message('debug', "OUI");
             //calcul des notes users
-            $moyenne_users_pro = $this->get_moyenne_users(true, $_application_id);
-            log_message('debug', "moyenne_pro=".var_export($moyenne_users_pro, true)."");
-            $moyenne_users_perso = !$_pro ? $this->get_moyenne_users(false, $_application_id) : null;
-            log_message('debug', "moyenne_perso=".var_export($moyenne_users_perso, true)."");
-
+            if($_pro)
+            {
+                $moyenne_users_pro = $this->get_moyenne_users(true, $_application_id);
+                log_message('debug', "moyenne_pro=".var_export($moyenne_users_pro, true)."");
+                $moyenne_users_perso = null;
+            }
+            else
+            {
+                $moyenne_users_pro = $this->get_moyenne_users(false, $_application_id, true);
+                log_message('debug', "moyenne_pro=".var_export($moyenne_users_pro, true)."");
+                $moyenne_users_perso = $this->get_moyenne_users(false, $_application_id, false);
+                log_message('debug', "moyenne_perso=".var_export($moyenne_users_perso, true)."");
+            }
             log_message('debug', "moyenne_medappcare=".var_export($moyenne_medappcare, true)."");
 
             $moyenne_medappcare_modulee = $moyenne_medappcare;
@@ -240,13 +261,18 @@ class Applications_model extends CI_Model {
 
     }
 
-    public function get_moyenne_users($_pro, $_application_id)
+    public function get_moyenne_users($_pro, $_application_id, $_membre_pro = null)
     {
-        return $this->db->select('AVG(NP.note) AS moyenne')
+        $this->db->select('AVG(NP.note) AS moyenne')
             ->from($this->getTableName('notation', $_pro).' N')
             ->join($this->getTableName('notes', $_pro).' NP', 'NP.application_notation_id = N.id', 'INNER')
-            ->where(array('N.application_id' => $_application_id))
-            ->get()->row()->moyenne;
+            ->where(array('N.application_id' => $_application_id));
+        if(!is_null($_membre_pro))
+        {
+            $this->db->join('membre M', 'N.membre_id = M.id', 'INNER')
+                ->where(array('M.est_pro' => $_membre_pro == true ? 1 : 0));
+        }
+        return $this->db->get()->row()->moyenne;
     }
 
     public function get_applications_from_categorie($_pro, $_devices_id, $_categorie_id, $_free, $_sort, $_order, $_page)
@@ -262,7 +288,7 @@ class Applications_model extends CI_Model {
 
     public function get_top_five_applications($_free, $_pro, $_category_id = -1)
     {
-        return $this->get_applications($_pro, -1, $_category_id, null, false, $_free, -1, -1, 'id', 'desc', 5);
+        return $this->get_applications($_pro, -1, $_category_id, null, true, $_free, -1, -1, 'id', 'desc', 5);
     }
 
     public function get_applications_compatibles($_pro, $_accessoire_id)

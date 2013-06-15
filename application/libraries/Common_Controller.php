@@ -214,6 +214,8 @@ class Common_Controller extends MY_Controller
         $this->_format_all_links($lastEvalApplis, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
         $this->_format_all_links($top5Applis, 'app');
         $this->_format_all_links($top5Applis, 'category', 'nom_categorie', 'link_categorie', 'categorie_id');
+        $this->_format_all_notes($top5Applis, array('note_medappcare'));
+        log_message('debug', "top5Applis=".var_export($top5Applis, true)."");
         $categorie = $this->Categories_model->get_categorie($_id);
         $this->_format_link($categorie, 'app_category', 'nom', 'link_all', 'id' ,1);
         $categoryData = array(
@@ -499,13 +501,15 @@ class Common_Controller extends MY_Controller
     {
         $offset = $_page-1;
         $this->load->model('Applications_model');
+        log_message('debug', "_GET=".var_export($_GET, true)."");
         $search_params = $this->_get_all_search_params($_GET);
+        log_message('debug', "search_params=".var_export($search_params, true)."");
         $applications = $this->Applications_model->get_applications_classic(
                         $this->pro, $search_params['devices'], $search_params['term'], $search_params['eval_medapp'],
                         $search_params['free'], $search_params['sort'], $search_params['order'], $offset * config_item('nb_results_list')
         );
         $this->_format_all_prices($applications);
-        $this->_format_all_notes($applications);
+        $this->_format_all_notes($applications, array('note_medappcare'));
         $this->_format_all_links($applications, 'app');
         $this->_populate_categories_applications($applications);
         $next_link = count($applications) == config_item('nb_results_list') ?
@@ -554,7 +558,7 @@ class Common_Controller extends MY_Controller
             $devices_ids_bd[] = $device_obj->id;
         }
         $this->load->helper('format_string');
-        $sort = request_get_param($_params, 'sort', 'date_ajout', array('date_ajout', 'prix'));
+        $sort = request_get_param($_params, 'sort', 'date_ajout', array('date_ajout', 'prix', 'note'));
         $order = request_get_param($_params, 'order', 'desc', array('asc', 'desc'));
         $eval_medapp = request_get_param($_params, 'eval_medapp', 0, array(1));
         $term = request_get_param($_params, 'term', null);
@@ -589,5 +593,12 @@ class Common_Controller extends MY_Controller
             'term' => $term,
             'eval_medapp' => $eval_medapp,
         );
+    }
+
+
+    public function test()
+    {
+        $this->load->model('Applications_model');
+        $this->Applications_model->update_note_medappcare(4793);
     }
 }

@@ -25,7 +25,7 @@ class Application extends REST_Controller {
         $this->load->model('Applications_model');
         $top5Applis = $this->Applications_model->get_top_five_applications($free, false, $_categorie_id);
         $this->_format_all_prices($top5Applis);
-//        $this->_format_all_notes($top5Applis);
+        $this->_format_all_notes($top5Applis, array('note_medappcare'));
 
         if($top5Applis)
         {
@@ -37,7 +37,7 @@ class Application extends REST_Controller {
                 $this->_set_access_label($access_label);
                 $this->_format_all_links($top5Applis, 'app');
                 $this->_populate_categories_applications($top5Applis);
-                $see_all_link = $this->_format_link_no_id('app_search', 1, array('free' => $_free));
+                $see_all_link = $this->_format_link_no_id('app_search', 1, array('free' => $_free, 'eval_medapp' => 1));
             }
             if($this->response->format == "render")
             {
