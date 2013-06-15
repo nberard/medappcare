@@ -24,5 +24,5 @@
             </li>
         <?php endforeach; ?>
     </ul>
-    <div class="metaFooter"><a href="category.php">voir tout ></a></div>
+    <div class="metaFooter"><a href="<?php echo $see_all_link; ?>">voir tout ></a></div>
 </div>

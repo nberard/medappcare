@@ -52,7 +52,7 @@ class Pro extends Common_Controller {
         ), 'pro_pourlespros', array(
             'applications' => $this->_display_pour_les_gens(),
             'template_render' => 'pro_pourlesgens',
-            'see_all_link' => $this->_format_link_no_id('app_search', 1, array('sort' => 'date', 'eval_medapp' => 1)),
+            'see_all_link' => $this->_format_link_no_id('app_search', 1, array('sort' => 'date', 'eval_medapp' => 1, 'force_perso' => 1)),
         ), 'pro_pourlesgens');
     }
 

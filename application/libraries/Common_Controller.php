@@ -518,8 +518,10 @@ class Common_Controller extends MY_Controller
         log_message('debug', "_GET=".var_export($_GET, true)."");
         $search_params = $this->_get_all_search_params($_GET);
         log_message('debug', "search_params=".var_export($search_params, true)."");
+        $pro = $search_params['force_perso'] == 1 ? false : $this->pro;
+        log_message('debug', "pro=".var_export($pro, true)."");
         $applications = $this->Applications_model->get_applications_classic(
-                        $this->pro, $search_params['devices'], $search_params['term'], $search_params['eval_medapp'],
+                        $pro, $search_params['devices'], $search_params['term'], $search_params['eval_medapp'],
                         $search_params['free'], $search_params['sort'], $search_params['order'], $offset * config_item('nb_results_list')
         );
         $this->_format_all_prices($applications);
@@ -579,6 +581,8 @@ class Common_Controller extends MY_Controller
         $free = request_get_param($_params, 'free', -1, array(0, 1));
         $free = ($free == -1 ? -1 : ($free == 1 ? true : false));
 
+        $force_perso = request_get_param($_params, 'force_perso', 0, array(0, 1));
+
         $devices = request_get_param($_params, 'devices', -1);
         if($devices != -1)
         {
@@ -606,6 +610,7 @@ class Common_Controller extends MY_Controller
             'devices' => $devices,
             'term' => $term,
             'eval_medapp' => $eval_medapp,
+            'force_perso' => $force_perso,
         );
     }
 

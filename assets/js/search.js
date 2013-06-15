@@ -40,6 +40,10 @@ $(document).ready(function()
         {
             params+='&eval_medapp=1';
         }
+        if($('#force_perso').length)
+        {
+            params+='&force_perso=1';
+        }
         window.location = target+params;
     }
     $('#sort-filter').submit(function()

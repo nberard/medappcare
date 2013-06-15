@@ -31,6 +31,9 @@
                     <option <?php if($search_params['sort'] == 'prix' && $search_params['order'] == 'asc') echo 'selected'; ?> value="prix|asc">Prix croissant</option>
                     <option <?php if($search_params['sort'] == 'prix' && $search_params['order'] == 'desc') echo 'selected'; ?> value="prix|desc">Prix décroissant</option>
 	            </select>
+                <?php if($search_params['force_perso'] == 1): ?>
+                    <input type="hidden" id="force_perso" value="1"/>
+                <?php endif; ?>
 
                 <input type="submit" value="Rafraichir"/>
         	</form>
