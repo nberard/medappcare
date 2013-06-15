@@ -3,16 +3,16 @@ $(document).ready(function(){
     {
         $.ajax({
             type: 		"GET",
-            url:  		$('#listapps_topfive').data('action')+'?links=1&free='+that.data('free')+'&template='+$('#template-render').val(),
+            url:  		$('#'+that.data('ref')).data('action')+'?links=1&template='+$('#template-render').val()+'&'+that.data('params'),
             headers: {
-                Accept : $('#listapps_topfive').data('render'),
-                "Content-Type": $('#listapps_topfive').data('render')
+                Accept : $('#'+that.data('ref')).data('render'),
+                "Content-Type": $('#'+that.data('ref')).data('render')
             },
             success: function(data, textStatus, xhr)
             {
                 if(xhr.status != 204)
                 {
-                    $('#listapps_topfive').replaceWith(data);
+                    $('#'+that.data('ref')).replaceWith(data);
                     $('.filter a').click(function()
                     {
                         populateList($(this));

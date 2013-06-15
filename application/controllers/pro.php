@@ -15,13 +15,16 @@ class Pro extends Common_Controller {
         }
     }
 
-    protected function _display_pour_les_pros($_filtre = 'date')
+    protected function _display_pour_les_pros($_sort = 'date')
     {
         $this->load->model('Applications_model');
-        $top5Applis = $this->Applications_model->get_top_five_applications(false, true);
+        $top5Applis = $this->Applications_model->get_pour_les_pros_applications($_sort);
+
         $this->_format_all_prices($top5Applis);
+        $this->_format_all_notes($top5Applis, array('note_medappcare'));
         $this->_format_all_links($top5Applis, 'app');
         $this->_populate_categories_applications($top5Applis);
+
         return $top5Applis;
     }
 
@@ -39,8 +42,13 @@ class Pro extends Common_Controller {
     {
         $this->_common_index(array(
             'applications' => $this->_display_pour_les_pros(),
+            'sort' => 'date',
+            'template_render' => 'pro_pourlespros',
+            'see_all_link' => $this->_format_link_no_id('app_search', 1, array('sort' => 'date', 'eval_medapp' => 1)),
         ), 'pro_pourlespros', array(
             'applications' => $this->_display_pour_les_gens(),
+            'template_render' => 'pro_pourlesgens',
+            'see_all_link' => $this->_format_link_no_id('app_search', 1, array('sort' => 'date', 'eval_medapp' => 1)),
         ), 'pro_pourlesgens');
     }
 

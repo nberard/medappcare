@@ -65,6 +65,55 @@ class Application extends REST_Controller {
         }
     }
 
+    public function pourlesprosapplis_get($_categorie_id = -1)
+    {
+        $_sort = $this->_get('sort');
+        $template = $this->_get('template');
+        $links = $this->_get('links');
+        $links = ($links && $links == 1);
+        $this->load->model('Applications_model');
+        $top5Applis = $this->Applications_model->get_pour_les_pros_applications($_sort, $_categorie_id);
+        $this->_format_all_prices($top5Applis);
+        $this->_format_all_notes($top5Applis, array('note_medappcare'));
+
+        if($top5Applis)
+        {
+            if($links)
+            {
+                $pro = $this->_get('pro');
+                $pro = ($pro && $pro == 1);
+                $access_label = $pro ? 'pro' : 'perso';
+                $this->_set_access_label($access_label);
+                $this->_format_all_links($top5Applis, 'app');
+                $this->_populate_categories_applications($top5Applis);
+                $see_all_link = $this->_format_link_no_id('app_search', 1, array('eval_medapp' => 1, 'sort' => $_sort));
+            }
+            if($this->response->format == "render")
+            {
+                $data = array(
+                    'sort' => $_sort,
+                    'applications' => $top5Applis,
+                    'template_render' => $template,
+                    'see_all_link' => $see_all_link,
+                );
+                if($_categorie_id != -1)
+                {
+                    $this->load->model('Categories_model');
+                    $data['categorie'] = $this->Categories_model->get_categorie($_categorie_id);
+                }
+                $this->response($this->load->view('inc/'.$template, $data, true), 200);
+            }
+            else
+            {
+                $this->response(array('status' => 'ok', 'apps' => $top5Applis), 200);
+            }
+        }
+        else
+        {
+            $this->response('', 204);
+        }
+    }
+
     public function index_post($_application_id, $_action, $_user_id)
     {
         log_message('debug', "Application index_post($_application_id, $_action, $_user_id)");

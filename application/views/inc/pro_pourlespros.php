@@ -1,8 +1,9 @@
-<div class="listapps pourlespros">
+<div id="listapps_pourlespros" class="listapps pourlespros" data-action="<?php echo site_url('application/pourlesprosapplis');?>" data-render="<?php echo config_item('render_template_accept'); ?>">
     <h3><span></span>Pour les Pros</h3>
+    <input type="hidden" id="template-render" value="<?php echo $template_render; ?>"/>
     <div class="filter">
-        <a href="#" class="pardate actif" title="Filtrer par dates"><span></span>filtrer par date</a>
-        <a href="#" class="parnote" title="Filtrer par notes"><span></span>filtrer par notes</a>
+        <a href="javascript:void(0)" class="pardate<?php if($sort == 'date') echo " actif"; ?>" title="Filtrer par dates" data-params='sort=date' data-ref="listapps_pourlespros"><span></span>filtrer par date</a>
+        <a href="javascript:void(0)" class="parnote<?php if($sort == 'note') echo " actif"; ?>" title="Filtrer par notes" data-params='sort=note' data-ref="listapps_pourlespros"><span></span>filtrer par notes</a>
     </div>
     <ul>
         <?php foreach($applications as $application): ?>
@@ -13,9 +14,11 @@
                     <p class="price"><?php echo $application->prix_complet; ?></p> <!-- INSÉRER LE PRIX DE L'APP -->
                     <p class="category">dans <a href="category.php">Addictions</a></p> <!-- INSÉRER LE LIEN VERS L'APP -->
                 </div>
-                <div class="note">
-                    <span class="dixsurdix">10</span> <!-- INSÉRER LA NOTE -->
-                </div>
+                <?php if(isset($application->moyenne_note_medappcare)): ?>
+                    <div class="note">
+                        <span class="<?php echo $application->class_note_medappcare; ?>"><?php echo $application->moyenne_note_medappcare; ?></span> <!-- INSÉRER LA NOTE -->
+                    </div>
+                <?php endif; ?>
                 <div class="os">
                     <span class="<?php echo $application->device_class; ?>"><?php echo $application->device_nom; ?></span>
                 </div>

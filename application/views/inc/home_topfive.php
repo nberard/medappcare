@@ -2,8 +2,8 @@
     <h3>Le Top Medappcare</h3>
     <input type="hidden" id="template-render" value="<?php echo $template_render; ?>"/>
     <div class="filter">
-        <a href="javascript:void(0)" class="gratuit<?php if($free) echo " actif"; ?>" title="Filtrer les apps gratuites" data-free="1"><span></span>gratuit</a>
-        <a href="javascript:void(0)" class="payant<?php if(!$free) echo " actif"; ?>" title="Filtrer les apps payantes" data-free="0"><span></span>€</a>
+        <a href="javascript:void(0)" class="gratuit<?php if($free) echo " actif"; ?>" title="Filtrer les apps gratuites" data-params='free=1' data-ref="listapps_topfive"><span></span>gratuit</a>
+        <a href="javascript:void(0)" class="payant<?php if(!$free) echo " actif"; ?>" title="Filtrer les apps payantes" data-params='free=0' data-ref="listapps_topfive"><span></span>€</a>
     </div>
     <ul>
         <?php foreach($applications as $application): ?>

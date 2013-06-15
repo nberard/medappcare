@@ -298,6 +298,11 @@ class Applications_model extends CI_Model {
         return $this->get_applications($_pro, -1, $_category_id, null, true, $_free, -1, -1, 'id', 'desc', 5);
     }
 
+    public function get_pour_les_pros_applications($_sort, $_category_id = -1)
+    {
+        return $this->get_applications(true, -1, $_category_id, null, true, -1, -1, -1, $_sort, 'desc', 5);
+    }
+
     public function get_applications_compatibles($_pro, $_accessoire_id)
     {
         return $this->get_applications($_pro, -1, -1, null, false, -1, -1, $_accessoire_id, 'id', 'desc', 10);
