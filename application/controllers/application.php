@@ -12,106 +12,82 @@ class Application extends REST_Controller {
         $this->load->helper('crypt');
         $this->load->helper('country');
         $this->lang->load('alert');
+        $this->load->model('Applications_model');
 //        $this->output->enable_profiler(TRUE);
+    }
+
+    private function _get_bloc_applis($_param_name, $_param_boolean, $_applis, $_categorie_id)
+    {
+        $params[$_param_name] = $this->_get($_param_name);
+        $template = $this->_get('template');
+        if($_param_boolean)
+        {
+            $params[$_param_name] = ($params[$_param_name] && $params[$_param_name] == 1);
+        }
+
+        $links = $this->_get('links');
+        $links = ($links && $links == 1);
+        $top5Applis = $_applis;
+        $this->_format_all_prices($top5Applis);
+        $this->_format_all_notes($top5Applis, array('note_medappcare'));
+
+        if($top5Applis)
+        {
+            if($links)
+            {
+                $pro = $this->_get('pro');
+                $pro = ($pro && $pro == 1);
+                $access_label = $pro ? 'pro' : 'perso';
+                $this->_set_access_label($access_label);
+                $this->_format_all_links($top5Applis, 'app');
+                $this->_populate_categories_applications($top5Applis);
+                $search_settings = array('eval_medapp' => 1);
+                $search_settings[$_param_name] = $params[$_param_name];
+                $see_all_link = $this->_format_link_no_id('app_search', 1, $search_settings);
+            }
+            if($this->response->format == "render")
+            {
+                $data = array(
+                    'applications' => $top5Applis,
+                    'template_render' => $template,
+                    'see_all_link' => $see_all_link,
+                );
+                $data[$_param_name] = $params[$_param_name];
+                if($_categorie_id != -1)
+                {
+                    $this->load->model('Categories_model');
+                    $data['categorie'] = $this->Categories_model->get_categorie($_categorie_id);
+                }
+                $this->response($this->load->view('inc/'.$template, $data, true), 200);
+            }
+            else
+            {
+                $this->response(array('status' => 'ok', 'apps' => $top5Applis), 200);
+            }
+        }
+        else
+        {
+            $this->response('', 204);
+        }
     }
 
     public function topfiveapplis_get($_categorie_id = -1)
     {
         $_free = $this->_get('free');
-        $template = $this->_get('template');
         $free = ($_free && $_free == 1);
-        $links = $this->_get('links');
-        $links = ($links && $links == 1);
-        $this->load->model('Applications_model');
-        $top5Applis = $this->Applications_model->get_top_five_applications($free, false, $_categorie_id);
-        $this->_format_all_prices($top5Applis);
-        $this->_format_all_notes($top5Applis, array('note_medappcare'));
-
-        if($top5Applis)
-        {
-            if($links)
-            {
-                $pro = $this->_get('pro');
-                $pro = ($pro && $pro == 1);
-                $access_label = $pro ? 'pro' : 'perso';
-                $this->_set_access_label($access_label);
-                $this->_format_all_links($top5Applis, 'app');
-                $this->_populate_categories_applications($top5Applis);
-                $see_all_link = $this->_format_link_no_id('app_search', 1, array('free' => $_free, 'eval_medapp' => 1));
-            }
-            if($this->response->format == "render")
-            {
-                $data = array(
-                    'applications' => $top5Applis,
-                    'free' => $free,
-                    'template_render' => $template,
-                    'see_all_link' => $see_all_link,
-                );
-                if($_categorie_id != -1)
-                {
-                    $this->load->model('Categories_model');
-                    $data['categorie'] = $this->Categories_model->get_categorie($_categorie_id);
-                }
-                $this->response($this->load->view('inc/'.$template, $data, true), 200);
-            }
-            else
-            {
-                $this->response(array('status' => 'ok', 'apps' => $top5Applis), 200);
-            }
-        }
-        else
-        {
-            $this->response('', 204);
-        }
+        $this->_get_bloc_applis('free', true, $this->Applications_model->get_top_five_applications($free, false, $_categorie_id), $_categorie_id);
     }
 
     public function pourlesprosapplis_get($_categorie_id = -1)
     {
         $_sort = $this->_get('sort');
-        $template = $this->_get('template');
-        $links = $this->_get('links');
-        $links = ($links && $links == 1);
-        $this->load->model('Applications_model');
-        $top5Applis = $this->Applications_model->get_pour_les_pros_applications($_sort, $_categorie_id);
-        $this->_format_all_prices($top5Applis);
-        $this->_format_all_notes($top5Applis, array('note_medappcare'));
+        $this->_get_bloc_applis('sort', false, $this->Applications_model->get_pour_les_pros_applications($_sort, $_categorie_id), $_categorie_id);
+    }
 
-        if($top5Applis)
-        {
-            if($links)
-            {
-                $pro = $this->_get('pro');
-                $pro = ($pro && $pro == 1);
-                $access_label = $pro ? 'pro' : 'perso';
-                $this->_set_access_label($access_label);
-                $this->_format_all_links($top5Applis, 'app');
-                $this->_populate_categories_applications($top5Applis);
-                $see_all_link = $this->_format_link_no_id('app_search', 1, array('eval_medapp' => 1, 'sort' => $_sort));
-            }
-            if($this->response->format == "render")
-            {
-                $data = array(
-                    'sort' => $_sort,
-                    'applications' => $top5Applis,
-                    'template_render' => $template,
-                    'see_all_link' => $see_all_link,
-                );
-                if($_categorie_id != -1)
-                {
-                    $this->load->model('Categories_model');
-                    $data['categorie'] = $this->Categories_model->get_categorie($_categorie_id);
-                }
-                $this->response($this->load->view('inc/'.$template, $data, true), 200);
-            }
-            else
-            {
-                $this->response(array('status' => 'ok', 'apps' => $top5Applis), 200);
-            }
-        }
-        else
-        {
-            $this->response('', 204);
-        }
+    public function pourlesgensapplis_get($_categorie_id = -1)
+    {
+        $_sort = $this->_get('sort');
+        $this->_get_bloc_applis('sort', false, $this->Applications_model->get_pour_les_gens_applications($_sort, $_categorie_id), $_categorie_id);
     }
 
     public function index_post($_application_id, $_action, $_user_id)
@@ -121,7 +97,6 @@ class Application extends REST_Controller {
         {
             $list = array('commentaire', 'pro');
             $_POST = $this->_post();
-            $this->load->model('Applications_model');
             $pro = !empty($_POST['pro']) && $_POST['pro'] == 1;
             $criteres = $this->Applications_model->get_criteres_for_applications($pro);
             foreach($criteres as $critere)
@@ -174,7 +149,6 @@ class Application extends REST_Controller {
             {
                 $pro = $this->_get('pro');
                 $pro = ($pro && $pro == 1);
-                $this->load->model('Applications_model');
                 $criteres = $this->Applications_model->get_criteres_for_applications($pro);
                 $notes = $this->Applications_model->get_notes_from_application($pro, $_application_id,
                     count($criteres) * config_item('nb_comments_page'),

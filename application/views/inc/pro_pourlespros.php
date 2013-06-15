@@ -1,6 +1,5 @@
-<div id="listapps_pourlespros" class="listapps pourlespros" data-action="<?php echo site_url('application/pourlesprosapplis');?>" data-render="<?php echo config_item('render_template_accept'); ?>">
+<div id="listapps_pourlespros" class="listapps pourlespros" data-action="<?php echo site_url('application/pourlesprosapplis');?>" data-render="<?php echo config_item('render_template_accept'); ?>" data-template="<?php echo $template_render; ?>">
     <h3><span></span>Pour les Pros</h3>
-    <input type="hidden" id="template-render" value="<?php echo $template_render; ?>"/>
     <div class="filter">
         <a href="javascript:void(0)" class="pardate<?php if($sort == 'date') echo " actif"; ?>" title="Filtrer par dates" data-params='sort=date' data-ref="listapps_pourlespros"><span></span>filtrer par date</a>
         <a href="javascript:void(0)" class="parnote<?php if($sort == 'note') echo " actif"; ?>" title="Filtrer par notes" data-params='sort=note' data-ref="listapps_pourlespros"><span></span>filtrer par notes</a>

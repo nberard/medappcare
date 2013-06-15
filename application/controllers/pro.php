@@ -28,13 +28,17 @@ class Pro extends Common_Controller {
         return $top5Applis;
     }
 
-    protected function _display_pour_les_gens($_filtre = 'note')
+    protected function _display_pour_les_gens($_sort = 'note')
     {
         $this->load->model('Applications_model');
-        $lastEvalApplis = $this->Applications_model->get_last_eval_applications(true);
-        $this->_format_all_links($lastEvalApplis, 'app');
-        $this->_populate_categories_applications($lastEvalApplis);
-        return $lastEvalApplis;
+        $top5Applis = $this->Applications_model->get_pour_les_gens_applications($_sort);
+
+        $this->_format_all_prices($top5Applis);
+        $this->_format_all_notes($top5Applis, array('note_medappcare'));
+        $this->_format_all_links($top5Applis, 'app');
+        $this->_populate_categories_applications($top5Applis);
+
+        return $top5Applis;
     }
 
 

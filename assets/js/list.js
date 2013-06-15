@@ -3,7 +3,7 @@ $(document).ready(function(){
     {
         $.ajax({
             type: 		"GET",
-            url:  		$('#'+that.data('ref')).data('action')+'?links=1&template='+$('#template-render').val()+'&'+that.data('params'),
+            url:  		$('#'+that.data('ref')).data('action')+'?links=1&template='+$('#'+that.data('ref')).data('template')+'&'+that.data('params'),
             headers: {
                 Accept : $('#'+that.data('ref')).data('render'),
                 "Content-Type": $('#'+that.data('ref')).data('render')

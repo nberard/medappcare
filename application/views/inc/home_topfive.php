@@ -1,6 +1,5 @@
-<div id="listapps_topfive" class="listapps topfive" data-action="<?php echo site_url('application/topfiveapplis');?>" data-render="<?php echo config_item('render_template_accept'); ?>">
+<div id="listapps_topfive" class="listapps topfive" data-action="<?php echo site_url('application/topfiveapplis');?>" data-render="<?php echo config_item('render_template_accept'); ?>" data-template="<?php echo $template_render; ?>">
     <h3>Le Top Medappcare</h3>
-    <input type="hidden" id="template-render" value="<?php echo $template_render; ?>"/>
     <div class="filter">
         <a href="javascript:void(0)" class="gratuit<?php if($free) echo " actif"; ?>" title="Filtrer les apps gratuites" data-params='free=1' data-ref="listapps_topfive"><span></span>gratuit</a>
         <a href="javascript:void(0)" class="payant<?php if(!$free) echo " actif"; ?>" title="Filtrer les apps payantes" data-params='free=0' data-ref="listapps_topfive"><span></span>€</a>
