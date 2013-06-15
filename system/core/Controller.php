@@ -80,6 +80,7 @@
  * @property Membres_model $Membres_model
  * @property Plateformes_model $Plateformes_model
  * @property Pages_model $Pages_model
+ * @property Selections_model $Selections_model
  */
 class CI_Controller {
 

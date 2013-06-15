@@ -1,6 +1,6 @@
 <div id="accessoire-notes-browser">
 <?php $cpt = 0; foreach($notes as $notation): ?>
-    <?php $cpt++; echo $notation->pseudo.' a noté cette application '.$notation->date_full.' : '.$notation->note.' / 10 dans '.$notation->critere.'<br/>'; ?>
+    <?php $cpt++; echo $notation->pseudo.' a noté cette application '.$notation->date_full.' : '.$notation->note.' / '.config_item('note_max_user').' dans '.$notation->critere.'<br/>'; ?>
     <?php if($cpt % config_item('nb_comments_page') == 0) echo '<br/>';  ?>
 <?php endforeach; ?>
 <ul class="wrapper pager">

@@ -89,7 +89,7 @@ class Applications_model extends CI_Model {
 
         if($_sort == 'date')
         {
-            $this->db->join('application_notation_medappcare NM', 'NM.application_id = A.id', 'INNER');
+            $this->db->join('application_notation_medappcare NM', 'NM.application_id = A.id', 'LEFT');
         }
         $sort_corresp = array(
             'date' => 'NM.date',
@@ -261,10 +261,17 @@ class Applications_model extends CI_Model {
 
     }
 
-    public function get_moyenne_users($_pro, $_application_id, $_membre_pro = null)
+    public function get_moyenne_users($_pro, $_application_id, $_membre_pro = null, $_for_display = false)
     {
-        $this->db->select('AVG(NP.note) AS moyenne')
-            ->from($this->getTableName('notation', $_pro).' N')
+        if($_for_display)
+        {
+            $this->db->select('ROUND(AVG(2 * NP.note)) AS moyenne');
+        }
+        else
+        {
+            $this->db->select('AVG(NP.note) AS moyenne');
+        }
+        $this->db->from($this->getTableName('notation', $_pro).' N')
             ->join($this->getTableName('notes', $_pro).' NP', 'NP.application_notation_id = N.id', 'INNER')
             ->where(array('N.application_id' => $_application_id));
         if(!is_null($_membre_pro))
@@ -330,7 +337,8 @@ class Applications_model extends CI_Model {
 
     public function get_application($_id)
     {
-        return $this->db->select('A.*, E.nom AS nom_editeur, E.lien_contact, A.class, D.nom AS device_nom, D.class AS device_class')
+        return $this->db->select('A.*, A.note_medappcare AS note_medappcare_full, ROUND(A.note_medappcare) AS moyenne_note_medappcare,
+                                E.nom AS nom_editeur, E.lien_contact, A.class, D.nom AS device_nom, D.class AS device_class')
             ->from($this->table.' A')
             ->join($this->tableEditeur.' E', 'E.id = A.editeur_id', 'INNER')
             ->join($this->tableDevice.' D', 'D.id = A.device_id', 'INNER')

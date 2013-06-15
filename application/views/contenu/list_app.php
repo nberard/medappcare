@@ -26,11 +26,10 @@
 	            </select>
 <!--	            test-->
 	            <select name="sort" id="sort">
-                    <option <?php if($search_params['sort'] == 'date_ajout') echo 'selected'; ?> value="date_ajout|desc">Les plus récentes</option>
+                    <option <?php if($search_params['sort'] == 'date') echo 'selected'; ?> value="date|desc">Les plus récentes</option>
                     <option <?php if($search_params['sort'] == 'note') echo 'selected'; ?> value="note|desc">Les mieux notées</option>
                     <option <?php if($search_params['sort'] == 'prix' && $search_params['order'] == 'asc') echo 'selected'; ?> value="prix|asc">Prix croissant</option>
                     <option <?php if($search_params['sort'] == 'prix' && $search_params['order'] == 'desc') echo 'selected'; ?> value="prix|desc">Prix décroissant</option>
-	                
 	            </select>
 
                 <input type="submit" value="Rafraichir"/>

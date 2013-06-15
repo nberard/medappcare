@@ -138,6 +138,7 @@ class MY_Controller extends CI_Controller {
 
     protected function _format_note(&$_data_note, $_notes_to_format = array('note'))
     {
+        log_message('debug', "_format_note=".var_export($_data_note, true)."=".var_export($_notes_to_format, true)."");
         $map_class_notes = config_item('notes_classes');
         foreach($_notes_to_format as $_note_to_format)
         {

@@ -67,7 +67,6 @@ class Common_Controller extends MY_Controller
                 'categories_principales' => $categories_principales,
             ), true),
             'data_categories_principales' => $categories_principales,
-            'widget_selection' => $this->load->view('inc/widget_selection', '', true),
             'footer' => $this->load->view('inc/footer', array(
                 'languages' => $languagesVars,
                 'access_label' => $this->access_label,
@@ -120,19 +119,34 @@ class Common_Controller extends MY_Controller
 
     protected function _get_app_infos($_id)
     {
+        log_message('debug', "_get_app_infos($_id)");
         $this->load->model('Applications_model');
         $application = $this->Applications_model->get_application($_id);
         if($application)
         {
-
+            $notes = array('note_medappcare');
+            if($application->est_pro)
+            {
+                $application->moyenne_note_pro = $this->Applications_model->get_moyenne_users(true, $application->id, null, true);
+                $notes[] = 'note_pro';
+            }
+            else
+            {
+                $application->moyenne_note_pro = $this->Applications_model->get_moyenne_users(false, $application->id, true, true);
+                $application->moyenne_note_perso = $this->Applications_model->get_moyenne_users(false, $application->id, false, true);
+                $notes[] = 'note_pro';
+                $notes[] = 'note_perso';
+            }
             $application->prix_complet = format_price($application->prix, $application->devise, $this->lang->line('free'));
-            $this->_format_note($application, array('note_user', 'note_pro', 'note_medappcare'));
+            $this->_format_note($application, $notes);
             $this->load->model('Application_screenshots_model');
             $application->screenshots = $this->Application_screenshots_model->get_screenshots($application->id);
             $application->qr_code_url = qr_code_url($application->lien_download);
             $application->criteres = $this->Applications_model->get_criteres_for_applications($application->est_pro);
             $application->notes = $this->Applications_model->get_notes_from_application($application->est_pro, $_id, count($application->criteres) * config_item('nb_comments_page'));
             $application->moyennes = $this->Applications_model->get_moyennes_from_application($application->est_pro, $_id);
+            $application->note_medappcare_detail = $this->Applications_model->get_notes_criteres_medappcare($application->est_pro, $application->id);
+            $application->criteres = $this->Applications_model->get_criteres_medappcare($application->est_pro);
             $this->_format_all_dates($application->notes, 'date', 'datetime');
         }
         log_message('debug', "application=".var_export($application, true)."");
@@ -558,7 +572,7 @@ class Common_Controller extends MY_Controller
             $devices_ids_bd[] = $device_obj->id;
         }
         $this->load->helper('format_string');
-        $sort = request_get_param($_params, 'sort', 'date_ajout', array('date_ajout', 'prix', 'note'));
+        $sort = request_get_param($_params, 'sort', 'date', array('date', 'prix', 'note'));
         $order = request_get_param($_params, 'order', 'desc', array('asc', 'desc'));
         $eval_medapp = request_get_param($_params, 'eval_medapp', 0, array(1));
         $term = request_get_param($_params, 'term', null);
