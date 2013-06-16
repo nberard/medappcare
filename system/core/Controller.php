@@ -81,6 +81,8 @@
  * @property Plateformes_model $Plateformes_model
  * @property Pages_model $Pages_model
  * @property Selections_model $Selections_model
+ * @property Spool_crawl_android_applications_model $Spool_crawl_android_applications_model
+ * @property Spool_crawl_apple_applications_model $Spool_crawl_apple_applications_model
  */
 class CI_Controller {
 

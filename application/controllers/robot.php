@@ -127,6 +127,7 @@ class Robot extends CI_Controller
     {
         $types = array('popular', 'trending', 'paid', 'country', 'installed', 'updated');
         $countries = array('worldwide', 'FR');
+        $categories = array(12, 9);
         $calls = array('top', 'justin', 'price_reduced');
         foreach($types as $type)
         {
@@ -134,38 +135,41 @@ class Robot extends CI_Controller
             {
                 foreach($calls as $call)
                 {
-                    $page = 1;
-                    do
+                    foreach($categories as $categorie)
                     {
-                        try
+                        $page = 1;
+                        do
                         {
-                            $data = $this->http_call_manager->call('GET',
-                                $call.'.json',
-                                '?d=month&t='.$type.'&c=12&cc='.$country.'&num=100&page='.$page.'&client_token='.self::ANDROID_TOKEN_API,
-                                self::ANDROID_APPAWARE_WEBSITE);
-
-                            if(!empty($data["results"]))
+                            try
                             {
-//                                echo "nb res = ".count($data["results"]).'<br/>';
-                                $this->load->model('Spool_crawl_applications_model');
-                                foreach($data["results"] as $app)
+                                $data = $this->http_call_manager->call('GET',
+                                    $call.'.json',
+                                    '?d=month&t='.$type.'&c='.$categorie.'&cc='.$country.'&num=100&page='.$page.'&client_token='.self::ANDROID_TOKEN_API,
+                                    self::ANDROID_APPAWARE_WEBSITE);
+
+                                if(!empty($data["results"]))
                                 {
-                                    if(!$this->Spool_crawl_android_applications_model->exists_packages($app['package_name']))
+    //                                echo "nb res = ".count($data["results"]).'<br/>';
+                                    $this->load->model('Spool_crawl_android_applications_model');
+                                    foreach($data["results"] as $app)
                                     {
-                                        log_message('debug', 'adding '.$app['package_name']);
-                                        $this->Spool_crawl_android_applications_model->insert_package($app['package_name']);
+                                        if(!$this->Spool_crawl_android_applications_model->exists_packages($app['package_name']))
+                                        {
+                                            log_message('debug', 'adding '.$app['package_name']);
+                                            $this->Spool_crawl_android_applications_model->insert_package($app['package_name']);
+                                        }
+    //                                    echo $app['package_name'];
                                     }
-//                                    echo $app['package_name'];
                                 }
+                                $page++;
                             }
-                            $page++;
+                            catch(Exception $e)
+                            {
+                                log_message('error', $e->getMessage());
+                            }
                         }
-                        catch(Exception $e)
-                        {
-                            log_message('error', $e->getMessage());
-                        }
+                        while($data['number_results'] > 0 && $page < 10);
                     }
-                    while($data['number_results'] > 0 && $page < 10);
                 }
             }
         }
@@ -232,34 +236,38 @@ class Robot extends CI_Controller
     {
         $langues = array('en', 'fr');
         $types = array('topfreeapplications', 'toppaidapplications', 'topgrossingapplications');
+        $categories = array(6020, 6013);
         $this->load->model('Spool_crawl_apple_applications_model');
         foreach($langues as $langue)
         {
             foreach ($types as $type)
             {
-                try
+                foreach ($categories as $categorie)
                 {
-                    $data = $this->http_call_manager->call('GET',
-                                                            $type.'/limit=300/genre=6020',
-                                                            'json',
-                                                            'https://itunes.apple.com/'.$langue.'/rss');
-                    if(!empty($data['feed']['entry']))
+                    try
                     {
-                        $this->load->library('apple_feeder', array($this->Applications_model, $this->Editeurs_model, $this->Application_screenshots_model, Devices_model::APPLICATION_DEVICE_APPLE, $this->Spool_crawl_apple_applications_model));
-                        try
+                        $data = $this->http_call_manager->call('GET',
+                                                                $type.'/limit=300/genre='.$categorie,
+                                                                'json',
+                                                                'https://itunes.apple.com/'.$langue.'/rss');
+                        if(!empty($data['feed']['entry']))
                         {
-                            $this->apple_feeder->setItems($data['feed']['entry']);
-                            $this->apple_feeder->feed($langue, '');
-                        }
-                        catch(Exception $e)
-                        {
-                            log_message('error', $e->getMessage());
+                            $this->load->library('apple_feeder', array($this->Applications_model, $this->Editeurs_model, $this->Application_screenshots_model, Devices_model::APPLICATION_DEVICE_APPLE, $this->Spool_crawl_apple_applications_model));
+                            try
+                            {
+                                $this->apple_feeder->setItems($data['feed']['entry']);
+                                $this->apple_feeder->feed($langue, '');
+                            }
+                            catch(Exception $e)
+                            {
+                                log_message('error', $e->getMessage());
+                            }
                         }
                     }
-                }
-                catch(Exception $e)
-                {
-                    log_message('error', $e->getMessage());
+                    catch(Exception $e)
+                    {
+                        log_message('error', $e->getMessage());
+                    }
                 }
             }
         }

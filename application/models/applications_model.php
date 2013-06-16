@@ -43,7 +43,7 @@ class Applications_model extends CI_Model {
         $this->db->set('langue_store', $_langue_store);
         $this->db->set('langue_appli', $_langue_appli);
         $this->db->set('editeur_id', $_editeur_id);
-        $this->db->set('categorie_id', $_categorie_id);
+//        $this->db->set('categorie_id', $_categorie_id);
         $this->db->set('lien_download', $_lien_download);
         $this->db->set('version', $_version);
         $this->db->set('logo_url', $_logo_url);
