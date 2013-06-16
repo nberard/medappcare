@@ -223,7 +223,7 @@ class Common_Controller extends MY_Controller
         $lastEvalApplis = $this->Applications_model->get_last_eval_applications($this->pro, $_id);
         $top5Applis = $this->Applications_model->get_top_five_applications(false, $this->pro, $_id);
 
-        $allappcategory = $this->Applications_model->get_applications_from_categorie($this->pro, -1, $_id, false, 'date', 'desc', 0);
+        $allappcategory = $this->Applications_model->get_applications_from_categorie($this->pro, -1, $_id, false, 'date', 'desc', 1);
 
 
         $this->_populate_categories_applications($lastEvalApplis);
@@ -379,10 +379,13 @@ class Common_Controller extends MY_Controller
         $accessoire->criteres = $this->Accessoires_model->get_criteres_for_accessoires();
         $accessoire->notes = $this->Accessoires_model->get_notes_from_accessoire($_id, count($accessoire->criteres) * config_item('nb_comments_page'));
 
+        $this->_format_link($accessoire, 'app_device', 'nom', 'link_all_apps', 'id', 1);
+
         $number_notes = $this->Accessoires_model->get_number_notes_from_accessoire($_id);
         $applications_compatibles = $this->Applications_model->get_applications_compatibles($this->pro, $_id);
+        log_message('debug', "applications_compatibles=".var_export($applications_compatibles, true)."");
         $this->_format_all_prices($applications_compatibles);
-        $this->_format_all_notes($applications_compatibles);
+        $this->_format_all_notes($applications_compatibles, array('note_medappcare'));
         $this->_format_all_links($applications_compatibles, 'app');
         $this->_populate_categories_applications($applications_compatibles);
 
@@ -393,6 +396,7 @@ class Common_Controller extends MY_Controller
         $user = $this->session->userdata('user');
         $devices_data = array(
             'widget_deviceapps' => $this->load->view('inc/widget_deviceapps', array(
+                'see_all_link' => $accessoire->link_all_apps,
                 'app_grid' => $this->load->view('inc/app_grid', array('applications' => $applications_compatibles), true),
             ), true),
             'widget_devicecomments' => $this->load->view('inc/widget_devicecomments', array(
@@ -486,14 +490,13 @@ class Common_Controller extends MY_Controller
 
     public function app_category($_categorie_id, $_page)
     {
-        $offset = $_page-1;
         $this->load->model('Categories_model');
         $this->load->model('Applications_model');
         $search_params = $this->_get_all_search_params($_GET);
         log_message('debug', "search_params=".var_export($search_params, true));
 
         $categorie = $this->Categories_model->get_categorie($_categorie_id);
-        $applications = $this->Applications_model->get_applications_from_categorie($this->pro, $search_params['devices'], $_categorie_id, $search_params['free'], $search_params['sort'], $search_params['order'], $offset * config_item('nb_results_list'));
+        $applications = $this->Applications_model->get_applications_from_categorie($this->pro, $search_params['devices'], $_categorie_id, $search_params['free'], $search_params['sort'], $search_params['order'], $_page);
         $this->_format_all_prices($applications);
         $this->_format_all_notes($applications, array('note_medappcare'));
         $this->_format_all_links($applications, 'app');
@@ -529,9 +532,52 @@ class Common_Controller extends MY_Controller
         $this->load->view('main', $data);
     }
 
+    public function app_device($_accessoire_id, $_page)
+    {
+        $this->load->model('Accessoires_model');
+        $this->load->model('Applications_model');
+        $search_params = $this->_get_all_search_params($_GET);
+        log_message('debug', "search_params=".var_export($search_params, true));
+
+        $applications = $this->Applications_model->get_applications_compatibles($this->pro, $_accessoire_id, $_page);
+        $nb_app_compatibles = $this->Applications_model->get_number_applications_compatibles($this->pro, $_accessoire_id);
+        $accessoire = $this->Accessoires_model->get_accessoire($_accessoire_id);
+        $this->_format_all_prices($applications);
+        $this->_format_all_notes($applications, array('note_medappcare'));
+        $this->_format_all_links($applications, 'app');
+        $this->_populate_categories_applications($applications);
+
+        if($nb_app_compatibles > $_page * config_item('nb_results_list'))
+        {
+            $this->_format_link($accessoire, 'app_device', 'nom', 'link_all_next', 'id' ,$_page+1, $search_params);
+        }
+        if($_page > 1)
+        {
+            $this->_format_link($accessoire, 'app_device', 'nom', 'link_all_prev', 'id' ,$_page-1, $search_params);
+        }
+        $this->load->model('Devices_model');
+        $devices = $this->Devices_model->get_all_devices();
+
+        $data['inc'] = $this->_getCommonIncludes(array(
+            js_url('bootstrap-multiselect'),
+            js_url('search'),
+        ));
+
+        $data['contenu'] = $this->load->view('contenu/list_app', array(
+            'app_grid' => $this->load->view('inc/app_grid', array(
+                'applications' => $applications,
+            ), true),
+            'prev_link' => isset($accessoire->link_all_prev) ? $accessoire->link_all_prev : null,
+            'next_link' => isset($accessoire->link_all_next) ? $accessoire->link_all_next : null,
+            'devices' => $devices,
+            'search_params' => $search_params,
+        ), true);
+        $data['body_class'] = $this->body_class;
+        $this->load->view('main', $data);
+    }
+
     public function app_search($_page)
     {
-        $offset = $_page-1;
         $this->load->model('Applications_model');
         log_message('debug', "_GET=".var_export($_GET, true)."");
         $search_params = $this->_get_all_search_params($_GET);
@@ -540,7 +586,7 @@ class Common_Controller extends MY_Controller
         log_message('debug', "pro=".var_export($pro, true)."");
         $applications = $this->Applications_model->get_applications_classic(
                         $pro, $search_params['devices'], $search_params['term'], $search_params['eval_medapp'],
-                        $search_params['free'], $search_params['sort'], $search_params['order'], $offset * config_item('nb_results_list')
+                        $search_params['free'], $search_params['sort'], $search_params['order'], $_page
         );
         $this->_format_all_prices($applications);
         $this->_format_all_notes($applications, array('note_medappcare'));

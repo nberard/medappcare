@@ -282,15 +282,14 @@ class Applications_model extends CI_Model {
         return $this->db->get()->row()->moyenne;
     }
 
-    public function get_applications_from_categorie($_pro, $_devices_id, $_categorie_id, $_free, $_sort, $_order, $_offset)
+    public function get_applications_from_categorie($_pro, $_devices_id, $_categorie_id, $_free, $_sort, $_order, $_page)
     {
-        log_message('debug', "get_applications_from_categorie($_pro, ".var_export($_devices_id,true).", $_categorie_id, $_free, $_sort, $_order, $_offset)");
-        return $this->get_applications($_pro, $_devices_id, $_categorie_id, null, false, $_free, -1, -1, $_sort, $_order, config_item('nb_results_list'), $_offset);
+        return $this->get_applications($_pro, $_devices_id, $_categorie_id, null, false, $_free, -1, -1, $_sort, $_order, config_item('nb_results_list'), ($_page -1) * config_item('nb_results_list'));
     }
 
     public function get_applications_classic($_pro, $_devices_id, $_term, $_eval_medapp, $_free, $_sort, $_order, $_page)
     {
-        return $this->get_applications($_pro, $_devices_id, -1, $_term, $_eval_medapp, $_free, -1, -1, $_sort, $_order, config_item('nb_results_list'), $_page);
+        return $this->get_applications($_pro, $_devices_id, -1, $_term, $_eval_medapp, $_free, -1, -1, $_sort, $_order, config_item('nb_results_list'), ($_page -1) * config_item('nb_results_list'));
     }
 
     public function get_top_five_applications($_free, $_pro, $_category_id = -1)
@@ -308,9 +307,16 @@ class Applications_model extends CI_Model {
         return $this->get_applications(false, -1, $_category_id, null, true, -1, -1, -1, $_sort, 'desc', 5);
     }
 
-    public function get_applications_compatibles($_pro, $_accessoire_id)
+    public function get_applications_compatibles($_pro, $_accessoire_id, $_page = 1)
     {
-        return $this->get_applications($_pro, -1, -1, null, false, -1, -1, $_accessoire_id, 'id', 'desc', 10);
+        return $this->get_applications($_pro, -1, -1, null, false, -1, -1, $_accessoire_id, 'id', 'desc', config_item('nb_results_list'), ($_page -1) * config_item('nb_results_list'));
+    }
+
+    public function get_number_applications_compatibles($_pro, $_accessoire_id)
+    {
+        return $this->db->join('accessoire_application_compatible AAC', 'AAC.application_id = A.id')
+            ->where(array('AAC.accessoire_id' => $_accessoire_id, 'A.est_pro' => $_pro))
+            ->count_all_results($this->table.' A');
     }
 
     public function get_applications_from_selection($_selection_id)

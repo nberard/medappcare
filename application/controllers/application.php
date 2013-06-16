@@ -105,7 +105,7 @@ class Application extends REST_Controller {
     {
         $_free = $this->_get('free');
         $free = ($_free && $_free == 1);
-        $allappcategory = $this->Applications_model->get_applications_from_categorie(null, -1, $_categorie_id, $free, 'date', 'desc', 0);
+        $allappcategory = $this->Applications_model->get_applications_from_categorie(null, -1, $_categorie_id, $free, 'date', 'desc', 1);
         $this->_get_bloc_applis('free', true, $allappcategory, $_categorie_id);
     }
 
