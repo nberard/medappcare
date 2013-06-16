@@ -21,7 +21,7 @@ class Pro extends Common_Controller {
         $top5Applis = $this->Applications_model->get_pour_les_pros_applications($_sort);
 
         $this->_format_all_prices($top5Applis);
-        $this->_format_all_notes($top5Applis, array('note_medappcare'));
+        $this->_format_all_notes($top5Applis);
         $this->_format_all_links($top5Applis, 'app');
         $this->_populate_categories_applications($top5Applis);
 
@@ -34,7 +34,7 @@ class Pro extends Common_Controller {
         $top5Applis = $this->Applications_model->get_pour_les_gens_applications($_sort);
 
         $this->_format_all_prices($top5Applis);
-        $this->_format_all_notes($top5Applis, array('note_medappcare'));
+        $this->_format_all_notes($top5Applis);
         $this->_format_all_links($top5Applis, 'app');
         $this->_populate_categories_applications($top5Applis);
 

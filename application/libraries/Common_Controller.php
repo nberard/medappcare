@@ -236,9 +236,9 @@ class Common_Controller extends MY_Controller
         $this->_format_all_links($lastEvalApplis, 'app');
         $this->_format_all_links($top5Applis, 'app');
         $this->_format_all_links($allappcategory, 'app');
-        $this->_format_all_notes($lastEvalApplis, array('note_medappcare'));
-        $this->_format_all_notes($top5Applis, array('note_medappcare'));
-        $this->_format_all_notes($allappcategory, array('note_medappcare'));
+        $this->_format_all_notes($lastEvalApplis);
+        $this->_format_all_notes($top5Applis);
+        $this->_format_all_notes($allappcategory);
         log_message('debug', "top5Applis=".var_export($top5Applis, true)."");
         $categorie = $this->Categories_model->get_categorie($_id);
         $this->_format_link($categorie, 'app_category', 'nom', 'link_all', 'id' ,1);
@@ -302,6 +302,7 @@ class Common_Controller extends MY_Controller
             $selection->applications = $this->Applications_model->get_applications_from_selection($_id);
             $this->_format_all_prices($selection->applications);
             $this->_format_all_links($selection->applications, 'app');
+            $this->_format_all_notes($selection->applications);
             $this->_populate_categories_applications($selection->applications);
             $selectionData['widget_allappselection'] = $this->load->view('inc/widget_allappselection', array(
             'selection' => $selection,
@@ -374,7 +375,7 @@ class Common_Controller extends MY_Controller
         $this->load->model('Applications_model');
 
         $accessoire = $this->Accessoires_model->get_accessoire($_id);
-        $accessoire->photos = $this->Accessoires_model->get_photo_from_accessoire($_id);
+        $accessoire->photos = $this->Accessoires_model->get_photos_from_accessoire($_id);
         $accessoire->moyennes = $this->Accessoires_model->get_moyennes_from_accessoire($_id);
         $accessoire->criteres = $this->Accessoires_model->get_criteres_for_accessoires();
         $accessoire->notes = $this->Accessoires_model->get_notes_from_accessoire($_id, count($accessoire->criteres) * config_item('nb_comments_page'));
@@ -385,7 +386,7 @@ class Common_Controller extends MY_Controller
         $applications_compatibles = $this->Applications_model->get_applications_compatibles($this->pro, $_id);
         log_message('debug', "applications_compatibles=".var_export($applications_compatibles, true)."");
         $this->_format_all_prices($applications_compatibles);
-        $this->_format_all_notes($applications_compatibles, array('note_medappcare'));
+        $this->_format_all_notes($applications_compatibles);
         $this->_format_all_links($applications_compatibles, 'app');
         $this->_populate_categories_applications($applications_compatibles);
 
@@ -498,7 +499,7 @@ class Common_Controller extends MY_Controller
         $categorie = $this->Categories_model->get_categorie($_categorie_id);
         $applications = $this->Applications_model->get_applications_from_categorie($this->pro, $search_params['devices'], $_categorie_id, $search_params['free'], $search_params['sort'], $search_params['order'], $_page);
         $this->_format_all_prices($applications);
-        $this->_format_all_notes($applications, array('note_medappcare'));
+        $this->_format_all_notes($applications);
         $this->_format_all_links($applications, 'app');
         $this->_populate_categories_applications($applications);
 
@@ -543,7 +544,7 @@ class Common_Controller extends MY_Controller
         $nb_app_compatibles = $this->Applications_model->get_number_applications_compatibles($this->pro, $_accessoire_id);
         $accessoire = $this->Accessoires_model->get_accessoire($_accessoire_id);
         $this->_format_all_prices($applications);
-        $this->_format_all_notes($applications, array('note_medappcare'));
+        $this->_format_all_notes($applications);
         $this->_format_all_links($applications, 'app');
         $this->_populate_categories_applications($applications);
 
@@ -589,7 +590,7 @@ class Common_Controller extends MY_Controller
                         $search_params['free'], $search_params['sort'], $search_params['order'], $_page
         );
         $this->_format_all_prices($applications);
-        $this->_format_all_notes($applications, array('note_medappcare'));
+        $this->_format_all_notes($applications);
         $this->_format_all_links($applications, 'app');
         $this->_populate_categories_applications($applications);
         $next_link = count($applications) == config_item('nb_results_list') ?

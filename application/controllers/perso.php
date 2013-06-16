@@ -21,7 +21,7 @@ class Perso extends Common_Controller {
         $this->load->model('Applications_model');
         $top5Applis = $this->Applications_model->get_top_five_applications($_free, false);
         $this->_format_all_prices($top5Applis);
-        $this->_format_all_notes($top5Applis, array('note_medappcare'));
+        $this->_format_all_notes($top5Applis);
         log_message('debug', "top5Applis=".var_export($top5Applis, true)."");
         $this->_format_all_links($top5Applis, 'app');
         $this->_populate_categories_applications($top5Applis);
@@ -34,7 +34,7 @@ class Perso extends Common_Controller {
         $lastEvalApplis = $this->Applications_model->get_last_eval_applications($this->pro);
         $this->_format_all_prices($lastEvalApplis);
         $this->_format_all_links($lastEvalApplis, 'app');
-        $this->_format_all_notes($lastEvalApplis, array('note_medappcare'));
+        $this->_format_all_notes($lastEvalApplis);
         $this->_populate_categories_applications($lastEvalApplis);
         return $lastEvalApplis;
     }

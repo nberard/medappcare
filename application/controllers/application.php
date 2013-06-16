@@ -29,7 +29,7 @@ class Application extends REST_Controller {
         $links = ($links && $links == 1);
         $top5Applis = $_applis;
         $this->_format_all_prices($top5Applis);
-        $this->_format_all_notes($top5Applis, array('note_medappcare'));
+        $this->_format_all_notes($top5Applis);
 
         if($top5Applis)
         {

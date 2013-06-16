@@ -128,7 +128,7 @@ class MY_Controller extends CI_Controller {
         }
     }
 
-    protected function _format_all_notes(&$_data_notes_array, $_notes_to_format = array('note'))
+    protected function _format_all_notes(&$_data_notes_array, $_notes_to_format = array('note_medappcare'))
     {
         foreach ($_data_notes_array as &$_data_note)
         {
