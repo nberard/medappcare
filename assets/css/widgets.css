@@ -3,7 +3,7 @@
 #selections{background: #ededed; height: auto; text-align: center; position: relative; padding: 1px 0; margin: 1px 0 0 0;}
 #selections h2{margin: 25px 0; position: relative; display: block;}
 #selections ul{position: relative; min-height: 165px;}
-#selections li{padding: 0; margin: 0 18px; list-style: none; display: inline-block; height: 100px; width: 195px; border: 1px solid #474747; text-indent: -9999px;}
+#selections li{padding: 0; margin: 0 18px; list-style: none; display: inline-block; height: 100px; width: 195px; border: 1px solid #474747;}
 #selections .underline{display: block; margin: 10px 0 0 0; width: 100%; height: 5px; background: #474747; position: relative;}
 
 #selections a{display: block; width: 100%; height: 100%; background: #999; margin: 0; padding: 0;}

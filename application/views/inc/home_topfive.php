@@ -1,9 +1,8 @@
-<div id="listapps_topfive" class="listapps topfive" data-action="<?php echo site_url('application/topfiveapplis');?>" data-render="<?php echo config_item('render_template_accept'); ?>">
+<div id="listapps_topfive" class="listapps topfive" data-action="<?php echo site_url('application/topfiveapplis');?>" data-render="<?php echo config_item('render_template_accept'); ?>" data-template="<?php echo $template_render; ?>">
     <h3>Le Top Medappcare</h3>
-    <input type="hidden" id="template-render" value="<?php echo $template_render; ?>"/>
     <div class="filter">
-        <a href="javascript:void(0)" class="gratuit<?php if($free) echo " actif"; ?>" title="Filtrer les apps gratuites" data-free="1"><span></span>gratuit</a>
-        <a href="javascript:void(0)" class="payant<?php if(!$free) echo " actif"; ?>" title="Filtrer les apps payantes" data-free="0"><span></span>€</a>
+        <a href="javascript:void(0)" class="gratuit<?php if($free) echo " actif"; ?>" title="Filtrer les apps gratuites" data-params='free=1' data-ref="listapps_topfive"><span></span>gratuit</a>
+        <a href="javascript:void(0)" class="payant<?php if(!$free) echo " actif"; ?>" title="Filtrer les apps payantes" data-params='free=0' data-ref="listapps_topfive"><span></span>€</a>
     </div>
     <ul>
         <?php foreach($applications as $application): ?>
@@ -16,9 +15,9 @@
                         <p class="category"><?php echo lang('dans');?> <a href="<?php echo $categorie->link_categorie; ?>"><?php echo $categorie->nom; ?></a></p> <!-- INSÉRER LE LIEN VERS L'APP -->
                     <?php endforeach; ?>
                 </div>
-                <?php if(isset($application->moyenne_note)): ?>
+                <?php if(isset($application->moyenne_note_medappcare)): ?>
                     <div class="note">
-                        <span class="<?php echo $application->class_note; ?>"><?php echo $application->moyenne_note; ?></span> <!-- INSÉRER LA NOTE -->
+                        <span class="<?php echo $application->class_note_medappcare; ?>"><?php echo $application->moyenne_note_medappcare; ?></span> <!-- INSÉRER LA NOTE -->
                     </div>
                 <?php endif; ?>
                 <div class="os">

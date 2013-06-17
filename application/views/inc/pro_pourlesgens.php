@@ -1,8 +1,8 @@
-<div class="listapps pourlesgens">
+<div id="listapps_pourlesgens" class="listapps pourlesgens" data-action="<?php echo site_url('application/pourlesgensapplis');?>" data-render="<?php echo config_item('render_template_accept'); ?>" data-template="<?php echo $template_render; ?>">
     <h3><span></span>Pour vos Patients</h3>
     <div class="filter">
-        <a href="#" class="pardate" title="Filtrer par dates"><span></span>filtrer par date</a>
-        <a href="#" class="parnote actif" title="Filtrer par notes"><span></span>filtrer par notes</a>
+        <a href="javascript:void(0)" class="pardate<?php if($sort == 'date') echo " actif"; ?>" title="Filtrer par dates" data-params='sort=date' data-ref="listapps_pourlesgens"><span></span>filtrer par date</a>
+        <a href="javascript:void(0)" class="parnote<?php if($sort == 'note') echo " actif"; ?>" title="Filtrer par notes" data-params='sort=note' data-ref="listapps_pourlesgens"><span></span>filtrer par notes</a>
     </div>
     <ul>
         <?php foreach($applications as $application): ?>
@@ -11,16 +11,20 @@
                 <div class="metapp">
                     <h4><a class="short" href="<?php echo $application->link; ?>"><?php echo $application->titre; ?></a></h4> <!-- INSÉRER LE LIEN ET LE TITRE DE L'APP -->
                     <p class="price"><?php echo $application->prix_complet; ?></p> <!-- INSÉRER LE PRIX DE L'APP -->
-                    <p class="category">dans <a href="category.php">Addictions</a></p> <!-- INSÉRER LE LIEN VERS L'APP -->
+                    <?php foreach($application->categories as $categorie): ?>
+                        <p class="category"><?php echo lang('dans');?> <a href="<?php echo $categorie->link_categorie; ?>"><?php echo $categorie->nom; ?></a></p> <!-- INSÉRER LE LIEN VERS L'APP -->
+                    <?php endforeach; ?>
                 </div>
-                <div class="note">
-                    <span class="dixsurdix">10</span> <!-- INSÉRER LA NOTE -->
-                </div>
+                <?php if(isset($application->moyenne_note_medappcare)): ?>
+                    <div class="note">
+                        <span class="<?php echo $application->class_note_medappcare; ?>"><?php echo $application->moyenne_note_medappcare; ?></span> <!-- INSÉRER LA NOTE -->
+                    </div>
+                <?php endif; ?>
                 <div class="os">
                     <span class="<?php echo $application->device_class; ?>"><?php echo $application->device_nom; ?></span>
                 </div>
             </li>
         <?php endforeach; ?>
     </ul>
-    <div class="metaFooter"><a href="category.php">voir tout ></a></div>
+    <div class="metaFooter"><a href="<?php echo $see_all_link; ?>">voir tout ></a></div>
 </div>

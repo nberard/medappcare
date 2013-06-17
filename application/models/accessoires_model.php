@@ -37,7 +37,7 @@ class Accessoires_model extends CI_Model {
                         ->where(array('A.id' => $_id))->get()->row();
     }
 
-    public function get_photo_from_accessoire($_id)
+    public function get_photos_from_accessoire($_id)
     {
         $res = $this->db->get_where($this->tablePhoto, array('accessoire_id' => $_id))->result();
         if(!empty($res))

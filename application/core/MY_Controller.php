@@ -84,8 +84,9 @@ class MY_Controller extends CI_Controller {
         }
     }
 
-    protected function _format_link_no_id($_target, $_page = 0, $_params = '')
+    protected function _format_link_no_id($_target, $_page = 0, $_params = array())
     {
+        log_message('debug', "_format_link_no_id($_target, $_page = 0, =".var_export($_params, true)."");
         $this->load->helper('url');
         $path = $this->access_label.'/'.$_target;
         if($_page != 0)
@@ -102,12 +103,13 @@ class MY_Controller extends CI_Controller {
                 {
                     $link.= $key.'='.implode(',',$value).'&';
                 }
-                else
+                else if(!is_null($value))
                 {
                     $link.= $key.'='.$value.'&';
                 }
             }
         }
+        log_message('debug', "link=".var_export($link, true)."");
         return $link;
     }
 
@@ -126,7 +128,7 @@ class MY_Controller extends CI_Controller {
         }
     }
 
-    protected function _format_all_notes(&$_data_notes_array, $_notes_to_format = array('note'))
+    protected function _format_all_notes(&$_data_notes_array, $_notes_to_format = array('note_medappcare'))
     {
         foreach ($_data_notes_array as &$_data_note)
         {
@@ -136,10 +138,11 @@ class MY_Controller extends CI_Controller {
 
     protected function _format_note(&$_data_note, $_notes_to_format = array('note'))
     {
+        log_message('debug', "_format_note=".var_export($_data_note, true)."=".var_export($_notes_to_format, true)."");
         $map_class_notes = config_item('notes_classes');
         foreach($_notes_to_format as $_note_to_format)
         {
-            if($_data_note->{"moyenne_".$_note_to_format} && isset($map_class_notes[$_data_note->{"moyenne_".$_note_to_format}]))
+            if(isset($_data_note->{"moyenne_".$_note_to_format}) && isset($map_class_notes[$_data_note->{"moyenne_".$_note_to_format}]))
             {
                 $_data_note->{"class_".$_note_to_format} = $map_class_notes[$_data_note->{"moyenne_".$_note_to_format}];
             }

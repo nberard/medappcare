@@ -12,9 +12,9 @@
         <div class="icone"><img width="90px" height="90px" src="<?php echo $application->logo_url; ?>"></div>
 
         <div class="content right">
-            <?php if($application->moyenne_note_medappcare > 0): ?><div class="appnote noteMedappcare"><span></span><a href="#thegrid" class="note <?php echo $application->class_note_medappcare; ?>"><?php echo ucfirst($application->class_note_medappcare); ?></a></div><?php endif; ?>
-            <?php if($application->moyenne_note_pro): ?><div class="appnote notePro"><span></span><a href="#thegrid" class="note <?php echo $application->class_note_pro; ?>"><?php echo ucfirst($application->class_note_pro); ?></a></div><?php endif; ?>
-            <?php if($application->moyenne_note_user): ?><div class="appnote noteGens"><span></span><a href="#thegrid" class="note <?php echo $application->class_note_user; ?>"><?php echo ucfirst($application->class_note_user); ?></a></div><?php endif; ?>
+            <?php if(isset($application->moyenne_note_medappcare) && $application->moyenne_note_medappcare > 0): ?><div class="appnote noteMedappcare"><span></span><a href="#thegrid" class="note <?php echo $application->class_note_medappcare; ?>"><?php echo ucfirst($application->class_note_medappcare); ?></a></div><?php endif; ?>
+            <?php if(isset($application->moyenne_note_pro)): ?><div class="appnote notePro"><span></span><a href="#thegrid" class="note <?php echo $application->class_note_pro; ?>"><?php echo ucfirst($application->class_note_pro); ?></a></div><?php endif; ?>
+            <?php if(isset($application->moyenne_note_perso)): ?><div class="appnote noteGens"><span></span><a href="#thegrid" class="note <?php echo $application->class_note_perso; ?>"><?php echo ucfirst($application->class_note_perso); ?></a></div><?php endif; ?>
         </div>
 
     </div>
@@ -84,7 +84,19 @@
             </div>
         </div>
         <div id ="thegrid" class="content right">
-            <h5 class="soon">Retrouvez prochainement ici la grille d'évaluation de l'application.
+<!--            <h5 class="soon">Retrouvez prochainement ici la grille d'évaluation de l'application.-->
+            <?php if(!empty($application->note_medappcare_detail)): ?>
+            <?php foreach ($application->criteres as $critere_parent): ?>
+                    <hr>
+                    <?php echo $critere_parent->nom; ?>
+                    <hr>
+                    <?php foreach($critere_parent->childs as $critere_enfant): ?>
+                        <?php if(isset($application->note_medappcare_detail[$critere_enfant->id])) :?>
+                            Note pour "<?php echo $critere_enfant->nom; ?>" : <?php echo $application->note_medappcare_detail[$critere_enfant->id]; ?> <br/>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+            <?php endforeach; ?>
+            <?php endif; ?>
         </div>
         <div class="clear"></div>
     </div> <!-- end wrapper -->
@@ -145,7 +157,7 @@
 	    	</div>
 
             <div class="tabContent" id="revueDePresse">
-                <p><?php echo $device->presse; ?></p>
+                <p><?php echo $application->presse; ?></p>
             </div>
     	</div>
     	

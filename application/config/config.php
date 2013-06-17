@@ -365,8 +365,15 @@ $config['proxy_ips'] = '';
 /* End of file config.php */
 /* Location: ./application/config/config.php */
 
-$config['note_min'] = 0;
-$config['note_max'] = 10;
+$config['note_min_medappcare'] = 0;
+$config['note_max_medappcare'] = 10;
+
+$config['note_min_accessoire'] = 0;
+$config['note_max_accessoire'] = 5;
+
+$config['note_min_user'] = 0;
+$config['note_max_user'] = 5;
+
 
 $config['contact_mail'] = 'contact@medappcare.com';
 

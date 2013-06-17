@@ -32,7 +32,7 @@ class Accessoire extends REST_Controller {
             foreach($criteres as $critere)
             {
                 $notes[$critere->id] = $_POST['note'.$critere->id];
-                $this->form_validation->set_rules('note'.$critere->id, 'Note '.$critere->nom, 'required|is_natural|less_than[11]');
+                $this->form_validation->set_rules('note'.$critere->id, 'Note '.$critere->nom, 'required|is_natural|less_than['.(config_item('note_max_accessoire') + 1).']');
             }
             $this->form_validation->set_rules('commentaire', 'Commentaire', 'required|max_length[512]');
             if(!$this->form_validation->run())

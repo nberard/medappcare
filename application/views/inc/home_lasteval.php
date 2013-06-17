@@ -13,8 +13,7 @@
             </div>
             <?php if($application->moyenne_note_medappcare): ?>
                 <div class="note">
-<!--                    <span class="--><?php //echo $application->class_note_medappcare; ?><!--">--><?php //echo $application->moyenne_note_medappcare; ?><!--</span>-->
-                    en cours
+                    <span class="<?php echo $application->class_note_medappcare; ?>"><?php echo $application->moyenne_note_medappcare; ?></span>
                 </div>
             <?php endif; ?>
             <div class="os">
@@ -23,5 +22,5 @@
         </li>
         <?php endforeach; ?>
     </ul>
-    <div class="metaFooter"><a href="category.php">voir tout ></a></div>
+    <div class="metaFooter"><a href="<?php echo $see_all_link; ?>">voir tout ></a></div>
 </div>
