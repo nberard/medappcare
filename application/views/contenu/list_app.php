@@ -9,7 +9,7 @@
                 <select name="filters" id="filters" multiple="multiple">
 
 	                <optgroup label="Medappcare" id="eval-medapp">
-	                	<option value="1" <?php if($search_params['eval_medapp']) echo 'selected'; ?>>Évaluée par Medappcare</option>
+	                	<option <?php if($search_params['eval_medapp']) echo 'selected'; ?>>Évaluée par Medappcare</option>
 	                </optgroup>
 	            	
 	            	<optgroup label="Prix" id="prix">
