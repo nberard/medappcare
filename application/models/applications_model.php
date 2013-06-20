@@ -48,7 +48,7 @@ class Applications_model extends CI_Model {
         $this->db->set('version', $_version);
         $this->db->set('logo_url', $_logo_url);
         $this->db->set('mots_cles', '');
-        $this->db->set('est_liste', 1);
+        $this->db->set('est_liste', 0);
         $this->db->set('est_partageable', 1);
         $this->db->set('est_pro', 0);
         $this->db->set('est_penalisee', 0);
@@ -494,9 +494,13 @@ class Applications_model extends CI_Model {
 
     public function get_application_push_from_categorie($_categorie_id)
     {
-//        $this->db->select('A.id, A.nom, A.logo_url')
-//            ->from($this->table)
-//            ->join()
+        $this->db->select('DISTINCT(A.id), A.nom, A.logo_url, A.titre')
+            ->from($this->table.' A')
+            ->join('application_categorie AC', 'AC.application_id = A.id', 'INNER')
+            ->join($this->tableCategorie.' C', 'C.id = AC.categorie_id', 'INNER')
+            ->where(array('est_liste' => 1, 'C.parent_id' => $_categorie_id));
+        $res = $this->db->get()->result();
+        return !empty($res) ? $res : array();
     }
 
 }
