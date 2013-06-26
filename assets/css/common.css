@@ -707,8 +707,15 @@ button{margin-right: 15px;}
 .alignleft{float: left; margin: 0 10px 10px 0;}
 .center{margin: 10px auto;}
 
+.pictonews{float: left; position: relative; margin: 0 20px 20px 0;}
+
+.singlenews .pictonews img{min-width: 300px; max-width: 450px; height: auto;}
 .singlenews .content,
 .singlenews .date{margin: 0 0 50px 0;}
+
+.singlenews h2{float: left; position: relative; margin: 0 20px 0 0;}
+
+#list-news .content{padding: 0 0 20px 0;}
 
 
 
