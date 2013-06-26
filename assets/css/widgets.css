@@ -199,6 +199,31 @@
 #devicesCompatibles #devices{border: none; min-height: 0;}
 #devicesCompatibles #devices h2{display: none;}
 
+/* =========== LISTE APPS (onglet dans la page devices.php) =========== */
+
+#appsCompatibles h3{margin: 0 0 20px 0;}
+
+#appsCompatibles ul{padding: 10px;}
+.particuliers #appsCompatibles ul{background: #cfe3e7;}
+
+#appsCompatibles .icone{float: left; position: relative; width: 80px; height: 80px; border-radius: 10px; background: #333; margin: 0 15px 0 0;}
+#appsCompatibles .metapp{float: left; position: relative; width: 260px;}
+#appsCompatibles .metapp h4{height: 40px;}
+
+#appsCompatibles li{list-style: none; display: block; border-bottom: 1px solid white; height: 80px; padding: 15px; width: 415px; float: left; position: relative;}
+#appsCompatibles li:nth-child(even){float: right;}
+
+#appsCompatibles h2{padding: 5px 15px 0px 15px; line-height: 52px; border-bottom: 1px solid white;}
+#appsCompatibles .icone{float: left; position: relative; width: 80px; height: 80px; border-radius: 10px; background: #333; margin: 0 15px 0 0;}
+#appsCompatibles .metapp{float: left; position: relative; width: 260px;}
+#appsCompatibles .metapp h4 {height: 40px;}
+#appsCompatibles .price{background: #0f6eb4; width: 40px; padding: 0 5px; line-height: 21px; text-align: center; margin: 2px 0;}
+#appsCompatibles .note{display: none;}
+#appsCompatibles .os{float: left; position: relative; width: 60px; margin: 25px 0 0 0;}
+
+#appsCompatibles .metaFooter{background: #ededed; height: 28px; padding: 0 15px;}
+#appsCompatibles .metaFooter a{float: right;}
+
 /* =========== NEWS =========== */
 
 #news{background: white; min-height: 175px; border-bottom: 1px solid #a3a3a3; display: block;}

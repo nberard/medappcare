@@ -127,7 +127,7 @@
 	    	    <?php echo $widget_devicecomments; ?>
             </div>
 	    	<div class="tabContent" id="appsCompatibles">
-	    		<section id="devices"><?php  echo $widget_deviceapps; ?></section> <!-- Section App compatobles --> <?php // TODO : remplacer par widget app compatobles ?>
+	    		<section id="apps"><?php  echo $widget_deviceapps; ?></section> <!-- Section App compatobles --> <?php // TODO : remplacer par widget app compatobles ?>
 	    	</div>
 	    	
 	    	<div class="tabContent" id="revueDePresse">
