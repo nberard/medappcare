@@ -254,11 +254,17 @@
 .social{margin: 20px 0 30px 0;}
 .social div{width: 100%; margin: 5px auto;}
 
+/* =========== RATE APP & DEVICES =========== */
 
+.reviewPost label,
+.reviewPost .rateit,
+.noteGlobale label,
+.noteGlobale .rateit{display: inline-block;}
+.noteGlobale label{min-width: 110px; line-height: 10px;}
 
+.reviewPost label{}
 
-
-
+.commentPost{margin: 20px 0 0 0;}
 
 
 
