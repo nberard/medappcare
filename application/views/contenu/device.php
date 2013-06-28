@@ -160,14 +160,14 @@
                     <div data-productid="312" class="rateit" data-rateit-max="10"></div>
                 </li>
                 <li>
-                    <label>ERGONOMIE</label>
+                    <label>DESIGN</label>
                     <div data-productid="312" class="rateit" data-rateit-max="10"></div>
                 <li>
-                    <label>ERGONOMIE</label>
+                    <label>FONCTIONNEMENT</label>
                     <div data-productid="312" class="rateit" data-rateit-max="10"></div>
                 </li>
                 <li>
-                    <label>ERGONOMIE</label>
+                    <label>SATISFACTION</label>
                     <div data-productid="312" class="rateit" data-rateit-max="10"></div>
                 </li>
             </ul>
