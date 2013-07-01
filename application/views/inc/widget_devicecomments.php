@@ -3,19 +3,19 @@
 <div class="noteGlobale">
     <div class="ergo">
         <label>Ergonomie</label>
-        <div class="rateit" data-rateit-value="2.5" data-rateit-ispreset="true" data-rateit-readonly="true" data-rateit-max="10"></div>
+        <div class="rateit" data-rateit-value="2.5" data-rateit-ispreset="true" data-rateit-readonly="true" data-rateit-max="5"></div>
     </div>
     <div class="design">
         <label>Design</label>
-        <div class="rateit" data-rateit-value="2.5" data-rateit-ispreset="true" data-rateit-readonly="true" data-rateit-max="10"></div>
+        <div class="rateit" data-rateit-value="2.5" data-rateit-ispreset="true" data-rateit-readonly="true" data-rateit-max="5"></div>
     </div>
     <div class="satisfaction">
         <label>Satisfaction</label>
-        <div class="rateit" data-rateit-value="2.5" data-rateit-ispreset="true" data-rateit-readonly="true" data-rateit-max="10"></div>
+        <div class="rateit" data-rateit-value="2.5" data-rateit-ispreset="true" data-rateit-readonly="true" data-rateit-max="5"></div>
     </div>
     <div class="fonctionnement">
         <label>Fonctionnement</label>
-        <div class="rateit" data-rateit-value="2.5" data-rateit-ispreset="true" data-rateit-readonly="true" data-rateit-max="10"></div>
+        <div class="rateit" data-rateit-value="2.5" data-rateit-ispreset="true" data-rateit-readonly="true" data-rateit-max="5"></div>
     </div>
 </div>
 

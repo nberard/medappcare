@@ -157,18 +157,18 @@
             <ul class="reviewPost">
                 <li>
                     <label>ERGONOMIE</label>
-                    <div data-productid="312" class="rateit" data-rateit-max="10"></div>
+                    <div data-productid="312" class="rateit" data-rateit-max="5"></div>
                 </li>
                 <li>
                     <label>DESIGN</label>
-                    <div data-productid="312" class="rateit" data-rateit-max="10"></div>
+                    <div data-productid="312" class="rateit" data-rateit-max="5"></div>
                 <li>
                     <label>FONCTIONNEMENT</label>
-                    <div data-productid="312" class="rateit" data-rateit-max="10"></div>
+                    <div data-productid="312" class="rateit" data-rateit-max="5"></div>
                 </li>
                 <li>
                     <label>SATISFACTION</label>
-                    <div data-productid="312" class="rateit" data-rateit-max="10"></div>
+                    <div data-productid="312" class="rateit" data-rateit-max="5"></div>
                 </li>
             </ul>
             <textarea id="commentaire-accessoire" class="commentPost"></textarea>
