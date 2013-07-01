@@ -2,7 +2,7 @@
 
 <div class="title">
     <div class="wrapper">
-        <h2>Actualités</h2>
+        <h2>Actualités dans la XXXXXXXX</h2> <!-- Insérer ici le titre de la catégorie -->
     </div>
 </div>
 

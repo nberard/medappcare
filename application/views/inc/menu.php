@@ -41,15 +41,18 @@
                 <li><a href="<?php echo $categorie_enfant->link; ?>"><?php echo $categorie_enfant->nom;?></a></li>
             <?php endforeach; ?>
             </ul>
+            <?php if(!empty($categorie_principale->push)): ?>
             <div class="sponsored-selection">
                 <span class="title">Nos sélections</span>
                 <ul>
-                    <li class="short"><a href=""><img src="<?php echo img_url('tmp/app-icon-57.png'); ?>" alt="[app-title] icon" />Ma super app</a></li>
-                    <li><a href=""><img src="<?php echo img_url('tmp/app-icon-57.png'); ?>" alt="[app-title] icon" />Ma super app</a></li>
-                    <li><a href=""><img src="<?php echo img_url('tmp/app-icon-57.png'); ?>" alt="[app-title] icon" />Ma super app</a></li>
+<!--                    <li><a href=""><img src="--><?php //echo img_url('tmp/app-icon-57.png'); ?><!--" alt="[app-title] icon" />Ma super app</a></li>-->
+                    <?php foreach($categorie_principale->push as $appli_push): ?>
+                        <li><a href="<?php echo $appli_push->link; ?>"><img width="57px" height="57px" src="<?php echo $appli_push->logo_url; ?>" alt="<?php echo $appli_push->nom; ?> icon" /><?php echo $appli_push->nom; ?></a></li>
+                    <?php endforeach; ?>
                 </ul>
                 <span class="sponsored-indicator">Sponsorisées</span>
             </div>
+            <?php endif; ?>
             <div class="bigpicto"></div>
             <a href="#" class="closeLink">Fermer le menu</a>
         </div> <!-- end wrapper -->

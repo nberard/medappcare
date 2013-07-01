@@ -46,8 +46,10 @@ class Common_Controller extends MY_Controller
         $this->load->model('Applications_model');
         foreach($categories_principales as &$categorie_principale)
         {
-//            $categorie_principale->push = $this->Applications_model->
+            $categorie_principale->push = $this->Applications_model->get_application_push_from_categorie($categorie_principale->id);
+            $this->_format_all_links($categorie_principale->push, 'app');
         }
+
         $categories_principales_target = $this->Categories_model->get_categories_parentes(!$this->pro);
 //        $this->benchmark->mark('get_parents_end');
 //        $this->benchmark->mark('get_enfants_start');
@@ -84,6 +86,7 @@ class Common_Controller extends MY_Controller
                 js_url('bootstrap'),
                 js_url('bootstrap-multiselect'),
                 js_url('jquery.bootpag.min'),
+                js_url('jquery.rateit.min'),
                 js_url('menu'),
                 js_url('login'),
                 js_url('scripts'),

@@ -50,18 +50,25 @@ h2{color: #0f6eb4; font-size: 24px;}
 .medeplacer #motDelEditeur a,
 .medeplacer #devices h2{color: #D769AF;}
 
+#appsCompatibles .metapp a,
 #devices .metapp a{color: #111313; font-size: 18px;}
 #devices .excerpt{font-size: 12px; margin: 10px 0;}
+#appsCompatibles .category,
 #devices .category{font-size: 14px;}
+#appsCompatibles .category a,
 #devices .category a{color: #0f6eb4; font-size: 14px;}
+#appsCompatibles .price,
 #devices .price{font-size: 12px; color: white;}
+#appsCompatibles .metaFooter a,
 #devices .metaFooter a{color: #787878; text-decoration: none; font-weight: 700; font-size: 14px; line-height: 26px;}
+#appsCompatibles .metaFooter a:hover,
 #devices .metaFooter a:hover{text-decoration: underline;}
 
 .monquotidien #devices h3{color: #e05d5f;}
 .minformer #devices h3{color: #84c790;}
 .medeplacer #devices h3{color: #d769af;}
 
+#appsCompatibles .metaFooter a,
 .app #devices .metaFooter a{color: #0f6eb4;}
 .monquotidien #devices .category a,
 .monquotidien #devices .metaFooter a{color: #e05d5f;}
@@ -139,4 +146,5 @@ h2{color: #0f6eb4; font-size: 24px;}
 .articles .categorie, .articles .date{font-size: 12px; color: #999;}
 .articles .categorie a{font-weight: 700; color: #0f6eb4;}
 
+.title.singlenews a{color: #363636;}
 

@@ -127,7 +127,7 @@
 	    	    <?php echo $widget_devicecomments; ?>
             </div>
 	    	<div class="tabContent" id="appsCompatibles">
-	    		<section id="devices"><?php  echo $widget_deviceapps; ?></section> <!-- Section App compatobles --> <?php // TODO : remplacer par widget app compatobles ?>
+	    		<section id="apps"><?php  echo $widget_deviceapps; ?></section> <!-- Section App compatobles --> <?php // TODO : remplacer par widget app compatobles ?>
 	    	</div>
 	    	
 	    	<div class="tabContent" id="revueDePresse">
@@ -146,11 +146,33 @@
     <div class="modal-body">
         <p class="explication">Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
         <form method="post" id="form-noter-accessoire" data-criteres='<?php echo json_encode($device->criteres); ?>' data-action="<?php echo site_url('accessoire/'.$device->id.'/note/'.$user->id) ?>">
-            <?php foreach($device->criteres as $critere): ?>
+            <!--
+<?php foreach($device->criteres as $critere): ?>
                 <p><label for="note-accessoire-<?php echo $critere->id; ?>"><?php echo $critere->nom; ?></label><input type="text" id="note-accessoire-<?php echo $critere->id; ?>"/></p>
             <?php endforeach; ?>
-            <p><textarea id="commentaire-accessoire"></textarea></p>
-            <p><button type="submit" class="btn btn-primary">Envoyer</button>
+-->
+            
+            <ul id="response"></ul>
+            
+            <ul class="reviewPost">
+                <li>
+                    <label>ERGONOMIE</label>
+                    <div data-productid="312" class="rateit" data-rateit-max="10"></div>
+                </li>
+                <li>
+                    <label>DESIGN</label>
+                    <div data-productid="312" class="rateit" data-rateit-max="10"></div>
+                <li>
+                    <label>FONCTIONNEMENT</label>
+                    <div data-productid="312" class="rateit" data-rateit-max="10"></div>
+                </li>
+                <li>
+                    <label>SATISFACTION</label>
+                    <div data-productid="312" class="rateit" data-rateit-max="10"></div>
+                </li>
+            </ul>
+            <textarea id="commentaire-accessoire" class="commentPost"></textarea>
+            <button type="submit" class="btn btn-primary">Envoyer</button>
         </form>
     </div>
     <div id="accessoire-notation-error" class="alert alert-error hide"></div>
