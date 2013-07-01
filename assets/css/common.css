@@ -399,7 +399,7 @@ html[xmlns] .slides {display: block;}
 
 #metapp .appnote{background: #f0f0f0; display: inline-block; width: 230px; height: 75px; vertical-align: middle; position: relative; margin: 26px 20px 0 0;}
 #metapp .appnote:last-child{margin: 26px 0 0 0;}
-#metapp .icone{float: left; margin: 20px; width: 90px; height: 90px; background: transparent; position: relative; border-radius: 10px;}
+#metapp .icone{float: left; margin: 20px 175px 20px 20px; width: 90px; height: 90px; background: transparent; position: relative; border-radius: 10px;}
 
 #metapp .appnote span{display: block; height: 75px; background-position: center center; margin: 14px; float: left;}
 #metapp .noteMedappcare span{background: url(../img/pictapp_medappcare_lightblue.png) no-repeat; width: 68px; height: 48px;}
@@ -532,6 +532,26 @@ html[xmlns] .slides {display: block;}
 #appSectionOne{min-height: 250px;}
 
 #appSectionTwo{min-height: 250px;}
+
+/* GRID */
+
+.gridTitle{text-align: center; margin: 0 0 50px 0;}
+
+#thegrid{visibility: hidden;}
+#thegrid.active{visibility: visible;}
+
+#thegrid h3{float: left; position: relative;}
+
+.grid{position: relative; float: left; width: 70%; text-align: center; height: 200px;}
+.chart{position: relative; width: 176px; margin: 50px auto;}
+
+#thegrid .ext{position: absolute; top: 0; left: 0;}
+#thegrid .mid{position: absolute; top: 16px; left: 16px;}
+#thegrid .int{position: absolute; top: 32px; left: 32px;}
+
+#thegrid .notemoyenne{position: absolute; top: 66px; left: 74px;}
+
+#thegrid .thenote{position: absolute; top:0; left: 0;}
 
 
 /* Screenshots */

@@ -325,7 +325,45 @@ $(function() {
          });
      });
 
+/* THE GRID */
 
+$(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+    if (scroll = 1600) {
+        $("#thegrid").addClass("active");
+    }
+    else {}
+});
+
+$(function() {
+    $('.ext').easyPieChart({
+        barColor: '#79c1d2',
+        rotate: -90,
+        animate: 4000,
+        scaleColor: false,
+        size: 176,
+        lineCap: 'square',
+        lineWidth: 10
+    });
+    $('.mid').easyPieChart({
+        barColor: '#84c790',
+        rotate: -90,
+        animate: 4000,
+        scaleColor: false,
+        size: 143,
+        lineCap: 'square',
+        lineWidth: 10
+    });
+    $('.int').easyPieChart({
+        barColor: '#e05d5f',
+        rotate: -90,
+        animate: 4000,
+        scaleColor: false,
+        size: 112,
+        lineCap: 'square',
+        lineWidth: 10
+    });
+});
 
 
 

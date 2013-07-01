@@ -11,8 +11,10 @@
 
         <div class="icone"><img width="90px" height="90px" src="<?php echo $application->logo_url; ?>"></div>
 
-        <div class="content right">
+        <div class="content">
             <?php if(isset($application->moyenne_note_medappcare) && $application->moyenne_note_medappcare > 0): ?><div class="appnote noteMedappcare"><span></span><a href="#thegrid" class="note <?php echo $application->class_note_medappcare; ?>"><?php echo ucfirst($application->class_note_medappcare); ?></a></div><?php endif; ?>
+            
+            <!-- DEPRECATED -->
             <?php if(isset($application->moyenne_note_pro)): ?><div class="appnote notePro"><span></span><a href="#thegrid" class="note <?php echo $application->class_note_pro; ?>"><?php echo ucfirst($application->class_note_pro); ?></a></div><?php endif; ?>
             <?php if(isset($application->moyenne_note_perso)): ?><div class="appnote noteGens"><span></span><a href="#thegrid" class="note <?php echo $application->class_note_perso; ?>"><?php echo ucfirst($application->class_note_perso); ?></a></div><?php endif; ?>
         </div>
@@ -83,8 +85,29 @@
                 <p>Flashez le code ci-dessus ou <a href="<?php echo $application->lien_download; ?>" target="_blank" title="<?php echo $application->nom; ?>">cliquez ici</a> pour télécharger l’app.</p>
             </div>
         </div>
-        <div id ="thegrid" class="content right">
-<!--            <h5 class="soon">Retrouvez prochainement ici la grille d'évaluation de l'application.-->
+        <div id="thegrid" class="content right">
+            <h2 class="gridTitle">La Grille Medappcare</h2>
+            
+            <div id="technique">
+                <h3>Technique</h3>
+                <div class="grid">
+                    <div class="chart">
+                        <div class="ext" data-percent="90"><span class="thenote">9</span></div>
+                        <div class="mid" data-percent="40"><span class="thenote">4</span></div>
+                        <div class="int" data-percent="20"><span class="thenote">2</span></div>
+                        <span class="notemoyenne">7</span>
+                    </div>
+                    <span class="extTitle">Fonctionnement général</span>
+                    <span class="midTitle">Protection des données personnelles</span>
+                    <span class="intTitle">Sécurité</span>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+
+
+<!--
+
             <?php if(!empty($application->note_medappcare_detail)): ?>
             <?php foreach ($application->criteres as $critere_parent): ?>
                     <hr>
@@ -97,6 +120,7 @@
                     <?php endforeach; ?>
             <?php endforeach; ?>
             <?php endif; ?>
+-->
         </div>
         <div class="clear"></div>
     </div> <!-- end wrapper -->
@@ -194,7 +218,6 @@
 </div>
 
 <?php if($user): ?>
-<section id="partners"><?php echo $partners; ?></section> <!-- Section Partenaires -->
 <div class="modal hide fade" id="commentModal">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" id="modal-notation-close"></button>
