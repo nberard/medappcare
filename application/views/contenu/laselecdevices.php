@@ -8,11 +8,11 @@
 
 <div class="selectHeader">
     <div class="wrapper">
-        <span class="image"></span><!-- INSÉRER L'IMAGE QUI VA BIEN -->
+        <span class="image"><img width="950px" height="300px" src="<?php echo base_url().config_item('upload_paths')['selection'].$selection->image; ?>"/></span><!-- INSÉRER L'IMAGE QUI VA BIEN -->
         <p class="intro">
-Nulla vitae elit libero, a pharetra augue. Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+            <?php echo $selection->description; ?>
         </p>
-    </div>                                
+    </div>
 </div>
 
 <div class="colorsLine"></div>

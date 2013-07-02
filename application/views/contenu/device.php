@@ -120,9 +120,14 @@
                 <?php endif; ?>
 	    	</div>
             <div class="tabContent" id="commentaires">
+                <div class="noteGlobale">
                 <?php foreach($device->moyennes as $moyenne): ?>
-                    moyenne pour <?php echo $moyenne->critere; ?> : <?php echo $moyenne->note; ?> <br/>
+                    <div class="<?php echo strtolower($moyenne->critere); ?>">
+                        <label><?php echo $moyenne->critere; ?></label>
+                        <div class="rateit" data-rateit-value="<?php echo $moyenne->note; ?>" data-rateit-ispreset="true" data-rateit-readonly="true" data-rateit-max="<?php echo config_item('note_max_accessoire'); ?>"></div>
+                    </div>
                 <?php endforeach; ?>
+                </div>
                 Commentaires :
 	    	    <?php echo $widget_devicecomments; ?>
             </div>

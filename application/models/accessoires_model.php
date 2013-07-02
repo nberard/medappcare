@@ -70,7 +70,7 @@ class Accessoires_model extends CI_Model {
 
     public function get_moyennes_from_accessoire($_id)
     {
-        $res = $this->db->select('ROUND(AVG(note)) AS note, C.nom_'.config_item('lng').' AS critere')
+        $res = $this->db->select('ROUND(2 * AVG(note)) / 2 AS note, C.nom_'.config_item('lng').' AS critere')
             ->from($this->table.' A')
             ->join($this->tableNotation.' N', 'N.accessoire_id = A.id', 'LEFT')
             ->join($this->tableNotes.' NC', 'NC.accessoire_notation_id = N.id', 'INNER')
