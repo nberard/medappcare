@@ -302,18 +302,10 @@ $(function() {
 
 /* THE GRID */
 
-$(window).scroll(function() {    
-    var scroll = $(window).scrollTop();
-    if (scroll = 1600) {
-        $("#thegrid").addClass("active");
-    }
-    else {}
-});
-
 $(function() {
     $('.ext').easyPieChart({
         barColor: '#79c1d2',
-        rotate: -90,
+        rotate: -10,
         animate: 4000,
         scaleColor: false,
         size: 176,
@@ -322,16 +314,16 @@ $(function() {
     });
     $('.mid').easyPieChart({
         barColor: '#84c790',
-        rotate: -90,
+        rotate: 0,
         animate: 4000,
         scaleColor: false,
-        size: 143,
+        size: 144,
         lineCap: 'square',
         lineWidth: 10
     });
     $('.int').easyPieChart({
         barColor: '#e05d5f',
-        rotate: -90,
+        rotate: 10,
         animate: 4000,
         scaleColor: false,
         size: 112,
@@ -339,6 +331,29 @@ $(function() {
         lineWidth: 10
     });
 });
+
+var canvas = document.getElementById("extLine");
+var context = canvas.getContext("2d");
+
+function drawLine(x1,y1,x2,y2)
+{
+    
+    context.fillStyle = '#79c1d2';
+    context.strokeStyle = '#79c1d2';
+
+
+    context.beginPath();
+    context.moveTo(x1, y1); 
+    context.lineTo(x2, y2);
+    context.lineWidth = 1;
+    context.stroke();
+    context.closePath();
+    context.rotate(45.0);
+}    
+
+
+drawLine(30,30,60,30);
+
 
 
 

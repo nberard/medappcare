@@ -92,18 +92,66 @@
                 <h3>Technique</h3>
                 <div class="grid">
                     <div class="chart">
-                        <div class="ext" data-percent="90"><span class="thenote">9</span></div>
-                        <div class="mid" data-percent="40"><span class="thenote">4</span></div>
-                        <div class="int" data-percent="20"><span class="thenote">2</span></div>
+                        <div class="ext" data-percent="90"></div>
+                        <div class="mid" data-percent="40"></div>
+                        <div class="int" data-percent="20"></div>
                         <span class="notemoyenne">7</span>
+                        <canvas id="extLine"></canvas>
                     </div>
-                    <span class="extTitle">Fonctionnement général</span>
-                    <span class="midTitle">Protection des données personnelles</span>
-                    <span class="intTitle">Sécurité</span>
+                    <div class="extTitle"><span class="label">Fonctionnement général</span><span class="thenote">9</span></div>
+                    <div class="midTitle"><span class="label">Protection des données personnelles</span><span class="thenote">4</span></div>
+                    <div class="intTitle"><span class="label">Sécurité</span><span class="thenote">2</span></div>
+                    <div class="clear"></div>
                 </div>
-                <div class="clear"></div>
+            </div>
+            
+            <div id="contenu">
+                <h3>Contenu</h3>
+                <div class="grid">
+                    <div class="chart">
+                        <div class="ext" data-percent="50"></div>
+                        <div class="mid" data-percent="20"></div>
+                        <span class="notemoyenne">3</span>
+                    </div>
+                    <div class="extTitle"><span class="label">Compétences</span><span class="thenote">5</span></div>
+                    <div class="midTitle"><span class="label">Fiabilité des informations</span><span class="thenote">2</span></div>
+                    <div class="clear"></div>
+                </div>
             </div>
 
+            <div id="service">
+                <h3>Service</h3>
+                <div class="grid">
+                    <div class="chart">
+                        <div class="ext" data-percent="100"></div>
+                        <div class="mid" data-percent="80"></div>
+                        <div class="int" data-percent="10"></div>
+                        <span class="notemoyenne">7</span>
+                        <canvas id="extLine"></canvas>
+                    </div>
+                    <div class="extTitle"><span class="label">Conditions Générales d'Utilisations</span><span class="thenote">10</span></div>
+                    <div class="midTitle"><span class="label">Financements</span><span class="thenote">8</span></div>
+                    <div class="intTitle"><span class="label">Publicités</span><span class="thenote">1</span></div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            
+            <div id="usage">
+                <h3>Usage</h3>
+                <div class="grid">
+                    <div class="chart">
+                        <div class="ext" data-percent="60"></div>
+                        <div class="mid" data-percent="40"></div>
+                        <div class="int" data-percent="60"></div>
+                        <span class="notemoyenne">7</span>
+                        <canvas id="extLine"></canvas>
+                    </div>
+                    <div class="extTitle"><span class="label">Ergonomie</span><span class="thenote">6</span></div>
+                    <div class="midTitle"><span class="label">Design</span><span class="thenote">4</span></div>
+                    <div class="intTitle"><span class="label">Utilisabilité</span><span class="thenote">6</span></div>
+                    <div class="clear"></div>
+                </div>
+            </div>
 
 
 <!--
