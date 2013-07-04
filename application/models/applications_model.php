@@ -345,8 +345,9 @@ class Applications_model extends CI_Model {
 
     public function get_notes_criteres_medappcare($_pro, $_application_id)
     {
-        $notes_criteres_db = $this->db->select('note, critere_id')
+        $notes_criteres_db = $this->db->select('note, critere_id, AC.parent_id')
             ->from($this->getTableName('notes_medappcare', $_pro).' NM')
+            ->join($this->getTableName('criteres_medappcare', $_pro).' AC', 'AC.id = NM.critere_id', 'INNER')
             ->join('application_notation_medappcare ANM', 'ANM.id = NM.application_notation_id', 'INNER')
             ->where(array('ANM.application_id' => $_application_id))
             ->get()->result();
@@ -354,6 +355,8 @@ class Applications_model extends CI_Model {
         foreach($notes_criteres_db as $note_criteres_db)
         {
             $notes_criteres[$note_criteres_db->critere_id] = $note_criteres_db->note;
+            $notes_criteres[$note_criteres_db->parent_id] = isset($notes_criteres[$note_criteres_db->parent_id]) ?
+                $notes_criteres[$note_criteres_db->parent_id] + $note_criteres_db->note : $note_criteres_db->note;
         }
         return $notes_criteres;
     }
@@ -430,7 +433,7 @@ class Applications_model extends CI_Model {
 
     public function get_moyennes_from_application($_pro, $_id)
     {
-        $res = $this->db->select('ROUND(AVG(note)) AS note, C.nom_'.config_item('lng').' AS critere')
+        $res = $this->db->select('ROUND(AVG(2 * note)) / 2 AS note, C.nom_'.config_item('lng').' AS critere')
             ->from($this->table.' A')
             ->join($this->getTableName('notation', $_pro).' N', 'N.application_id = A.id', 'LEFT')
             ->join($this->getTableName('notes', $_pro).' NC', 'NC.application_notation_id = N.id', 'INNER')
