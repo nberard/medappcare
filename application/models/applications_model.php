@@ -77,7 +77,9 @@ class Applications_model extends CI_Model {
 
     public function get_last_eval_applications($_pro, $_category_id = -1)
     {
-        return $this->get_applications($_pro, -1, $_category_id, null, true, -1, -1, -1, 'date', 'desc', 5);
+        $user = $this->session->userdata('user');
+        $devices = isset($user->devices) ? $user->devices : -1;
+        return $this->get_applications($_pro, $devices, $_category_id, null, true, -1, -1, -1, 'date', 'desc', 5);
     }
 
     public function get_applications($_pro, $_devices_id, $_categorie_id, $_term, $_eval_medappcare, $_free, $_selection_id,
@@ -313,7 +315,9 @@ class Applications_model extends CI_Model {
 
     public function get_top_five_applications($_free, $_pro, $_category_id = -1)
     {
-        return $this->get_applications($_pro, -1, $_category_id, null, true, $_free, -1, -1, 'id', 'desc', 5);
+        $user = $this->session->userdata('user');
+        $devices = isset($user->devices) ? $user->devices : -1;
+        return $this->get_applications($_pro, $devices, $_category_id, null, true, $_free, -1, -1, 'id', 'desc', 5);
     }
 
     public function get_pour_les_pros_applications($_sort, $_category_id = -1)

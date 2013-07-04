@@ -37,7 +37,7 @@ class Devices_model extends CI_Model {
         {
             $return[] = $result->device_id;
         }
-        return $return;
+        return empty($return) ? -1 : $return;
     }
 
 }
