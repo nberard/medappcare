@@ -81,7 +81,7 @@ class Applications_model extends CI_Model {
     }
 
     public function get_applications($_pro, $_devices_id, $_categorie_id, $_term, $_eval_medappcare, $_free, $_selection_id,
-                                     $_accessoire_ref_id, $_sort = 'id', $_order = 'desc', $_limit = 0, $_offset = 0)
+                                     $_accessoire_ref_id, $_sort = 'id', $_order = 'desc', $_limit = 0, $_offset = 0, $_get_count = false)
     {
         $callers=debug_backtrace();
         log_message('debug', "get_applications($_pro, ".var_export($_devices_id, true).", $_categorie_id, $_term, $_eval_medappcare, $_free, $_selection_id,
@@ -95,21 +95,23 @@ class Applications_model extends CI_Model {
             'date' => 'NM.date',
             'note' => 'moyenne_note_medappcare',
         );
-        $_sort = isset($sort_corresp[$_sort]) ? $sort_corresp[$_sort] : $_sort;
-
-        $this->db->select('A.*, D.nom AS device_nom, D.class as device_class,
-                            IF( A.note_medappcare > 0.00, ROUND( A.note_medappcare ) , ROUND( AVG( 2 * ANP.note ) ) ) AS moyenne_note_medappcare')
-            ->from($this->table.' A')
-            ->join($this->tableDevice.' D', 'D.id = A.device_id', 'INNER')
-            ->join($this->getTableName('notation', $_pro).' ANO', 'ANO.application_id = A.id', 'LEFT')
-            ->join($this->getTableName('notes', $_pro).' ANP', 'ANP.application_notation_id = ANO.id', 'LEFT')
-            ->group_by('A.id')
-            ->order_by($_sort, $_order);
-
-        if($_limit > 0)
+        if(!$_get_count)
         {
-            $this->db->limit($_limit, $_offset);
+            $_sort = isset($sort_corresp[$_sort]) ? $sort_corresp[$_sort] : $_sort;
+            $this->db->from($this->table.' A')
+                ->select('A.*, D.nom AS device_nom, D.class as device_class,
+                            IF( A.note_medappcare > 0.00, ROUND( A.note_medappcare ) , ROUND( AVG( 2 * ANP.note ) ) ) AS moyenne_note_medappcare')
+                ->group_by('A.id')
+                ->order_by($_sort, $_order);
+            if($_limit > 0)
+            {
+                $this->db->limit($_limit, $_offset);
+            }
         }
+        $this->db->join($this->tableDevice.' D', 'D.id = A.device_id', 'INNER')
+            ->join($this->getTableName('notation', $_pro).' ANO', 'ANO.application_id = A.id', 'LEFT')
+            ->join($this->getTableName('notes', $_pro).' ANP', 'ANP.application_notation_id = ANO.id', 'LEFT');
+
         if($_categorie_id != -1)
         {
             $this->db->join('application_categorie C', 'A.id = C.application_id', 'INNER');
@@ -130,7 +132,7 @@ class Applications_model extends CI_Model {
         {
             $this->db->where("((LOWER(A.nom) LIKE '%".strtolower($_term)."%') OR (LOWER(A.titre) LIKE '%".strtolower($_term)."%'))");
         }
-        if($_devices_id !== -1)
+        if($_devices_id != -1)
         {
             if(is_array($_devices_id))
             {
@@ -160,8 +162,15 @@ class Applications_model extends CI_Model {
             $this->db->where(array('A.est_pro' => $_pro ? 1 : 0));
         }
         $this->db->where(array('est_valide' => 1));
-        $res = $this->db->get()->result();
-        return $res ? $res : array();
+        if($_get_count)
+        {
+            return $this->db->count_all_results($this->table.' A');
+        }
+        else
+        {
+            $res = $this->db->get()->result();
+            return $res ? $res : array();
+        }
     }
 
     public function get_note_medappcare($_pro, $_application_id)
@@ -287,9 +296,19 @@ class Applications_model extends CI_Model {
         return $this->get_applications($_pro, $_devices_id, $_categorie_id, null, false, $_free, -1, -1, $_sort, $_order, config_item('nb_results_list'), ($_page -1) * config_item('nb_results_list'));
     }
 
+    public function get_number_applications_from_categorie($_pro, $_devices_id, $_categorie_id, $_free, $_sort, $_order, $_page)
+    {
+        return $this->get_applications($_pro, $_devices_id, $_categorie_id, null, false, $_free, -1, -1, $_sort, $_order, config_item('nb_results_list'), ($_page -1) * config_item('nb_results_list'), true);
+    }
+
     public function get_applications_classic($_pro, $_devices_id, $_term, $_eval_medapp, $_free, $_sort, $_order, $_page)
     {
         return $this->get_applications($_pro, $_devices_id, -1, $_term, $_eval_medapp, $_free, -1, -1, $_sort, $_order, config_item('nb_results_list'), ($_page -1) * config_item('nb_results_list'));
+    }
+
+    public function get_number_applications_classic($_pro, $_devices_id, $_term, $_eval_medapp, $_free, $_sort, $_order, $_page)
+    {
+        return $this->get_applications($_pro, $_devices_id, -1, $_term, $_eval_medapp, $_free, -1, -1, $_sort, $_order, config_item('nb_results_list'), ($_page -1) * config_item('nb_results_list'), true);
     }
 
     public function get_top_five_applications($_free, $_pro, $_category_id = -1)

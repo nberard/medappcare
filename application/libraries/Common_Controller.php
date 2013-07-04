@@ -503,12 +503,13 @@ class Common_Controller extends MY_Controller
 
         $categorie = $this->Categories_model->get_categorie($_categorie_id);
         $applications = $this->Applications_model->get_applications_from_categorie($this->pro, $search_params['devices'], $_categorie_id, $search_params['free'], $search_params['sort'], $search_params['order'], $_page);
+        $number_applications = $this->Applications_model->get_applications_from_categorie($this->pro, $search_params['devices'], $_categorie_id, $search_params['free'], $search_params['sort'], $search_params['order'], $_page);
         $this->_format_all_prices($applications);
         $this->_format_all_notes($applications);
         $this->_format_all_links($applications, 'app');
         $this->_populate_categories_applications($applications);
 
-        if(count($applications) == config_item('nb_results_list'))
+        if($number_applications > config_item('nb_results_list') * $_page)
         {
             $this->_format_link($categorie, 'app_category', 'nom', 'link_all_next', 'id' ,$_page+1, $search_params);
         }
@@ -594,11 +595,15 @@ class Common_Controller extends MY_Controller
                         $pro, $search_params['devices'], $search_params['term'], $search_params['eval_medapp'],
                         $search_params['free'], $search_params['sort'], $search_params['order'], $_page
         );
+        $number_applications = $this->Applications_model->get_number_applications_classic(
+            $pro, $search_params['devices'], $search_params['term'], $search_params['eval_medapp'],
+            $search_params['free'], $search_params['sort'], $search_params['order'], $_page
+        );
         $this->_format_all_prices($applications);
         $this->_format_all_notes($applications);
         $this->_format_all_links($applications, 'app');
         $this->_populate_categories_applications($applications);
-        $next_link = count($applications) == config_item('nb_results_list') ?
+        $next_link = $number_applications > $_page * config_item('nb_results_list') ?
             $this->_format_link_no_id('app_search', $_page+1, $search_params) :
             null;
         $prev_link = $_page > 1 ? $this->_format_link_no_id('app_search', $_page-1, $search_params) :
