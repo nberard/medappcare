@@ -22,8 +22,9 @@ class Membres_model extends CI_Model {
 
     public function exists_membres($_condition)
     {
-        $membre = $this->db->select('*')->from($this->table)->where($_condition)->get()->result();
-        return !empty($membre) ? $membre[0] : false;
+        return $this->db->select('*')
+            ->from($this->table)
+            ->where($_condition)->get()->row();
     }
 
     public function update_membre($_membre_id, $_params, $_list, $_pro)
