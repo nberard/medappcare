@@ -389,6 +389,11 @@ html[xmlns] .slides {display: block;}
 .medeplacer .title, .mespatients .title{background: #D769AF;}
 
 
+/* =========== PAGE LA SELEC =========== */
+.selectHeader .image{display: block; width: 100%; height: 300px; background: green; position: relative; margin: 50px auto;}
+.selectHeader .intro{margin: 0 auto 50px auto; text-align: left;}
+
+
 /* =========== APPS =========== */
 
 #metapp{background: #79c1d2; width: 100%; height: 130px; position: relative; padding: 1px 0 0 0;}
@@ -399,7 +404,7 @@ html[xmlns] .slides {display: block;}
 
 #metapp .appnote{background: #f0f0f0; display: inline-block; width: 230px; height: 75px; vertical-align: middle; position: relative; margin: 26px 20px 0 0;}
 #metapp .appnote:last-child{margin: 26px 0 0 0;}
-#metapp .icone{float: left; margin: 20px; width: 90px; height: 90px; background: transparent; position: relative; border-radius: 10px;}
+#metapp .icone{float: left; margin: 20px 175px 20px 20px; width: 90px; height: 90px; background: transparent; position: relative; border-radius: 10px;}
 
 #metapp .appnote span{display: block; height: 75px; background-position: center center; margin: 14px; float: left;}
 #metapp .noteMedappcare span{background: url(../img/pictapp_medappcare_lightblue.png) no-repeat; width: 68px; height: 48px;}
@@ -532,6 +537,37 @@ html[xmlns] .slides {display: block;}
 #appSectionOne{min-height: 250px;}
 
 #appSectionTwo{min-height: 250px;}
+
+/* GRID */
+
+.gridTitle{text-align: center; margin: 0 0 50px 0;}
+
+/*
+#thegrid{visibility: hidden;}
+#thegrid.active{visibility: visible;}
+*/
+
+#thegrid h3{float: left; position: relative; width: 100px;}
+
+.grid{position: relative; float: left; width: 560px; text-align: center; height: auto;}
+.chart{position: relative; width: 176px; margin: 80px auto 50px auto; height: 176px; display: block;}
+
+#thegrid .ext{position: absolute; top: 0; left: 0;}
+#thegrid .mid{position: absolute; top: 16px; left: 16px;}
+#thegrid .int{position: absolute; top: 32px; left: 32px;}
+
+#thegrid .notemoyenne{position: absolute; top: 66px; left: 74px;}
+
+.thenote{display: inline-block; width: 20px; height: 20px; border-radius: 100%; color: white; line-height: 20px; text-align: center; margin: -10px 0 0 10px;}
+.extTitle .thenote{background: #79c1d2;}
+.midTitle .thenote{background: #84c790;}
+.intTitle .thenote{background: #e05d5f;}
+
+#extLine{position: absolute; top: 0; left: 0;}
+
+.extTitle{position: absolute; top: 10px; left: 250px;}
+.midTitle{position: absolute; top: 30px; left: 272px;}
+.intTitle{position: absolute; top: 50px; left: 290px;}
 
 
 /* Screenshots */

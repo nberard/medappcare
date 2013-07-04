@@ -1,24 +1,5 @@
 <div id="accessoire-notes-browser">
 
-<div class="noteGlobale">
-    <div class="ergo">
-        <label>Ergonomie</label>
-        <div class="rateit" data-rateit-value="2.5" data-rateit-ispreset="true" data-rateit-readonly="true" data-rateit-max="10"></div>
-    </div>
-    <div class="design">
-        <label>Design</label>
-        <div class="rateit" data-rateit-value="2.5" data-rateit-ispreset="true" data-rateit-readonly="true" data-rateit-max="10"></div>
-    </div>
-    <div class="satisfaction">
-        <label>Satisfaction</label>
-        <div class="rateit" data-rateit-value="2.5" data-rateit-ispreset="true" data-rateit-readonly="true" data-rateit-max="10"></div>
-    </div>
-    <div class="fonctionnement">
-        <label>Fonctionnement</label>
-        <div class="rateit" data-rateit-value="2.5" data-rateit-ispreset="true" data-rateit-readonly="true" data-rateit-max="10"></div>
-    </div>
-</div>
-
 <?php $cpt = 0; foreach($notes as $notation): ?>
     <?php $cpt++; echo $notation->pseudo.' a noté cette application '.$notation->date_full.' : '.$notation->note.' / 10 dans '.$notation->critere.'<br/>'; ?>
     <?php if($cpt % config_item('nb_comments_page') == 0) echo '<br/>';  ?>

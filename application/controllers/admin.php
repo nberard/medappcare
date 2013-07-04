@@ -362,6 +362,7 @@ class Admin extends MY_Controller
         $this->crud->set_relation_n_n('applications', 'selection_application', 'application', 'selection_id', 'application_id', '{nom}');
         $upload_paths = config_item('upload_paths');
         $this->crud->set_field_upload('image',$upload_paths['selection']);
+        $this->crud->change_field_type('description', 'text');
         $this->_admin_output($this->crud->render());
     }
 

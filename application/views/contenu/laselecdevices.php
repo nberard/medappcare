@@ -10,9 +10,9 @@
     <div class="wrapper">
         <span class="image"><img width="950px" height="300px" src="<?php echo base_url().config_item('upload_paths')['selection'].$selection->image; ?>"/></span><!-- INSÉRER L'IMAGE QUI VA BIEN -->
         <p class="intro">
-<?php echo $selection->description; ?>
+            <?php echo $selection->description; ?>
         </p>
-    </div>                                
+    </div>
 </div>
 
 <div class="colorsLine"></div>

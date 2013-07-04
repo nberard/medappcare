@@ -11,8 +11,10 @@
 
         <div class="icone"><img width="90px" height="90px" src="<?php echo $application->logo_url; ?>"></div>
 
-        <div class="content right">
+        <div class="content">
             <?php if(isset($application->moyenne_note_medappcare) && $application->moyenne_note_medappcare > 0): ?><div class="appnote noteMedappcare"><span></span><a href="#thegrid" class="note <?php echo $application->class_note_medappcare; ?>"><?php echo ucfirst($application->class_note_medappcare); ?></a></div><?php endif; ?>
+            
+            <!-- DEPRECATED -->
             <?php if(isset($application->moyenne_note_pro)): ?><div class="appnote notePro"><span></span><a href="#thegrid" class="note <?php echo $application->class_note_pro; ?>"><?php echo ucfirst($application->class_note_pro); ?></a></div><?php endif; ?>
             <?php if(isset($application->moyenne_note_perso)): ?><div class="appnote noteGens"><span></span><a href="#thegrid" class="note <?php echo $application->class_note_perso; ?>"><?php echo ucfirst($application->class_note_perso); ?></a></div><?php endif; ?>
         </div>
@@ -83,8 +85,77 @@
                 <p>Flashez le code ci-dessus ou <a href="<?php echo $application->lien_download; ?>" target="_blank" title="<?php echo $application->nom; ?>">cliquez ici</a> pour télécharger l’app.</p>
             </div>
         </div>
-        <div id ="thegrid" class="content right">
-<!--            <h5 class="soon">Retrouvez prochainement ici la grille d'évaluation de l'application.-->
+        <div id="thegrid" class="content right">
+            <h2 class="gridTitle">La Grille Medappcare</h2>
+            
+            <div id="technique">
+                <h3>Technique</h3>
+                <div class="grid">
+                    <div class="chart">
+                        <div class="ext" data-percent="90"></div>
+                        <div class="mid" data-percent="40"></div>
+                        <div class="int" data-percent="20"></div>
+                        <span class="notemoyenne">7</span>
+                        <canvas id="extLine"></canvas>
+                    </div>
+                    <div class="extTitle"><span class="label">Fonctionnement général</span><span class="thenote">9</span></div>
+                    <div class="midTitle"><span class="label">Protection des données personnelles</span><span class="thenote">4</span></div>
+                    <div class="intTitle"><span class="label">Sécurité</span><span class="thenote">2</span></div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            
+            <div id="contenu">
+                <h3>Contenu</h3>
+                <div class="grid">
+                    <div class="chart">
+                        <div class="ext" data-percent="50"></div>
+                        <div class="mid" data-percent="20"></div>
+                        <span class="notemoyenne">3</span>
+                    </div>
+                    <div class="extTitle"><span class="label">Compétences</span><span class="thenote">5</span></div>
+                    <div class="midTitle"><span class="label">Fiabilité des informations</span><span class="thenote">2</span></div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+            <div id="service">
+                <h3>Service</h3>
+                <div class="grid">
+                    <div class="chart">
+                        <div class="ext" data-percent="100"></div>
+                        <div class="mid" data-percent="80"></div>
+                        <div class="int" data-percent="10"></div>
+                        <span class="notemoyenne">7</span>
+                        <canvas id="extLine"></canvas>
+                    </div>
+                    <div class="extTitle"><span class="label">Conditions Générales d'Utilisations</span><span class="thenote">10</span></div>
+                    <div class="midTitle"><span class="label">Financements</span><span class="thenote">8</span></div>
+                    <div class="intTitle"><span class="label">Publicités</span><span class="thenote">1</span></div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            
+            <div id="usage">
+                <h3>Usage</h3>
+                <div class="grid">
+                    <div class="chart">
+                        <div class="ext" data-percent="60"></div>
+                        <div class="mid" data-percent="40"></div>
+                        <div class="int" data-percent="60"></div>
+                        <span class="notemoyenne">7</span>
+                        <canvas id="extLine"></canvas>
+                    </div>
+                    <div class="extTitle"><span class="label">Ergonomie</span><span class="thenote">6</span></div>
+                    <div class="midTitle"><span class="label">Design</span><span class="thenote">4</span></div>
+                    <div class="intTitle"><span class="label">Utilisabilité</span><span class="thenote">6</span></div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+
+<!--
+
             <?php if(!empty($application->note_medappcare_detail)): ?>
             <?php foreach ($application->criteres as $critere_parent): ?>
                     <hr>
@@ -97,6 +168,7 @@
                     <?php endforeach; ?>
             <?php endforeach; ?>
             <?php endif; ?>
+-->
         </div>
         <div class="clear"></div>
     </div> <!-- end wrapper -->
@@ -194,7 +266,6 @@
 </div>
 
 <?php if($user): ?>
-<section id="partners"><?php echo $partners; ?></section> <!-- Section Partenaires -->
 <div class="modal hide fade" id="commentModal">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" id="modal-notation-close"></button>

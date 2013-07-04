@@ -298,33 +298,61 @@ $(function() {
     $( '#dl-menu' ).dlmenu();
 });
 
-/* REVIEW APP & DEVICES */
-/* !!!!!!! A ADAPTER !!!!!!! */ 
 
-     $('#products .rateit').bind('rated reset', function (e) {
-         var ri = $(this);
- 
-         //if the use pressed reset, it will get value: 0 (to be compatible with the HTML range control), we could check if e.type == 'reset', and then set the value to  null .
-         var value = ri.rateit('value');
-         var productID = ri.data('productid'); // if the product id was in some hidden field: ri.closest('li').find('input[name="productid"]').val()
- 
-         //maybe we want to disable voting?
-         ri.rateit('readonly', true);
- 
-         $.ajax({
-             url: 'rateit.aspx', //your server side script
-             data: { id: productID, value: value }, //our data
-             type: 'POST',
-             success: function (data) {
-                 $('#response').append('<li>' + data + '</li>');
- 
-             },
-             error: function (jxhr, msg, err) {
-                 $('#response').append('<li style="color:red">' + msg + '</li>');
-             }
-         });
-     });
 
+/* THE GRID */
+
+$(function() {
+    $('.ext').easyPieChart({
+        barColor: '#79c1d2',
+        rotate: -10,
+        animate: 4000,
+        scaleColor: false,
+        size: 176,
+        lineCap: 'square',
+        lineWidth: 10
+    });
+    $('.mid').easyPieChart({
+        barColor: '#84c790',
+        rotate: 0,
+        animate: 4000,
+        scaleColor: false,
+        size: 144,
+        lineCap: 'square',
+        lineWidth: 10
+    });
+    $('.int').easyPieChart({
+        barColor: '#e05d5f',
+        rotate: 10,
+        animate: 4000,
+        scaleColor: false,
+        size: 112,
+        lineCap: 'square',
+        lineWidth: 10
+    });
+});
+
+var canvas = document.getElementById("extLine");
+var context = canvas.getContext("2d");
+
+function drawLine(x1,y1,x2,y2)
+{
+    
+    context.fillStyle = '#79c1d2';
+    context.strokeStyle = '#79c1d2';
+
+
+    context.beginPath();
+    context.moveTo(x1, y1); 
+    context.lineTo(x2, y2);
+    context.lineWidth = 1;
+    context.stroke();
+    context.closePath();
+    context.rotate(45.0);
+}    
+
+
+drawLine(30,30,60,30);
 
 
 

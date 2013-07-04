@@ -1,4 +1,4 @@
-<div id="dropdown" class="loading"></div><!-- #dropdown Menu -->
+<div id="dropdown" class="loading"></div><!-- #dropdown Menu -->  
 
 <div class="title">
         <div class="wrapper">
@@ -120,9 +120,14 @@
                 <?php endif; ?>
 	    	</div>
             <div class="tabContent" id="commentaires">
+                <div class="noteGlobale">
                 <?php foreach($device->moyennes as $moyenne): ?>
-                    moyenne pour <?php echo $moyenne->critere; ?> : <?php echo $moyenne->note; ?> <br/>
+                    <div class="<?php echo strtolower($moyenne->critere); ?>">
+                        <label><?php echo $moyenne->critere; ?></label>
+                        <div class="rateit" data-rateit-value="<?php echo $moyenne->note; ?>" data-rateit-ispreset="true" data-rateit-readonly="true" data-rateit-max="<?php echo config_item('note_max_accessoire'); ?>"></div>
+                    </div>
                 <?php endforeach; ?>
+                </div>
                 Commentaires :
 	    	    <?php echo $widget_devicecomments; ?>
             </div>
@@ -157,18 +162,18 @@
             <ul class="reviewPost">
                 <li>
                     <label>ERGONOMIE</label>
-                    <div data-productid="312" class="rateit" data-rateit-max="10"></div>
+                    <div data-productid="312" class="rateit" data-rateit-max="5"></div>
                 </li>
                 <li>
                     <label>DESIGN</label>
-                    <div data-productid="312" class="rateit" data-rateit-max="10"></div>
+                    <div data-productid="312" class="rateit" data-rateit-max="5"></div>
                 <li>
                     <label>FONCTIONNEMENT</label>
-                    <div data-productid="312" class="rateit" data-rateit-max="10"></div>
+                    <div data-productid="312" class="rateit" data-rateit-max="5"></div>
                 </li>
                 <li>
                     <label>SATISFACTION</label>
-                    <div data-productid="312" class="rateit" data-rateit-max="10"></div>
+                    <div data-productid="312" class="rateit" data-rateit-max="5"></div>
                 </li>
             </ul>
             <textarea id="commentaire-accessoire" class="commentPost"></textarea>

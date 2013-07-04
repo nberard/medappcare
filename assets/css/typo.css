@@ -18,7 +18,7 @@ h2.form-signin-heading{font-size: 30px; color: #0f6eb4;}
 
 h2{color: #0f6eb4; font-size: 24px;}
 
-.app h2, .device h2, .category h2 {color: white;}
+.app h2, .device h2, .category h2, .selection h2{color: white;}
 
 #listApps h2{color: #0f6eb4; font-size: 24px;}
 #listApps.fullList h2 {color:white; text-align: left; padding-left: 10px;}
@@ -35,6 +35,30 @@ h2{color: #0f6eb4; font-size: 24px;}
 #listApps .allapps.catmonquotidien .category a{color: #e05d5f;}
 #listApps .allapps.catminformer .category a{color: #84c790;}
 #listApps .allapps.catmedeplacer .category a{color: #d769af;}
+
+.catmasante .gridTitle{color: #79c1d2; font-size: 36px;}
+.catmonquotidien .gridTitle{color: #e05d5f; font-size: 36px;}
+.catminformer .gridTitle{color: #84c790; font-size: 36px;}
+.catmedeplacer .gridTitle{color: #d769af; font-size: 36px;}
+
+#thegrid h3{font-size: 30px;}
+
+.catmasante #thegrid h3{color: #79c1d2; font-size: 36px;}
+.catmonquotidien #thegrid h3{color: #e05d5f; font-size: 36px;}
+.catminformer #thegrid h3{color: #84c790; font-size: 36px;}
+.catmedeplacer #thegrid h3{color: #d769af; font-size: 36px;}
+
+.extTitle{color: #79c1d2;}
+.intTitle{color: #e05d5f;}
+.midTitle{color: #84c790;}
+.thenote{font-size: 12px;}
+.extTitle, .midTitle, .intTitle{font-size: 16px !important;}
+
+.notemoyenne{font-size: 48px; font-weight: 700;}
+.catmasante .notemoyenne{color: #79c1d2;}
+.catmonquotidien .notemoyenne{color: #e05d5f;}
+.catminformer .notemoyenne{color: #84c790;}
+.catmedeplacer .notemoyenne{color: #d769af;}
 
 #listApps .filter .gratuit,
 #listApps .filter .payant{color: white; font-size: 14px; font-weight: 700;}
