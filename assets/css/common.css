@@ -19,6 +19,8 @@ a:hover{text-decoration: underline;}
 .right{float: right; position: relative;}
 .left{float: left; position: relative;}
 
+.mobile{display: none;}
+
 /* =========== HEADER =========== */
 
 #header{background: url(../img/colorline.jpg) repeat-x top; width: 100%; }

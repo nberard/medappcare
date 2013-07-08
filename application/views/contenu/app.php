@@ -9,7 +9,15 @@
 <section id="metapp" class="cat<?php echo $application->class; ?>">
     <div class="wrapper">
 
-        <div class="icone"><img width="90px" height="90px" src="<?php echo $application->logo_url; ?>"></div>
+        <div class="icone">
+            <img width="90px" height="90px" src="<?php echo $application->logo_url; ?>">
+            <div class="os mobile">
+                <div class="list">
+                    <span class="<?php echo $application->device_class; ?>"><?php echo $application->device_nom; ?></span>
+                    <span class="price"><?php echo $application->prix_complet; ?></span>
+                </div>
+            </div>
+        </div>
 
         <div class="content">
             <?php if(isset($application->moyenne_note_medappcare) && $application->moyenne_note_medappcare > 0): ?><div class="appnote noteMedappcare"><span></span><a href="#thegrid" class="note <?php echo $application->class_note_medappcare; ?>"><?php echo ucfirst($application->class_note_medappcare); ?></a></div><?php endif; ?>

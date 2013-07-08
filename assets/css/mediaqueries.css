@@ -11,9 +11,13 @@
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 320px) {
 
+/* HOMEPAGE & GENERAL */
 
-/* ON cache tout pour le moment */
-#codeigniter_profiler, #slider, #selections, #devices, #news, #pushFooter, #partners, #footer, .copyright, #header .links, #header nav{display: none;}
+#codeigniter_profiler, #slider, #selections, #partners, #footer, #header .links, #header nav{display: none;}
+
+.mobile{display: block;}
+
+.line{margin: 10px 0;}
 
 #dl-menu{display: block; position: fixed; top:0; background: #0F6EB4; z-index: 200000;}
 
@@ -26,9 +30,61 @@
 #header h1{display: block; margin: 20px auto; float: none;}
 
 #listApps .listapps{width: 100%; margin: 50px 0 0 0; float: none;}
-#listApps .metapp{width: 46%;}
+#listapps_topfive{margin: 10px 0 0 0;}
+#listApps .metapp{width: 34%;}
 #listApps .metapp h4{width: auto;}
-#listApps .listapps h3, #listApps .allapps h3{font-size: 18px;}
+#listApps .listapps h3{font-size: 18px;}
+#listApps .allapps h3{font-size: 12px;}
+.metapp *{font-size: 12px !important;}
+
+#devices{min-height: inherit !important;}
+#news li,
+#devices li{width: 96%; padding: 2%;}
+#devices .metapp{width: 34%;}
+#devices .price{width: auto;}
+#devices .excerpt{font-size: 10px;}
+
+#news{border-bottom: none;}
+#news .category{display: none;}
+#news .excerpt{font-size: 12px;}
+#news h4 a{font-size: 14px;}
+
+#pushFooter{min-height: inherit; margin: 0; padding: 0;}
+#pushFooter li{width: 100%; padding: 0; margin: 0;}
+
+.copyright{min-height: 20px;}
+
+/* PAGE APP */
+
+#appSectionOne, #appSectionTwo{min-height: inherit;}
+
+#appSectionOne .sidebar,
+#appSectionTwo .sidebar{display: none;}
+#appSectionOne .content,
+#appSectionTwo .content{width: 96%; padding: 0 2%;}
+.title{width: 96%; padding: 0 2%;}
+
+#metapp{background: none;}
+.app .os{margin-top: 0; margin: 0 auto; text-align: center;}
+.app .description, .device .description{font-size: 14px;}
+
+#metapp{height: auto;}
+#metapp .icone{width: 96%; padding: 0 2%; margin: 0 auto;}
+#metapp .icone img{float: left; position: relative;}
+#metapp .appnote{display: none;}
+
+.catmasante .gridTitle{font-size: 26px;}
+#thegrid h3{font-size: 20px !important; float: none; display: block; width: 100%; text-align: center;}
+.grid{float: none; width: 100%;}
+
+.extTitle, .midTitle, .intTitle{position: relative; text-align: center; top: 0; left: 0;}
+.chart{margin: 20px auto 10px auto;}
+
+#descTabs nav{height: auto;}
+#descTabs nav li{font-size: 12px; line-height: 27px; vertical-align: text-top; float: none; display: block; text-align: center; width: 100%;}
+#descTabs nav li.selected{background-image: none;}
+#descTabs .tabContent{padding: 2%;}
+
 
 }
 
@@ -44,7 +100,23 @@
 
 /* iPads (portrait) ----------- */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
-/* Styles */
+
+header > nav ul{width: 100%;}
+#header > nav li{font-size: 16px;}
+#header > nav li.navmonquotidien a, #header > nav li.navminformer a, header > nav li:not(.home):not(.bt-search) a{padding-left: 0px; text-align: center;}
+
+.navmasante a,
+.navmonquotidien a,
+.navminformer a,
+.navmedeplacer a{background: none;}
+
+.title{width: 96%; padding: 0 2%;}
+#appSectionOne .sidebar, #appSectionTwo .sidebar{padding: 0 2%; width: 16%;}
+#appSectionOne .content, #appSectionTwo .content{padding: 0 2%; width: 66%; font-size: 14px;}
+
+.grid{width: 100%;}
+#thegrid h3{font-size: 24px;}
+
 }
 
 /* Desktops and laptops ----------- */
