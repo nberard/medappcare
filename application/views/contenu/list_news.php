@@ -17,7 +17,7 @@
                     <?php endif; ?>
                 <h2 class="titlenews"><a href="<?php echo $article->link; ?>" title="<?php echo $article->titre; ?>"><?php echo $article->titre; ?></a></h2>
                 <?php if($article->nom_categorie): ?>
-                    <div class="categorie">Posté dans <a href="#" title="<?php echo $article->nom_categorie; ?>"><?php echo $article->nom_categorie; ?></a></div>
+                    <div class="categorie">Posté dans <?php echo $article->nom_categorie; ?></div>
                 <?php endif; ?>
                 <div class="date"><?php echo $article->date_full; ?></div>
                 <div class="content">

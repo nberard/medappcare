@@ -3,6 +3,7 @@
 <footer id="footer">
 
 <div class="wrapper">
+<!--
 	<span class="languages">
         <?php foreach($languages as $languageShort => $languagesVars):
             $current = config_item('language') == $languagesVars['long'];
@@ -12,6 +13,14 @@
         </a> &nbsp;&nbsp;&nbsp;
     <?php endforeach; ?>
     </span>
+-->
+    
+    <span class="languages">
+        <a href="#" class="selected">Français</a> &nbsp;&nbsp;&nbsp;
+        <a href="#" class="btsoon">English<span class="soon">Soon available</span></a>
+    </span>
+    
+    
     <span class="footer_medappcare"></span>
     <div class="left">
         <nav class="principale">
