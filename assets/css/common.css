@@ -19,6 +19,8 @@ a:hover{text-decoration: underline;}
 .right{float: right; position: relative;}
 .left{float: left; position: relative;}
 
+.mobile{display: none;}
+
 /* =========== HEADER =========== */
 
 #header{background: url(../img/colorline.jpg) repeat-x top; width: 100%; }
@@ -166,8 +168,10 @@ html[xmlns] .slides {display: block;}
 #footer .right ul{display: inline-block; position: relative; width: 130px; padding: 0 0 0 15px; vertical-align: top;}
 #footer .right li{padding: 0 0 0 10px;}
 
-#footer .languages{float: right}
+#footer .languages{float: right; position: relative;}
 #footer .languages a:not(.selected) {opacity: .8;}
+#footer .languages .btsoon .soon{display:none; position: absolute; top: -20px; right: -20px; background: red; color: white; padding: 10px;}
+#footer .languages .btsoon:hover .soon{display: block;}
 
 .copyright{text-align: center; padding: 15px 0 20px 0; margin: 0 auto;}
 
@@ -502,7 +506,7 @@ html[xmlns] .slides {display: block;}
 .app .os {margin-top: 10px;}
 .app .list {text-align: center;}
 .app .os span{margin: 10px auto; width: 50px; background-position: center center; display: inline-block;}
-.app .price{background: #79c1d2; width: 40px; padding: 0 5px; line-height: 20px; text-align: center;}
+.app .price{background: #79c1d2; width: 40px; padding: 0 5px; line-height: 30px; text-align: center; display: inline-block;}
 
 
 #appSectionOne .content,

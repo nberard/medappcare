@@ -8,6 +8,7 @@
 class Categories_model extends CI_Model {
 
     protected $table = 'categorie';
+    protected $tableMembre = 'membre_categorie';
 
     public function __construct()
     {
@@ -49,5 +50,20 @@ class Categories_model extends CI_Model {
         $this->db->join($this->table.' C','C.id=AC.categorie_id', 'LEFT');
         $results = $this->db->get_where('application_categorie AC', array('AC.application_id' => $_application_id))->result();
         return $results ? $results : array();
+    }
+
+    public function get_categories_id_from_membre($_membre_id)
+    {
+        $results = $this->db->select('C.id')
+            ->join($this->tableMembre.' MC','C.id=MC.categorie_id', 'INNER')
+            ->join('membre M','M.id=MC.membre_id', 'INNER')
+            ->get_where($this->table. ' C', array('M.id' => $_membre_id))->result();
+        $results = $results ? $results : array();
+        $return = array();
+        foreach($results as $result)
+        {
+            $return[] = $result->id;
+        }
+        return $return;
     }
 }
