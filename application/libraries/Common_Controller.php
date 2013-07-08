@@ -80,6 +80,7 @@ class Common_Controller extends MY_Controller
                 'access_label' => $this->access_label,
                 'categories_principales_pro' => $this->pro ? $categories_principales : $categories_principales_target,
                 'categories_principales_perso' => $this->pro ? $categories_principales_target : $categories_principales,
+                'categories_principales' => $categories_principales,
             ), true),
             'footer_meta' => $this->load->view('inc/footer_meta', array('js_files' => array_merge(array(
 //                js_url('jquery-2.0.0.min'),

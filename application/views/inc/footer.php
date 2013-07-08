@@ -75,40 +75,19 @@
     <button class="dl-trigger">Open Menu</button>
     <button id="bt-login"><span></span></button>
     <ul class="dl-menu dl-menu-toggle">
-        <li class="navMobileItem masante">
-            <a dropdowndestination="masante" href="#">Ma Santé</a>
-            <ul class="dl-submenu">
-                <li class="navMobileItem"><a dropdowndestination="addictions" href="#">Addictions</a></li>
-                <li class="navMobileItem"><a dropdowndestination="allergies" href="#">Allergies</a></li>
-            </ul>
-        </li>
-        <li class="navMobileItem monquotidien">
-            <a dropdowndestination="monquotidien" href="#">Mon Quotidien</a>
-            <ul class="dl-submenu">
-                <li class="navMobileItem"><a dropdowndestination="item" href="#">Item 1</a></li>
-                <li class="navMobileItem"><a dropdowndestination="item" href="#">Item 2</a></li>
-            </ul>
-        </li>
-        <li class="navMobileItem minformer">
-            <a dropdowndestination="minformer" href="#">M'Informer</a>
-            <ul class="dl-submenu">
-                <li class="navMobileItem"><a dropdowndestination="item" href="#">Item 1</a></li>
-                <li class="navMobileItem"><a dropdowndestination="item" href="#">Item 2</a></li>
-            </ul>
-        </li>
-        <li class="navMobileItem medeplacer">
-            <a dropdowndestination="medeplacer" href="#">Me Déplacer</a>
-            <ul class="dl-submenu">
-                <li class="navMobileItem"><a dropdowndestination="item" href="#">Item 1</a></li>
-                <li class="navMobileItem"><a dropdowndestination="item" href="#">Item 2</a></li>
-            </ul>
-        </li>
-        <li class="navMobileItem search">
-            <form action="<?php echo site_url($access_label.'/app_search_1') ; ?>" method="post" id="search-form" class="search-form">
-			    <input type="text" id="search-query" placeholder="Trouvez l'app qui vous plaît...">
-            </form>
-        </li>
+        <?php foreach($categories_principales as $categorie_principale): ?>
+            <li class="navMobileItem <?php echo $categorie_principale->class; ?>">
+                <a dropdowndestination="<?php echo $categorie_principale->class;?>" href="#"><?php echo $categorie_principale->nom;?></a>
+                <ul class="dl-submenu">
+                <?php foreach($categorie_principale->enfants as $categorie_enfant): ?>
+                    <li class="navMobileItem"><a dropdowndestination="<?php echo $categorie_principale->class;?>" href="<?php echo $categorie_enfant->link; ?>"><?php echo $categorie_enfant->nom;?></a></li>
+                <?php endforeach; ?>
+                </ul>
+            </li>
+        <?php endforeach; ?>
     </ul>
+    <div class="bigpicto"></div>
+    <a href="#" class="closeLink">Fermer le menu</a>
 </div> <!-- end mobile menu -->
 
 <script>
