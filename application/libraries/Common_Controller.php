@@ -680,7 +680,16 @@ class Common_Controller extends MY_Controller
 
         $force_perso = request_get_param($_params, 'force_perso', 0, array(0, 1));
 
-        $devices = request_get_param($_params, 'devices', -1);
+        $user = $this->session->userdata('user');
+        if($user && $user->devices != -1)
+        {
+            $default_devices = implode(',', $user->devices);
+        }
+        else
+        {
+            $default_devices = -1;
+        }
+        $devices = request_get_param($_params, 'devices', $default_devices);
         if($devices != -1)
         {
             $tab_devices = explode(',', $devices);

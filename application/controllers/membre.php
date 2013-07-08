@@ -76,7 +76,10 @@ class Membre extends REST_Controller {
                     $this->form_validation->set_rules('prenom', 'Prénom', 'required|max_length[256]');
                     break;
                 case 'pseudo':
-                    $this->form_validation->set_rules('pseudo', 'Pseudo', 'required|max_length[64]|alpha_numeric');
+                    if($_action == 'create')
+                    {
+                        $this->form_validation->set_rules('pseudo', 'Pseudo', 'required|max_length[64]|alpha_numeric');
+                    }
                     break;
                 case 'cgu_valid':
                     $this->form_validation->set_rules('cgu_valid', 'CGU', 'required|enum[1]');
