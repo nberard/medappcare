@@ -160,7 +160,7 @@ class Common_Controller extends MY_Controller
             $application->criteres = $this->Applications_model->get_criteres_medappcare($application->est_pro);
             foreach ($application->criteres as $critere_parent)
             {
-                $application->note_medappcare_detail[$critere_parent->id] /= count($critere_parent->childs);
+                $application->note_medappcare_detail[$critere_parent->id] = round($application->note_medappcare_detail[$critere_parent->id] / count($critere_parent->childs));
             }
             $this->_format_all_dates($application->notes, 'date', 'datetime');
         }
