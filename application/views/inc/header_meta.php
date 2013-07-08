@@ -31,22 +31,12 @@
     
     <!-- POUR FACEBOOK -->
     
-    <!-- Ajouter une condition -->
-    
-    <!-- SI PAGE APP -->
-    <meta property="og:title" content="Medappcare - NOM DE L'APPLICATION" /> <!-- AJOUTER ICI LE NOM DE L'APPLICATION -->
-	<meta property="og:description" content="DESCRIPTION" /> <!-- AJOUTER ICI LA DESCRIPTION -->
-	<meta property="og:image" content="http://www.onemorethingstudio.com/unisize-app/wp-content/themes/unisize/img/apple-touch-icon-72x72-precomposed.png" /> <!-- AJOUTER ICI L'ADRESSE DE L'IMAGE DE L'ICON DE L'APPLICATION -->
-	<meta property="og:url" content="http://www.medappcare.com" /> <!-- AJOUTER ICI LE LIEN DIRECT VERS LA PAGE -->
-	<link rel="image_src" href="http://www.onemorethingstudio.com/unisize-app/wp-content/themes/unisize/img/apple-touch-icon-72x72-precomposed.png" /> <!-- AJOUTER ICI L'ADRESSE DE L'IMAGE DE L'ICON DE L'APPLICATION -->
-	
-	<!-- SI AUTRE PAGE -->
-    <meta property="og:title" content="Medappcare" />
-	<meta property="og:description" content="DESCRIPTION" /> <!-- AJOUTER ICI LA DESCRIPTION DU SITE-->
-	<meta property="og:image" content="http://www.onemorethingstudio.com/unisize-app/wp-content/themes/unisize/img/apple-touch-icon-72x72-precomposed.png" /> <!-- AJOUTER ICI L'ADRESSE DE L'IMAGE DU LOGO MEDAPPCARE -->
-	<meta property="og:url" content="http://www.medappcare.com" /> <!-- AJOUTER ICI LE LIEN DIRECT VERS LA PAGE -->
-	<link rel="image_src" href="http://www.onemorethingstudio.com/unisize-app/wp-content/themes/unisize/img/apple-touch-icon-72x72-precomposed.png" /> <!-- AJOUTER ICI L'ADRESSE DE L'IMAGE DU LOGO MEDAPPCARE -->
+    <?php if(!empty($meta)): ?>
+        <meta property="og:title" content="<?php echo $meta['og:title']; ?>" />
+        <meta property="og:description" content="<?php echo $meta['og:description']; ?>" />
+        <meta property="og:image" content="<?php echo $meta['og:image']; ?>" />
+        <meta property="og:url" content="<?php echo $meta['og:url']; ?>" />
+        <link rel="image_src" href="<?php echo $meta['image_src']; ?>" />
+    <?php endif; ?>
 
-    
-    
 </head>

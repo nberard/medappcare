@@ -29,8 +29,11 @@ class Common_Controller extends MY_Controller
         $this->output->enable_profiler(TRUE);
     }
 
-    protected function _getCommonIncludes($js_files = array())
+    protected function _getCommonIncludes($js_files = array(), $header_meta = array())
     {
+        $meta_config = config_item('meta');
+        $meta_config['og:url'] = current_url();
+        $header_meta = array_merge($meta_config, $header_meta);
         $languagesVars = $this->lang->languages;
         $this->load->model('Categories_model');
         foreach ($languagesVars as $shortLanguage => &$longLanguage)
@@ -57,7 +60,10 @@ class Common_Controller extends MY_Controller
         $this->_populate_categories_enfants($categories_principales);
 //        $this->benchmark->mark('get_enfants_end');
         return array(
-            'header_meta' => $this->load->view('inc/header_meta', array('css_files' => array(css_url('stylesheet'))), true),
+            'header_meta' => $this->load->view('inc/header_meta', array(
+                'css_files' => array(css_url('stylesheet')),
+                'meta' => $header_meta,
+            ), true),
             'header' => $this->load->view('inc/header', array(
                 'pro' => $this->pro,
                 'access_label' => $this->access_label,
@@ -371,7 +377,13 @@ class Common_Controller extends MY_Controller
         {
             $appData['already_noted'] = $this->Applications_model->user_has_note_application($application->est_pro, $_id, $user->id);
         }
-        $data['inc'] = $this->_getCommonIncludes(array(js_url('notation')));
+        $this->load->helper('format_string');
+        $data['inc'] = $this->_getCommonIncludes(array(js_url('notation')), array(
+            'og:title' => $application->nom,
+            'og:description' => short_html_text($application->description, 300),
+            'og:image' => $application->logo_url,
+            'image_src' => 'http://www.onemorethingstudio.com/unisize-app/wp-content/themes/unisize/img/apple-touch-icon-72x72-precomposed.png',
+        ));
 
         $data['contenu'] = $this->load->view('contenu/app', $appData, true);
         $data['body_class'] = 'app '.$this->body_class.(!empty($application->class) ? ' '.$application->class : '');
@@ -443,11 +455,16 @@ class Common_Controller extends MY_Controller
 
     public function news($_id)
     {
-        $data['inc'] = $this->_getCommonIncludes();
         $this->load->model('Articles_model');
         $article = $this->Articles_model->get_article($_id);
         $article->date_full = date_full($article->date_creation);
-
+        $this->load->helper('format_string');
+        $data['inc'] = $this->_getCommonIncludes(array(), array(
+            'og:title' => $article->titre,
+            'og:description' => short_html_text($article->contenu, 300),
+            'og:image' => $article->picto_url,
+            'image_src' => $article->picto_url,
+        ));
         $data['contenu'] = $this->load->view('contenu/news', array('article' => $article), true);
         $data['body_class'] = 'news';
         $this->load->view('main', $data);
