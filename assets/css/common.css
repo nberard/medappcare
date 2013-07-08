@@ -506,7 +506,7 @@ html[xmlns] .slides {display: block;}
 .app .os {margin-top: 10px;}
 .app .list {text-align: center;}
 .app .os span{margin: 10px auto; width: 50px; background-position: center center; display: inline-block;}
-.app .price{background: #79c1d2; width: 40px; padding: 0 5px; line-height: 20px; text-align: center;}
+.app .price{background: #79c1d2; width: 40px; padding: 0 5px; line-height: 30px; text-align: center; display: inline-block;}
 
 
 #appSectionOne .content,

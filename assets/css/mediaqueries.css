@@ -76,6 +76,7 @@
 .catmasante .gridTitle{font-size: 26px;}
 #thegrid h3{font-size: 20px !important; float: none; display: block; width: 100%; text-align: center;}
 .grid{float: none; width: 100%;}
+.onegrid{margin: 0 auto 20px auto;}
 
 .extTitle, .midTitle, .intTitle{position: relative; text-align: center; top: 0; left: 0;}
 .chart{margin: 20px auto 10px auto;}
@@ -83,7 +84,7 @@
 #descTabs nav{height: auto;}
 #descTabs nav li{font-size: 12px; line-height: 27px; vertical-align: text-top; float: none; display: block; text-align: center; width: 100%;}
 #descTabs nav li.selected{background-image: none;}
-#descTabs .tabContent{padding: 2%;}
+#descTabs .tabContent{padding: 2%; width: 96%;}
 
 
 }

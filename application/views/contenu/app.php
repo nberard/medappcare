@@ -36,7 +36,7 @@
             <div class="os">
                 <div class="list">
                     <span class="<?php echo $application->device_class; ?>"><?php echo $application->device_nom; ?></span>
-                    <span class="price"><?php echo $application->prix_complet; ?></span>
+                    <a class="price" href="#"><?php echo $application->prix_complet; ?></a>
                 </div>
             </div>
             <?php if($application->est_ce): ?>
@@ -97,7 +97,7 @@
             <h2 class="gridTitle">La Grille Medappcare</h2>
             <?php if(!empty($application->note_medappcare_detail)): ?>
             <?php foreach ($application->criteres as $critere_parent): ?>
-                <div id="<?php echo strtolower($critere_parent->nom); ?>">
+                <div id="<?php echo strtolower($critere_parent->nom); ?>" class="onegrid">
                     <h3><?php echo $critere_parent->nom; ?></h3>
                     <div class="grid">
                         <div class="chart">

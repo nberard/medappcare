@@ -73,7 +73,7 @@
 
 <div id="dl-menu" class="dl-menuwrapper">
     <button class="dl-trigger">Open Menu</button>
-    <button id="bt-search">Rechercher</button>
+    <button id="bt-login"><span></span></button>
     <ul class="dl-menu dl-menu-toggle">
         <li class="navMobileItem masante">
             <a dropdowndestination="masante" href="#">Ma Santé</a>
@@ -102,6 +102,11 @@
                 <li class="navMobileItem"><a dropdowndestination="item" href="#">Item 1</a></li>
                 <li class="navMobileItem"><a dropdowndestination="item" href="#">Item 2</a></li>
             </ul>
+        </li>
+        <li class="navMobileItem search">
+            <form action="<?php echo site_url($access_label.'/app_search_1') ; ?>" method="post" id="search-form" class="search-form">
+			    <input type="text" id="search-query" placeholder="Trouvez l'app qui vous plaît...">
+            </form>
         </li>
     </ul>
 </div> <!-- end mobile menu -->
