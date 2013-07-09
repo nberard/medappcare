@@ -4,7 +4,15 @@ if ( ! function_exists('short_html_text'))
 {
     function short_html_text($_text, $_limit = 80)
     {
-        $text = html_entity_decode(strip_tags($_text), ENT_COMPAT | ENT_HTML401, 'UTF-8');
+        $_text = strip_tags($_text);
+        if(defined('ENT_HTML401'))
+        {
+            $text = html_entity_decode($_text, ENT_COMPAT | ENT_HTML401, 'UTF-8');
+        }
+        else
+        {
+            $text = html_entity_decode($_text, ENT_COMPAT, 'UTF-8');
+        }
         return strlen($text) < $_limit ? $text : substr($text, 0, $_limit).' ...';
     }
 }
