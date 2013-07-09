@@ -399,6 +399,13 @@ $config['upload_paths'] = array(
 
 $config['body_class_categories'] = array('administratif', 'mapratique', 'minformer', 'mespatients', 'masante', 'monquotidien', 'minformer', 'medeplacer');
 
+$config['meta'] = array(
+    'og:title' => 'Medappcare',
+    'og:description' => 'DESCRIPTION',
+    'og:image' => 'http://www.onemorethingstudio.com/unisize-app/wp-content/themes/unisize/img/apple-touch-icon-72x72-precomposed.png',
+    'image_src' => 'http://www.onemorethingstudio.com/unisize-app/wp-content/themes/unisize/img/apple-touch-icon-72x72-precomposed.png',
+);
+
 $config['metiers'] = array(
     "" => "Profession",
     "Profession Médicale" => array(
