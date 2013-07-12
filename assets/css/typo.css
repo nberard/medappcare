@@ -178,9 +178,13 @@ h2{color: #0f6eb4; font-size: 24px;}
 
 /* PAGES */
 .static h1{font-size: 24px; margin: 0 0 20px 0;}
-
-
-
+.static h2{font-size: 20px; margin: 0 0 20px 0; text-align: left; color: black;}
+.static a{color: #0F6EB4;}
+.static a:hover{text-decoration: underline;}
+.static ul{list-style: circle; margin: 0 0 20px 0;}
+.static ol{list-style: decimal; margin: 0 0 20px 0;}
+.static li{padding: 0 0 0 10px; margin: 0 0 0 20px;}
+.static em{font-style: italic;}
 
 
 
