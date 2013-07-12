@@ -161,6 +161,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
 #pushFooter li.dev .picto{background: url(../img/picto_dev@2x.png) no-repeat; background-size: contain;}
 #pushFooter li.partners .picto{background: url(../img/picto_partners@2x.png) no-repeat; background-size: contain;}
 #footer .footer_medappcare{background: url(../img/footer_medappcare@2x.png) no-repeat; background-size: contain;}
+.colorsLine{background: url(../img/colorline@2x.jpg) repeat-x; background-size: 1280px 4px;}
 .android{background: url(../img/android_blue@2x.png) no-repeat; background-size: contain;}
 .ios{background: url(../img/ios_blue@2x.png) no-repeat; background-size: contain;}
 .web{background: url(../img/web_blue@2x.png) no-repeat; background-size: contain;}
