@@ -13,6 +13,8 @@
         <?php echo $home_lasteval ; ?> <!-- Section Les dernières apps évaluées -->
 
         <?php echo $home_topfive ; ?> <!-- Section Le Top 5 -->
+        
+        <div class="clear"></div>
 
     </div>
 

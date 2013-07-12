@@ -12,7 +12,7 @@
 /* =========== LISTE APPS (commun) =========== */
 
 
-#listApps{min-height: 740px;}
+#listApps{margin: 0 0 50px 0;}
 
 #listApps .listapps{width: 447px; height: auto; margin: 50px 0 0 0; float: left; position: relative;}
 
