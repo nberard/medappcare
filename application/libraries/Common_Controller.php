@@ -56,7 +56,7 @@ class Common_Controller extends MY_Controller
         $categories_principales_target = $this->Categories_model->get_categories_parentes(!$this->pro);
 //        $this->benchmark->mark('get_parents_end');
 //        $this->benchmark->mark('get_enfants_start');
-        $this->_populate_categories_enfants($categories_principales_target);
+        $this->_populate_categories_enfants($categories_principales_target, true, true);
         $this->_populate_categories_enfants($categories_principales);
 //        $this->benchmark->mark('get_enfants_end');
         return array(
@@ -103,7 +103,7 @@ class Common_Controller extends MY_Controller
         );
     }
 
-    protected function _populate_categories_enfants(&$_categories_array, $add_link = true)
+    protected function _populate_categories_enfants(&$_categories_array, $add_link = true, $_revert_access = false)
     {
 //        log_message('debug', "_populate_categories_enfants=".var_export($_categories_array, true));
         $_categories_ids = array();
@@ -124,7 +124,7 @@ class Common_Controller extends MY_Controller
             $_categorie->enfants = $_categories_enfants[$_categorie->id];
             if($add_link)
             {
-                $this->_format_all_links($_categorie->enfants, 'category', 'nom');
+                $this->_format_all_links($_categorie->enfants, 'category', 'nom', 'link', 'id', 0, $_revert_access);
             }
         }
     }
