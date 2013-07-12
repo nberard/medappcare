@@ -18,7 +18,7 @@ $(function() {
 	$('input, textarea').placeholder();
     
     $('#filters').multiselect({
-        buttonWidth: '230px', // Default
+        buttonWidth: '250px', // Default
         buttonText: function(options, select) {
           	if (options.length == 0) {
                 return 'Filtrer par... <b class="caret"></b>';

@@ -12,7 +12,7 @@
 
                     <h4><a class="short" href="<?php echo $application->link; ?>"><?php echo $application->nom; ?></a></h4> <!-- INSÉRER LE LIEN ET LE TITRE DE L'APP -->
 
-                    <a class="price"><?php echo $application->prix_complet; ?></a>
+                    <a href="<?php echo $application->lien_download; ?>" class="price"><?php echo $application->prix_complet; ?></a>
                     <?php foreach($application->categories as $categorie): ?>
                         <p class="category"><?php echo lang('dans');?> <a href="<?php echo $categorie->link_categorie; ?>"><?php echo $categorie->nom; ?></a></p> <!-- INSÉRER LE LIEN VERS L'APP -->
                     <?php endforeach; ?>
