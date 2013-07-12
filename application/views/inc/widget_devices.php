@@ -13,5 +13,5 @@
         <?php endforeach; ?>
     </ul>
     <div class="clear"></div>
-    <div class="metaFooter"><a href="category.php">voir tout ></a></div>
+    <div class="metaFooter"><a href="<?php echo site_url($access_label.'/list_devices_1'); ?>">voir tout ></a></div>
 </div>
