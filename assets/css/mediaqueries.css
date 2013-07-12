@@ -21,7 +21,7 @@ span.mobile {display: inline;}
 
 .line{margin: 10px 0;}
 
-#dl-menu{display: block; position: fixed; top:0; background: #0F6EB4; z-index: 200000;}
+#dl-menu{display: block; position: absolute; top:0; background: #0F6EB4; z-index: 200000;}
 
 .colorsLine{background-size: 100% 4px;}
 
@@ -94,6 +94,7 @@ span.mobile {display: inline;}
 #listApps > .wrapper .allapps li {width: 100%; box-sizing: border-box; height: 110px; border-right: none;}
 #listApps > .wrapper .allapps li:nth-child(odd) {border-right: none;}
 #listApps h2 {width: 100%; box-sizing: border-box;}
+#listApps {min-height: inherit;}
 }
 
 /* iPads (portrait and landscape) ----------- */
@@ -124,6 +125,7 @@ header > nav ul{width: 100%;}
 
 .grid{width: 100%;}
 #thegrid h3{font-size: 24px;}
+#listApps {min-height: inherit;}
 
 }
 
