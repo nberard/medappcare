@@ -2,7 +2,7 @@
 
 <div class="title">
     <div class="wrapper">
-        <h2>Sélection <?php echo $selection->nom; ?></h2> <!-- INSÉRER LE NOM DONNÉ À LA SÉLECTION -->
+        <h2>1Sélection <?php echo $selection->nom; ?></h2> <!-- INSÉRER LE NOM DONNÉ À LA SÉLECTION -->
     </div>
 </div>
 
@@ -17,11 +17,11 @@
 
 <div class="colorsLine"></div>
 
-<section id="listApps">
+<section id="listDevices">
 
     <div class="wrapper">
 
-        <?php echo $widget_allappselection; ?> <!-- Toutes les apps de la catégorie -->
+        <?php echo $widget_alldeviceselection; ?> <!-- Toutes les apps de la catégorie -->
 
     </div>
 

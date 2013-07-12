@@ -213,7 +213,10 @@ class Common_Controller extends MY_Controller
             'home_slider' => $this->load->view('inc/home_slider', '', true),
             $_label_selection_left => $this->load->view('inc/'.$_label_selection_left, $_data_selection_left, true),
             $_label_selection_right => $this->load->view('inc/'.$_label_selection_right, $_data_selection_right, true),
-            'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(6)), true),
+            'widget_devices' => $this->load->view('inc/widget_devices', array(
+                'accessoires' => $this->_get_accessoires(6),
+                'access_label' => $this->access_label,
+            ), true),
             'widget_news' => $this->load->view('inc/widget_news', array(
                 'access_label' => $this->access_label,
                 'articles' => $articles
@@ -500,6 +503,20 @@ class Common_Controller extends MY_Controller
             'next_link' => $next_link,
         ), true);
         $data['body_class'] = 'news';
+        $this->load->view('main', $data);
+    }
+
+    public function list_devices($_page)
+    {
+        $data['inc'] = $this->_getCommonIncludes();
+        $this->load->model('Accessoires_model');
+
+        $data['contenu'] = $this->load->view('contenu/list_devices', array(
+            'device_grid' => $this->load->view('inc/device_grid', array(
+                'applications' => array(),
+                ), true),
+        ), true);
+        $data['body_class'] = 'devices';
         $this->load->view('main', $data);
     }
 
