@@ -406,6 +406,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
 /* buttons */
 .facebook{background: url(../img/facebook@2x.png) no-repeat center center #0F6EB4; background-size: 9px 20px;}
 .twitter{background: url(../img/twitter@2x.png) no-repeat center center #39A9E0; background-size: 26px 22px;}
+.bt-search a{background: url(../img/search@2x.png) no-repeat #283278 center center; background-size: 27px 26px;}
 
 /* menu */
 .home a{background: url(../img/home@2x.png) no-repeat #283278 center center; background-size: 23px 23px;}
