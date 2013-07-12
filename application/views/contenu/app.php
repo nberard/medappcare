@@ -169,6 +169,7 @@
 
             <div class="tabContent" id="commentaires">
                 <div class="noteGlobale">
+                    <h4>Note globale</h4>
                     <?php foreach($application->moyennes as $moyenne): ?>
                         <div class="<?php echo strtolower($moyenne->critere); ?>">
                             <label><?php echo $moyenne->critere; ?></label>
@@ -176,7 +177,6 @@
                         </div>
                     <?php endforeach; ?>
                 </div>
-                Commentaires :
                 <?php echo $widget_appcomments; ?>
             </div>
 	    	
