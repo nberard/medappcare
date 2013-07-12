@@ -205,6 +205,8 @@ only screen and (min-device-pixel-ratio : 1.5) {
 .mespatients .web,
 #listApps .listapps.pourlesgens .web{background: url(../img/web_pink@2x.png) no-repeat; background-size: contain;}
 
+/*
+
 #metapp .noteMedappcare span{background: url(../img/pictapp_medappcare_lightblue@2x.png) no-repeat; background-size: contain;}
 #metapp .notePro span{background: url(../img/pictapp_pro_lightblue@2x.png) no-repeat; background-size: contain;}
 #metapp .noteGens span{background: url(../img/pictapp_gens_lightblue@2x.png) no-repeat; background-size: contain;}
@@ -300,7 +302,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
 .mapratique .dixsurdix,
 #listApps .listapps.pourlespros .dixsurdix{background: url(../img/notes_red.png) -107px 0px no-repeat; width: 43px; height: 42px; background-size: 171px 145px;}
 
-/*
+
 .minformer .zero{background: url(../img/notes_green.png) -216px -89px no-repeat; width: 33px; height: 30px; background-size: contain;}
 .minformer .un{background: url(../img/notes_green.png) 0px -178px no-repeat; width: 33px; height: 30px; background-size: contain;}
 .minformer .deux{background: url(../img/notes_green.png) -72px -178px no-repeat; width: 33px; height: 30px; background-size: contain;}
