@@ -5,8 +5,10 @@
         <li>
             <a href="<?php echo $application->link; ?>" class="icone"><img width="80px" height="80px" src="<?php echo $application->logo_url; ?>"></a> 
             <div class="metapp">
+
                 <h4><a class="short" href="<?php echo $application->link; ?>"><?php echo $application->titre; ?></a></h4>
-                <p class="price"><?php echo $application->prix_complet; ?></p>
+                <a href="<?php echo $application->lien_download; ?>" class="price"><?php echo $application->prix_complet; ?></a> 
+
                 <?php foreach($application->categories as $categorie): ?>
                     <p class="category"><?php echo lang('dans');?> <a href="<?php echo $categorie->link_categorie; ?>"><?php echo $categorie->nom; ?></a></p> 
                 <?php endforeach; ?>

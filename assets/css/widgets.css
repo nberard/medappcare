@@ -31,7 +31,7 @@
 #listApps .metapp h4 {width: 220px;}
 #listApps .metapp h4 a {display: block; height: 40px;}
 #listApps .os{float: left; position: relative; width: 60px; margin: 25px 0 0 0;}
-#listApps .price{background: #0f6eb4; width: 40px; padding: 0 5px; line-height: 21px; text-align: center; margin: 0 0 5px 0;}
+#listApps .price{background: #0f6eb4; width: 40px; padding: 0 5px; line-height: 21px; text-align: center; margin: 0 0 5px 0; display: block;}
 #listApps .price:hover,
 .app .price:hover{background: red; text-decoration: none;}
 #listApps .note{width: 42px; height: 42px; position: relative; float: left; text-align: center; vertical-align: middle; margin:20px 0;}
@@ -214,6 +214,7 @@
 
 #appsCompatibles li{list-style: none; display: block; border-bottom: 1px solid white; height: 80px; padding: 15px; width: 415px; float: left; position: relative;}
 #appsCompatibles li:nth-child(even){float: right;}
+#appsCompatibles li:last-of-type, #appsCompatibles li:nth-last-of-type(2) {border: none;}
 
 #appsCompatibles h2{padding: 5px 15px 0px 15px; line-height: 52px; border-bottom: 1px solid white;}
 #appsCompatibles .icone{float: left; position: relative; width: 80px; height: 80px; border-radius: 10px; background: #333; margin: 0 15px 0 0;}
@@ -258,16 +259,29 @@
 
 /* =========== RATE APP & DEVICES =========== */
 
+.noteGlobale{border-bottom: 1px solid #ccc; padding: 0 0 20px 0; margin: 0 0 20px 0;}
+
+#accessoire-notes-browser h4,
+.noteGlobale h4{margin: 0 0 20px 0;}
+
+#accessoire-notes-browser .commentText{font-size: 12px; float: left; position: relative; width: 68%; margin: 0 2% 20px 0;}
+#accessoire-notes-browser .commentReview{float: left; position: relative; width: 30%; margin: 0 0 20px 0;}
+
 .reviewPost label,
 .reviewPost .rateit,
 .noteGlobale label,
-.noteGlobale .rateit{display: inline-block;}
+.noteGlobale .rateit,
+.commentReview label,
+.commentReview .rateit{display: inline-block;}
+.commentReview label,
 .noteGlobale label{min-width: 110px; line-height: 10px;}
 
 .reviewPost label{}
 
 .commentPost{margin: 20px 0 0 0;}
 
+.onecomment{clear: both; width: 100%; margin: 0 0 20px 0; position: relative;}
+.onecomment h5{width: 96%; background: #79C1D2; color: white; padding: 0 2%;}
 
 
 

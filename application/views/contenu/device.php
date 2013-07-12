@@ -41,10 +41,10 @@
                     <?php if(!$already_noted): ?>
                         <a href="#commentModal" class="noter">Noter le Produit</a>
                     <?php endif; ?>
-                    <a href="#" class="signaler">Signaler</a>
+                    <a href="#signalerModal" class="signaler">Signaler</a>
                 <?php else: ?>
                     <a href="#device-connexionModal" class="noter">Noter le Produit</a>
-                    <a href="#" class="signaler">Signaler</a>
+                    <a href="#connexionModal" class="signaler">Signaler</a>
                 <?php endif; ?>
                 </div>
             </div>
