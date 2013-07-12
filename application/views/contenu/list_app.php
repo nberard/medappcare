@@ -4,7 +4,7 @@
     <?php endif; ?>
 	<div class="title">
     	<div class="wrapper">
-        	<h2 class="short">1<?php echo $titre; ?></h2>
+        	<h2 class="short"><?php echo $titre; ?></h2>
         	<form method="POST" id="sort-filter">
                 <select name="filters" id="filters" multiple="multiple">
 

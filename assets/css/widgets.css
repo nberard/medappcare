@@ -47,14 +47,14 @@
 #listApps .allapps{width: 100%; height: auto; margin: 50px 0; display: block; position: relative; float: left; clear: both;}
 #listApps .allapps h3{background: #79c1d2; border: 1px solid #79c1d2; line-height: 50px; padding: 0 15px; height: 52px;}
 
-#listApps.fullList .allapps {margin: 50px 0; border-top: 1px solid #79c1d2;}
+#listApps.fullList .allapps {margin: 50px 0; border-top: 1px solid #0f6eb4;}
 
-#listApps > .wrapper .allapps ul{border-left: 1px solid #79c1d2; border-right: 1px solid #79c1d2; padding: 0;}
-#listApps > .wrapper .allapps li{border-bottom: 1px solid #79c1d2; width: 458px; float: left; margin: 0;}
-#listApps > .wrapper .allapps li:nth-child(odd){border-right: 1px solid #79c1d2;}
+#listApps > .wrapper .allapps ul{border-left: 1px solid #0f6eb4; border-right: 1px solid #0f6eb4; padding: 0;}
+#listApps > .wrapper .allapps li{border-bottom: 1px solid #0f6eb4; width: 458px; float: left; margin: 0;}
+#listApps > .wrapper .allapps li:nth-child(odd){border-right: 1px solid #0f6eb4;}
 
-#listApps .allapps .metaFooter{background: #79c1d2;}
-#listApps .allapps .price{background: #79c1d2;}
+#listApps .allapps .metaFooter{background: #0f6eb4;}
+#listApps .allapps .price{background: #0f6eb4;}
 #listApps .allapps .featured{background: #d9eef3;}
 
 #listApps h2 {width:440px; height:54px;}
