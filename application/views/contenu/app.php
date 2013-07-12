@@ -38,7 +38,7 @@
             <div class="os">
                 <div class="list">
                     <span class="<?php echo $application->device_class; ?>"><?php echo $application->device_nom; ?></span>
-                    <a class="price" href="#"><?php echo $application->prix_complet; ?></a>
+                    <a class="price" href="<?php echo $application->lien_download; ?>"><?php echo $application->prix_complet; ?></a>
                 </div>
             </div>
             <?php if($application->est_ce): ?>
