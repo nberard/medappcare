@@ -3,12 +3,12 @@
     <ul>
         <?php foreach($applications as $application): ?>
         <li>
-            <a href="<?php echo $application->link; ?>" class="icone"><img width="80px" height="80px" src="<?php echo $application->logo_url; ?>"></a> <!-- INSÉRER L'ICON DE L'APP -->
+            <a href="<?php echo $application->link; ?>" class="icone"><img width="80px" height="80px" src="<?php echo $application->logo_url; ?>"></a> 
             <div class="metapp">
-                <h4><a href="<?php echo $application->link; ?>"><?php echo $application->titre; ?></a></h4> <!-- INSÉRER LE LIEN ET LE TITRE DE L'APP -->
-                <p class="price"><?php echo $application->prix_complet; ?></p> <!-- INSÉRER LE PRIX DE L'APP -->
+                <h4><a class="short" href="<?php echo $application->link; ?>"><?php echo $application->titre; ?></a></h4>
+                <p class="price"><?php echo $application->prix_complet; ?></p>
                 <?php foreach($application->categories as $categorie): ?>
-                    <p class="category"><?php echo lang('dans');?> <a href="<?php echo $categorie->link_categorie; ?>"><?php echo $categorie->nom; ?></a></p> <!-- INSÉRER LE LIEN VERS L'APP -->
+                    <p class="category"><?php echo lang('dans');?> <a href="<?php echo $categorie->link_categorie; ?>"><?php echo $categorie->nom; ?></a></p> 
                 <?php endforeach; ?>
             </div>
             <?php if($application->moyenne_note_medappcare): ?>
