@@ -134,6 +134,9 @@ header > nav ul{width: 100%;}
 #devices li, #news li {float: none; margin: auto;}
 #devices li:nth-child(even), #news li:nth-child(even) {float: none;}
 
+#pushFooter ul {width: 445px; margin: 0 auto 25px auto;}
+#pushFooter ul li {margin: 25px 12px 0px 12px;}
+
 }
 
 /* Desktops and laptops ----------- */
