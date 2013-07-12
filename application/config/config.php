@@ -14,8 +14,8 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://medappcare.omts.fr/';
-//$config['base_url']	= 'http://localhost';
+//$config['base_url']	= 'http://medappcare.omts.fr/';
+$config['base_url']	= 'http://localhost';
 //$config['base_url']	= 'http://my.server/medappcare/';
 //$config['base_url']	= 'http://81.57.107.230/medappcare/';
 //$config['base_url']	= 'http://beta.medappcare.local/';
