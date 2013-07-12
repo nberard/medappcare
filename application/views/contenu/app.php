@@ -63,12 +63,13 @@
                 <?php if(!$already_noted): ?>
                     <a href="#commentModal" class="noter">Noter l'Application</a>
                     <?php endif; ?>
-                <a href="#" class="signaler">Signaler</a>
+                <a href="#signalerModal" class="signaler">Signaler</a>
                 <?php else: ?>
                 <a href="#application-connexionModal" class="noter">Noter l'Application</a>
-                <a href="#" class="signaler">Signaler</a>
+                <a href="#connexionModal" class="signaler">Signaler</a>
                 <?php endif; ?>
             </div>
+                        
         </div>
         <div class="content right description"> <!-- Ajouter une condition : s'il n'y a pas l'avis de Medappcare -->
             <h3>Notre Avis</h3>
@@ -194,33 +195,7 @@
 
 <section id="partners"><?php echo $partners; ?></section> <!-- Section Partenaires -->
 
-<div class="modal hide fade" id="signalerModal">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal"></button>
-    <h3>Signalez cette application</h3>
-  </div>
-  <div class="modal-body">
-    <p class="explication">Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-    <form method="post" data-action="<?php echo site_url('rest/signaler') ?>" name="email_form" id="email_form">
-      <p><input name="email" id="email" type="email" required placeholder="Email"></p>
-      <p>
-          <select name="typeSignaler" id="typeSignaler">
-	            	<optgroup label="Prix" id="prix">
-	                    <option value="true">Gratuit</option>
-	                    <option value="false">Payant</option>
-	                </optgroup>
-	                <optgroup label="Plateforme" id="devices">
-                            <option value="">Test</option>
-	                </optgroup>
-          </select>
-      </p>
-      <p><textarea id="textSignaler"></textarea></p>
-      <p><button type="submit" class="btn btn-primary">Envoyer</button>
-      </p>
-    </form>
-  </div>
-    <div id="login-error" class="alert alert-error hide"></div>
-</div>
+
 
 <?php if($user): ?>
     <div class="modal hide fade" id="commentModal">

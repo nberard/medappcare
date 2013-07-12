@@ -151,6 +151,10 @@ $(document).ready(function() {
 	
 	/* Modal */
 	
+	$('.device a.signaler[href="#connexionModal"]').click(function() {
+		$('#connexionModal').modal('show');
+	});
+	
 	var shouldDisplayLostPasswordModal = false;
 	
 	$('.modal').on('shown', function() {
@@ -162,6 +166,7 @@ $(document).ready(function() {
 	$('a[href="#lostPassword"]').click(function() {
 		shouldDisplayLostPasswordModal = true;
 		$('#connexionModal').modal('hide');
+		$('#connexionModalPro').modal('hide');
 	});
 
     $('a[href="#device-connexionModal"]').click(function(){
