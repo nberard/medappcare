@@ -91,6 +91,15 @@ class Accessoires_model extends CI_Model {
 
     }
 
+    public function get_accessoires_from_selection($_selection_id)
+    {
+        $this->db->select('A.*, A.nom_'.config_item('lng').' AS titre')
+            ->join('selection_accessoire S', 'S.accessoire_id = A.id', 'INNER');
+        $res = $this->db->get_where($this->table.' A', array('S.selection_id' => $_selection_id))->result();
+        return $res ? $res : array();
+
+    }
+
     public function add_notes_to_accessoire($_accessoire_id, $_membre_id, $_notes, $_commentaire)
     {
         $this->db->set('accessoire_id', $_accessoire_id);

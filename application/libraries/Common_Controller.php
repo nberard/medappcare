@@ -334,16 +334,15 @@ class Common_Controller extends MY_Controller
         else if($selection->type_selection == Selections_model::TYPE_SELECTION_ACCESSOIRES)
         {
             //@TODO selection d'accessoires
-            $this->load->model('Applications_model');
-            $selection->applications = $this->Applications_model->get_applications_from_selection($_id);
-            $this->_format_all_prices($selection->applications);
-            $this->_format_all_links($selection->applications, 'app');
-            $this->_populate_categories_applications($selection->applications);
-            $selectionData['widget_allappselection'] = $this->load->view('inc/widget_allappselection', array(
+            $this->load->model('Accessoires_model');
+            $selection->accessoires = $this->Accessoires_model->get_accessoires_from_selection($_id);
+            $this->_format_all_prices($selection->accessoires);
+            $this->_format_all_links($selection->accessoires, 'device');
+            $selectionData['widget_allappselection'] = $this->load->view('inc/widget_alldeviceselection', array(
                 'selection' => $selection,
                 'app_grid' => $this->load->view('inc/app_grid', array(
                     'selection' => $selection,
-                    'applications' => $selection->applications,
+                    'accessoires' => $selection->accessoires,
                 ), true),
             ), true);
         }
