@@ -139,6 +139,16 @@ header > nav ul{width: 100%;}
 
 .homepage h2 {text-align: center;}
 
+.singlenews .content, .singlenews .date{padding: 0 2%;}
+.pictonews{margin: 0 20px 20px 10px;}
+
+#codeigniter_profiler{display: none;}
+
+#footer .languages{margin: 0 10px 0 0;}
+#footer .left{width: 96%; max-width: inherit; padding: 0 2%; margin: 0 0 30px 0;}
+#footer .right{max-width: 100%; width: auto;}
+#footer .left li{display: inline-block; position: relative; margin: 0 20px}
+
 }
 
 /* Desktops and laptops ----------- */
