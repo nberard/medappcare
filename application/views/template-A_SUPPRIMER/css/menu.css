@@ -1,0 +1,96 @@
+/* =========== MENU =========== */
+
+.home a, .search a{background: #283278;}
+.navmasante a{background: #79C1D2;}
+.navmonquotidien a{background: #E05D5F;}
+.navminformer a{background: #84C790;}
+.navmedeplacer a{background: #D769AF;}
+.search a{border-right: 1px solid white;}
+
+.megamenu .picto{display: inline-block; vertical-align: middle; position: relative;}
+
+.home a, .search a{display: block; text-indent: -9999px;}
+
+.home a{background: url(../img/home.png) no-repeat #283278 center center; width: 24px; height: 54px;}
+.search a{background: url(../img/search.png) no-repeat #283278 center center; width: 24px; height: 54px;}
+.navmasante .picto{background: url(../img/masante.png) no-repeat; width: 35px; height: 31px;}
+.navmonquotidien .picto{background: url(../img/monquotidien.png) no-repeat; width: 29px; height: 31px;}
+.navminformer .picto{background: url(../img/minformer.png) no-repeat; width: 36px; height: 25px;}
+.navmedeplacer .picto{background: url(../img/medeplacer.png) no-repeat; width: 19px; height: 25px;}
+
+.loading{background: transparent url(../img/loading.gif) no-repeat center center;}
+
+.navmasante, #dropdown nav.masante {background: #79C1D2;}
+.navmonquotidien, #dropdown nav.monquotidien {background: #E05D5F;}
+.navminformer, #dropdown nav.minformer {background: #84C790;}
+.navmedeplacer, #dropdown nav.medeplacer {background: #D769AF;}
+
+
+/*header form.search-form {display: none;}*/
+header form.search-form {z-index: 300; position: absolute; width: 831px; height:52px; top:0; left:58px; display: none;}
+header form.search-form input {width:100%; height:100%; margin: 1px; padding: 5px 10px; border: none; outline: none; box-shadow: none; box-sizing: border-box; -moz-box-sizing: border-box;}
+
+#dropdown{position: relative; height:300px; overflow: hidden; display: none;}
+#dropdown > nav {position: abolute; width:100%; height:100%; display: none;}
+#dropdown .wrapper {height:100%; padding: 10px 0px 10px 60px; box-sizing: border-box; -moz-box-sizing: border-box;}
+
+#dropdown .bigpicto{position: absolute; overflow: hidden; display: block; z-index: 1; }
+#dropdown .wrapper > ul{z-index: 2; position: relative; background: transparent: 50%; float:left; margin-right: 50px; margin-top: 20px;}
+#dropdown li{display: block; line-height: 1.5em;}
+#dropdown a{background: transparent;}
+
+#dropdown nav.masante .bigpicto{background: url(../img/picto_masantebig.png) no-repeat; bottom: -20px; left: -130px; width: 264px; height: 236px;}
+#dropdown nav.monquotidien .bigpicto{background: url(../img/picto_monquotidien_big.png) no-repeat; bottom: -20px; left: -130px; width: 263px; height: 279px;}
+#dropdown nav.minformer .bigpicto{background: url(../img/picto_minformer_big.png) no-repeat; bottom: -10px; left: -120px; width: 277px; height: 192px;}
+#dropdown nav.medeplacer .bigpicto{background: url(../img/picto_medeplacer_big.png) no-repeat; bottom: -5px; left: -90px; width: 179px; height: 235px;}
+
+#dropdown .sponsored-selection {width: 250px; height: 280px; position: relative; float:right; background:rgba(0,0,0, .1);}
+#dropdown .sponsored-selection .title {display:block; height: 38px; background-color: transparent; background-image: url(../img/picto_selection.png); background-repeat: no-repeat; background-position: 20px 50%; font-size:1.3em; margin:0px; border-bottom-style: solid; border-bottom-width: 1px; padding-left : 55px; line-height: 2em;}
+#dropdown .sponsored-selection li {display: block; padding: 18px 10px 0px 10px; line-height: 55px;}
+#dropdown .sponsored-selection li:after {display: block; content:''; clear:both;}
+#dropdown .sponsored-selection li a {display: block;}
+#dropdown .sponsored-selection li img {float: left; margin-right: 10px;}
+#dropdown .sponsored-selection .sponsored-indicator {position: absolute; bottom:0; right: 0; padding: 5px;}
+
+#dropdown .masante .sponsored-selection .title {border-color: #79C1D2;}
+#dropdown .monquotidien .sponsored-selection .title {border-color: #E05D5F;}
+#dropdown .minformer .sponsored-selection .title {border-color: #84C790;}
+#dropdown .medeplacer .sponsored-selection .title {border-color: #D769AF;}
+
+/* Les Pros */
+.navadministratif a{background: #79C1D2;}
+.navmapratique a{background: #E05D5F;}
+.navmespatients a{background: #D769AF;}
+
+.navadministratif .picto{background: url(../img/picto_administratif.png) no-repeat; width: 27px; height: 27px;}
+.navmapratique .picto{background: url(../img/picto_mapratique.png) no-repeat; width: 29px; height: 31px;}
+.navmespatients .picto{background: url(../img/picto_mespatients.png) no-repeat; width: 34px; height: 23px;}
+
+.navadministratif{background: #79C1D2;}
+.navmapratique{background: #E05D5F;}
+.navprominformer{background: #84C790;}
+.navmespatients{background: #D769AF;}
+
+#dropdown.navadministratif .bigpicto{background: url(../img/picto_administratif_big.png) no-repeat; width: 205px; height: 205px; bottom: -10px; left: -90px;}
+#dropdown.navmapratique .bigpicto{background: url(../img/picto_mapratique_big.png) no-repeat; width: 195px; height: 209px; bottom: -10px; left: -80px;}
+#dropdown.navprominformer .bigpicto{background: url(../img/picto_minformer_big.png) no-repeat; bottom: -10px; left: -120px; width: 277px; height: 192px;}
+#dropdown.navmespatients .bigpicto{background: url(../img/picto_mespatients_big.png) no-repeat; width: 261px; height: 176px; bottom: -15px; left: -110px;}
+
+
+/* Connexion & Lost password modals */
+.hide {display: none;}
+.modal-header {padding: 12px 15px 9px 15px; border-bottom: 1px solid #eee;}
+.modal-body {padding: 15px 30px;}
+.modal button {font-family: 'PT Sans', arial, sans-serif; font-weight: bold;}
+.modal button.close {float: right; background: white url(../img/close-picto.png) no-repeat; width: 16px; height: 17px; border: none; margin-top: 5px;}
+.modal button.close:hover {cursor: pointer;}
+.modal form {width: 100%; margin: 20px 0;}
+.modal .registration-call, .modal form[name="login_form"] {float: left; width: 50%; margin:20px 0;}
+.modal form[name="login_form"] {box-sizing: border-box; border-right: 1px solid #ccc;}
+.modal form button {margin: 0;}
+.modal .registration-call {text-align: center; line-height: 2em; padding:10px 0;}
+
+.modal form[name="lost_password_form"] input {box-sizing: border-box; height: 30px; width: 100%;}
+.modal form[name="lost_password_form"] button {float: right;}
+.modal form[name="lost_password_form"]:after {display: block; content:''; clear: both;}
+
