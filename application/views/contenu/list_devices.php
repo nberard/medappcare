@@ -11,11 +11,6 @@
 	                <optgroup label="Medappcare" id="eval-medapp">
 	                	<option <?php if($search_params['eval_medapp']) echo 'selected'; ?>>Évaluée par Medappcare</option>
 	                </optgroup>
-	            	
-	            	<optgroup label="Prix" id="prix">
-	                    <option value="true" <?php if($search_params['free'] === true) echo 'selected'; ?>>Gratuit</option>
-	                    <option value="false" <?php if($search_params['free'] === false) echo 'selected'; ?>>Payant</option>
-	                </optgroup>
 	                
 	                <optgroup label="Plateforme" id="devices">
                         <?php foreach($devices as $device): ?>

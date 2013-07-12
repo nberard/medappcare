@@ -103,6 +103,14 @@
                 <div id="<?php echo strtolower($critere_parent->nom); ?>" class="onegrid">
                     <h3><?php echo $critere_parent->nom; ?></h3>
                     <div class="grid">
+                        <div class="gridLables">
+                        <?php $classes = array('extTitle', 'midTitle', 'intTitle'); ?>
+                        <?php foreach($critere_parent->childs as $critere_enfant): ?>
+                            <?php if($critere_enfant->est_affichable == 1): ?>
+                                <div class="<?php echo array_shift($classes); ?>"><span class="label"><?php echo $critere_enfant->nom; ?></span><span class="thenote"><?php echo $application->note_medappcare_detail[$critere_enfant->id]; ?></span></div>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                        </div>
                         <div class="chart">
                             <?php $classes = array('ext', 'mid', 'int'); ?>
                             <?php foreach($critere_parent->childs as $critere_enfant): ?>
@@ -113,12 +121,6 @@
                             <span class="notemoyenne"><?php echo $application->note_medappcare_detail[$critere_parent->id]; ?></span>
                             <canvas id="extLine"></canvas>
                         </div>
-                        <?php $classes = array('extTitle', 'midTitle', 'intTitle'); ?>
-                        <?php foreach($critere_parent->childs as $critere_enfant): ?>
-                            <?php if($critere_enfant->est_affichable == 1): ?>
-                                <div class="<?php echo array_shift($classes); ?>"><span class="label"><?php echo $critere_enfant->nom; ?></span><span class="thenote"><?php echo $application->note_medappcare_detail[$critere_enfant->id]; ?></span></div>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
                         <div class="clear"></div>
                     </div>
                 </div>

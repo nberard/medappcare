@@ -569,9 +569,13 @@ html[xmlns] .slides {display: block;}
 
 #extLine{position: absolute; top: 0; left: 0;}
 
+.gridLables{position: relative; float: right; text-align: right; padding: 20px 0 0 0;}
+
+/*
 .extTitle{position: absolute; top: 10px; left: 250px;}
 .midTitle{position: absolute; top: 30px; left: 272px;}
 .intTitle{position: absolute; top: 50px; left: 290px;}
+*/
 
 
 /* Screenshots */
