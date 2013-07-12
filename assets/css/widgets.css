@@ -31,7 +31,7 @@
 #listApps .metapp h4 {width: 220px;}
 #listApps .metapp h4 a {display: block; height: 40px;}
 #listApps .os{float: left; position: relative; width: 60px; margin: 25px 0 0 0;}
-#listApps .price{background: #0f6eb4; width: 40px; padding: 0 5px; line-height: 21px; text-align: center; margin: 0 0 5px 0;}
+#listApps .price{background: #0f6eb4; width: 40px; padding: 0 5px; line-height: 21px; text-align: center; margin: 0 0 5px 0; display: block;}
 #listApps .price:hover,
 .app .price:hover{background: red; text-decoration: none;}
 #listApps .note{width: 42px; height: 42px; position: relative; float: left; text-align: center; vertical-align: middle; margin:20px 0;}
@@ -214,6 +214,7 @@
 
 #appsCompatibles li{list-style: none; display: block; border-bottom: 1px solid white; height: 80px; padding: 15px; width: 415px; float: left; position: relative;}
 #appsCompatibles li:nth-child(even){float: right;}
+#appsCompatibles li:last-of-type, #appsCompatibles li:nth-last-of-type(2) {border: none;}
 
 #appsCompatibles h2{padding: 5px 15px 0px 15px; line-height: 52px; border-bottom: 1px solid white;}
 #appsCompatibles .icone{float: left; position: relative; width: 80px; height: 80px; border-radius: 10px; background: #333; margin: 0 15px 0 0;}
