@@ -120,7 +120,8 @@ h2{color: #0f6eb4; font-size: 24px;}
 #news h4 a{color: #111313; font-size: 18px;}
 
 .singlenews .meta,
-#news .date{font-size: 12px; color: #9c9c9c; margin: 10px 0 20px 0; display: block;}
+#news .date {font-size: 12px; color: #9c9c9c; margin: 10px 0 20px 0; display: block;}
+.news .meta span.mobile  {color:#9c9c9c;}
 
 #news .category{font-size: 12px;}
 #news .category a{color: #9c9c9c; font-size: 12px;}

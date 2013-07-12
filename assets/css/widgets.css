@@ -214,7 +214,7 @@
 
 #appsCompatibles li{list-style: none; display: block; border-bottom: 1px solid white; height: 80px; padding: 15px; width: 415px; float: left; position: relative;}
 #appsCompatibles li:nth-child(even){float: right;}
-#appsCompatibles li:last-of-type, #appsCompatibles li:nth-last-of-type(2) {border: none;}
+#appsCompatibles li:last-of-type, #appsCompatibles li:nth-last-of-type(2), #devicesCompatibles li:last-of-type, #devicesCompatibles li:nth-last-of-type(2) {border: none;}
 
 #appsCompatibles h2{padding: 5px 15px 0px 15px; line-height: 52px; border-bottom: 1px solid white;}
 #appsCompatibles .icone{float: left; position: relative; width: 80px; height: 80px; border-radius: 10px; background: #333; margin: 0 15px 0 0;}

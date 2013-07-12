@@ -16,6 +16,8 @@
 #codeigniter_profiler, #slider, #selections, #partners, #footer, #header .links, #header nav{display: none;}
 
 .mobile{display: block;}
+span.mobile {display: inline;}
+.notmobile {display: none;}
 
 .line{margin: 10px 0;}
 
@@ -31,7 +33,7 @@
 
 #listApps .listapps{width: 100%; margin: 50px 0 0 0; float: none;}
 #listapps_topfive{margin: 10px 0 0 0;}
-#listApps .metapp{width: 34%;}
+#listApps .metapp{width: 25%;}
 #listApps .metapp h4{width: auto;}
 #listApps .listapps h3{font-size: 18px;}
 #listApps .allapps h3{font-size: 12px;}
@@ -86,6 +88,11 @@
 #descTabs nav li.selected{background-image: none;}
 #descTabs .tabContent{padding: 2%; width: 96%;}
 
+
+#sort-filter .btn-group:first-of-type {	display: none; }
+.fullList #sort-filter {position: relative;}
+#listApps > .wrapper .allapps li {width: 100%; box-sizing: border-box; height: 110px; border-right: none;}
+#listApps > .wrapper .allapps li:nth-child(odd) {border-right: none;}
 
 }
 

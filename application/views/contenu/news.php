@@ -4,7 +4,7 @@
     <div class="wrapper">
         <h2><?php echo $article->titre; ?></h2> <!-- Insérer le titre ici -->
         <?php if($article->nom_categorie): ?>
-            <div class="meta">Posté dans <?php echo $article->nom_categorie; ?> <?php echo $article->date_full; ?></div>
+            <div class="meta"><span class="notmobile">Posté dans </span><?php echo $article->nom_categorie; ?><span class="mobile">,</span> <?php echo $article->date_full; ?></div>
         <?php endif; ?>
     </div>
 </div>
