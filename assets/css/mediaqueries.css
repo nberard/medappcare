@@ -209,85 +209,86 @@ only screen and (min-device-pixel-ratio : 1.5) {
 #descTabs nav li.selected {background: rgba(255, 255, 255, .2) url(../img/deviceTabsSelectedIndicator@2x.png) no-repeat; background-size: contain;}
 
 .default .zero,
-.zero{background: url(../img/notes_blue.png) -216px -89px no-repeat; width: 33px; height: 30px; background-size: contain;}
+.zero{background: url(../img/notes_blue.png) 107px -43px no-repeat; width: 34px; height: 32px; background-size: 171px 145px;}
 .default .un,
-.un{background: url(../img/notes_blue.png) 0px -178px no-repeat; width: 33px; height: 30px; background-size: contain;}
+.un{background: url(../img/notes_blue.png) 0px -88px no-repeat; width: 34px; height: 32px; background-size: 171px 145px;}
 .default .deux,
-.deux{background: url(../img/notes_blue.png) -72px -178px no-repeat; width: 33px; height: 30px; background-size: contain;}
+.deux{background: url(../img/notes_blue.png) -36px -88px no-repeat; width: 36px; height: 31px; background-size: 171px 145px;}
 .default .trois,
-.trois{background: url(../img/notes_blue.png) -144px -178px no-repeat; width: 33px; height: 30px; background-size: contain;}
+.trois{background: url(../img/notes_blue.png) -72px -88px no-repeat; width: 33px; height: 31px; background-size: 171px 145px;}
 .default .quatre,
-.quatre{background: url(../img/notes_blue.png) -216px -178px no-repeat; width: 33px; height: 30px; background-size: contain;}
+.quatre{background: url(../img/notes_blue.png) -107px -88px no-repeat; width: 34px; height: 31px; background-size: 171px 145px;}
 .default .cinq,
-.cinq{background: url(../img/notes_blue.png) 0px 0px no-repeat; width: 33px; height: 42px; background-size: contain;}
+.cinq{background: url(../img/notes_blue.png) 0px 0px no-repeat; width: 33px; height: 42px; background-size: 171px 145px;}
 .default .six,
-.six{background: url(../img/notes_blue.png) -72px 0px no-repeat; width: 33px; height: 42px; background-size: contain;}
+.six{background: url(../img/notes_blue.png) -36px 0px no-repeat; width: 34px; height: 42px; background-size: 171px 145px;}
 .default .sept,
-.sept{background: url(../img/notes_blue.png) -144px 0px no-repeat; width: 33px; height: 42px; background-size: contain;}
+.sept{background: url(../img/notes_blue.png) -72px 0px no-repeat; width: 33px; height: 42px; background-size: 171px 145px;}
 .default .huit,
-.huit{background: url(../img/notes_blue.png) 0px -89px no-repeat; width: 42px; height: 42px; background-size: contain;}
+.huit{background: url(../img/notes_blue.png) 0px -44px no-repeat; width: 42px; height: 42px; background-size: 171px 145px;}
 .default .neuf,
-.neuf{background: url(../img/notes_blue.png) -89px -89px no-repeat; width: 42px; height: 42px; background-size: contain;}
+.neuf{background: url(../img/notes_blue.png) -44px -44px no-repeat; width: 42px; height: 42px; background-size: 171px 145px;}
 .default .dixsurdix,
-.dixsurdix{background: url(../img/notes_blue.png) -216px 0px no-repeat; width: 42px; height: 42px; background-size: contain;}
+.dixsurdix{background: url(../img/notes_blue.png) -107px 0px no-repeat; width: 43px; height: 42px; background-size: 171px 145px;}
 
 .masante .zero,
-.administratif .zero{background: url(../img/notes_lightblue.png) -216px -89px no-repeat; width: 33px; height: 30px; background-size: contain;}
+.administratif .zero{background: url(../img/notes_lightblue.png) 107px -43px no-repeat; width: 34px; height: 32px; background-size: 171px 145px;}
 .masante .un,
-.administratif .un{background: url(../img/notes_lightblue.png) 0px -178px no-repeat; width: 33px; height: 30px; background-size: contain;}
+.administratif .un{background: url(../img/notes_lightblue.png) 0px -88px no-repeat; width: 34px; height: 32px; background-size: 171px 145px;}
 .masante .deux,
-.administratif .deux{background: url(../img/notes_lightblue.png) -72px -178px no-repeat; width: 33px; height: 30px; background-size: contain;}
+.administratif .deux{background: url(../img/notes_lightblue.png) -36px -88px no-repeat; width: 36px; height: 31px; background-size: 171px 145px;}
 .masante .trois,
-.administratif .trois{background: url(../img/notes_lightblue.png) -144px -178px no-repeat; width: 33px; height: 30px; background-size: contain;}
+.administratif .trois{background: url(../img/notes_lightblue.png) -72px -88px no-repeat; width: 33px; height: 31px; background-size: 171px 145px;}
 .masante .quatre,
-.administratif .quatre{background: url(../img/notes_lightblue.png) -216px -178px no-repeat; width: 33px; height: 30px; background-size: contain;}
+.administratif .quatre{background: url(../img/notes_lightblue.png) -107px -88px no-repeat; width: 34px; height: 31px; background-size: 171px 145px;}
 .masante .cinq,
-.administratif .cinq{background: url(../img/notes_lightblue.png) 0px 0px no-repeat; width: 33px; height: 42px; background-size: contain;}
+.administratif .cinq{background: url(../img/notes_lightblue.png) 0px 0px no-repeat; width: 33px; height: 42px; background-size: 171px 145px;}
 .masante .six,
-.administratif .six{background: url(../img/notes_lightblue.png) -72px 0px no-repeat; width: 33px; height: 42px; background-size: contain;}
+.administratif .six{background: url(../img/notes_lightblue.png) -36px 0px no-repeat; width: 34px; height: 42px; background-size: 171px 145px;}
 .masante .sept,
-.administratif .sept{background: url(../img/notes_lightblue.png) -144px 0px no-repeat; width: 33px; height: 42px; background-size: contain;}
+.administratif .sept{background: url(../img/notes_lightblue.png) -72px 0px no-repeat; width: 33px; height: 42px; background-size: 171px 145px;}
 .masante .huit,
-.administratif .huit{background: url(../img/notes_lightblue.png) 0px -89px no-repeat; width: 42px; height: 42px; background-size: contain;}
+.administratif .huit{background: url(../img/notes_lightblue.png) 0px -44px no-repeat; width: 42px; height: 42px; background-size: 171px 145px;}
 .masante .neuf,
-.administratif .neuf{background: url(../img/notes_lightblue.png) -89px -89px no-repeat; width: 42px; height: 42px; background-size: contain;}
+.administratif .neuf{background: url(../img/notes_lightblue.png) -44px -44px no-repeat; width: 42px; height: 42px; background-size: 171px 145px;}
 .masante .dixsurdix,
-.administratif .dixsurdix{background: url(../img/notes_lightblue.png) -216px 0px no-repeat; width: 42px; height: 42px; background-size: contain;}
+.administratif .dixsurdix{background: url(../img/notes_lightblue.png) -107px 0px no-repeat; width: 43px; height: 42px; background-size: 171px 145px;}
 
 .monquotidien .zero,
 .mapratique .zero,
-#listApps .listapps.pourlespros .zero{background: url(../img/notes_red.png) -216px -89px no-repeat; width: 33px; height: 30px; background-size: contain;}
+#listApps .listapps.pourlespros .zero{background: url(../img/notes_red.png) 107px -43px no-repeat; width: 34px; height: 32px; background-size: 171px 145px;}
 .monquotidien .un,
 .mapratique .un,
-#listApps .listapps.pourlespros .un{background: url(../img/notes_red.png) 0px -178px no-repeat; width: 33px; height: 30px; background-size: contain;}
+#listApps .listapps.pourlespros .un{background: url(../img/notes_red.png) 0px -88px no-repeat; width: 34px; height: 32px; background-size: 171px 145px;}
 .monquotidien .deux,
 .mapratique .deux,
-#listApps .listapps.pourlespros .deux{background: url(../img/notes_red.png) -72px -178px no-repeat; width: 33px; height: 30px; background-size: contain;}
+#listApps .listapps.pourlespros .deux{background: url(../img/notes_red.png) -36px -88px no-repeat; width: 36px; height: 31px; background-size: 171px 145px;}
 .monquotidien .trois,
 .mapratique .trois,
-#listApps .listapps.pourlespros .trois{background: url(../img/notes_red.png) -144px -178px no-repeat; width: 33px; height: 30px; background-size: contain;}
+#listApps .listapps.pourlespros .trois{background: url(../img/notes_red.png) -72px -88px no-repeat; width: 33px; height: 31px; background-size: 171px 145px;}
 .monquotidien .quatre,
 .mapratique .quatre,
-#listApps .listapps.pourlespros .quatre{background: url(../img/notes_red.png) -216px -178px no-repeat; width: 33px; height: 30px; background-size: contain;}
+#listApps .listapps.pourlespros .quatre{background: url(../img/notes_red.png) -107px -88px no-repeat; width: 34px; height: 31px; background-size: 171px 145px;}
 .monquotidien .cinq,
 .mapratique .cinq,
-#listApps .listapps.pourlespros .cinq{background: url(../img/notes_red.png) 0px 0px no-repeat; width: 33px; height: 42px; background-size: contain;}
+#listApps .listapps.pourlespros .cinq{background: url(../img/notes_red.png) 0px 0px no-repeat; width: 33px; height: 42px; background-size: 171px 145px;}
 .monquotidien .six,
 .mapratique .six,
-#listApps .listapps.pourlespros .six{background: url(../img/notes_red.png) -72px 0px no-repeat; width: 33px; height: 42px; background-size: contain;}
+#listApps .listapps.pourlespros .six{background: url(../img/notes_red.png) -36px 0px no-repeat; width: 34px; height: 42px; background-size: 171px 145px;}
 .monquotidien .sept,
 .mapratique .sept,
-#listApps .listapps.pourlespros .sept{background: url(../img/notes_red.png) -144px 0px no-repeat; width: 33px; height: 42px; background-size: contain;}
+#listApps .listapps.pourlespros .sept{background: url(../img/notes_red.png) -72px 0px no-repeat; width: 33px; height: 42px; background-size: 171px 145px;}
 .monquotidien .huit,
 .mapratique .huit,
-#listApps .listapps.pourlespros .huit{background: url(../img/notes_red.png) 0px -89px no-repeat; width: 42px; height: 42px; background-size: contain;}
+#listApps .listapps.pourlespros .huit{background: url(../img/notes_red.png) 0px -44px no-repeat; width: 42px; height: 42px; background-size: 171px 145px;}
 .monquotidien .neuf,
 .mapratique .neuf,
-#listApps .listapps.pourlespros .neuf{background: url(../img/notes_red.png) -89px -89px no-repeat; width: 42px; height: 42px; background-size: contain;}
+#listApps .listapps.pourlespros .neuf{background: url(../img/notes_red.png) -44px -44px no-repeat; width: 42px; height: 42px; background-size: 171px 145px;}
 .monquotidien .dixsurdix,
 .mapratique .dixsurdix,
-#listApps .listapps.pourlespros .dixsurdix{background: url(../img/notes_red.png) -216px 0px no-repeat; width: 42px; height: 42px; background-size: contain;}
+#listApps .listapps.pourlespros .dixsurdix{background: url(../img/notes_red.png) -107px 0px no-repeat; width: 43px; height: 42px; background-size: 171px 145px;}
 
+/*
 .minformer .zero{background: url(../img/notes_green.png) -216px -89px no-repeat; width: 33px; height: 30px; background-size: contain;}
 .minformer .un{background: url(../img/notes_green.png) 0px -178px no-repeat; width: 33px; height: 30px; background-size: contain;}
 .minformer .deux{background: url(../img/notes_green.png) -72px -178px no-repeat; width: 33px; height: 30px; background-size: contain;}
@@ -299,7 +300,9 @@ only screen and (min-device-pixel-ratio : 1.5) {
 .minformer .huit{background: url(../img/notes_green.png) 0px -89px no-repeat; width: 42px; height: 42px; background-size: contain;}
 .minformer .neuf{background: url(../img/notes_green.png) -89px -89px no-repeat; width: 42px; height: 42px; background-size: contain;}
 .minformer .dixsurdix{background: url(../img/notes_green.png) -216px 0px no-repeat; width: 42px; height: 42px; background-size: contain;}
+*/
 
+/*
 .medeplacer .zero,
 .mespatients .zero,
 #listApps .listapps.pourlesgens .zero{background: url(../img/notes_pink.png) -216px -89px no-repeat; width: 33px; height: 30px; background-size: contain;}
@@ -403,6 +406,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
 .mespatients #metapp .appnote .note.dix{background: url(../img/notapp_medeplacer@2x.png) -97px 0px no-repeat; width: 58px; height: 58px; background-size: contain;}
 .medeplacer #metapp .appnote .note.zero, 
 .mespatients #metapp .appnote .note.zero{background: url(../img/notapp_medeplacer@2x.png) -339px -89px no-repeat; width: 47px; height: 43px; background-size: contain;}
+*/
 
 /* buttons */
 .facebook{background: url(../img/facebook@2x.png) no-repeat center center #0F6EB4; background-size: 9px 20px;}
