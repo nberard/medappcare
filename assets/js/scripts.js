@@ -151,7 +151,7 @@ $(document).ready(function() {
 	
 	/* Modal */
 	
-	$('.device a.signaler[href="#connexionModal"]').click(function() {
+	$('.device a.signaler[href="#connexionModal"], .app a.signaler[href="#connexionModal"]').click(function() {
 		$('#connexionModal').modal('show');
 	});
 	
