@@ -7,10 +7,6 @@
         	<h2 class="short"><?php echo $titre; ?></h2>
         	<form method="POST" id="sort-filter">
                 <select name="filters" id="filters" multiple="multiple">
-
-	                <optgroup label="Medappcare" id="eval-medapp">
-	                	<option <?php if($search_params['eval_medapp']) echo 'selected'; ?>>Évaluée par Medappcare</option>
-	                </optgroup>
 	                
 	                <optgroup label="Plateforme" id="devices">
                         <?php foreach($devices as $device): ?>
@@ -22,7 +18,7 @@
 <!--	            test-->
 	            <select name="sort" id="sort">
                     <option <?php if($search_params['sort'] == 'date') echo 'selected'; ?> value="date|desc">Les plus récentes</option>
-                    <option <?php if($search_params['sort'] == 'note') echo 'selected'; ?> value="note|desc">Les mieux notées</option>
+                    <!-- <option <?php if($search_params['sort'] == 'note') echo 'selected'; ?> value="note|desc">Les mieux notées</option> -->
                     <option <?php if($search_params['sort'] == 'prix' && $search_params['order'] == 'asc') echo 'selected'; ?> value="prix|asc">Prix croissant</option>
                     <option <?php if($search_params['sort'] == 'prix' && $search_params['order'] == 'desc') echo 'selected'; ?> value="prix|desc">Prix décroissant</option>
 	            </select>
@@ -37,7 +33,7 @@
 
     <div class="wrapper">
 	    <section class="alldevices">
-	    	<?php echo $app_grid; ?>
+	    	<?php echo $device_grid; ?>
 	    	<div class="metaFooter">
 	    		<?php if(!is_null($prev_link)): ?><a href="<?php echo $prev_link; ?>" id="previousLink" class="previousLink">&laquo; Précédent</a><?php endif; ?>
                 <?php if(!is_null($next_link)): ?><a href="<?php echo $next_link; ?>"  id="nextLink" class="nextLink">Suivant &raquo;</a><?php endif; ?>
@@ -46,5 +42,3 @@
     </div>
 
 </section>
-
-<!-- <section id="partners"><?php echo $partners ; ?></section> -->
