@@ -419,7 +419,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
 #dropdown nav.monquotidien .bigpicto{background: url(../img/picto_monquotidien_big@2x.png) no-repeat; background-size: contain;}
 #dropdown nav.minformer .bigpicto{background: url(../img/picto_minformer_big@2x.png) no-repeat; background-size: contain;}
 #dropdown nav.medeplacer .bigpicto{background: url(../img/picto_medeplacer_big@2x.png) no-repeat; background-size: contain;}
-#dropdown .sponsored-selection .title {background-image: url(../img/picto_selection@2x.png); background-size: contain;}
+#dropdown .sponsored-selection .title {background-image: url(../img/picto_selection@2x.png); background-size: 19px 21px;}
 .navadministratif a{background: url(../img/picto_administratif@2x.png) no-repeat 20px center; background-size: contain;}
 .navmapratique a{background: url(../img/picto_mapratique@2x.png) no-repeat 20px center; background-size: contain;}
 .navmespatients a{background: url(../img/picto_mespatients@2x.png) no-repeat 20px center; background-size: contain;}
@@ -427,6 +427,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
 #dropdown.navmapratique .bigpicto{background: url(../img/picto_mapratique_big@2x.png) no-repeat; background-size: contain;}
 #dropdown.navprominformer .bigpicto{background: url(../img/picto_minformer_big@2x.png) no-repeat; background-size: contain;}
 #dropdown.navmespatients .bigpicto{background: url(../img/picto_mespatients_big@2x.png) no-repeat; background-size: contain;}
+#dropdown a.closeLink{background: url(../img/menu_close@2x.png) no-repeat; background-size: 16px 16px; padding: 0px 0px 2px 9px;}
 
 }
 
