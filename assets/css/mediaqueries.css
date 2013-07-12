@@ -95,6 +95,7 @@ span.mobile {display: inline;}
 #listApps > .wrapper .allapps li:nth-child(odd) {border-right: none;}
 #listApps h2 {width: 100%; box-sizing: border-box;}
 #listApps {min-height: inherit;}
+
 }
 
 /* iPads (portrait and landscape) ----------- */
@@ -126,6 +127,12 @@ header > nav ul{width: 100%;}
 .grid{width: 100%;}
 #thegrid h3{font-size: 24px;}
 #listApps {min-height: inherit;}
+
+#listApps .listapps {float: none; margin: 50px auto 0 auto;}
+#listApps .listapps:last-of-type {margin-bottom: 50px;}
+
+#devices li, #news li {float: none; margin: auto;}
+#devices li:nth-child(even), #news li:nth-child(even) {float: none;}
 
 }
 
