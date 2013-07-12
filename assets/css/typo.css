@@ -154,6 +154,8 @@ h2{color: #0f6eb4; font-size: 24px;}
 #sort-filter a {color:rgb(15,110,180);}
 #sort-filter li:hover a, #sort-filter .active a {color:white;}
 
+#accessoire-notes-browser h4, .noteGlobale h4{font-size: 20px;}
+
 
 /* ESPACE PROS */
 

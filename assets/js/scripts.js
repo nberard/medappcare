@@ -340,24 +340,7 @@ $(function() {
 var canvas = document.getElementById("extLine");
 var context = canvas.getContext("2d");
 
-function drawLine(x1,y1,x2,y2)
-{
-    
-    context.fillStyle = '#79c1d2';
-    context.strokeStyle = '#79c1d2';
 
-
-    context.beginPath();
-    context.moveTo(x1, y1); 
-    context.lineTo(x2, y2);
-    context.lineWidth = 1;
-    context.stroke();
-    context.closePath();
-    context.rotate(45.0);
-}    
-
-
-drawLine(30,30,60,30);
 
 
 

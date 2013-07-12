@@ -23,8 +23,10 @@
             <?php if(isset($application->moyenne_note_medappcare) && $application->moyenne_note_medappcare > 0): ?><div class="appnote noteMedappcare"><span></span><a href="#thegrid" class="note <?php echo $application->class_note_medappcare; ?>"><?php echo ucfirst($application->class_note_medappcare); ?></a></div><?php endif; ?>
             
             <!-- DEPRECATED -->
-            <?php if(isset($application->moyenne_note_pro)): ?><div class="appnote notePro"><span></span><a href="#thegrid" class="note <?php echo $application->class_note_pro; ?>"><?php echo ucfirst($application->class_note_pro); ?></a></div><?php endif; ?>
+            <!--
+<?php if(isset($application->moyenne_note_pro)): ?><div class="appnote notePro"><span></span><a href="#thegrid" class="note <?php echo $application->class_note_pro; ?>"><?php echo ucfirst($application->class_note_pro); ?></a></div><?php endif; ?>
             <?php if(isset($application->moyenne_note_perso)): ?><div class="appnote noteGens"><span></span><a href="#thegrid" class="note <?php echo $application->class_note_perso; ?>"><?php echo ucfirst($application->class_note_perso); ?></a></div><?php endif; ?>
+-->
         </div>
 
     </div>
@@ -101,6 +103,14 @@
                 <div id="<?php echo strtolower($critere_parent->nom); ?>" class="onegrid">
                     <h3><?php echo $critere_parent->nom; ?></h3>
                     <div class="grid">
+                        <div class="gridLables">
+                        <?php $classes = array('extTitle', 'midTitle', 'intTitle'); ?>
+                        <?php foreach($critere_parent->childs as $critere_enfant): ?>
+                            <?php if($critere_enfant->est_affichable == 1): ?>
+                                <div class="<?php echo array_shift($classes); ?>"><span class="label"><?php echo $critere_enfant->nom; ?></span><span class="thenote"><?php echo $application->note_medappcare_detail[$critere_enfant->id]; ?></span></div>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                        </div>
                         <div class="chart">
                             <?php $classes = array('ext', 'mid', 'int'); ?>
                             <?php foreach($critere_parent->childs as $critere_enfant): ?>
@@ -111,12 +121,6 @@
                             <span class="notemoyenne"><?php echo $application->note_medappcare_detail[$critere_parent->id]; ?></span>
                             <canvas id="extLine"></canvas>
                         </div>
-                        <?php $classes = array('extTitle', 'midTitle', 'intTitle'); ?>
-                        <?php foreach($critere_parent->childs as $critere_enfant): ?>
-                            <?php if($critere_enfant->est_affichable == 1): ?>
-                                <div class="<?php echo array_shift($classes); ?>"><span class="label"><?php echo $critere_enfant->nom; ?></span><span class="thenote"><?php echo $application->note_medappcare_detail[$critere_enfant->id]; ?></span></div>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
                         <div class="clear"></div>
                     </div>
                 </div>
@@ -170,6 +174,7 @@
 
             <div class="tabContent" id="commentaires">
                 <div class="noteGlobale">
+                    <h4>Note globale</h4>
                     <?php foreach($application->moyennes as $moyenne): ?>
                         <div class="<?php echo strtolower($moyenne->critere); ?>">
                             <label><?php echo $moyenne->critere; ?></label>
@@ -177,7 +182,6 @@
                         </div>
                     <?php endforeach; ?>
                 </div>
-                Commentaires :
                 <?php echo $widget_appcomments; ?>
             </div>
 	    	
