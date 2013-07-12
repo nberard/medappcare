@@ -114,7 +114,7 @@ class Admin extends MY_Controller
         $this->crud->set_subject('Page');
         $this->crud->set_table('page');
         $this->crud->required_fields('nom');
-        $this->crud->fields(array('nom', 'contenu'));
+        $this->crud->fields(array('nom', 'contenu_fr', 'contenu_en'));
         $this->crud->callback_after_insert(array($this, '_pages_after_add'));
         $this->crud->callback_after_update(array($this, '_pages_after_add'));
         $this->_admin_output($this->crud->render());
