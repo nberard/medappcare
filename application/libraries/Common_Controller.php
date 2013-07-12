@@ -512,7 +512,9 @@ class Common_Controller extends MY_Controller
         $this->load->model('Accessoires_model');
 
         $data['contenu'] = $this->load->view('contenu/list_devices', array(
-
+            'device_grid' => $this->load->view('inc/device_grid', array(
+                'applications' => array(),
+                ), true),
         ), true);
         $data['body_class'] = 'devices';
         $this->load->view('main', $data);
