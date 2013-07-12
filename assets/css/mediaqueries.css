@@ -90,7 +90,7 @@ span.mobile {display: inline;}
 
 
 #sort-filter .btn-group:first-of-type {	display: none; }
-.fullList #sort-filter {position: relative;}
+.fullList #sort-filter {position: relative; margin: 0; width: 100%; text-align: center;}
 #listApps > .wrapper .allapps li {width: 100%; box-sizing: border-box; height: 110px; border-right: none;}
 #listApps > .wrapper .allapps li:nth-child(odd) {border-right: none;}
 #listApps h2 {width: 100%; box-sizing: border-box;}
