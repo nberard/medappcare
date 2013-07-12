@@ -93,7 +93,7 @@ span.mobile {display: inline;}
 .fullList #sort-filter {position: relative;}
 #listApps > .wrapper .allapps li {width: 100%; box-sizing: border-box; height: 110px; border-right: none;}
 #listApps > .wrapper .allapps li:nth-child(odd) {border-right: none;}
-
+#listApps h2 {width: 100%; box-sizing: border-box;}
 }
 
 /* iPads (portrait and landscape) ----------- */
