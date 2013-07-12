@@ -9,7 +9,15 @@
 <section id="metapp" class="cat<?php echo $application->class; ?>">
     <div class="wrapper">
 
-        <div class="icone"><img width="90px" height="90px" src="<?php echo $application->logo_url; ?>"></div>
+        <div class="icone">
+            <img width="90px" height="90px" src="<?php echo $application->logo_url; ?>">
+            <div class="os mobile">
+                <div class="list">
+                    <span class="<?php echo $application->device_class; ?>"><?php echo $application->device_nom; ?></span>
+                    <span class="price"><?php echo $application->prix_complet; ?></span>
+                </div>
+            </div>
+        </div>
 
         <div class="content">
             <?php if(isset($application->moyenne_note_medappcare) && $application->moyenne_note_medappcare > 0): ?><div class="appnote noteMedappcare"><span></span><a href="#thegrid" class="note <?php echo $application->class_note_medappcare; ?>"><?php echo ucfirst($application->class_note_medappcare); ?></a></div><?php endif; ?>
@@ -28,7 +36,7 @@
             <div class="os">
                 <div class="list">
                     <span class="<?php echo $application->device_class; ?>"><?php echo $application->device_nom; ?></span>
-                    <span class="price"><?php echo $application->prix_complet; ?></span>
+                    <a class="price" href="#"><?php echo $application->prix_complet; ?></a>
                 </div>
             </div>
             <?php if($application->est_ce): ?>
@@ -87,88 +95,32 @@
         </div>
         <div id="thegrid" class="content right">
             <h2 class="gridTitle">La Grille Medappcare</h2>
-            
-            <div id="technique">
-                <h3>Technique</h3>
-                <div class="grid">
-                    <div class="chart">
-                        <div class="ext" data-percent="90"></div>
-                        <div class="mid" data-percent="40"></div>
-                        <div class="int" data-percent="20"></div>
-                        <span class="notemoyenne">7</span>
-                        <canvas id="extLine"></canvas>
-                    </div>
-                    <div class="extTitle"><span class="label">Fonctionnement général</span><span class="thenote">9</span></div>
-                    <div class="midTitle"><span class="label">Protection des données personnelles</span><span class="thenote">4</span></div>
-                    <div class="intTitle"><span class="label">Sécurité</span><span class="thenote">2</span></div>
-                    <div class="clear"></div>
-                </div>
-            </div>
-            
-            <div id="contenu">
-                <h3>Contenu</h3>
-                <div class="grid">
-                    <div class="chart">
-                        <div class="ext" data-percent="50"></div>
-                        <div class="mid" data-percent="20"></div>
-                        <span class="notemoyenne">3</span>
-                    </div>
-                    <div class="extTitle"><span class="label">Compétences</span><span class="thenote">5</span></div>
-                    <div class="midTitle"><span class="label">Fiabilité des informations</span><span class="thenote">2</span></div>
-                    <div class="clear"></div>
-                </div>
-            </div>
-
-            <div id="service">
-                <h3>Service</h3>
-                <div class="grid">
-                    <div class="chart">
-                        <div class="ext" data-percent="100"></div>
-                        <div class="mid" data-percent="80"></div>
-                        <div class="int" data-percent="10"></div>
-                        <span class="notemoyenne">7</span>
-                        <canvas id="extLine"></canvas>
-                    </div>
-                    <div class="extTitle"><span class="label">Conditions Générales d'Utilisations</span><span class="thenote">10</span></div>
-                    <div class="midTitle"><span class="label">Financements</span><span class="thenote">8</span></div>
-                    <div class="intTitle"><span class="label">Publicités</span><span class="thenote">1</span></div>
-                    <div class="clear"></div>
-                </div>
-            </div>
-            
-            <div id="usage">
-                <h3>Usage</h3>
-                <div class="grid">
-                    <div class="chart">
-                        <div class="ext" data-percent="60"></div>
-                        <div class="mid" data-percent="40"></div>
-                        <div class="int" data-percent="60"></div>
-                        <span class="notemoyenne">7</span>
-                        <canvas id="extLine"></canvas>
-                    </div>
-                    <div class="extTitle"><span class="label">Ergonomie</span><span class="thenote">6</span></div>
-                    <div class="midTitle"><span class="label">Design</span><span class="thenote">4</span></div>
-                    <div class="intTitle"><span class="label">Utilisabilité</span><span class="thenote">6</span></div>
-                    <div class="clear"></div>
-                </div>
-            </div>
-
-
-<!--
-
             <?php if(!empty($application->note_medappcare_detail)): ?>
             <?php foreach ($application->criteres as $critere_parent): ?>
-                    <hr>
-                    <?php echo $critere_parent->nom; ?>
-                    <hr>
-                    <?php foreach($critere_parent->childs as $critere_enfant): ?>
-                        <?php if(isset($application->note_medappcare_detail[$critere_enfant->id])) :?>
-                            Note pour "<?php echo $critere_enfant->nom; ?>" : <?php echo $application->note_medappcare_detail[$critere_enfant->id]; ?> <br/>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
+                <div id="<?php echo strtolower($critere_parent->nom); ?>" class="onegrid">
+                    <h3><?php echo $critere_parent->nom; ?></h3>
+                    <div class="grid">
+                        <div class="chart">
+                            <?php $classes = array('ext', 'mid', 'int'); ?>
+                            <?php foreach($critere_parent->childs as $critere_enfant): ?>
+                                <?php if($critere_enfant->est_affichable == 1): ?>
+                                    <div class="<?php echo array_shift($classes); ?>" data-percent="<?php echo $application->note_medappcare_detail[$critere_enfant->id] * 10; ?>"></div>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                            <span class="notemoyenne"><?php echo $application->note_medappcare_detail[$critere_parent->id]; ?></span>
+                            <canvas id="extLine"></canvas>
+                        </div>
+                        <?php $classes = array('extTitle', 'midTitle', 'intTitle'); ?>
+                        <?php foreach($critere_parent->childs as $critere_enfant): ?>
+                            <?php if($critere_enfant->est_affichable == 1): ?>
+                                <div class="<?php echo array_shift($classes); ?>"><span class="label"><?php echo $critere_enfant->nom; ?></span><span class="thenote"><?php echo $application->note_medappcare_detail[$critere_enfant->id]; ?></span></div>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                        <div class="clear"></div>
+                    </div>
+                </div>
             <?php endforeach; ?>
             <?php endif; ?>
--->
         </div>
         <div class="clear"></div>
     </div> <!-- end wrapper -->
@@ -216,9 +168,14 @@
 	    	</div>
 
             <div class="tabContent" id="commentaires">
-                <?php foreach($application->moyennes as $moyenne): ?>
-                    moyenne pour <?php echo $moyenne->critere; ?> : <?php echo $moyenne->note; ?> <br/>
-                <?php endforeach; ?>
+                <div class="noteGlobale">
+                    <?php foreach($application->moyennes as $moyenne): ?>
+                        <div class="<?php echo strtolower($moyenne->critere); ?>">
+                            <label><?php echo $moyenne->critere; ?></label>
+                            <div class="rateit" data-rateit-value="<?php echo $moyenne->note; ?>" data-rateit-ispreset="true" data-rateit-readonly="true" data-rateit-max="<?php echo config_item('note_max_accessoire'); ?>"></div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
                 Commentaires :
                 <?php echo $widget_appcomments; ?>
             </div>
@@ -266,23 +223,23 @@
 </div>
 
 <?php if($user): ?>
-<div class="modal hide fade" id="commentModal">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" id="modal-notation-close"></button>
-        <h3>Noter cette application</h3>
+    <div class="modal hide fade" id="commentModal">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" id="modal-notation-close"></button>
+            <h3>Noter cette application</h3>
+        </div>
+        <div class="modal-body">
+            <p class="explication">Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+            <form method="post" id="form-noter-application" data-criteres='<?php echo json_encode($application->criteres); ?>' data-action="<?php echo site_url('application/'.$application->id.'/note/'.$user->id) ?>">
+                <input type="hidden" id="application-notation-pro" value="<?php echo $application->est_pro ? 1 : 0; ?>"/>
+                <?php foreach($application->criteres as $critere): ?>
+                    <p><label for="note-application-<?php echo $critere->id; ?>"><?php echo $critere->nom; ?></label><input type="text" id="note-application-<?php echo $critere->id; ?>"/></p>
+                <?php endforeach; ?>
+                <p><textarea id="commentaire-application"></textarea></p>
+                <p><button type="submit" class="btn btn-primary">Envoyer</button>
+            </form>
+        </div>
+        <div id="application-notation-error" class="alert alert-error hide"></div>
+        <div id="application-notation-success" class="success alert-success hide"></div>
     </div>
-    <div class="modal-body">
-        <p class="explication">Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-        <form method="post" id="form-noter-application" data-criteres='<?php echo json_encode($application->criteres); ?>' data-action="<?php echo site_url('application/'.$application->id.'/note/'.$user->id) ?>">
-            <input type="hidden" id="application-notation-pro" value="<?php echo $application->est_pro ? 1 : 0; ?>"/>
-            <?php foreach($application->criteres as $critere): ?>
-                <p><label for="note-application-<?php echo $critere->id; ?>"><?php echo $critere->nom; ?></label><input type="text" id="note-application-<?php echo $critere->id; ?>"/></p>
-            <?php endforeach; ?>
-            <p><textarea id="commentaire-application"></textarea></p>
-            <p><button type="submit" class="btn btn-primary">Envoyer</button>
-        </form>
-    </div>
-    <div id="application-notation-error" class="alert alert-error hide"></div>
-    <div id="application-notation-success" class="success alert-success hide"></div>
-</div>
 <?php endif; ?>

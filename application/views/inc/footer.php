@@ -3,6 +3,7 @@
 <footer id="footer">
 
 <div class="wrapper">
+<!--
 	<span class="languages">
         <?php foreach($languages as $languageShort => $languagesVars):
             $current = config_item('language') == $languagesVars['long'];
@@ -12,6 +13,14 @@
         </a> &nbsp;&nbsp;&nbsp;
     <?php endforeach; ?>
     </span>
+-->
+    
+    <span class="languages">
+        <a href="#" class="selected">Français</a> &nbsp;&nbsp;&nbsp;
+        <a href="#" class="btsoon">English<span class="soon">Soon available</span></a>
+    </span>
+    
+    
     <span class="footer_medappcare"></span>
     <div class="left">
         <nav class="principale">
@@ -64,37 +73,21 @@
 
 <div id="dl-menu" class="dl-menuwrapper">
     <button class="dl-trigger">Open Menu</button>
-    <button id="bt-search">Rechercher</button>
+    <button id="bt-login"><span></span></button>
     <ul class="dl-menu dl-menu-toggle">
-        <li class="navMobileItem masante">
-            <a dropdowndestination="masante" href="#">Ma Santé</a>
-            <ul class="dl-submenu">
-                <li class="navMobileItem"><a dropdowndestination="addictions" href="#">Addictions</a></li>
-                <li class="navMobileItem"><a dropdowndestination="allergies" href="#">Allergies</a></li>
-            </ul>
-        </li>
-        <li class="navMobileItem monquotidien">
-            <a dropdowndestination="monquotidien" href="#">Mon Quotidien</a>
-            <ul class="dl-submenu">
-                <li class="navMobileItem"><a dropdowndestination="item" href="#">Item 1</a></li>
-                <li class="navMobileItem"><a dropdowndestination="item" href="#">Item 2</a></li>
-            </ul>
-        </li>
-        <li class="navMobileItem minformer">
-            <a dropdowndestination="minformer" href="#">M'Informer</a>
-            <ul class="dl-submenu">
-                <li class="navMobileItem"><a dropdowndestination="item" href="#">Item 1</a></li>
-                <li class="navMobileItem"><a dropdowndestination="item" href="#">Item 2</a></li>
-            </ul>
-        </li>
-        <li class="navMobileItem medeplacer">
-            <a dropdowndestination="medeplacer" href="#">Me Déplacer</a>
-            <ul class="dl-submenu">
-                <li class="navMobileItem"><a dropdowndestination="item" href="#">Item 1</a></li>
-                <li class="navMobileItem"><a dropdowndestination="item" href="#">Item 2</a></li>
-            </ul>
-        </li>
+        <?php foreach($categories_principales as $categorie_principale): ?>
+            <li class="navMobileItem <?php echo $categorie_principale->class; ?>">
+                <a dropdowndestination="<?php echo $categorie_principale->class;?>" href="#"><?php echo $categorie_principale->nom;?></a>
+                <ul class="dl-submenu">
+                <?php foreach($categorie_principale->enfants as $categorie_enfant): ?>
+                    <li class="navMobileItem"><a dropdowndestination="<?php echo $categorie_principale->class;?>" href="<?php echo $categorie_enfant->link; ?>"><?php echo $categorie_enfant->nom;?></a></li>
+                <?php endforeach; ?>
+                </ul>
+            </li>
+        <?php endforeach; ?>
     </ul>
+    <div class="bigpicto"></div>
+    <a href="#" class="closeLink">Fermer le menu</a>
 </div> <!-- end mobile menu -->
 
 <script>

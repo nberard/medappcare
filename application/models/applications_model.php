@@ -77,7 +77,9 @@ class Applications_model extends CI_Model {
 
     public function get_last_eval_applications($_pro, $_category_id = -1)
     {
-        return $this->get_applications($_pro, -1, $_category_id, null, true, -1, -1, -1, 'date', 'desc', 5);
+        $user = $this->session->userdata('user');
+        $devices = isset($user->devices) ? $user->devices : -1;
+        return $this->get_applications($_pro, $devices, $_category_id, null, true, -1, -1, -1, 'date', 'desc', 5);
     }
 
     public function get_applications($_pro, $_devices_id, $_categorie_id, $_term, $_eval_medappcare, $_free, $_selection_id,
@@ -296,11 +298,6 @@ class Applications_model extends CI_Model {
         return $this->get_applications($_pro, $_devices_id, $_categorie_id, null, false, $_free, -1, -1, $_sort, $_order, config_item('nb_results_list'), ($_page -1) * config_item('nb_results_list'));
     }
 
-    public function get_number_applications_from_categorie($_pro, $_devices_id, $_categorie_id, $_free, $_sort, $_order, $_page)
-    {
-        return $this->get_applications($_pro, $_devices_id, $_categorie_id, null, false, $_free, -1, -1, $_sort, $_order, config_item('nb_results_list'), ($_page -1) * config_item('nb_results_list'), true);
-    }
-
     public function get_applications_classic($_pro, $_devices_id, $_term, $_eval_medapp, $_free, $_sort, $_order, $_page)
     {
         return $this->get_applications($_pro, $_devices_id, -1, $_term, $_eval_medapp, $_free, -1, -1, $_sort, $_order, config_item('nb_results_list'), ($_page -1) * config_item('nb_results_list'));
@@ -313,7 +310,9 @@ class Applications_model extends CI_Model {
 
     public function get_top_five_applications($_free, $_pro, $_category_id = -1)
     {
-        return $this->get_applications($_pro, -1, $_category_id, null, true, $_free, -1, -1, 'id', 'desc', 5);
+        $user = $this->session->userdata('user');
+        $devices = isset($user->devices) ? $user->devices : -1;
+        return $this->get_applications($_pro, $devices, $_category_id, null, true, $_free, -1, -1, 'id', 'desc', 5);
     }
 
     public function get_pour_les_pros_applications($_sort, $_category_id = -1)
@@ -345,8 +344,9 @@ class Applications_model extends CI_Model {
 
     public function get_notes_criteres_medappcare($_pro, $_application_id)
     {
-        $notes_criteres_db = $this->db->select('note, critere_id')
+        $notes_criteres_db = $this->db->select('note, critere_id, AC.parent_id')
             ->from($this->getTableName('notes_medappcare', $_pro).' NM')
+            ->join($this->getTableName('criteres_medappcare', $_pro).' AC', 'AC.id = NM.critere_id', 'INNER')
             ->join('application_notation_medappcare ANM', 'ANM.id = NM.application_notation_id', 'INNER')
             ->where(array('ANM.application_id' => $_application_id))
             ->get()->result();
@@ -354,6 +354,8 @@ class Applications_model extends CI_Model {
         foreach($notes_criteres_db as $note_criteres_db)
         {
             $notes_criteres[$note_criteres_db->critere_id] = $note_criteres_db->note;
+            $notes_criteres[$note_criteres_db->parent_id] = isset($notes_criteres[$note_criteres_db->parent_id]) ?
+                $notes_criteres[$note_criteres_db->parent_id] + $note_criteres_db->note : $note_criteres_db->note;
         }
         return $notes_criteres;
     }
@@ -430,7 +432,7 @@ class Applications_model extends CI_Model {
 
     public function get_moyennes_from_application($_pro, $_id)
     {
-        $res = $this->db->select('ROUND(AVG(note)) AS note, C.nom_'.config_item('lng').' AS critere')
+        $res = $this->db->select('ROUND(AVG(2 * note)) / 2 AS note, C.nom_'.config_item('lng').' AS critere')
             ->from($this->table.' A')
             ->join($this->getTableName('notation', $_pro).' N', 'N.application_id = A.id', 'LEFT')
             ->join($this->getTableName('notes', $_pro).' NC', 'NC.application_notation_id = N.id', 'INNER')

@@ -29,8 +29,11 @@ class Common_Controller extends MY_Controller
         $this->output->enable_profiler(TRUE);
     }
 
-    protected function _getCommonIncludes($js_files = array())
+    protected function _getCommonIncludes($js_files = array(), $header_meta = array())
     {
+        $meta_config = config_item('meta');
+        $meta_config['og:url'] = current_url();
+        $header_meta = array_merge($meta_config, $header_meta);
         $languagesVars = $this->lang->languages;
         $this->load->model('Categories_model');
         foreach ($languagesVars as $shortLanguage => &$longLanguage)
@@ -57,7 +60,10 @@ class Common_Controller extends MY_Controller
         $this->_populate_categories_enfants($categories_principales);
 //        $this->benchmark->mark('get_enfants_end');
         return array(
-            'header_meta' => $this->load->view('inc/header_meta', array('css_files' => array(css_url('stylesheet'))), true),
+            'header_meta' => $this->load->view('inc/header_meta', array(
+                'css_files' => array(css_url('stylesheet')),
+                'meta' => $header_meta,
+            ), true),
             'header' => $this->load->view('inc/header', array(
                 'pro' => $this->pro,
                 'access_label' => $this->access_label,
@@ -74,6 +80,7 @@ class Common_Controller extends MY_Controller
                 'access_label' => $this->access_label,
                 'categories_principales_pro' => $this->pro ? $categories_principales : $categories_principales_target,
                 'categories_principales_perso' => $this->pro ? $categories_principales_target : $categories_principales,
+                'categories_principales' => $categories_principales,
             ), true),
             'footer_meta' => $this->load->view('inc/footer_meta', array('js_files' => array_merge(array(
 //                js_url('jquery-2.0.0.min'),
@@ -152,6 +159,10 @@ class Common_Controller extends MY_Controller
             $application->moyennes = $this->Applications_model->get_moyennes_from_application($application->est_pro, $_id);
             $application->note_medappcare_detail = $this->Applications_model->get_notes_criteres_medappcare($application->est_pro, $application->id);
             $application->criteres = $this->Applications_model->get_criteres_medappcare($application->est_pro);
+            foreach ($application->criteres as $critere_parent)
+            {
+                $application->note_medappcare_detail[$critere_parent->id] = round($application->note_medappcare_detail[$critere_parent->id] / count($critere_parent->childs));
+            }
             $this->_format_all_dates($application->notes, 'date', 'datetime');
         }
         log_message('debug', "application=".var_export($application, true)."");
@@ -367,7 +378,13 @@ class Common_Controller extends MY_Controller
         {
             $appData['already_noted'] = $this->Applications_model->user_has_note_application($application->est_pro, $_id, $user->id);
         }
-        $data['inc'] = $this->_getCommonIncludes(array(js_url('notation')));
+        $this->load->helper('format_string');
+        $data['inc'] = $this->_getCommonIncludes(array(js_url('notation')), array(
+            'og:title' => $application->nom,
+            'og:description' => short_html_text($application->description, 300),
+            'og:image' => $application->logo_url,
+            'image_src' => 'http://www.onemorethingstudio.com/unisize-app/wp-content/themes/unisize/img/apple-touch-icon-72x72-precomposed.png',
+        ));
 
         $data['contenu'] = $this->load->view('contenu/app', $appData, true);
         $data['body_class'] = 'app '.$this->body_class.(!empty($application->class) ? ' '.$application->class : '');
@@ -439,11 +456,16 @@ class Common_Controller extends MY_Controller
 
     public function news($_id)
     {
-        $data['inc'] = $this->_getCommonIncludes();
         $this->load->model('Articles_model');
         $article = $this->Articles_model->get_article($_id);
         $article->date_full = date_full($article->date_creation);
-
+        $this->load->helper('format_string');
+        $data['inc'] = $this->_getCommonIncludes(array(), array(
+            'og:title' => $article->titre,
+            'og:description' => short_html_text($article->contenu, 300),
+            'og:image' => $article->picto_url,
+            'image_src' => $article->picto_url,
+        ));
         $data['contenu'] = $this->load->view('contenu/news', array('article' => $article), true);
         $data['body_class'] = 'news';
         $this->load->view('main', $data);
@@ -658,7 +680,16 @@ class Common_Controller extends MY_Controller
 
         $force_perso = request_get_param($_params, 'force_perso', 0, array(0, 1));
 
-        $devices = request_get_param($_params, 'devices', -1);
+        $user = $this->session->userdata('user');
+        if($user && $user->devices != -1)
+        {
+            $default_devices = implode(',', $user->devices);
+        }
+        else
+        {
+            $default_devices = -1;
+        }
+        $devices = request_get_param($_params, 'devices', $default_devices);
         if($devices != -1)
         {
             $tab_devices = explode(',', $devices);

@@ -74,7 +74,7 @@
 	border-right: 1px solid white;
 }
 
-.dl-menuwrapper #bt-search{
+.dl-menuwrapper #bt-login{
 	background: #283278;
 	border: none;
 	width: 48px;
@@ -87,7 +87,10 @@
 	cursor: pointer;
 	outline: none;
 	border-left: 1px solid white;
+	text-align: center;
 }
+
+.dl-menuwrapper #bt-login span{display: block; background: white; width: 15px; height: 15px; border-radius: 100%;}
 
 .dl-menuwrapper .dl-trigger:hover,
 .dl-menuwrapper .dl-trigger.dl-active{
