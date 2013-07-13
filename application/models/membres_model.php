@@ -27,6 +27,12 @@ class Membres_model extends CI_Model {
             ->where($_condition)->get()->row();
     }
 
+    public function update_password($_membre_email, $_new_password)
+    {
+        log_message('debug', "update_password($_membre_email, $_new_password)");
+        return $this->db->update($this->table, array('mot_de_passe' => $_new_password), array('email' => $_membre_email));
+    }
+
     public function update_membre($_membre_id, $_params, $_list, $_pro)
     {
         log_message('debug', "update_membre($_membre_id,  =".var_export($_params, true)."=".var_export($_list, true)."");

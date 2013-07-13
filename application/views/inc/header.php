@@ -79,8 +79,8 @@
     <h3>Mot de passe oublié</h3>
   </div>
   <div class="modal-body">
-    <form method="post" action='lostPassword.php' name="lost_password_form">
-      <p><input type="text" required placeholder="Email"></p>
+    <form method="post" data-action='<?php echo site_url('membre/password/') ?>' id="lost_password_form">
+      <p><input id="lost-password-email" type="text" required placeholder="Email"></p>
       <p><button type="submit" class="btn btn-primary">Récupérer mon mot de passe</button>
       </p>
     </form>
