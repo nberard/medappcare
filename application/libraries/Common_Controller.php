@@ -367,7 +367,10 @@ class Common_Controller extends MY_Controller
         $prev_link = null;
         $next_link = $number_notes > config_item('nb_comments_page') ? 2 : null;
         $appData = array(
-            'widget_devices' => $this->load->view('inc/widget_devices', array('accessoires' => $this->_get_accessoires(-1, $_id)), true),
+            'widget_devices' => $this->load->view('inc/widget_devices', array(
+                'accessoires' => $this->_get_accessoires(-1, $_id),
+                'access_label' => $this->access_label,
+            ), true),
             'widget_appcomments' => $this->load->view('inc/widget_appcomments', array(
                 'notes' => $application->notes,
                 'application_id' => $application->id,
