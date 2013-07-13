@@ -63,6 +63,7 @@ function handleNotation(type)
             {
                 $('#'+type+'-notes-browser').replaceWith(data);
                 handleNotation(type);
+                $(".rateit").rateit();
             },
             error: function(xhr, textStatus, error)
             {

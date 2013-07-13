@@ -166,7 +166,7 @@ class Common_Controller extends MY_Controller
                     $application->note_medappcare_detail[$critere_parent->id] = round($application->note_medappcare_detail[$critere_parent->id] / count($critere_parent->childs));
                 }
             }
-            $this->_format_all_dates($application->notes, 'date', 'datetime');
+//            $this->_format_all_dates($application->notes, 'date', 'datetime');
         }
         log_message('debug', "application=".var_export($application, true)."");
         return $application;
@@ -366,6 +366,7 @@ class Common_Controller extends MY_Controller
         $number_notes = $this->Applications_model->get_number_notes_from_application($application->est_pro, $_id);
         $prev_link = null;
         $next_link = $number_notes > config_item('nb_comments_page') ? 2 : null;
+        log_message('debug', "application->notes=".var_export($application->notes, true)."");
         $appData = array(
             'widget_devices' => $this->load->view('inc/widget_devices', array(
                 'accessoires' => $this->_get_accessoires(-1, $_id),
@@ -422,7 +423,7 @@ class Common_Controller extends MY_Controller
 
         $prev_link = null;
         $next_link = $number_notes > config_item('nb_comments_page') ? 2 : null;
-        $this->_format_all_dates($accessoire->notes, 'date', 'datetime');
+//        $this->_format_all_dates($accessoire->notes, 'date', 'datetime');
         $this->_format_note($accessoire);
         $user = $this->session->userdata('user');
         $devices_data = array(

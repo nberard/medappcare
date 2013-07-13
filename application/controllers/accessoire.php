@@ -73,7 +73,7 @@ class Accessoire extends REST_Controller {
                                         count($criteres) * config_item('nb_comments_page'),
                                         ($_page-1) * count($criteres) * config_item('nb_comments_page'));
                 $number_notes = $this->Accessoires_model->get_number_notes_from_accessoire($_accessoire_id);
-                $this->_format_all_dates($notes, 'date', 'datetime');
+//                $this->_format_all_dates($notes, 'date', 'datetime');
                 $prev_link = $_page != 1 ? $_page-1 : null;
                 $next_link = $number_notes > config_item('nb_comments_page') * $_page ? $_page+1 : null;
 
