@@ -31,7 +31,7 @@ class Accessoires_model extends CI_Model {
                                  'A.mot_fabriquant_'.config_item('lng').' AS mot_fabriquant')
                         ->from($this->table.' A')
                         ->join($this->tableNotation.' N', 'N.accessoire_id = A.id', 'LEFT')
-                        ->join($this->tableNotes.' NC', 'NC.accessoire_notation_id = N.id', 'INNER')
+                        ->join($this->tableNotes.' NC', 'NC.accessoire_notation_id = N.id', 'LEFT')
                         ->join($this->tableFabriquant.' F', 'F.id = A.fabriquant_id', 'LEFT')
                         ->group_by('A.id')
                         ->where(array('A.id' => $_id))->get()->row();
