@@ -172,12 +172,12 @@ class Common_Controller extends MY_Controller
         return $application;
     }
 
-    protected function _get_accessoires($_nb, $application_id = -1)
+    protected function _get_accessoires($_nb, $application_id = -1, $_page = 1)
     {
         $this->load->model('Accessoires_model');
         if($application_id == -1)
         {
-            $accessoires = $this->Accessoires_model->get_last_accessoires($_nb);
+            $accessoires = $this->Accessoires_model->get_last_accessoires($_nb, $_page);
         }
         else
         {
@@ -513,11 +513,26 @@ class Common_Controller extends MY_Controller
     public function list_devices($_page)
     {
         $data['inc'] = $this->_getCommonIncludes();
+        $accessoires = $this->_get_accessoires(config_item('nb_results_devices_list'), -1, $_page);
+
         $this->load->model('Accessoires_model');
+        $nb_accessoires = $this->Accessoires_model->get_count_accessoires();
+        $prev_link = $next_link = null;
+        if($nb_accessoires > config_item('nb_results_news_list') * $_page)
+        {
+            $next_link = $this->_format_link_no_id('list_devices', $_page + 1);
+        }
+        if($_page > 1)
+        {
+            $prev_link = $this->_format_link_no_id('list_devices', $_page - 1);
+        }
 
         $data['contenu'] = $this->load->view('contenu/list_devices', array(
+            'titre' => 'Tous les devices',
             'device_grid' => $this->load->view('inc/device_grid', array(
-                'applications' => array(),
+                'prev_link' => $prev_link,
+                'next_link' => $next_link,
+                'accessoires' => $accessoires,
                 ), true),
         ), true);
         $data['body_class'] = 'devices';
