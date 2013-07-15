@@ -22,9 +22,7 @@ class Membres_model extends CI_Model {
 
     public function exists_membres($_condition)
     {
-        return $this->db->select('*')
-            ->from($this->table)
-            ->where($_condition)->get()->row();
+        return $this->db->get_where($this->table, $_condition)->row();
     }
 
     public function update_password($_membre_email, $_new_password)
