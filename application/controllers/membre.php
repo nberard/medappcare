@@ -142,7 +142,9 @@ class Membre extends REST_Controller {
         log_message('debug', " password_post($_email)");
         $new_password = uniqid();
         $this->load->model('Membres_model');
-        if($res = $this->Membres_model->update_password($_email, $new_password))
+        $this->load->helper('crypt');
+        $new_password_crypt = get_crypt_password($new_password);
+        if($res = $this->Membres_model->update_password($_email, $new_password_crypt))
         {
             log_message('debug', "res=".var_export($res, true)."");
             $this->load->library('email');
@@ -151,7 +153,7 @@ class Membre extends REST_Controller {
             $this->email->to($_email);
             $this->email->subject('[Medappcare] Votre nouveau mot de passe');
             $this->email->message('Voice votre nouveau mot de passe : '.$new_password);
-            $this->email->send();
+            $ok = $this->email->send();
             $this->response(array('status' => 'ok', 'message' => lang('ok_membre_update')), 200);
         }
         else
