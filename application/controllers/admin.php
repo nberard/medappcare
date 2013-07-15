@@ -372,6 +372,7 @@ class Admin extends MY_Controller
         $this->crud->set_table('application');
         $this->crud->required_fields('nom', 'package', 'device_id' , 'logo_url', 'titre', 'date_ajout', 'prix', 'devise', 'langue_store', 'editeur_id', 'lien_download');
         $this->crud->set_relation('device_id', 'device', '{nom}');
+        $this->crud->set_relation('editeur_id', 'editeur', '{nom}');
         $this->crud->callback_before_insert(array($this, '_applications_before_action'));
         $this->crud->callback_before_update(array($this, '_applications_before_action'));
         $this->crud->set_relation_n_n('accessoires', 'accessoire_application_compatible', 'accessoire', 'application_id', 'accessoire_id', '{nom_'.config_item('lng').'}');
