@@ -136,6 +136,30 @@ class Membre extends REST_Controller {
         }
     }
 
+    public function password_put()
+    {
+        $_email = $this->_put('email');
+        log_message('debug', " password_post($_email)");
+        $new_password = uniqid();
+        $this->load->model('Membres_model');
+        if($res = $this->Membres_model->update_password($_email, $new_password))
+        {
+            log_message('debug', "res=".var_export($res, true)."");
+            $this->load->library('email');
+
+            $this->email->from('admin@medappcare.fr', 'Medappcare admin');
+            $this->email->to($_email);
+            $this->email->subject('[Medappcare] Votre nouveau mot de passe');
+            $this->email->message('Voice votre nouveau mot de passe : '.$new_password);
+            $this->email->send();
+            $this->response(array('status' => 'ok', 'message' => lang('ok_membre_update')), 200);
+        }
+        else
+        {
+            $this->response(array('status' => 'ko', 'errors' => lang('ko_membre_update')), 500);
+        }
+    }
+
     public function index_post()
     {
         $_POST = $this->_post();
@@ -153,9 +177,6 @@ class Membre extends REST_Controller {
         else
         {
             log_message('debug', "post=".var_export($_POST, true)."");
-//            $this->form_validation->
-//            log_message('debug', "post2=".var_export($_POST, true)."");
-
             $this->load->model('Membres_model');
             $membre_id = $this->Membres_model->insert_membres($_POST, $list);
             if($membre_id && ($membre = $this->Membres_model->exists_membres(array('id' => $membre_id))))

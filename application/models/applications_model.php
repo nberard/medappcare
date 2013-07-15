@@ -416,7 +416,7 @@ class Applications_model extends CI_Model {
 
     public function get_notes_from_application($_pro, $_id, $_limit = 4, $_offset = 0)
     {
-        $res = $this->db->select('C.nom_'.config_item('lng').' AS critere, N.commentaire_'.config_item('lng').' as commentaire, M.pseudo, N.date, NC.note, NC.critere_id')
+        $res = $this->db->select('M.id AS membre_id, C.nom_'.config_item('lng').' AS critere, N.commentaire_'.config_item('lng').' as commentaire, M.pseudo, N.date, NC.note, NC.critere_id')
             ->from($this->table.' A')
             ->join($this->getTableName('notation', $_pro).' N', 'N.application_id = A.id', 'LEFT')
             ->join($this->getTableName('notes', $_pro).' NC', 'NC.application_notation_id = N.id', 'INNER')
@@ -426,8 +426,19 @@ class Applications_model extends CI_Model {
             ->limit($_limit, $_offset)
             ->where(array('A.id' => $_id))
             ->get()->result();
-
-        return $res ? $res : array();
+        $array_return =  $res ? $res : array();
+        $return = array();
+        foreach($array_return as $row_note)
+        {
+            if(!isset($return[$row_note->membre_id]))
+            {
+                $return[$row_note->membre_id] = new stdClass();
+            }
+            $return[$row_note->membre_id]->pseudo = $row_note->pseudo;
+            $return[$row_note->membre_id]->commentaire = $row_note->commentaire;
+            $return[$row_note->membre_id]->notes[] = $row_note;
+        }
+        return $return;
     }
 
     public function get_moyennes_from_application($_pro, $_id)

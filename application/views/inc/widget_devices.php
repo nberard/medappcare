@@ -13,5 +13,7 @@
         <?php endforeach; ?>
     </ul>
     <div class="clear"></div>
-    <div class="metaFooter"><a href="<?php echo site_url($access_label.'/list_devices_1'); ?>">voir tout ></a></div>
+    <?php if(count($accessoires)): ?>
+        <div class="metaFooter"><a href="<?php echo site_url($access_label.'/list_devices_1'); ?>">voir tout ></a></div>
+    <?php endif; ?>
 </div>

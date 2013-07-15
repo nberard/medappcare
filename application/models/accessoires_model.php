@@ -19,9 +19,12 @@ class Accessoires_model extends CI_Model {
         parent::__construct();
     }
 
-    public function get_last_accessoires($_limit)
+    public function get_last_accessoires($_limit, $_page)
     {
-        return $this->db->select('*, nom_'.config_item('lng').' AS nom, avis_'.config_item('lng').' AS avis')->limit($_limit)->order_by('id', 'desc')->get($this->table)->result();
+        return $this->db->select('*, nom_'.config_item('lng').' AS nom, avis_'.config_item('lng').' AS avis')
+            ->limit($_limit, ($_page - 1) * config_item('nb_results_devices_list'))
+            ->order_by('id', 'desc')
+            ->get($this->table)->result();
     }
 
     public function get_accessoire($_id)
@@ -31,7 +34,7 @@ class Accessoires_model extends CI_Model {
                                  'A.mot_fabriquant_'.config_item('lng').' AS mot_fabriquant')
                         ->from($this->table.' A')
                         ->join($this->tableNotation.' N', 'N.accessoire_id = A.id', 'LEFT')
-                        ->join($this->tableNotes.' NC', 'NC.accessoire_notation_id = N.id', 'INNER')
+                        ->join($this->tableNotes.' NC', 'NC.accessoire_notation_id = N.id', 'LEFT')
                         ->join($this->tableFabriquant.' F', 'F.id = A.fabriquant_id', 'LEFT')
                         ->group_by('A.id')
                         ->where(array('A.id' => $_id))->get()->row();
@@ -53,7 +56,7 @@ class Accessoires_model extends CI_Model {
 
     public function get_notes_from_accessoire($_id, $_limit = 4, $_offset = 0)
     {
-        $res = $this->db->select('C.nom_'.config_item('lng').' AS critere, N.commentaire_'.config_item('lng').' as commentaire, M.pseudo, N.date, NC.note, NC.critere_id')
+        $res = $this->db->select('M.id AS membre_id, C.nom_'.config_item('lng').' AS critere, N.commentaire_'.config_item('lng').' as commentaire, M.pseudo, N.date, NC.note, NC.critere_id')
             ->from($this->table.' A')
             ->join($this->tableNotation.' N', 'N.accessoire_id = A.id', 'LEFT')
             ->join($this->tableNotes.' NC', 'NC.accessoire_notation_id = N.id', 'INNER')
@@ -65,7 +68,19 @@ class Accessoires_model extends CI_Model {
             ->order_by('N.date', 'desc')
             ->get()->result();
 
-        return $res ? $res : array();
+        $array_return =  $res ? $res : array();
+        $return = array();
+        foreach($array_return as $row_note)
+        {
+            if(!isset($return[$row_note->membre_id]))
+            {
+                $return[$row_note->membre_id] = new stdClass();
+            }
+            $return[$row_note->membre_id]->pseudo = $row_note->pseudo;
+            $return[$row_note->membre_id]->commentaire = $row_note->commentaire;
+            $return[$row_note->membre_id]->notes[] = $row_note;
+        }
+        return $return;
     }
 
     public function get_moyennes_from_accessoire($_id)
@@ -142,5 +157,10 @@ class Accessoires_model extends CI_Model {
     public function get_number_notes_from_accessoire($_id)
     {
         return $this->db->where(array('accessoire_id' => $_id))->count_all_results($this->tableNotation);
+    }
+
+    public function get_count_accessoires()
+    {
+        return $this->db->count_all_results($this->table);
     }
 }

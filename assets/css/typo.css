@@ -156,6 +156,13 @@ h2{color: #0f6eb4; font-size: 24px;}
 
 #accessoire-notes-browser h4, .noteGlobale h4{font-size: 20px;}
 
+.description p{margin: 0 0 10px 0;}
+.description a{color: #0F6EB4;}
+.description a:hover{text-decoration: underline;}
+.description ul{list-style: circle; margin: 0 0 20px 0;}
+.description ol{list-style: decimal; margin: 0 0 20px 0;}
+.description li{padding: 0 0 0 10px; margin: 0 0 0 20px;}
+.description em{font-style: italic;}
 
 /* ESPACE PROS */
 
@@ -178,9 +185,13 @@ h2{color: #0f6eb4; font-size: 24px;}
 
 /* PAGES */
 .static h1{font-size: 24px; margin: 0 0 20px 0;}
-
-
-
+.static h2{font-size: 20px; margin: 0 0 20px 0; text-align: left; color: black;}
+.static a{color: #0F6EB4;}
+.static a:hover{text-decoration: underline;}
+.static ul{list-style: circle; margin: 0 0 20px 0;}
+.static ol{list-style: decimal; margin: 0 0 20px 0;}
+.static li{padding: 0 0 0 10px; margin: 0 0 0 20px;}
+.static em{font-style: italic;}
 
 
 

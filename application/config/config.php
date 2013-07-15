@@ -385,6 +385,7 @@ $config['contact_mail'] = 'contact@medappcare.com';
 
 $config['nb_results_list'] = 10;
 $config['nb_results_news_list'] = 2;
+$config['nb_results_devices_list'] = 10;
 $config['nb_comments_page'] = 4;
 
 $config['qr_code_url'] = 'https://chart.googleapis.com/chart';

@@ -47,4 +47,27 @@ $(document).ready(function(){
         login(true);
         return false;
     });
+
+    $('#lost_password_form').submit(function(){
+        console.debug('ok');
+        $.ajax({
+            type: 		"PUT",
+            url:  		$(this).data('action'),
+            dataType: 'json',
+            contentType: 'application/json',
+            data:
+                JSON.stringify({
+                    email : $('#lost-password-email').val()
+                }),
+            success: function(data, textStatus, xhr)
+            {
+                console.dir(data);
+            },
+            error: function(xhr, textStatus, error)
+            {
+
+            }
+        });
+        return false;
+    })
 });
