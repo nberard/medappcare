@@ -97,9 +97,9 @@
     <form method="post" data-action="<?php echo site_url('rest/signaler') ?>" name="email_form" id="email_form">
       <p>
           <select name="typeSignaler" id="typeSignaler">
-			<option value="">Cause 1</option>
-			<option value="">Cause 2</option>
-			<option value="">Autre (préciser)</option>
+			<option value="1">Cause 1</option>
+			<option value="2">Cause 2</option>
+			<option value="3">Autre (préciser)</option>
           </select>
       </p>
       <p><textarea id="textSignaler" required placeholder="Commentaire..."></textarea></p>
