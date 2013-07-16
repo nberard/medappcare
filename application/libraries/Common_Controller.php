@@ -26,7 +26,10 @@ class Common_Controller extends MY_Controller
         $this->load->helper('price');
         $this->load->helper('date');
         $this->lang->load('common');
-        $this->output->enable_profiler(TRUE);
+        if(ENVIRONMENT == 'development')
+        {
+            $this->output->enable_profiler(TRUE);
+        }
     }
 
     protected function _getCommonIncludes($js_files = array(), $header_meta = array())
