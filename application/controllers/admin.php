@@ -26,7 +26,7 @@ class Admin extends MY_Controller
         $this->load->library('log');
         $this->crud = new grocery_CRUD();
         $this->crud->set_theme('twitter-bootstrap');
-        if(ENVIRONMENT == 'developpement')
+        if(ENVIRONMENT == 'development')
         {
             $this->output->enable_profiler(TRUE);
         }

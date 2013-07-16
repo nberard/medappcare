@@ -717,18 +717,19 @@ class Common_Controller extends MY_Controller
         $eval_medapp = request_get_param($_params, 'eval_medapp', 0, array(1));
         $term = request_get_param($_params, 'term', null);
         $free = request_get_param($_params, 'free', -1, array(0, 1));
+        $from_filter = request_get_param($_params, 'from_filter', 0, array(0, 1));
         $free = ($free == -1 ? -1 : ($free == 1 ? true : false));
 
         $force_perso = request_get_param($_params, 'force_perso', 0, array(0, 1));
 
-        $user = $this->session->userdata('user');
-        if($user && $user->devices != -1)
+        $default_devices = -1;
+        if(!$from_filter)
         {
-            $default_devices = implode(',', $user->devices);
-        }
-        else
-        {
-            $default_devices = -1;
+            $user = $this->session->userdata('user');
+            if($user && $user->devices != -1)
+            {
+                $default_devices = implode(',', $user->devices);
+            }
         }
         $devices = request_get_param($_params, 'devices', $default_devices);
         if($devices != -1)

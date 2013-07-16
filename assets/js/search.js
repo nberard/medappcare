@@ -44,6 +44,7 @@ $(document).ready(function()
         {
             params+='&force_perso=1';
         }
+        params+='&from_filter=1';
         window.location = target+params;
     }
     $('#sort-filter').submit(function()

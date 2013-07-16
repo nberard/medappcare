@@ -53,6 +53,8 @@ a:hover
     <div>
 		<?php echo $output; ?>
     </div>
-    <a href="<?php echo site_url('admin/applications/edit/'.$sup); ?>">Next</a>
+    <?php if(isset($sup)): ?>
+        <a href="<?php echo site_url('admin/applications/edit/'.$sup); ?>">Next</a>
+    <?php endif; ?>
 </body>
 </html>
