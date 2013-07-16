@@ -461,12 +461,12 @@ class Admin extends MY_Controller
         $this->_admin_output($this->crud->render());
     }
 
-    public function  application_notes_medappcare_perso()
+    public function  application_notes_medappcare_gp()
     {
-        $this->crud->set_subject("Note Medappcare perso");
-        $this->crud->set_table('application_critere_note_medappcare_perso');
+        $this->crud->set_subject("Note Medappcare gp");
+        $this->crud->set_table('application_critere_note_medappcare_gp');
         $this->crud->set_relation('application_notation_id', 'application_notation_medappcare', '{id} ({date}) : {avis_'.config_item('lng').'}');
-        $this->crud->set_relation('critere_id', 'critere_application_medappcare_perso', '{nom_'.config_item('lng').'} ({poids_pourcent} %)', 'parent_id != -1');
+        $this->crud->set_relation('critere_id', 'critere_application_medappcare_gp', '{nom_'.config_item('lng').'} ({poids_pourcent} %)', 'parent_id != -1');
         $this->_admin_output($this->crud->render());
     }
 
@@ -494,18 +494,18 @@ class Admin extends MY_Controller
         });
     }
 
-    public function  application_criteres_medappcare_perso()
+    public function  application_criteres_medappcare_gp()
     {
-        $this->crud->set_subject("Critères Medappcare perso");
-        $this->crud->set_table('critere_application_medappcare_perso');
-        $this->crud->set_relation('parent_id', 'critere_application_medappcare_perso', '{nom_'.config_item('lng').'}', 'parent_id = -1');
+        $this->crud->set_subject("Critères Medappcare gp");
+        $this->crud->set_table('critere_application_medappcare_gp');
+        $this->crud->set_relation('parent_id', 'critere_application_medappcare_gp', '{nom_'.config_item('lng').'}', 'parent_id = -1');
         $this->_admin_output($this->crud->render());
 
         $this->crud->callback_after_insert(function($post_array,$primary_key) {
-            $this->_handle_default_values($post_array,$primary_key,array('parent_id' => -1),'critere_application_medappcare_perso');
+            $this->_handle_default_values($post_array,$primary_key,array('parent_id' => -1),'critere_application_medappcare_gp');
         });
         $this->crud->callback_after_update(function($post_array,$primary_key) {
-            $this->_handle_default_values($post_array,$primary_key,array('parent_id' => -1),'critere_application_medappcare_perso');
+            $this->_handle_default_values($post_array,$primary_key,array('parent_id' => -1),'critere_application_medappcare_gp');
         });
     }
 

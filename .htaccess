@@ -9,12 +9,12 @@ RewriteEngine on
 #
 
 #   Toutes les URL qui ne correspondent pas à ces masques sont réécrites.
-#RewriteRule ^$ /fr/perso/ [R=301,L]
-#RewriteRule ^fr/?$ /fr/perso/ [R=301,L]
-#RewriteRule ^en/?$ /en/perso/ [R=301,L]
-RewriteRule ^$ /medappcare/fr/perso/ [R=301,L]
-RewriteRule ^fr/?$ /medappcare/fr/perso/ [R=301,L]
-RewriteRule ^en/?$ /medappcare/en/perso/ [R=301,L]
+#RewriteRule ^$ /fr/gp/ [R=301,L]
+#RewriteRule ^fr/?$ /fr/gp/ [R=301,L]
+#RewriteRule ^en/?$ /en/gp/ [R=301,L]
+RewriteRule ^$ /medappcare/fr/gp/ [R=301,L]
+RewriteRule ^fr/?$ /medappcare/fr/gp/ [R=301,L]
+RewriteRule ^en/?$ /medappcare/en/gp/ [R=301,L]
 RewriteCond $1 !^(index\.php|assets/|myadmin/|user_guide/|robots\.txt)
 
 #   Toutes les autres URL vont être redirigées vers le fichier index.php.

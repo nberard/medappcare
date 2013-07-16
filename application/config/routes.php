@@ -37,7 +37,7 @@
 | in the URL cannot be matched to a valid route.
 |
 */
-$route['default_controller'] = "perso";
+$route['default_controller'] = "gp";
 $route['^(fr|en)/([a-z]+)/app/[a-z0-9\-]+_(:num)$'] = "$2/app/$3";
 $route['^(fr|en)/([a-z]+)/device/[a-z0-9\-]+_(:num)$'] = "$2/device/$3";
 $route['^(fr|en)/([a-z]+)/category/[a-z0-9\-]+_(:num)$'] = "$2/category/$3";

@@ -1,4 +1,4 @@
-<div class="allapps catmasante"> <!-- Insérer ici la class de la catégorie (ex : catmasante) -->
+<div class="allapps"> <!-- Insérer ici la class de la catégorie (ex : catmasante) -->
     <h3>Toutes les applications dans <?php echo $selection->nom; ?></h3>
 <!--    <div class="filter">-->
 <!--        <a href="#" class="gratuit" title="Filtrer les apps gratuites"><span></span>gratuit</a>-->

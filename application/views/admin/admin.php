@@ -44,8 +44,8 @@ a:hover
 		<a href='<?php echo site_url('admin/selections')?>'>Sélections d'applications</a> |
         <a href='<?php echo site_url('admin/application_screenshots')?>'>Screenshots d'application</a> |
 <!--		<a href='--><?php //echo site_url('admin/application_commentaires_medappcare')?><!--'>Commentaire Medappcare</a> |-->
-<!--		<a href='--><?php //echo site_url('admin/application_criteres_medappcare_perso')?><!--'>Critères Medappcare perso</a> |-->
-<!--		<a href='--><?php //echo site_url('admin/application_notes_medappcare_perso')?><!--'>Note Medappcare perso</a> |-->
+<!--		<a href='--><?php //echo site_url('admin/application_criteres_medappcare_perso')?><!--'>Critères Medappcare gp</a> |-->
+<!--		<a href='--><?php //echo site_url('admin/application_notes_medappcare_gp')?><!--'>Note Medappcare gp</a> |-->
 <!--		<a href='--><?php //echo site_url('admin/application_criteres_medappcare_pro')?><!--'>Critères Medappcare pro</a> |-->
 <!--		<a href='--><?php //echo site_url('admin/application_notes_medappcare_pro')?><!--'>Note Medappcare pro</a> |-->
 	</div>

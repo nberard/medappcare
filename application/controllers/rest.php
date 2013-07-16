@@ -34,7 +34,7 @@ class Rest extends REST_Controller {
             if($session)
             {
                 $this->session->set_userdata('user', $membre);
-                $response['redirect'] = !empty($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : site_url(($membre->est_pro ? 'pro' : 'perso').'/index');
+                $response['redirect'] = !empty($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : site_url(($membre->est_pro ? 'pro' : 'gp').'/index');
             }
             $this->response($response, 200);
         }

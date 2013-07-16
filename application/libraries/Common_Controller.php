@@ -16,8 +16,8 @@ class Common_Controller extends MY_Controller
     {
         parent::__construct();
         $this->pro = $_pro;
-        $this->access_label = $_pro ? 'pro' : 'perso';
-        $this->access_label_target = $_pro ? 'perso' : 'pro';
+        $this->access_label = $_pro ? 'pro' : 'gp';
+        $this->access_label_target = $_pro ? 'gp' : 'pro';
         $this->body_class = $_pro ? 'lespros' : 'particuliers';
         $this->config->load('price');
         $this->config->load('country');

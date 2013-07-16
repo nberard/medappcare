@@ -3,7 +3,7 @@ require_once APPPATH.'libraries/Common_Controller.php';
 /*
  * @property Applications_model $Applications_model
  */
-class Perso extends Common_Controller {
+class Gp extends Common_Controller {
 
     public function __construct()
     {
@@ -76,7 +76,7 @@ class Perso extends Common_Controller {
     {
         if(!$user = $this->session->userdata('user'))
         {
-            redirect('perso/index');
+            redirect('gp/index');
         }
         $this->load->model('Plateformes_model');
         $this->load->model('Membres_model');

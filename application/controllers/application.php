@@ -37,7 +37,7 @@ class Application extends REST_Controller {
             {
                 $pro = $this->_get('pro');
                 $pro = ($pro && $pro == 1);
-                $access_label = $pro ? 'pro' : 'perso';
+                $access_label = $pro ? 'pro' : 'gp';
                 $this->_set_access_label($access_label);
                 $this->_format_all_links($top5Applis, 'app');
                 $this->_populate_categories_applications($top5Applis);

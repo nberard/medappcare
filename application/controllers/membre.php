@@ -184,7 +184,7 @@ class Membre extends REST_Controller {
             if($membre_id && ($membre = $this->Membres_model->exists_membres(array('id' => $membre_id))))
             {
                 $this->session->set_userdata('user', $membre);
-                $this->response(array('status' => 'ok', 'message' => lang('ok_reg'), 'redirect' => site_url(($pro ? 'pro' : 'perso').'/index')), 200);
+                $this->response(array('status' => 'ok', 'message' => lang('ok_reg'), 'redirect' => site_url(($pro ? 'pro' : 'gp').'/index')), 200);
                 return;
             }
             else
