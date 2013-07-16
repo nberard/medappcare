@@ -535,4 +535,9 @@ class Applications_model extends CI_Model {
         return !empty($res) ? $res : array();
     }
 
+    public function get_next_appli($_application_id)
+    {
+        return $this->db->select('id')->limit(1)->get_where($this->table, 'id > '.$_application_id.' AND est_valide = 0')->row()->id;
+    }
+
 }

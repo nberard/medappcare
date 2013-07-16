@@ -26,7 +26,10 @@ class Admin extends MY_Controller
         $this->load->library('log');
         $this->crud = new grocery_CRUD();
         $this->crud->set_theme('twitter-bootstrap');
-        $this->output->enable_profiler(TRUE);
+        if(ENVIRONMENT == 'developpement')
+        {
+            $this->output->enable_profiler(TRUE);
+        }
     }
 
     public function _admin_output($output = null)
@@ -379,8 +382,46 @@ class Admin extends MY_Controller
         $this->crud->set_relation_n_n('categories', 'application_categorie', 'categorie', 'application_id', 'categorie_id', '{nom_'.config_item('lng').'} (pro:{est_pro})');
         $this->crud->field_type('class','enum',config_item('body_class_categories'));
         $this->crud->add_action('Notation Medappcare', '', config_item('lng').'/admin/medappcare','ui-icon-plus');
+        $this->crud->callback_column('logo_url',array($this,'_callback_logo_url'));
+        $this->crud->callback_column('lien_download',array($this,'_callback_webpage_url'));
+        $this->crud->callback_edit_field('logo_url',array($this,'_callback_logo_url_edit'));
+        $this->crud->callback_edit_field('lien_download',array($this,'_callback_webpage_url_edit'));
+        $this->crud->unset_columns('package', 'description', 'date_ajout', 'langue_appli', 'version', 'mots_cles', 'est_partageable',
+                                    'est_penalisee', 'mot_editeur', 'presse', 'titre');
+        $this->crud->display_as('est_liste','application sponsorisée')
+            ->display_as('est_ce','application CE')
+            ->display_as('class','couleur de catégorie');
+        $this->crud->limit(20);
+        $this->crud->unset_edit_fields('package', 'date_ajout', 'langue_appli', 'version', 'mots_cles', 'est_partageable', 'note_medappcare', 'est_penalisee');
+        $output = $this->crud->render();
+        if(isset($this->crud->getStateInfo()->primary_key))
+        {
+            $this->load->model('Applications_model');
+            $sup = $this->Applications_model->get_next_appli($this->crud->getStateInfo()->primary_key);
+            $output->sup = $sup;
+        }
 
-        $this->_admin_output($this->crud->render());
+        $this->_admin_output($output);
+    }
+
+    public function _callback_webpage_url($value, $row)
+    {
+        return "<a href='".$value."'>$value</a>";
+    }
+
+    public function _callback_webpage_url_edit($value, $row)
+    {
+        return '<a href="'.$value.'">'.$value.'</a><br/><input id="field-lien_download" name="lien_download" type="text" value="'.$value.'" maxlength="1024">';
+    }
+
+    public function _callback_logo_url($value, $row)
+    {
+        return "<img src='".$value."'/>";
+    }
+
+    public function _callback_logo_url_edit($value, $row)
+    {
+        return '<img src="'.$value.'"/><br/><input id="field-logo_url" name="logo_url" type="text" value="'.$value.'" maxlength="1024">';
     }
 
     public function application_commentaires()
