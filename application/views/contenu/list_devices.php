@@ -7,7 +7,7 @@
     </div>
 
     <div class="wrapper">
-	    <section class="alldevices">
+	    <section class="alldevices" id="devices">
 	    	<?php echo $device_grid; ?>
 	    	<div class="metaFooter">
 	    		<?php if(!is_null($prev_link)): ?><a href="<?php echo $prev_link; ?>" id="previousLink" class="previousLink">&laquo; Précédent</a><?php endif; ?>
