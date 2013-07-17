@@ -17,7 +17,7 @@
 <hr>
 <form method="POST">
 <label for="avis">Avis Medappcare : </label><br/>
-<textarea name="avis" rows="10" cols="100"><?php echo $avis; ?></textarea>
+<textarea class="texteditor" id="avis" name="avis" rows="10" cols="100"><?php echo $avis; ?></textarea>
 <?php foreach($criteres as $critere_parent): ?>
 <h2><?php echo $critere_parent->nom; ?></h2>
     <?php foreach($critere_parent->childs as $critere_enfant): ?>

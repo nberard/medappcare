@@ -105,11 +105,17 @@ class Admin extends MY_Controller
         }
         log_message('debug', "notes_criteres=".var_export($notes_criteres, true));
         $this->load->helper('assets');
+        $js_files = array(
+            js_url('jquery-2.0.0.min'),
+            base_url('assets/grocery_crud/texteditor/ckeditor/ckeditor.js'),
+            base_url('assets/grocery_crud/texteditor/ckeditor/adapters/jquery.js'),
+            base_url('assets/grocery_crud/js/jquery_plugins/config/jquery.ckeditor.config.js'),
+        );
         $this->_admin_output((object)array('output' => $this->load->view('admin/medappcare', array(
             'avis' => $avis,
             'criteres' => $criteres,
             'notes_criteres' => $notes_criteres,
-        ), true) , 'js_files' => array() , 'css_files' => array(css_url('bootstrap'))));
+        ), true) , 'js_files' => $js_files , 'css_files' => array(css_url('bootstrap'))));
     }
 
     public function pages()
