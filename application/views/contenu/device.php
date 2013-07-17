@@ -162,18 +162,22 @@
             <ul class="reviewPost">
                 <li>
                     <label>ERGONOMIE</label>
-                    <div data-productid="312" class="rateit" data-rateit-max="5"></div>
+                    <input type="range" min="0" max="5" value="0" step="1" id="ergo">
+                    <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#ergo"></div>
                 </li>
                 <li>
                     <label>DESIGN</label>
-                    <div data-productid="312" class="rateit" data-rateit-max="5"></div>
+                    <input type="range" min="0" max="5" value="0" step="1" id="design">
+                    <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#design"></div>
                 <li>
                     <label>FONCTIONNEMENT</label>
-                    <div data-productid="312" class="rateit" data-rateit-max="5"></div>
+                    <input type="range" min="0" max="5" value="0" step="1" id="fonctionnement">
+                    <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#fonctionnement"></div>
                 </li>
                 <li>
                     <label>SATISFACTION</label>
-                    <div data-productid="312" class="rateit" data-rateit-max="5"></div>
+                    <input type="range" min="0" max="5" value="0" step="1" id="satisfaction">
+                    <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#satisfaction"></div>
                 </li>
             </ul>
             <textarea id="commentaire-accessoire" class="commentPost"></textarea>
