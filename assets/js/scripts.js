@@ -168,7 +168,39 @@ $(document).ready(function() {
 		$('#connexionModal').modal('hide');
 		$('#connexionModalPro').modal('hide');
 	});
-
+	
+	$('a[href="#connexionModal"]').click(function() {
+	 	if(window.matchMedia("(max-width:568px)").matches) {
+	 		$('.dl-trigger.dl-active').click();
+			$('#connexionModal').modal('show');
+		}
+	});
+	
+	$('a[href="#connexionModalPro"]').click(function() {
+	 	if(window.matchMedia("(max-width:568px)").matches) {
+	 		$('.dl-trigger.dl-active').click();
+			$('#connexionModalPro').modal('show');
+		}
+	});
+	
+	$('.dl-trigger').click(function() {
+		$('#connexionModal').modal('hide');
+		$('#connexionModalPro').modal('hide');
+	});
+	
+	
+	$('#connexionModal, #connexionModalPro').on('show', function() {
+		if(window.matchMedia("(max-width:568px)").matches) {
+			$('html').css({position:'fixed'});
+		}
+	});
+	
+	$('#connexionModal, #connexionModalPro').on('hide', function() {
+		if(window.matchMedia("(max-width:568px)").matches) {
+			$('html').css('position', '');
+		}
+	});
+	
     $('a[href="#device-connexionModal"]').click(function(){
         $('a[href="#connexionModal"]').click();
     });
@@ -301,6 +333,7 @@ window.___gcfg = {lang: 'fr'};
 
 $(function() {
     $( '#dl-menu' ).dlmenu();
+    $('#bt-login').dlmenu();
 });
 
 

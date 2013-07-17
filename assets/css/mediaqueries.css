@@ -31,6 +31,9 @@ span.mobile {display: inline;}
 #header > .wrapper{height: auto;}
 #header h1{display: block; margin: 20px auto; float: none;}
 
+.pro, .link-particuliers{height: auto;}
+.connexion{height: auto;}
+
 #listApps .listapps{width: 100%; margin: 50px 0 0 0; float: none;}
 #listapps_topfive{margin: 10px 0 0 0;}
 #listApps .metapp{width: 35%;}
@@ -95,6 +98,42 @@ span.mobile {display: inline;}
 #listApps > .wrapper .allapps li:nth-child(odd) {border-right: none;}
 #listApps h2 {width: 100%; box-sizing: border-box;}
 #listApps {min-height: inherit;}
+
+/* MODAL STYLING */
+
+div.modal {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	padding-top: 25px;
+}
+
+div.modal p {
+	display: inline-block;
+}
+
+.modal button.close {
+	margin-right: 0;
+}
+
+.modal .registration-call {
+	display: none;
+}
+
+.modal form[name="login_form"] {
+	width: 100%;
+	margin: 0;
+	border: none;
+}
+
+input {
+	border-radius: 0;
+	-webkit-appearance: none;
+}
 
 }
 

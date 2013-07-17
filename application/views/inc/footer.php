@@ -74,6 +74,16 @@
     <button class="dl-trigger">Open Menu</button>
     <button id="bt-login"><span></span></button>
     <ul class="dl-menu dl-menu-toggle">
+    	
+            
+            <?php if(!$user): ?>
+                <li class="navMobileItem"><a data-toggle="modal" href="<?php echo $pro ? '#connexionModalPro' : '#connexionModal'?>" class="connexion">Connexion</a>
+            <?php endif; ?>
+	        
+	        <?php if (!$pro && !$user): ?>
+                <li class="navMobileItem"><a data-toggle="modal" href="#connexionModalPro" class="pro">Espace Pro</a></li>
+            <?php endif; ?>
+	        
         <?php foreach($categories_principales as $categorie_principale): ?>
             <li class="navMobileItem <?php echo $categorie_principale->class; ?>">
                 <a dropdowndestination="<?php echo $categorie_principale->class;?>" href="#"><?php echo $categorie_principale->nom;?></a>
