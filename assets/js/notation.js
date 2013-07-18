@@ -1,11 +1,13 @@
 function handleNotation(type)
 {
+    console.dir(type);
     if($('#form-noter-'+type).length)
     {
         $('#form-noter-'+type).submit(function()
         {
             var data = {commentaire: encodeURIComponent($('#commentaire-'+type).val())}
             var criteres = $(this).data('criteres');
+            console.dir(criteres);
             var nb_criteres = criteres.length;
             if($('#'+type+'-notation-pro').length)
             {

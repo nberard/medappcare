@@ -208,33 +208,33 @@
         </div>
         <div class="modal-body">
             <p class="explication">Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-            <form method="post" id="form-noter-application" data-criteres='<?php echo json_encode($application->criteres); ?>' data-action="<?php echo site_url('application/'.$application->id.'/note/'.$user->id) ?>">
-                <!--
-<input type="hidden" id="application-notation-pro" value="<?php echo $application->est_pro ? 1 : 0; ?>"/>
-                <?php foreach($application->criteres as $critere): ?>
-                    <p><label for="note-application-<?php echo $critere->id; ?>"><?php echo $critere->nom; ?></label><input type="text" id="note-application-<?php echo $critere->id; ?>"/></p>
-                <?php endforeach; ?>
--->	
+            <form method="post" id="form-noter-application" data-criteres='<?php echo json_encode($application->criteres, JSON_HEX_APOS); ?>' data-action="<?php echo site_url('application/'.$application->id.'/note/'.$user->id) ?>">
 				<ul class="reviewPost">
-					<li>
-	                    <label>ERGONOMIE</label>
-	                    <input type="hidden" id="ergo">
-	                    <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#ergo"></div>
-	                </li>
-	                <li>
-	                    <label>DESIGN</label>
-	                    <input type="hidden" id="design">
-	                    <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#design"></div>
-	                </li>
-	                    <label>FONCTIONNEMENT</label>
-	                    <input type="hidden" id="fonctionnement">
-	                    <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#fonctionnement"></div>
-	                </li>
-	                <li>
-	                    <label>SATISFACTION</label>
-	                    <input type="hidden" id="satisfaction">
-	                    <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#satisfaction"></div>
-	                </li>
+                    <input type="hidden" id="application-notation-pro" value="<?php echo $application->est_pro ? 1 : 0; ?>"/>
+                    <?php foreach($application->criteres as $critere): ?>
+                        <label for="note-application-<?php echo $critere->id; ?>"><?php echo strtoupper($critere->nom); ?></label>
+                        <input type="hidden" id="note-application-<?php echo $critere->id; ?>">
+                        <div class="rateit" data-rateit-step="1" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#note-application-<?php echo $critere->id; ?>"></div>
+                    <?php endforeach; ?>
+<!--					<li>-->
+<!--	                    <label>ERGONOMIE</label>-->
+<!--	                    <input type="hidden" id="ergo">-->
+<!--	                    <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#ergo"></div>-->
+<!--	                </li>-->
+<!--	                <li>-->
+<!--	                    <label>DESIGN</label>-->
+<!--	                    <input type="hidden" id="design">-->
+<!--	                    <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#design"></div>-->
+<!--	                </li>-->
+<!--	                    <label>FONCTIONNEMENT</label>-->
+<!--	                    <input type="hidden" id="fonctionnement">-->
+<!--	                    <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#fonctionnement"></div>-->
+<!--	                </li>-->
+<!--	                <li>-->
+<!--	                    <label>SATISFACTION</label>-->
+<!--	                    <input type="hidden" id="satisfaction">-->
+<!--	                    <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#satisfaction"></div>-->
+<!--	                </li>-->
                 </ul>
                 <p><textarea id="commentaire-application"></textarea></p>
                 <p><button type="submit" class="btn btn-primary">Envoyer</button>
