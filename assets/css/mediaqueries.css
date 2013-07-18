@@ -46,8 +46,6 @@ span.mobile {display: inline;}
 .metapp *{font-size: 12px !important;}
 
 #devices{min-height: inherit !important;}
-#news li,
-#devices li{width: 96%; padding: 2%;}
 #devices .metapp{width: 34%;}
 #devices .price{width: auto;}
 #devices .excerpt{font-size: 10px;}
@@ -68,16 +66,14 @@ span.mobile {display: inline;}
 
 #appSectionOne .sidebar,
 #appSectionTwo .sidebar{display: none;}
-#appSectionOne .content,
-#appSectionTwo .content{width: 96%; padding: 0 2%;}
-.title{width: 100%; padding: 0 2%; box-sizing: border-box;}
+.title{width: 100%; padding: 0 3%; box-sizing: border-box;}
 
 #metapp{background: none;}
 .app .os{margin-top: 0; margin: 0 auto; text-align: center;}
 .app .description, .device .description{font-size: 14px;}
 
 #metapp{height: auto;}
-#metapp .icone{width: 96%; padding: 0 2%; margin: 0 auto;}
+#metapp .icone{margin: 0 auto;}
 #metapp .icone img{float: left; position: relative;}
 #metapp .appnote{display: none;}
 
@@ -105,6 +101,15 @@ h2.gridTitle {color: rgb(15, 110, 180); margin: 10px 0 20px 0;}
 #listApps {min-height: inherit;}
 
 .dl-menuwrapper .dl-menu.dl-menuopen {box-shadow: 0 20px 20px rgba(0,0,0,.3);}
+
+.singlenews .content,
+#appSectionOne .content,
+#appSectionTwo .content,
+#news li,
+#devices li,
+#metapp .icone {width: 100%; padding:3%; box-sizing: border-box;}
+
+ul.pager {padding: 0 10px; box-sizing: border-box;}
 
 /* MODAL STYLING */
 
