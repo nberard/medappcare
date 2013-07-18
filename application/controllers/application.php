@@ -57,6 +57,8 @@ class Application extends REST_Controller {
                 {
                     $this->load->model('Categories_model');
                     $data['categorie'] = $this->Categories_model->get_categorie($_categorie_id);
+                    $this->_format_link($data['categorie'], 'app_category', 'nom', 'link_all', 'id' ,1, array('free' => $params[$_param_name], 'eval_medapp' => 1, 'sort' => 'note'));
+                    $data['see_all_link'] = $data['categorie']->link_all;
                 }
                 if($template == 'widget_allappcategory')
                 {

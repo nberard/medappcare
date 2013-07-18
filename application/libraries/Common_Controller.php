@@ -268,7 +268,7 @@ class Common_Controller extends MY_Controller
         $categorie = $this->Categories_model->get_categorie($_id);
         $this->_format_link($categorie, 'app_category', 'nom', 'link_all', 'id' ,1);
         log_message('debug', "categorie=".var_export($categorie, true)."");
-        $this->_format_link($categorie, 'app_category', 'nom', 'link_all_topfive', 'id' ,1, array('free' => 0, 'eval_medapp' => 1));
+        $this->_format_link($categorie, 'app_category', 'nom', 'link_all_topfive', 'id' ,1, array('free' => 0, 'eval_medapp' => 1, 'sort' => 'note'));
         $this->_format_link($categorie, 'app_category', 'nom', 'link_all_lasteval', 'id' ,1, array('eval_medapp' => 1, 'sort' => 'date'));
         $categoryData = array(
             'widget_lasteval' => $this->load->view('inc/widget_lasteval', array(
