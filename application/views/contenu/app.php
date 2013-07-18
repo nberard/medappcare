@@ -214,26 +214,28 @@
                 <?php foreach($application->criteres as $critere): ?>
                     <p><label for="note-application-<?php echo $critere->id; ?>"><?php echo $critere->nom; ?></label><input type="text" id="note-application-<?php echo $critere->id; ?>"/></p>
                 <?php endforeach; ?>
--->
-				<li>
-                    <label>ERGONOMIE</label>
-                    <input type="hidden" id="ergo">
-                    <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#ergo"></div>
-                </li>
-                <li>
-                    <label>DESIGN</label>
-                    <input type="hidden" id="design">
-                    <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#design"></div>
-                <li>
-                    <label>FONCTIONNEMENT</label>
-                    <input type="hidden" id="fonctionnement">
-                    <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#fonctionnement"></div>
-                </li>
-                <li>
-                    <label>SATISFACTION</label>
-                    <input type="hidden" id="satisfaction">
-                    <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#satisfaction"></div>
-                </li>
+-->	
+				<ul class="reviewPost">
+					<li>
+	                    <label>ERGONOMIE</label>
+	                    <input type="hidden" id="ergo">
+	                    <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#ergo"></div>
+	                </li>
+	                <li>
+	                    <label>DESIGN</label>
+	                    <input type="hidden" id="design">
+	                    <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#design"></div>
+	                </li>
+	                    <label>FONCTIONNEMENT</label>
+	                    <input type="hidden" id="fonctionnement">
+	                    <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#fonctionnement"></div>
+	                </li>
+	                <li>
+	                    <label>SATISFACTION</label>
+	                    <input type="hidden" id="satisfaction">
+	                    <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#satisfaction"></div>
+	                </li>
+                </ul>
                 <p><textarea id="commentaire-application"></textarea></p>
                 <p><button type="submit" class="btn btn-primary">Envoyer</button>
             </form>

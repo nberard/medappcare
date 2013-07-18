@@ -169,7 +169,7 @@
                     <label>DESIGN</label>
                     <input type="hidden" id="design">
                     <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#design"></div>
-                <li>
+                </li>
                     <label>FONCTIONNEMENT</label>
                     <input type="hidden" id="fonctionnement">
                     <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#fonctionnement"></div>

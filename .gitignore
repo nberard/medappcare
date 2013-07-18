@@ -1,4 +1,8 @@
-/application/logs
-.DS_Store
-./application/config/config.php
+#Ignored files
+
+application/logs
+
+*.DS_Store
+
+application/config/config.php
 
