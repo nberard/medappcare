@@ -24,7 +24,7 @@ $(function() {
                 return 'Filtrer par... <b class="caret"></b>';
             
             }
-            else if (options.length > 2) {
+            else if (options.length > 1) {
                 return options.length + ' filtres <b class="caret"></b>';
             }
             else {
