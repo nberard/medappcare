@@ -217,21 +217,21 @@
 -->
 				<li>
                     <label>ERGONOMIE</label>
-                    <input type="range" min="0" max="5" value="0" step="1" id="ergo">
+                    <input type="hidden" id="ergo">
                     <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#ergo"></div>
                 </li>
                 <li>
                     <label>DESIGN</label>
-                    <input type="range" min="0" max="5" value="0" step="1" id="design">
+                    <input type="hidden" id="design">
                     <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#design"></div>
                 <li>
                     <label>FONCTIONNEMENT</label>
-                    <input type="range" min="0" max="5" value="0" step="1" id="fonctionnement">
+                    <input type="hidden" id="fonctionnement">
                     <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#fonctionnement"></div>
                 </li>
                 <li>
                     <label>SATISFACTION</label>
-                    <input type="range" min="0" max="5" value="0" step="1" id="satisfaction">
+                    <input type="hidden" id="satisfaction">
                     <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#satisfaction"></div>
                 </li>
                 <p><textarea id="commentaire-application"></textarea></p>
