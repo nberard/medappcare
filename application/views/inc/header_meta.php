@@ -9,8 +9,9 @@
 	<meta name="description" content="">
 	<meta name="author" content="Medappcare">
 	
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
 	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 	
 	<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <?php foreach($css_files as $css_file): ?>

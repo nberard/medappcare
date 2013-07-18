@@ -72,7 +72,9 @@
 
 <div id="dl-menu" class="dl-menuwrapper">
     <button class="dl-trigger">Open Menu</button>
-    <button id="bt-login"><span></span></button>
+    <?php if($user): ?>
+    	<a href="<?php echo site_url('site/deconnect') ?>"><button id="bt-login"><span></span></button></a>
+    <?php endif; ?>
     <ul class="dl-menu dl-menu-toggle">
     	
             

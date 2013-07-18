@@ -135,6 +135,8 @@ input {
 	-webkit-appearance: none;
 }
 
+#header .connected-user {display: none;}
+
 }
 
 /* iPads (portrait and landscape) ----------- */
