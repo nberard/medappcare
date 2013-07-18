@@ -566,12 +566,11 @@ class Common_Controller extends MY_Controller
 
         $categorie = $this->Categories_model->get_categorie($_categorie_id);
         $applications = $this->Applications_model->get_applications_from_categorie($this->pro, $search_params['devices'], $_categorie_id, $search_params['free'], $search_params['sort'], $search_params['order'], $_page);
-        $number_applications = $this->Applications_model->get_applications_from_categorie($this->pro, $search_params['devices'], $_categorie_id, $search_params['free'], $search_params['sort'], $search_params['order'], $_page);
+        $number_applications = $this->Applications_model->get_number_applications_from_categorie($this->pro, $search_params['devices'], $_categorie_id, $search_params['free'], $search_params['sort'], $search_params['order'], $_page);
         $this->_format_all_prices($applications);
         $this->_format_all_notes($applications);
         $this->_format_all_links($applications, 'app');
         $this->_populate_categories_applications($applications);
-
         if($number_applications > config_item('nb_results_list') * $_page)
         {
             $this->_format_link($categorie, 'app_category', 'nom', 'link_all_next', 'id' ,$_page+1, $search_params);

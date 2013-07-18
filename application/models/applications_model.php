@@ -293,6 +293,11 @@ class Applications_model extends CI_Model {
         return $this->db->get()->row()->moyenne;
     }
 
+    public function get_number_applications_from_categorie($_pro, $_devices_id, $_categorie_id, $_free, $_sort, $_order, $_page)
+    {
+        return $this->get_applications($_pro, $_devices_id, $_categorie_id, null, false, $_free, -1, -1, $_sort, $_order, config_item('nb_results_list'), ($_page -1) * config_item('nb_results_list'), true);
+    }
+
     public function get_applications_from_categorie($_pro, $_devices_id, $_categorie_id, $_free, $_sort, $_order, $_page)
     {
         return $this->get_applications($_pro, $_devices_id, $_categorie_id, null, false, $_free, -1, -1, $_sort, $_order, config_item('nb_results_list'), ($_page -1) * config_item('nb_results_list'));
