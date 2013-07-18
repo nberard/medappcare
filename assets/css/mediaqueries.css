@@ -11,6 +11,9 @@
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 568px) {
 
+
+html, body {overflow-x: hidden;width: 100%;}
+
 /* HOMEPAGE & GENERAL */
 
 #codeigniter_profiler, #slider, #selections, #partners, #footer, #header .links, #header nav{display: none;}
@@ -67,7 +70,7 @@ span.mobile {display: inline;}
 #appSectionTwo .sidebar{display: none;}
 #appSectionOne .content,
 #appSectionTwo .content{width: 96%; padding: 0 2%;}
-.title{width: 96%; padding: 0 2%;}
+.title{width: 100%; padding: 0 2%; box-sizing: border-box;}
 
 #metapp{background: none;}
 .app .os{margin-top: 0; margin: 0 auto; text-align: center;}
@@ -81,7 +84,9 @@ span.mobile {display: inline;}
 .catmasante .gridTitle{font-size: 26px;}
 #thegrid h3{font-size: 20px !important; float: none; display: block; width: 100%; text-align: center;}
 .grid{float: none; width: 100%;}
-.onegrid{margin: 0 auto 20px auto;}
+.onegrid{margin: 40px auto 20px auto; border-top: 1px solid rgba(121, 193, 210, .5); padding-top: 20px;}
+.onegrid:first-of-type {border-top: none; padding-top: 0; margin-top: 0;}
+h2.gridTitle {color: rgb(15, 110, 180); margin: 10px 0 20px 0;}
 
 .extTitle, .midTitle, .intTitle{position: relative; text-align: center; top: 0; left: 0;}
 .chart{margin: 20px auto 10px auto;}
@@ -89,7 +94,7 @@ span.mobile {display: inline;}
 #descTabs nav{height: auto;}
 #descTabs nav li{font-size: 12px; line-height: 27px; vertical-align: text-top; float: none; display: block; text-align: center; width: 100%;}
 #descTabs nav li.selected{background-image: none;}
-#descTabs .tabContent{padding: 2%; width: 96%;}
+#descTabs .tabContent{padding: 2% 0; width: 100%;}
 
 
 #sort-filter .btn-group:first-of-type {	display: none; }
@@ -98,6 +103,8 @@ span.mobile {display: inline;}
 #listApps > .wrapper .allapps li:nth-child(odd) {border-right: none;}
 #listApps h2 {width: 100%; box-sizing: border-box;}
 #listApps {min-height: inherit;}
+
+.dl-menuwrapper .dl-menu.dl-menuopen {box-shadow: 0 20px 20px rgba(0,0,0,.3);}
 
 /* MODAL STYLING */
 
@@ -137,6 +144,9 @@ input {
 
 #header .connected-user {display: none;}
 
+.tabContent#galeriePhotos ul li {margin-right: 15px;}
+.tabContent#galeriePhotos ul li:first-of-type {margin-left: 15px;}
+.gridLables {float: none;}
 }
 
 /* iPads (portrait and landscape) ----------- */
@@ -188,7 +198,8 @@ header > nav ul{width: 100%;}
 #footer .languages{margin: 0 10px 0 0;}
 #footer .left{width: 96%; max-width: inherit; padding: 0 2%; margin: 0 0 30px 0;}
 #footer .right{max-width: 100%; width: auto;}
-#footer .left li{display: inline-block; position: relative; margin: 0 20px}
+#footer .left li{display: inline-block; position: relative; margin: 0 20px;}
+
 
 }
 
@@ -224,7 +235,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
 #pushFooter li.dev .picto{background: url(../img/picto_dev@2x.png) no-repeat; background-size: contain;}
 #pushFooter li.partners .picto{background: url(../img/picto_partners@2x.png) no-repeat; background-size: contain;}
 #footer .footer_medappcare{background: url(../img/footer_medappcare@2x.png) no-repeat; background-size: contain;}
-.colorsLine{background: url(../img/colorline@2x.jpg) repeat-x; background-size: 1280px 4px;}
+.colorsLine{background: url(../img/colorline@2x.jpg) repeat-x; background-size: 100% 4px;}
 .android{background: url(../img/android_blue@2x.png) no-repeat; background-size: contain;}
 .ios{background: url(../img/ios_blue@2x.png) no-repeat; background-size: contain;}
 .web{background: url(../img/web_blue@2x.png) no-repeat; background-size: contain;}
