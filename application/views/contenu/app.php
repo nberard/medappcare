@@ -24,7 +24,7 @@
             
             <!-- DEPRECATED -->
             <!--
-<?php if(isset($application->moyenne_note_pro)): ?><div class="appnote notePro"><span></span><a href="#thegrid" class="note <?php echo $application->class_note_pro; ?>"><?php echo ucfirst($application->class_note_pro); ?></a></div><?php endif; ?>
+            <?php if(isset($application->moyenne_note_pro)): ?><div class="appnote notePro"><span></span><a href="#thegrid" class="note <?php echo $application->class_note_pro; ?>"><?php echo ucfirst($application->class_note_pro); ?></a></div><?php endif; ?>
             <?php if(isset($application->moyenne_note_perso)): ?><div class="appnote noteGens"><span></span><a href="#thegrid" class="note <?php echo $application->class_note_perso; ?>"><?php echo ucfirst($application->class_note_perso); ?></a></div><?php endif; ?>
 -->
         </div>
