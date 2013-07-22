@@ -119,7 +119,7 @@ class Application extends REST_Controller {
             $list = array('commentaire', 'pro');
             $_POST = $this->_post();
             $pro = !empty($_POST['pro']) && $_POST['pro'] == 1;
-            $criteres = $this->Applications_model->get_criteres_for_applications($pro);
+            $criteres =  $this->Applications_model->get_criteres_medappcare($pro);
             foreach($criteres as $critere)
             {
                 $list[] = 'note'.$critere->id;

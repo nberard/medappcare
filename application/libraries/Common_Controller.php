@@ -157,11 +157,11 @@ class Common_Controller extends MY_Controller
             $this->load->model('Application_screenshots_model');
             $application->screenshots = $this->Application_screenshots_model->get_screenshots($application->id);
             $application->qr_code_url = qr_code_url($application->lien_download);
-            $application->criteres = $this->Applications_model->get_criteres_for_applications($application->est_pro);
-            $application->notes = $this->Applications_model->get_notes_from_application($application->est_pro, $_id, count($application->criteres) * config_item('nb_comments_page'));
+//            $application->criteres = $this->Applications_model->get_criteres_for_applications($application->est_pro);
             $application->moyennes = $this->Applications_model->get_moyennes_from_application($application->est_pro, $_id);
             $application->note_medappcare_detail = $this->Applications_model->get_notes_criteres_medappcare($application->est_pro, $application->id);
             $application->criteres = $this->Applications_model->get_criteres_medappcare($application->est_pro);
+            $application->notes = $this->Applications_model->get_notes_from_application($application->est_pro, $_id, count($application->criteres) * config_item('nb_comments_page'));
             if(!empty($application->note_medappcare_detail))
             {
                 foreach ($application->criteres as $critere_parent)
