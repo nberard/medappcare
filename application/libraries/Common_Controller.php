@@ -459,10 +459,40 @@ class Common_Controller extends MY_Controller
 
     public function contact()
     {
+        $return = array();
+        if(!empty($_POST['email']))
+        {
+            $this->load->library('form_validation');
+            $this->lang->load('form_validation');
+            $this->form_validation->set_rules('email', 'E-mail', 'required|valid_email');
+            $this->form_validation->set_rules('message', 'Message', 'required');
+            $this->form_validation->set_rules('sujet', 'Sujet', 'required|max_length[128]');
+
+            if(!$this->form_validation->run())
+            {
+                $errors = $this->_validation_get_errors();
+                $message = implode('<br/>', $errors);
+            }
+            else
+            {
+                $this->load->library('email');
+                $this->email->from($_POST['email'], 'Medappcare');
+//                $this->email->to('berard.nicolas@gmail.com');
+                $this->email->to(config_item('contact_mail'));
+                $this->email->subject('[Medappcare][Contact] '.$_POST['sujet']);
+                $this->email->message($_POST['message']);
+                $this->email->send();
+                $message = 'Votre message a bien été envoyé';
+            }
+            $return = array(
+                'label' => !empty($errors) ? 'error' : 'success',
+                'message' => $message,
+            );
+        }
         $data['inc'] = $this->_getCommonIncludes(array(
             js_url('jquery.checkValidity'),
         ));
-        $data['contenu'] = $this->load->view('contenu/contact', '', true);
+        $data['contenu'] = $this->load->view('contenu/contact', $return, true);
         $data['body_class'] = 'contact particuliers';
         $this->load->view('main', $data);
     }

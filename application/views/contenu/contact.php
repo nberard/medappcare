@@ -1,10 +1,13 @@
-<form class="form-contact" method="get" >
+<?php if(!empty($message)): ?>
+    <br/><div class="alert alert-<?php echo $label; ?>"><?php echo $message; ?></div><br/>
+<?php endif; ?>
+<form class="form-contact" method="POST" >
 	<h2 class="form-contact-heading">Contactez-nous</h2>
 	
-	<input type="email" id="email" class="input-block-level" placeholder="Mon Email" required>
-	<input type="text" id="sujet" class="input-block-level" placeholder="Sujet du message" required>
+	<input type="email" name="email" id="email" class="input-block-level" placeholder="Mon Email" required>
+	<input type="text" id="sujet" name="sujet" class="input-block-level" placeholder="Sujet du message" required>
 	
-	<textarea class="input-block-level" placeholder="Mon message" required></textarea>
+	<textarea name="message" class="input-block-level" placeholder="Mon message" required></textarea>
 	
 	<button class="btn btn-primary" type="submit">Envoyer mon message</button>
 </form>
