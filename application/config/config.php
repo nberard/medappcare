@@ -20,7 +20,7 @@
 
 //$config['base_url']	= 'http://medappcare.omts.fr/';
 //$config['base_url']	= 'http://localhost';
-//$config['base_url']	= 'http://my.server/medappcare/'; 
+//$config['base_url']	= 'http://my.server/medappcare/';
 $config['base_url']	= 'http://95.142.168.111/medappcare/';
 //$config['base_url']	= 'http://81.57.107.230/medappcare/';
 //$config['base_url']	= 'http://beta.medappcare.local/';
@@ -403,10 +403,11 @@ $config['upload_paths'] = array(
     'accessoire' => 'assets/uploads/accessoires/',
 );
 
+$config['site_name'] = 'Medappcare';
 $config['body_class_categories'] = array('administratif', 'mapratique', 'minformer', 'mespatients', 'masante', 'monquotidien', 'minformer', 'medeplacer');
 
 $config['meta'] = array(
-    'og:title' => 'Medappcare',
+    'og:title' => $config['site_name'],
     'og:description' => 'DESCRIPTION',
     'og:image' => 'http://www.onemorethingstudio.com/unisize-app/wp-content/themes/unisize/img/apple-touch-icon-72x72-precomposed.png',
     'image_src' => 'http://www.onemorethingstudio.com/unisize-app/wp-content/themes/unisize/img/apple-touch-icon-72x72-precomposed.png',

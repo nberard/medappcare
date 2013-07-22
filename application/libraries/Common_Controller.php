@@ -33,8 +33,9 @@ class Common_Controller extends MY_Controller
         }
     }
 
-    protected function _getCommonIncludes($js_files = array(), $header_meta = array())
+    protected function _getCommonIncludes($js_files = array(), $header_meta = array(), $titre = '')
     {
+        $title = !empty($titre) ? $titre : config_item('site_name');
         $meta_config = config_item('meta');
         $meta_config['og:url'] = current_url();
         $header_meta = array_merge($meta_config, $header_meta);
@@ -67,6 +68,7 @@ class Common_Controller extends MY_Controller
             'header_meta' => $this->load->view('inc/header_meta', array(
                 'css_files' => array(css_url('stylesheet')),
                 'meta' => $header_meta,
+                'title' => $title,
             ), true),
             'header' => $this->load->view('inc/header', array(
                 'pro' => $this->pro,
@@ -366,6 +368,7 @@ class Common_Controller extends MY_Controller
         $this->load->model('Applications_model');
         $this->load->model('Devices_model');
         $application = $this->_get_app_infos($_id);
+        $this->_populate_categories_application($application);
         $user = $this->session->userdata('user');
         $number_notes = $this->Applications_model->get_number_notes_from_application($application->est_pro, $_id);
         $prev_link = null;
@@ -392,12 +395,22 @@ class Common_Controller extends MY_Controller
             $appData['already_noted'] = $this->Applications_model->user_has_note_application($application->est_pro, $_id, $user->id);
         }
         $this->load->helper('format_string');
+        $titre = config_item('site_name').' - '.$application->nom;
+        if(!empty($application->categories))
+        {
+            $nom_categories = array();
+            foreach($application->categories as $categorie)
+                $nom_categories[] = $categorie->nom;
+            $titre.=' dans '.implode(', ', $nom_categories);
+        }
+
         $data['inc'] = $this->_getCommonIncludes(array(js_url('notation')), array(
             'og:title' => $application->nom,
             'og:description' => short_html_text($application->description, 300),
             'og:image' => $application->logo_url,
             'image_src' => 'http://www.onemorethingstudio.com/unisize-app/wp-content/themes/unisize/img/apple-touch-icon-72x72-precomposed.png',
-        ));
+        ),
+            $titre);
 
         $data['contenu'] = $this->load->view('contenu/app', $appData, true);
         $data['body_class'] = 'app '.$this->body_class.(!empty($application->class) ? ' '.$application->class : '');

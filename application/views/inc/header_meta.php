@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	
-	<title>MEDAPPCARE</title>
+	<title><?php echo $title; ?></title>
 
 	<meta name="description" content="">
 	<meta name="author" content="Medappcare">
