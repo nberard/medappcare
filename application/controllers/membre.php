@@ -158,7 +158,7 @@ class Membre extends REST_Controller {
         }
         else
         {
-            $this->response(array('status' => 'ko', 'errors' => "Vous n'existez pas dans notre base de données"), 500);
+            $this->response(array('status' => 'ko', 'errors' => "Vous n'existez pas dans notre base de données"), 400);
         }
     }
 
