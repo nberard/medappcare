@@ -28,7 +28,8 @@ class Membres_model extends CI_Model {
     public function update_password($_membre_email, $_new_password)
     {
         log_message('debug', "update_password($_membre_email, $_new_password)");
-        return $this->db->update($this->table, array('mot_de_passe' => $_new_password), array('email' => $_membre_email));
+        $this->db->update($this->table, array('mot_de_passe' => $_new_password), array('email' => $_membre_email));
+        return $this->db->affected_rows();
     }
 
     public function update_membre($_membre_id, $_params, $_list, $_pro)

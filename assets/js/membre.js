@@ -106,7 +106,6 @@ $(document).ready(function(){
 
     // Boutons radios
     $('#plateforme-group button').click(function(){
-        console.debug('click='+$(this).attr('value'));
         if(plateformeIds[$(this).attr('value')])
             plateformeIds[$(this).attr('value')] = false;
         else plateformeIds[$(this).attr('value')] = true;

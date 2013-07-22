@@ -29,7 +29,7 @@ function handleNotation(type)
                     JSON.stringify(data),
                 success: function(data, textStatus, xhr)
                 {
-                    $('#'+type+'-notation-error').empty();
+                    $('#'+type+'-notation-error').empty().hide();
                     $('#'+type+'-notation-success').empty().html(xhr.responseJSON.message).show();
                     setTimeout(function(){
                         $('#modal-notation-close').click();

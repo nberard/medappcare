@@ -190,7 +190,7 @@ if (defined('ENVIRONMENT'))
 
 		define('APPPATH', BASEPATH.$application_folder.'/');
 	}
-
+ini_set('date.timezone', 'Europe/Paris');
 /*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE

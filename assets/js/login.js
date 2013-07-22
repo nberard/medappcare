@@ -49,7 +49,6 @@ $(document).ready(function(){
     });
 
     $('#lost_password_form').submit(function(){
-        console.debug('ok');
         $.ajax({
             type: 		"PUT",
             url:  		$(this).data('action'),
@@ -61,11 +60,16 @@ $(document).ready(function(){
                 }),
             success: function(data, textStatus, xhr)
             {
-                console.dir(data);
+                $('#lost-password-error').empty().hide();
+                $('#lost-password-success').empty().html(xhr.responseJSON.message).show();
+                setTimeout(function(){
+                    $('#lost-password-success').hide('slow');
+                    $('.close').click();
+                }, 2000);
             },
             error: function(xhr, textStatus, error)
             {
-
+                $('#lost-password-error').empty().text(xhr.responseJSON.errors).show();
             }
         });
         return false;

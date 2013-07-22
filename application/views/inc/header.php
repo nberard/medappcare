@@ -83,6 +83,9 @@
       <p><input id="lost-password-email" type="text" required placeholder="Email"></p>
       <p><button type="submit" class="btn btn-primary">Récupérer mon mot de passe</button>
       </p>
+        <br/>
+        <div id="lost-password-error" class="alert alert-error hide"></div>
+        <div id="lost-password-success" class="success alert-success hide"></div>
     </form>
   </div>
 </div>

@@ -154,11 +154,11 @@ class Membre extends REST_Controller {
             $this->email->subject('[Medappcare] Votre nouveau mot de passe');
             $this->email->message('Voice votre nouveau mot de passe : '.$new_password);
             $ok = $this->email->send();
-            $this->response(array('status' => 'ok', 'message' => lang('ok_membre_update')), 200);
+            $this->response(array('status' => 'ok', 'message' => 'Un message vous a été envoyé'), 200);
         }
         else
         {
-            $this->response(array('status' => 'ko', 'errors' => lang('ko_membre_update')), 500);
+            $this->response(array('status' => 'ko', 'errors' => "Vous n'existez pas dans notre base de données"), 500);
         }
     }
 
