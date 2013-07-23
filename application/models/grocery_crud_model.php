@@ -160,14 +160,23 @@ class grocery_CRUD_Model  extends CI_Model  {
     	$this->db->or_having( $key, $value, $escape);
     }
 
+    function long_field_name($field)
+    {
+        if ((!is_null($this->table_name)) && (trim($this->table_name) != '') && (strpos($field, '.') === false)) {
+            return "$this->table_name.$field";
+        } else {
+            return $field;
+        }
+    }
+
     function like($field, $match = '', $side = 'both')
     {
-    	$this->db->like($field, $match, $side);
+        $this->db->like($this->long_field_name($field), $match, $side);
     }
 
     function or_like($field, $match = '', $side = 'both')
     {
-    	$this->db->or_like($field, $match, $side);
+        $this->db->or_like($this->long_field_name($field), $match, $side);
     }
 
     function limit($value, $offset = '')

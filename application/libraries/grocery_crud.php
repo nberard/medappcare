@@ -1125,7 +1125,11 @@ class grocery_CRUD_Model_Driver extends grocery_CRUD_Field_Types
 			$field_names_array = array();
 			foreach($temp1 as $field)
 				list($field_names_array[]) = explode('}',$field);
-
+//New Code - this was added to make sure that relations using more than one field in the
+//$related_title_field paramter, will be using the unique table name infront of the field name
+            foreach ($field_names_array as $key => $field) {
+                $field_names_array[$key] = $this->_unique_join_name($relation_values[0]).'.'.$field;
+            }
 			return $field_names_array;
 		}
 	}

@@ -384,8 +384,11 @@ class Admin extends MY_Controller
         $this->crud->set_relation('editeur_id', 'editeur', '{nom}');
         $this->crud->callback_before_insert(array($this, '_applications_before_action'));
         $this->crud->callback_before_update(array($this, '_applications_before_action'));
-        $this->crud->set_relation_n_n('accessoires', 'accessoire_application_compatible', 'accessoire', 'application_id', 'accessoire_id', '{nom_'.config_item('lng').'}');
-        $this->crud->set_relation_n_n('categories', 'application_categorie', 'categorie', 'application_id', 'categorie_id', '{nom_'.config_item('lng').'} (pro:{est_pro})');
+        if($this->crud->getState() != 'list')
+        {
+            $this->crud->set_relation_n_n('accessoires', 'accessoire_application_compatible', 'accessoire', 'application_id', 'accessoire_id', '{nom_'.config_item('lng').'}');
+            $this->crud->set_relation_n_n('categories', 'application_categorie', 'categorie', 'application_id', 'categorie_id', '{nom_'.config_item('lng').'} (pro:{est_pro})');
+        }
         $this->crud->field_type('class','enum',config_item('body_class_categories'));
         $this->crud->add_action('Notation Medappcare', '', config_item('lng').'/admin/medappcare','ui-icon-plus');
         $this->crud->callback_column('logo_url',array($this,'_callback_logo_url'));
@@ -452,6 +455,7 @@ class Admin extends MY_Controller
         $this->crud->set_subject("Screenshot d'application");
         $this->crud->set_table('application_screenshot');
         $this->crud->required_fields('application_id', 'url');
+        $this->crud->callback_column('url',array($this,'_callback_logo_url'));
         $this->crud->set_relation('application_id', 'application', '{nom}');
         $this->_admin_output($this->crud->render());
     }
