@@ -83,10 +83,10 @@ class Applications_model extends CI_Model {
     }
 
     public function get_applications($_pro, $_devices_id, $_categorie_id, $_term, $_eval_medappcare, $_free, $_selection_id,
-                                     $_accessoire_ref_id, $_sort = 'id', $_order = 'desc', $_limit = 0, $_offset = 0, $_get_count = false)
+                                     $_accessoire_ref_id, $_sort = 'id', $_order = 'desc', $_limit = 0, $_offset = 0, $_exclude_list = array(), $_get_count = false)
     {
         $callers=debug_backtrace();
-        log_message('debug', "get_applications($_pro, ".var_export($_devices_id, true).", $_categorie_id, $_term, $_eval_medappcare, $_free, $_selection_id,
+        log_message('debug', "get_applications($_pro, ".var_export($_devices_id, true).", ".var_export($_categorie_id, true).", $_term, $_eval_medappcare, $_free, $_selection_id,
                                      $_accessoire_ref_id, $_sort = 'id', $_order = 'desc', $_limit = 0, $_offset = 0)".' caller = '.var_export($callers[1]['function'], true));
 
         if($_sort == 'date')
@@ -116,8 +116,16 @@ class Applications_model extends CI_Model {
 
         if($_categorie_id != -1)
         {
-            $this->db->join('application_categorie C', 'A.id = C.application_id', 'INNER');
-            $this->db->where(array('C.categorie_id' => $_categorie_id));
+            if(is_array($_categorie_id))
+            {
+                $this->db->join('application_categorie C', 'A.id = C.application_id', 'INNER');
+                $this->db->where('C.categorie_id IN ('.implode(',',$_categorie_id).')');
+            }
+            else
+            {
+                $this->db->join('application_categorie C', 'A.id = C.application_id', 'INNER');
+                $this->db->where(array('C.categorie_id' => $_categorie_id));
+            }
         }
         if($_free !== -1)
         {
@@ -162,6 +170,10 @@ class Applications_model extends CI_Model {
         if(!is_null($_pro))
         {
             $this->db->where(array('A.est_pro' => $_pro ? 1 : 0));
+        }
+        if(!empty($_exclude_list))
+        {
+            $this->db->where('A.id NOT IN('.implode(',',$_exclude_list).')');
         }
         $this->db->where(array('est_valide' => 1));
         if($_get_count)
@@ -295,7 +307,7 @@ class Applications_model extends CI_Model {
 
     public function get_number_applications_from_categorie($_pro, $_devices_id, $_categorie_id, $_free, $_sort, $_order, $_page)
     {
-        return $this->get_applications($_pro, $_devices_id, $_categorie_id, null, false, $_free, -1, -1, $_sort, $_order, config_item('nb_results_list'), ($_page -1) * config_item('nb_results_list'), true);
+        return $this->get_applications($_pro, $_devices_id, $_categorie_id, null, false, $_free, -1, -1, $_sort, $_order, config_item('nb_results_list'), ($_page -1) * config_item('nb_results_list'), array(), true);
     }
 
     public function get_applications_from_categorie($_pro, $_devices_id, $_categorie_id, $_free, $_sort, $_order, $_page)
@@ -310,14 +322,37 @@ class Applications_model extends CI_Model {
 
     public function get_number_applications_classic($_pro, $_devices_id, $_term, $_eval_medapp, $_free, $_sort, $_order, $_page)
     {
-        return $this->get_applications($_pro, $_devices_id, -1, $_term, $_eval_medapp, $_free, -1, -1, $_sort, $_order, config_item('nb_results_list'), ($_page -1) * config_item('nb_results_list'), true);
+        return $this->get_applications($_pro, $_devices_id, -1, $_term, $_eval_medapp, $_free, -1, -1, $_sort, $_order, config_item('nb_results_list'), ($_page -1) * config_item('nb_results_list'), array(), true);
     }
 
     public function get_top_five_applications($_free, $_pro, $_category_id = -1)
     {
         $user = $this->session->userdata('user');
         $devices = isset($user->devices) ? $user->devices : -1;
-        return $this->get_applications($_pro, $devices, $_category_id, null, true, $_free, -1, -1, 'id', 'desc', 5);
+        log_message('debug', "_category_id=".var_export($_category_id, true)."");
+        log_message('debug', "categories=".var_export($user->categories, true)."");
+        if($_category_id == -1 && !empty($user->categories))
+        {
+            $applications_categories = $this->get_applications($_pro, $devices, $user->categories, null, true, $_free, -1, -1, 'id', 'desc', 5);
+            if(count($applications_categories) == 5)
+            {
+                return $applications_categories;
+            }
+            $exclude_list = array();
+            if(count($applications_categories))
+            {
+                foreach($applications_categories as $app)
+                    $exclude_list[] = $app->id;
+            }
+            $applications_complement = $this->get_applications($_pro, $devices, -1, null, true, $_free, -1, -1, 'id', 'desc', 5 - count($applications_categories), 0, $exclude_list);
+            log_message('debug', "applications_categories=".var_export($applications_categories, true)."");
+            log_message('debug', "applications_complement=".var_export($applications_complement, true)."");
+            return $applications_categories;
+        }
+        else
+        {
+            return $this->get_applications($_pro, $devices, $_category_id, null, true, $_free, -1, -1, 'id', 'desc', 5);
+        }
     }
 
     public function get_pour_les_pros_applications($_sort, $_category_id = -1)
