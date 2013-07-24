@@ -14,6 +14,7 @@
 
         <?php echo $pro_pourlesgens ; ?> <!-- Section Le Top 5 -->
 
+        <div class="clear"></div>
     </div>
 
 </section>

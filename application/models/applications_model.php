@@ -79,7 +79,26 @@ class Applications_model extends CI_Model {
     {
         $user = $this->session->userdata('user');
         $devices = isset($user->devices) ? $user->devices : -1;
-        return $this->get_applications($_pro, $devices, $_category_id, null, true, -1, -1, -1, 'date', 'desc', 5);
+        if($_category_id == -1 && !empty($user->categories))
+        {
+            $applications_categories = $this->get_applications($_pro, $devices, $user->categories, null, true, -1, -1, -1, 'date', 'desc', 5);
+            if(count($applications_categories) == 5)
+            {
+                return $applications_categories;
+            }
+            $exclude_list = array();
+            if(count($applications_categories))
+            {
+                foreach($applications_categories as $app)
+                    $exclude_list[] = $app->id;
+            }
+            $applications_complement = $this->get_applications($_pro, $devices, $_category_id, null, true, -1, -1, -1, 'date', 'desc', 5 - count($applications_categories), 0, $exclude_list);
+            return array_merge($applications_categories, $applications_complement);
+        }
+        else
+        {
+            return $this->get_applications($_pro, $devices, $_category_id, null, true, -1, -1, -1, 'date', 'desc', 5);
+        }
     }
 
     public function get_applications($_pro, $_devices_id, $_categorie_id, $_term, $_eval_medappcare, $_free, $_selection_id,
@@ -329,8 +348,6 @@ class Applications_model extends CI_Model {
     {
         $user = $this->session->userdata('user');
         $devices = isset($user->devices) ? $user->devices : -1;
-        log_message('debug', "_category_id=".var_export($_category_id, true)."");
-        log_message('debug', "categories=".var_export($user->categories, true)."");
         if($_category_id == -1 && !empty($user->categories))
         {
             $applications_categories = $this->get_applications($_pro, $devices, $user->categories, null, true, $_free, -1, -1, 'id', 'desc', 5);
@@ -345,9 +362,7 @@ class Applications_model extends CI_Model {
                     $exclude_list[] = $app->id;
             }
             $applications_complement = $this->get_applications($_pro, $devices, -1, null, true, $_free, -1, -1, 'id', 'desc', 5 - count($applications_categories), 0, $exclude_list);
-            log_message('debug', "applications_categories=".var_export($applications_categories, true)."");
-            log_message('debug', "applications_complement=".var_export($applications_complement, true)."");
-            return $applications_categories;
+            return array_merge($applications_categories, $applications_complement);
         }
         else
         {
@@ -357,7 +372,28 @@ class Applications_model extends CI_Model {
 
     public function get_pour_les_pros_applications($_sort, $_category_id = -1)
     {
-        return $this->get_applications(true, -1, $_category_id, null, true, -1, -1, -1, $_sort, 'desc', 5);
+        $user = $this->session->userdata('user');
+        $devices = isset($user->devices) ? $user->devices : -1;
+        if($_category_id == -1 && !empty($user->categories))
+        {
+            $applications_categories = $this->get_applications(true, $devices, $user->categories, null, true, -1, -1, -1, $_sort, 'desc', 5);
+            if(count($applications_categories) == 5)
+            {
+                return $applications_categories;
+            }
+            $exclude_list = array();
+            if(count($applications_categories))
+            {
+                foreach($applications_categories as $app)
+                    $exclude_list[] = $app->id;
+            }
+            $applications_complement = $this->get_applications(true, $devices, $_category_id, null, true, -1, -1, -1, $_sort, 'desc', 5 - count($applications_categories), 0, $exclude_list);
+            return array_merge($applications_categories, $applications_complement);
+        }
+        else
+        {
+            return $this->get_applications(true, -1, $_category_id, null, true, -1, -1, -1, $_sort, 'desc', 5);
+        }
     }
 
     public function get_pour_les_gens_applications($_sort, $_category_id = -1)

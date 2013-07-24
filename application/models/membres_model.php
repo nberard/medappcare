@@ -35,6 +35,10 @@ class Membres_model extends CI_Model {
     public function update_membre($_membre_id, $_params, $_list, $_pro)
     {
         log_message('debug', "update_membre($_membre_id,  =".var_export($_params, true)."=".var_export($_list, true)."");
+        if(empty($_params['mot_de_passe']))
+        {
+            unset($_params['mot_de_passe']);
+        }
         $updates = $this->_clean_parameters($_params, $_list, false);
         $this->db->update($this->table, $updates, array('id' => $_membre_id));
         $this->db->delete($this->table_categories, array('membre_id' => $_membre_id));
