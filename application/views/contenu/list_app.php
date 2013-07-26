@@ -9,7 +9,7 @@
                 <select name="filters" id="filters" multiple="multiple">
 
 	                <optgroup label="Medappcare" id="eval-medapp">
-	                	<option <?php if($search_params['eval_medapp']) echo 'selected'; ?>>Évaluée par Medappcare</option>
+	                	<option <?php if($search_params['eval_medapp']) echo 'selected'; ?>>Évaluées par Medappcare</option>
 	                </optgroup>
 	            	
 	            	<optgroup label="Prix" id="prix">
@@ -35,7 +35,7 @@
                     <input type="hidden" id="force_perso" value="1"/>
                 <?php endif; ?>
 
-                <input type="submit" value="Rafraichir"/>
+                <input type="submit" value="Rafraîchir"/>
         	</form>
         </div>
     </div>
