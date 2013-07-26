@@ -1,5 +1,5 @@
 <form id="form-signup" class="form-signup" method="post" data-action="<?php echo site_url('membre');?>" >
-    <h2 class="form-signup-heading">Inscription Professionels</h2>
+    <h2 class="form-signup-heading">Inscription Professionnels</h2>
     <div id="reg-error" class="alert alert-error hide"></div>
     <input type="text" id="nom" id="nom" class="input-block-level" placeholder="Nom" required>
     <input type="text" id="prenom" id="prenom" class="input-block-level" placeholder="Prénom" required>

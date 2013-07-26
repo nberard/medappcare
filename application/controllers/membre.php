@@ -178,7 +178,6 @@ class Membre extends REST_Controller {
         }
         else
         {
-            log_message('debug', "post=".var_export($_POST, true)."");
             $this->load->model('Membres_model');
             $membre_id = $this->Membres_model->insert_membres($_POST, $list);
             if($membre_id && ($membre = $this->Membres_model->exists_membres(array('id' => $membre_id))))
