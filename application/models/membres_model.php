@@ -113,13 +113,13 @@ class Membres_model extends CI_Model {
         }
     }
 
-    public function insert_membres($_params, $_list)
+    public function insert_membres($_params, $_list, $_pro)
     {
         log_message('debug', "insert_membres=".var_export($_params, true)."=".var_export($_list, true)."");
 
         $this->_clean_parameters($_params, $_list, true);
 
-        $this->db->set('est_pro', 0); //will be set if rpps number ok or e-mail validation ok
+        $this->db->set('est_pro', $_pro ? 2 : 0);
         $this->db->set('date_creation', 'NOW()', false);
         $this->db->insert($this->table);
         $membre_id = $this->db->insert_id();

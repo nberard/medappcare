@@ -179,7 +179,7 @@ class Membre extends REST_Controller {
         else
         {
             $this->load->model('Membres_model');
-            $membre_id = $this->Membres_model->insert_membres($_POST, $list);
+            $membre_id = $this->Membres_model->insert_membres($_POST, $list, $pro);
             if($membre_id && ($membre = $this->Membres_model->exists_membres(array('id' => $membre_id))))
             {
                 $this->session->set_userdata('user', $membre);

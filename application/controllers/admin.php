@@ -311,7 +311,19 @@ class Admin extends MY_Controller
         });
         $this->crud->callback_before_insert(array($this, '_membres_before_action'));
         $this->crud->callback_before_update(array($this, '_membres_before_action'));
+
+        $this->crud->callback_column('date_creation',array($this,'_callback_date_creation'));
+
         $this->_admin_output($this->crud->render());
+    }
+
+    public function _callback_date_creation($value, $row)
+    {
+        $this->load->helper('date');
+        $diff = abs(strtotime(date('Y-m-d')) - strtotime($value));
+        $nb_jours = floor($diff / (60*60*24));
+        $class = $row->est_pro == 2 && $nb_jours > config_item('nb_jours_max_inscription_pro') ? 'warn' : '';
+       return '<span class="'.$class.'">'.date_classic($value).'</span>';
     }
 
     function _membres_before_action($post_array)

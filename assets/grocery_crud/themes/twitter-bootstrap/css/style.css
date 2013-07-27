@@ -13,3 +13,5 @@
 	background:url('images/loading.gif') left top no-repeat;
 	padding-left: 30px;
 }
+
+.warn {color: red}
