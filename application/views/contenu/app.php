@@ -212,7 +212,7 @@
 				<ul class="reviewPost">
                     <input type="hidden" id="application-notation-pro" value="<?php echo $application->est_pro ? 1 : 0; ?>"/>
                     <?php foreach($application->criteres as $critere): ?>
-                        <label for="note-application-<?php echo $critere->id; ?>"><?php echo strtoupper($critere->nom); ?></label>
+                        <label for="note-application-<?php echo $critere->id; ?>"><?php echo mb_strtoupper($critere->nom); ?></label>
                         <input type="hidden" id="note-application-<?php echo $critere->id; ?>">
                         <div class="rateit" data-rateit-step="1" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#note-application-<?php echo $critere->id; ?>"></div>
                     <?php endforeach; ?>
