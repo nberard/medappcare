@@ -1,3 +1,6 @@
+<?php if(empty($applications)): ?>
+    <br/><div>Pas de résultats pour cette recherche</div><br/>
+<?php else: ?>
 <ul>
     <?php foreach($applications as $application): ?>
     <li>
@@ -23,3 +26,4 @@
     <?php endforeach; ?>
     <span class="clear"></span>
 </ul>
+<?php endif; ?>

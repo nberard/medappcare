@@ -7,7 +7,7 @@
 <!--        <span class="alert alert-success">--><?php //echo $this->session->flashdata('success'); ?><!--</span>-->
 <!--    --><?php //endif; ?>
     <?php if($user): ?>
-        <span class="connected-user">Connecté en tant que <?php echo $user->email ?> | <a href="<?php echo site_url('site/deconnect') ?>">Déconnexion</a></span>
+        <span class="connected-user">Connecté en tant que <?php echo $user->pseudo ?> | <a href="<?php echo site_url('site/deconnect') ?>">Déconnexion</a></span>
     <?php endif; ?>
     <div class="links">
         <div class="social">

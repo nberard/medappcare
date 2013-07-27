@@ -46,6 +46,7 @@ $(document).ready(function(){
                 }, 1000);
             }
         });
+        $('body').animate({scrollTop: 0}, 20);
         return false;
     });
 
@@ -98,6 +99,7 @@ $(document).ready(function(){
                 }
             }
         });
+        $('body').animate({scrollTop: 0}, 20);
         return false;
     });
 
