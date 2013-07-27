@@ -9,7 +9,9 @@
     <section id="metapp">
         <div class="wrapper">
     
-        <div class="icone"><img width="90px" height="90px" src="<?php echo $device->photo; ?>"></div>
+        <div class="icone">
+            <img width="90px" height="90px" src="<?php echo $device->photo; ?>">
+        </div>
         
         <div class="content right">
             <?php if($device->moyenne_note): ?>
@@ -23,6 +25,7 @@
     <section id="appSectionOne">
         <div class="wrapper">
             <div class="sidebar left">
+                <span class="price"><?php echo $device->prix_complet; ?></span>
                 <div class="features">
                     <span class="<?php echo $device->type; ?>"><?php echo ucfirst($device->type); ?></span>
                 </div>

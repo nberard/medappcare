@@ -429,6 +429,8 @@ class Common_Controller extends MY_Controller
         $accessoire->notes = $this->Accessoires_model->get_notes_from_accessoire($_id, count($accessoire->criteres) * config_item('nb_comments_page'));
 
         $this->_format_link($accessoire, 'app_device', 'nom', 'link_all_apps', 'id', 1);
+        $this->load->helper('price');
+        $accessoire->prix_complet = format_price($accessoire->prix, $accessoire->devise, $this->lang->line('free'));
 
         $number_notes = $this->Accessoires_model->get_number_notes_from_accessoire($_id);
         $applications_compatibles = $this->Applications_model->get_applications_compatibles($this->pro, $_id);
