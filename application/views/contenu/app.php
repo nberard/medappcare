@@ -125,6 +125,8 @@
                     </div>
                 </div>
             <?php endforeach; ?>
+            <?php else: ?>
+                Cette application n'a pas été évaluée par Medappcare
             <?php endif; ?>
         </div>
         <div class="clear"></div>
