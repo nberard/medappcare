@@ -58,31 +58,6 @@
             <div class="clear"></div>
         </div> <!-- end wrapper -->
     </section>
-    
-    <div class="line"></div>
-
-<?php /*   
-    <section id="appSectionTwo" class="catmasante">
-        <div class="wrapper">
-        <div class="sidebar left">
-            <div class="qrcode">
-                <img src="<?php echo img_url('tmp/qr.png'); ?>" alt="qr" width="200" height="200">
-                <span>Flashez le code ci-dessus pour télécharger l’application.</span>
-            </div>
-            <div class="social">
-                <div class="sharingTwitter"></div>
-                <div class="sharingFacebook"></div>
-                <div class="sharingGoogleplus"></div>
-            </div>
-        </div>
-        <div id ="thegrid" class="content right">
-            <h5 class="soon">Retrouvez prochainement ici la grille d'évaluation de l'application.
-        </div>
-        <div class="clear"></div>
-        </div> <!-- end wrapper -->
-    </section>
-    */ ?>
-    
     <section id="descTabs">
     	<nav>
     		<div class="wrapper">
