@@ -24,7 +24,9 @@ class apple_feeder extends ApplicationFeeder {
                 {
                     $screens[] = $link['attributes']['href'];
                 }
-                else $lien = $link['attributes']['href'];
+                else if(!empty($link['attributes']['href'])) {
+                    $lien = $link['attributes']['href'];
+                }
             }
             if(!$this->applicationModel->exists_applications(array(
                     'langue_store' => $_langue_store,
