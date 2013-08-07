@@ -5,6 +5,8 @@ require_once APPPATH.'libraries/REST_Controller.php';
  */
 class Application extends REST_Controller {
 
+    private $user_id;
+
     public function __construct()
     {
         parent::__construct();
@@ -13,6 +15,9 @@ class Application extends REST_Controller {
         $this->load->helper('country');
         $this->lang->load('alert');
         $this->load->model('Applications_model');
+        if($user = $this->session->userdata('user')) {
+            $this->user_id = $user->id;
+        }
 //        $this->output->enable_profiler(TRUE);
     }
 
@@ -116,6 +121,12 @@ class Application extends REST_Controller {
         log_message('debug', "Application index_post($_application_id, $_action, $_user_id)");
         if($_action == 'note')
         {
+            if(!$this->user_id) {
+                $this->response(array('status' => 'ko', 'errors' => 'Accès interdit'), 401);
+            }
+            else {
+                $_user_id = $this->user_id;
+            }
             $list = array('commentaire', 'pro');
             $_POST = $this->_post();
             $pro = !empty($_POST['pro']) && $_POST['pro'] == 1;

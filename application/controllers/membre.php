@@ -5,6 +5,8 @@ require_once APPPATH.'libraries/REST_Controller.php';
  */
 class Membre extends REST_Controller {
 
+    private $user_id;
+
     public function __construct()
     {
         parent::__construct();
@@ -12,6 +14,9 @@ class Membre extends REST_Controller {
         $this->load->helper('crypt');
         $this->load->helper('country');
         $this->lang->load('alert');
+        if($user = $this->session->userdata('user')) {
+            $this->user_id = $user->id;
+        }
 //        $this->output->enable_profiler(TRUE);
     }
 
@@ -106,8 +111,14 @@ class Membre extends REST_Controller {
         }
     }
 
-    public function index_put($_id)
+    public function index_put()
     {
+        if(!$this->user_id) {
+            $this->response(array('status' => 'ko', 'errors' => 'Accès interdit'), 401);
+        }
+        else {
+            $_id = $this->user_id;
+        }
         $_POST = $this->_put();
         $pro = !empty($_POST['pro']);
         $list = $this->_membre_clean_entries('update', $pro);

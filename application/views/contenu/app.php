@@ -210,7 +210,7 @@
         </div>
         <div class="modal-body">
             <p class="explication">Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-            <form method="post" id="form-noter-application" data-criteres='<?php echo json_encode($application->criteres, JSON_HEX_APOS); ?>' data-action="<?php echo site_url('application/'.$application->id.'/note/'.$user->id) ?>">
+            <form method="post" id="form-noter-application" data-criteres='<?php echo json_encode($application->criteres, JSON_HEX_APOS); ?>' data-action="<?php echo site_url('application/'.$application->id.'/note') ?>">
 				<ul class="reviewPost">
                     <input type="hidden" id="application-notation-pro" value="<?php echo $application->est_pro ? 1 : 0; ?>"/>
                     <?php foreach($application->criteres as $critere): ?>

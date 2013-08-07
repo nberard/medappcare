@@ -1,4 +1,4 @@
-<form id="form-membre-update" class="form-signup" method="post" data-action="<?php echo site_url('membre/'.$user->id); ?>" >
+<form id="form-membre-update" class="form-signup" method="post" data-action="<?php echo site_url('membre'); ?>" >
     <h2 class="form-signup-heading">Mon Espace Pro</h2>
     <div id="update-success" class="alert alert-success hide"></div>
     <div id="update-error" class="alert alert-error hide"></div>

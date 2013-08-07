@@ -771,7 +771,7 @@ class Common_Controller extends MY_Controller
         if(!$from_filter)
         {
             $user = $this->session->userdata('user');
-            if($user && $user->devices != -1)
+            if($user && !is_null($user->devices) && $user->devices != -1)
             {
                 $default_devices = implode(',', $user->devices);
             }
