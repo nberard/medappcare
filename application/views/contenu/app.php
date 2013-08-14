@@ -80,7 +80,7 @@
         </div>
         <div class="content right description">
             <h3>Description de l'application</h3>
-            <?php echo $application->description; ?>
+            <p><?php echo $application->description; ?></p>
         </div>
         <div class="clear"></div>
     </div> <!-- end wrapper -->

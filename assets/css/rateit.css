@@ -46,7 +46,8 @@ div.rateit div.rateit-hover-rtl, div.rateit div.rateit-selected-rtl
 
 div.rateit div.rateit-hover
 {
-    background: url(../img/stars_default.png) top -32px;
+    background: url(../img/stars_default.png);
+    background-position: 0 -32px;
 }
 
 div.rateit div.rateit-hover-rtl

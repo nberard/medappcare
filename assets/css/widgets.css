@@ -250,10 +250,12 @@
 #commentaires .note{display: block;}
 #commentaires .comment{margin: 10px 0;}
 
+.reviewPost{padding: 0 0 20px 0;}
+
 
 /* =========== SEARCH RESULTS =========== */
 
-.search #listApps .allapps{margin: 50px 0 0 0; border-top: 1px solid #79c1d2;}
+.search #listApps .allapps{margin: 50px 0; border-top: 1px solid #79c1d2;}
 
 .social{margin: 20px 0 30px 0;}
 .social div{width: 100%; margin: 5px auto;}
@@ -273,7 +275,7 @@
 .noteGlobale label,
 .noteGlobale .rateit,
 .commentReview label,
-.commentReview .rateit{display: inline-block;}
+.commentReview .rateit{display: block;}
 .commentReview label,
 .noteGlobale label{min-width: 110px; line-height: 10px;}
 
