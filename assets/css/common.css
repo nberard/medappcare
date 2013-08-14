@@ -414,9 +414,9 @@ html[xmlns] .slides {display: block;}
 #metapp .icone{float: left; margin: 20px 175px 20px 20px; width: 90px; height: 90px; background: transparent; position: relative; border-radius: 10px;}
 
 #metapp .appnote span{display: block; height: 75px; background-position: center center; margin: 14px; float: left;}
-#metapp .noteMedappcare span{background: url(../img/pictapp_medappcare_lightblue.png) no-repeat; width: 68px; height: 48px;}
+#metapp .noteMedappcare span{background: url(../img/pictapp_medappcare_lightblue.png) no-repeat; width: 99px; height: 49px;}
 #metapp .notePro span{background: url(../img/pictapp_pro_lightblue.png) no-repeat; width: 120px; height: 50px;}
-#metapp .noteGens span{background: url(../img/pictapp_gens_lightblue.png) no-repeat; width: 88px; height: 44px;}
+#metapp .noteGens span{background: url(../img/pictapp_gens_lightblue.png) no-repeat; width: 106px; height: 44px;}
 
 .monquotidien #metapp .noteMedappcare span, .mapratique #metapp .noteMedappcare span{background: url(../img/pictapp_medappcare_red.png) no-repeat;}
 .minformer #metapp .noteMedappcare span{background: url(../img/pictapp_medappcare_green.png) no-repeat;}
@@ -509,13 +509,15 @@ html[xmlns] .slides {display: block;}
 .app .os {margin-top: 10px;}
 .app .list {text-align: center;}
 .app .os span{margin: 10px auto; width: 50px; background-position: center center; display: inline-block;}
-.app .price{background: #79c1d2; width: 40px; padding: 0 5px; line-height: 30px; text-align: center; display: inline-block;}
+.app .price,
+.device .price{background: #79c1d2; width: 40px; padding: 0 5px; line-height: 30px; text-align: center; display: inline-block;}
 
+.device .price{margin: 20px auto;}
 
 #appSectionOne .content,
 #appSectionTwo .content{width: 70%; max-width: 710px;}
 #appSectionOne .sidebar,
-#appSectionTwo .sidebar{width: 20%; max-width: 150px;}
+#appSectionTwo .sidebar{width: 20%; max-width: 150px; text-align: center;}
 
 .qrcode img{display: block; max-width: 150px; max-height: 150px; margin: 0 auto;}
 .qrcode p {padding: 0 10px;}
