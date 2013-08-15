@@ -1,223 +1,3 @@
-/* Smartphones (portrait and landscape) ----------- */
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-/* Styles */
-}
-
-/* Smartphones (landscape) ----------- */
-@media only screen and (min-width : 321px) {
-/* Styles */
-}
-
-/* Smartphones (portrait) ----------- */
-@media only screen and (max-width : 568px) {
-
-
-html, body {overflow-x: hidden;width: 100%;}
-
-/* HOMEPAGE & GENERAL */
-
-#codeigniter_profiler, #slider, #selections, #partners, #footer, #header .links, #header nav{display: none;}
-
-.mobile{display: block;}
-span.mobile {display: inline;}
-.notmobile {display: none;}
-
-.line{margin: 10px 0;}
-
-#dl-menu{display: block; position: absolute; top:0; background: #0F6EB4; z-index: 200000;}
-
-.colorsLine{background-size: 100% 4px;}
-
-.homepage .colorsLine{display: none;}
-
-#header{top: 46px; position: relative; background-image: none; padding: 0 0 1px 0;}
-#header > .wrapper{height: auto;}
-#header h1{display: block; margin: 20px auto; float: none;}
-
-.pro, .link-particuliers{height: auto;}
-.connexion{height: auto;}
-
-#listApps .listapps{width: 100%; margin: 50px 0 0 0; float: none;}
-#listapps_topfive{margin: 10px 0 0 0;}
-#listApps .metapp{width: 35%;}
-#listApps .metapp h4{width: auto;}
-#listApps .listapps h3{font-size: 18px;}
-#listApps .allapps h3{font-size: 12px;}
-.metapp *{font-size: 12px !important;}
-
-#devices{min-height: inherit !important;}
-#devices .metapp{width: 34%;}
-#devices .price{width: auto;}
-#devices .excerpt{font-size: 10px;}
-
-#news{border-bottom: none;}
-#news .category{display: none;}
-#news .excerpt{font-size: 12px;}
-#news h4 a{font-size: 14px;}
-
-#pushFooter{min-height: inherit; margin: 0; padding: 0;}
-#pushFooter li{width: 100%; padding: 0; margin: 0;}
-
-.copyright{min-height: 20px;}
-
-/* PAGE APP */
-
-#appSectionOne, #appSectionTwo{min-height: inherit;}
-
-#appSectionOne .sidebar,
-#appSectionTwo .sidebar{display: none;}
-.title{width: 100%; padding: 0 3%; box-sizing: border-box;}
-
-#metapp{background: none;}
-.app .os{margin-top: 0; margin: 0 auto; text-align: center;}
-.app .description, .device .description{font-size: 14px;}
-
-#metapp{height: auto;}
-#metapp .icone{margin: 0 auto;}
-#metapp .icone img{float: left; position: relative;}
-#metapp .appnote{display: none;}
-
-.catmasante .gridTitle{font-size: 26px;}
-#thegrid h3{font-size: 20px !important; float: none; display: block; width: 100%; text-align: center;}
-.grid{float: none; width: 100%;}
-.onegrid{margin: 40px auto 20px auto; border-top: 1px solid rgba(121, 193, 210, .5); padding-top: 20px;}
-.onegrid:first-of-type {border-top: none; padding-top: 0; margin-top: 0;}
-h2.gridTitle {color: rgb(15, 110, 180); margin: 10px 0 20px 0;}
-
-.extTitle, .midTitle, .intTitle{position: relative; text-align: center; top: 0; left: 0;}
-.chart{margin: 20px auto 10px auto;}
-
-#descTabs nav{height: auto;}
-#descTabs nav li{font-size: 12px; line-height: 27px; vertical-align: text-top; float: none; display: block; text-align: center; width: 100%;}
-#descTabs nav li.selected{background-image: none;}
-#descTabs .tabContent{padding: 2% 0; width: 100%;}
-
-
-#sort-filter .btn-group:first-of-type {	display: none; }
-.fullList #sort-filter {position: relative; margin: 0; width: 100%; text-align: center;}
-#listApps > .wrapper .allapps li {width: 100%; box-sizing: border-box; height: 110px; border-right: none;}
-#listApps > .wrapper .allapps li:nth-child(odd) {border-right: none;}
-#listApps h2 {width: 100%; box-sizing: border-box;}
-#listApps {min-height: inherit;}
-
-.dl-menuwrapper .dl-menu.dl-menuopen {box-shadow: 0 20px 20px rgba(0,0,0,.3);}
-
-.singlenews .content,
-#appSectionOne .content,
-#appSectionTwo .content,
-#news li,
-#devices li,
-#metapp .icone {width: 100%; padding:3%; box-sizing: border-box;}
-
-ul.pager {padding: 0 10px; box-sizing: border-box;}
-
-/* MODAL STYLING */
-
-div.modal {
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	box-sizing: border-box;
-	margin: 0;
-	padding-top: 25px;
-}
-
-div.modal p {
-	display: inline-block;
-}
-
-.modal button.close {
-	margin-right: 0;
-}
-
-.modal .registration-call {
-	display: none;
-}
-
-.modal form[name="login_form"] {
-	width: 100%;
-	margin: 0;
-	border: none;
-}
-
-input {
-	border-radius: 0;
-	-webkit-appearance: none;
-}
-
-#header .connected-user {display: none;}
-
-.tabContent#galeriePhotos ul li {margin-right: 15px;}
-.tabContent#galeriePhotos ul li:first-of-type {margin-left: 15px;}
-.gridLables {float: none;}
-}
-
-/* iPads (portrait and landscape) ----------- */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
-/* Styles */
-}
-
-/* iPads (landscape) ----------- */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
-/* Styles */
-}
-
-/* iPads (portrait) ----------- */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
-
-header > nav ul{width: 100%;}
-#header > nav li{font-size: 16px;}
-#header > nav li.navmonquotidien a, #header > nav li.navminformer a, header > nav li:not(.home):not(.bt-search) a{padding-left: 0px; text-align: center;}
-
-.navmasante a,
-.navmonquotidien a,
-.navminformer a,
-.navmedeplacer a{background: none;}
-
-.title{width: 96%; padding: 0 2%;}
-#appSectionOne .sidebar, #appSectionTwo .sidebar{padding: 0 2%; width: 16%;}
-#appSectionOne .content, #appSectionTwo .content{padding: 0 2%; width: 66%; font-size: 14px;}
-
-.grid{width: 100%;}
-#thegrid h3{font-size: 24px;}
-#listApps {min-height: inherit;}
-
-#listApps .listapps {float: none; margin: 50px auto 0 auto;}
-#listApps .listapps:last-of-type {margin-bottom: 50px;}
-
-#devices li, #news li {float: none; margin: auto;}
-#devices li:nth-child(even), #news li:nth-child(even) {float: none;}
-
-#pushFooter ul {width: 445px; margin: 0 auto 25px auto;}
-#pushFooter ul li {margin: 25px 12px 0px 12px;}
-
-.homepage h2 {text-align: center;}
-
-.singlenews .content, .singlenews .date{padding: 0 2%;}
-.pictonews{margin: 0 20px 20px 10px;}
-
-#codeigniter_profiler{display: none;}
-
-#footer .languages{margin: 0 10px 0 0;}
-#footer .left{width: 96%; max-width: inherit; padding: 0 2%; margin: 0 0 30px 0;}
-#footer .right{max-width: 100%; width: auto;}
-#footer .left li{display: inline-block; position: relative; margin: 0 20px;}
-
-
-}
-
-/* Desktops and laptops ----------- */
-@media only screen and (min-width : 1224px) {
-/* Styles */
-}
-
-/* Large screens ----------- */
-@media only screen and (min-width : 1824px) {
-/* Styles */
-}
-
 /* iPhone 4 and high pixel ratio devices ----------- */
 @media
 only screen and (-webkit-min-device-pixel-ratio : 1.5),
@@ -516,6 +296,240 @@ only screen and (min-device-pixel-ratio : 1.5) {
 #dropdown a.closeLink{background: url(../img/menu_close@2x.png) no-repeat; background-size: 16px 16px; padding: 0px 0px 2px 9px;}
 
 }
+
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+/* Styles */
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+/* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 568px) {
+
+
+html, body {overflow-x: hidden;width: 100%;}
+
+/* HOMEPAGE & GENERAL */
+
+#codeigniter_profiler, #slider, #selections, #partners, #footer, #header .links, #header nav{display: none;}
+
+.mobile{display: block;}
+span.mobile {display: inline;}
+.notmobile {display: none;}
+
+.line{margin: 10px 0;}
+
+#dl-menu{display: block; position: absolute; top:0; background: #0F6EB4; z-index: 200000;}
+
+.colorsLine{background-size: 100% 4px;}
+
+.homepage .colorsLine{display: none;}
+
+#header{top: 46px; position: relative; background-image: none; padding: 0 0 1px 0;}
+#header > .wrapper{height: auto;}
+#header h1{display: block; margin: 20px auto; float: none;}
+
+.pro, .link-particuliers{height: auto;}
+.connexion{height: auto;}
+
+#listApps .listapps{width: 100%; margin: 50px 0 0 0; float: none;}
+#listapps_topfive{margin: 10px 0 0 0;}
+#listApps .metapp{width: 35%;}
+#listApps .metapp h4{width: auto;}
+#listApps .listapps h3{font-size: 18px; padding: 0 0 0 10px;}
+#listApps .allapps h3{font-size: 12px;}
+.metapp *{font-size: 12px;}
+#listApps .metapp h4 a{height: auto; font-size: 14px;}
+#listApps .metapp h4{margin: 0 0 10px 0;}
+#listApps .metapp .category, #listApps .metapp .category a{font-size: 10px;}
+
+#listApps .filter{right: 0;}
+#listApps .filter a{outline: 1px solid white;}
+#listApps .filter a.actif{background: #46b7d2;}
+#listApps .filter a.actif span{background: none;}
+
+#devices{min-height: inherit !important;}
+#devices .metapp{width: 34%;}
+#devices .price{width: auto;}
+#devices .excerpt{font-size: 10px;}
+
+#news{border-bottom: none;}
+#news .category{display: none;}
+#news .excerpt{font-size: 12px;}
+#news h4 a{font-size: 14px;}
+
+#pushFooter{min-height: inherit; margin: 0; padding: 0;}
+#pushFooter li{width: 100%; padding: 0; margin: 0;}
+
+.copyright{min-height: 20px;}
+
+/* PAGE APP */
+
+#appSectionOne, #appSectionTwo{min-height: inherit;}
+
+#appSectionOne .sidebar,
+#appSectionTwo .sidebar{display: none;}
+.title{width: 100%; padding: 0 3%; box-sizing: border-box;}
+
+#metapp{background: none;}
+.app .os{margin-top: 0; margin: 0 auto; text-align: center;}
+.app .description, .device .description{font-size: 14px;}
+
+#metapp{height: auto;}
+#metapp .icone{margin: 0 auto;}
+#metapp .icone img{float: left; position: relative;}
+#metapp .appnote{display: none;}
+
+.catmasante .gridTitle{font-size: 26px;}
+#thegrid h3{font-size: 20px !important; float: none; display: block; width: 100%; text-align: center;}
+.grid{float: none; width: 100%;}
+.onegrid{margin: 40px auto 20px auto; border-top: 1px solid rgba(121, 193, 210, .5); padding-top: 20px;}
+.onegrid:first-of-type {border-top: none; padding-top: 0; margin-top: 0;}
+h2.gridTitle {color: rgb(15, 110, 180); margin: 10px 0 20px 0;}
+
+.extTitle, .midTitle, .intTitle{position: relative; text-align: center; top: 0; left: 0;}
+.chart{margin: 20px auto 10px auto;}
+
+#descTabs nav{height: auto;}
+#descTabs nav li{font-size: 12px; line-height: 27px; vertical-align: text-top; float: none; display: block; text-align: center; width: 100%;}
+#descTabs nav li.selected{background-image: none;}
+#descTabs .tabContent{padding: 2% 0; width: 100%;}
+
+
+#sort-filter .btn-group:first-of-type {	display: none; }
+.fullList #sort-filter {position: relative; margin: 0; width: 100%; text-align: center;}
+#listApps > .wrapper .allapps li {width: 100%; box-sizing: border-box; height: 110px; border-right: none;}
+#listApps > .wrapper .allapps li:nth-child(odd) {border-right: none;}
+#listApps h2 {width: 100%; box-sizing: border-box;}
+#listApps {min-height: inherit;}
+
+.dl-menuwrapper .dl-menu.dl-menuopen {box-shadow: 0 20px 20px rgba(0,0,0,.3);}
+
+.singlenews .content,
+#appSectionOne .content,
+#appSectionTwo .content,
+#news li,
+#devices li,
+#metapp .icone {width: 100%; padding:3%; box-sizing: border-box;}
+
+ul.pager {padding: 0 10px; box-sizing: border-box; clear: both;}
+
+
+#accessoire-notes-browser .commentReview{width: 100%; margin: 0 0 40px 20px;}
+#accessoire-notes-browser, .noteGlobale{padding: 0 0 30px 10px;}
+
+/* MODAL STYLING */
+
+div.modal {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	padding-top: 25px;
+}
+
+div.modal p {
+	display: inline-block;
+}
+
+.modal button.close {
+	margin-right: 0;
+}
+
+.modal .registration-call {
+	display: none;
+}
+
+.modal form[name="login_form"] {
+	width: 100%;
+	margin: 0;
+	border: none;
+}
+
+input {
+	border-radius: 0;
+	-webkit-appearance: none;
+}
+
+#header .connected-user {display: none;}
+
+.tabContent#galeriePhotos ul li {margin-right: 15px;}
+.tabContent#galeriePhotos ul li:first-of-type {margin-left: 15px;}
+.gridLables {float: none;}
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+/* Styles */
+}
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+/* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+
+header > nav ul{width: 100%;}
+#header > nav li{font-size: 16px;}
+#header > nav li.navmonquotidien a, #header > nav li.navminformer a, header > nav li:not(.home):not(.bt-search) a{padding-left: 0px; text-align: center;}
+
+.navmasante a,
+.navmonquotidien a,
+.navminformer a,
+.navmedeplacer a{background: none;}
+
+.title{width: 96%; padding: 0 2%;}
+#appSectionOne .sidebar, #appSectionTwo .sidebar{padding: 0 2%; width: 16%;}
+#appSectionOne .content, #appSectionTwo .content{padding: 0 2%; width: 66%; font-size: 14px;}
+
+.grid{width: 100%;}
+#thegrid h3{font-size: 24px;}
+#listApps {min-height: inherit;}
+
+#listApps .listapps {float: none; margin: 50px auto 0 auto;}
+#listApps .listapps:last-of-type {margin-bottom: 50px;}
+
+#devices li, #news li {float: none; margin: auto;}
+#devices li:nth-child(even), #news li:nth-child(even) {float: none;}
+
+#pushFooter ul {width: 445px; margin: 0 auto 25px auto;}
+#pushFooter ul li {margin: 25px 12px 0px 12px;}
+
+.homepage h2 {text-align: center;}
+
+.singlenews .content, .singlenews .date{padding: 0 2%;}
+.pictonews{margin: 0 20px 20px 10px;}
+
+#codeigniter_profiler{display: none;}
+
+#footer .languages{margin: 0 10px 0 0;}
+#footer .left{width: 96%; max-width: inherit; padding: 0 2%; margin: 0 0 30px 0;}
+#footer .right{max-width: 100%; width: auto;}
+#footer .left li{display: inline-block; position: relative; margin: 0 20px;}
+
+
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 1224px) {
+/* Styles */
+}
+
+/* Large screens ----------- */
+@media only screen and (min-width : 1824px) {
+/* Styles */
+}
+
 
 
 
