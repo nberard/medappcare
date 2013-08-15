@@ -25,7 +25,7 @@
     <section id="appSectionOne">
         <div class="wrapper">
             <div class="sidebar left">
-                <a class="price" href="#"><?php echo $device->prix_complet; ?></a>
+                <a class="price" href="<?php echo $device->lien_achat; ?>" target="_blank"><?php echo $device->prix_complet; ?></a>
                 <div class="features">
                     <span class="<?php echo $device->type; ?>"><?php echo ucfirst($device->type); ?></span>
                 </div>
