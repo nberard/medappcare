@@ -9,7 +9,7 @@ class Pro extends Common_Controller {
     {
         parent::__construct(true);
         $user = $this->session->userdata('user');
-        if($this->router->fetch_method() != 'register' && (!$user || $user->est_pro != 1))
+        if($this->router->fetch_method() != 'register' && (!$user || $user->est_pro == '0'))
         {
             redirect(index_page());
         }
