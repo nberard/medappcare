@@ -213,7 +213,7 @@
             <form method="post" id="form-noter-application" data-criteres='<?php echo json_encode($application->criteres, JSON_HEX_APOS); ?>' data-action="<?php echo site_url('application/'.$application->id.'/note') ?>">
 				<ul class="reviewPost">
                     <input type="hidden" id="application-notation-pro" value="<?php echo $application->est_pro ? 1 : 0; ?>"/>
-                    <?php foreach($application->criteres as $critere): ?>
+                    <?php foreach($application->criteres_user as $critere): ?>
                         <label for="note-application-<?php echo $critere->id; ?>"><?php echo mb_strtoupper($critere->nom); ?></label>
                         <input type="hidden" id="note-application-<?php echo $critere->id; ?>">
                         <div class="rateit" data-rateit-step="1" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#note-application-<?php echo $critere->id; ?>"></div>
