@@ -192,7 +192,10 @@
 	    	</div>
 
             <div class="tabContent" id="revueDePresse">
-                <p><?php echo $application->presse; ?></p>
+                <?php if(!empty($application->presse)) :?>
+                    <h4>Articles où l'on parle de cette application :</h4>
+                    <p><?php echo $application->presse; ?></p>
+                <?php endif; ?>
             </div>
     	</div>
     	
