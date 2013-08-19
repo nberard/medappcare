@@ -241,6 +241,7 @@
 <!--	                    <div data-productid="312" class="rateit" data-rateit-resetable="false" data-rateit-max="5" data-rateit-backingfld="#satisfaction"></div>-->
 <!--	                </li>-->
                 </ul>
+                <label for="commentaire-application">Votre commentaire sur l'application :</label>
                 <p><textarea id="commentaire-application"></textarea></p>
                 <p><button type="submit" class="btn btn-primary">Envoyer</button>
             </form>
