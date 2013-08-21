@@ -385,6 +385,7 @@ span.mobile {display: inline;}
 #metapp .icone img{float: left; position: relative;}
 #metapp .appnote{display: none;}
 
+.onegrid{width: 100%; position: relative; float: none;}
 .catmasante .gridTitle{font-size: 26px;}
 #thegrid h3{font-size: 20px !important; float: none; display: block; width: 100%; text-align: center;}
 .grid{float: none; width: 100%;}
@@ -483,6 +484,9 @@ header > nav ul{width: 100%;}
 #header > nav li{font-size: 16px;}
 #header > nav li.navmonquotidien a, #header > nav li.navminformer a, header > nav li:not(.home):not(.bt-search) a{padding-left: 0px; text-align: center;}
 
+#dropdown .sponsored-selection{margin: 0 10px 30px 0;}
+header form.search-form{width: 85%;}
+
 .navmasante a,
 .navmonquotidien a,
 .navminformer a,
@@ -495,6 +499,7 @@ header > nav ul{width: 100%;}
 .grid{width: 100%;}
 #thegrid h3{font-size: 24px;}
 #listApps {min-height: inherit;}
+.onegrid{width: 100%; position: relative; float: none;}
 
 #listApps .listapps {float: none; margin: 50px auto 0 auto;}
 #listApps .listapps:last-of-type {margin-bottom: 50px;}
@@ -511,6 +516,11 @@ header > nav ul{width: 100%;}
 .pictonews{margin: 0 20px 20px 10px;}
 
 #codeigniter_profiler{display: none;}
+
+#partners li{margin: 15px;}
+#partners{min-height: 280px; height: auto;}
+
+#descTabs nav li.selected{background-image: none;}
 
 #footer .languages{margin: 0 10px 0 0;}
 #footer .left{width: 96%; max-width: inherit; padding: 0 2%; margin: 0 0 30px 0;}
