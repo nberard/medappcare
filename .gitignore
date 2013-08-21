@@ -5,3 +5,5 @@ application/logs
 *.DS_Store
 
 
+
+/application/config/config.php
