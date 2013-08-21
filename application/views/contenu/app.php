@@ -61,7 +61,7 @@
             </div>
 
             <div class="buttons">
-	            <a href="<?php echo $application->lien_download; ?>" class="noter">Télécharger</a>
+	            <a href="<?php echo $application->lien_download; ?>" class="noter" target="_blank">Télécharger</a>
                 <?php if($user): ?>
                 <?php if(!$already_noted): ?>
                     <a href="#commentModal" class="noter">Noter l'Application</a>
