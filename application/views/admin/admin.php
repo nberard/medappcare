@@ -33,9 +33,10 @@ a:hover
 		<a href='<?php echo site_url('admin/accessoires')?>'>Accessoires</a> |
 		<a href='<?php echo site_url('admin/accessoire_photos')?>'>Photos d'accessoires</a> |
 		<a href='<?php echo site_url('admin/articles')?>'>Articles</a> |
+		<a href='<?php echo site_url('admin/article_categories')?>'>Catégories d'articles</a> |
 <!--		<a href='--><?php //echo site_url('admin/article_commentaires')?><!--'>Commentaires d'articles</a> |-->
 <!--		<a href='--><?php //echo site_url('admin/devices')?><!--'>Devices</a> |-->
-<!--		<a href='--><?php //echo site_url('admin/editeurs')?><!--'>Editeurs</a> |-->
+		<a href='<?php echo site_url('admin/editeurs')?>'>Editeurs</a> |
 		<a href='<?php echo site_url('admin/membres')?>'>Membres</a> |
 <!--		<a href='--><?php //echo site_url('admin/publicites')?><!--'>Publicités</a> |-->
 <!--		<a href='--><?php //echo site_url('admin/plateformes')?><!--'>Plateformes</a> |-->
@@ -53,8 +54,14 @@ a:hover
     <div>
 		<?php echo $output; ?>
     </div>
+    <?php if(isset($inf)): ?>
+        <a href="<?php echo site_url('admin/applications/edit/'.$inf); ?>">Précédante</a>
+    <?php endif; ?>
+    <?php if(isset($current)): ?>
+        <a href="<?php echo site_url('admin/medappcare/'.$current); ?>">Note Medappcare</a>
+    <?php endif; ?>
     <?php if(isset($sup)): ?>
-        <a href="<?php echo site_url('admin/applications/edit/'.$sup); ?>">Next</a>
+        <a href="<?php echo site_url('admin/applications/edit/'.$sup); ?>">Suivante</a>
     <?php endif; ?>
 </body>
 </html>

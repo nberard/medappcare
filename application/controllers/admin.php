@@ -188,15 +188,14 @@ class Admin extends MY_Controller
         $this->crud->set_table('article');
         $this->crud->required_fields('titre_'.config_item('lng'));
         $this->crud->set_relation('categorie_id', 'article_categorie', '{nom_'.config_item('lng').'}');
-        $this->crud->set_relation('device_id', 'device', '{nom}');
         $this->crud->unset_fields('date_creation', 'date_modification');
         $this->crud->callback_after_insert(function($post_array,$primary_key) {
             $updates = array("date_creation" => date('Y-m-d H:i:s'));
-            $this->_handle_default_values($post_array,$primary_key,array('categorie_id' => -1, 'device_id' => -1), 'article', $updates);
+            $this->_handle_default_values($post_array,$primary_key,array('categorie_id' => -1), 'article', $updates);
         });
         $this->crud->callback_after_update(function($post_array,$primary_key) {
             $updates = array("date_modification" => date('Y-m-d H:i:s'));
-            $this->_handle_default_values($post_array,$primary_key,array('categorie_id' => -1, 'device_id' => -1), 'article', $updates);
+            $this->_handle_default_values($post_array,$primary_key,array('categorie_id' => -1), 'article', $updates);
         });
 
         $this->_admin_output($this->crud->render());
@@ -212,6 +211,14 @@ class Admin extends MY_Controller
     {
         $this->db->update('article_commentaire',array("date" => date('Y-m-d H:i:s')), array('id' => $primary_key));
         return true;
+    }
+
+    public function article_categories()
+    {
+        $this->crud->set_subject("Categories d'article");
+        $this->crud->set_table('article_categorie');
+        $this->crud->required_fields('nom_'.config_item('lng'));
+        $this->_admin_output($this->crud->render());
     }
 
     public function article_commentaires()
@@ -289,6 +296,8 @@ class Admin extends MY_Controller
             $this->crud->required_fields('email', 'est_pro');
         }
         $this->crud->field_type('sexe','enum',array('H', 'F', 'A'));
+        $metiers = config_item('metiers');
+        $this->crud->field_type('profession','enum',array_keys($metiers["Profession Médicale"]) + array_keys($metiers["Profession Paramédicale"]));
         $this->crud->set_rules('email', 'E-mail', 'valid_email|required');
         $this->crud->callback_edit_field('mot_de_passe', function($value){
             return '<input type="text" name="mot_de_passe"/>';
@@ -407,19 +416,24 @@ class Admin extends MY_Controller
         $this->crud->callback_column('lien_download',array($this,'_callback_webpage_url'));
         $this->crud->callback_edit_field('logo_url',array($this,'_callback_logo_url_edit'));
         $this->crud->callback_edit_field('lien_download',array($this,'_callback_webpage_url_edit'));
-        $this->crud->unset_columns('package', 'description', 'date_ajout', 'langue_appli', 'version', 'mots_cles', 'est_partageable',
+        $this->crud->unset_columns('package', 'description', 'date_ajout', 'langue_appli', 'version', 'mots_cles',
                                     'est_penalisee', 'mot_editeur', 'presse', 'titre');
         $this->crud->display_as('est_liste','application sponsorisée')
+            ->display_as('est_valide','valide ? (0 => non ; 1 => oui ; 2 => supprimée)')
             ->display_as('est_ce','application CE')
             ->display_as('class','couleur de catégorie');
+        $this->crud->field_type('est_valide','enum',array(0,1,2));
         $this->crud->limit(20);
-        $this->crud->unset_edit_fields('package', 'date_ajout', 'langue_appli', 'version', 'mots_cles', 'est_partageable', 'note_medappcare', 'est_penalisee');
+        $this->crud->unset_edit_fields('package', 'date_ajout', 'langue_appli', 'version', 'mots_cles', 'note_medappcare', 'est_penalisee');
         $output = $this->crud->render();
         if(isset($this->crud->getStateInfo()->primary_key))
         {
             $this->load->model('Applications_model');
             $sup = $this->Applications_model->get_next_appli($this->crud->getStateInfo()->primary_key);
-            $output->sup = $sup;
+            $inf = $this->Applications_model->get_prev_appli($this->crud->getStateInfo()->primary_key);
+            $output->current = $this->crud->getStateInfo()->primary_key;
+            $output->inf = $inf;
+            $output->inf = $inf;
         }
 
         $this->_admin_output($output);

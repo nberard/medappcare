@@ -41,12 +41,14 @@
                     <a class="price" href="<?php echo $application->lien_download; ?>"><?php echo $application->prix_complet; ?></a>
                 </div>
             </div>
-            <?php if($application->est_ce): ?>
             <div class="labels">
-            	<span class="label ce">CE</span>
-            	<span class="text">Cet objet est un dispositif médical</span>
+                <?php if($application->est_ce): ?>
+                    <span class="label ce">CE</span>
+                <?php endif; ?>
+                <?php if($application->est_dispo_medical): ?>
+                    <span class="text">Cet application est un dispositif médical</span>
+                <?php endif; ?>
             </div>
-            <?php endif; ?>
             <div class="social">
                 <div class="sharingTwitter">
                     <a href="https://twitter.com/share" class="twitter-share-button" data-lang="fr">Tweet</a>

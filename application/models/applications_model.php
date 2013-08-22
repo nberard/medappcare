@@ -49,7 +49,7 @@ class Applications_model extends CI_Model {
         $this->db->set('logo_url', $_logo_url);
         $this->db->set('mots_cles', '');
         $this->db->set('est_liste', 0);
-        $this->db->set('est_partageable', 1);
+        $this->db->set('est_dispo_medical', 0);
         $this->db->set('est_pro', 0);
         $this->db->set('est_penalisee', 0);
         $this->db->set('est_valide', 0);
@@ -606,7 +606,7 @@ class Applications_model extends CI_Model {
             ->from($this->table.' A')
             ->join('application_categorie AC', 'AC.application_id = A.id', 'INNER')
             ->join($this->tableCategorie.' C', 'C.id = AC.categorie_id', 'INNER')
-            ->where(array('est_liste' => 1, 'C.parent_id' => $_categorie_id));
+            ->where(array('est_liste' => 1, 'C.parent_id' => $_categorie_id, 'A.est_valide' => 1));
         $res = $this->db->get()->result();
         return !empty($res) ? $res : array();
     }
@@ -614,6 +614,11 @@ class Applications_model extends CI_Model {
     public function get_next_appli($_application_id)
     {
         return $this->db->select('id')->limit(1)->get_where($this->table, 'id > '.$_application_id.' AND est_valide = 0')->row()->id;
+    }
+
+    public function get_prev_appli($_application_id)
+    {
+        return $this->db->select('id')->limit(1)->get_where($this->table, 'id < '.$_application_id.' AND est_valide = 0')->row()->id;
     }
 
 }
