@@ -166,6 +166,7 @@ class Common_Controller extends MY_Controller
             $application->criteres = $this->Applications_model->get_criteres_medappcare($application->est_pro);
             $application->criteres_user = $this->Applications_model->get_criteres_for_applications($application->est_pro);
             $application->notes = $this->Applications_model->get_notes_from_application($application->est_pro, $_id, count($application->criteres) * config_item('nb_comments_page'));
+            $application->avis = $this->Applications_model->get_avis_from_application($_id);
             if(!empty($application->note_medappcare_detail))
             {
                 foreach ($application->criteres as $critere_parent)

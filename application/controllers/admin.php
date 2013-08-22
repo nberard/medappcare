@@ -248,7 +248,7 @@ class Admin extends MY_Controller
         $this->crud->set_table('categorie');
         $this->crud->field_type('class','enum',config_item('body_class_categories'));
         $this->crud->required_fields('nom_'.config_item('lng'), 'est_pro');
-        $this->crud->set_relation('parent_id', 'categorie', '{nom_'.config_item('lng').'} (pro:{est_pro})');
+        $this->crud->set_relation('parent_id', 'categorie', '{nom_'.config_item('lng').'} (pro:{est_pro})', array('parent_id' => -1));
         $this->crud->callback_after_insert(array($this, '_categories_after_add'));
         $this->crud->callback_after_update(array($this, '_categories_after_add'));
         $this->_admin_output($this->crud->render());

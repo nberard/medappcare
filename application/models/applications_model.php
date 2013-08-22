@@ -430,8 +430,10 @@ class Applications_model extends CI_Model {
         foreach($notes_criteres_db as $note_criteres_db)
         {
             $notes_criteres[$note_criteres_db->critere_id] = $note_criteres_db->note;
-            $notes_criteres[$note_criteres_db->parent_id] = isset($notes_criteres[$note_criteres_db->parent_id]) ?
-                $notes_criteres[$note_criteres_db->parent_id] + $note_criteres_db->note : $note_criteres_db->note;
+            $notes_criteres[$note_criteres_db->parent_id] =
+                isset($notes_criteres[$note_criteres_db->parent_id]) ?
+                $notes_criteres[$note_criteres_db->parent_id] + $note_criteres_db->note
+                : $note_criteres_db->note;
         }
         return $notes_criteres;
     }
