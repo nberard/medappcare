@@ -39,7 +39,16 @@ class Admin extends MY_Controller
 
     public function index()
     {
-        $this->_admin_output((object)array('output' => '' , 'js_files' => array() , 'css_files' => array()));
+        $this->load->model('Membres_model');
+        $membres_attente = $this->Membres_model->get_membres_attente();
+        $this->load->model('Applications_model');
+        $applis_attente = $this->Applications_model->get_applications_attente();
+        $this->_admin_output((object)array('output' =>
+           $this->load->view('admin/links', array(
+                                                      'membres_attente' => $membres_attente,
+                                                      'applis_attente' => $applis_attente,
+                                                 ), true)
+        , 'js_files' => array() , 'css_files' => array()));
     }
 
     public function medappcare($_application_id)
@@ -434,7 +443,7 @@ class Admin extends MY_Controller
             $sup = $this->Applications_model->get_next_appli($this->crud->getStateInfo()->primary_key);
             $inf = $this->Applications_model->get_prev_appli($this->crud->getStateInfo()->primary_key);
             $output->current = $this->crud->getStateInfo()->primary_key;
-            $output->inf = $inf;
+            $output->sup = $sup;
             $output->inf = $inf;
         }
 

@@ -54,14 +54,16 @@ a:hover
     <div>
 		<?php echo $output; ?>
     </div>
-    <?php if(isset($inf)): ?>
-        <a href="<?php echo site_url('admin/applications/edit/'.$inf); ?>">Précédante</a>
+    <div class="btn-group">
+    <?php if(!empty($inf)): ?>
+        <a href="<?php echo site_url('admin/applications/edit/'.$inf); ?>" class="btn btn-small">Précédante</a>
     <?php endif; ?>
-    <?php if(isset($current)): ?>
-        <a href="<?php echo site_url('admin/medappcare/'.$current); ?>">Note Medappcare</a>
+    <?php if(!empty($current)): ?>
+        <a href="<?php echo site_url('admin/medappcare/'.$current); ?>" class="btn btn-small" target="_blank">Note Medappcare</a>
     <?php endif; ?>
-    <?php if(isset($sup)): ?>
-        <a href="<?php echo site_url('admin/applications/edit/'.$sup); ?>">Suivante</a>
+    <?php if(!empty($sup)): ?>
+        <a href="<?php echo site_url('admin/applications/edit/'.$sup); ?>" class="btn btn-small">Suivante</a>
     <?php endif; ?>
+    </div>
 </body>
 </html>
