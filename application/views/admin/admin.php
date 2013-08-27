@@ -24,6 +24,7 @@ a:hover
 {
 	text-decoration: underline;
 }
+    #admin-loader {text-align: center; display:none;}
 </style>
 </head>
 <body>
@@ -50,7 +51,8 @@ a:hover
 <!--		<a href='--><?php //echo site_url('admin/application_criteres_medappcare_pro')?><!--'>Critères Medappcare pro</a> |-->
 <!--		<a href='--><?php //echo site_url('admin/application_notes_medappcare_pro')?><!--'>Note Medappcare pro</a> |-->
 	</div>
-	<div style='height:20px;'></div>  
+	<div style='height:20px;'></div>
+    <div id="admin-loader"><img src="<?php echo img_url('ajax-loader.gif'); ?>"/>   loading...</div>
     <div>
 		<?php echo $output; ?>
     </div>
