@@ -116,9 +116,9 @@ class Application extends REST_Controller {
         $this->_get_bloc_applis('free', true, $allappcategory, $_categorie_id);
     }
 
-    public function index_post($_application_id, $_action, $_user_id)
+    public function index_post($_application_id, $_action)
     {
-        log_message('debug', "Application index_post($_application_id, $_action, $_user_id)");
+        log_message('debug', "Application index_post($_application_id, $_action)");
         if($_action == 'note')
         {
             if(!$this->user_id) {
@@ -130,7 +130,7 @@ class Application extends REST_Controller {
             $list = array('commentaire', 'pro');
             $_POST = $this->_post();
             $pro = !empty($_POST['pro']) && $_POST['pro'] == 1;
-            $criteres =  $this->Applications_model->get_criteres_medappcare($pro);
+            $criteres =  $this->Applications_model->get_criteres_for_applications($pro);
             foreach($criteres as $critere)
             {
                 $list[] = 'note'.$critere->id;
