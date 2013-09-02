@@ -171,4 +171,10 @@ class Membres_model extends CI_Model {
             return array();
         }
     }
+
+    public function get_membres_attente()
+    {
+        $res = $this->db->select('id, email')->get_where($this->table, array('est_pro' => 2), 10)->result();
+        return $res ? $res : array();
+    }
 }

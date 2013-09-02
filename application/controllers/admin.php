@@ -20,6 +20,7 @@ class Admin extends MY_Controller
         $this->load->database();
         $this->load->helper('url');
         $this->config->load('country');
+        $this->load->helper('assets');
         $this->load->helper('country');
         $this->load->helper('crypt');
         $this->load->library('grocery_CRUD');
@@ -39,7 +40,16 @@ class Admin extends MY_Controller
 
     public function index()
     {
-        $this->_admin_output((object)array('output' => '' , 'js_files' => array() , 'css_files' => array()));
+        $this->load->model('Membres_model');
+        $membres_attente = $this->Membres_model->get_membres_attente();
+        $this->load->model('Applications_model');
+        $applis_attente = $this->Applications_model->get_applications_attente();
+        $this->_admin_output((object)array('output' =>
+           $this->load->view('admin/links', array(
+                                                      'membres_attente' => $membres_attente,
+                                                      'applis_attente' => $applis_attente,
+                                                 ), true)
+        , 'js_files' => array() , 'css_files' => array()));
     }
 
     public function medappcare($_application_id)
@@ -149,7 +159,7 @@ class Admin extends MY_Controller
         $this->crud->required_fields('nom_'.config_item('lng'), 'fabriquant_id', 'photo', 'lien_achat');
         $this->crud->set_relation('fabriquant_id', 'accessoire_fabriquant', '{nom}');
 
-        $this->crud->set_relation_n_n('applications', 'accessoire_application_compatible', 'application', 'accessoire_id', 'application_id', '{titre}');
+        $this->crud->set_relation_n_n('applications', 'accessoire_application_compatible', 'application', 'accessoire_id', 'application_id', '{nom}');
 
         $this->_admin_output($this->crud->render());
     }
@@ -375,7 +385,8 @@ class Admin extends MY_Controller
     {
         $this->crud->set_subject("Sélection");
         $this->crud->set_table('selection');
-        $this->crud->required_fields('nom', 'date_debut', 'date_debut' ,'evennement');
+        $this->crud->required_fields('nom', 'date_debut', 'date_debut' ,'evennement', 'type');
+        $this->crud->display_as('type_selection','(inactif => applications ; actif => accessoires)');
         $this->crud->callback_after_insert(function($post_array,$primary_key) {
             $this->_handle_default_values($post_array,$primary_key,
                 array('categorie_id' => -1, 'poids' => 0),
@@ -414,6 +425,7 @@ class Admin extends MY_Controller
         $this->crud->add_action('Notation Medappcare', '', config_item('lng').'/admin/medappcare','ui-icon-plus');
         $this->crud->callback_column('logo_url',array($this,'_callback_logo_url'));
         $this->crud->callback_column('lien_download',array($this,'_callback_webpage_url'));
+        $this->crud->callback_column('est_valide',array($this,'_callback_valide'));
         $this->crud->callback_edit_field('logo_url',array($this,'_callback_logo_url_edit'));
         $this->crud->callback_edit_field('lien_download',array($this,'_callback_webpage_url_edit'));
         $this->crud->unset_columns('package', 'description', 'date_ajout', 'langue_appli', 'version', 'mots_cles',
@@ -432,12 +444,18 @@ class Admin extends MY_Controller
             $sup = $this->Applications_model->get_next_appli($this->crud->getStateInfo()->primary_key);
             $inf = $this->Applications_model->get_prev_appli($this->crud->getStateInfo()->primary_key);
             $output->current = $this->crud->getStateInfo()->primary_key;
-            $output->inf = $inf;
+            $output->sup = $sup;
             $output->inf = $inf;
         }
 
         $this->_admin_output($output);
     }
+
+public function _callback_valide($value, $row)
+{
+    $class = $value == 0 ? 'warn' : '';
+    return '<span class="'.$class.'">'.$value.'</span>';
+}
 
     public function _callback_webpage_url($value, $row)
     {

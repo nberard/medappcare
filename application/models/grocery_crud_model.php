@@ -382,7 +382,18 @@ class grocery_CRUD_Model  extends CI_Model  {
     	$selection_primary_key = $this->get_primary_key($field_info->selection_table);
         if(!$use_template)
         	$this->db->order_by("{$field_info->selection_table}.{$field_info->title_field_selection_table}");
-        $results = $this->db->get($field_info->selection_table)->result();
+        if($field_info->field_name == 'applications' &&
+            ($field_info->relation_table == 'accessoire_application_compatible' || $field_info->relation_table == 'selection_application')) {
+            $this->load->driver('cache', array('adapter' => 'file'));
+            $key = 'n_n.'.$field_info->field_name;
+            if(!$results = $this->cache->get($key)) {
+                $results = $this->db->get($field_info->selection_table)->result();
+                $this->cache->save($key, $results, 60 * 60 * 24);
+            }
+        }
+        else {
+            $results = $this->db->get($field_info->selection_table)->result();
+        }
 
         $results_array = array();
         foreach($results as $row)

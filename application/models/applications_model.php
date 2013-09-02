@@ -615,12 +615,20 @@ class Applications_model extends CI_Model {
 
     public function get_next_appli($_application_id)
     {
-        return $this->db->select('id')->limit(1)->get_where($this->table, 'id > '.$_application_id.' AND est_valide = 0')->row()->id;
+        $res = $this->db->select('id')->limit(1)->get_where($this->table, 'id > '.$_application_id.' AND est_valide = 0')->row();
+        return $res ? $res->id : '';
     }
 
     public function get_prev_appli($_application_id)
     {
-        return $this->db->select('id')->limit(1)->get_where($this->table, 'id < '.$_application_id.' AND est_valide = 0')->row()->id;
+        $res = $this->db->select('id')->limit(1)->get_where($this->table, 'id < '.$_application_id.' AND est_valide = 0')->row();
+        return $res ? $res->id : '';
+    }
+
+    public function get_applications_attente()
+    {
+        $res = $this->db->select('id, nom')->get_where($this->table, array('est_valide' => 0), 20)->result();
+        return $res ? $res : array();
     }
 
 }

@@ -62,7 +62,7 @@ $(function(){
 		// Inserindo valores da quantidade de registros e pagina atual no formulario
 		$('input[name="per_page"]').val($('#tb_per_page').val());
 		$('input[name="page"]').val($('#tb_crud_page').val());
-
+        $('#admin-loader').show();
 		$(this).ajaxSubmit({
 			 url: ajax_list_info_url,
 			 dataType: 'json',
@@ -72,6 +72,7 @@ $(function(){
 
 				this_form.ajaxSubmit({
 					 success:    function(data){
+                         $('#admin-loader').hide();
 						$('#ajax_list').html(data);
 						call_fancybox();
 					 }
