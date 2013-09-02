@@ -28,6 +28,7 @@ a:hover
 </head>
 <body>
 	<div>
+		<a href='<?php echo site_url('admin')?>'>Accueil</a> |
 		<a href='<?php echo site_url('admin/pages')?>'>Pages</a> |
 		<a href='<?php echo site_url('admin/accessoire_fabriquants')?>'>Fabriquants d'accessoires</a> |
 		<a href='<?php echo site_url('admin/accessoires')?>'>Accessoires</a> |
