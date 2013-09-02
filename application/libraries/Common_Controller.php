@@ -763,7 +763,7 @@ class Common_Controller extends MY_Controller
         $order = request_get_param($_params, 'order', 'desc', array('asc', 'desc'));
         $eval_medapp = request_get_param($_params, 'eval_medapp', 0, array(1));
         $term = request_get_param($_params, 'term', null);
-        $free = request_get_param($_params, 'free', -1, array(0, 1));
+        $free = request_get_param($_params, 'free', 1, array(0, 1));
         $from_filter = request_get_param($_params, 'from_filter', 0, array(0, 1));
         $free = ($free == -1 ? -1 : ($free == 1 ? true : false));
 
