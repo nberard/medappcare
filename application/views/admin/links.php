@@ -1,4 +1,4 @@
-<h2>Membres en attente</h2>
+<h2>Membre Pro en attente de validation</h2>
 <ul>
 <?php foreach($membres_attente as $membre_attente): ?>
     <li><a href="<?php echo site_url('admin/membres/edit/'.$membre_attente->id); ?>"><?php echo $membre_attente->email; ?></a></li>
