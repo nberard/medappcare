@@ -407,6 +407,16 @@ class Admin extends MY_Controller
         $this->_admin_output($this->crud->render());
     }
 
+    public function _applications_after_action($post_array)
+    {
+        $this->load->model('Categories_model');
+        $gp_ids = $this->Categories_model->get_categories_gp_ids();
+        if(count(array_intersect($gp_ids, $post_array['categories'])) && !in_array(Categories_model::CATEGORY_ALL_GP, $post_array['categories'])) {
+            $this->db->insert('application_categorie', array('application_id' => $this->crud->getStateInfo()->primary_key, 'categorie_id' => Categories_model::CATEGORY_ALL_GP));
+        }
+        return true;
+    }
+
     public function applications()
     {
         $this->crud->set_subject("Application");
@@ -414,8 +424,8 @@ class Admin extends MY_Controller
         $this->crud->required_fields('nom', 'package', 'device_id' , 'logo_url', 'titre', 'date_ajout', 'prix', 'devise', 'langue_store', 'editeur_id', 'lien_download');
         $this->crud->set_relation('device_id', 'device', '{nom}');
         $this->crud->set_relation('editeur_id', 'editeur', '{nom}');
-        $this->crud->callback_before_insert(array($this, '_applications_before_action'));
-        $this->crud->callback_before_update(array($this, '_applications_before_action'));
+        $this->crud->callback_after_insert(array($this, '_applications_after_action'));
+        $this->crud->callback_after_update(array($this, '_applications_after_action'));
         if($this->crud->getState() != 'list')
         {
             $this->crud->set_relation_n_n('accessoires', 'accessoire_application_compatible', 'accessoire', 'application_id', 'accessoire_id', '{nom_'.config_item('lng').'}');
@@ -451,11 +461,11 @@ class Admin extends MY_Controller
         $this->_admin_output($output);
     }
 
-public function _callback_valide($value, $row)
-{
-    $class = $value == 0 ? 'warn' : '';
-    return '<span class="'.$class.'">'.$value.'</span>';
-}
+    public function _callback_valide($value, $row)
+    {
+        $class = $value == 0 ? 'warn' : '';
+        return '<span class="'.$class.'">'.$value.'</span>';
+    }
 
     public function _callback_webpage_url($value, $row)
     {
