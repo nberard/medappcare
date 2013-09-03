@@ -46,7 +46,7 @@
                     <span class="label ce">CE</span>
                 <?php endif; ?>
                 <?php if($application->est_dispo_medical): ?>
-                    <span class="text">Cet application est un dispositif médical</span>
+                    <span class="text">Cette application est un dispositif médical</span>
                 <?php endif; ?>
             </div>
             <div class="social">
