@@ -79,10 +79,10 @@ header form.search-form input {width:100%; height:100%; margin: 1px; padding: 5p
 .navprominformer, #dropdown nav.prominformer {background: #84C790;}
 .navmespatients, #dropdown nav.mespatients {background: #D769AF;}
 
-#dropdown.navadministratif .bigpicto{background: url(../img/picto_administratif_big.png) no-repeat; width: 205px; height: 205px; bottom: -10px; left: -90px;}
-#dropdown.navmapratique .bigpicto{background: url(../img/picto_mapratique_big.png) no-repeat; width: 195px; height: 209px; bottom: -10px; left: -80px;}
-#dropdown.navprominformer .bigpicto{background: url(../img/picto_minformer_big.png) no-repeat; bottom: -10px; left: -120px; width: 277px; height: 192px;}
-#dropdown.navmespatients .bigpicto{background: url(../img/picto_mespatients_big.png) no-repeat; width: 261px; height: 176px; bottom: -15px; left: -110px;}
+#dropdown nav.administratif .bigpicto{background: url(../img/picto_administratif_big.png) no-repeat; width: 205px; height: 205px; bottom: -10px; left: -90px;}
+#dropdown nav.mapratique .bigpicto{background: url(../img/picto_mapratique_big.png) no-repeat; width: 195px; height: 209px; bottom: -10px; left: -80px;}
+#dropdown nav.prominformer .bigpicto{background: url(../img/picto_minformer_big.png) no-repeat; bottom: -10px; left: -120px; width: 277px; height: 192px;}
+#dropdown nav.mespatients .bigpicto{background: url(../img/picto_mespatients_big.png) no-repeat; width: 261px; height: 176px; bottom: -15px; left: -110px;}
 
 #dropdown a.closeLink{background: rgba(0,0,0,0.1); display: block; width: 110px; height: 20px; bottom: 0px; position: absolute; right: 0px; z-index: 20; text-align: center; background-image: url(../img/menu_close.png); background-position: 9px 6px; background-repeat: no-repeat; background-size: 16px 16px; padding: 4px 0px 4px 20px; line-height: 20px}
 #dropdown a.closeLink:hover{text-decoration: none; bottom: 2px;}

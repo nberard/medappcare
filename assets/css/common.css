@@ -557,6 +557,8 @@ html[xmlns] .slides {display: block;}
 */
 
 .onegrid{width: 50%; position: relative; float: left;}
+
+#thegrid{padding: 50px 0;}
  
 #thegrid h3{float: left; position: relative; width: 100px;}
 
@@ -666,6 +668,7 @@ button{margin-right: 15px;}
 	margin: 0;
 }
 
+#rpps{background: #F5F5F5;}
 
 
 /* =========== DEVICE PAGE =========== */

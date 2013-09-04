@@ -20,10 +20,10 @@
         <?php endforeach; ?>
     </select>
 
-    <input name="rpps" type="text" id="rpps" class="input-block-level" placeholder="Numéro RPPS*">
+    <input name="rpps" type="text" id="rpps" class="input-block-level" placeholder="(Bientôt Disponible) Numéro RPPS*">
 
 
-    <span class="help-block">* ou bien j'envoie une preuve de ma fonction de professionnel de santé ou d'étudiant en santé (carte professionnelle, carte d'étudiant(e), diplôme, ordonnance barrée,...) par email à identification@medappcare.com dans les 1 mois. Ce document peut être scanné ou pris en photo par votre smartphone.</span>
+    <span class="help-block">* Je m'engage à envoyer une preuve de ma fonction de professionnel de santé ou d'étudiant en santé (carte professionnelle, carte d'étudiant(e), diplôme, ordonnance barrée,...) par email à identification@medappcare.com dans les 30 jours. Ce document peut être scanné ou pris en photo par votre smartphone.</span>
 
 
     <label class="checkbox">

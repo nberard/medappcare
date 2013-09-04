@@ -7,6 +7,7 @@
  */
 class Categories_model extends CI_Model {
 
+    const CATEGORY_ALL_GP = 16;
     protected $table = 'categorie';
     protected $tableMembre = 'membre_categorie';
 
@@ -14,6 +15,15 @@ class Categories_model extends CI_Model {
     {
         // Call the Model constructor
         parent::__construct();
+    }
+
+    public function get_categories_gp_ids()
+    {
+        $res = $this->db->select('id')->get_where($this->table, array('est_pro' => 0))->result();
+        $gp_ids = array();
+        foreach($res as $row)
+            $gp_ids[] = $row->id;
+        return $gp_ids;
     }
 
     public function get_categorie($_id)

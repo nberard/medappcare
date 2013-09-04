@@ -13,7 +13,7 @@
             <img width="90px" height="90px" src="<?php echo $device->photo; ?>">
         </div>
         
-        <div class="content right">
+        <div class="content left">
             <?php if($device->moyenne_note): ?>
                 <div class="appnote noteGens"><span></span><a href="#thegrid" class="note <?php echo $device->class_note; ?>"><?php echo ucfirst($device->class_note); ?></a></div>
             <?php endif; ?>

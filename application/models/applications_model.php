@@ -186,7 +186,8 @@ class Applications_model extends CI_Model {
         {
             $this->db->join('selection_application S', 'S.application_id = A.id', 'INNER');
         }
-        if(!is_null($_pro))
+        $this->load->model('Categories_model');
+        if(!is_null($_pro) && $_categorie_id != Categories_model::CATEGORY_ALL_GP)
         {
             $this->db->where(array('A.est_pro' => $_pro ? 1 : 0));
         }
