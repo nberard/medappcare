@@ -11,7 +11,7 @@ a:hover{text-decoration: underline;}
 .colorsLine{margin: 1px auto; width: 100%; height: 4px; background: url(../img/colorline.jpg) repeat-x; display: block; clear: both; position: relative;}
 .whiteLine{height: 1px; width: 100%; background: white; display: block;}
 
-.line{height: 1px; width: 100%; background: #79c1d2; display: block; margin: 50px 0;}
+.line{height: 1px; width: 100%; background: #79c1d2; display: block; margin: 30px 0;}
 .monquotidien .line, .mapratique .line{background: #e05d5f;}
 .minformer .line{background: #84c790;}
 .medeplacer .line, .mespatients .line{background: #d769af;}
@@ -558,7 +558,7 @@ html[xmlns] .slides {display: block;}
 
 .onegrid{width: 50%; position: relative; float: left;}
 
-#thegrid{padding: 50px 0;}
+#thegrid{padding: 50px 0 0 0;}
  
 #thegrid h3{float: left; position: relative; width: 100px;}
 
@@ -717,6 +717,7 @@ button{margin-right: 15px;}
 .medeplacer .features span.usb {background-image: url(../img/pictoUsb_pink.png);}
 */
 
+#descTabs{margin: 30px 0 0 0;}
 #descTabs nav {display: block; height: 54px;}
 
 #descTabs nav{background: #79C1D2;}
