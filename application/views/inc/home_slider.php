@@ -1,6 +1,5 @@
 <div class="flexslider">
     <ul class="slides">
-        <li class="slide"><img src="<?php echo img_url('tmp/001.jpg'); ?>" alt="001" /></li>
-        <li class="slide"><img src="<?php echo img_url('tmp/002.jpg'); ?>" alt="002" /></li>
+        <li class="slide"><a data-toggle="modal" href="<?php echo $pro ? '#connexionModalPro' : '#connexionModal'?>" title="Je m'inscris !"><img src="<?php echo img_url('slider/slider-1.jpg'); ?>" alt="Trouvez les applications santé qui vous conviennent parmi nos applications évaluées !" /></a></li>
     </ul>
 </div>
