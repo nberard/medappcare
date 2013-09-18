@@ -361,6 +361,16 @@ span.mobile {display: inline;}
 #listApps .filter a.actif{background: #46b7d2;}
 #listApps .filter a.actif span{background: none;}
 
+#listApps .filter a.actif{background: #46b7d2;}
+
+.monquotidien #listApps .filter a.actif,
+.mapratique #listApps .filter a.actif{background: #CA5456;}
+
+.minformer #listApps .filter a.actif{background: #77B382;}
+
+.medeplacer #listApps .filter a.actif,
+.mespatients #listApps .filter a.actif{background: #C25F9E;}
+
 #devices{min-height: inherit !important;}
 #devices .metapp{width: 34%;}
 #devices .price{width: auto;}
@@ -417,7 +427,7 @@ h2.gridTitle {color: rgb(15, 110, 180); margin: 10px 0 20px 0;}
 #listApps h2 {width: 100%; box-sizing: border-box;}
 #listApps {min-height: inherit;}
 
-.dl-menuwrapper .dl-menu.dl-menuopen {box-shadow: 0 20px 20px rgba(0,0,0,.3);}
+.dl-menuwrapper .dl-menu.dl-menuopen {box-shadow: 0 20px 20px rgba(0,0,0,0.3);}
 
 .singlenews .content,
 #appSectionOne .content,
