@@ -285,6 +285,8 @@ only screen and (min-device-pixel-ratio : 1.5) {
 .navmapratique a{background: url(../img/picto_mapratique@2x.png) no-repeat 20px center; background-size: 29px 31px;}
 .navmespatients a{background: url(../img/pro_pourlesgens@2x.png) no-repeat 20px center; background-size: 34px 23px;}
 
+.dl-menuwrapper #bt-login span{background: url(../img/logout@2x.png) no-repeat; background-size: contain;}
+
 
 
 #dropdown nav.masante .bigpicto{background: url(../img/picto_masantebig@2x.png) no-repeat; background-size: contain;}
@@ -304,7 +306,9 @@ only screen and (min-device-pixel-ratio : 1.5) {
 
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-/* Styles */
+
+.lespros #header h1{width: 96%; background-size: contain;}
+
 }
 
 /* Smartphones (landscape) ----------- */

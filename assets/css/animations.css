@@ -88,9 +88,10 @@
 	outline: none;
 	border-left: 1px solid white;
 	text-align: center;
+	padding: 0;
 }
 
-.dl-menuwrapper #bt-login span{display: block; background: white; width: 15px; height: 15px; border-radius: 100%;}
+.dl-menuwrapper #bt-login span{display: block; background: url(../img/logout.png) no-repeat; width: 40px; height: 40px;}
 
 .dl-menuwrapper .dl-trigger:hover,
 .dl-menuwrapper .dl-trigger.dl-active{
