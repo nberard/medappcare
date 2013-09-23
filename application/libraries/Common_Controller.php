@@ -76,7 +76,7 @@ class Common_Controller extends MY_Controller
                 'access_label_target' => $this->access_label_target,
                 'user' => $this->session->userdata('user'),
             ), true),
-            'home_slider' => $this->load->view('inc/home_slider', '', true),
+            'home_slider' => $this->load->view('inc/home_slider', array('pro' => $this->pro), true),
             'menu' => $this->load->view('inc/menu', array(
                 'categories_principales' => $categories_principales,
             ), true),
@@ -226,7 +226,7 @@ class Common_Controller extends MY_Controller
         $this->_format_all_links($articles, 'news', "titre");
         $this->_format_all_links($articles, 'news_category', 'nom_categorie', 'categorie_link', 'categorie_id');
         $indexData = array(
-            'home_slider' => $this->load->view('inc/home_slider', '', true),
+            'home_slider' => $this->load->view('inc/home_slider', array('pro' => $this->pro), true),
             $_label_selection_left => $this->load->view('inc/'.$_label_selection_left, $_data_selection_left, true),
             $_label_selection_right => $this->load->view('inc/'.$_label_selection_right, $_data_selection_right, true),
             'widget_devices' => $this->load->view('inc/widget_devices', array(
