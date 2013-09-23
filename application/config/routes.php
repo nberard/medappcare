@@ -51,7 +51,7 @@ $route['^(fr|en)/([a-z]+)/selection/[a-z0-9\-]+_(:num)$'] = "$2/selection/$3";
 
 $route['^fr/(.+)$'] = "$1";
 $route['^en/(.+)$'] = "$1";
-$route['404_override'] = '';
+$route['404_override'] = 'gp/error_404';
 // '/en' and '/fr' -> use default controller
 $route['^(fr|en)$'] = $route['default_controller'];
 /* End of file routes.php */
