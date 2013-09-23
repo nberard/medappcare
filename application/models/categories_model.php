@@ -38,6 +38,15 @@ class Categories_model extends CI_Model {
         return $this->db->select('*, nom_'.config_item('lng').' AS nom')->where(array('parent_id' => -1, 'est_pro' => $_pro ? 1 : 0))->get($this->table)->result();
     }
 
+    public function get_categories_enfantes_gp()
+    {
+        $this->db->select('*, nom_'.config_item('lng').' AS nom');
+        $this->db->order_by('nom_'.config_item('lng').', poids', 'asc');
+        $this->db->where('est_pro = 0 AND parent_id != -1');
+        $results = $this->db->get($this->table)->result();
+        return $results ? $results : array();
+    }
+
     public function get_categories_enfantes($_parent_id)
     {
         $this->db->select('*, nom_'.config_item('lng').' AS nom');

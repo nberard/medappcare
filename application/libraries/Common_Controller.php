@@ -124,6 +124,14 @@ class Common_Controller extends MY_Controller
         {
             $_categories_enfants[$_categorie_enfant->parent_id][] = $_categorie_enfant;
         }
+        if($this->pro)
+        {
+            $_categories_enfants_brut_patients = $this->Categories_model->get_categories_enfantes_gp();
+            foreach($_categories_enfants_brut_patients as $_categorie_enfant)
+            {
+                $_categories_enfants[16][] = $_categorie_enfant;
+            }
+        }
 //        log_message('debug', "_categories_enfants=".var_export($_categories_enfants, true));
         foreach($_categories_array as &$_categorie)
         {
