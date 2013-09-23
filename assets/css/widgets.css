@@ -176,7 +176,7 @@
 
 #devices{min-height: 380px; background: #ededed; display: block;}
 
-#devices li{list-style: none; display: block; border-bottom: 1px solid white; height: 80px; padding: 15px; width: 415px; float: left; position: relative;}
+#devices li{list-style: none; display: block; border-bottom: 1px solid white; height: auto; padding: 15px; width: 415px; float: left; position: relative;}
 #devices li:nth-child(even){float: right;}
 
 #devices h2{padding: 5px 15px 0px 15px; line-height: 52px; border-bottom: 1px solid white;}
@@ -232,7 +232,7 @@
 
 #news{background: white; min-height: 175px; border-bottom: 1px solid #a3a3a3; display: block;}
 
-#news li{list-style: none; display: block; height: 80px; padding: 15px; width: 415px; float: left; position: relative;}
+#news li{list-style: none; display: block; height: auto; padding: 15px; width: 415px; float: left; position: relative;}
 #news li:nth-child(even){float: right;}
 
 #news h2{padding: 5px 15px 0px 15px; line-height: 52px; border-bottom: 1px solid white;}
@@ -258,7 +258,7 @@
 .search #listApps .allapps{margin: 50px 0; border-top: 1px solid #79c1d2;}
 
 .social{margin: 20px 0 30px 0;}
-.social div{width: 100%; margin: 5px auto;}
+.social div{width: 100%; margin: 5px 0; text-align: left;}
 
 /* =========== RATE APP & DEVICES =========== */
 

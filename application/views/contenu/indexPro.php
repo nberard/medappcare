@@ -9,7 +9,7 @@
 <section id="listApps">
 
     <div class="wrapper">
-        <h2>Nos Dernières Évaluations</h2>
+    
         <?php echo $pro_pourlespros ; ?> <!-- Section Les dernières apps évaluées -->
 
         <?php echo $pro_pourlesgens ; ?> <!-- Section Le Top 5 -->

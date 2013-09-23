@@ -30,22 +30,24 @@ a:hover
 <body>
 	<div>
 		<a href='<?php echo site_url('admin')?>'>Accueil</a> |
-		<a href='<?php echo site_url('admin/pages')?>'>Pages</a> |
+        <a href='<?php echo site_url('admin/applications')?>'>Applications</a> |
+        <a href='<?php echo site_url('admin/categories')?>'>Catégories d'applications</a> |
+        <a href='<?php echo site_url('admin/application_screenshots')?>'>Screenshots d'application</a> |
+        <a href='<?php echo site_url('admin/accessoires')?>'>Accessoires</a> |
 		<a href='<?php echo site_url('admin/accessoire_fabriquants')?>'>Fabriquants d'accessoires</a> |
-		<a href='<?php echo site_url('admin/accessoires')?>'>Accessoires</a> |
-		<a href='<?php echo site_url('admin/accessoire_photos')?>'>Photos d'accessoires</a> |
-		<a href='<?php echo site_url('admin/articles')?>'>Articles</a> |
-		<a href='<?php echo site_url('admin/article_categories')?>'>Catégories d'articles</a> |
+        <a href='<?php echo site_url('admin/accessoire_photos')?>'>Photos d'accessoires</a> |
+        <a href='<?php echo site_url('admin/articles')?>'>Articles</a> |
+        <a href='<?php echo site_url('admin/article_categories')?>'>Catégories d'articles</a> |
+        <a href='<?php echo site_url('admin/membres')?>'>Membres</a> |
+        <a href='<?php echo site_url('admin/pages')?>'>Pages</a> |
+        <a href='<?php echo site_url('admin/selections')?>'>Sélections d'applications</a> |
 <!--		<a href='--><?php //echo site_url('admin/article_commentaires')?><!--'>Commentaires d'articles</a> |-->
 <!--		<a href='--><?php //echo site_url('admin/devices')?><!--'>Devices</a> |-->
 		<a href='<?php echo site_url('admin/editeurs')?>'>Editeurs</a> |
-		<a href='<?php echo site_url('admin/membres')?>'>Membres</a> |
+
 <!--		<a href='--><?php //echo site_url('admin/publicites')?><!--'>Publicités</a> |-->
 <!--		<a href='--><?php //echo site_url('admin/plateformes')?><!--'>Plateformes</a> |-->
-		<a href='<?php echo site_url('admin/applications')?>'>Applications</a> |
-		<a href='<?php echo site_url('admin/categories')?>'>Catégories d'applications</a> |
-		<a href='<?php echo site_url('admin/selections')?>'>Sélections d'applications</a> |
-        <a href='<?php echo site_url('admin/application_screenshots')?>'>Screenshots d'application</a> |
+
 <!--		<a href='--><?php //echo site_url('admin/application_commentaires_medappcare')?><!--'>Commentaire Medappcare</a> |-->
 <!--		<a href='--><?php //echo site_url('admin/application_criteres_medappcare_perso')?><!--'>Critères Medappcare gp</a> |-->
 <!--		<a href='--><?php //echo site_url('admin/application_notes_medappcare_gp')?><!--'>Note Medappcare gp</a> |-->

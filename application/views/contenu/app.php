@@ -71,7 +71,7 @@
         </div>
         
         <div id="thegrid" class="content right">
-            <h2 class="gridTitle">La Grille Medappcare</h2>
+            <h2 class="gridTitle">Évaluation Medappcare</h2>
             <?php if(!empty($application->note_medappcare_detail)): ?>
             <?php foreach ($application->criteres as $critere_parent): ?>
                 <div id="<?php echo strtolower($critere_parent->nom); ?>" class="onegrid">
@@ -99,6 +99,8 @@
                     </div>
                 </div>
             <?php endforeach; ?>
+                <span class="clear"></span>
+                <a href="#" class="infogrid">en savoir plus ></a>
             <?php else: ?>
                 Cette application n'a pas été évaluée par Medappcare
             <?php endif; ?>
