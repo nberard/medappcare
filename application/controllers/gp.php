@@ -39,6 +39,18 @@ class Gp extends Common_Controller {
         return $lastEvalApplis;
     }
 
+    public function error_404()
+    {
+        $data['inc'] = $this->_getCommonIncludes();
+       $data['contenu'] = $this->load->view('error_404', '', true);
+        $data['body_class'] = 'error_404 '.$this->body_class;
+        $this->load->view('main', $data);
+
+        $data['inc'] = $this->_getCommonIncludes();
+        $data['body_class'] = 'error_404 '.$this->body_class;
+        $this->load->view('error_404', $data);
+    }
+
 	public function index()
 	{
         $this->_common_index(array(

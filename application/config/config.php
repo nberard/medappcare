@@ -380,6 +380,8 @@ $config['note_max_accessoire'] = 5;
 $config['note_min_user'] = 0;
 $config['note_max_user'] = 5;
 
+$config['nb_jours_max_inscription_pro'] = 30;
+
 
 $config['contact_mail'] = 'contact@medappcare.com';
 
