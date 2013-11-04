@@ -276,7 +276,8 @@ class Admin extends MY_Controller
     {
         $this->crud->set_subject("Editeur");
         $this->crud->set_table('editeur');
-        $this->crud->required_fields('nom', 'est_premium');
+        $this->crud->unset_fields('est_premium');
+        $this->crud->required_fields('nom');
         $this->_admin_output($this->crud->render());
     }
 
