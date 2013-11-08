@@ -62,9 +62,9 @@ class Common_Controller extends MY_Controller
 //        $this->benchmark->mark('get_parents_end');
 //        $this->benchmark->mark('get_enfants_start');
         log_message('debug', "_populate_categories_enfants true");
-        $this->_populate_categories_enfants($categories_principales_target);
+        $this->_populate_categories_enfants($categories_principales_target, true, true);
         log_message('debug', "_populate_categories_enfants false");
-        $this->_populate_categories_enfants($categories_principales, true, true);
+        $this->_populate_categories_enfants($categories_principales);
 //        $this->benchmark->mark('get_enfants_end');
         log_message('debug', "categories_principales=".var_export($categories_principales, true));
         return array(
