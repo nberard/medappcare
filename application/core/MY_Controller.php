@@ -42,7 +42,9 @@ class MY_Controller extends CI_Controller {
     {
         $this->load->helper('url');
         $this->load->helper('format_string');
+        log_message('debug', "_revert_access=".var_export($_revert_access, true));
         $access_label = $_revert_access ? $this->access_label_target : $this->access_label;
+        log_message('debug', "access_label=".var_export($access_label, true));
         $path = $access_label.'/'.$_target.'/'.to_ascii($_data_link->{$_label_titre}).'_'.$_data_link->{$_label_id};
         if($_page != 0)
         {
