@@ -64,6 +64,7 @@ class Common_Controller extends MY_Controller
         $this->_populate_categories_enfants($categories_principales_target, true, true);
         $this->_populate_categories_enfants($categories_principales);
 //        $this->benchmark->mark('get_enfants_end');
+        log_message('debug', "categories_principales=".var_export($categories_principales, true));
         return array(
             'header_meta' => $this->load->view('inc/header_meta', array(
                 'css_files' => array(css_url('stylesheet')),
