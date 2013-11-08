@@ -35,6 +35,7 @@ class Categories_model extends CI_Model {
 
     public function get_categories_parentes($_pro)
     {
+        log_message('debug', "get_categories_parentes=".var_export($_pro, true));
         return $this->db->select('*, nom_'.config_item('lng').' AS nom')->where(array('parent_id' => -1, 'est_pro' => $_pro ? 1 : 0))->get($this->table)->result();
     }
 

@@ -112,7 +112,7 @@ class Common_Controller extends MY_Controller
 
     protected function _populate_categories_enfants(&$_categories_array, $add_link = true, $_revert_access = false)
     {
-//        log_message('debug', "_populate_categories_enfants=".var_export($_categories_array, true));
+        log_message('debug', "_populate_categories_enfants=".var_export($_categories_array, true));
         $_categories_ids = array();
         foreach($_categories_array as $_categorie)
         {
@@ -139,6 +139,7 @@ class Common_Controller extends MY_Controller
             $_categorie->enfants = $_categories_enfants[$_categorie->id];
             if($add_link)
             {
+                log_message('debug', "_format_all_links($_categorie->enfants, 'category', 'nom', 'link', 'id', 0, $_revert_access)");
                 $this->_format_all_links($_categorie->enfants, 'category', 'nom', 'link', 'id', 0, $_revert_access);
             }
         }
