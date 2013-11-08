@@ -22,7 +22,7 @@ class Gp extends Common_Controller {
         $top5Applis = $this->Applications_model->get_top_five_applications($_free, false);
         $this->_format_all_prices($top5Applis);
         $this->_format_all_notes($top5Applis);
-        log_message('debug', "top5Applis=".var_export($top5Applis, true)."");
+//        log_message('debug', "top5Applis=".var_export($top5Applis, true)."");
         $this->_format_all_links($top5Applis, 'app');
         $this->_populate_categories_applications($top5Applis);
         return $top5Applis;
@@ -115,7 +115,7 @@ class Gp extends Common_Controller {
         $user->date_naissance_classic = date_classic($user->date_naissance);
         $user->pays_full = get_full_country($user->pays);
         $espaceData['user'] = $user;
-        log_message('debug', "user=".var_export($user, true)."");
+//        log_message('debug', "user=".var_export($user, true)."");
         $data['contenu'] = $this->load->view('contenu/espace_membre', $espaceData, true);
         $data['body_class'] = 'membre '.$this->body_class;
         $this->load->view('main', $data);

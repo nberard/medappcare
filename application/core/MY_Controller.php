@@ -87,7 +87,7 @@ class MY_Controller extends CI_Controller {
 
     protected function _format_link_no_id($_target, $_page = 0, $_params = array())
     {
-        log_message('debug', "_format_link_no_id($_target, $_page = 0, =".var_export($_params, true)."");
+//        log_message('debug', "_format_link_no_id($_target, $_page = 0, =".var_export($_params, true)."");
         $this->load->helper('url');
         $path = $this->access_label.'/'.$_target;
         if($_page != 0)
@@ -110,7 +110,7 @@ class MY_Controller extends CI_Controller {
                 }
             }
         }
-        log_message('debug', "link=".var_export($link, true)."");
+//        log_message('debug', "link=".var_export($link, true)."");
         return $link;
     }
 
@@ -158,7 +158,7 @@ class MY_Controller extends CI_Controller {
             $error = form_error($key);
             if($error)
             {
-                log_message('debug', "adding $error for $key");
+//                log_message('debug', "adding $error for $key");
                 $errors[] = $error;
             }
         }

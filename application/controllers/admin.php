@@ -113,7 +113,7 @@ class Admin extends MY_Controller
             $notes_criteres = array();
             $avis = '';
         }
-        log_message('debug', "notes_criteres=".var_export($notes_criteres, true));
+//        log_message('debug', "notes_criteres=".var_export($notes_criteres, true));
         $this->load->helper('assets');
         $js_files = array(
             js_url('jquery-2.0.0.min'),

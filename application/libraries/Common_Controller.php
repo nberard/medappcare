@@ -145,7 +145,7 @@ class Common_Controller extends MY_Controller
 
     protected function _get_app_infos($_id)
     {
-        log_message('debug', "_get_app_infos($_id)");
+//        log_message('debug', "_get_app_infos($_id)");
         $this->load->model('Applications_model');
         $application = $this->Applications_model->get_application($_id);
         if($application)
@@ -184,7 +184,7 @@ class Common_Controller extends MY_Controller
             }
 //            $this->_format_all_dates($application->notes, 'date', 'datetime');
         }
-        log_message('debug', "application=".var_export($application, true)."");
+//        log_message('debug', "application=".var_export($application, true)."");
         return $application;
     }
 
@@ -267,7 +267,7 @@ class Common_Controller extends MY_Controller
         $this->_populate_categories_applications($lastEvalApplis);
         $this->_populate_categories_applications($top5Applis);
         $this->_populate_categories_applications($allappcategory);
-        log_message('debug', "lastEvalApplis=".var_export($lastEvalApplis, true)."");
+//        log_message('debug', "lastEvalApplis=".var_export($lastEvalApplis, true)."");
         $this->_format_all_prices($lastEvalApplis);
         $this->_format_all_prices($top5Applis);
         $this->_format_all_prices($allappcategory);
@@ -277,10 +277,10 @@ class Common_Controller extends MY_Controller
         $this->_format_all_notes($lastEvalApplis);
         $this->_format_all_notes($top5Applis);
         $this->_format_all_notes($allappcategory);
-        log_message('debug', "top5Applis=".var_export($top5Applis, true)."");
+//        log_message('debug', "top5Applis=".var_export($top5Applis, true)."");
         $categorie = $this->Categories_model->get_categorie($_id);
         $this->_format_link($categorie, 'app_category', 'nom', 'link_all', 'id' ,1);
-        log_message('debug', "categorie=".var_export($categorie, true)."");
+//        log_message('debug', "categorie=".var_export($categorie, true)."");
         $this->_format_link($categorie, 'app_category', 'nom', 'link_all_topfive', 'id' ,1, array('free' => 0, 'eval_medapp' => 1, 'sort' => 'note'));
         $this->_format_link($categorie, 'app_category', 'nom', 'link_all_lasteval', 'id' ,1, array('eval_medapp' => 1, 'sort' => 'date'));
         $categoryData = array(
@@ -383,7 +383,7 @@ class Common_Controller extends MY_Controller
         $number_notes = $this->Applications_model->get_number_notes_from_application($application->est_pro, $_id);
         $prev_link = null;
         $next_link = $number_notes > config_item('nb_comments_page') ? 2 : null;
-        log_message('debug', "application->notes=".var_export($application->notes, true)."");
+//        log_message('debug', "application->notes=".var_export($application->notes, true)."");
         $appData = array(
             'widget_devices' => $this->load->view('inc/widget_devices', array(
                 'accessoires' => $this->_get_accessoires(-1, $_id),
@@ -444,7 +444,7 @@ class Common_Controller extends MY_Controller
 
         $number_notes = $this->Accessoires_model->get_number_notes_from_accessoire($_id);
         $applications_compatibles = $this->Applications_model->get_applications_compatibles($this->pro, $_id);
-        log_message('debug', "applications_compatibles=".var_export($applications_compatibles, true)."");
+//        log_message('debug', "applications_compatibles=".var_export($applications_compatibles, true)."");
         $this->_format_all_prices($applications_compatibles);
         $this->_format_all_notes($applications_compatibles);
         $this->_format_all_links($applications_compatibles, 'app');
@@ -618,7 +618,7 @@ class Common_Controller extends MY_Controller
         $this->load->model('Categories_model');
         $this->load->model('Applications_model');
         $search_params = $this->_get_all_search_params($_GET);
-        log_message('debug', "search_params=".var_export($search_params, true));
+//        log_message('debug', "search_params=".var_export($search_params, true));
 
         $categorie = $this->Categories_model->get_categorie($_categorie_id);
         $applications = $this->Applications_model->get_applications_from_categorie($this->pro, $search_params['devices'], $_categorie_id, $search_params['free'], $search_params['sort'], $search_params['order'], $_page);
@@ -662,7 +662,7 @@ class Common_Controller extends MY_Controller
         $this->load->model('Accessoires_model');
         $this->load->model('Applications_model');
         $search_params = $this->_get_all_search_params($_GET);
-        log_message('debug', "search_params=".var_export($search_params, true));
+//        log_message('debug', "search_params=".var_export($search_params, true));
 
         $applications = $this->Applications_model->get_applications_compatibles($this->pro, $_accessoire_id, $_page);
         $nb_app_compatibles = $this->Applications_model->get_number_applications_compatibles($this->pro, $_accessoire_id);
@@ -704,11 +704,11 @@ class Common_Controller extends MY_Controller
     public function app_search($_page)
     {
         $this->load->model('Applications_model');
-        log_message('debug', "_GET=".var_export($_GET, true)."");
+//        log_message('debug', "_GET=".var_export($_GET, true)."");
         $search_params = $this->_get_all_search_params($_GET);
-        log_message('debug', "search_params=".var_export($search_params, true)."");
+//        log_message('debug', "search_params=".var_export($search_params, true)."");
         $pro = $search_params['force_perso'] == 1 ? false : $this->pro;
-        log_message('debug', "pro=".var_export($pro, true)."");
+//        log_message('debug', "pro=".var_export($pro, true)."");
         $applications = $this->Applications_model->get_applications_classic(
                         $pro, $search_params['devices'], $search_params['term'], $search_params['eval_medapp'],
                         $search_params['free'], $search_params['sort'], $search_params['order'], $_page

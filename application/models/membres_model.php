@@ -27,14 +27,14 @@ class Membres_model extends CI_Model {
 
     public function update_password($_membre_email, $_new_password)
     {
-        log_message('debug', "update_password($_membre_email, $_new_password)");
+//        log_message('debug', "update_password($_membre_email, $_new_password)");
         $this->db->update($this->table, array('mot_de_passe' => $_new_password), array('email' => $_membre_email));
         return $this->db->affected_rows();
     }
 
     public function update_membre($_membre_id, $_params, $_list, $_pro)
     {
-        log_message('debug', "update_membre($_membre_id,  =".var_export($_params, true)."=".var_export($_list, true)."");
+//        log_message('debug', "update_membre($_membre_id,  =".var_export($_params, true)."=".var_export($_list, true)."");
         if(empty($_params['mot_de_passe']))
         {
             unset($_params['mot_de_passe']);
@@ -115,7 +115,7 @@ class Membres_model extends CI_Model {
 
     public function insert_membres($_params, $_list, $_pro)
     {
-        log_message('debug', "insert_membres=".var_export($_params, true)."=".var_export($_list, true)."");
+//        log_message('debug', "insert_membres=".var_export($_params, true)."=".var_export($_list, true)."");
 
         $this->_clean_parameters($_params, $_list, true);
 
@@ -123,7 +123,7 @@ class Membres_model extends CI_Model {
         $this->db->set('date_creation', 'NOW()', false);
         $this->db->insert($this->table);
         $membre_id = $this->db->insert_id();
-        log_message('debug', "membre_id=".var_export($membre_id, true)."");
+//        log_message('debug', "membre_id=".var_export($membre_id, true)."");
         if($membre_id)
         {
             $this->_insert_membre_plateformes($membre_id);

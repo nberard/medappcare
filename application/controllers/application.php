@@ -75,7 +75,7 @@ class Application extends REST_Controller {
                     $this->_format_link($data['categorie'], 'app_category', 'nom', 'link_all', 'id' ,1, $search_settings);
                     $data['see_all_link'] = $data['categorie']->link_all;
                 }
-                log_message('debug', "data=".var_export($data, true)."");
+//                log_message('debug', "data=".var_export($data, true)."");
                 $this->response($this->load->view('inc/'.$template, $data, true), 200);
             }
             else
@@ -118,7 +118,7 @@ class Application extends REST_Controller {
 
     public function index_post($_application_id, $_action)
     {
-        log_message('debug', "Application index_post($_application_id, $_action)");
+//        log_message('debug', "Application index_post($_application_id, $_action)");
         if($_action == 'note')
         {
             if(!$this->user_id) {

@@ -209,7 +209,7 @@ class Applications_model extends CI_Model {
 
     public function get_note_medappcare($_pro, $_application_id)
     {
-        log_message('debug', "get_note_medappcare($_pro, $_application_id)");
+//        log_message('debug', "get_note_medappcare($_pro, $_application_id)");
         $this->db->select('SUM(NP.note * CP.poids_pourcent) AS somme_notes_pondere, `CP`.`parent_id`, SUM(CP.poids_pourcent) AS poids_pourcent')
             ->from('application_notation_medappcare NM')
             ->join($this->getTableName('notes_medappcare', $_pro).' NP', 'NP.application_notation_id=NM.id', 'INNER')
@@ -217,12 +217,12 @@ class Applications_model extends CI_Model {
 //            ->join($this->getTableName('criteres_medappcare', $_pro).' CP2', 'CP2.id=CP.parent_id', 'INNER')
             ->where(array('NM.application_id' => $_application_id))
             ->group_by('CP.parent_id');
-        log_message('debug', "sql=".var_export($this->db->get_compiled_select(), true));
+//        log_message('debug', "sql=".var_export($this->db->get_compiled_select(), true));
         $sql = $this->db->get_compiled_select();
 
         $sql = 'SELECT AVG( partial.somme_notes_pondere / partial.poids_pourcent ) AS note_medappcare FROM ('.$sql.') partial';
-        log_message('debug', "sql final=".var_export($sql, true));
-        log_message('debug', "res=".var_export($this->db->query($sql)->row(), true));
+//        log_message('debug', "sql final=".var_export($sql, true));
+//        log_message('debug', "res=".var_export($this->db->query($sql)->row(), true));
         $row = $this->db->query($sql)->row();
         $this->db->reset_select();
         return $row->note_medappcare;
@@ -253,42 +253,42 @@ class Applications_model extends CI_Model {
     {
         //calcul note medappcare si existe
         $_pro = $this->is_application_pro($_application_id);
-        log_message('debug', "_pro=".var_export($_pro, true));
+//        log_message('debug', "_pro=".var_export($_pro, true));
         $moyenne_medappcare = $this->get_note_medappcare($_pro, $_application_id);
         if(!is_null($moyenne_medappcare))
         {
-            log_message('debug', "OUI");
+//            log_message('debug', "OUI");
             //calcul des notes users
             if($_pro)
             {
                 $moyenne_users_pro = $this->get_moyenne_users(true, $_application_id);
-                log_message('debug', "moyenne_pro=".var_export($moyenne_users_pro, true)."");
+//                log_message('debug', "moyenne_pro=".var_export($moyenne_users_pro, true)."");
                 $moyenne_users_perso = null;
             }
             else
             {
                 $moyenne_users_pro = $this->get_moyenne_users(false, $_application_id, true);
-                log_message('debug', "moyenne_pro=".var_export($moyenne_users_pro, true)."");
+//                log_message('debug', "moyenne_pro=".var_export($moyenne_users_pro, true)."");
                 $moyenne_users_perso = $this->get_moyenne_users(false, $_application_id, false);
-                log_message('debug', "moyenne_perso=".var_export($moyenne_users_perso, true)."");
+//                log_message('debug', "moyenne_perso=".var_export($moyenne_users_perso, true)."");
             }
-            log_message('debug', "moyenne_medappcare=".var_export($moyenne_medappcare, true)."");
+//            log_message('debug', "moyenne_medappcare=".var_export($moyenne_medappcare, true)."");
 
             $moyenne_medappcare_modulee = $moyenne_medappcare;
             if(!is_null($moyenne_users_perso))
             {
                 $ecart = (($moyenne_users_perso - (config_item('note_max_user') / 2)) * 4 * 10) / 100;
-                log_message('debug', "ecart=".var_export($ecart, true));
+//                log_message('debug', "ecart=".var_export($ecart, true));
                 $moyenne_medappcare_modulee+=$ecart;
-                log_message('debug', "moyenne_medappcare_modulee=".var_export($moyenne_medappcare_modulee, true));
+//                log_message('debug', "moyenne_medappcare_modulee=".var_export($moyenne_medappcare_modulee, true));
             }
 
             if(!is_null($moyenne_users_pro))
             {
                 $ecart = (($moyenne_users_pro - (config_item('note_max_user') / 2)) * 4 * 10) / 100;
-                log_message('debug', "ecart=".var_export($ecart, true));
+//                log_message('debug', "ecart=".var_export($ecart, true));
                 $moyenne_medappcare_modulee+=$ecart;
-                log_message('debug', "moyenne_medappcare_modulee=".var_export($moyenne_medappcare_modulee, true));
+//                log_message('debug', "moyenne_medappcare_modulee=".var_export($moyenne_medappcare_modulee, true));
             }
 
             $moyenne_medappcare_modulee = max(
@@ -536,7 +536,7 @@ class Applications_model extends CI_Model {
 
     public function add_notes_to_application($_pro, $_application_id, $_membre_id, $_notes, $_commentaire)
     {
-        log_message("add_notes_to_application($_pro, $_application_id, $_membre_id, =".var_export($_notes, true).", $_commentaire from".__FUNCTION__."at line ".__LINE__, "nico");
+//        log_message("add_notes_to_application($_pro, $_application_id, $_membre_id, =".var_export($_notes, true).", $_commentaire from".__FUNCTION__."at line ".__LINE__, "nico");
         $this->db->set('application_id', $_application_id);
         $this->db->set('membre_id', $_membre_id);
         $this->db->set('commentaire_'.config_item('lng'), $_commentaire);

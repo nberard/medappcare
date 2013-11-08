@@ -17,8 +17,8 @@ class Accessoire extends REST_Controller {
 
     public function index_post($_accessoire_id, $_action)
     {
-        log_message('debug', "Accessoire index_put($_accessoire_id, $_action, $_user_id)");
-        if($_action == 'note')
+//        log_message('debug', "Accessoire index_put($_accessoire_id, $_action, $_user_id)");
+        if($_action == 'note') 
         {
             if(!$this->user_id) {
                 $this->response(array('status' => 'ko', 'errors' => 'Accès interdit'), 401);

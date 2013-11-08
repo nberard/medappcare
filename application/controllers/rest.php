@@ -29,7 +29,7 @@ class Rest extends REST_Controller {
             $this->load->model('Devices_model');
             $membre->categories = $this->Categories_model->get_categories_id_from_membre($membre->id);
             $membre->devices = $this->Devices_model->get_devices_from_membre($membre->id);
-            log_message('debug', "membre=".var_export($membre, true));
+//            log_message('debug', "membre=".var_export($membre, true));
             $response = array('status' => 'ok');
             if($session)
             {

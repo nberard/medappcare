@@ -47,7 +47,7 @@ class Membre extends REST_Controller {
 
     protected function _membre_set_rules($_list, $_action)
     {
-        log_message('debug', "_membre_set_rules for=".var_export($_POST, true)." with list=".var_export($_list, true)."");
+//        log_message('debug', "_membre_set_rules for=".var_export($_POST, true)." with list=".var_export($_list, true)."");
         $this->load->library('form_validation');
         $this->lang->load('form_validation');
         foreach($_list as $field)
@@ -141,7 +141,7 @@ class Membre extends REST_Controller {
             }
             else
             {
-                log_message('error', "l'update d'un membre a échoué : ".var_export($_POST, true));
+//                log_message('error', "l'update d'un membre a échoué : ".var_export($_POST, true));
                 $this->response(array('status' => 'ko', 'errors' => lang('ko_membre_update')), 500);
             }
         }
@@ -150,14 +150,14 @@ class Membre extends REST_Controller {
     public function password_put()
     {
         $_email = $this->_put('email');
-        log_message('debug', " password_post($_email)");
+//        log_message('debug', " password_post($_email)");
         $new_password = uniqid();
         $this->load->model('Membres_model');
         $this->load->helper('crypt');
         $new_password_crypt = get_crypt_password($new_password);
         if($res = $this->Membres_model->update_password($_email, $new_password_crypt))
         {
-            log_message('debug', "res=".var_export($res, true)."");
+//            log_message('debug', "res=".var_export($res, true)."");
             $this->load->library('email');
 
             $this->email->from('admin@medappcare.fr', 'Medappcare admin');
@@ -199,7 +199,7 @@ class Membre extends REST_Controller {
             }
             else
             {
-                log_message('error', "la création d'un membre a échoué : ".var_export($_POST, true));
+//                log_message('error', "la création d'un membre a échoué : ".var_export($_POST, true));
                 $this->response(array('status' => 'ko', 'errors' => lang('ko_reg_server')), 500);
             }
         }
