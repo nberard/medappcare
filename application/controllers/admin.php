@@ -333,7 +333,7 @@ class Admin extends MY_Controller
         $this->crud->callback_before_update(array($this, '_membres_before_action'));
 
         $this->crud->callback_column('date_creation',array($this,'_callback_date_creation'));
-
+        $this->crud->display_as('droits','Droit Admin');
         $this->_admin_output($this->crud->render());
     }
 
