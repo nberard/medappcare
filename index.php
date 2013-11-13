@@ -39,7 +39,7 @@ if (defined('ENVIRONMENT'))
 	
 		case 'testing':
 		case 'production':
-			error_reporting(E_ALL & ~E_DEPRECATED);
+			error_reporting(0);
 		break;
 
 		default:
