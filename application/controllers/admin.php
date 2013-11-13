@@ -159,7 +159,7 @@ class Admin extends MY_Controller
         $this->crud->required_fields('nom_'.config_item('lng'), 'fabriquant_id', 'photo', 'lien_achat');
         $this->crud->set_relation('fabriquant_id', 'accessoire_fabriquant', '{nom}');
 
-        $this->crud->set_relation_n_n('applications', 'accessoire_application_compatible', 'application', 'accessoire_id', 'application_id', '{nom}');
+//        $this->crud->set_relation_n_n('applications', 'accessoire_application_compatible', 'application', 'accessoire_id', 'application_id', '{nom}');
 
         $this->_admin_output($this->crud->render());
     }
