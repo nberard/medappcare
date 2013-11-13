@@ -38,6 +38,17 @@ class MY_Controller extends CI_Controller {
         }
     }
 
+    protected function _format_all_links_categorie(&$_data_link_array, $_target, $_label_titre = 'titre', $_link = 'link', $_label_id = 'id')
+    {
+        foreach ($_data_link_array as &$_data_link)
+        {
+            if($_data_link->{$_label_titre} && $_data_link->{$_label_id})
+            {
+                $this->_format_link($_data_link, $_target, $_label_titre, $_link, $_label_id, 0, '', $this->pro != $_data_link->est_pro);
+            }
+        }
+    }
+
     protected function _format_link(&$_data_link, $_target, $_label_titre = 'titre', $_link = 'link', $_label_id = 'id', $_page = 0, $_params = '', $_revert_access = false)
     {
         $this->load->helper('url');
@@ -120,7 +131,7 @@ class MY_Controller extends CI_Controller {
     {
         $this->load->model('Categories_model');
         $_application->categories = $this->Categories_model->get_categories_from_application($_application->id);
-        $this->_format_all_links($_application->categories, 'category', 'nom', 'link_categorie', 'id', 0, $_application->est_pro != $this->pro);
+        $this->_format_all_links_categorie($_application->categories, 'category', 'nom', 'link_categorie');
     }
 
     protected function _populate_categories_applications(&$_applications)
