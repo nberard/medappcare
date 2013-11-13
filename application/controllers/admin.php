@@ -151,16 +151,9 @@ class Admin extends MY_Controller
 
     public function accessoires()
     {
-        $this->config->load('price');
-        $this->crud->set_subject('Accessoire');
-        $this->crud->set_table('accessoire');
-        $this->crud->field_type('devise','enum',array_keys(config_item('currency_map')));
-        $this->crud->field_type('type','enum', config_item('types_accessoires'));
-        $this->crud->required_fields('nom_'.config_item('lng'), 'fabriquant_id', 'photo', 'lien_achat');
-        $this->crud->set_relation('fabriquant_id', 'accessoire_fabriquant', '{nom}');
-
-        $this->crud->set_relation_n_n('applications', 'accessoire_application_compatible', 'application', 'accessoire_id', 'application_id', '{nom}');
-
+        $this->crud->set_subject("Fabriquant d'accessoires");
+        $this->crud->set_table('accessoire_fabriquant');
+        $this->crud->required_fields('nom');
         $this->_admin_output($this->crud->render());
     }
 
