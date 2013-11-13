@@ -61,7 +61,7 @@ a:hover
     </div>
     <div class="btn-group">
     <?php if(!empty($inf)): ?>
-        <a href="<?php echo site_url('admin/applications/edit/'.$inf); ?>" class="btn btn-small">Précédante</a>
+        <a href="<?php echo site_url('admin/applications/edit/'.$inf); ?>" class="btn btn-small">Précédente</a>
     <?php endif; ?>
     <?php if(!empty($current)): ?>
         <a href="<?php echo site_url('admin/medappcare/'.$current); ?>" class="btn btn-small" target="_blank">Note Medappcare</a>
