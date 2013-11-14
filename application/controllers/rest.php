@@ -55,8 +55,7 @@ class Rest extends REST_Controller {
             $this->email->from('report@medappcare.com', 'Medappcare report');
             $this->email->to(config_item('contact_mail'));
             $this->email->subject("[Medappcare] Signalisation de l'application");
-            $this->email->message("Un utilisateur a signaler l'application ".$app_name." (".$app_id.") pour cause de \"".$cause."\"<br/>
-            L'utilisateur a ajouté le message suivant : ".$description);
+            $this->email->message("Un utilisateur a signaler l'application ".$app_name." (".$app_id.") pour cause de \"".$cause."\" L'utilisateur a ajouté le message suivant : ".$description);
             if($this->email->send())
             {
                 $this->response(array('status' => 'ok', 'message' => 'Un e-mail a été envoyé pour signaler cette application'), 200);

@@ -110,7 +110,6 @@ $(document).ready(function()
                 }),
             success: function(data, textStatus, xhr)
             {
-                console.debug('success');
                 $('#signaler-success').empty().html(xhr.responseJSON.message).show();
                 setTimeout(function(){
                     $('#signaler-success').hide('slow');
@@ -118,7 +117,6 @@ $(document).ready(function()
             },
             error: function(xhr, textStatus, error)
             {
-                console.debug('error');
                 $('#signaler-error').empty().html(xhr.responseJSON.errors).show();
                 setTimeout(function(){
                     $('#signaler-error').hide('slow');
