@@ -142,7 +142,7 @@ $(document).ready(function() {
 		if (event.target != $('form.search-form input')[0]) {
 			if (searchForm.css('display') != 'none') {
 				
-				console.log('prevendDefault');
+//				console.log('prevendDefault');
 				event.preventDefault();
 				searchForm.toggle("slide", { direction: "right" }, 'normal', 'easeOutCubic');
 			}

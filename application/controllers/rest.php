@@ -44,6 +44,29 @@ class Rest extends REST_Controller {
         }
     }
 
+    public function signaler_post()
+    {
+        $app_name = $this->_post('app_name');
+        $app_id = $this->_post('app_id');
+        $cause = $this->_post('cause');
+        $description = $this->_post('description');
+            $this->load->library('email');
+
+            $this->email->from('report@medappcare.com', 'Medappcare report');
+            $this->email->to(config_item('contact_mail'));
+            $this->email->subject("[Medappcare] Signalisation de l'application");
+            $this->email->message("Un utilisateur a signaler l'application ".$app_name." (".$app_id.") pour cause de \"".$cause."\"<br/>
+            L'utilisateur a ajouté le message suivant : ".$description);
+            if($this->email->send())
+            {
+                $this->response(array('status' => 'ok', 'message' => 'Un e-mail a été envoyé pour signaler cette application'), 200);
+            }
+        else
+        {
+            $this->response(array('status' => 'ko', 'errors' => "Echec de l'envoie de l'e-mail"), 400);
+        }
+    }
+
 }
 
 /* End of file perso.php */

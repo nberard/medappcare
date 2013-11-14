@@ -9,7 +9,7 @@ $(document).ready(function()
         $('#filters option:selected').each(function()
         {
             var parent = $(this).parent()[0].id;
-            console.debug('parent='+parent);
+//            console.debug('parent='+parent);
             if(parent == 'prix')
             {
                 prixTab.push($(this).val());

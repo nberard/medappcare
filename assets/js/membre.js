@@ -3,7 +3,7 @@ $(document).ready(function(){
     $('#form-membre-update').submit(function()
     {
         var plateformes = [];
-        console.dir(plateformeIds);
+//        console.dir(plateformeIds);
         for(var i=0; i<plateformeIds.length; i++)
         {
             if(plateformeIds[i] && plateformeIds[i] != "undefined" && plateformeIds[i] == true)
@@ -11,7 +11,7 @@ $(document).ready(function(){
                 plateformes.push(i);
             }
         }
-        console.dir(plateformes);
+//        console.dir(plateformes);
         $.ajax({
             type: 		"PUT",
             url:  		$(this).data('action'),

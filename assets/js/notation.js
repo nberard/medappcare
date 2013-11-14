@@ -1,13 +1,13 @@
 function handleNotation(type)
 {
-    console.dir(type);
+//    console.dir(type);
     if($('#form-noter-'+type).length)
     {
         $('#form-noter-'+type).submit(function()
         {
             var data = {commentaire: encodeURIComponent($('#commentaire-'+type).val())}
             var criteres = $(this).data('criteres');
-            console.dir(criteres);
+//            console.dir(criteres);
             var nb_criteres = criteres.length;
             if($('#'+type+'-notation-pro').length)
             {
@@ -91,6 +91,43 @@ function handleNotation(type)
 
 $(document).ready(function()
 {
+    $('#signaler_form').submit(function()
+    {
+        $.ajax({
+            type: 		"POST",
+            url:  		$(this).data('action'),
+            dataType: 'json',
+            headers: {
+                Accept : 'application/json',
+                "Content-Type": 'application/json'
+            },
+            data:
+                JSON.stringify({
+                    app_id : $('#app_id').val(),
+                    app_name : $('#app_name').val(),
+                    cause : $('#typeSignaler').val(),
+                    description : $('#textSignaler').val()
+                }),
+            success: function(data, textStatus, xhr)
+            {
+                console.debug('success');
+                $('#signaler-success').empty().html(xhr.responseJSON.message).show();
+                setTimeout(function(){
+                    $('#signaler-success').hide('slow');
+                }, 1000);
+            },
+            error: function(xhr, textStatus, error)
+            {
+                console.debug('error');
+                $('#signaler-error').empty().html(xhr.responseJSON.errors).show();
+                setTimeout(function(){
+                    $('#signaler-error').hide('slow');
+                }, 1000);
+            }
+        });
+        return false;
+    });
+
     handleNotation('accessoire');
     handleNotation('application');
 });

@@ -263,3 +263,27 @@
         <div id="application-notation-success" class="success alert-success hide"></div>
     </div>
 <?php endif; ?>
+<div class="modal hide fade" id="signalerModal">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"></button>
+        <h3>Signalez cette application</h3>
+    </div>
+    <div class="modal-body">
+        <p class="explication">Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+        <form method="post" data-action="<?php echo site_url('rest/signaler') ?>" name="signaler_form" id="signaler_form">
+            <p>
+                <select name="typeSignaler" id="typeSignaler">
+                    <option value="Cause 1">Cause 1</option>
+                    <option value="Cause 2">Cause 2</option>
+                    <option value="Autre (préciser)">Autre (préciser)</option>
+                </select>
+            </p>
+            <p><textarea name="textSignaler" id="textSignaler" required placeholder="Commentaire..."></textarea></p>
+            <p><button type="submit" class="btn btn-primary">Envoyer</button></p>
+            <input type="hidden" id="app_name" value="<?php echo $application->nom; ?>"/>
+            <input type="hidden" id="app_id" value="<?php echo $application->id; ?>"/>
+        </form>
+    </div>
+    <div id="signaler-error" class="alert alert-error hide"></div>
+    <div id="signaler-success" class="success alert-success hide"></div>
+</div>

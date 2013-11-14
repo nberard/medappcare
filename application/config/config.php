@@ -383,7 +383,8 @@ $config['note_max_user'] = 5;
 $config['nb_jours_max_inscription_pro'] = 30;
 
 
-$config['contact_mail'] = 'contact@medappcare.com';
+$config['contact_mail'] = 'berard.nicolas@gmail.com';
+//$config['contact_mail'] = 'contact@medappcare.com';
 
 $config['nb_results_list'] = 10;
 $config['nb_results_news_list'] = 2;
