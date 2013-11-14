@@ -22,7 +22,7 @@
 <h2><?php echo $critere_parent->nom; ?></h2>
     <?php foreach($critere_parent->childs as $critere_enfant): ?>
         <h4><?php echo $critere_enfant->nom; ?></h4>
-        <label for="note<?php echo $critere_enfant->id; ?>">Note : </label>
+        <label for="note<?php echo $critere_enfant->id; ?>">Note (sur 10) : </label>
         <input type="number" name="note<?php echo $critere_enfant->id; ?>"
                min="<?php echo config_item('note_min_medappcare'); ?>"
                max="<?php echo config_item('note_max_medappcare'); ?>"
