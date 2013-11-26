@@ -16,7 +16,7 @@
         </li>
         
         <form action="<?php echo site_url($access_label.'/app_search_1') ; ?>" method="post" id="search-form" class="search-form">
-			<input type="text" id="search-query" placeholder="Trouvez l'app qui vous plaît...">
+			<input type="text" id="search-query" placeholder="Trouvez l'app qui vous convient...">
 		</form>
     </ul>
 </nav>
@@ -28,7 +28,7 @@
         <div class="wrapper">
             <?php $cpt = 0; ?>
             <?php foreach($categorie_principale->enfants as $categorie_enfant): ?>
-                <?php if($cpt%10 == 0)
+                <?php if($cpt%14 == 0)
                 {
                     if($cpt != 0)
                     {
