@@ -43,7 +43,7 @@
         <input name="cgu" id="cgu" type="checkbox" required> J'accepte des <a href="<?php echo site_url($access_label.'/cgu'); ?>" title="CGU" target="_blank">Conditions Générales d'Utilisation</a>
     </label>
     <label class="checkbox">
-        <input name="cgv" id="cgv"  type="checkbox" required> J'accepte le traitement de ces données par Medappcare
+        <input name="cgv" id="cgv"  type="checkbox" required> J'accepte que Medappcare communique ces données à ses partenaires
     </label>
     <button class="btn btn-primary" type="submit">M'inscrire</button>
     <br> <br>
